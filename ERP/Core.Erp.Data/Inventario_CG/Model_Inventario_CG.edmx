@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_Inventario_CG.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Model_Inventario_CGStoreContainer">
+          <EntitySet Name="in_categoria_CG" EntityType="Model_Inventario_CG.Store.in_categoria_CG" store:Type="Tables" Schema="CG" />
+          <EntitySet Name="in_Ing_Egr_Inven_CG" EntityType="Model_Inventario_CG.Store.in_Ing_Egr_Inven_CG" store:Type="Tables" Schema="CG" />
+          <EntitySet Name="in_Producto_CG" EntityType="Model_Inventario_CG.Store.in_Producto_CG" store:Type="Tables" Schema="CG" />
+          <EntitySet Name="vw_in_Producto_x_inv_Producto_CG" EntityType="Model_Inventario_CG.Store.vw_in_Producto_x_inv_Producto_CG" store:Type="Views" store:Schema="CG" store:Name="vw_in_Producto_x_inv_Producto_CG">
+            <DefiningQuery>SELECT 
+      [vw_in_Producto_x_inv_Producto_CG].[IdEmpresa] AS [IdEmpresa], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdProducto] AS [IdProducto], 
+      [vw_in_Producto_x_inv_Producto_CG].[pr_codigo] AS [pr_codigo], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdCategoria] AS [IdCategoria], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdLinea] AS [IdLinea], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdGrupo] AS [IdGrupo], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdUnidadMedida] AS [IdUnidadMedida], 
+      [vw_in_Producto_x_inv_Producto_CG].[pr_codigo_barra] AS [pr_codigo_barra], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdMotivo_Vta] AS [IdMotivo_Vta], 
+      [vw_in_Producto_x_inv_Producto_CG].[sw_solicita_autorizacion] AS [sw_solicita_autorizacion], 
+      [vw_in_Producto_x_inv_Producto_CG].[codigo_alterno] AS [codigo_alterno], 
+      [vw_in_Producto_x_inv_Producto_CG].[sw_venta_directa] AS [sw_venta_directa], 
+      [vw_in_Producto_x_inv_Producto_CG].[codigo_cnmb] AS [codigo_cnmb], 
+      [vw_in_Producto_x_inv_Producto_CG].[sw_control_fecha_vencimiento] AS [sw_control_fecha_vencimiento], 
+      [vw_in_Producto_x_inv_Producto_CG].[sw_generico] AS [sw_generico], 
+      [vw_in_Producto_x_inv_Producto_CG].[sw_pos] AS [sw_pos], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_cod_forma_farmacologica] AS [med_cod_forma_farmacologica], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_cod_anatofarmacologico] AS [med_cod_anatofarmacologico], 
+      [vw_in_Producto_x_inv_Producto_CG].[contenido_unidad_venta] AS [contenido_unidad_venta], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_cod_principio_activo] AS [med_cod_principio_activo], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_sw_farmacovigilancia] AS [med_sw_farmacovigilancia], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_descripcion_alerta] AS [med_descripcion_alerta], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_sw_alimento_parenteral] AS [med_sw_alimento_parenteral], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_sw_alimento_enteral] AS [med_sw_alimento_enteral], 
+      [vw_in_Producto_x_inv_Producto_CG].[med_sw_manejo_luz] AS [med_sw_manejo_luz], 
+      [vw_in_Producto_x_inv_Producto_CG].[pr_descripcion] AS [pr_descripcion], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdUnidadMedida_Consumo] AS [IdUnidadMedida_Consumo], 
+      [vw_in_Producto_x_inv_Producto_CG].[estado_medicina] AS [estado_medicina], 
+      [vw_in_Producto_x_inv_Producto_CG].[estado_producto] AS [estado_producto], 
+      [vw_in_Producto_x_inv_Producto_CG].[IdProductoTipo] AS [IdProductoTipo]
+      FROM [CG].[vw_in_Producto_x_inv_Producto_CG] AS [vw_in_Producto_x_inv_Producto_CG]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="in_categoria_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdCategoria" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="sw_medicamento" Type="bit" />
+          <Property Name="sw_vende" Type="bit" />
+          <Property Name="sw_insumos" Type="bit" />
+          <Property Name="sw_formulacion" Type="bit" />
+          <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IdUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_Transac" Type="datetime" />
+          <Property Name="nom_pc" Type="varchar" MaxLength="50" />
+          <Property Name="ip" Type="varchar" MaxLength="25" />
+          <Property Name="MotiAnula" Type="varchar" MaxLength="200" />
+          <Property Name="IdUsuarioUltMod" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltMod" Type="datetime" />
+          <Property Name="IdUsuarioUltAnu" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltAnu" Type="datetime" />
+        </EntityType>
+        <EntityType Name="in_Ing_Egr_Inven_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdSucursal" />
+            <PropertyRef Name="IdMovi_inven_tipo" />
+            <PropertyRef Name="IdNumMovi" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdSucursal" Type="int" Nullable="false" />
+          <Property Name="IdMovi_inven_tipo" Type="int" Nullable="false" />
+          <Property Name="IdNumMovi" Type="numeric" Nullable="false" />
+          <Property Name="IdIngreso" Type="numeric" Nullable="false" />
+          <Property Name="IdCuenta" Type="numeric" Nullable="false" />
+          <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MotivoAnulacion" Type="varchar" MaxLength="100" />
+          <Property Name="IdUsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_Transac" Type="datetime" />
+          <Property Name="IdUsuarioUltModi" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltMod" Type="datetime" />
+          <Property Name="IdusuarioUltAnu" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltAnu" Type="datetime" />
+          <Property Name="nom_pc" Type="varchar" MaxLength="50" />
+          <Property Name="ip" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="in_Producto_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="numeric" Nullable="false" />
+          <Property Name="sw_solicita_autorizacion" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="codigo_alterno" Type="nvarchar" MaxLength="30" />
+          <Property Name="sw_venta_directa" Type="char" MaxLength="1" />
+          <Property Name="codigo_cnmb" Type="nvarchar" MaxLength="40" />
+          <Property Name="sw_control_fecha_vencimiento" Type="char" MaxLength="1" />
+          <Property Name="sw_generico" Type="char" MaxLength="1" />
+          <Property Name="sw_pos" Type="char" MaxLength="1" />
+          <Property Name="med_cod_forma_farmacologica" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="med_cod_anatofarmacologico" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="contenido_unidad_venta" Type="nvarchar" MaxLength="60" />
+          <Property Name="med_cod_principio_activo" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="med_sw_farmacovigilancia" Type="char" MaxLength="1" />
+          <Property Name="med_descripcion_alerta" Type="nvarchar" MaxLength="50" />
+          <Property Name="med_sw_alimento_parenteral" Type="char" MaxLength="1" />
+          <Property Name="med_sw_alimento_enteral" Type="char" MaxLength="1" />
+          <Property Name="med_sw_manejo_luz" Type="char" MaxLength="1" />
+          <Property Name="med_unidad_medida_medicamento_id" Type="nvarchar" MaxLength="30" />
+          <Property Name="med_dias_previos_vencimiento" Type="smallint" Nullable="false" />
+          <Property Name="IdUsuario" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fecha_Transac" Type="datetime" />
+          <Property Name="IdUsuarioUltMod" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fecha_UltMod" Type="datetime" />
+          <Property Name="IdUsuarioUltAnu" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fecha_UltAnu" Type="datetime" />
+          <Property Name="pr_motivoAnulacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="nom_pc" Type="nvarchar" MaxLength="50" />
+          <Property Name="ip" Type="nvarchar" MaxLength="25" />
+          <Property Name="Estado" Type="char" MaxLength="1" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.CG.vw_in_Producto_x_inv_Producto_CG' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_in_Producto_x_inv_Producto_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="pr_codigo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="IdLinea" />
+            <PropertyRef Name="IdGrupo" />
+            <PropertyRef Name="IdUnidadMedida" />
+            <PropertyRef Name="pr_codigo_barra" />
+            <PropertyRef Name="sw_solicita_autorizacion" />
+            <PropertyRef Name="med_cod_forma_farmacologica" />
+            <PropertyRef Name="med_cod_anatofarmacologico" />
+            <PropertyRef Name="med_cod_principio_activo" />
+            <PropertyRef Name="pr_descripcion" />
+            <PropertyRef Name="IdUnidadMedida_Consumo" />
+            <PropertyRef Name="estado_producto" />
+            <PropertyRef Name="IdProductoTipo" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="numeric" Nullable="false" />
+          <Property Name="pr_codigo" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="IdCategoria" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="IdLinea" Type="int" Nullable="false" />
+          <Property Name="IdGrupo" Type="int" Nullable="false" />
+          <Property Name="IdUnidadMedida" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="pr_codigo_barra" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="IdMotivo_Vta" Type="int" />
+          <Property Name="sw_solicita_autorizacion" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="codigo_alterno" Type="nvarchar" MaxLength="30" />
+          <Property Name="sw_venta_directa" Type="char" MaxLength="1" />
+          <Property Name="codigo_cnmb" Type="nvarchar" MaxLength="40" />
+          <Property Name="sw_control_fecha_vencimiento" Type="char" MaxLength="1" />
+          <Property Name="sw_generico" Type="char" MaxLength="1" />
+          <Property Name="sw_pos" Type="char" MaxLength="1" />
+          <Property Name="med_cod_forma_farmacologica" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="med_cod_anatofarmacologico" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="contenido_unidad_venta" Type="nvarchar" MaxLength="60" />
+          <Property Name="med_cod_principio_activo" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="med_sw_farmacovigilancia" Type="char" MaxLength="1" />
+          <Property Name="med_descripcion_alerta" Type="nvarchar" MaxLength="50" />
+          <Property Name="med_sw_alimento_parenteral" Type="char" MaxLength="1" />
+          <Property Name="med_sw_alimento_enteral" Type="char" MaxLength="1" />
+          <Property Name="med_sw_manejo_luz" Type="char" MaxLength="1" />
+          <Property Name="pr_descripcion" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="IdUnidadMedida_Consumo" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="estado_medicina" Type="char" MaxLength="1" />
+          <Property Name="estado_producto" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IdProductoTipo" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_Inventario_CG" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities_Inventario_CG" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="in_Ing_Egr_Inven_CG" EntityType="Model_Inventario_CG.in_Ing_Egr_Inven_CG" />
+          <EntitySet Name="in_categoria_CG" EntityType="Model_Inventario_CG.in_categoria_CG" />
+          <EntitySet Name="in_Producto_CG" EntityType="Model_Inventario_CG.in_Producto_CG" />
+          <EntitySet Name="vw_in_Producto_x_inv_Producto_CG" EntityType="Model_Inventario_CG.vw_in_Producto_x_inv_Producto_CG" />
+        </EntityContainer>
+        <EntityType Name="in_Ing_Egr_Inven_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdSucursal" />
+            <PropertyRef Name="IdMovi_inven_tipo" />
+            <PropertyRef Name="IdNumMovi" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="Int32" Name="IdMovi_inven_tipo" Nullable="false" />
+          <Property Type="Decimal" Name="IdNumMovi" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IdIngreso" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IdCuenta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="MotivoAnulacion" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdUsuarioCreacion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Transac" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdusuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+          <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ip" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="in_categoria_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="String" Name="IdCategoria" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="sw_medicamento" />
+          <Property Type="Boolean" Name="sw_vende" />
+          <Property Type="Boolean" Name="sw_insumos" />
+          <Property Type="Boolean" Name="sw_formulacion" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Transac" Precision="3" />
+          <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ip" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MotiAnula" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdUsuarioUltMod" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+        </EntityType>
+        <EntityType Name="in_Producto_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdProducto" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="sw_solicita_autorizacion" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="codigo_alterno" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sw_venta_directa" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="codigo_cnmb" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sw_control_fecha_vencimiento" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="sw_generico" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="sw_pos" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_cod_forma_farmacologica" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_cod_anatofarmacologico" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="contenido_unidad_venta" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_cod_principio_activo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_sw_farmacovigilancia" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_descripcion_alerta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_sw_alimento_parenteral" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_sw_alimento_enteral" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_sw_manejo_luz" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_unidad_medida_medicamento_id" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="med_dias_previos_vencimiento" Nullable="false" />
+          <Property Type="String" Name="IdUsuario" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Fecha_Transac" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltMod" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+          <Property Type="String" Name="pr_motivoAnulacion" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ip" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Estado" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_in_Producto_x_inv_Producto_CG">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdProducto" />
+            <PropertyRef Name="pr_codigo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="IdLinea" />
+            <PropertyRef Name="IdGrupo" />
+            <PropertyRef Name="IdUnidadMedida" />
+            <PropertyRef Name="pr_codigo_barra" />
+            <PropertyRef Name="sw_solicita_autorizacion" />
+            <PropertyRef Name="med_cod_forma_farmacologica" />
+            <PropertyRef Name="med_cod_anatofarmacologico" />
+            <PropertyRef Name="med_cod_principio_activo" />
+            <PropertyRef Name="pr_descripcion" />
+            <PropertyRef Name="IdUnidadMedida_Consumo" />
+            <PropertyRef Name="estado_producto" />
+            <PropertyRef Name="IdProductoTipo" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdProducto" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="pr_codigo" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IdCategoria" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdLinea" Nullable="false" />
+          <Property Type="Int32" Name="IdGrupo" Nullable="false" />
+          <Property Type="String" Name="IdUnidadMedida" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pr_codigo_barra" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdMotivo_Vta" />
+          <Property Type="String" Name="sw_solicita_autorizacion" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="codigo_alterno" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sw_venta_directa" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="codigo_cnmb" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sw_control_fecha_vencimiento" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="sw_generico" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="sw_pos" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_cod_forma_farmacologica" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_cod_anatofarmacologico" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="contenido_unidad_venta" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_cod_principio_activo" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_sw_farmacovigilancia" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_descripcion_alerta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="med_sw_alimento_parenteral" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_sw_alimento_enteral" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="med_sw_manejo_luz" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="pr_descripcion" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IdUnidadMedida_Consumo" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="estado_medicina" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="estado_producto" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="IdProductoTipo" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_Inventario_CGStoreContainer" CdmEntityContainer="Entities_Inventario_CG">
+          <EntitySetMapping Name="in_Ing_Egr_Inven_CG">
+            <EntityTypeMapping TypeName="Model_Inventario_CG.in_Ing_Egr_Inven_CG">
+              <MappingFragment StoreEntitySet="in_Ing_Egr_Inven_CG">
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdusuarioUltAnu" ColumnName="IdusuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
+                <ScalarProperty Name="Fecha_Transac" ColumnName="Fecha_Transac" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdCuenta" ColumnName="IdCuenta" />
+                <ScalarProperty Name="IdIngreso" ColumnName="IdIngreso" />
+                <ScalarProperty Name="IdNumMovi" ColumnName="IdNumMovi" />
+                <ScalarProperty Name="IdMovi_inven_tipo" ColumnName="IdMovi_inven_tipo" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="in_categoria_CG">
+            <EntityTypeMapping TypeName="Model_Inventario_CG.in_categoria_CG">
+              <MappingFragment StoreEntitySet="in_categoria_CG">
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltMod" ColumnName="IdUsuarioUltMod" />
+                <ScalarProperty Name="MotiAnula" ColumnName="MotiAnula" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
+                <ScalarProperty Name="Fecha_Transac" ColumnName="Fecha_Transac" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="sw_formulacion" ColumnName="sw_formulacion" />
+                <ScalarProperty Name="sw_insumos" ColumnName="sw_insumos" />
+                <ScalarProperty Name="sw_vende" ColumnName="sw_vende" />
+                <ScalarProperty Name="sw_medicamento" ColumnName="sw_medicamento" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="in_Producto_CG">
+            <EntityTypeMapping TypeName="Model_Inventario_CG.in_Producto_CG">
+              <MappingFragment StoreEntitySet="in_Producto_CG">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
+                <ScalarProperty Name="pr_motivoAnulacion" ColumnName="pr_motivoAnulacion" />
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltMod" ColumnName="IdUsuarioUltMod" />
+                <ScalarProperty Name="Fecha_Transac" ColumnName="Fecha_Transac" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="med_dias_previos_vencimiento" ColumnName="med_dias_previos_vencimiento" />
+                <ScalarProperty Name="med_unidad_medida_medicamento_id" ColumnName="med_unidad_medida_medicamento_id" />
+                <ScalarProperty Name="med_sw_manejo_luz" ColumnName="med_sw_manejo_luz" />
+                <ScalarProperty Name="med_sw_alimento_enteral" ColumnName="med_sw_alimento_enteral" />
+                <ScalarProperty Name="med_sw_alimento_parenteral" ColumnName="med_sw_alimento_parenteral" />
+                <ScalarProperty Name="med_descripcion_alerta" ColumnName="med_descripcion_alerta" />
+                <ScalarProperty Name="med_sw_farmacovigilancia" ColumnName="med_sw_farmacovigilancia" />
+                <ScalarProperty Name="med_cod_principio_activo" ColumnName="med_cod_principio_activo" />
+                <ScalarProperty Name="contenido_unidad_venta" ColumnName="contenido_unidad_venta" />
+                <ScalarProperty Name="med_cod_anatofarmacologico" ColumnName="med_cod_anatofarmacologico" />
+                <ScalarProperty Name="med_cod_forma_farmacologica" ColumnName="med_cod_forma_farmacologica" />
+                <ScalarProperty Name="sw_pos" ColumnName="sw_pos" />
+                <ScalarProperty Name="sw_generico" ColumnName="sw_generico" />
+                <ScalarProperty Name="sw_control_fecha_vencimiento" ColumnName="sw_control_fecha_vencimiento" />
+                <ScalarProperty Name="codigo_cnmb" ColumnName="codigo_cnmb" />
+                <ScalarProperty Name="sw_venta_directa" ColumnName="sw_venta_directa" />
+                <ScalarProperty Name="codigo_alterno" ColumnName="codigo_alterno" />
+                <ScalarProperty Name="sw_solicita_autorizacion" ColumnName="sw_solicita_autorizacion" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_in_Producto_x_inv_Producto_CG">
+            <EntityTypeMapping TypeName="Model_Inventario_CG.vw_in_Producto_x_inv_Producto_CG">
+              <MappingFragment StoreEntitySet="vw_in_Producto_x_inv_Producto_CG">
+                <ScalarProperty Name="IdProductoTipo" ColumnName="IdProductoTipo" />
+                <ScalarProperty Name="estado_producto" ColumnName="estado_producto" />
+                <ScalarProperty Name="estado_medicina" ColumnName="estado_medicina" />
+                <ScalarProperty Name="IdUnidadMedida_Consumo" ColumnName="IdUnidadMedida_Consumo" />
+                <ScalarProperty Name="pr_descripcion" ColumnName="pr_descripcion" />
+                <ScalarProperty Name="med_sw_manejo_luz" ColumnName="med_sw_manejo_luz" />
+                <ScalarProperty Name="med_sw_alimento_enteral" ColumnName="med_sw_alimento_enteral" />
+                <ScalarProperty Name="med_sw_alimento_parenteral" ColumnName="med_sw_alimento_parenteral" />
+                <ScalarProperty Name="med_descripcion_alerta" ColumnName="med_descripcion_alerta" />
+                <ScalarProperty Name="med_sw_farmacovigilancia" ColumnName="med_sw_farmacovigilancia" />
+                <ScalarProperty Name="med_cod_principio_activo" ColumnName="med_cod_principio_activo" />
+                <ScalarProperty Name="contenido_unidad_venta" ColumnName="contenido_unidad_venta" />
+                <ScalarProperty Name="med_cod_anatofarmacologico" ColumnName="med_cod_anatofarmacologico" />
+                <ScalarProperty Name="med_cod_forma_farmacologica" ColumnName="med_cod_forma_farmacologica" />
+                <ScalarProperty Name="sw_pos" ColumnName="sw_pos" />
+                <ScalarProperty Name="sw_generico" ColumnName="sw_generico" />
+                <ScalarProperty Name="sw_control_fecha_vencimiento" ColumnName="sw_control_fecha_vencimiento" />
+                <ScalarProperty Name="codigo_cnmb" ColumnName="codigo_cnmb" />
+                <ScalarProperty Name="sw_venta_directa" ColumnName="sw_venta_directa" />
+                <ScalarProperty Name="codigo_alterno" ColumnName="codigo_alterno" />
+                <ScalarProperty Name="sw_solicita_autorizacion" ColumnName="sw_solicita_autorizacion" />
+                <ScalarProperty Name="IdMotivo_Vta" ColumnName="IdMotivo_Vta" />
+                <ScalarProperty Name="pr_codigo_barra" ColumnName="pr_codigo_barra" />
+                <ScalarProperty Name="IdUnidadMedida" ColumnName="IdUnidadMedida" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="IdLinea" ColumnName="IdLinea" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="pr_codigo" ColumnName="pr_codigo" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
