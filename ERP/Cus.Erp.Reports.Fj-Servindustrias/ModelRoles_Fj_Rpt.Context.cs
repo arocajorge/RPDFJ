@@ -253,7 +253,7 @@ namespace Cus.Erp.Reports.FJ
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt012_Result>("spROLES_Rpt012", idEmpresaParameter, idNomina_tipoParameter, anioParameter, mesParameter, idPeriodoParameter);
         }
     
-        public virtual ObjectResult<spROLES_Rpt005_Result> spROLES_Rpt005(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin, Nullable<int> idperiodo)
+        public virtual ObjectResult<spROLES_Rpt005_Result> spROLES_Rpt005(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin, Nullable<int> idperiodo_inicio, Nullable<int> idperiodo_fin)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
                 new ObjectParameter("IdEmpresa", idEmpresa) :
@@ -271,11 +271,15 @@ namespace Cus.Erp.Reports.FJ
                 new ObjectParameter("Fecha_Fin", fecha_Fin) :
                 new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
     
-            var idperiodoParameter = idperiodo.HasValue ?
-                new ObjectParameter("Idperiodo", idperiodo) :
-                new ObjectParameter("Idperiodo", typeof(int));
+            var idperiodo_inicioParameter = idperiodo_inicio.HasValue ?
+                new ObjectParameter("Idperiodo_inicio", idperiodo_inicio) :
+                new ObjectParameter("Idperiodo_inicio", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt005_Result>("spROLES_Rpt005", idEmpresaParameter, idNomina_tipoParameter, fecha_InicioParameter, fecha_FinParameter, idperiodoParameter);
+            var idperiodo_finParameter = idperiodo_fin.HasValue ?
+                new ObjectParameter("Idperiodo_fin", idperiodo_fin) :
+                new ObjectParameter("Idperiodo_fin", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt005_Result>("spROLES_Rpt005", idEmpresaParameter, idNomina_tipoParameter, fecha_InicioParameter, fecha_FinParameter, idperiodo_inicioParameter, idperiodo_finParameter);
         }
     }
 }

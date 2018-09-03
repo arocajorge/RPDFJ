@@ -15,7 +15,7 @@ namespace Cus.Erp.Reports.FJ.Roles
         public string pe_cedulaRuc { get; set; }
         public string pe_nombre { get; set; }
         public string pe_apellido { get; set; }
-        public string es_fecha_registro { get; set; }
+        public DateTime es_fecha_registro { get; set; }
         public string ca_descripcion { get; set; }
         public string Cargo { get; set; }
         public decimal IdTurno { get; set; }
@@ -34,6 +34,11 @@ namespace Cus.Erp.Reports.FJ.Roles
         public Nullable<int> Permiso { get; set; }
         public Nullable<int> Vacaciones { get; set; }
         public Nullable<double> HorasExtras { get; set; }
+
+
+        public int IdPEriodoInicio { get; set; }
+        public int IdPeriodoFin { get; set; }
+
 
     }
 }

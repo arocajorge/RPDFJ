@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Procesar_Rol_Mant));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_novedades_noc_cobradas = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -52,6 +53,7 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.roperiodoInfoBindingSource = new System.Windows.Forms.BindingSource();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.check_administrativo = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlEmpleado = new DevExpress.XtraGrid.GridControl();
             this.roEmpleadoInfoBindingSource = new System.Windows.Forms.BindingSource();
             this.gridViewEmpleado = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -88,6 +90,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.check_operativo = new DevExpress.XtraEditors.CheckEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -97,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roperiodoInfoBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_administrativo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roEmpleadoInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmpleado)).BeginInit();
@@ -117,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roRolDetalleInfoBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -146,7 +151,7 @@
             // btn_novedades_noc_cobradas
             // 
             this.btn_novedades_noc_cobradas.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btn_novedades_noc_cobradas.Image = global::Core.Erp.Winform.Properties.Resources.Buscar_16x163;
+            this.btn_novedades_noc_cobradas.Image = ((System.Drawing.Image)(resources.GetObject("btn_novedades_noc_cobradas.Image")));
             this.btn_novedades_noc_cobradas.Location = new System.Drawing.Point(308, 223);
             this.btn_novedades_noc_cobradas.Name = "btn_novedades_noc_cobradas";
             this.btn_novedades_noc_cobradas.Size = new System.Drawing.Size(131, 23);
@@ -282,7 +287,7 @@
             // cmdDetener
             // 
             this.cmdDetener.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.cmdDetener.Image = global::Core.Erp.Winform.Properties.Resources.stop_sign_16;
+            this.cmdDetener.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetener.Image")));
             this.cmdDetener.Location = new System.Drawing.Point(231, 223);
             this.cmdDetener.Name = "cmdDetener";
             this.cmdDetener.Size = new System.Drawing.Size(74, 23);
@@ -301,7 +306,7 @@
             // cmdProcesar
             // 
             this.cmdProcesar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.cmdProcesar.Image = global::Core.Erp.Winform.Properties.Resources.config_20_x_202;
+            this.cmdProcesar.Image = ((System.Drawing.Image)(resources.GetObject("cmdProcesar.Image")));
             this.cmdProcesar.Location = new System.Drawing.Point(155, 223);
             this.cmdProcesar.Name = "cmdProcesar";
             this.cmdProcesar.Size = new System.Drawing.Size(75, 23);
@@ -320,7 +325,7 @@
             // cmdCargar
             // 
             this.cmdCargar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.cmdCargar.Image = global::Core.Erp.Winform.Properties.Resources.load_thin_mulit_16;
+            this.cmdCargar.Image = ((System.Drawing.Image)(resources.GetObject("cmdCargar.Image")));
             this.cmdCargar.Location = new System.Drawing.Point(91, 223);
             this.cmdCargar.Name = "cmdCargar";
             this.cmdCargar.Size = new System.Drawing.Size(60, 23);
@@ -354,6 +359,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.check_operativo);
+            this.groupBox2.Controls.Add(this.check_administrativo);
             this.groupBox2.Controls.Add(this.gridControlEmpleado);
             this.groupBox2.Controls.Add(this.checkTodos);
             this.groupBox2.Location = new System.Drawing.Point(463, 5);
@@ -361,6 +368,14 @@
             this.groupBox2.Size = new System.Drawing.Size(554, 310);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
+            // 
+            // check_administrativo
+            // 
+            this.check_administrativo.Location = new System.Drawing.Point(117, 14);
+            this.check_administrativo.Name = "check_administrativo";
+            this.check_administrativo.Properties.Caption = "Administrativo";
+            this.check_administrativo.Size = new System.Drawing.Size(96, 19);
+            this.check_administrativo.TabIndex = 151;
             // 
             // gridControlEmpleado
             // 
@@ -746,6 +761,14 @@
             this.lblStatus.Text = "0%                                                           ";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // check_operativo
+            // 
+            this.check_operativo.Location = new System.Drawing.Point(219, 14);
+            this.check_operativo.Name = "check_operativo";
+            this.check_operativo.Properties.Caption = "Operativos";
+            this.check_operativo.Size = new System.Drawing.Size(174, 19);
+            this.check_operativo.TabIndex = 152;
+            // 
             // frmRo_Procesar_Rol_Mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -772,6 +795,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.roperiodoInfoBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_administrativo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roEmpleadoInfoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewEmpleado)).EndInit();
@@ -793,6 +817,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.roRolDetalleInfoBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -860,5 +885,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn ColId;
         private DevExpress.XtraGrid.Columns.GridColumn Col_nomina;
         private DevExpress.XtraEditors.SimpleButton btn_novedades_noc_cobradas;
+        private DevExpress.XtraEditors.CheckEdit check_administrativo;
+        private DevExpress.XtraEditors.CheckEdit check_operativo;
     }
 }

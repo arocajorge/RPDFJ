@@ -73,8 +73,7 @@
             this.Col_Permiso,
             this.Col_Vacaciones,
             this.Col_HorasExtras});
-            this.pivotGridControl1.Location = new System.Drawing.Point(0, 91);
-            this.pivotGridControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pivotGridControl1.Location = new System.Drawing.Point(0, 74);
             this.pivotGridControl1.Name = "pivotGridControl1";
             this.pivotGridControl1.OptionsBehavior.HorizontalScrolling = DevExpress.XtraPivotGrid.PivotGridScrolling.Control;
             this.pivotGridControl1.OptionsPrint.MergeColumnFieldValues = false;
@@ -88,7 +87,7 @@
             this.pivotGridControl1.OptionsView.ShowRowGrandTotalHeader = false;
             this.pivotGridControl1.OptionsView.ShowRowGrandTotals = false;
             this.pivotGridControl1.OptionsView.ShowRowTotals = false;
-            this.pivotGridControl1.Size = new System.Drawing.Size(1531, 439);
+            this.pivotGridControl1.Size = new System.Drawing.Size(1028, 357);
             this.pivotGridControl1.TabIndex = 147;
             // 
             // Col_pe_cedulaRuc
@@ -247,9 +246,9 @@
             this.ucRo_Menu.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucRo_Menu.EnableBotonImprimir = true;
             this.ucRo_Menu.Location = new System.Drawing.Point(0, 0);
-            this.ucRo_Menu.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucRo_Menu.Margin = new System.Windows.Forms.Padding(4);
             this.ucRo_Menu.Name = "ucRo_Menu";
-            this.ucRo_Menu.Size = new System.Drawing.Size(1531, 91);
+            this.ucRo_Menu.Size = new System.Drawing.Size(1028, 74);
             this.ucRo_Menu.TabIndex = 146;
             this.ucRo_Menu.Visible_bei_check1 = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbCentroCosto = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -257,26 +256,25 @@
             this.ucRo_Menu.VisibleCmbEmpleado = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbNominaTipo = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucRo_Menu.VisibleCmbNominaTipoLiqui = DevExpress.XtraBars.BarItemVisibility.Always;
-            this.ucRo_Menu.VisibleCmbPeriodo = DevExpress.XtraBars.BarItemVisibility.Always;
+            this.ucRo_Menu.VisibleCmbPeriodo = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbRubro = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleDepartamento = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.ucRo_Menu.VisibleEstado = DevExpress.XtraBars.BarItemVisibility.Always;
-            this.ucRo_Menu.VisibleGrupoFecha = false;
+            this.ucRo_Menu.VisibleEstado = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucRo_Menu.VisibleGrupoFecha = true;
             this.ucRo_Menu.VisibleGrupoFiltro1 = true;
             this.ucRo_Menu.VisibleGrupoFiltro2 = true;
-            this.ucRo_Menu.VisubleArea = DevExpress.XtraBars.BarItemVisibility.Always;
+            this.ucRo_Menu.VisubleArea = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.event_cmbPeriodo_EditValueChanged += new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes.delegate_cmbPeriodo_EditValueChanged(this.ucRo_Menu_event_cmbPeriodo_EditValueChanged_1);
             this.ucRo_Menu.event_cmdCargar_ItemClick += new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes.delegate_cmdCargar_ItemClick(this.ucRo_Menu_event_cmdCargar_ItemClick);
             this.ucRo_Menu.event_btnsalir_ItemClick += new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes.delegate_btnsalir_ItemClick(this.ucRo_Menu_event_btnsalir_ItemClick);
             // 
             // XROLES_Rpt005_frm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 530);
+            this.ClientSize = new System.Drawing.Size(1028, 431);
             this.Controls.Add(this.pivotGridControl1);
             this.Controls.Add(this.ucRo_Menu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "XROLES_Rpt005_frm";
             this.Text = "CONTROL DE ASISTENCIA TRANSGANDIA FJ FIJOS";
             this.Load += new System.EventHandler(this.XROLES_Rpt005_frm_Load);

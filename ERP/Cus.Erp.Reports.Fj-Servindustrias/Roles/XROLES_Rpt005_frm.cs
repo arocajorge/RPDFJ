@@ -36,13 +36,11 @@ namespace Cus.Erp.Reports.FJ.Roles
         {
             try
             {
+                DateTime fi = Convert.ToDateTime(ucRo_Menu.getFechaInicial());
+                DateTime ff = Convert.ToDateTime(ucRo_Menu.getFechaInicial());
                 int IdNomina = Convert.ToInt32(ucRo_Menu.getIdNominaTipo());
                 info_perio = ucRo_Menu.Get_Info_Periodo();
-               if(ucRo_Menu.getIdArea()=="")
-                lista = bus.Get_list_Horas_Extras(param.IdEmpresa, IdNomina, info_perio.pe_FechaIni, info_perio.pe_FechaFin, info_perio.IdPeriodo);
-                else
-                   lista = bus.Get_list_Horas_Extras(param.IdEmpresa, IdNomina, info_perio.pe_FechaIni, info_perio.pe_FechaFin, info_perio.IdPeriodo, Convert.ToInt32(ucRo_Menu.getIdArea()));
-
+               
                 pivotGridControl1.DataSource = lista;
             }
             catch (Exception ex)
@@ -102,12 +100,14 @@ namespace Cus.Erp.Reports.FJ.Roles
             try
             {
 
+                DateTime fi = Convert.ToDateTime(ucRo_Menu.getFechaInicial());
+                DateTime ff = Convert.ToDateTime(ucRo_Menu.getFechaFinal());
+                int IdNomina = Convert.ToInt32(ucRo_Menu.getIdNominaTipo());
+                 lista = bus.Get_list_Horas_Extras(param.IdEmpresa, IdNomina, fi, ff);
+               
+
+                pivotGridControl1.DataSource = lista;
                 
-                
-                    int IdNomina = Convert.ToInt32(ucRo_Menu.getIdNominaTipo());
-                    info_perio = ucRo_Menu.Get_Info_Periodo();
-                    lista = bus.Get_list_Horas_Extras(param.IdEmpresa, IdNomina, info_perio.pe_FechaIni, info_perio.pe_FechaFin, info_perio.IdPeriodo);
-                    pivotGridControl1.DataSource = lista;
                 
 
 

@@ -683,6 +683,15 @@ namespace Core.Erp.Winform.Roles
                         }
                     }
                     oBindingLstEmpleado.Clear();
+
+                    if (check_administrativo.Checked==true || check_operativo.Checked)
+                    {
+                        if (check_administrativo.Checked == true)
+                        oBindingLstEmpleado = new BindingList<ro_Empleado_Info>(oLstRo_Empleado_Info.Where(v => v.IdDivision == 1).ToList());
+                        if (check_operativo.Checked == true)
+                        oBindingLstEmpleado = new BindingList<ro_Empleado_Info>(oLstRo_Empleado_Info.Where(v => v.IdDivision == 2).ToList());
+                    }
+                    else
                     oBindingLstEmpleado = new BindingList<ro_Empleado_Info>(oLstRo_Empleado_Info);
                     gridControlEmpleado.DataSource = oBindingLstEmpleado;
 
