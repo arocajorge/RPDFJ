@@ -3,7 +3,7 @@ AS
 SELECT        OC.IdEmpresa, OC.IdSucursal, OC.IdOrdenCompra, OC.IdProveedor, OC.oc_NumDocumento, OC.Tipo, OC.IdTerminoPago, OC.oc_plazo AS Plazo, OC.oc_fecha AS Fecha, OC.oc_flete AS Flete, 
                          OC.oc_observacion AS Observacion, OC.Estado, OC.IdSolicitante, OC.IdComprador, OC.IdDepartamento, OC_det.Secuencia, OC_det.IdProducto, OC_det.do_Cantidad AS cantidad, 
                          OC_det.do_precioCompra AS precio, OC_det.do_porc_des AS por_desc, OC_det.do_descuento AS valor_descuento, OC_det.do_subtotal AS subtotal, OC_det.do_iva AS iva, OC_det.do_total AS total, 
-                          Prod.pr_codigo AS cod_producto, Prod.pr_descripcion AS nom_producto, sucu.Su_Descripcion AS sucursal, empr.em_nombre AS empresa, empr.em_ruc AS ruc_empresa, 
+                         OC_det.do_peso AS peso, Prod.pr_codigo AS cod_producto, Prod.pr_descripcion AS nom_producto, sucu.Su_Descripcion AS sucursal, empr.em_nombre AS empresa, empr.em_ruc AS ruc_empresa, 
                          empr.em_logo AS logo_empresa, prove.pr_nombre AS nom_proveedor, per_prov.pe_cedulaRuc AS ced_ruc_provee, per_prov.pe_direccion AS direc_provee, per_prov.pe_telefonoOfic AS telef_provee, 
                          dbo.in_UnidadMedida.Descripcion AS NomUnidad, dbo.com_comprador.Descripcion AS Nom_comprador, OC_det.IdCentroCosto, OC_det.IdCentroCosto_sub_centro_costo, 
                          dbo.ct_centro_costo.Centro_costo AS nom_centro_costo, dbo.ct_centro_costo_sub_centro_costo.Centro_costo AS nom_sub_centro_costo, OC_det.do_observacion AS Detalle_x_Items, OC_det.IdPunto_cargo, 

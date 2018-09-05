@@ -3,7 +3,7 @@ as
 SELECT        ISNULL(ROW_NUMBER() OVER (ORDER BY dbo.in_Ing_Egr_Inven_det.IdEmpresa), 0) AS IdRow, 
 dbo.in_Ing_Egr_Inven_det.IdEmpresa, 
 dbo.in_Ing_Egr_Inven_det.IdSucursal, dbo.in_Ing_Egr_Inven_det.IdBodega, dbo.in_Ing_Egr_Inven_det.IdNumMovi, dbo.in_Ing_Egr_Inven_det.Secuencia, 
-dbo.in_Ing_Egr_Inven_det.IdProducto, dbo.in_Ing_Egr_Inven.cm_fecha, dbo.com_ordencompra_local_det.do_porc_des,  
+dbo.in_Ing_Egr_Inven_det.IdProducto, dbo.in_Ing_Egr_Inven.cm_fecha, dbo.com_ordencompra_local_det.do_porc_des, dbo.com_ordencompra_local_det.do_ManejaIva, 
 dbo.com_ordencompra_local.IdProveedor, dbo.cp_proveedor.pr_nombre AS nom_proveedor, dbo.com_ordencompra_local_det.Por_Iva, com_ordencompra_local.oc_plazo Dias, 
 dbo.com_TerminoPago.IdTerminoPago, dbo.com_TerminoPago.Descripcion, dbo.in_Ing_Egr_Inven_det.dm_cantidad_sinConversion dm_cantidad, 
 dbo.in_Ing_Egr_Inven_det.dm_stock_ante, dbo.in_Ing_Egr_Inven_det.dm_stock_actu, dbo.in_Ing_Egr_Inven_det.dm_observacion, dbo.in_Ing_Egr_Inven_det.dm_precio, 
