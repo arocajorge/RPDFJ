@@ -3,7 +3,7 @@ AS
 SELECT        OC.IdEmpresa, OC.IdSucursal, OC.IdOrdenCompra, OC.IdProveedor, OC.oc_NumDocumento, OC.Tipo, OC.IdTerminoPago, OC.oc_plazo, OC.oc_fecha, OC.oc_flete, 
                          OC.oc_observacion, OC.Estado, OC.IdEstadoAprobacion_cat, OC.co_fecha_aprobacion, OC.IdUsuario_Aprueba, OC.IdUsuario_Reprue, OC.co_fechaReproba, 
                          OC.Fecha_Transac, OC.Fecha_UltMod, OC.IdUsuarioUltMod, OC.FechaHoraAnul, OC.IdUsuarioUltAnu, OC.IdEstadoRecepcion_cat, OC.AfectaCosto, 
-                         OC.MotivoReprobacion, SUM(OCDet.do_subtotal) AS subtotal, SUM(OCDet.do_iva) AS iva, SUM(OCDet.do_total) AS total, SUM(OCDet.do_peso) AS peso, 
+                         OC.MotivoReprobacion, SUM(OCDet.do_subtotal) AS subtotal, SUM(OCDet.do_iva) AS iva, SUM(OCDet.do_total) AS total, 
                          Apr.descripcion AS ap_descripcion, REc.descripcion AS rec_descripcion, Prov.pr_nombre, dbo.tb_sucursal.Su_Descripcion, OC.IdDepartamento, OC.Solicitante, 
                          OC.IdSolicitante, OC.IdComprador, OC.MotivoAnulacion, dbo.ro_Departamento.de_descripcion AS SDepartamento, OC.IdMotivo, OC.oc_fechaVencimiento, 
                          dbo.com_comprador.Descripcion AS Nom_Comprador, OC.IdEstado_cierre, dbo.com_Motivo_Orden_Compra.Descripcion AS nom_motivo_OC, 
