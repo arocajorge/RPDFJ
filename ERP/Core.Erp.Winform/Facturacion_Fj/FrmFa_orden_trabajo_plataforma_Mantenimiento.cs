@@ -481,7 +481,11 @@ namespace Core.Erp.Winform.Facturacion_Fj
             {
                 txtCodigo.Focus();
                 txtDescripcion.Focus();
-
+                if (bus_Orden.ValidarCodigoExite(param.IdEmpresa, txtCodigo.Text.Trim()))
+                {
+                    MessageBox.Show("El código " + txtCodigo.Text.Trim() + " ingresado ya se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
                 if (bList_Orden.Count==0)
                 {
                     MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Por_Favor_ingrese_el)+"detalle de la orden de trabajo", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -512,6 +516,7 @@ namespace Core.Erp.Winform.Facturacion_Fj
                     MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Por_Favor_ingrese_el) + "transportista", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
+                
                 return true;
             }
             catch (Exception ex)

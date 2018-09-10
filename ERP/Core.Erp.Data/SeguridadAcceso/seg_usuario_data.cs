@@ -154,8 +154,7 @@ namespace Core.Erp.Data.SeguridadAcceso
                 using(EntitiesSeguAcceso entity = new EntitiesSeguAcceso())
                 {
                     var contact = (from c in entity.seg_usuario where c.IdUsuario == user.IdUsuario select c).First();
-                    contact.IdUsuario = user.IdUsuario;
-                    contact.Contrasena = user.Contrasena;
+                    //contact.Contrasena = user.Contrasena;
                     contact.estado = user.estado;
                     contact.Nombre = user.Nombre;
                     contact.ExigirDirectivaContrasenia = user.ExigirDirectivaContrasenia;
@@ -165,42 +164,42 @@ namespace Core.Erp.Data.SeguridadAcceso
                     //context.SaveChanges();
 
 
-                    ////List<tb_Empresa_Info> anterior_lista_empresas_del_usuario = new tb_Empresa_Data().Get_List_Empresa_x_Usuario(user.IdUsuario);
+                    List<tb_Empresa_Info> anterior_lista_empresas_del_usuario = new tb_Empresa_Data().Get_List_Empresa_x_Usuario(user.IdUsuario);
 
 
-                    
-                    //foreach (tb_Empresa_Info anterior_empresa in anterior_lista_empresas_del_usuario)
-                    //{
-                    //    bool existe=false;
-                    //    foreach (tb_Empresa_Info nueva_empresa in lEmpresa)
-                    //        if (nueva_empresa.IdEmpresa == anterior_empresa.IdEmpresa)
-                    //            existe = true;
-                    //    if (!existe)
-                    //    {
-                    //        var empresa_x_usuario = (from c in entity.seg_Usuario_x_Empresa
-                    //                                 where c.IdUsuario == user.IdUsuario
-                    //                                 && c.IdEmpresa == anterior_empresa.IdEmpresa
-                    //                                 select c).First();
-                    //        entity.seg_Usuario_x_Empresa.Remove(empresa_x_usuario);
-                    //        //entity.SaveChanges();
-                    //    }
-                    //}
 
-                    //foreach (tb_Empresa_Info nueva_empresa in lEmpresa)
-                    //{
-                    //    bool existe = false;
-                    //    foreach (tb_Empresa_Info anterior_empresa in anterior_lista_empresas_del_usuario)
-                    //        if (anterior_empresa.IdEmpresa == nueva_empresa.IdEmpresa)
-                    //            existe = true;
-                    //    if (!existe)
-                    //    {
-                    //        seg_Usuario_x_Empresa objUser_x_empresa = new seg_Usuario_x_Empresa();
-                    //        objUser_x_empresa.IdEmpresa = nueva_empresa.IdEmpresa;
-                    //        objUser_x_empresa.IdUsuario = user.IdUsuario;
-                    //        entity.seg_Usuario_x_Empresa.Add(objUser_x_empresa);
-                    //        //entity.SaveChanges();
-                    //    }
-                    //}
+                    foreach (tb_Empresa_Info anterior_empresa in anterior_lista_empresas_del_usuario)
+                    {
+                        bool existe = false;
+                        foreach (tb_Empresa_Info nueva_empresa in lEmpresa)
+                            if (nueva_empresa.IdEmpresa == anterior_empresa.IdEmpresa)
+                                existe = true;
+                        if (!existe)
+                        {
+                            var empresa_x_usuario = (from c in entity.seg_Usuario_x_Empresa
+                                                     where c.IdUsuario == user.IdUsuario
+                                                     && c.IdEmpresa == anterior_empresa.IdEmpresa
+                                                     select c).First();
+                            entity.seg_Usuario_x_Empresa.Remove(empresa_x_usuario);
+                            //entity.SaveChanges();
+                        }
+                    }
+
+                    foreach (tb_Empresa_Info nueva_empresa in lEmpresa)
+                    {
+                        bool existe = false;
+                        foreach (tb_Empresa_Info anterior_empresa in anterior_lista_empresas_del_usuario)
+                            if (anterior_empresa.IdEmpresa == nueva_empresa.IdEmpresa)
+                                existe = true;
+                        if (!existe)
+                        {
+                            seg_Usuario_x_Empresa objUser_x_empresa = new seg_Usuario_x_Empresa();
+                            objUser_x_empresa.IdEmpresa = nueva_empresa.IdEmpresa;
+                            objUser_x_empresa.IdUsuario = user.IdUsuario;
+                            entity.seg_Usuario_x_Empresa.Add(objUser_x_empresa);
+                            //entity.SaveChanges();
+                        }
+                    }
 
 
                     entity.SaveChanges();

@@ -51,6 +51,7 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlOrden_Trabajo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrden_Trabajo)).BeginInit();
             this.SuspendLayout();
@@ -80,13 +81,13 @@
             this.ucGe_Menu_Mantenimiento_x_usuario1.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario1.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario1.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario1.fecha_desde = new System.DateTime(2018, 7, 3, 10, 33, 9, 922);
-            this.ucGe_Menu_Mantenimiento_x_usuario1.fecha_hasta = new System.DateTime(2018, 9, 3, 10, 33, 9, 922);
+            this.ucGe_Menu_Mantenimiento_x_usuario1.fecha_desde = new System.DateTime(2018, 8, 7, 11, 4, 57, 988);
+            this.ucGe_Menu_Mantenimiento_x_usuario1.fecha_hasta = new System.DateTime(2018, 10, 7, 11, 4, 57, 989);
             this.ucGe_Menu_Mantenimiento_x_usuario1.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario1.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario1.GridControlConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario1.Location = new System.Drawing.Point(0, 0);
-            this.ucGe_Menu_Mantenimiento_x_usuario1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucGe_Menu_Mantenimiento_x_usuario1.Margin = new System.Windows.Forms.Padding(5);
             this.ucGe_Menu_Mantenimiento_x_usuario1.Name = "ucGe_Menu_Mantenimiento_x_usuario1";
             this.ucGe_Menu_Mantenimiento_x_usuario1.Perfil_x_usuario = null;
             this.ucGe_Menu_Mantenimiento_x_usuario1.Size = new System.Drawing.Size(1355, 202);
@@ -128,7 +129,7 @@
             this.ucGe_BarraEstadoInferior_Forms1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ucGe_BarraEstadoInferior_Forms1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 582);
-            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(5);
             this.ucGe_BarraEstadoInferior_Forms1.Name = "ucGe_BarraEstadoInferior_Forms1";
             this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1355, 32);
             this.ucGe_BarraEstadoInferior_Forms1.TabIndex = 1;
@@ -136,10 +137,10 @@
             // gridControlOrden_Trabajo
             // 
             this.gridControlOrden_Trabajo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlOrden_Trabajo.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlOrden_Trabajo.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlOrden_Trabajo.Location = new System.Drawing.Point(0, 202);
             this.gridControlOrden_Trabajo.MainView = this.gridViewOrden_Trabajo;
-            this.gridControlOrden_Trabajo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlOrden_Trabajo.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlOrden_Trabajo.Name = "gridControlOrden_Trabajo";
             this.gridControlOrden_Trabajo.Size = new System.Drawing.Size(1355, 380);
             this.gridControlOrden_Trabajo.TabIndex = 2;
@@ -167,7 +168,8 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn1,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.gridColumn5});
             this.gridViewOrden_Trabajo.GridControl = this.gridControlOrden_Trabajo;
             this.gridViewOrden_Trabajo.Name = "gridViewOrden_Trabajo";
             this.gridViewOrden_Trabajo.OptionsBehavior.ReadOnly = true;
@@ -185,7 +187,7 @@
             this.colIdOrdenTrabajo_Pla.OptionsColumn.AllowEdit = false;
             this.colIdOrdenTrabajo_Pla.Visible = true;
             this.colIdOrdenTrabajo_Pla.VisibleIndex = 1;
-            this.colIdOrdenTrabajo_Pla.Width = 71;
+            this.colIdOrdenTrabajo_Pla.Width = 146;
             // 
             // colDescripcion
             // 
@@ -195,7 +197,7 @@
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 5;
-            this.colDescripcion.Width = 95;
+            this.colDescripcion.Width = 196;
             // 
             // colEquipo
             // 
@@ -213,7 +215,7 @@
             this.colkm_salida.OptionsColumn.AllowEdit = false;
             this.colkm_salida.Visible = true;
             this.colkm_salida.VisibleIndex = 8;
-            this.colkm_salida.Width = 31;
+            this.colkm_salida.Width = 64;
             // 
             // colkm_llegada
             // 
@@ -223,7 +225,7 @@
             this.colkm_llegada.OptionsColumn.AllowEdit = false;
             this.colkm_llegada.Visible = true;
             this.colkm_llegada.VisibleIndex = 9;
-            this.colkm_llegada.Width = 31;
+            this.colkm_llegada.Width = 64;
             // 
             // colCliente
             // 
@@ -233,7 +235,7 @@
             this.colCliente.OptionsColumn.AllowEdit = false;
             this.colCliente.Visible = true;
             this.colCliente.VisibleIndex = 2;
-            this.colCliente.Width = 109;
+            this.colCliente.Width = 225;
             // 
             // colFecha
             // 
@@ -243,7 +245,7 @@
             this.colFecha.OptionsColumn.AllowEdit = false;
             this.colFecha.Visible = true;
             this.colFecha.VisibleIndex = 7;
-            this.colFecha.Width = 31;
+            this.colFecha.Width = 64;
             // 
             // Col_codOrdenTrabajo_Pla
             // 
@@ -252,7 +254,7 @@
             this.Col_codOrdenTrabajo_Pla.Name = "Col_codOrdenTrabajo_Pla";
             this.Col_codOrdenTrabajo_Pla.Visible = true;
             this.Col_codOrdenTrabajo_Pla.VisibleIndex = 0;
-            this.Col_codOrdenTrabajo_Pla.Width = 45;
+            this.Col_codOrdenTrabajo_Pla.Width = 93;
             // 
             // Col_pe_direccion
             // 
@@ -273,7 +275,7 @@
             this.Col_punto_partida.Name = "Col_punto_partida";
             this.Col_punto_partida.Visible = true;
             this.Col_punto_partida.VisibleIndex = 10;
-            this.Col_punto_partida.Width = 31;
+            this.Col_punto_partida.Width = 64;
             // 
             // Col_punto_llegada
             // 
@@ -302,7 +304,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Valor", "{0:n2}")});
             this.Col_Valor.Visible = true;
             this.Col_Valor.VisibleIndex = 11;
-            this.Col_Valor.Width = 37;
+            this.Col_Valor.Width = 76;
             // 
             // gridColumn2
             // 
@@ -310,8 +312,8 @@
             this.gridColumn2.FieldName = "vt_num_factura";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 12;
-            this.gridColumn2.Width = 58;
+            this.gridColumn2.VisibleIndex = 13;
+            this.gridColumn2.Width = 212;
             // 
             // gridColumn3
             // 
@@ -320,7 +322,7 @@
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 6;
-            this.gridColumn3.Width = 44;
+            this.gridColumn3.Width = 90;
             // 
             // gridColumn1
             // 
@@ -329,7 +331,7 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
-            this.gridColumn1.Width = 95;
+            this.gridColumn1.Width = 196;
             // 
             // gridColumn4
             // 
@@ -338,7 +340,16 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 86;
+            this.gridColumn4.Width = 177;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Estado";
+            this.gridColumn5.FieldName = "Estado";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 12;
+            this.gridColumn5.Width = 67;
             // 
             // FrmFa_orden_trabajo_plataforma_Consulta
             // 
@@ -348,7 +359,7 @@
             this.Controls.Add(this.gridControlOrden_Trabajo);
             this.Controls.Add(this.ucGe_BarraEstadoInferior_Forms1);
             this.Controls.Add(this.ucGe_Menu_Mantenimiento_x_usuario1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmFa_orden_trabajo_plataforma_Consulta";
             this.Text = "Orden de trabajo Consulta";
             this.Load += new System.EventHandler(this.FrmFa_orden_trabajo_plataforma_Consulta_Load);
@@ -383,5 +394,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }

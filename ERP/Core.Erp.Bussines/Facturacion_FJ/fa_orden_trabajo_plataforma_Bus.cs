@@ -16,10 +16,24 @@ namespace Core.Erp.Business.Facturacion_FJ
         fa_orden_trabajo_plataforma_Data oData = new fa_orden_trabajo_plataforma_Data();
         cl_parametrosGenerales_Bus param = cl_parametrosGenerales_Bus.Instance;
 
+        public bool ValidarCodigoExite(int IdEmpresa, string Codigo)
+        {
+            try
+            {
+                return oData.ValidarCodigoExite(IdEmpresa, Codigo);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         public List<fa_orden_trabajo_plataforma_Info> Get_List_Orden_trabajo(int idEmpresa)
         {
             try
             {
+               
                 return oData.Get_List_Orden_trabajo(idEmpresa);
             }
             catch (Exception ex)

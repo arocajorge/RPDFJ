@@ -304,12 +304,37 @@ namespace Core.Erp.Data.Facturacion_Fj
             }
         }
 
+        public bool ValidarCodigoExite(int IdEmpresa, string Codigo)
+        {
+            try
+            {
+                using (Entity_Facturacion_FJ Context = new Entity_Facturacion_FJ())
+                {
+                    var ot = Context.fa_orden_trabajo_plataforma.Where(q => q.IdEmpresa == IdEmpresa && q.codOrdenTrabajo_Pla.ToLower().Trim() == Codigo.ToLower().Trim() && q.Estado == "A").FirstOrDefault();
+                    if (ot != null)
+                        return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref MensajeError);
+                MensajeError = ex.ToString();
+                throw new Exception(ex.ToString());
+            }
+        }
+
         public List<fa_orden_trabajo_plataforma_Info> Get_List_Vista_Orden_trabajo(int idEmpresa, DateTime fechaDesde, DateTime fechaHasta)
         {
             try
             {
                 List<fa_orden_trabajo_plataforma_Info> Lista = new List<fa_orden_trabajo_plataforma_Info>();
-
+                fechaDesde = fechaDesde.Date;
+                fechaHasta = fechaHasta.Date;
                 using (Entity_Facturacion_FJ Context = new Entity_Facturacion_FJ())
                 {
                     var lst = from q in Context.vwfa_orden_trabajo_plataforma
