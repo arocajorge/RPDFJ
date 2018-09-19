@@ -13,123 +13,159 @@ namespace Core.Erp.Data.CuentasxPagar
     {
         string mensaje = "";
     
-        public List<cp_orden_giro_Info> Get_List_orden_giro(int IdEmpresa, DateTime F_inicio, DateTime F_fin)
+        public List<cp_orden_giro_consulta_Info> Get_List_orden_giro(int IdEmpresa, DateTime F_inicio, DateTime F_fin)
         {
             try
             {
                 F_inicio = F_inicio.Date;
                 F_fin = F_fin.Date;
-                
+                List<cp_orden_giro_consulta_Info> lM;
+                using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
+                {
+                    db.SetCommandTimeOut(3000);
+                    lM = (from q in db.vwcp_orden_giro_consulta
+                          where q.IdEmpresa == IdEmpresa
+                          && F_inicio <= q.co_fechaOg && q.co_fechaOg <= F_fin
+                          select new cp_orden_giro_consulta_Info
+                          {
+                              IdEmpresa = q.IdEmpresa,
+                              IdTipoCbte_Ogiro = q.IdTipoCbte_Ogiro,
+                              IdCbteCble_Ogiro = q.IdCbteCble_Ogiro,
+                              co_factura = q.co_factura,
+                              co_fechaOg = q.co_fechaOg,
+                              co_FechaFactura = q.co_FechaFactura,
+                              co_observacion = q.co_observacion,
+                              co_subtotal_iva = q.co_subtotal_iva,
+                              co_subtotal_siniva = q.co_subtotal_siniva,
+                              co_valoriva = q.co_valoriva,
+                              co_baseImponible = q.co_baseImponible,
+                              Estado = q.Estado,
+                              Total_Retencion = q.re_valor_retencion,
+                              saldo = q.saldo,
+                              co_total = q.co_total,
+                              re_NumRetencion = q.NumRetencion,
+                              IdTipoFlujo = q.IdTipoFlujo,
+                                Num_Autorizacion = q.Num_Autorizacion,
+                              pr_nombre = q.pe_nombreCompleto,
+                              descripcion_clas_prove = q.descripcion_clas_prove,
+                              Estado_Cancelacion = q.saldo <= 0 ? "PAGADO" : "PENDIENTE"
+                          }).ToList();
+                }
+
+                #region Consulta anterior
+                /*
                 EntitiesCuentasxPagar Base = new EntitiesCuentasxPagar();
                 Base.SetCommandTimeOut(3000);
                 List<cp_orden_giro_Info> select_ = (from T in Base.vwcp_orden_giro_x_Pagos_saldo
-                               join P in Base.cp_proveedor.DefaultIfEmpty() on new { T.IdProveedor, T.IdEmpresa } equals new { P.IdProveedor, P.IdEmpresa }
-                               join C in Base.cp_proveedor_clase.DefaultIfEmpty() on new { P.IdEmpresa, P.IdClaseProveedor } equals new { C.IdEmpresa, C.IdClaseProveedor}
-                               where T.IdEmpresa == IdEmpresa
-                               && T.co_fechaOg >= F_inicio && T.co_fechaOg <= F_fin
-                               orderby T.IdCbteCble_Ogiro descending
-                               select new cp_orden_giro_Info
-                               {
-                                  nomEmpresa = T.em_nombre,
-                                  IdEmpresa = T.IdEmpresa,
-                                  IdCbteCble_Ogiro = T.IdCbteCble_Ogiro,
-                                  IdTipoCbte_Ogiro = T.IdTipoCbte_Ogiro,
-                                  IdOrden_giro_Tipo = T.IdOrden_giro_Tipo,
-                                  IdProveedor = T.IdProveedor,
-                                  co_fechaOg = T.co_fechaOg,
-                                  co_serie = T.co_serie,
-                                  co_factura = T.co_factura,
-                                  co_FechaFactura = T.co_FechaFactura,
-                                  co_FechaFactura_vct = T.co_FechaFactura_vct,
-                                  co_plazo = T.co_plazo,
-                                  co_observacion = T.co_observacion,
-                                  co_subtotal_iva = T.co_subtotal_iva,
-                                  co_subtotal_siniva = T.co_subtotal_siniva,
-                                  co_baseImponible = T.co_baseImponible,
-                                  co_Por_iva = T.co_Por_iva,
-                                  co_valoriva = T.co_valoriva,
-                                  IdCod_ICE = T.IdCod_ICE,
-                                  co_Ice_base = T.co_Ice_base,
-                                  co_Ice_por = T.co_Ice_por,
-                                  co_Ice_valor = T.co_Ice_valor,
-                                  co_Serv_por = T.co_Serv_por,
-                                  co_Serv_valor = T.co_Serv_valor,
-                                  co_OtroValor_a_descontar = T.co_OtroValor_a_descontar,
-                                  co_OtroValor_a_Sumar = T.co_OtroValor_a_Sumar,
-                                  co_BaseSeguro = T.co_BaseSeguro,
-                                  co_total = T.co_total,
-                                  co_valorpagar = T.co_valorpagar,
-                                  co_vaCoa = T.co_vaCoa,
-                                   // T.IdAutorizacion,
-                                  IdIden_credito = T.IdIden_credito,
-                                  IdCod_101 = T.IdCod_101,
-                                  IdTipoServicio = T.IdTipoServicio,
-                                  IdCtaCble_Gasto = T.IdCtaCble_Gasto,
-                                  IdUsuario = T.IdUsuario,
-                                  Fecha_Transac = T.Fecha_Transac,
-                                  Estado = T.Estado,
-                                  IdUsuarioUltMod = T.IdUsuarioUltMod,
-                                  Fecha_UltMod = T.Fecha_UltMod,
-                                  IdUsuarioUltAnu = T.IdUsuarioUltAnu,
-                                  MotivoAnu = T.MotivoAnu,
-                                  nom_pc = T.nom_pc,
-                                  ip = T.ip,
-                                  Fecha_UltAnu = T.Fecha_UltAnu,
+                                                    join P in Base.cp_proveedor.DefaultIfEmpty() on new { T.IdProveedor, T.IdEmpresa } equals new { P.IdProveedor, P.IdEmpresa }
+                                                    join C in Base.cp_proveedor_clase.DefaultIfEmpty() on new { P.IdEmpresa, P.IdClaseProveedor } equals new { C.IdEmpresa, C.IdClaseProveedor }
+                                                    where T.IdEmpresa == IdEmpresa
+                                                    && T.co_fechaOg >= F_inicio && T.co_fechaOg <= F_fin
+                                                    orderby T.IdCbteCble_Ogiro descending
+                                                    select new cp_orden_giro_Info
+                                                    {
+                                                        nomEmpresa = T.em_nombre,
+                                                        IdEmpresa = T.IdEmpresa,
+                                                        IdCbteCble_Ogiro = T.IdCbteCble_Ogiro,
+                                                        IdTipoCbte_Ogiro = T.IdTipoCbte_Ogiro,
+                                                        IdOrden_giro_Tipo = T.IdOrden_giro_Tipo,
+                                                        IdProveedor = T.IdProveedor,
+                                                        co_fechaOg = T.co_fechaOg,
+                                                        co_serie = T.co_serie,
+                                                        co_factura = T.co_factura,
+                                                        co_FechaFactura = T.co_FechaFactura,
+                                                        co_FechaFactura_vct = T.co_FechaFactura_vct,
+                                                        co_plazo = T.co_plazo,
+                                                        co_observacion = T.co_observacion,
+                                                        co_subtotal_iva = T.co_subtotal_iva,
+                                                        co_subtotal_siniva = T.co_subtotal_siniva,
+                                                        co_baseImponible = T.co_baseImponible,
+                                                        co_Por_iva = T.co_Por_iva,
+                                                        co_valoriva = T.co_valoriva,
+                                                        IdCod_ICE = T.IdCod_ICE,
+                                                        co_Ice_base = T.co_Ice_base,
+                                                        co_Ice_por = T.co_Ice_por,
+                                                        co_Ice_valor = T.co_Ice_valor,
+                                                        co_Serv_por = T.co_Serv_por,
+                                                        co_Serv_valor = T.co_Serv_valor,
+                                                        co_OtroValor_a_descontar = T.co_OtroValor_a_descontar,
+                                                        co_OtroValor_a_Sumar = T.co_OtroValor_a_Sumar,
+                                                        co_BaseSeguro = T.co_BaseSeguro,
+                                                        co_total = T.co_total,
+                                                        co_valorpagar = T.co_valorpagar,
+                                                        co_vaCoa = T.co_vaCoa,
+                                                        // T.IdAutorizacion,
+                                                        IdIden_credito = T.IdIden_credito,
+                                                        IdCod_101 = T.IdCod_101,
+                                                        IdTipoServicio = T.IdTipoServicio,
+                                                        IdCtaCble_Gasto = T.IdCtaCble_Gasto,
+                                                        IdUsuario = T.IdUsuario,
+                                                        Fecha_Transac = T.Fecha_Transac,
+                                                        Estado = T.Estado,
+                                                        IdUsuarioUltMod = T.IdUsuarioUltMod,
+                                                        Fecha_UltMod = T.Fecha_UltMod,
+                                                        IdUsuarioUltAnu = T.IdUsuarioUltAnu,
+                                                        MotivoAnu = T.MotivoAnu,
+                                                        nom_pc = T.nom_pc,
+                                                        ip = T.ip,
+                                                        Fecha_UltAnu = T.Fecha_UltAnu,
 
-                                  InfoProveedor = new cp_proveedor_Info{
-                                   pr_nombre = P.pr_nombre,
-                                   IdClaseProveedor = C.IdClaseProveedor,
-                                   descripcion_clas_prove = C.descripcion_clas_prove,
-                                  },
-                                  IdCtaCble_IVA = T.IdCtaCble_IVA,
-                                  co_retencionManual = T.co_retencionManual,
-                                  Saldo_OG = T.SaldoOG,
-                                  IdCbteCble_Anulacion = T.IdCbteCble_Anulacion,
-                                  IdTipoCbte_Anulacion = T.IdTipoCbte_Anulacion,
-                                  IdCentroCosto = T.IdCentroCosto,
-                                  IdSucursal = T.IdSucursal,
-                                  tc_TipoCbte = T.tc_TipoCbte,
-                                  IdTipoFlujo = T.IdTipoFlujo,
-                                  TipoFlujo = T.TipoFlujo,
-                                  PagoLocExt = T.PagoLocExt,
-                                  PaisPago = T.PaisPago,
-                                  ConvenioTributacion = T.ConvenioTributacion,
-                                  PagoSujetoRetencion = T.PagoSujetoRetencion,
-                                  co_FechaContabilizacion = T.co_FechaContabilizacion,
-                                  BseImpNoObjDeIva = T.BseImpNoObjDeIva,
-                                   //  T.Id_Num_Autorizacion,
-                                  fecha_autorizacion = T.fecha_autorizacion,
-                                  Num_Autorizacion = T.Num_Autorizacion,
-                                  Num_Autorizacion_Imprenta = T.Num_Autorizacion_Imprenta,
-                                  IdCtaCble_CXP = P.IdCtaCble_CXP,
-                                  IdEmpresa_ret = T.IdEmpresa_ret,
-                                  IdRetencion = T.IdRetencion,
-                                  re_serie = T.re_serie,
-                                  re_NumRetencion = T.re_NumRetencion,
-                                  re_EstaImpresa = T.re_EstaImpresa,
-                                  co_propina = T.co_propina,
-                                  co_IRBPNR = T.co_IRBPNR,
-                                  Estado_Cancelacion = T.Estado_Cancelacion,
-                                  Total_Retencion = T.Total_Retencion,
-                                  cp_es_comprobante_electronico = T.cp_es_comprobante_electronico,
-                                  saldo = T.SaldoOG,
-                                  
-                                  Tipodoc_a_Modificar = T.Tipodoc_a_Modificar,
-                                   estable_a_Modificar = T.estable_a_Modificar,
-                                   ptoEmi_a_Modificar = T.ptoEmi_a_Modificar,
-                                   num_docu_Modificar = T.num_docu_Modificar,
-                                   aut_doc_Modificar = T.aut_doc_Modificar,
-                                   Tiene_ingresos = T.Tiene_ingresos,
-                                   IdTipoMovi = T.IdTipoMovi,
-                                  En_conciliacion = T.En_conciliacion,
-                                  serie1 = T.serie1,
-                                  serie2 = T.serie2,
-                                  NumRetencion = T.NumRetencion
-                               }
+                                                        InfoProveedor = new cp_proveedor_Info
+                                                        {
+                                                            pr_nombre = P.pr_nombre,
+                                                            IdClaseProveedor = C.IdClaseProveedor,
+                                                            descripcion_clas_prove = C.descripcion_clas_prove,
+                                                        },
+                                                        IdCtaCble_IVA = T.IdCtaCble_IVA,
+                                                        co_retencionManual = T.co_retencionManual,
+                                                        Saldo_OG = T.SaldoOG,
+                                                        IdCbteCble_Anulacion = T.IdCbteCble_Anulacion,
+                                                        IdTipoCbte_Anulacion = T.IdTipoCbte_Anulacion,
+                                                        IdCentroCosto = T.IdCentroCosto,
+                                                        IdSucursal = T.IdSucursal,
+                                                        tc_TipoCbte = T.tc_TipoCbte,
+                                                        IdTipoFlujo = T.IdTipoFlujo,
+                                                        TipoFlujo = T.TipoFlujo,
+                                                        PagoLocExt = T.PagoLocExt,
+                                                        PaisPago = T.PaisPago,
+                                                        ConvenioTributacion = T.ConvenioTributacion,
+                                                        PagoSujetoRetencion = T.PagoSujetoRetencion,
+                                                        co_FechaContabilizacion = T.co_FechaContabilizacion,
+                                                        BseImpNoObjDeIva = T.BseImpNoObjDeIva,
+                                                        //  T.Id_Num_Autorizacion,
+                                                        fecha_autorizacion = T.fecha_autorizacion,
+                                                        Num_Autorizacion = T.Num_Autorizacion,
+                                                        Num_Autorizacion_Imprenta = T.Num_Autorizacion_Imprenta,
+                                                        IdCtaCble_CXP = P.IdCtaCble_CXP,
+                                                        IdEmpresa_ret = T.IdEmpresa_ret,
+                                                        IdRetencion = T.IdRetencion,
+                                                        re_serie = T.re_serie,
+                                                        re_NumRetencion = T.re_NumRetencion,
+                                                        re_EstaImpresa = T.re_EstaImpresa,
+                                                        co_propina = T.co_propina,
+                                                        co_IRBPNR = T.co_IRBPNR,
+                                                        Estado_Cancelacion = T.Estado_Cancelacion,
+                                                        Total_Retencion = T.Total_Retencion,
+                                                        cp_es_comprobante_electronico = T.cp_es_comprobante_electronico,
+                                                        saldo = T.SaldoOG,
+
+                                                        Tipodoc_a_Modificar = T.Tipodoc_a_Modificar,
+                                                        estable_a_Modificar = T.estable_a_Modificar,
+                                                        ptoEmi_a_Modificar = T.ptoEmi_a_Modificar,
+                                                        num_docu_Modificar = T.num_docu_Modificar,
+                                                        aut_doc_Modificar = T.aut_doc_Modificar,
+                                                        Tiene_ingresos = T.Tiene_ingresos,
+                                                        IdTipoMovi = T.IdTipoMovi,
+                                                        En_conciliacion = T.En_conciliacion,
+                                                        serie1 = T.serie1,
+                                                        serie2 = T.serie2,
+                                                        NumRetencion = T.NumRetencion
+                                                    }
                               ).ToList();
+                 * */
+                #endregion
 
-
-                return (select_);
+                return (lM);
             }
             catch (Exception ex)
             {
@@ -359,87 +395,89 @@ namespace Core.Erp.Data.CuentasxPagar
         {
             try
             {
-                cp_orden_giro_Info infOgiro = new cp_orden_giro_Info();
+                cp_orden_giro_Info infOgiro;
                 EntitiesCuentasxPagar Base = new EntitiesCuentasxPagar();
 
-                var select = from Ogrio in Base.cp_orden_giro
+                var item = (from Ogrio in Base.cp_orden_giro
                              where Ogrio.IdEmpresa == IdEmpresa
                              && Ogrio.IdCbteCble_Ogiro == IdCbteCble_Ogiro
                              && Ogrio.IdTipoCbte_Ogiro == IdTipoCbte_Ogiro
-                             select Ogrio;
+                             select Ogrio).FirstOrDefault();
+                if (item == null)
+                    infOgiro = new cp_orden_giro_Info();
+                else
+                    infOgiro = new cp_orden_giro_Info
+                    {
+                        IdEmpresa = item.IdEmpresa,
+                        co_FechaContabilizacion = item.co_FechaContabilizacion,
+                        IdCbteCble_Ogiro = item.IdCbteCble_Ogiro,
+                        IdTipoCbte_Ogiro = item.IdTipoCbte_Ogiro,
+                        IdOrden_giro_Tipo = item.IdOrden_giro_Tipo,
+                        IdProveedor = item.IdProveedor,
+                        co_fechaOg = item.co_fechaOg,
+                        co_serie = item.co_serie,
+                        co_factura = item.co_factura,
+                        co_FechaFactura = item.co_FechaFactura.Date,
+                        co_FechaFactura_vct = item.co_FechaFactura_vct,
+                        co_plazo = item.co_plazo,
+                        co_observacion = item.co_observacion,
+                        co_subtotal_iva = item.co_subtotal_iva,
+                        co_subtotal_siniva = item.co_subtotal_siniva,
+                        co_baseImponible = item.co_baseImponible,
+                        co_Por_iva = item.co_Por_iva,
+                        co_valoriva = item.co_valoriva,
+                        IdCod_ICE = item.IdCod_ICE,
+                        co_Ice_base = item.co_Ice_base,
+                        co_Ice_por = item.co_Ice_por,
+                        co_Ice_valor = item.co_Ice_valor,
+                        co_Serv_por = item.co_Serv_por,
+                        co_Serv_valor = item.co_Serv_valor,
+                        co_OtroValor_a_descontar = item.co_OtroValor_a_descontar,
+                        co_OtroValor_a_Sumar = item.co_OtroValor_a_Sumar,
+                        co_BaseSeguro = item.co_BaseSeguro,
+                        co_total = item.co_total,
+                        co_valorpagar = item.co_valorpagar,
+                        co_vaCoa = item.co_vaCoa,
+                        IdIden_credito = item.IdIden_credito,
+                        IdCod_101 = item.IdCod_101,
+                        IdTipoServicio = item.IdTipoServicio,
+                        IdCtaCble_Gasto = item.IdCtaCble_Gasto,
+                        IdUsuario = item.IdUsuario,
+                        Fecha_Transac = item.Fecha_Transac,
+                        Estado = item.Estado,
+                        IdUsuarioUltMod = item.IdUsuarioUltMod,
+                        Fecha_UltMod = item.Fecha_UltMod,
+                        IdUsuarioUltAnu = item.IdUsuarioUltAnu,
+                        MotivoAnu = item.MotivoAnu,
+                        nom_pc = item.nom_pc,
+                        ip = item.ip,
+                        IdCtaCble_IVA = item.IdCtaCble_IVA,
+                        co_retencionManual = item.co_retencionManual,
+                        IdCbteCble_Anulacion = item.IdCbteCble_Anulacion,
+                        IdTipoCbte_Anulacion = item.IdTipoCbte_Anulacion,
+                        IdCentroCosto = item.IdCentroCosto,
+                        IdSucursal = item.IdSucursal,
+                        IdTipoFlujo = item.IdTipoFlujo,
+                        PagoLocExt = item.PagoLocExt,
+                        PaisPago = item.PaisPago,
+                        ConvenioTributacion = item.ConvenioTributacion,
+                        PagoSujetoRetencion = item.PagoSujetoRetencion,
+                        BseImpNoObjDeIva = item.BseImpNoObjDeIva,
+                        Num_Autorizacion = item.Num_Autorizacion,
 
-                foreach (var item in select)
-                {
-                    infOgiro.IdEmpresa = item.IdEmpresa;
-                    infOgiro.co_FechaContabilizacion = item.co_FechaContabilizacion;
-                    infOgiro.IdCbteCble_Ogiro = item.IdCbteCble_Ogiro;
-                    infOgiro.IdTipoCbte_Ogiro = item.IdTipoCbte_Ogiro;
-                    infOgiro.IdOrden_giro_Tipo = item.IdOrden_giro_Tipo;
-                    infOgiro.IdProveedor = item.IdProveedor;
-                    infOgiro.co_fechaOg = item.co_fechaOg;
-                    infOgiro.co_serie = item.co_serie;
-                    infOgiro.co_factura = item.co_factura;
-                    infOgiro.co_FechaFactura = item.co_FechaFactura.Date;
-                    infOgiro.co_FechaFactura_vct = item.co_FechaFactura_vct;
-                    infOgiro.co_plazo = item.co_plazo;
-                    infOgiro.co_observacion = item.co_observacion;
-                    infOgiro.co_subtotal_iva = item.co_subtotal_iva;
-                    infOgiro.co_subtotal_siniva = item.co_subtotal_siniva;
-                    infOgiro.co_baseImponible = item.co_baseImponible;
-                    infOgiro.co_Por_iva = item.co_Por_iva;
-                    infOgiro.co_valoriva = item.co_valoriva;
-                    infOgiro.IdCod_ICE = item.IdCod_ICE;
-                    infOgiro.co_Ice_base = item.co_Ice_base;
-                    infOgiro.co_Ice_por = item.co_Ice_por;
-                    infOgiro.co_Ice_valor = item.co_Ice_valor;
-                    infOgiro.co_Serv_por = item.co_Serv_por;
-                    infOgiro.co_Serv_valor = item.co_Serv_valor;
-                    infOgiro.co_OtroValor_a_descontar = item.co_OtroValor_a_descontar;
-                    infOgiro.co_OtroValor_a_Sumar = item.co_OtroValor_a_Sumar;
-                    infOgiro.co_BaseSeguro = item.co_BaseSeguro;
-                    infOgiro.co_total = item.co_total;
-                    infOgiro.co_valorpagar = item.co_valorpagar;
-                    infOgiro.co_vaCoa = item.co_vaCoa;
-                    infOgiro.IdIden_credito = item.IdIden_credito;
-                    infOgiro.IdCod_101 = item.IdCod_101;
-                    infOgiro.IdTipoServicio = item.IdTipoServicio;
-                    infOgiro.IdCtaCble_Gasto = item.IdCtaCble_Gasto;
-                    infOgiro.IdUsuario = item.IdUsuario;
-                    infOgiro.Fecha_Transac = item.Fecha_Transac;
-                    infOgiro.Estado = item.Estado;
-                    infOgiro.IdUsuarioUltMod = item.IdUsuarioUltMod;
-                    infOgiro.Fecha_UltMod = item.Fecha_UltMod;
-                    infOgiro.IdUsuarioUltAnu = item.IdUsuarioUltAnu;
-                    infOgiro.MotivoAnu = item.MotivoAnu;
-                    infOgiro.nom_pc = item.nom_pc;
-                    infOgiro.ip = item.ip;
-                    infOgiro.IdCtaCble_IVA = item.IdCtaCble_IVA;
-                    infOgiro.co_retencionManual = item.co_retencionManual;
-                    infOgiro.IdCbteCble_Anulacion = item.IdCbteCble_Anulacion;
-                    infOgiro.IdTipoCbte_Anulacion = item.IdTipoCbte_Anulacion;
-                    infOgiro.IdCentroCosto = item.IdCentroCosto;
-                    infOgiro.IdSucursal = item.IdSucursal;
-                    infOgiro.IdTipoFlujo = item.IdTipoFlujo;
-                    infOgiro.PagoLocExt = item.PagoLocExt;
-                    infOgiro.PaisPago = item.PaisPago;
-                    infOgiro.ConvenioTributacion = item.ConvenioTributacion;
-                    infOgiro.PagoSujetoRetencion = item.PagoSujetoRetencion;
-                    infOgiro.BseImpNoObjDeIva = item.BseImpNoObjDeIva;
-                    infOgiro.Num_Autorizacion = item.Num_Autorizacion;
-                    
-                    infOgiro.fecha_autorizacion = Convert.ToDateTime(item.fecha_autorizacion);
-                    //para saber si es comprobante electrónico o no
-                    infOgiro.cp_es_comprobante_electronico = item.cp_es_comprobante_electronico;
+                        fecha_autorizacion = item.fecha_autorizacion,
+                        //para saber si es comprobante electrónico o no
+                        cp_es_comprobante_electronico = item.cp_es_comprobante_electronico,
 
-                    infOgiro.Tipodoc_a_Modificar = item.Tipodoc_a_Modificar;
-                    infOgiro.estable_a_Modificar = item.estable_a_Modificar;
-                    infOgiro.ptoEmi_a_Modificar = item.ptoEmi_a_Modificar;
-                    infOgiro.num_docu_Modificar = item.num_docu_Modificar;
-                    infOgiro.aut_doc_Modificar = item.aut_doc_Modificar;
+                        Tipodoc_a_Modificar = item.Tipodoc_a_Modificar,
+                        estable_a_Modificar = item.estable_a_Modificar,
+                        ptoEmi_a_Modificar = item.ptoEmi_a_Modificar,
+                        num_docu_Modificar = item.num_docu_Modificar,
+                        aut_doc_Modificar = item.aut_doc_Modificar,
 
-                    //Campo de tipo de movimiento cuando se crea desde conciliacion de caja
-                    infOgiro.IdTipoMovi = item.IdTipoMovi;
-                }
+                        //Campo de tipo de movimiento cuando se crea desde conciliacion de caja
+                        IdTipoMovi = item.IdTipoMovi,
+                    };
                 return infOgiro;
             }
             catch (Exception ex)

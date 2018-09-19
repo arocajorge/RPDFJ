@@ -58,27 +58,22 @@ namespace Core.Erp.Data.Bancos
                         {
                             EntitiesBanco oEnti = new EntitiesBanco();
 
-                            var Query = from q in oEnti.vwba_TipoFlujo
-                                        where q.IdEmpresa == IdEmpresa
-                                        select q;
+                            Lst = (from q in oEnti.vwba_TipoFlujo
+                                   where q.IdEmpresa == IdEmpresa
+                                   select new ba_TipoFlujo_Info
+                                   {
+                                        IdEmpresa = q.IdEmpresa,
+                                         IdTipoFlujo = q.IdTipoFlujo,
+                                         cod_flujo = q.cod_flujo == null ? "0" : q.cod_flujo,
+                                         IdTipoFlujoPadre = q.IdTipoFlujoPadre,
+                                         Descricion = q.Descricion,                                 
+                                         DescricionPadre = q.DescricionPadre,
+                                         Estado = q.Estado,
+                                         Tipo = q.Tipo,
+                                   }).ToList();
 
-                            foreach (var item in Query)
-                            {
-                                ba_TipoFlujo_Info Obj = new ba_TipoFlujo_Info();
-                                Obj.IdEmpresa = item.IdEmpresa;
-                                Obj.IdTipoFlujo = item.IdTipoFlujo;
-                                Obj.cod_flujo = item.cod_flujo == null ? "0" : item.cod_flujo;
-                                Obj.IdTipoFlujoPadre = item.IdTipoFlujoPadre;
-                                Obj.Descricion = item.Descricion;
-                                Obj.Descricion2 = "[" + Obj.cod_flujo.Trim() + "]-" + item.Descricion;
-                                Obj.DescricionPadre = item.DescricionPadre;
-                                Obj.Estado = item.Estado;
-                                Obj.Tipo = item.Tipo;
-                                
+                            Lst.ForEach(q => q.Descricion2 = "[" + q.cod_flujo.Trim() + "]-" + q.Descricion);
 
-
-                                Lst.Add(Obj);
-                            }
                             return Lst;
                         }
                         catch (Exception ex)

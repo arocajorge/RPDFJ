@@ -481,7 +481,7 @@ namespace Core.Erp.Winform.Facturacion_Fj
             {
                 txtCodigo.Focus();
                 txtDescripcion.Focus();
-                if (bus_Orden.ValidarCodigoExite(param.IdEmpresa, txtCodigo.Text.Trim()))
+                if (_Accion == Cl_Enumeradores.eTipo_action.grabar && bus_Orden.ValidarCodigoExite(param.IdEmpresa, txtCodigo.Text.Trim()))
                 {
                     MessageBox.Show("El código " + txtCodigo.Text.Trim() + " ingresado ya se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;

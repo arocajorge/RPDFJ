@@ -168,6 +168,7 @@
         <AssociationConnector Association="ModelCuentasxPagar.FK_cp_orden_pago_cp_orden_pago_tipo" />
         <AssociationConnector Association="ModelCuentasxPagar.FK_cp_orden_pago_det_cp_orden_pago" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_retencion" Width="1.5" PointX="1.8488005296554417" PointY="17.035260744874954" />
+        <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_orden_giro_consulta" Width="1.5" PointX="10.336043759405634" PointY="29.204379274139356" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4429,6 +4429,9 @@
     <Compile Include="vwcp_Orden_Giro_Conciliado_x_Ing_Bod_x_OC.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
+    <Compile Include="vwcp_orden_giro_consulta.cs">
+      <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
+    </Compile>
     <Compile Include="vwcp_Orden_Giro_Pendiente_Conciliar.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>

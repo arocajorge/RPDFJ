@@ -465,7 +465,6 @@ namespace Core.Erp.Business.CuentasxPagar
               decimal idCbteCble = 0;
 
               Info_Ogiro.Info_CbteCble_x_OG=info_CbteCble;
-              Info_Ogiro.lst_reembolso=lst_reembolso;
               Info_Ogiro.lst_formasPagoSRI=lst_formasPagoSRI;
               Info_Ogiro.Info_Retencion=InfoRetencion;
 
@@ -475,9 +474,6 @@ namespace Core.Erp.Business.CuentasxPagar
               }
 
               
-              Info_Ogiro.LstImportacionGrid=LstImportacionGrid;
-              Info_Ogiro.LstocXcbt_I=LstocXcbt_I;
-              Info_Ogiro.LisImportacion=LisImportacion;
               Info_Ogiro.LstImportacionOC=LstImportacionOC;             
 
 

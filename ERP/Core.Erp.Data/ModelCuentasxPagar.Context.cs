@@ -137,6 +137,7 @@ namespace Core.Erp.Data
         public DbSet<cp_orden_pago> cp_orden_pago { get; set; }
         public DbSet<vwcp_orden_pago> vwcp_orden_pago { get; set; }
         public DbSet<vwcp_retencion> vwcp_retencion { get; set; }
+        public DbSet<vwcp_orden_giro_consulta> vwcp_orden_giro_consulta { get; set; }
     
         public virtual ObjectResult<string> spCXP_eliminar_factura_vale_conciliacion_caja(Nullable<int> idEmpresa, Nullable<int> idTipoCbte, Nullable<decimal> idCbteCble, string tipoCbte_conci, Nullable<bool> borrar_o_desvincular)
         {

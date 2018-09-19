@@ -146,12 +146,8 @@ namespace Core.Erp.Info.CuentasxPagar
         public cp_retencion_Info Info_Retencion { get; set; }
         public cp_orden_pago_Info Info_Orden_Pago { get; set; }
         public cp_cuotas_x_doc_Info Info_cuotas_x_doc { get; set; }
-        public List<cp_reembolso_Info> lst_reembolso { get; set; }
 
         public List<cp_orden_giro_pagos_sri_Info> lst_formasPagoSRI{ get; set; }
-        public List<imp_ordencompra_ext_x_imp_gastosxImport_Info> LstImportacionGrid { get; set; }
-        public List<imp_ordencompra_ext_x_ct_cbtecble_Info> LstocXcbt_I { get; set; }
-        public List<cp_orden_giro_x_imp_ordencompra_ext_Info> LisImportacion { get; set; }
         public List<cp_orden_giro_x_com_ordencompra_local_Info> LstImportacionOC  { get; set; }
 
         public Nullable<Boolean> es_retencion_electronica { get; set; }
@@ -179,12 +175,8 @@ namespace Core.Erp.Info.CuentasxPagar
             Info_Retencion = new cp_retencion_Info();
             Info_Orden_Pago = new cp_orden_pago_Info();
             Info_cuotas_x_doc = new cp_cuotas_x_doc_Info();
-            lst_reembolso = new List<cp_reembolso_Info>();
 
             lst_formasPagoSRI= new List<cp_orden_giro_pagos_sri_Info>();
-            LstImportacionGrid = new List<imp_ordencompra_ext_x_imp_gastosxImport_Info>();
-            LstocXcbt_I = new List<imp_ordencompra_ext_x_ct_cbtecble_Info>();
-            LisImportacion = new List<cp_orden_giro_x_imp_ordencompra_ext_Info>();
             LstImportacionOC = new List<cp_orden_giro_x_com_ordencompra_local_Info>();
             InfoProveedor = new cp_proveedor_Info();
 
@@ -192,6 +184,50 @@ namespace Core.Erp.Info.CuentasxPagar
     }
 
 
+    public class cp_orden_giro_consulta_Info
+    {
 
+        public int IdEmpresa { get; set; }
+
+        public int IdTipoCbte_Ogiro { get; set; }
+
+        public decimal IdCbteCble_Ogiro { get; set; }
+
+        public string co_factura { get; set; }
+
+        public DateTime co_fechaOg { get; set; }
+
+        public DateTime co_FechaFactura { get; set; }
+
+        public string co_observacion { get; set; }
+
+        public double co_subtotal_iva { get; set; }
+
+        public double co_subtotal_siniva { get; set; }
+
+        public double co_valoriva { get; set; }
+
+        public double co_baseImponible { get; set; }
+
+        public string Estado { get; set; }
+
+        public double Total_Retencion { get; set; }
+
+        public double saldo { get; set; }
+
+        public double co_total { get; set; }
+
+        public string re_NumRetencion { get; set; }
+
+        public decimal? IdTipoFlujo { get; set; }
+
+        public string descripcion_clas_prove { get; set; }
+
+        public string pr_nombre { get; set; }
+
+        public string Estado_Cancelacion { get; set; }
+
+        public string Num_Autorizacion { get; set; }
+    }
 }
 

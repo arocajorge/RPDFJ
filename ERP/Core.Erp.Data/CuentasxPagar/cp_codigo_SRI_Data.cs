@@ -370,31 +370,26 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<cp_codigo_SRI_Info> lM = new List<cp_codigo_SRI_Info>();
                 EntitiesCuentasxPagar OEUser = new EntitiesCuentasxPagar();
 
-                var select_ = from TI in OEUser.vwcp_codigo_SRI
-                               where  TI.IdEmpresa == IdEmpresa
-                              orderby TI.co_f_valides_hasta descending
-                              select TI;
+                lM = (from TI in OEUser.vwcp_codigo_SRI
+                     where TI.IdEmpresa == IdEmpresa
+                     orderby TI.co_f_valides_hasta descending
+                     select new cp_codigo_SRI_Info
+                     {
+                          IdCodigo_SRI = TI.IdCodigo_SRI,
+                     codigoSRI = TI.codigoSRI,
+                     co_codigoBase = TI.co_codigoBase,
+                     co_descripcion = TI.co_descripcion,
+                     co_porRetencion = TI.co_porRetencion,
+                     co_f_vigente_desde = TI.co_f_valides_desde,
+                     co_f_vigente_hasta =TI.co_f_valides_hasta,
+                     co_estado = TI.co_estado,
+                     IdTipoSRI = TI.IdTipoSRI,
+                     IdCtaCble = TI.IdCtaCble,
+                     }).ToList();
 
-                foreach (var item in select_)
-                {
-                    cp_codigo_SRI_Info dat = new cp_codigo_SRI_Info();
-                    dat.IdCodigo_SRI = item.IdCodigo_SRI;
-                    dat.codigoSRI = item.codigoSRI;
-                    dat.co_codigoBase = item.co_codigoBase;
-                    dat.co_descripcion = item.co_descripcion;
-                    dat.co_porRetencion = item.co_porRetencion;
-                    dat.co_f_vigente_desde = item.co_f_valides_desde;
-                    dat.co_f_vigente_hasta =item.co_f_valides_hasta;
-                    dat.co_estado = item.co_estado;
-                    dat.IdTipoSRI = item.IdTipoSRI;
-                    dat.IdCtaCble = item.IdCtaCble;
-                    dat.descriConcate = "[" + item.codigoSRI + "] - " + item.co_descripcion + " " + item.co_porRetencion + "%";
-
-                   
-
-                    lM.Add(dat);
-                }
-                return (lM);
+                    lM.ForEach(q=> q.descriConcate = "[" + q.codigoSRI + "] - " + q.co_descripcion + " " + q.co_porRetencion + "%");
+                
+                return lM;
             }
             catch (Exception ex)
             {

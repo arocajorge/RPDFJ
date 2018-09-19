@@ -24,127 +24,82 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<cp_proveedor_Info> lM = new List<cp_proveedor_Info>();
                 EntitiesCuentasxPagar OEUser = new EntitiesCuentasxPagar();
 
-                var selectProveedor = from selec in OEUser.vwcp_ProveedorRuc
-                                      where selec.IdEmpresa == IdEmpresa
-                                      select selec;
+                lM = (from selec in OEUser.vwcp_ProveedorRuc
+                          where selec.IdEmpresa == IdEmpresa
+                          select new cp_proveedor_Info
+                          {
+                              IdEmpresa = selec.IdEmpresa,
+                              IdProveedor = selec.IdProveedor,
+                              IdPersona = selec.IdPersona,
+                              pr_codigo = selec.pr_codigo,
+                              pr_nombre = selec.pr_nombre,                              
+                              pr_girar_cheque_a = selec.pr_girar_cheque_a,
+                              IdTipoServicio = selec.IdTipoServicio,
+                              IdCtaCble_CXP = selec.IdCtaCble_CXP,
+                              IdTipoGasto = selec.IdTipoGasto,
+                              pr_plazo = selec.pr_plazo,
+                              pr_estado = selec.pr_estado,
+                              IdCiudad = selec.IdCiudad,
+                              IdPais = selec.IdPais,
+                              IdProvincia = selec.IdProvincia,
+                              pr_nacionalidad = selec.pr_nacionalidad,
+                              idCredito_Predeter = selec.idCredito_Predeter,
+                              codigoSRI_ICE_Predeter = selec.codigoSRI_ICE_Predeter,
+                              codigoSRI_101_Predeter = selec.codigoSRI_101_Predeter,
+                              IdCtaCble_Anticipo = selec.IdCtaCble_Anticipo,
+                              pr_contribuyenteEspecial = selec.pr_contribuyenteEspecial,//17
+                              IdCentroCosoto = selec.IdCentroCosot,                              
+                              contacto = selec.contacto,
+                              responsable = selec.responsable,
+                              comentario = selec.comentario,
+                              IdCtaCble_Gasto = selec.IdCtaCble_Gasto,
+                              IdClaseProveedor = selec.IdClaseProveedor,
+                              representante_legal = selec.representante_legal,
+                              SEstado = (selec.pr_estado == "A") ? "ACTIVO" : "*ANULADO*",
+                              IdTipoCta_acreditacion_cat = selec.IdTipoCta_acreditacion_cat,
+                              num_cta_acreditacion = selec.num_cta_acreditacion,
+                              IdBanco_acreditacion = selec.IdBanco_acreditacion,
+                              es_empresa_relacionada = (selec.es_empresa_relacionada == null) ? false : (selec.es_empresa_relacionada == false ? false : true),
 
+                              Persona_Info = new tb_persona_Info
+                              {
+                                  CodPersona = selec.CodPersona,
+                                  IdPersona = selec.IdPersona,
+                                  pe_Naturaleza = selec.pe_Naturaleza,
+                                  pe_nombre = selec.pe_nombre,
+                                  pe_apellido = selec.pe_apellido,
+                                  pe_nombreCompleto = selec.pe_nombreCompleto,
+                                  pe_razonSocial = selec.pe_razonSocial,
+                                  IdTipoPersona = selec.IdTipoPersona,
+                                  IdTipoDocumento = selec.IdTipoDocumento,
+                                  pe_cedulaRuc = selec.pe_cedulaRuc,
+                                  pe_direccion = selec.pe_direccion,
+                                  pe_telefonoCasa = selec.pe_telefonoCasa,
+                                  pe_telefonoInter = selec.pe_telefonoInter,
+                                  pe_telefonoOfic = selec.pe_telefonoOfic,
+                                  pe_telfono_Contacto = selec.pe_telfono_Contacto,
+                                  pe_celular = selec.pe_celular,
+                                  pe_correo = selec.pe_correo,
+                                  pe_fax = selec.pe_fax,
+                                  pe_casilla = selec.pe_casilla,
+                                  pe_sexo = selec.pe_sexo,
+                                  IdEstadoCivil = selec.IdEstadoCivil,
+                                  pe_fechaNacimiento = selec.pe_fechaNacimiento,
+                                  pe_estado = selec.pe_estado,
+                                  pe_celularSecundario = selec.pe_celularSecundario,
+                                  pe_correo_secundario1 = selec.pe_correo_secundario1,
+                                  pe_correo_secundario2 = selec.pe_correo_secundario2,
+                              },
+                              IdPunto_cargo = selec.IdPunto_cargo,
+                              IdPunto_cargo_grupo = selec.IdPunto_cargo_grupo,
 
-                foreach (var item in selectProveedor)
+                          }).ToList();
+
+                lM.ForEach(q =>
                 {
-
-                    cp_proveedor_Info datI = new cp_proveedor_Info();
-                    datI.IdEmpresa = item.IdEmpresa;
-                    datI.IdProveedor = item.IdProveedor;
-                    datI.IdPersona= item.IdPersona;
-                    datI.pr_codigo = item.pr_codigo;
-                    datI.pr_nombre = item.pr_nombre;
-                    datI.Persona_Info.pe_nombreCompleto = item.pe_nombreCompleto;
-                    datI.pr_nombre_codigo = "[" + item.IdProveedor + "]-" + item.pe_nombreCompleto;
-                    datI.pr_girar_cheque_a = item.pr_girar_cheque_a;
-                    datI.IdTipoServicio = item.IdTipoServicio;
-                    datI.IdCtaCble_CXP = item.IdCtaCble_CXP;
-                    datI.IdTipoGasto = item.IdTipoGasto;
-                    datI.pr_plazo = Convert.ToInt32(item.pr_plazo);
-                    datI.pr_estado = item.pr_estado;
-                    datI.IdCiudad = item.IdCiudad;
-                    datI.IdPais = item.IdPais;
-                    datI.IdProvincia = item.IdProvincia;
-                    
-
-                    datI.pr_nacionalidad = item.pr_nacionalidad;
-                    datI.idCredito_Predeter = item.idCredito_Predeter;
-
-
-
-
-                   //haac 17/03/2014
-                    datI.codigoSRI_ICE_Predeter = Convert.ToInt32(item.codigoSRI_ICE_Predeter);
-                    datI.codigoSRI_101_Predeter = Convert.ToInt32(item.codigoSRI_101_Predeter);
-                    datI.IdCtaCble_Anticipo= item.IdCtaCble_Anticipo;
-                    //haac 17/03/2014
-
-                    datI.pr_contribuyenteEspecial = item.pr_contribuyenteEspecial;//17
-                    datI.IdTipoGasto = item.IdTipoGasto;
-
-                    
-                    //haac 17/03/2014
-                    datI.codigoSRI_101_Predeter = Convert.ToInt32(item.codigoSRI_101_Predeter);
-                    datI.codigoSRI_ICE_Predeter = Convert.ToInt32(item.codigoSRI_ICE_Predeter);
-                    datI.IdCtaCble_Anticipo = item.IdCtaCble_Anticipo;
-                    //haac 17/03/2014
-
-
-                    datI.idCredito_Predeter = item.idCredito_Predeter;
-                    datI.IdCtaCble_CXP = item.IdCtaCble_CXP;
-                    datI.IdEmpresa = item.IdEmpresa;
-                    datI.IdPersona = item.IdPersona;
-                    datI.IdProveedor = item.IdProveedor;
-                    datI.pr_contribuyenteEspecial = item.IdTipoGasto;
-                    datI.IdTipoServicio = item.IdTipoServicio;
-                    
-                    datI.pr_codigo = item.pr_codigo;
-                    datI.pr_estado = item.pr_estado;
-                    datI.IdTipoGasto = item.IdTipoGasto;
-                    datI.pr_girar_cheque_a = item.pr_girar_cheque_a;
-                    datI.pr_nacionalidad = item.pr_nacionalidad;
-                    datI.pr_nombre = item.pr_nombre;
-                    datI.pr_plazo = Convert.ToInt32(item.pr_plazo);
-                    datI.pr_contribuyenteEspecial = item.pr_contribuyenteEspecial;
-                    datI.IdCentroCosoto = item.IdCentroCosot;
-                    datI.pr_nombre2 = "[" + item.IdProveedor + "] " + item.pr_nombre;
-                    datI.contacto = item.contacto;
-                    datI.responsable = item.responsable;
-                    datI.comentario = item.comentario;
-                    datI.IdCtaCble_Gasto = item.IdCtaCble_Gasto;
-                    datI.IdClaseProveedor = item.IdClaseProveedor;
-                    datI.representante_legal = item.representante_legal;
-                    datI.SEstado = (item.pr_estado == "A") ? "ACTIVO" : "*ANULADO*";
-                    datI.pr_estado = item.pr_estado;
-
-                    datI.IdCiudad = item.IdCiudad;
-                    datI.IdPais = item.IdPais;
-                    datI.IdProvincia = item.IdProvincia;
-
-
-                    datI.IdTipoCta_acreditacion_cat = item.IdTipoCta_acreditacion_cat;
-                    datI.num_cta_acreditacion = item.num_cta_acreditacion;
-                    datI.IdBanco_acreditacion = item.IdBanco_acreditacion;
-                    datI.es_empresa_relacionada = (item.es_empresa_relacionada == null) ? false : Convert.ToBoolean(item.es_empresa_relacionada);
-                    
-
-
-                    datI.Persona_Info = new tb_persona_Info();
-                    datI.Persona_Info.CodPersona = item.CodPersona;
-                    datI.Persona_Info.IdPersona = item.IdPersona;
-                    datI.Persona_Info.pe_Naturaleza = item.pe_Naturaleza;
-                    datI.Persona_Info.pe_nombre = item.pe_nombre;
-                    datI.Persona_Info.pe_apellido = item.pe_apellido;
-                    datI.Persona_Info.pe_nombreCompleto = item.pe_nombreCompleto;
-                    datI.Persona_Info.pe_razonSocial = item.pe_razonSocial;
-                    datI.Persona_Info.IdTipoPersona = item.IdTipoPersona;
-                    datI.Persona_Info.IdTipoDocumento = item.IdTipoDocumento;
-                    datI.Persona_Info.pe_cedulaRuc = item.pe_cedulaRuc;
-                    datI.Persona_Info.pe_direccion = item.pe_direccion;
-                    datI.Persona_Info.pe_telefonoCasa = item.pe_telefonoCasa;
-                    datI.Persona_Info.pe_telefonoInter = item.pe_telefonoInter;
-                    datI.Persona_Info.pe_telefonoOfic = item.pe_telefonoOfic;
-                    datI.Persona_Info.pe_telfono_Contacto = item.pe_telfono_Contacto;
-                    datI.Persona_Info.pe_celular = item.pe_celular;
-                    datI.Persona_Info.pe_correo = item.pe_correo;
-                    datI.Persona_Info.pe_fax = item.pe_fax;
-                    datI.Persona_Info.pe_casilla = item.pe_casilla;
-                    datI.Persona_Info.pe_sexo = item.pe_sexo; ;
-                    datI.Persona_Info.IdEstadoCivil = item.IdEstadoCivil;
-                    datI.Persona_Info.pe_fechaNacimiento = item.pe_fechaNacimiento;
-                    datI.Persona_Info.pe_estado = item.pe_estado;
-                    datI.Persona_Info.pe_celularSecundario = item.pe_celularSecundario;
-                    datI.Persona_Info.pe_correo_secundario1 = item.pe_correo_secundario1;
-                    datI.Persona_Info.pe_correo_secundario2 = item.pe_correo_secundario2;
-                    datI.IdPunto_cargo = item.IdPunto_cargo;
-                    datI.IdPunto_cargo_grupo = item.IdPunto_cargo_grupo;
-
-                    lM.Add(datI);
-                }
+                    q.pr_nombre_codigo = "[" + q.IdProveedor + "]-" + q.Persona_Info.pe_nombreCompleto;
+                    q.pr_nombre2 = "[" + q.IdProveedor + "] " + q.Persona_Info.pe_nombreCompleto;
+                });
 
                 return (lM);
             }

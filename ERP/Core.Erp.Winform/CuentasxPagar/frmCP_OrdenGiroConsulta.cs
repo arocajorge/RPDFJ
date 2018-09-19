@@ -26,7 +26,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
         tb_sis_Log_Error_Vzen_Bus Log_Error_bus = new tb_sis_Log_Error_Vzen_Bus();
         cp_orden_giro_Bus OrdenGiro_B = new cp_orden_giro_Bus();
-        cp_orden_giro_Info Info_OrdenGiro = new cp_orden_giro_Info();
+        cp_orden_giro_consulta_Info Info_OrdenGiro = new cp_orden_giro_consulta_Info();
         frmCP_OrdenGiroMantenimiento frm = new frmCP_OrdenGiroMantenimiento();
         ba_TipoFlujo_Bus bus_tipo_flujo = new ba_TipoFlujo_Bus();
         List<ba_TipoFlujo_Info> lst_tipo_flujo = new List<ba_TipoFlujo_Info>();
@@ -76,7 +76,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                Info_OrdenGiro = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetFocusedRow();
+                Info_OrdenGiro = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetFocusedRow();
 
                 if (Info_OrdenGiro == null)
                 {
@@ -87,7 +87,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 {
                     if (Info_OrdenGiro.Estado == "I")
                     {
-                        MessageBox.Show("La Factura #: " + Info_OrdenGiro.co_serie + "-" + Info_OrdenGiro.co_factura + "/" + Info_OrdenGiro.IdCbteCble_Ogiro +  " está anulada, solo puede consultar.", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("La Factura #: " + Info_OrdenGiro.co_factura + "/" + Info_OrdenGiro.IdCbteCble_Ogiro +  " está anulada, solo puede consultar.", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         llamaFRM(Cl_Enumeradores.eTipo_action.consultar, Info_OrdenGiro);
                     }
                     else
@@ -99,7 +99,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                         if (lista_opDet.Count !=0)
                         {
-                            MessageBox.Show("La Factura #: " + Info_OrdenGiro.co_serie + "-" + Info_OrdenGiro.co_factura + "/" + Info_OrdenGiro.IdCbteCble_Ogiro + " tiene asociadas Ordenes de Pago. No se puede modificar completamente", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("La Factura #: " + Info_OrdenGiro.co_factura + "/" + Info_OrdenGiro.IdCbteCble_Ogiro + " tiene asociadas Ordenes de Pago. No se puede modificar completamente", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             llamaFRM(Cl_Enumeradores.eTipo_action.actualizar_proceso_cerrado, Info_OrdenGiro);
                             return;
                           
@@ -128,7 +128,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                Info_OrdenGiro = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetFocusedRow();
+                Info_OrdenGiro = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetFocusedRow();
 
                 if (Info_OrdenGiro == null)
                 {
@@ -164,7 +164,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                Info_OrdenGiro = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetFocusedRow();
+                Info_OrdenGiro = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetFocusedRow();
                 if (Info_OrdenGiro == null)
                 {
                     MessageBox.Show("Seleccione una fila", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -252,7 +252,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                var data = UltraGrid_OrdenGiro.GetRow(e.RowHandle) as cp_orden_giro_Info;
+                var data = UltraGrid_OrdenGiro.GetRow(e.RowHandle) as cp_orden_giro_consulta_Info;
                 if (data == null)
                     return;
                 if (data.Estado == "I")
@@ -307,8 +307,8 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                
-                Info_OrdenGiro = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetFocusedRow();
+
+                Info_OrdenGiro = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetFocusedRow();
             }
             catch (Exception ex)
             {
@@ -317,7 +317,7 @@ namespace Core.Erp.Winform.CuentasxPagar
             }
         }
 
-        private void llamaFRM(Cl_Enumeradores.eTipo_action Accion, cp_orden_giro_Info info)
+        private void llamaFRM(Cl_Enumeradores.eTipo_action Accion, cp_orden_giro_consulta_Info info)
         {
             try
             {
@@ -326,11 +326,11 @@ namespace Core.Erp.Winform.CuentasxPagar
                 frm.event_frmCP_MantOrdenGiro_FormClosing += frm_event_frmCP_MantOrdenGiro_FormClosing;
                
                 frm.set_accion(Accion);
-                
+                var og = OrdenGiro_B.Get_Info_orden_giro(info.IdEmpresa, info.IdTipoCbte_Ogiro, info.IdCbteCble_Ogiro);
                 frm.MdiParent = this.MdiParent;
                 if(!(Accion == Cl_Enumeradores.eTipo_action.grabar))
                 {
-                    frm.set_ordenGiro(info);
+                    frm.set_ordenGiro(og);
                 }
 
                 frm.Show();
@@ -367,7 +367,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        /*
         private void UltraGrid_OrdenGiro_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
 
@@ -377,7 +377,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 if (e.Column.Name == colTotal_Retencion.Name)
                 {
 
-                    Info_OrdenGiro = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetFocusedRow();
+                    Info_OrdenGiro = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetFocusedRow();
                     cp_retencion_Info InfoRetencion = new cp_retencion_Info();
                     cp_retencion_Bus BusRetencion = new cp_retencion_Bus();
                     InfoRetencion = BusRetencion.Get_Info_retencion(Convert.ToInt32(Info_OrdenGiro.IdEmpresa_ret), Convert.ToDecimal(Info_OrdenGiro.IdRetencion));
@@ -397,6 +397,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
             
         }
+         * */
 
         private void UltraGrid_OrdenGiro_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
