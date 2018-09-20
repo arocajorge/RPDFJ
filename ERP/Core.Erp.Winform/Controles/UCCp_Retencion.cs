@@ -502,7 +502,7 @@ namespace Core.Erp.Winform.Controles
 
                         if (item.MontoRetencion > 0)
                         {
-                            valor = Math.Round(item.MontoRetencion, 2);
+                            valor = Math.Round(item.MontoRetencion, 2,MidpointRounding.AwayFromZero);
                         }
                         else
                         {
@@ -512,12 +512,12 @@ namespace Core.Erp.Winform.Controles
                                 if (item.Tipo == "IVA")
                                 {
                                     item.MontoRetencion = item.BaseImponible * (item.co_porRetencion / 100);
-                                    valor = item.MontoRetencion;
+                                    valor = Math.Round(item.MontoRetencion,2,MidpointRounding.AwayFromZero);
                                 }
                                 else
                                 {
                                     item.MontoRetencion = item.BaseImponible * (item.co_porRetencion / 100);
-                                    valor = item.MontoRetencion;
+                                    valor = Math.Round(item.MontoRetencion,2,MidpointRounding.AwayFromZero);
                                 }
                             }
 
@@ -937,7 +937,7 @@ namespace Core.Erp.Winform.Controles
 
                     }
                     decimal prueba = 0;
-                    prueba = Math.Round((Convert.ToDecimal(gridView_SRI.GetFocusedRowCellValue(colBaseImponible)) * (Convert.ToDecimal(gridView_SRI.GetFocusedRowCellValue(colco_porRetencion)) / 100)), 2);
+                    prueba = Math.Round((Convert.ToDecimal(gridView_SRI.GetFocusedRowCellValue(colBaseImponible)) * (Convert.ToDecimal(gridView_SRI.GetFocusedRowCellValue(colco_porRetencion)) / 100)), 2,MidpointRounding.AwayFromZero);
 
                     gridView_SRI.SetFocusedRowCellValue(colMontoRetencion, prueba);
 
