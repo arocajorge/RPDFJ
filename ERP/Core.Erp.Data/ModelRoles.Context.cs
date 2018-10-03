@@ -192,7 +192,6 @@ namespace Core.Erp.Data
         public DbSet<ro_Cuentas_contables_x_empleado> ro_Cuentas_contables_x_empleado { get; set; }
         public DbSet<ro_periodo_x_ro_Nomina_TipoLiquiDisponibles> ro_periodo_x_ro_Nomina_TipoLiquiDisponibles { get; set; }
         public DbSet<ro_permiso_x_empleado> ro_permiso_x_empleado { get; set; }
-        public DbSet<vwRo_Permiso_x_Empleado> vwRo_Permiso_x_Empleado { get; set; }
         public DbSet<vwRo_periodo_x_ro_Nomina_TipoLiqui> vwRo_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public DbSet<ro_Comprobantes_Contables> ro_Comprobantes_Contables { get; set; }
         public DbSet<ro_Acta_Finiquito_Detalle_x_Decimos> ro_Acta_Finiquito_Detalle_x_Decimos { get; set; }
@@ -215,6 +214,7 @@ namespace Core.Erp.Data
         public DbSet<ro_cargaFamiliar> ro_cargaFamiliar { get; set; }
         public DbSet<vwRo_CargaFamiliar_X_Catalogo> vwRo_CargaFamiliar_X_Catalogo { get; set; }
         public DbSet<vwro_empleadoXdepXcargo> vwro_empleadoXdepXcargo { get; set; }
+        public DbSet<vwRo_Permiso_x_Empleado> vwRo_Permiso_x_Empleado { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {

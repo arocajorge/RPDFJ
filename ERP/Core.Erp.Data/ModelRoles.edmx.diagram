@@ -236,7 +236,6 @@
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" Width="1.5" PointX="4.9062216304737252" PointY="30.256740584157754" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiquiDisponibles" Width="1.5" PointX="4.8133454717757855" PointY="30.384147732697496" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_permiso_x_empleado" Width="1.5" PointX="2.6974577432020834" PointY="3.0211001052619424" />
-        <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" Width="1.5" PointX="4.3795811777839351" PointY="2.5311001103981865" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_periodo_x_ro_Nomina_TipoLiqui" Width="1.5" PointX="4.8968348321024493" PointY="7.4398108308388906" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Comprobantes_Contables" Width="1.5" PointX="11.759882664196139" PointY="15.265235177830437" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Acta_Finiquito_Detalle_x_Decimos" Width="1.5" PointX="10.872671037387416" PointY="22.656122203290519" />
@@ -273,6 +272,7 @@
         <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleadoXdepXcargo" Width="1.5" PointX="9.0595500790791341" PointY="14.47010157186077" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_CargaFamiliar_ro_Catalogo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_CargaFamiliar_ro_empleado" />
+        <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" Width="1.5" PointX="7.90260558384592" PointY="15.758482091016361" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

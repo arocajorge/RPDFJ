@@ -99,9 +99,6 @@ namespace Core.Erp.Business.Roles
 
                
             }
-
-
-
         }
 
                 if (param.IdCliente_Ven_x_Default == Cl_Enumeradores.eCliente_Vzen.FJ)

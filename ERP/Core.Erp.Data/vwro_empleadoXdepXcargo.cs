@@ -112,5 +112,6 @@ namespace Core.Erp.Data
         public string Cod_Region { get; set; }
         public int IdNomina_Tipo { get; set; }
         public Nullable<bool> considera_pago_utilidad { get; set; }
+        public string Descripcion { get; set; }
     }
 }

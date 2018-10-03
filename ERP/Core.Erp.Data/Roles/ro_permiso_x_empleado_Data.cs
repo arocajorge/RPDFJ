@@ -20,13 +20,15 @@ namespace Core.Erp.Data.Roles
             List<ro_permiso_x_empleado_Info> lst = new List<ro_permiso_x_empleado_Info>();
             try
             {
+                Fecha_inicio = Convert.ToDateTime(Fecha_inicio.ToShortDateString());
+                Fecha_Fin = Convert.ToDateTime(Fecha_Fin.ToShortDateString());
 
                 using (EntitiesRoles Gene = new EntitiesRoles())
                 {                    
                     var cons = from q in Gene.vwRo_Permiso_x_Empleado
                                where q.IdEmpresa == IdEmpresa  
-                               &&q.Fecha>=Fecha_inicio
-                               &&q.Fecha<=Fecha_Fin
+                               &&q.FechaSalida>=Fecha_inicio
+                               &&q.FechaSalida<=Fecha_Fin
                                orderby q.IdPermiso descending
                                select q;
                     foreach (var item in cons)
@@ -58,7 +60,7 @@ namespace Core.Erp.Data.Roles
                         info.de_descripcion = item.de_descripcion;
                         info.pe_cedulaRuc = item.pe_cedulaRuc;
                         info.NomEmpleado = item.NomEmpleado;
-                        
+                        info.DiasPermiso = item.DiasPermiso;
                         info.Id_Forma_descuento_permiso_Cat = item.Id_Forma_descuento_permiso_Cat;
                         lst.Add(info);
                     }

@@ -22,7 +22,7 @@ namespace Core.Erp.Reportes.Caja
                 List<XCAJ_Rpt003_Info> Lista = new List<XCAJ_Rpt003_Info>();
                 using (EntitiesCaja_General context = new EntitiesCaja_General())
                 {
-                    context.SetCommandTimeOut(3000);
+                    context.SetCommandTimeOut(10000);
                     Lista = (from c in context.vwCAJ_Rpt003
                              where c.IdEmpresa == IdEmpresa
                              && c.IdConciliacion_Caja == IdConciliacion_Caja

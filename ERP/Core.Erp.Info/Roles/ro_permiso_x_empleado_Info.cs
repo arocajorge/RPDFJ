@@ -49,6 +49,8 @@ namespace Core.Erp.Info.Roles
         public string pe_apellido { get; set; }
         public string pe_nombre { get; set; }
         public string em_codigo { get; set; }
+        public Nullable<int> DiasPermiso { get; set; }
+
 	    public ro_permiso_x_empleado_Info(){ }
     }
 }

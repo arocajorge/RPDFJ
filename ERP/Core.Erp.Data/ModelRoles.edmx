@@ -1394,7 +1394,8 @@
       [vwro_empleadoXdepXcargo].[Marca_Biometrico] AS [Marca_Biometrico], 
       [vwro_empleadoXdepXcargo].[Cod_Region] AS [Cod_Region], 
       [vwro_empleadoXdepXcargo].[IdNomina_Tipo] AS [IdNomina_Tipo], 
-      [vwro_empleadoXdepXcargo].[considera_pago_utilidad] AS [considera_pago_utilidad]
+      [vwro_empleadoXdepXcargo].[considera_pago_utilidad] AS [considera_pago_utilidad], 
+      [vwro_empleadoXdepXcargo].[Descripcion] AS [Descripcion]
       FROM [dbo].[vwro_empleadoXdepXcargo] AS [vwro_empleadoXdepXcargo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_FormaPago_Prestamo" EntityType="DBERPModelRoles.Store.vwRo_FormaPago_Prestamo" store:Type="Views" store:Schema="dbo" store:Name="vwRo_FormaPago_Prestamo">
@@ -1915,7 +1916,8 @@
       [vwRo_Permiso_x_Empleado].[Id_Forma_descuento_permiso_Cat] AS [Id_Forma_descuento_permiso_Cat], 
       [vwRo_Permiso_x_Empleado].[Dias_tomados] AS [Dias_tomados], 
       [vwRo_Permiso_x_Empleado].[IdNomina_Tipo] AS [IdNomina_Tipo], 
-      [vwRo_Permiso_x_Empleado].[IdNovedad] AS [IdNovedad]
+      [vwRo_Permiso_x_Empleado].[IdNovedad] AS [IdNovedad], 
+      [vwRo_Permiso_x_Empleado].[DiasPermiso] AS [DiasPermiso]
       FROM [dbo].[vwRo_Permiso_x_Empleado] AS [vwRo_Permiso_x_Empleado]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_Planificacion_Horarios_x_Empleado" EntityType="DBERPModelRoles.Store.vwRo_Planificacion_Horarios_x_Empleado" store:Type="Views" store:Schema="dbo" store:Name="vwRo_Planificacion_Horarios_x_Empleado">
@@ -6518,6 +6520,7 @@
             <PropertyRef Name="IdProvincia" />
             <PropertyRef Name="IdCiudad" />
             <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="Descripcion" />
           </Key>
           <Property Name="cargo" Type="varchar" MaxLength="50" />
           <Property Name="departamento" Type="nchar" MaxLength="50" />
@@ -6617,6 +6620,7 @@
           <Property Name="Cod_Region" Type="varchar" MaxLength="10" />
           <Property Name="IdNomina_Tipo" Type="int" Nullable="false" />
           <Property Name="considera_pago_utilidad" Type="bit" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwRo_FormaPago_Prestamo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -7485,6 +7489,7 @@
           <Property Name="Dias_tomados" Type="int" />
           <Property Name="IdNomina_Tipo" Type="int" Nullable="false" />
           <Property Name="IdNovedad" Type="numeric" Precision="9" />
+          <Property Name="DiasPermiso" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwRo_Planificacion_Horarios_x_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -10071,7 +10076,6 @@
           <EntitySet Name="ro_Cuentas_contables_x_empleado" EntityType="DBERPModelRoles.ro_Cuentas_contables_x_empleado" />
           <EntitySet Name="ro_periodo_x_ro_Nomina_TipoLiquiDisponibles" EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiquiDisponibles" />
           <EntitySet Name="ro_permiso_x_empleado" EntityType="DBERPModelRoles.ro_permiso_x_empleado" />
-          <EntitySet Name="vwRo_Permiso_x_Empleado" EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" />
           <EntitySet Name="vwRo_periodo_x_ro_Nomina_TipoLiqui" EntityType="DBERPModelRoles.vwRo_periodo_x_ro_Nomina_TipoLiqui" />
           <FunctionImport Name="spROL_Archivo_MTE" ReturnType="Collection(DBERPModelRoles.spROL_Archivo_MTE_Result)">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
@@ -10191,6 +10195,7 @@
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="vwRo_Permiso_x_Empleado" EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -15959,55 +15964,6 @@
           <Property Type="String" Name="MotivoAnulacion" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="IdNovedad" Precision="9" Scale="0" />
         </EntityType>
-        <EntityType Name="vwRo_Permiso_x_Empleado">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdPermiso" />
-            <PropertyRef Name="Fecha" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="MotivoAusencia" />
-            <PropertyRef Name="FormaRecuperacion" />
-            <PropertyRef Name="IdEstadoAprob" />
-            <PropertyRef Name="Estado" />
-            <PropertyRef Name="NomEmpleado" />
-            <PropertyRef Name="TiempoAusencia" />
-            <PropertyRef Name="em_codigo" />
-            <PropertyRef Name="IdNomina_Tipo" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Decimal" Name="IdPermiso" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="3" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="MotivoAusencia" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FormaRecuperacion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="IdEmpleado_Soli" Precision="18" Scale="0" />
-          <Property Type="String" Name="IdEstadoAprob" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="IdEmpleado_Apro" Precision="18" Scale="0" />
-          <Property Type="String" Name="MotivoAproba" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Observacion" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="NomEmpleado" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NomEmpleado_Aprobo" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdTipoLicencia" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="EsLicencia" />
-          <Property Type="Boolean" Name="EsPermiso" />
-          <Property Type="DateTime" Name="FechaSalida" Precision="3" />
-          <Property Type="DateTime" Name="FechaEntrada" Precision="3" />
-          <Property Type="Time" Name="TiempoAusencia" Nullable="false" Precision="7" />
-          <Property Type="String" Name="HoraRegreso" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="HoraSalida" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MotivoAnulacion" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="pe_cedulaRuc" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ca_descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="de_descripcion" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="pe_apellido" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="pe_nombre" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="em_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Id_Forma_descuento_permiso_Cat" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Dias_tomados" />
-          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
-          <Property Type="Decimal" Name="IdNovedad" Precision="9" Scale="0" />
-        </EntityType>
         <EntityType Name="vwRo_periodo_x_ro_Nomina_TipoLiqui">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -17014,6 +16970,7 @@
             <PropertyRef Name="IdProvincia" />
             <PropertyRef Name="IdCiudad" />
             <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="Descripcion" />
           </Key>
           <Property Type="String" Name="cargo" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="departamento" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -17113,6 +17070,7 @@
           <Property Type="String" Name="Cod_Region" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
           <Property Type="Boolean" Name="considera_pago_utilidad" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_ro_CargaFamiliar_ro_Catalogo">
           <End Type="DBERPModelRoles.ro_catalogo" Role="ro_catalogo" Multiplicity="1" />
@@ -17188,6 +17146,56 @@
           <Property Type="Int32" Name="Dias_Efectivos" Nullable="true" />
           <Property Type="Decimal" Name="si_tiene_rubros_fijo" Nullable="true" Precision="18" Scale="0" />
         </ComplexType>
+        <EntityType Name="vwRo_Permiso_x_Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdPermiso" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="MotivoAusencia" />
+            <PropertyRef Name="FormaRecuperacion" />
+            <PropertyRef Name="IdEstadoAprob" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="NomEmpleado" />
+            <PropertyRef Name="TiempoAusencia" />
+            <PropertyRef Name="em_codigo" />
+            <PropertyRef Name="IdNomina_Tipo" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdPermiso" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="3" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MotivoAusencia" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FormaRecuperacion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="IdEmpleado_Soli" Precision="18" Scale="0" />
+          <Property Type="String" Name="IdEstadoAprob" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="IdEmpleado_Apro" Precision="18" Scale="0" />
+          <Property Type="String" Name="MotivoAproba" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Observacion" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="NomEmpleado" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NomEmpleado_Aprobo" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdTipoLicencia" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="EsLicencia" />
+          <Property Type="Boolean" Name="EsPermiso" />
+          <Property Type="DateTime" Name="FechaSalida" Precision="3" />
+          <Property Type="DateTime" Name="FechaEntrada" Precision="3" />
+          <Property Type="Time" Name="TiempoAusencia" Nullable="false" Precision="7" />
+          <Property Type="String" Name="HoraRegreso" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HoraSalida" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MotivoAnulacion" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_cedulaRuc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ca_descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="de_descripcion" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="pe_apellido" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_nombre" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="em_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Id_Forma_descuento_permiso_Cat" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Dias_tomados" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Decimal" Name="IdNovedad" Precision="9" Scale="0" />
+          <Property Type="Int32" Name="DiasPermiso" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -21063,45 +21071,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwRo_Permiso_x_Empleado">
-            <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_Permiso_x_Empleado">
-              <MappingFragment StoreEntitySet="vwRo_Permiso_x_Empleado">
-                <ScalarProperty Name="IdNovedad" ColumnName="IdNovedad" />
-                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="Dias_tomados" ColumnName="Dias_tomados" />
-                <ScalarProperty Name="Id_Forma_descuento_permiso_Cat" ColumnName="Id_Forma_descuento_permiso_Cat" />
-                <ScalarProperty Name="em_codigo" ColumnName="em_codigo" />
-                <ScalarProperty Name="pe_nombre" ColumnName="pe_nombre" />
-                <ScalarProperty Name="pe_apellido" ColumnName="pe_apellido" />
-                <ScalarProperty Name="de_descripcion" ColumnName="de_descripcion" />
-                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
-                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
-                <ScalarProperty Name="HoraRegreso" ColumnName="HoraRegreso" />
-                <ScalarProperty Name="TiempoAusencia" ColumnName="TiempoAusencia" />
-                <ScalarProperty Name="FechaEntrada" ColumnName="FechaEntrada" />
-                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
-                <ScalarProperty Name="EsPermiso" ColumnName="EsPermiso" />
-                <ScalarProperty Name="EsLicencia" ColumnName="EsLicencia" />
-                <ScalarProperty Name="IdTipoLicencia" ColumnName="IdTipoLicencia" />
-                <ScalarProperty Name="NomEmpleado_Aprobo" ColumnName="NomEmpleado_Aprobo" />
-                <ScalarProperty Name="NomEmpleado" ColumnName="NomEmpleado" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="MotivoAproba" ColumnName="MotivoAproba" />
-                <ScalarProperty Name="IdEmpleado_Apro" ColumnName="IdEmpleado_Apro" />
-                <ScalarProperty Name="IdEstadoAprob" ColumnName="IdEstadoAprob" />
-                <ScalarProperty Name="IdEmpleado_Soli" ColumnName="IdEmpleado_Soli" />
-                <ScalarProperty Name="FormaRecuperacion" ColumnName="FormaRecuperacion" />
-                <ScalarProperty Name="MotivoAusencia" ColumnName="MotivoAusencia" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwRo_periodo_x_ro_Nomina_TipoLiqui">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_periodo_x_ro_Nomina_TipoLiqui">
               <MappingFragment StoreEntitySet="vwRo_periodo_x_ro_Nomina_TipoLiqui">
@@ -21731,6 +21700,7 @@
           <EntitySetMapping Name="vwro_empleadoXdepXcargo">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwro_empleadoXdepXcargo">
               <MappingFragment StoreEntitySet="vwro_empleadoXdepXcargo">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="considera_pago_utilidad" ColumnName="considera_pago_utilidad" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="Cod_Region" ColumnName="Cod_Region" />
@@ -21884,6 +21854,46 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="vwRo_Permiso_x_Empleado">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_Permiso_x_Empleado">
+              <MappingFragment StoreEntitySet="vwRo_Permiso_x_Empleado">
+                <ScalarProperty Name="DiasPermiso" ColumnName="DiasPermiso" />
+                <ScalarProperty Name="IdNovedad" ColumnName="IdNovedad" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="Dias_tomados" ColumnName="Dias_tomados" />
+                <ScalarProperty Name="Id_Forma_descuento_permiso_Cat" ColumnName="Id_Forma_descuento_permiso_Cat" />
+                <ScalarProperty Name="em_codigo" ColumnName="em_codigo" />
+                <ScalarProperty Name="pe_nombre" ColumnName="pe_nombre" />
+                <ScalarProperty Name="pe_apellido" ColumnName="pe_apellido" />
+                <ScalarProperty Name="de_descripcion" ColumnName="de_descripcion" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+                <ScalarProperty Name="HoraRegreso" ColumnName="HoraRegreso" />
+                <ScalarProperty Name="TiempoAusencia" ColumnName="TiempoAusencia" />
+                <ScalarProperty Name="FechaEntrada" ColumnName="FechaEntrada" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="EsPermiso" ColumnName="EsPermiso" />
+                <ScalarProperty Name="EsLicencia" ColumnName="EsLicencia" />
+                <ScalarProperty Name="IdTipoLicencia" ColumnName="IdTipoLicencia" />
+                <ScalarProperty Name="NomEmpleado_Aprobo" ColumnName="NomEmpleado_Aprobo" />
+                <ScalarProperty Name="NomEmpleado" ColumnName="NomEmpleado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+                <ScalarProperty Name="MotivoAproba" ColumnName="MotivoAproba" />
+                <ScalarProperty Name="IdEmpleado_Apro" ColumnName="IdEmpleado_Apro" />
+                <ScalarProperty Name="IdEstadoAprob" ColumnName="IdEstadoAprob" />
+                <ScalarProperty Name="IdEmpleado_Soli" ColumnName="IdEmpleado_Soli" />
+                <ScalarProperty Name="FormaRecuperacion" ColumnName="FormaRecuperacion" />
+                <ScalarProperty Name="MotivoAusencia" ColumnName="MotivoAusencia" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

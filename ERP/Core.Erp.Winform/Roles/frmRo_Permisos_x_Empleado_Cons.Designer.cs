@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gridControlPermiso = new DevExpress.XtraGrid.GridControl();
-            this.ropermisoxempleadoInfoBindingSource = new System.Windows.Forms.BindingSource();
+            this.ropermisoxempleadoInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewPermiso = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colIdEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIdPermiso = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,6 +66,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucGe_Menu_Mantenimiento_x_usuario = new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Col_DiasPermiso = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPermiso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ropermisoxempleadoInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPermiso)).BeginInit();
@@ -122,12 +124,14 @@
             this.Colem_codigo,
             this.Colpe_CedRuc,
             this.Col_FechaSalida,
-            this.Col_FechaEntrada});
+            this.Col_FechaEntrada,
+            this.Col_DiasPermiso});
             this.gridViewPermiso.GridControl = this.gridControlPermiso;
             this.gridViewPermiso.Name = "gridViewPermiso";
             this.gridViewPermiso.OptionsBehavior.Editable = false;
             this.gridViewPermiso.OptionsBehavior.ReadOnly = true;
             this.gridViewPermiso.OptionsView.ShowAutoFilterRow = true;
+            this.gridViewPermiso.OptionsView.ShowFooter = true;
             this.gridViewPermiso.OptionsView.ShowGroupPanel = false;
             this.gridViewPermiso.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colIdEstadoAprob, DevExpress.Data.ColumnSortOrder.Ascending)});
@@ -384,8 +388,8 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2017, 4, 24, 14, 32, 10, 535);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2017, 6, 24, 14, 32, 10, 535);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2018, 9, 3, 9, 37, 21, 396);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2018, 11, 3, 9, 37, 21, 396);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
@@ -435,6 +439,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(992, 185);
             this.panel2.TabIndex = 14;
+            // 
+            // Col_DiasPermiso
+            // 
+            this.Col_DiasPermiso.Caption = "DiasPermiso";
+            this.Col_DiasPermiso.FieldName = "DiasPermiso";
+            this.Col_DiasPermiso.Name = "Col_DiasPermiso";
+            this.Col_DiasPermiso.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
+            this.Col_DiasPermiso.Visible = true;
+            this.Col_DiasPermiso.VisibleIndex = 10;
             // 
             // frmRo_Permisos_x_Empleado_Cons
             // 
@@ -498,5 +512,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Colpe_CedRuc;
         private DevExpress.XtraGrid.Columns.GridColumn Col_FechaSalida;
         private DevExpress.XtraGrid.Columns.GridColumn Col_FechaEntrada;
+        private DevExpress.XtraGrid.Columns.GridColumn Col_DiasPermiso;
     }
 }

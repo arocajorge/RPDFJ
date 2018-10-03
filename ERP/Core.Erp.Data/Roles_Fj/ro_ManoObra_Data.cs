@@ -88,12 +88,14 @@ namespace Core.Erp.Data.Roles_Fj
                            item.HORAS_100_ = 0;
                        if (item.BONIFICACIÓN == null)
                            item.BONIFICACIÓN = 0;
-
+                       if (item.idempleado == 214)
+                       { 
+                       }
                        info.TOTAL_SOBRETIEMPO = Convert.ToDouble(item.HORAS__25_ + item.HORAS_50_ + item.HORAS_100_);
                        info.tot_ingreso = Convert.ToDouble(item.SUELDO_X_DIAS_TRABAJADOS + info.TOTAL_SOBRETIEMPO + item.BONIFICACIÓN);
                        info.T_MAS_BENEFICIOS = Convert.ToDouble(info.tot_ingreso) * Convert.ToDouble(1.4214);
                        info.TOTAL_MO = Convert.ToDouble(item.TRANSPORTE + item.ALIMENTACION + info.T_MAS_BENEFICIOS);
-                       info.DIA_TRABAJADO = Convert.ToInt32(item.Dias - item.Vacaciones - item.Permiso_IESS - item.Falta);
+                       info.DIA_TRABAJADO = Convert.ToInt32(item.Dias  - item.Permiso_IESS - item.Falta);
                        info.IdCargo = item.IdCargo;
                        info.IdFuerza = item.IdFuerza;
                        info.IdCargo = item.IdCargo;

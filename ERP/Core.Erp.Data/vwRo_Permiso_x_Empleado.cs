@@ -47,5 +47,6 @@ namespace Core.Erp.Data
         public Nullable<int> Dias_tomados { get; set; }
         public int IdNomina_Tipo { get; set; }
         public Nullable<decimal> IdNovedad { get; set; }
+        public Nullable<int> DiasPermiso { get; set; }
     }
 }
