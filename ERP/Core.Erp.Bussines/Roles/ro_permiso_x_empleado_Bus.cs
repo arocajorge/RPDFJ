@@ -102,14 +102,14 @@ namespace Core.Erp.Business.Roles
 
 
 
-            if (param.IdCliente_Ven_x_Default == Cl_Enumeradores.eCliente_Vzen.FJ)
-            {
-                ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Data mar = new ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Data();
-                mar.ModificrEstado(info.IdEmpresa, info.IdEmpleado, Convert.ToDateTime(info.FechaSalida), Convert.ToDateTime(info.FechaEntrada), ref   msg);
-
-            }
         }
 
+                if (param.IdCliente_Ven_x_Default == Cl_Enumeradores.eCliente_Vzen.FJ)
+                {
+                    ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Data mar = new ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Data();
+                    mar.ModificrEstado(info.IdEmpresa, info.IdEmpleado, Convert.ToDateTime(info.FechaSalida), Convert.ToDateTime(info.FechaEntrada), ref   msg);
+
+                }
         return valorRetornar;
 
     }    catch (Exception ex)    {
