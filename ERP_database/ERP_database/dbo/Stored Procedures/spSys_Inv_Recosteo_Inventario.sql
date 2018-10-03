@@ -41,12 +41,14 @@ BEGIN
 	DECLARE @W_IdFecha int
 	DECLARE @W_Secuencia int
 
+DECLARE @IdFecha_eliminar int = CAST(CAST(YEAR(@Fecha_ini) AS VARCHAR) + (REPLICATE('0',2-LEN(MONTH(@Fecha_ini))) + CAST(MONTH(@Fecha_ini) AS VARCHAR)) + (REPLICATE('0',2-LEN(DAY(@Fecha_ini))) + CAST(DAY(@Fecha_ini) AS VARCHAR)) AS INT)
+
  --ELIMINO LA TABLA DE IN_PRODUCTO_X_TB_BODEGA_COSTO_HISTORICO LOS REGISTROS DE LA SUCURSAL Y BODEGA QUE VOY A RECOSTEAR
 	DELETE in_producto_x_tb_bodega_Costo_Historico
 	where IdEmpresa = @IdEmpresa
 	and IdSucursal = @IdSucursal
 	and IdBodega = @IdBodega
-	and fecha >= @Fecha_ini
+	and IdFecha >= @IdFecha_eliminar
 
 --LIMPIO LA TABLA DE RECOSTEO 
 	delete in_Recosteo_Productos_x_movi_inve_detalle
@@ -109,7 +111,7 @@ where exists(
 					and cab.IdBodega = det.IdBodega and cab.IdMovi_inven_tipo = det.IdMovi_inven_tipo and cab.IdNumMovi = det.IdNumMovi 
 					where cab.IdEmpresa = @C_IdEmpresa and cab.IdSucursal = @C_IdSucursal and cab.IdBodega = @C_IdBodega 
 					and det.IdProducto = @C_IdProducto and cab.cm_fecha >= @Fecha_ini
-					ORDER BY cab.IdEmpresa,cab.IdSucursal,cab.IdBodega,det.IdProducto,cab.cm_fecha, det.dm_cantidad desc
+					ORDER BY cab.IdEmpresa,cab.IdSucursal,cab.IdBodega,det.IdProducto,cab.cm_fecha asc, det.dm_cantidad desc
 				OPEN Movi_Inven_x_product_cursor  
 				FETCH NEXT FROM Movi_Inven_x_product_cursor 
 				into @C2_IdEmpresa			,@C2_IdSucursal			,@C2_IdBodega		,@C2_cm_fecha			,@C2_IdProducto 
@@ -129,7 +131,15 @@ where exists(
 							SET @W_Costo_total_a_la_fecha = 0
 
 					IF(@C2_dm_cantidad > 0) -- SI MOVIMIENTO ES POSITIVO INSERTO EN TABLA DE COSTO HISTORICO
-					BEGIN						
+					BEGIN
+					--ACTUALIZO CAMPO DE PROCESO DE RECOSTEO
+							UPDATE in_movi_inve_detalle set Costeado = 1
+							where IdEmpresa = @C2_IdEmpresa
+							and IdSucursal = @C2_IdSucursal
+							and IdBodega = @C2_IdBodega
+							and IdMovi_inven_tipo = @C2_IdMovi_inven_tipo
+							and IdNumMovi = @C2_IdNumMovi
+							and Secuencia = @C2_Secuencia
 						--CANTIDAD COMPRA
 							set @W_Cantidad_compra = @C2_dm_cantidad 
 						--COSTO COMPRA
@@ -142,7 +152,22 @@ where exists(
 							and cab.IdMovi_inven_tipo = det.IdMovi_inven_tipo and cab.IdNumMovi = det.IdNumMovi
 							WHERE det.IdEmpresa = @C2_IdEmpresa and det.IdSucursal = @C2_IdSucursal and det.IdBodega = @C2_IdBodega
 							and det.IdProducto = @C2_IdProducto and cab.cm_fecha <= @C2_cm_fecha and Costeado = 1 
-							GROUP BY det.IdEmpresa, det.IdSucursal, det.IdBodega, det.IdProducto							
+							and not exists(
+							select f.IdEmpresa from in_movi_inve_detalle as f
+							where f.IdEmpresa = @C2_IdEmpresa
+							and f.IdSucursal = @C2_IdSucursal
+							and f.IdBodega = @C2_IdBodega
+							and f.IdMovi_inven_tipo = @C2_IdMovi_inven_tipo
+							and f.IdNumMovi = @C2_IdNumMovi
+							and f.Secuencia = @C2_Secuencia
+							and det.IdEmpresa = f.IdEmpresa
+							and det.IdSucursal = f.IdSucursal
+							and det.IdBodega = f.IdBodega
+							and det.IdMovi_inven_tipo = f.IdMovi_inven_tipo
+							and det.IdNumMovi = f.IdNumMovi
+							and det.Secuencia = f.Secuencia
+							)
+							GROUP BY det.IdEmpresa, det.IdSucursal, det.IdBodega, det.IdProducto													
 						--COSTO PROMEDIO
 							SET @W_Ult_Costo_promedio = 
 							(
@@ -192,47 +217,7 @@ where exists(
 							,'SU '+CAST(@C2_IdSucursal AS VARCHAR) + ' BO '+CAST( @C2_IdBodega AS VARCHAR) + 'TM '+CAST(@C2_IdMovi_inven_tipo AS VARCHAR)+ 'NM '+CAST(@C2_IdNumMovi AS VARCHAR)
 							,GETDATE()
 							)
-						--ACTUALIZO CAMPO DE PROCESO DE RECOSTEO
-							UPDATE in_movi_inve_detalle set Costeado = 1
-							where IdEmpresa = @C2_IdEmpresa
-							and IdSucursal = @C2_IdSucursal
-							and IdBodega = @C2_IdBodega
-							and IdMovi_inven_tipo = @C2_IdMovi_inven_tipo
-							and IdNumMovi = @C2_IdNumMovi
-							and Secuencia = @C2_Secuencia
-/*						--CORRECCION CONTABLE
-							UPDATE ct_cbtecble_det set dc_Valor = A.valor_inv
-							FROM(
-									SELECT        in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv, in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv, 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv, in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv, 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv, in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv, 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct, in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct, 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct, in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct, 
-									in_movi_inve_detalle_x_ct_cbtecble_det.Secuencial_reg, ct_cbtecble_det.dc_Valor, 
-									ROUND(iif(ct_cbtecble_det.dc_Valor >0 ,
-									abs((in_movi_inve_detalle.dm_cantidad * in_movi_inve_detalle.mv_costo)),
-									abs((in_movi_inve_detalle.dm_cantidad * in_movi_inve_detalle.mv_costo))*-1),2) valor_inv
-									FROM            in_movi_inve_detalle INNER JOIN
-									in_movi_inve_detalle_x_ct_cbtecble_det ON in_movi_inve_detalle.IdEmpresa = in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv AND 
-									in_movi_inve_detalle.IdSucursal = in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv AND 
-									in_movi_inve_detalle.IdBodega = in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv AND 
-									in_movi_inve_detalle.IdMovi_inven_tipo = in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv AND 
-									in_movi_inve_detalle.IdNumMovi = in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv AND 
-									in_movi_inve_detalle.Secuencia = in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv INNER JOIN
-									ct_cbtecble_det ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct = ct_cbtecble_det.IdEmpresa AND 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct = ct_cbtecble_det.IdTipoCbte AND 
-									in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct = ct_cbtecble_det.IdCbteCble AND 
-									in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct = ct_cbtecble_det.secuencia
-									WHERE in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv = @C2_IdEmpresa
-									and in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv = @C2_IdSucursal
-									and in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv = @C2_IdBodega
-									and in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv = @C2_IdMovi_inven_tipo
-									and in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv = @C2_IdNumMovi
-									and in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv = @C2_Secuencia) A
-								WHERE ct_cbtecble_det.IdEmpresa = a.IdEmpresa_ct
-								and ct_cbtecble_det.IdTipoCbte = a.IdTipoCbte_ct
-								and ct_cbtecble_det.IdCbteCble = a.IdCbteCble_ct
-								and ct_cbtecble_det.secuencia = a.secuencia_ct*/
+						
 					END
 					ELSE
 					BEGIN							
@@ -262,6 +247,8 @@ where exists(
 								and IdNumMovi = @C2_IdNumMovi
 								and Secuencia = @C2_Secuencia
 
+
+
 								UPDATE in_Ing_Egr_Inven_det set mv_costo = @W_Ult_Costo_promedio
 								where IdEmpresa_inv = @C2_IdEmpresa
 								and IdSucursal_inv = @C2_IdSucursal
@@ -270,90 +257,6 @@ where exists(
 								and IdNumMovi_inv = @C2_IdNumMovi
 								and secuencia_inv = @C2_Secuencia
 
-								--ACTUALIZO EL INGRESO DE LA DEVOLUCION EN IN_MOVI_INVEN
-								
-								update in_movi_inve_detalle SET mv_costo = A.mv_costo, mv_costo_sinConversion = a.mv_costo_sinConversion
-								FROM(
-								SELECT        in_ingreso.IdEmpresa, in_ingreso.IdSucursal, in_ingreso.IdBodega, in_ingreso.IdMovi_inven_tipo, in_ingreso.IdNumMovi, in_ingreso.Secuencia, in_ingreso.IdEmpresa_dev, in_ingreso.IdSucursal_dev, 
-								in_ingreso.IdBodega_dev, in_ingreso.IdMovi_inven_tipo_dev, in_ingreso.IdNumMovi_dev, in_ingreso.Secuencia_dev, in_devolucion.mv_costo_sinConversion, in_devolucion.mv_costo
-								FROM            in_movi_inve_detalle AS in_ingreso INNER JOIN
-								in_movi_inve_detalle AS in_devolucion ON in_ingreso.IdEmpresa_dev = in_devolucion.IdEmpresa AND in_ingreso.IdSucursal_dev = in_devolucion.IdSucursal AND 
-								in_ingreso.IdBodega_dev = in_devolucion.IdBodega AND in_ingreso.IdMovi_inven_tipo_dev = in_devolucion.IdMovi_inven_tipo AND in_ingreso.IdNumMovi_dev = in_devolucion.IdNumMovi AND 
-								in_ingreso.Secuencia_dev = in_devolucion.Secuencia
-								WHERE in_devolucion.IdEmpresa = @C2_IdEmpresa
-								AND in_devolucion.IdSucursal = @C2_IdSucursal
-								AND in_devolucion.IdBodega = @C2_IdBodega
-								AND in_devolucion.IdMovi_inven_tipo = @C2_IdMovi_inven_tipo
-								AND in_devolucion.IdNumMovi = @C2_IdNumMovi
-								AND in_devolucion.Secuencia = @C2_Secuencia 
-								)A
-								WHERE in_movi_inve_detalle.IdEmpresa = A.IdEmpresa
-								AND in_movi_inve_detalle.IdSucursal = A.IdSucursal
-								AND in_movi_inve_detalle.IdBodega = A.IdBodega
-								AND in_movi_inve_detalle.IdMovi_inven_tipo = A.IdMovi_inven_tipo
-								AND in_movi_inve_detalle.IdNumMovi = A.IdNumMovi
-								AND in_movi_inve_detalle.Secuencia = A.Secuencia 
-
-								--ACTUALIZO EL INGRESO DE LA DEVOLUCION EN IN_ING_EGR
-								update in_Ing_Egr_Inven_det SET mv_costo = A.mv_costo, mv_costo_sinConversion = a.mv_costo_sinConversion
-								FROM(
-								SELECT        in_ingreso.IdEmpresa, in_ingreso.IdSucursal, in_ingreso.IdBodega, in_ingreso.IdMovi_inven_tipo, in_ingreso.IdNumMovi, in_ingreso.Secuencia, in_ingreso.IdEmpresa_dev, in_ingreso.IdSucursal_dev, 
-								in_ingreso.IdBodega_dev, in_ingreso.IdMovi_inven_tipo_dev, in_ingreso.IdNumMovi_dev, in_ingreso.Secuencia_dev, in_devolucion.mv_costo_sinConversion, in_devolucion.mv_costo, 
-								in_Ing_Egr_Inven_det.IdEmpresa AS IdEmpresa_ing_egr, in_Ing_Egr_Inven_det.IdSucursal AS IdSucursal_ing_egr, in_Ing_Egr_Inven_det.IdMovi_inven_tipo AS IdMovi_inven_tipo_ing_egr, 
-								in_Ing_Egr_Inven_det.IdNumMovi AS IdNumMovi_ing_egr, in_Ing_Egr_Inven_det.Secuencia AS Secuencia_ing_egr
-								FROM            in_movi_inve_detalle AS in_ingreso INNER JOIN
-								in_movi_inve_detalle AS in_devolucion ON in_ingreso.IdEmpresa_dev = in_devolucion.IdEmpresa AND in_ingreso.IdSucursal_dev = in_devolucion.IdSucursal AND 
-								in_ingreso.IdBodega_dev = in_devolucion.IdBodega AND in_ingreso.IdMovi_inven_tipo_dev = in_devolucion.IdMovi_inven_tipo AND in_ingreso.IdNumMovi_dev = in_devolucion.IdNumMovi AND 
-								in_ingreso.Secuencia_dev = in_devolucion.Secuencia INNER JOIN
-								in_Ing_Egr_Inven_det ON in_devolucion.IdEmpresa = in_Ing_Egr_Inven_det.IdEmpresa_inv AND in_devolucion.IdSucursal = in_Ing_Egr_Inven_det.IdSucursal_inv AND 
-								in_devolucion.IdBodega = in_Ing_Egr_Inven_det.IdBodega_inv AND in_devolucion.IdMovi_inven_tipo = in_Ing_Egr_Inven_det.IdMovi_inven_tipo_inv AND 
-								in_devolucion.IdNumMovi = in_Ing_Egr_Inven_det.IdNumMovi_inv AND in_devolucion.Secuencia = in_Ing_Egr_Inven_det.secuencia_inv
-								WHERE in_devolucion.IdEmpresa = @C2_IdEmpresa
-								AND in_devolucion.IdSucursal = @C2_IdSucursal
-								AND in_devolucion.IdBodega = @C2_IdBodega
-								AND in_devolucion.IdMovi_inven_tipo = @C2_IdMovi_inven_tipo
-								AND in_devolucion.IdNumMovi = @C2_IdNumMovi
-								AND in_devolucion.Secuencia = @C2_Secuencia 
-								)A
-								WHERE in_Ing_Egr_Inven_det.IdEmpresa = A.IdEmpresa_ing_egr
-								AND in_Ing_Egr_Inven_det.IdSucursal = A.IdSucursal_ing_egr
-								AND in_Ing_Egr_Inven_det.IdMovi_inven_tipo = A.IdMovi_inven_tipo_ing_egr
-								AND in_Ing_Egr_Inven_det.IdNumMovi = A.IdNumMovi_ing_egr
-								AND in_Ing_Egr_Inven_det.Secuencia = A.Secuencia_ing_egr
-								/*
-						--CORRECCION CONTABLE
-								UPDATE ct_cbtecble_det set dc_Valor = A.valor_inv
-								FROM(
-										SELECT        in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv, in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv, 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv, in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv, 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv, in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv, 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct, in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct, 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct, in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct, 
-										in_movi_inve_detalle_x_ct_cbtecble_det.Secuencial_reg, ct_cbtecble_det.dc_Valor, 
-										ROUND(iif(ct_cbtecble_det.dc_Valor >0 ,
-										abs((in_movi_inve_detalle.dm_cantidad * in_movi_inve_detalle.mv_costo)),
-										abs((in_movi_inve_detalle.dm_cantidad * in_movi_inve_detalle.mv_costo))*-1),2) valor_inv
-										FROM            in_movi_inve_detalle INNER JOIN
-										in_movi_inve_detalle_x_ct_cbtecble_det ON in_movi_inve_detalle.IdEmpresa = in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv AND 
-										in_movi_inve_detalle.IdSucursal = in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv AND 
-										in_movi_inve_detalle.IdBodega = in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv AND 
-										in_movi_inve_detalle.IdMovi_inven_tipo = in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv AND 
-										in_movi_inve_detalle.IdNumMovi = in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv AND 
-										in_movi_inve_detalle.Secuencia = in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv INNER JOIN
-										ct_cbtecble_det ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct = ct_cbtecble_det.IdEmpresa AND 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct = ct_cbtecble_det.IdTipoCbte AND 
-										in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct = ct_cbtecble_det.IdCbteCble AND 
-										in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct = ct_cbtecble_det.secuencia
-										WHERE in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv = @C2_IdEmpresa
-										and in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv = @C2_IdSucursal
-										and in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv = @C2_IdBodega
-										and in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv = @C2_IdMovi_inven_tipo
-										and in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv = @C2_IdNumMovi
-										and in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv = @C2_Secuencia) A
-									WHERE ct_cbtecble_det.IdEmpresa = a.IdEmpresa_ct
-									and ct_cbtecble_det.IdTipoCbte = a.IdTipoCbte_ct
-									and ct_cbtecble_det.IdCbteCble = a.IdCbteCble_ct
-									and ct_cbtecble_det.secuencia = a.secuencia_ct*/
 					END
 				FETCH NEXT FROM Movi_Inven_x_product_cursor 
 					into @C2_IdEmpresa		,@C2_IdSucursal			,@C2_IdBodega	,@C2_cm_fecha		,@C2_IdProducto 
@@ -369,6 +272,44 @@ where exists(
 		CLOSE product_cursor  --CIERRO CURSOR
 		DEALLOCATE product_cursor  
 
+UPDATE ct_cbtecble_det set dc_Valor = A.costo_inv
+FROM(
+SELECT ct_cbtecble_det.IdEmpresa, ct_cbtecble_det.IdTipoCbte, ct_cbtecble_det.IdCbteCble, ct_cbtecble_det.secuencia, ABS(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2))*-1 costo_inv, ct_cbtecble_det.dc_Valor
+FROM     in_movi_inve_detalle_x_ct_cbtecble_det INNER JOIN
+                  in_movi_inve_detalle ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv = in_movi_inve_detalle.IdEmpresa AND in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv = in_movi_inve_detalle.IdSucursal AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv = in_movi_inve_detalle.IdBodega AND in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv = in_movi_inve_detalle.IdMovi_inven_tipo AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv = in_movi_inve_detalle.IdNumMovi AND in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv = in_movi_inve_detalle.Secuencia INNER JOIN
+                  ct_cbtecble_det ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct = ct_cbtecble_det.IdEmpresa AND in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct = ct_cbtecble_det.IdTipoCbte AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct = ct_cbtecble_det.IdCbteCble AND in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct = ct_cbtecble_det.secuencia
+				  
+				  inner join in_movi_inve cab on cab.IdEmpresa = in_movi_inve_detalle.IdEmpresa and cab.IdSucursal = in_movi_inve_detalle.IdSucursal
+				  and cab.IdBodega = in_movi_inve_detalle.IdBodega and cab.IdMovi_inven_tipo = in_movi_inve_detalle.IdMovi_inven_tipo 
+				  and cab.IdNumMovi = in_movi_inve_detalle.IdNumMovi
+				  inner join ct_cbtecble ct on ct.IdEmpresa = ct_cbtecble_det.IdEmpresa and ct.IdTipoCbte = ct_cbtecble_det.IdTipoCbte and ct.IdCbteCble = ct_cbtecble_det.IdCbteCble
+where abs(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2)) <> abs(round(ct_cbtecble_det.dc_Valor,2)) and dc_Valor < 0 and ABS(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2)) <> 0
+and cab.cm_fecha between @Fecha_ini and GETDATE() and in_movi_inve_detalle.IdEmpresa = @IdEmpresa and in_movi_inve_detalle.IdSucursal = @IdSucursal and in_movi_inve_detalle.IdBodega = @IdBodega
+and ct.cb_Fecha between @Fecha_ini and GETDATE()
+) A WHERE ct_cbtecble_det.IdEmpresa = A.IdEmpresa AND ct_cbtecble_det.IdTipoCbte = A.IdTipoCbte AND ct_cbtecble_det.IdCbteCble = A.IdCbteCble AND ct_cbtecble_det.secuencia = A.secuencia
+
+UPDATE ct_cbtecble_det set dc_Valor = A.costo_inv
+FROM(
+SELECT ct_cbtecble_det.IdEmpresa, ct_cbtecble_det.IdTipoCbte, ct_cbtecble_det.IdCbteCble, ct_cbtecble_det.secuencia, ABS(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2)) costo_inv, ct_cbtecble_det.dc_Valor
+FROM     in_movi_inve_detalle_x_ct_cbtecble_det INNER JOIN
+                  in_movi_inve_detalle ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv = in_movi_inve_detalle.IdEmpresa AND in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv = in_movi_inve_detalle.IdSucursal AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv = in_movi_inve_detalle.IdBodega AND in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv = in_movi_inve_detalle.IdMovi_inven_tipo AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv = in_movi_inve_detalle.IdNumMovi AND in_movi_inve_detalle_x_ct_cbtecble_det.Secuencia_inv = in_movi_inve_detalle.Secuencia INNER JOIN
+                  ct_cbtecble_det ON in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct = ct_cbtecble_det.IdEmpresa AND in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct = ct_cbtecble_det.IdTipoCbte AND 
+                  in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct = ct_cbtecble_det.IdCbteCble AND in_movi_inve_detalle_x_ct_cbtecble_det.secuencia_ct = ct_cbtecble_det.secuencia
+
+				  inner join in_movi_inve cab on cab.IdEmpresa = in_movi_inve_detalle.IdEmpresa and cab.IdSucursal = in_movi_inve_detalle.IdSucursal
+				  and cab.IdBodega = in_movi_inve_detalle.IdBodega and cab.IdMovi_inven_tipo = in_movi_inve_detalle.IdMovi_inven_tipo 
+				  and cab.IdNumMovi = in_movi_inve_detalle.IdNumMovi
+
+				  inner join ct_cbtecble ct on ct.IdEmpresa = ct_cbtecble_det.IdEmpresa and ct.IdTipoCbte = ct_cbtecble_det.IdTipoCbte and ct.IdCbteCble = ct_cbtecble_det.IdCbteCble
+where abs(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2)) <> abs(round(ct_cbtecble_det.dc_Valor,2)) and dc_Valor > 0 and ABS(round(in_movi_inve_detalle.mv_costo * in_movi_inve_detalle.dm_cantidad,2)) <> 0
+and cab.cm_fecha between @Fecha_ini and GETDATE() and in_movi_inve_detalle.IdEmpresa = @IdEmpresa and in_movi_inve_detalle.IdSucursal = @IdSucursal and in_movi_inve_detalle.IdBodega = @IdBodega
+and ct.cb_Fecha between @Fecha_ini and GETDATE()
+) A WHERE ct_cbtecble_det.IdEmpresa = A.IdEmpresa AND ct_cbtecble_det.IdTipoCbte = A.IdTipoCbte AND ct_cbtecble_det.IdCbteCble = A.IdCbteCble AND ct_cbtecble_det.secuencia = A.secuencia
 
 		SELECT  *
 		FROM    vwin_producto_x_tb_bodega_Costo_Historico

@@ -1,11 +1,12 @@
-﻿
+﻿--exec [Fj_servindustrias].[spROLES_Rpt005] 2,1,'26/06/2018','31/07/2018',0
 
-create PROCEDURE [Fj_servindustrias].[spROLES_Rpt005]  
+CREATE PROCEDURE [Fj_servindustrias].[spROLES_Rpt005]  
 	@IdEmpresa int,
 	@IdNomina_tipo int,
 	@Fecha_Inicio date,
 	@Fecha_Fin date,
-	@Idperiodo int
+	@Idperiodo_inicio int,
+	@Idperiodo_fin int
 
 
 AS
@@ -45,7 +46,7 @@ BEGIN
 						 (select valor from ro_rol_detalle R where R.IdEmpresa=Em.idempresa 
 						 and R.IdNominaTipo=@IdNomina_tipo
 						 and R.IdNominaTipoLiqui=2
-						 and R.IdPeriodo=@Idperiodo
+						 and R.IdPeriodo =@Idperiodo_fin
 						 and R.IdEmpleado=Em.IdEmpleado
 						 and R.idrubro=2
 						 )DiasTrabajados,
@@ -53,7 +54,7 @@ BEGIN
 						 (select valor from ro_rol_detalle R where R.IdEmpresa=Em.idempresa 
 						 and R.IdNominaTipo=@IdNomina_tipo
 						 and R.IdNominaTipoLiqui=2
-						 and R.IdPeriodo=@Idperiodo
+						 and R.IdPeriodo=@Idperiodo_fin
 						 and R.IdEmpleado=Em.IdEmpleado
 						 and R.idrubro=976
 						 )DiasEfectivos,
@@ -85,7 +86,7 @@ BEGIN
 						 (select valor from ro_rol_detalle R where R.IdEmpresa=Em.idempresa 
 						 and R.IdNominaTipo=@IdNomina_tipo
 						 and R.IdNominaTipoLiqui=2
-						 and R.IdPeriodo=@Idperiodo
+						 and R.IdPeriodo=@Idperiodo_fin
 						 and R.IdEmpleado=Em.IdEmpleado
 						 and R.idrubro=966
 						 )HorasExtras,
@@ -111,6 +112,9 @@ FROM                     dbo.ro_Division INNER JOIN
 						 AND Ma.IdNomina_Tipo=@IdNomina_tipo
 						 AND Ma.es_fecha_registro between @Fecha_Inicio and @Fecha_Fin
 						 and  Em.IdEmpresa=@IdEmpresa
-						 --and ISNULL( IdPeriodo,@Idperiodo)=@Idperiodo
+						and IdPeriodo in(@Idperiodo_fin, @Idperiodo_fin)
+
+						order by Ma.es_fecha_registro asc
+
 						  
 END

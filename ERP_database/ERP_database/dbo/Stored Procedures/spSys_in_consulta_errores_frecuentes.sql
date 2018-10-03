@@ -1,4 +1,5 @@
-﻿--EXEC spSys_in_consulta_errores_frecuentes 'admin', 0
+﻿
+--EXEC spSys_in_consulta_errores_frecuentes 'admin', 0
 
 CREATE PROCEDURE [dbo].[spSys_in_consulta_errores_frecuentes]
 @IdUsuario varchar(20),
@@ -48,7 +49,7 @@ BEGIN --REGISTROS APROBADOS QUE NO TIENEN RELACION CON TABLA PRE-APROBACION --in
 
 
 		select cab.IdEmpresa, CAB.IdSucursal, CAB.IdBodega, cab.IdMovi_inven_tipo, cab.IdNumMovi,
-				ct.IdEmpresa_ct, ct.IdTipoCbte_ct,ct.IdCbteCble_ct		
+				ct.IdEmpresa_ct, ct.IdTipoCbte_ct,ct.IdCbteCble_ct, cab.cm_fecha
 		 from in_movi_inve_detalle mov
 		inner join in_movi_inve cab on
 		cab.IdEmpresa = mov.IdEmpresa
@@ -72,7 +73,7 @@ BEGIN --REGISTROS APROBADOS QUE NO TIENEN RELACION CON TABLA PRE-APROBACION --in
 			and DET.IdNumMovi_inv = mov.IdNumMovi
 			and DET.secuencia_inv = mov.Secuencia
 		)group by cab.IdEmpresa, CAB.IdSucursal, CAB.IdBodega, cab.IdMovi_inven_tipo, cab.IdNumMovi,
-				ct.IdEmpresa_ct, ct.IdTipoCbte_ct,ct.IdCbteCble_ct
+				ct.IdEmpresa_ct, ct.IdTipoCbte_ct,ct.IdCbteCble_ct, cab.cm_fecha
 
 		IF(@Corregir = 1)
 		BEGIN
@@ -120,9 +121,31 @@ BEGIN --REGISTROS APROBADOS QUE NO TIENEN RELACION CON TABLA PRE-APROBACION --in
 				DELETE in_movi_inve_detalle_x_ct_cbtecble_det 
 				WHERE EXISTS(
 				SELECT eli.IdEmpresa FROM [tb_spSys_in_consulta_errores_frecuentes_eliminar_movimientos_sin_relacion] eli
+				WHERE in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_inv = ELI.IdEmpresa
+				and in_movi_inve_detalle_x_ct_cbtecble_det.IdSucursal_inv = eli.IdSucursal
+				and in_movi_inve_detalle_x_ct_cbtecble_det.IdBodega_inv = eli.IdBodega
+				and in_movi_inve_detalle_x_ct_cbtecble_det.IdMovi_inven_tipo_inv = eli.IdMovi_inven_tipo
+				and in_movi_inve_detalle_x_ct_cbtecble_det.IdNumMovi_inv = eli.IdNumMovi
+				and eli.IdUsuario = @IdUsuario
+				)
+
+				DELETE in_movi_inve_detalle_x_ct_cbtecble_det 
+				WHERE EXISTS(
+				SELECT eli.IdEmpresa FROM [tb_spSys_in_consulta_errores_frecuentes_eliminar_movimientos_sin_relacion] eli
 				WHERE in_movi_inve_detalle_x_ct_cbtecble_det.IdEmpresa_ct = ELI.IdEmpresa_ct
 				and in_movi_inve_detalle_x_ct_cbtecble_det.IdTipoCbte_ct = eli.IdTipoCbte_ct
 				and in_movi_inve_detalle_x_ct_cbtecble_det.IdCbteCble_ct = eli.IdCbteCble_ct
+				and eli.IdUsuario = @IdUsuario
+				)
+
+				DELETE in_movi_inve_x_ct_cbteCble 
+				WHERE EXISTS(
+				SELECT eli.IdEmpresa FROM [tb_spSys_in_consulta_errores_frecuentes_eliminar_movimientos_sin_relacion] eli
+				WHERE in_movi_inve_x_ct_cbteCble.IdEmpresa = ELI.IdEmpresa
+				and in_movi_inve_x_ct_cbteCble.IdSucursal = eli.IdSucursal
+				and in_movi_inve_x_ct_cbteCble.IdBodega = eli.IdBodega
+				and in_movi_inve_x_ct_cbteCble.IdMovi_inven_tipo = eli.IdMovi_inven_tipo
+				and in_movi_inve_x_ct_cbteCble.IdNumMovi = eli.IdNumMovi
 				and eli.IdUsuario = @IdUsuario
 				)
 

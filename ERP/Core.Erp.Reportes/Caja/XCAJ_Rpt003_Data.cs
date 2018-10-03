@@ -22,78 +22,74 @@ namespace Core.Erp.Reportes.Caja
                 List<XCAJ_Rpt003_Info> Lista = new List<XCAJ_Rpt003_Info>();
                 using (EntitiesCaja_General context = new EntitiesCaja_General())
                 {
-                    var contact = from c in context.vwCAJ_Rpt003
-                                  where c.IdEmpresa == IdEmpresa
-                                  && c.IdConciliacion_Caja == IdConciliacion_Caja
-                                  orderby c.co_FechaFactura
-                                  select c;
+                    context.SetCommandTimeOut(3000);
+                    Lista = (from c in context.vwCAJ_Rpt003
+                             where c.IdEmpresa == IdEmpresa
+                             && c.IdConciliacion_Caja == IdConciliacion_Caja
+                             orderby c.co_FechaFactura
+                             select new XCAJ_Rpt003_Info
+                             {
+                                 IdEmpresa = c.IdEmpresa,
+                                 IdCbteCble_Ogiro = c.IdCbteCble_Ogiro,
+                                 IdTipoCbte_Ogiro = c.IdTipoCbte_Ogiro,
+                                 co_fechaOg = c.co_fechaOg,
+                                 IdPersona = c.IdPersona,
+                                 pe_cedulaRuc = c.pe_cedulaRuc,
+                                 IdTipoDocumento = c.IdTipoDocumento,
+                                 IdOrden_giro_Tipo = c.IdOrden_giro_Tipo,
+                                 Descripcion = c.Descripcion,
+                                 IdProveedor = c.IdProveedor,
+                                 Num_Autorizacion = c.Num_Autorizacion,
+                                 co_serie = c.co_serie,
+                                 co_factura = c.co_factura,
+                                 co_FechaFactura = c.co_FechaFactura,
+                                 IdConciliacion_Caja = c.IdConciliacion_Caja,
+                                 pe_FechaIni = c.pe_FechaIni,
+                                 pe_FechaFin = c.pe_FechaFin,
+                                 IdCaja = c.IdCaja,
+                                 ca_Descripcion = c.ca_Descripcion,
+                                 IdCtaCble = c.IdCtaCble,
+                                 co_observacion = c.co_observacion,
+                                 IdTipoMovi = c.IdTipoMovi,
+                                 tm_descripcion = c.tm_descripcion,
+                                 co_baseImponible = c.co_baseImponible,
+                                 co_subtotal_iva = c.co_subtotal_iva,
+                                 co_subtotal_siniva = c.co_subtotal_siniva,
+                                 co_valoriva = c.co_valoriva,
+                                 co_Serv_valor = c.co_Serv_valor,
+                                 co_total = c.co_total,
+                                 co_valorpagar = c.co_valorpagar,
+                                 IdRetencion = c.IdRetencion,
+                                 serie = c.serie,
+                                 NumRetencion = c.NumRetencion,
+                                 NAutorizacion = c.NAutorizacion,
+                                 re_tipoRet_RF = c.re_tipoRet_RF,
+                                 re_baseRetencion_RF = c.re_baseRetencion_RF,
+                                 re_Porcen_retencion_RF = c.re_Porcen_retencion_RF,
+                                 re_valor_retencion_RF = c.re_valor_retencion_RF,
+                                 re_tipoRet_RIVA = c.re_tipoRet_RIVA,
+                                 re_baseRetencion_RIVA = c.re_baseRetencion_RIVA,
+                                 re_Porcen_retencion_RIVA = c.re_Porcen_retencion_RIVA,
+                                 re_valor_retencion_RIVA = c.re_valor_retencion_RIVA,
+                                 pe_nombreCompleto = c.pe_nombreCompleto,
+                                 pe_razonSocial = c.pe_razonSocial,
+                                 pe_apellido = c.pe_apellido,
+                                 pe_nombre = c.pe_nombre,
 
-                    foreach (var item in contact)
-                    {
-                        XCAJ_Rpt003_Info Info = new XCAJ_Rpt003_Info();
-                        Info.IdEmpresa =item.IdEmpresa;
-                        Info.IdCbteCble_Ogiro= item.IdCbteCble_Ogiro;
-                        Info.IdTipoCbte_Ogiro = item.IdTipoCbte_Ogiro;
-                        Info.co_fechaOg = item.co_fechaOg;
-                        Info.IdPersona =  item.IdPersona;
-                        Info.pe_cedulaRuc =  item.pe_cedulaRuc;
-                        Info.IdTipoDocumento =  item.IdTipoDocumento;
-                        Info.IdOrden_giro_Tipo =  item.IdOrden_giro_Tipo;
-                        Info.Descripcion =  item.Descripcion;
-                        Info.IdProveedor =  item.IdProveedor;
-                        Info.Num_Autorizacion =  item.Num_Autorizacion;
-                        Info.co_serie =  item.co_serie;
-                        Info.co_factura =  item.co_factura;
-                        Info.co_FechaFactura =  item.co_FechaFactura;
-                        Info.IdConciliacion_Caja =  item.IdConciliacion_Caja;
-                        Info.pe_FechaIni =  item.pe_FechaIni;
-                        Info.pe_FechaFin =  item.pe_FechaFin;
-                        Info.IdCaja =  item.IdCaja;
-                        Info.ca_Descripcion =  item.ca_Descripcion;
-                        Info.IdCtaCble =  item.IdCtaCble;
-                        Info.co_observacion =  item.co_observacion;
-                        Info.IdTipoMovi = item.IdTipoMovi;
-                        Info.tm_descripcion = item.tm_descripcion;
-                        Info.co_baseImponible = item.co_baseImponible;
-                        Info.co_subtotal_iva = item.co_subtotal_iva;
-                        Info.co_subtotal_siniva = item.co_subtotal_siniva;
-                        Info.co_valoriva = item.co_valoriva;
-                        Info.co_Serv_valor = item.co_Serv_valor;
-                        Info.co_total = item.co_total;
-                        Info.co_valorpagar = item.co_valorpagar;
-                        Info.IdRetencion = item.IdRetencion;
-                        Info.serie = item.serie;
-                        Info.NumRetencion = item.NumRetencion;
-                        Info.NAutorizacion = item.NAutorizacion;
-                        Info.re_tipoRet_RF = item.re_tipoRet_RF;
-                        Info.re_baseRetencion_RF = item.re_baseRetencion_RF;
-                        Info.re_Porcen_retencion_RF = item.re_Porcen_retencion_RF;
-                        Info.re_valor_retencion_RF = item.re_valor_retencion_RF;
-                        Info.re_tipoRet_RIVA = item.re_tipoRet_RIVA;
-                        Info.re_baseRetencion_RIVA = item.re_baseRetencion_RIVA;
-                        Info.re_Porcen_retencion_RIVA = item.re_Porcen_retencion_RIVA;
-                        Info.re_valor_retencion_RIVA = item.re_valor_retencion_RIVA;
-                        Info.pe_nombreCompleto =item.pe_nombreCompleto;
-                        Info.pe_razonSocial =item.pe_razonSocial;
-                        Info. pe_apellido =item.pe_apellido;
-                        Info.pe_nombre = item.pe_nombre;
-
-                        Info.pe_mes = item.pe_mes;
-                        Info.smes = item.smes;
-                        Info.Fecha = item.Fecha;
-                        Info.IdanioFiscal = item.IdanioFiscal;
-                        Info.IdEstadoCierre = item.IdEstadoCierre;
-                        Info.Observacion = item.Observacion;
-                        Info.Saldo_cont_al_periodo = item.Saldo_cont_al_periodo;
-                        Info.Ingresos = item.Ingresos;
-                        Info.Total_Ing = item.Total_Ing;
-                        Info.Total_fact_vale = item.Total_fact_vale;
-                        Info.Total_fondo = item.Total_fondo;
-                        Info.Dif_x_pagar_o_cobrar = item.Dif_x_pagar_o_cobrar;
-                        Info.co_OtroValor_a_descontar = item.co_OtroValor_a_descontar;
-
-                        Lista.Add(Info);
-                    }
+                                 pe_mes = c.pe_mes,
+                                 smes = c.smes,
+                                 Fecha = c.Fecha,
+                                 IdanioFiscal = c.IdanioFiscal,
+                                 IdEstadoCierre = c.IdEstadoCierre,
+                                 Observacion = c.Observacion,
+                                 Saldo_cont_al_periodo = c.Saldo_cont_al_periodo,
+                                 Ingresos = c.Ingresos,
+                                 Total_Ing = c.Total_Ing,
+                                 Total_fact_vale = c.Total_fact_vale,
+                                 Total_fondo = c.Total_fondo,
+                                 Dif_x_pagar_o_cobrar = c.Dif_x_pagar_o_cobrar,
+                                 co_OtroValor_a_descontar = c.co_OtroValor_a_descontar,
+                             }).ToList();
                 }
                 return Lista;
             }

@@ -2164,6 +2164,9 @@
     <Build Include="dbo\Tables\in_Producto_alerta_x_sucursal.sql" />
     <Build Include="dbo\Views\vwin_Producto_alerta_x_sucursal.sql" />
     <Build Include="Fj_servindustrias\Views\vwROLES_Rpt021.sql" />
+    <Build Include="dbo\Views\vwcp_orden_giro_consulta.sql" />
+    <Build Include="dbo\Stored Procedures\spSys_Inv_Recosteo_Inventario_x_producto.sql" />
+    <Build Include="dbo\Stored Procedures\spsys_inv_cambiar_fecha_movimientos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
