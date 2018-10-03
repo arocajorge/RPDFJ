@@ -365,13 +365,24 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ context = new EntityRoles_FJ())
                 {
+                        var entity = context.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.Where(v => v.IdEmpresa == IdEmpresa && v.IdEmpleado == IdEmpleado
+                            && v.es_fecha_registro >= FechaDesde
+                            && v.es_fecha_registro <= FechaHasta).ToList();
+                        if(entity!=null)
+                        foreach (var item in entity)
+                        {
+                            var update = context.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.FirstOrDefault(v => v.IdEmpresa == IdEmpresa && v.IdEmpleado == IdEmpleado
+                            && v.IdRegistro ==item.IdRegistro
+                           );
+                            if (update != null)
+                            {
+                                update.Id_catalogo_Cat = "PER";
+                                context.SaveChanges();
+                            }
+                        }
+                      }
 
-                    string sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set Id_catalogo_Cat='PER'  where IdEmpresa='" + IdEmpresa + "' and IdEmpleado='" + IdEmpleado + "' and es_fecha_registro between '" + FechaDesde + "'  and '" + FechaHasta + "'";
-                    context.Database.ExecuteSqlCommand(sql);
-
-
-
-                }
+                
 
                 return true;
 
