@@ -1,5 +1,5 @@
 ﻿
-create PROCEDURE [Fj_servindustrias].[spROLES_Rpt007]
+CREATE PROCEDURE [Fj_servindustrias].[spROLES_Rpt007]
 	@IdEmpresa int,
 	@IdNomina_Tipo int,
 	@IdNomina_Tipo_Liq int,
@@ -52,7 +52,7 @@ BEGIN
 				  
 				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
 				  
-				  (select ISNULL(sum( datediff(day,ISNULL( P.FechaSalida,0),ISNULL( P.FechaEntrada,0))),0) from ro_permiso_x_empleado as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND P.FechaSalida BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Permiso_IESS,
+				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
 				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
 				  
@@ -98,11 +98,9 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 						and ISNULL( ro_planifi_x_ruta.IdEmpresa,@IdEmpresa)=@IdEmpresa
 					    and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=1
 					    and ro_emp.IdEmpresa=@IdEmpresa
-					    AND ro_emp.em_status!='EST_LIQ'
+					    AND ro_emp.em_status='EST_ACT'
 						and ro_emp.IdDivision=2
 
-
-				
 
 					   UNION
 
@@ -129,7 +127,7 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				  
 				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
 				  
-				  (select ISNULL(sum( datediff(day,ISNULL( P.FechaSalida,0),ISNULL( P.FechaEntrada,0))),0) from ro_permiso_x_empleado as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND P.FechaSalida BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Permiso_IESS,
+				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
 				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
 				  
@@ -207,7 +205,7 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				  
 				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
 				  
-				  (select ISNULL(sum( datediff(day,ISNULL( P.FechaSalida,0),ISNULL( P.FechaEntrada,0))),0) from ro_permiso_x_empleado as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND P.FechaSalida BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Permiso_IESS,
+				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
 				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
 				  
@@ -272,8 +270,7 @@ union
 	SELECT       
 	               'Eventuales' zo_descripcion,
 				   Fj_servindustrias.ro_fuerza.fu_descripcion,
-				  (select min( M.es_fecha_registro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado  AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as em_fecha_ingreso,
-				
+	              ro_emp.em_fecha_ingreso,
 				  @Fecha_Inicio pe_FechaIni,
 				  dbo.ro_catalogo.ca_descripcion,
 				  pers.pe_cedulaRuc, 
