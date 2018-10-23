@@ -25,8 +25,7 @@
     [Fecha_UltMod]        DATETIME       NULL,
     [IdUsuarioUltAnu]     VARCHAR (20)   NULL,
     [Fecha_UltAnu]        DATETIME       NULL,
-    [nom_pc]              VARCHAR (50)   NOT NULL,
-    [ip]                  VARCHAR (25)   NOT NULL,
+   
     [Estado]              CHAR (1)       NOT NULL,
     [MotiAnula]           VARCHAR (200)  NULL,
     [Impreso]             CHAR (1)       NULL,

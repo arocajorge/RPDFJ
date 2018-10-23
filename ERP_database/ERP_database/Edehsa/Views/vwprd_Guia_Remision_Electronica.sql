@@ -6,7 +6,7 @@ SELECT     dbo.fa_guia_remision.IdEmpresa, dbo.fa_guia_remision.IdSucursal, dbo.
                       dbo.fa_guia_remision.IdVendedor, dbo.fa_guia_remision.gi_fecha, dbo.fa_guia_remision.gi_fech_venc, dbo.fa_guia_remision.gi_Observacion, 
                       dbo.fa_guia_remision.gi_TotalKilos, dbo.fa_guia_remision.gi_plazo, dbo.fa_guia_remision.gi_TotalQuintales, dbo.fa_guia_remision.IdUsuario, 
                       dbo.fa_guia_remision.IdUsuarioUltMod, dbo.fa_guia_remision.Fecha_Transac, dbo.fa_guia_remision.Fecha_UltMod, dbo.fa_guia_remision.IdUsuarioUltAnu, 
-                      dbo.fa_guia_remision.nom_pc, dbo.fa_guia_remision.Fecha_UltAnu, dbo.fa_guia_remision.ip, dbo.fa_guia_remision.Estado, dbo.fa_guia_remision.MotiAnula, 
+                       dbo.fa_guia_remision.Fecha_UltAnu,  dbo.fa_guia_remision.Estado, dbo.fa_guia_remision.MotiAnula, 
                       dbo.fa_guia_remision.Impreso, dbo.fa_guia_remision.IdPeriodo, dbo.fa_guia_remision.gi_flete, dbo.fa_guia_remision.gi_interes, dbo.fa_guia_remision.gi_seguro, 
                       dbo.fa_guia_remision.gi_OtroValor1, dbo.fa_guia_remision.gi_OtroValor2, dbo.fa_guia_remision.gi_FechaIniTraslado, dbo.fa_guia_remision.placa, 
                       dbo.fa_guia_remision.gi_FechaFinTraslado, dbo.fa_guia_remision.ruta, dbo.fa_guia_remision.Direccion_Origen, dbo.fa_guia_remision.Direccion_Destino, 
