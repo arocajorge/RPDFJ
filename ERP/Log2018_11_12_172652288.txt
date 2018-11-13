@@ -1,0 +1,31 @@
+Category: Error, Message: System.InvalidOperationException: No connection string named 'EntitiesGeneral' could be found in the application config file.
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ConnectionHasModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Select[TSource,TResult](IQueryable`1 source, Expression`1 selector)
+   at Core.Erp.Data.General.tb_sis_Mensajes_sys_Data.Get_List_Mensajes_sys() in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Data\General\tb_sis_Mensajes_sys_Data.cs:line 49
+Category: Error, Message: Object reference not set to an instance of an object.
+Category: Error, Message: pu_CargaInicial - Core.Erp.Info.Log_Exception.DalException ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Core.Erp.Data.Roles.ro_Nomina_Tipoliqui_Data.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(Int32 idempresa, Int32 IdNomina_Tipo) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Data\Roles\ro_Nomina_Tipoliqui_Data.cs:line 165
+   at Core.Erp.Business.Roles.ro_Nomina_Tipoliqui_Bus.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(Int32 idempresa, Int32 IdNomina_Tipo) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Bussines\Roles\ro_Nomina_Tipoliqui_Bus.cs:line 37
+   --- End of inner exception stack trace ---
+   at Core.Erp.Business.Roles.ro_Nomina_Tipoliqui_Bus.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(Int32 idempresa, Int32 IdNomina_Tipo) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Bussines\Roles\ro_Nomina_Tipoliqui_Bus.cs:line 42
+   at Core.Erp.Winform.Controles.UCRo_NominaTipoLiqui.pu_CargaInicial() in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Winform\Controles\UCRo_NominaTipoLiqui.cs:line 103
+Category: Error, Message: System.InvalidOperationException: No connection string named 'EntitiesDBConta' could be found in the application config file.
+   at System.Data.Entity.Internal.LazyInternalConnection.get_ConnectionHasModel()
+   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Core.Erp.Data.Contabilidad.ct_Parametro_Data.Get_Info_Parametro(Int32 IdEmpresa) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Data\Contabilidad\ct_Parametro_Data.cs:line 98
+Category: Error, Message: pu_CargaInicial - Core.Erp.Info.Log_Exception.DalException ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Core.Erp.Data.Roles.ro_periodo_x_ro_Nomina_TipoLiqui_Data.ConsultaPerNomTipLiq(Int32 IdEmpresa, Int32 IdNomina_Tipo, Int32 IdNomina_TipoLiqui) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Data\Roles\ro_periodo_x_ro_Nomina_TipoLiqui_Data.cs:line 99
+   at Core.Erp.Business.Roles.ro_periodo_x_ro_Nomina_TipoLiqui_Bus.ConsultaPerNomTipLiq(Int32 IdEmpresa, Int32 IdNomina_Tipo, Int32 IdNomina_TipoLiqui) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Bussines\Roles\ro_periodo_x_ro_Nomina_TipoLiqui_Bus.cs:line 47
+   --- End of inner exception stack trace ---
+   at Core.Erp.Business.Roles.ro_periodo_x_ro_Nomina_TipoLiqui_Bus.ConsultaPerNomTipLiq(Int32 IdEmpresa, Int32 IdNomina_Tipo, Int32 IdNomina_TipoLiqui) in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Bussines\Roles\ro_periodo_x_ro_Nomina_TipoLiqui_Bus.cs:line 52
+   at Core.Erp.Winform.Controles.UCRo_PeriodoXNomina.pu_CargaInicial() in c:\Users\CEDENO\Desktop\Fuentes Gato\RPDFJ\ERP\Core.Erp.Winform\Controles\UCRo_PeriodoXNomina.cs:line 66
