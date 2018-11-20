@@ -1741,7 +1741,6 @@ namespace Core.Erp.Business.Facturacion
 
                             myObject.infoNotaDebito.razonSocialComprador = item.cl_RazonSocial;
                             myObject.infoNotaDebito.identificacionComprador = item.pe_cedulaRuc;
-                            myObject.infoNotaDebito.contribuyenteEspecial = item.ContribuyenteEspecial;
                             myObject.infoNotaDebito.obligadoContabilidad = (item.ObligadoAllevarConta == "S" || item.ObligadoAllevarConta == "SI") ? "SI" : "NO";
 
                             myObject.infoNotaDebito.codDocModificado = "01";
