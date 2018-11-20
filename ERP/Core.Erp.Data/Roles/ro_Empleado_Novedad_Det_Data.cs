@@ -742,7 +742,6 @@ namespace Core.Erp.Data.Roles
 
                 using (EntitiesRoles db = new EntitiesRoles())
                 {
-                    db.SetCommandTimeOut(6000);
                     db.sprol_CancelarNovedades_Prestamos(IdEmpresa, idNominaTipo, idNominaTipoLiqui, pe_FechaIni, pe_FechaFin);
                 }
 

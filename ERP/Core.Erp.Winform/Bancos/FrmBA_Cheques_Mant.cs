@@ -1794,5 +1794,10 @@ namespace Core.Erp.Winform.Bancos
                 Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
             }
         }
+
+        private void UCMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBA_Cheques_Consul));
             this.gridControlCbteBanDep = new DevExpress.XtraGrid.GridControl();
             this.UltraGridCbteBanDep = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,6 +46,11 @@
             this.cmb_estado_cat = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Col_ca_descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_imprimir_cbte = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_impriimir_cheque = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colIdEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIdTipocbte = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,6 +97,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.UltraGridCbteBanDep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_estado_cat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_imprimir_cbte)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_impriimir_cheque)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -99,12 +108,16 @@
             this.gridControlCbteBanDep.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlCbteBanDep.Location = new System.Drawing.Point(0, 155);
+            this.gridControlCbteBanDep.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gridControlCbteBanDep.Location = new System.Drawing.Point(0, 191);
             this.gridControlCbteBanDep.MainView = this.UltraGridCbteBanDep;
+            this.gridControlCbteBanDep.Margin = new System.Windows.Forms.Padding(4);
             this.gridControlCbteBanDep.Name = "gridControlCbteBanDep";
             this.gridControlCbteBanDep.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.cmb_estado_cat});
-            this.gridControlCbteBanDep.Size = new System.Drawing.Size(1076, 219);
+            this.cmb_estado_cat,
+            this.cmb_imprimir_cbte,
+            this.cmb_impriimir_cheque});
+            this.gridControlCbteBanDep.Size = new System.Drawing.Size(1435, 270);
             this.gridControlCbteBanDep.TabIndex = 0;
             this.gridControlCbteBanDep.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.UltraGridCbteBanDep,
@@ -123,10 +136,12 @@
             this.gridColumn5,
             this.colIdCbteCble1,
             this.colcheque,
-            this.col_EstadoCheq});
+            this.col_EstadoCheq,
+            this.gridColumn1,
+            this.gridColumn6});
             this.UltraGridCbteBanDep.GridControl = this.gridControlCbteBanDep;
+            this.UltraGridCbteBanDep.Images = this.imageList1;
             this.UltraGridCbteBanDep.Name = "UltraGridCbteBanDep";
-            this.UltraGridCbteBanDep.OptionsBehavior.Editable = false;
             this.UltraGridCbteBanDep.OptionsView.ShowAutoFilterRow = true;
             this.UltraGridCbteBanDep.OptionsView.ShowGroupPanel = false;
             this.UltraGridCbteBanDep.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.UltraGridCbteBan_RowClick);
@@ -264,6 +279,60 @@
             this.Col_ca_descripcion.Name = "Col_ca_descripcion";
             this.Col_ca_descripcion.Visible = true;
             this.Col_ca_descripcion.VisibleIndex = 0;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.ColumnEdit = this.cmb_imprimir_cbte;
+            this.gridColumn1.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.gridColumn1.ImageIndex = 0;
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 9;
+            // 
+            // cmb_imprimir_cbte
+            // 
+            this.cmb_imprimir_cbte.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.False;
+            this.cmb_imprimir_cbte.AutoHeight = false;
+            this.cmb_imprimir_cbte.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_imprimir_cbte.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.cmb_imprimir_cbte.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", null, 0)});
+            this.cmb_imprimir_cbte.LargeImages = this.imageList1;
+            this.cmb_imprimir_cbte.Name = "cmb_imprimir_cbte";
+            this.cmb_imprimir_cbte.ReadOnly = true;
+            this.cmb_imprimir_cbte.Click += new System.EventHandler(this.cmb_imprimir_cbte_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "imprimir_32x32.png");
+            this.imageList1.Images.SetKeyName(1, "cheque1_32x32.png");
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "gridColumn6";
+            this.gridColumn6.ColumnEdit = this.cmb_impriimir_cheque;
+            this.gridColumn6.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.gridColumn6.ImageIndex = 1;
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 10;
+            // 
+            // cmb_impriimir_cheque
+            // 
+            this.cmb_impriimir_cheque.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.False;
+            this.cmb_impriimir_cheque.AutoHeight = false;
+            this.cmb_impriimir_cheque.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_impriimir_cheque.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.cmb_impriimir_cheque.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", null, 1)});
+            this.cmb_impriimir_cheque.LargeImages = this.imageList1;
+            this.cmb_impriimir_cheque.Name = "cmb_impriimir_cheque";
+            this.cmb_impriimir_cheque.ReadOnly = true;
+            this.cmb_impriimir_cheque.Click += new System.EventHandler(this.cmb_impriimir_cheque_Click);
             // 
             // gridView1
             // 
@@ -580,8 +649,9 @@
             this.panel2.Controls.Add(this.ucGe_Menu_Mantenimiento_x_usuario);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1076, 155);
+            this.panel2.Size = new System.Drawing.Size(1435, 191);
             this.panel2.TabIndex = 11;
             // 
             // ucGe_Menu_Mantenimiento_x_usuario
@@ -609,15 +679,16 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2017, 3, 27, 16, 35, 13, 669);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2017, 5, 27, 16, 35, 13, 670);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2018, 10, 16, 12, 38, 44, 424);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2018, 12, 16, 12, 38, 44, 424);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.Location = new System.Drawing.Point(0, 0);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Margin = new System.Windows.Forms.Padding(5);
             this.ucGe_Menu_Mantenimiento_x_usuario.Name = "ucGe_Menu_Mantenimiento_x_usuario";
             this.ucGe_Menu_Mantenimiento_x_usuario.Perfil_x_usuario = null;
-            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(1076, 155);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(1435, 191);
             this.ucGe_Menu_Mantenimiento_x_usuario.TabIndex = 0;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_bodega = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -657,19 +728,21 @@
             // 
             this.ucGe_BarraEstadoInferior_Forms1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ucGe_BarraEstadoInferior_Forms1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 370);
+            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 455);
+            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(5);
             this.ucGe_BarraEstadoInferior_Forms1.Name = "ucGe_BarraEstadoInferior_Forms1";
-            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1076, 26);
+            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1435, 32);
             this.ucGe_BarraEstadoInferior_Forms1.TabIndex = 1;
             // 
             // FrmBA_Cheques_Consul
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 396);
+            this.ClientSize = new System.Drawing.Size(1435, 487);
             this.Controls.Add(this.ucGe_BarraEstadoInferior_Forms1);
             this.Controls.Add(this.gridControlCbteBanDep);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmBA_Cheques_Consul";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Consulta de Cheques";
@@ -678,6 +751,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.UltraGridCbteBanDep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_estado_cat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_imprimir_cbte)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_impriimir_cheque)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -744,5 +819,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_estado_cat;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn Col_ca_descripcion;
+        private System.Windows.Forms.ImageList imageList1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox cmb_imprimir_cbte;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox cmb_impriimir_cheque;
     }
 }

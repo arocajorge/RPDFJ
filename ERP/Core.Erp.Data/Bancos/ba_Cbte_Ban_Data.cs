@@ -969,7 +969,7 @@ namespace Core.Erp.Data.Bancos
                         EntitiesBanco db = new EntitiesBanco();
 
                         db.SetCommandTimeOut(3000);
-
+                        return Listado;
                         var select_ = from T in db.vwba_Banco_Movimiento_det_cancelado
                                       where T.IdEmpresa == IdEmpresa && T.IdCbteCble == IdCbteCble && T.IdTipocbte == IdTipocbte
                                       select T;

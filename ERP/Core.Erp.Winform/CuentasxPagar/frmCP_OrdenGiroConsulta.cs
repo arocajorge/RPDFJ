@@ -403,7 +403,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
-                cp_orden_giro_Info row = (cp_orden_giro_Info)UltraGrid_OrdenGiro.GetRow(e.RowHandle);
+                cp_orden_giro_consulta_Info row = (cp_orden_giro_consulta_Info)UltraGrid_OrdenGiro.GetRow(e.RowHandle);
                 if (row == null)
                     return;
 

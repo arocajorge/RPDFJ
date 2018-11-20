@@ -1568,8 +1568,6 @@ namespace Core.Erp.Business.Facturacion
                             myObject.infoFactura.fechaEmision = item.vt_fecha.ToString(format);
 
                             myObject.infoFactura.dirEstablecimiento = item.Su_Direccion;
-                            myObject.infoFactura.contribuyenteEspecial = item.ContribuyenteEspecial;
-
                             if (item.ObligadoAllevarConta == "SI" || item.ObligadoAllevarConta=="S")
                             {
                                 myObject.infoFactura.obligadoContabilidad = obligadoContabilidad.SI;

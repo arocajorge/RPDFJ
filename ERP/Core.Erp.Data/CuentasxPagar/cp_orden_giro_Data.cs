@@ -1174,7 +1174,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     contact.co_vaCoa = info.co_vaCoa;
                   //  contact.IdAutorizacion = info.IdAutorizacion;
                     contact.IdIden_credito = info.IdIden_credito;
-                    contact.IdCod_101 = info.IdCod_101;
+                    contact.IdCod_101 = info.IdCod_101 == 0 ? null : info.IdCod_101;
                     contact.IdTipoServicio = info.IdTipoServicio;
                     contact.IdCtaCble_Gasto = info.IdCtaCble_Gasto;
                     contact.IdCtaCble_IVA = info.IdCtaCble_IVA;

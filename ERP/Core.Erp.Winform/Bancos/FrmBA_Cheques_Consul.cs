@@ -13,6 +13,9 @@ using Core.Erp.Winform.Bancos;
 using Core.Erp.Info.General;
 using Core.Erp.Business.Contabilidad;
 using Core.Erp.Business.CuentasxPagar;
+using DevExpress.XtraReports.UI;
+using Core.Erp.Reportes.Bancos;
+using Core.Erp.Info.Contabilidad;
 
 
 
@@ -441,6 +444,58 @@ namespace Core.Erp.Winform.Bancos
             try
             {
                 load_data();
+            }
+            catch (Exception ex)
+            {
+                string NameMetodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                NameMetodo = NameMetodo + " - " + ex.ToString();
+                MessageBox.Show(NameMetodo + " " + param.Get_Mensaje_sys(enum_Mensajes_sys.Error_comunicarse_con_sistemas)
+                    , param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
+            }
+        }
+
+        private void cmb_imprimir_cbte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ba_Cbte_Ban_Info row = (ba_Cbte_Ban_Info)UltraGridCbteBanDep.GetFocusedRow();
+                if (row == null)
+                    return;
+
+                XBAN_Rpt018_Rpt reporte = new XBAN_Rpt018_Rpt();
+                reporte.RequestParameters = false;
+                ReportPrintTool pt = new ReportPrintTool(reporte);
+                pt.AutoShowParametersPanel = false;
+                reporte.PIdEmpresa.Value = row.IdEmpresa;
+                reporte.PIdCbteCble.Value = row.IdCbteCble;
+                reporte.PIdTipo_Cbte.Value = row.IdTipocbte;
+                reporte.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+                string NameMetodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                NameMetodo = NameMetodo + " - " + ex.ToString();
+                MessageBox.Show(NameMetodo + " " + param.Get_Mensaje_sys(enum_Mensajes_sys.Error_comunicarse_con_sistemas)
+                    , param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
+            }
+        }
+
+        private void cmb_impriimir_cheque_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ba_Cbte_Ban_Info row = (ba_Cbte_Ban_Info)UltraGridCbteBanDep.GetFocusedRow();
+                if (row == null)
+                    return;
+
+                FrmBA_Cheque_Imprimir frm = new FrmBA_Cheque_Imprimir();
+                ba_Banco_Cuenta_Bus bus_cuenta = new ba_Banco_Cuenta_Bus();
+                frm.set_Banco_Cuenta(bus_cuenta.Get_Info_Banco_Cuenta(param.IdEmpresa,row.IdBanco));
+                frm.set_CbteBan_I(row);
+                frm.set_CbteCble(new ct_Cbtecble_Info { IdEmpresa = row.IdEmpresa, IdTipoCbte = row.IdTipocbte, IdCbteCble = row.IdCbteCble });
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {

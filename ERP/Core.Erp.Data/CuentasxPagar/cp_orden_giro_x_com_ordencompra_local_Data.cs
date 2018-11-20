@@ -94,7 +94,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<com_ordencompra_local_Info> Lst = new List<com_ordencompra_local_Info>();
                 List<cp_orden_giro_x_com_ordencompra_local_Info> LstComOG = new List<cp_orden_giro_x_com_ordencompra_local_Info>();
                 string msg="";
-
+                /*
                 LstCom = Com_D.Get_List_ordencompra_local(IdEmpresa, ref msg).FindAll(c => c.IdEstadoAprobacion_cat == "APRO" && c.Estado == "A");
                 LstComOG = Get_List_orden_giro_x_com_ordencompra_local(IdEmpresa);
                 
@@ -114,6 +114,7 @@ namespace Core.Erp.Data.CuentasxPagar
                         Lst.Add(item);
                     }
                 }
+                 * */
                 return Lst;
             }
             catch(Exception ex)

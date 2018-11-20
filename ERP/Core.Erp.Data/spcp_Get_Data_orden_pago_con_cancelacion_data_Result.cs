@@ -10,17 +10,17 @@
 namespace Core.Erp.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class vwcp_orden_pago_con_cancelacion
+    public partial class spcp_Get_Data_orden_pago_con_cancelacion_data_Result
     {
-        public long Fila { get; set; }
+        public long IdRow { get; set; }
+        public string IdUsuario { get; set; }
         public int IdEmpresa { get; set; }
         public string IdTipo_op { get; set; }
         public string Referencia { get; set; }
         public string Referencia2 { get; set; }
-        public Nullable<decimal> IdOrdenPago { get; set; }
-        public Nullable<int> Secuencia_OP { get; set; }
+        public decimal IdOrdenPago { get; set; }
+        public int Secuencia_OP { get; set; }
         public string IdTipoPersona { get; set; }
         public decimal IdPersona { get; set; }
         public Nullable<decimal> IdEntidad { get; set; }

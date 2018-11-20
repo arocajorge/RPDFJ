@@ -55,8 +55,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 EntitiesCuentasxPagar ORol = new EntitiesCuentasxPagar();
 
-                var sresult = from A in ORol.vwcp_orden_pago_con_cancelacion
-                              where A.IdEmpresa == IdEmpresa && A.IdEstadoAprobacion==Estado
+                var sresult = from A in ORol.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa,1,999999,"",1,999999,Estado,"admin",true)
                               select A;
 
                 foreach (var item in sresult)

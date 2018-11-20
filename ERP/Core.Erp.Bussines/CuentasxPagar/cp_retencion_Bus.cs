@@ -322,6 +322,8 @@ namespace Core.Erp.Business.CuentasxPagar
                 cp_retencion_Info ret = new cp_retencion_Info();
                 if (!ValidaRetencion(info, ref mensaje)) return false;
 
+                if (string.IsNullOrEmpty(info.NumRetencion) || string.IsNullOrEmpty(info.serie1) || string.IsNullOrEmpty(info.serie2))
+                    return true;
 
                 ret = Get_Info_retencion(info.IdEmpresa, Convert.ToDecimal(info.IdCbteCble_Ogiro), Convert.ToInt32(info.IdTipoCbte_Ogiro));
                 if (ret == null || ret.ListDetalle == null || ret.ListDetalle.Count <= 0)

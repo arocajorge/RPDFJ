@@ -18,6 +18,7 @@ namespace Core.Erp.Data.Caja
            List<vwcaj_Caja_Movimiento_det_cancelado_Info> Listado = new List<vwcaj_Caja_Movimiento_det_cancelado_Info>();
            try
            {
+               return Listado;
                EntitiesCaja db = new EntitiesCaja();
 
                var select_ = from T in db.vwcaj_Caja_Movimiento_det_cancelado
