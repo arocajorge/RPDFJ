@@ -1500,15 +1500,12 @@ namespace Core.Erp.Business.Facturacion
 
                             myObject.infoNotaCredito.razonSocialComprador = item.pe_nombreCompleto.Trim();
                             myObject.infoNotaCredito.identificacionComprador = item.pe_cedulaRuc;
-                            myObject.infoNotaCredito.contribuyenteEspecial = item.ContribuyenteEspecial.Trim();
                             myObject.infoNotaCredito.obligadoContabilidad = (item.ObligadoAllevarConta == "S" || item.ObligadoAllevarConta == "SI") ? "SI" : "NO";
                             myObject.infoNotaCredito.codDocModificado = item.tipo_doc_aplicado == "FACT" ? "01" : "05"; //01 FACT - 05 NTDB
-
                             myObject.infoNotaCredito.numDocModificado = item.NumDocModificado;
                             myObject.infoNotaCredito.fechaEmisionDocSustento = Convert.ToString(item.fechaEmisionDocSustento.Value.ToShortDateString());
                             myObject.infoNotaCredito.motivo = item.observacion_Nota;
                             myObject.infoNotaCredito.moneda = "DOLAR";
-
                             // calculo impuestos detalle nota cerdito
                             double sum_totsinImp = 0;
                             double sum_Total = 0;

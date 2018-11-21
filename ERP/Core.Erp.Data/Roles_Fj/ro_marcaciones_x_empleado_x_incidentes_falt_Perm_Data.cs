@@ -131,6 +131,7 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 int valor1 = 0;
                 int valor2 = 0;
+                int valor3 = 0;
                 int valorTot = 0;
                 List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info> lista = new List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info>();
                 using (EntityRoles_FJ db = new EntityRoles_FJ())
@@ -142,8 +143,6 @@ namespace Core.Erp.Data.Roles_Fj
                                 && q.es_fecha_registro <= FechaFin
                                 && (q.Id_catalogo_Cat == "FAL"                              
                                 )
-                                
-                               
                                 select q;
                     if (query.Count() > 0)
                         valor1 = query.Count();
@@ -173,7 +172,7 @@ namespace Core.Erp.Data.Roles_Fj
                 }
 
 
-
+                
 
 
 
