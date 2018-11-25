@@ -53,12 +53,15 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ucGe_Menu_Mantenimiento_x_usuario = new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ucGe_Menu_Mantenimiento_x_usuario = new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridConsultaCot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_factruras)).BeginInit();
             this.panel2.SuspendLayout();
@@ -104,7 +107,10 @@
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn6,
-            this.gridColumn7});
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10});
             this.gridView_factruras.GridControl = this.gridConsultaCot;
             this.gridView_factruras.Name = "gridView_factruras";
             this.gridView_factruras.OptionsBehavior.Editable = false;
@@ -304,6 +310,24 @@
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 10;
             // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Cant forma pago";
+            this.gridColumn5.FieldName = "cant_forma_pago";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "IdFormaPago";
+            this.gridColumn6.FieldName = "IdFormaPago";
+            this.gridColumn6.Name = "gridColumn6";
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Forma pago";
+            this.gridColumn7.FieldName = "nom_FormaPago";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
             // ucGe_Menu_Mantenimiento_x_usuario
             // 
             this.ucGe_Menu_Mantenimiento_x_usuario.CargarTodasBodegas = true;
@@ -329,8 +353,8 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2017, 9, 12, 16, 21, 44, 584);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2017, 11, 12, 16, 21, 44, 584);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2018, 10, 25, 8, 57, 43, 204);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2018, 12, 25, 8, 57, 43, 204);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
@@ -399,23 +423,29 @@
             this.panel2.Size = new System.Drawing.Size(1492, 198);
             this.panel2.TabIndex = 23;
             // 
-            // gridColumn5
+            // gridColumn8
             // 
-            this.gridColumn5.Caption = "Cant forma pago";
-            this.gridColumn5.FieldName = "cant_forma_pago";
-            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn8.Caption = "SRI";
+            this.gridColumn8.FieldName = "EstadoSRI";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 11;
             // 
-            // gridColumn6
+            // gridColumn9
             // 
-            this.gridColumn6.Caption = "IdFormaPago";
-            this.gridColumn6.FieldName = "IdFormaPago";
-            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn9.Caption = "# Autorización";
+            this.gridColumn9.FieldName = "vt_autorizacion";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 12;
             // 
-            // gridColumn7
+            // gridColumn10
             // 
-            this.gridColumn7.Caption = "Forma pago";
-            this.gridColumn7.FieldName = "nom_FormaPago";
-            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn10.Caption = "Fecha Autorización";
+            this.gridColumn10.FieldName = "Fecha_Autorizacion";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 13;
             // 
             // frmFA_Factura_Consulta_FJ
             // 
@@ -470,6 +500,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
 
     }
 }

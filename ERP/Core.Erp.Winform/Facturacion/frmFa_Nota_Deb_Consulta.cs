@@ -210,8 +210,11 @@ namespace Core.Erp.Winform.Facturacion
                 if (data == null)
                     return;
 
+                if (data.EstadoSRI == "AUTORIZADA")
+                    e.Appearance.ForeColor = Color.Green;
+
                 if (data.Estado == "I")
-                    e.Appearance.ForeColor = Color.Red;
+                    e.Appearance.ForeColor = Color.Red;                
 
                 if (Math.Round(data.saldo, 2) == 0)
                     e.Appearance.ForeColor = Color.Blue;

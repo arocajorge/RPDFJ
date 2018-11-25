@@ -320,6 +320,9 @@ namespace Core.Erp.Winform.Facturacion_Fj
                 if (data == null)
                     return;
 
+                if (data.EstadoSRI == "AUTORIZADA")
+                    e.Appearance.ForeColor = Color.Green;
+
                 if (data.Estado == "I")
                     e.Appearance.ForeColor = Color.Red;
             }
@@ -368,10 +371,13 @@ namespace Core.Erp.Winform.Facturacion_Fj
                 var data = gridView_factruras.GetRow(e.RowHandle) as fa_factura_Info;
                 if (data == null)
                     return;
-                if (data.Estado.ToString() == "I")
-                    e.Appearance.ForeColor = Color.Red;
+                if (data.EstadoSRI == "AUTORIZADA")
+                    e.Appearance.ForeColor = Color.Green;
                 if (data.vt_saldo == 0)
                     e.Appearance.ForeColor = Color.Blue;
+                if (data.Estado.ToString() == "I")
+                    e.Appearance.ForeColor = Color.Red;
+                
             }
             catch (Exception ex)
             {

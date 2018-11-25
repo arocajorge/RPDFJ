@@ -540,7 +540,7 @@ namespace Core.Erp.Data.Bancos
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
+        /*
         public decimal getSecuencia(ref string MensajeError)
         {
             try
@@ -573,7 +573,7 @@ namespace Core.Erp.Data.Bancos
                 //return -1;
                 throw new Exception(ex.InnerException.ToString());
             }
-        }
+        }*/
 
         public Boolean GrabarDB(ba_Cbte_Ban_Info info, ref string MensajeError)
         {
@@ -587,39 +587,40 @@ namespace Core.Erp.Data.Bancos
                     using (EntitiesBanco context = new EntitiesBanco())
                     {
                         EntitiesBanco EDB = new EntitiesBanco();
-                        ba_Cbte_Ban address = new ba_Cbte_Ban();
-                        address.IdEmpresa = info.IdEmpresa;
-                        address.IdCbteCble = info.IdCbteCble;
-                        address.IdTipocbte = info.IdTipocbte;
-                        address.Cod_Cbtecble = string.IsNullOrEmpty(info.Cod_Cbtecble) ? "" : info.Cod_Cbtecble;
-                        address.IdPeriodo = info.IdPeriodo;
-                        address.IdBanco = info.IdBanco;
-                        address.cb_Fecha = info.cb_Fecha;
-                        address.cb_Observacion = info.cb_Observacion;
-                        address.cb_secuencia = getSecuencia(ref MensajeError);
-                        address.cb_Valor = info.cb_Valor;
-                        address.cb_Cheque = info.cb_Cheque;
-                        address.cb_ChequeImpreso = (info.cb_ChequeImpreso == null) ? "N" : info.cb_ChequeImpreso;
-                        address.cb_FechaCheque = info.cb_FechaCheque;
-                        address.cb_ciudadChq = (info.cb_ciudadChq == "") ? null : info.cb_ciudadChq;
-                        address.cb_giradoA = info.cb_giradoA;
-                        address.PosFechado = info.PosFechado;
-                        address.IdTipoNota = info.IdTipoNota;
-                        address.Estado = "A";
-                        address.IdUsuario = info.IdUsuario;
-                        address.Fecha_Transac = info.Fecha_Transac;
-                        address.nom_pc = info.nom_pc;
-                        address.ip = info.ip;
-                        address.IdProveedor = info.IdProveedor;
-                        address.IdTipoFlujo = info.IdTipoFlujo;
-                        address.IdTransaccion = info.IdTransaccion;
-                        address.IdPersona_Girado_a = info.IdPersona_Girado_a;
-                        address.ValorEnLetras = info.ValorEnLetras;
-                        address.IdSucursal = info.IdSucursal;
-                        address.IdEstado_Cbte_Ban_cat = info.IdEstado_Cbte_Ban_cat;
-                        address.IdEstado_Preaviso_ch_cat = eEstado_Preaviso_Cheque.ES_CH_XPREAVISO_CH.ToString();
-                        address.IdEstado_cheque_cat = "ESTCBEMI";
-
+                        ba_Cbte_Ban address = new ba_Cbte_Ban
+                        {
+                            IdEmpresa = info.IdEmpresa,
+                            IdCbteCble = info.IdCbteCble,
+                            IdTipocbte = info.IdTipocbte,
+                            Cod_Cbtecble = string.IsNullOrEmpty(info.Cod_Cbtecble) ? "" : info.Cod_Cbtecble,
+                            IdPeriodo = info.IdPeriodo,
+                            IdBanco = info.IdBanco,
+                            cb_Fecha = info.cb_Fecha,
+                            cb_Observacion = info.cb_Observacion,
+                            cb_secuencia = 0,//getSecuencia(ref MensajeError),
+                            cb_Valor = info.cb_Valor,
+                            cb_Cheque = info.cb_Cheque,
+                            cb_ChequeImpreso = (info.cb_ChequeImpreso == null) ? "N" : info.cb_ChequeImpreso,
+                            cb_FechaCheque = info.cb_FechaCheque,
+                            cb_ciudadChq = (info.cb_ciudadChq == "") ? null : info.cb_ciudadChq,
+                            cb_giradoA = info.cb_giradoA,
+                            PosFechado = info.PosFechado,
+                            IdTipoNota = info.IdTipoNota,
+                            Estado = "A",
+                            IdUsuario = info.IdUsuario,
+                            Fecha_Transac = info.Fecha_Transac,
+                            nom_pc = info.nom_pc,
+                            ip = info.ip,
+                            IdProveedor = info.IdProveedor,
+                            IdTipoFlujo = info.IdTipoFlujo,
+                            IdTransaccion = info.IdTransaccion,
+                            IdPersona_Girado_a = info.IdPersona_Girado_a,
+                            ValorEnLetras = info.ValorEnLetras,
+                            IdSucursal = info.IdSucursal,
+                            IdEstado_Cbte_Ban_cat = info.IdEstado_Cbte_Ban_cat,
+                            IdEstado_Preaviso_ch_cat = eEstado_Preaviso_Cheque.ES_CH_XPREAVISO_CH.ToString(),
+                            IdEstado_cheque_cat = "ESTCBEMI",
+                        };
                         context.ba_Cbte_Ban.Add(address);
                         context.SaveChanges();
                     }
@@ -764,6 +765,16 @@ namespace Core.Erp.Data.Bancos
                         if(info.cb_Cheque!=null || info.cb_Cheque!="")
                         contact.IdEstado_cheque_cat = "ESTCBANU";
                         context.SaveChanges();
+                    }
+                }
+
+                using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
+                {
+                    var lst = db.cp_orden_pago_cancelaciones.Where(q => q.IdEmpresa_pago == info.IdEmpresa && q.IdTipoCbte_pago == info.IdTipocbte && q.IdCbteCble_pago == info.IdCbteCble).ToList();
+                    foreach (var item in lst)
+                    {
+                        db.cp_orden_pago_cancelaciones.Remove(item);
+                        db.SaveChanges();
                     }
                 }
                 return true;
@@ -969,7 +980,7 @@ namespace Core.Erp.Data.Bancos
                         EntitiesBanco db = new EntitiesBanco();
 
                         db.SetCommandTimeOut(3000);
-
+                        return Listado;
                         var select_ = from T in db.vwba_Banco_Movimiento_det_cancelado
                                       where T.IdEmpresa == IdEmpresa && T.IdCbteCble == IdCbteCble && T.IdTipocbte == IdTipocbte
                                       select T;

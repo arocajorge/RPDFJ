@@ -61,10 +61,12 @@
             // gridControlConsRet
             // 
             this.gridControlConsRet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlConsRet.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControlConsRet.Location = new System.Drawing.Point(0, 0);
             this.gridControlConsRet.MainView = this.gridViewConsRet;
+            this.gridControlConsRet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControlConsRet.Name = "gridControlConsRet";
-            this.gridControlConsRet.Size = new System.Drawing.Size(1205, 236);
+            this.gridControlConsRet.Size = new System.Drawing.Size(1607, 321);
             this.gridControlConsRet.TabIndex = 0;
             this.gridControlConsRet.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewConsRet});
@@ -100,6 +102,7 @@
             this.gridViewConsRet.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colAutorizacionRT, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridViewConsRet.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewConsRet_RowCellStyle);
+            this.gridViewConsRet.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewConsRet_RowStyle);
             this.gridViewConsRet.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridViewConsRet_FocusedRowChanged);
             // 
             // colIdEmpresa
@@ -271,9 +274,10 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 511);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1205, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1607, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -302,15 +306,16 @@
             this.ucGe_Menu.Enable_boton_salir = true;
             this.ucGe_Menu.Enable_btnImpExcel = true;
             this.ucGe_Menu.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu.fecha_desde = new System.DateTime(2016, 12, 27, 11, 39, 12, 869);
-            this.ucGe_Menu.fecha_hasta = new System.DateTime(2017, 2, 27, 11, 39, 12, 869);
+            this.ucGe_Menu.fecha_desde = new System.DateTime(2018, 10, 25, 8, 54, 17, 589);
+            this.ucGe_Menu.fecha_hasta = new System.DateTime(2018, 12, 25, 8, 54, 17, 589);
             this.ucGe_Menu.FormConsulta = null;
             this.ucGe_Menu.FormMain = null;
             this.ucGe_Menu.GridControlConsulta = null;
             this.ucGe_Menu.Location = new System.Drawing.Point(0, 0);
+            this.ucGe_Menu.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ucGe_Menu.Name = "ucGe_Menu";
             this.ucGe_Menu.Perfil_x_usuario = null;
-            this.ucGe_Menu.Size = new System.Drawing.Size(1205, 175);
+            this.ucGe_Menu.Size = new System.Drawing.Size(1607, 190);
             this.ucGe_Menu.TabIndex = 0;
             this.ucGe_Menu.Visible_bodega = false;
             this.ucGe_Menu.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -330,6 +335,7 @@
             this.ucGe_Menu.Visible_boton_modificar = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_nuevo = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_NuevoCheque = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu.Visible_btn_imprimir_lote = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_btnImpExcel = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_Descargar_Marca_Base_exter = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_fechas = true;
@@ -353,19 +359,21 @@
             // 
             this.panel1.Controls.Add(this.gridControlConsRet);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 175);
+            this.panel1.Location = new System.Drawing.Point(0, 190);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1205, 236);
+            this.panel1.Size = new System.Drawing.Size(1607, 321);
             this.panel1.TabIndex = 4;
             // 
             // frmCP_RetencionConsulta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1205, 433);
+            this.ClientSize = new System.Drawing.Size(1607, 533);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ucGe_Menu);
             this.Controls.Add(this.statusStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCP_RetencionConsulta";
             this.Text = "Consulta Retención";
             this.Load += new System.EventHandler(this.frmCP_RetencionConsulta_Load);

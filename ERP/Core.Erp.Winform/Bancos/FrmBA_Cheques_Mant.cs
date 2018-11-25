@@ -1083,7 +1083,7 @@ namespace Core.Erp.Winform.Bancos
                     idCbteCble = Info_CbteBan.IdCbteCble;
                     get_CbteBan();
 
-                    respuesta = CbteBan_B.ModificarDB(Info_CbteBan, ref MensajeError);
+                    //respuesta = CbteBan_B.ModificarDB(Info_CbteBan, ref MensajeError);
 
 
                     idCbteCble = Info_CbteBan.IdCbteCble;
@@ -1793,6 +1793,11 @@ namespace Core.Erp.Winform.Bancos
                     , param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
             }
+        }
+
+        private void UCMenu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

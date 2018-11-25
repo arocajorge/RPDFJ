@@ -170,9 +170,9 @@
         <AssociationConnector Association="DBERPModelFAC.FK_fa_parametro_fa_TipoNota" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_ContabilizacionFactura_x_descuento_x_item" Width="1.5" PointX="3.8142198137073873" PointY="20.617820093695922" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_x_in_movi_inve" Width="1.5" PointX="11.023722689144183" PointY="9.7918244496881144" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb" Width="1.5" PointX="9.2214955674584473" PointY="5.1505178386115089" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura" Width="1.5" PointX="9.7969024972044423" PointY="28.970711512943129" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_movimientos_x_bodega_x_cat" Width="1.5" PointX="7.4748338253585782" PointY="28.96271794892974" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura" Width="1.5" PointX="0.017186081044928209" PointY="18.081975915507403" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb" Width="1.5" PointX="8.9408734277546742" PointY="24.875025865098007" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

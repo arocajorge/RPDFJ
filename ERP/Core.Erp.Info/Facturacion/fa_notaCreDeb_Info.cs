@@ -67,10 +67,10 @@ namespace Core.Erp.Info.Facturacion
         public double valor_cobrado { get; set; }
 
 
-        public double flete	{ get; set; }
-        public double interes	{ get; set; }
-        public double valor1	{ get; set; }
-        public double valor2	{ get; set; }
+        public double? flete	{ get; set; }
+        public double? interes	{ get; set; }
+        public double? valor1	{ get; set; }
+        public double? valor2	{ get; set; }
 
 
         public double seguro { get; set; }
@@ -109,5 +109,9 @@ namespace Core.Erp.Info.Facturacion
             info_cliente = new fa_Cliente_Info();
             Info_notaCredDeb_aca = new fa_notaCredDeb_aca_Info();
         }
+
+        public DateTime? Fecha_Autorizacion { get; set; }
+
+        public string EstadoSRI { get; set; }
     }
 }

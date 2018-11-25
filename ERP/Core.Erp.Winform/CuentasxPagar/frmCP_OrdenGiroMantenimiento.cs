@@ -1720,7 +1720,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                 
                 #region obtiene si hay compras locales OC
-
+                /*
                 //OC -- incomplit
                 List<com_ordencompra_local_Info> lstCom = new List<com_ordencompra_local_Info>();
                 List<com_ordencompra_local_Info> lstCom2 = new List<com_ordencompra_local_Info>();
@@ -1734,9 +1734,10 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                 lstCom2 = OC_B.Get_List_ordencompra_local(param.IdEmpresa);
 
-                cmb_Local_Exterios.SelectedIndex = (Info_OrdenGiro.PagoLocExt == "LOC") ? 0 : 1;
+                
+                 * */
                 #endregion
-
+                cmb_Local_Exterios.SelectedIndex = (Info_OrdenGiro.PagoLocExt == "LOC") ? 0 : 1;
                 cmbPais.EditValue = Info_OrdenGiro.PaisPago;
 
                 if (Info_OrdenGiro.ConvenioTributacion == "SI")
@@ -1755,7 +1756,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 cp_orden_giro_pagos_sri_Bus BusPagosSri = new cp_orden_giro_pagos_sri_Bus();
                 BindingList_pagosSRI = new BindingList<cp_orden_giro_pagos_sri_Info>(BusPagosSri.Get_List_orden_giro_pagos_sri(Info_OrdenGiro.IdEmpresa, Info_OrdenGiro.IdCbteCble_Ogiro, Info_OrdenGiro.IdTipoCbte_Ogiro));
                 gridControl_formasPagoSRI.DataSource = BindingList_pagosSRI;
-
+                
                 #endregion
 
                 ucCp_cuotas_x_doc1.Set_info_cuota(Info_OrdenGiro.IdEmpresa, Info_OrdenGiro.IdTipoCbte_Ogiro, Info_OrdenGiro.IdCbteCble_Ogiro);

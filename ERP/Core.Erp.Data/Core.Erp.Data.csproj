@@ -3634,6 +3634,9 @@
     <Compile Include="spCON_saldo_cuentas_x_anio_para_cierre_Result.cs">
       <DependentUpon>ModelConta.tt</DependentUpon>
     </Compile>
+    <Compile Include="spcp_Get_Data_orden_pago_con_cancelacion_data_Result.cs">
+      <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
+    </Compile>
     <Compile Include="spcp_Get_Data_orden_pago_con_Transferencia_data_Result.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
@@ -4460,9 +4463,6 @@
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
     <Compile Include="vwcp_orden_pago_cancelacion_Saldos.cs">
-      <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
-    </Compile>
-    <Compile Include="vwcp_orden_pago_con_cancelacion.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
     <Compile Include="vwcp_orden_pago_con_cancelacion_para_conciliacion.cs">

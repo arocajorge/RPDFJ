@@ -132,8 +132,8 @@ namespace Core.Erp.Data
         public DbSet<fa_parametro> fa_parametro { get; set; }
         public DbSet<vwfa_ContabilizacionFactura_x_descuento_x_item> vwfa_ContabilizacionFactura_x_descuento_x_item { get; set; }
         public DbSet<vwfa_factura_x_in_movi_inve> vwfa_factura_x_in_movi_inve { get; set; }
-        public DbSet<vwfa_notaCreDeb> vwfa_notaCreDeb { get; set; }
-        public DbSet<vwfa_factura> vwfa_factura { get; set; }
         public DbSet<vwfa_movimientos_x_bodega_x_cat> vwfa_movimientos_x_bodega_x_cat { get; set; }
+        public DbSet<vwfa_factura> vwfa_factura { get; set; }
+        public DbSet<vwfa_notaCreDeb> vwfa_notaCreDeb { get; set; }
     }
 }

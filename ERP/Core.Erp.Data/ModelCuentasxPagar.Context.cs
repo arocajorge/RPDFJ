@@ -132,7 +132,6 @@ namespace Core.Erp.Data
         public DbSet<vwcp_orden_giro_x_pagar> vwcp_orden_giro_x_pagar { get; set; }
         public DbSet<cp_parametros> cp_parametros { get; set; }
         public DbSet<vwcp_orden_giro_x_Pagos_saldo> vwcp_orden_giro_x_Pagos_saldo { get; set; }
-        public DbSet<vwcp_orden_pago_con_cancelacion> vwcp_orden_pago_con_cancelacion { get; set; }
         public DbSet<cp_Aprobacion_Ing_Bod_x_OC> cp_Aprobacion_Ing_Bod_x_OC { get; set; }
         public DbSet<cp_orden_pago> cp_orden_pago { get; set; }
         public DbSet<vwcp_orden_pago> vwcp_orden_pago { get; set; }
@@ -187,6 +186,47 @@ namespace Core.Erp.Data
                 new ObjectParameter("i_IdUsuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spcp_Get_Data_orden_pago_con_Transferencia_data_Result>("spcp_Get_Data_orden_pago_con_Transferencia_data", i_idempresaParameter, i_IdArchivoParameter, i_fecha_iniParameter, i_fecha_finParameter, i_IdUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<spcp_Get_Data_orden_pago_con_cancelacion_data_Result> spcp_Get_Data_orden_pago_con_cancelacion_data(Nullable<int> idEmpresa, Nullable<decimal> idPersona_ini, Nullable<decimal> idPersona_fin, string idTipoPersona, Nullable<decimal> idEntidad_ini, Nullable<decimal> idEntidad_fin, string idEstado_Aprobacion, string idUsuario, Nullable<bool> mostrar_saldo_0)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idPersona_iniParameter = idPersona_ini.HasValue ?
+                new ObjectParameter("IdPersona_ini", idPersona_ini) :
+                new ObjectParameter("IdPersona_ini", typeof(decimal));
+    
+            var idPersona_finParameter = idPersona_fin.HasValue ?
+                new ObjectParameter("IdPersona_fin", idPersona_fin) :
+                new ObjectParameter("IdPersona_fin", typeof(decimal));
+    
+            var idTipoPersonaParameter = idTipoPersona != null ?
+                new ObjectParameter("IdTipoPersona", idTipoPersona) :
+                new ObjectParameter("IdTipoPersona", typeof(string));
+    
+            var idEntidad_iniParameter = idEntidad_ini.HasValue ?
+                new ObjectParameter("IdEntidad_ini", idEntidad_ini) :
+                new ObjectParameter("IdEntidad_ini", typeof(decimal));
+    
+            var idEntidad_finParameter = idEntidad_fin.HasValue ?
+                new ObjectParameter("IdEntidad_fin", idEntidad_fin) :
+                new ObjectParameter("IdEntidad_fin", typeof(decimal));
+    
+            var idEstado_AprobacionParameter = idEstado_Aprobacion != null ?
+                new ObjectParameter("IdEstado_Aprobacion", idEstado_Aprobacion) :
+                new ObjectParameter("IdEstado_Aprobacion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            var mostrar_saldo_0Parameter = mostrar_saldo_0.HasValue ?
+                new ObjectParameter("mostrar_saldo_0", mostrar_saldo_0) :
+                new ObjectParameter("mostrar_saldo_0", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spcp_Get_Data_orden_pago_con_cancelacion_data_Result>("spcp_Get_Data_orden_pago_con_cancelacion_data", idEmpresaParameter, idPersona_iniParameter, idPersona_finParameter, idTipoPersonaParameter, idEntidad_iniParameter, idEntidad_finParameter, idEstado_AprobacionParameter, idUsuarioParameter, mostrar_saldo_0Parameter);
         }
     }
 }

@@ -46,9 +46,10 @@ namespace Core.Erp.Data
         public double saldo { get; set; }
         public string nom_cliente { get; set; }
         public string Su_Descripcion { get; set; }
-        public string bo_descripcion { get; set; }
+        public string bo_Descripcion { get; set; }
         public string Ve_Vendedor { get; set; }
         public string NaturalezaNota { get; set; }
         public string IdCtaCble { get; set; }
+        public Nullable<System.DateTime> Fecha_Autorizacion { get; set; }
     }
 }

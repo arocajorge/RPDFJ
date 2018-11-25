@@ -42,6 +42,10 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNota)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewNota)).BeginInit();
             this.SuspendLayout();
@@ -71,8 +75,8 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2017, 7, 31, 10, 54, 49, 253);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2017, 9, 30, 10, 54, 49, 253);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2018, 10, 25, 9, 43, 45, 92);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2018, 12, 25, 9, 43, 45, 92);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
@@ -151,7 +155,11 @@
             this.colNumNota_Impresa,
             this.gridColumn1,
             this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7});
             this.gridViewNota.GridControl = this.gridControlNota;
             this.gridViewNota.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sc_subtotal", null, "{c2}"),
@@ -172,7 +180,7 @@
             this.colIdNota.OptionsColumn.AllowEdit = false;
             this.colIdNota.Visible = true;
             this.colIdNota.VisibleIndex = 1;
-            this.colIdNota.Width = 102;
+            this.colIdNota.Width = 93;
             // 
             // colCliente
             // 
@@ -182,7 +190,7 @@
             this.colCliente.OptionsColumn.AllowEdit = false;
             this.colCliente.Visible = true;
             this.colCliente.VisibleIndex = 5;
-            this.colCliente.Width = 349;
+            this.colCliente.Width = 321;
             // 
             // colfecha
             // 
@@ -191,7 +199,7 @@
             this.colfecha.Name = "colfecha";
             this.colfecha.Visible = true;
             this.colfecha.VisibleIndex = 4;
-            this.colfecha.Width = 177;
+            this.colfecha.Width = 162;
             // 
             // col_sc_observacion
             // 
@@ -200,7 +208,7 @@
             this.col_sc_observacion.Name = "col_sc_observacion";
             this.col_sc_observacion.Visible = true;
             this.col_sc_observacion.VisibleIndex = 6;
-            this.col_sc_observacion.Width = 215;
+            this.col_sc_observacion.Width = 197;
             // 
             // colTotal
             // 
@@ -213,7 +221,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n2}")});
             this.colTotal.Visible = true;
             this.colTotal.VisibleIndex = 7;
-            this.colTotal.Width = 137;
+            this.colTotal.Width = 126;
             // 
             // colSucursal
             // 
@@ -222,7 +230,7 @@
             this.colSucursal.Name = "colSucursal";
             this.colSucursal.Visible = true;
             this.colSucursal.VisibleIndex = 0;
-            this.colSucursal.Width = 149;
+            this.colSucursal.Width = 137;
             // 
             // colNumNota_Impresa
             // 
@@ -231,7 +239,7 @@
             this.colNumNota_Impresa.Name = "colNumNota_Impresa";
             this.colNumNota_Impresa.Visible = true;
             this.colNumNota_Impresa.VisibleIndex = 3;
-            this.colNumNota_Impresa.Width = 121;
+            this.colNumNota_Impresa.Width = 111;
             // 
             // gridColumn1
             // 
@@ -241,7 +249,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 174;
+            this.gridColumn1.Width = 160;
             // 
             // gridColumn2
             // 
@@ -254,7 +262,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "valor_cobrado", "{0:n2}")});
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 8;
-            this.gridColumn2.Width = 169;
+            this.gridColumn2.Width = 155;
             // 
             // gridColumn3
             // 
@@ -267,7 +275,37 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "saldo", "{0:n2}")});
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 9;
-            this.gridColumn3.Width = 141;
+            this.gridColumn3.Width = 115;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "SRI";
+            this.gridColumn4.FieldName = "EstadoSRI";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 11;
+            this.gridColumn4.Width = 90;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "# Autorización";
+            this.gridColumn5.FieldName = "NumAutorizacion";
+            this.gridColumn5.Name = "gridColumn5";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Fecha autorización";
+            this.gridColumn6.FieldName = "Fecha_Autorizacion";
+            this.gridColumn6.Name = "gridColumn6";
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Estado";
+            this.gridColumn7.FieldName = "Estado";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 10;
+            this.gridColumn7.Width = 67;
             // 
             // frmFa_Nota_Deb_Consulta
             // 
@@ -303,5 +341,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

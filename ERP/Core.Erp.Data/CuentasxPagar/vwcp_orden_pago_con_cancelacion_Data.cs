@@ -14,16 +14,16 @@ namespace Core.Erp.Data.CuentasxPagar
         string mensaje = "";
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_Con_Saldo
-            (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad,string IdEstado_Aprobacion)
-        {            
+            (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion, string IdUsuario)
+        {
             try
             {
-                decimal IdPersonaIni=0;
-                decimal IdPersonaFin=0;
-                decimal IdEntidadIni=0;
-                decimal IdEntidadFin=0;
+                decimal IdPersonaIni = 0;
+                decimal IdPersonaFin = 0;
+                decimal IdEntidadIni = 0;
+                decimal IdEntidadFin = 0;
 
-                if (IdTipoPersona == "" || IdTipoPersona==null)
+                if (IdTipoPersona == "" || IdTipoPersona == null)
                 {
                     IdPersonaIni = 1;
                     IdPersonaFin = 999999;
@@ -43,52 +43,47 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 db.SetCommandTimeOut(3000);
 
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa 
-                                        && T.Saldo_x_Pagar_OP>0
-                                        && T.IdEntidad >= IdEntidadIni && T.IdEntidad <= IdEntidadFin
-                                        && T.IdTipoPersona.Contains(IdTipoPersona)
-                                        && T.IdPersona >= IdPersonaIni && T.IdPersona <= IdPersonaFin
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                               select T 
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, false)
+
+                               select T
                                );
                 foreach (var item in select_)
                 {
                     vwcp_orden_pago_con_cancelacion_Info dat = new vwcp_orden_pago_con_cancelacion_Info();
 
-                        
-                        dat.IdEmpresa=item.IdEmpresa;
-                        dat.IdTipo_op=item.IdTipo_op;
-                        dat.Referencia=item.Referencia;
-                        dat.IdOrdenPago=item.IdOrdenPago;
-                        dat.Secuencia_OP=item.Secuencia_OP;
-                        dat.IdTipoPersona=item.IdTipoPersona;
-                        dat.IdPersona=Convert.ToDecimal(item.IdPersona);
-                        dat.IdEntidad=item.IdEntidad;
-                        dat.Fecha_OP=item.Fecha_OP;
-                        dat.Fecha_Fa_Prov=Convert.ToDateTime(item.Fecha_Fa_Prov);
-                        dat.Fecha_Venc_Fac_Prov=Convert.ToDateTime(item.Fecha_Venc_Fac_Prov);
-                        dat.Observacion=item.Observacion;
-                        dat.Nom_Beneficiario = item.Nom_Beneficiario;
-                        dat.Girar_Cheque_a=item.Girar_Cheque_a;
-                        dat.Valor_a_pagar=Convert.ToDouble(item.Valor_a_pagar);
-                        dat.Valor_estimado_a_pagar_OP=item.Valor_estimado_a_pagar_OP;
-                        dat.Total_cancelado_OP=item.Total_cancelado_OP;
-                        dat.Saldo_x_Pagar_OP=item.Saldo_x_Pagar_OP;
-                        dat.IdEstadoAprobacion = item.IdEstadoAprobacion;
-                        dat.IdFormaPago = item.IdFormaPago;
-                        dat.Fecha_Pago = item.Fecha_Pago;
-                        dat.IdCtaCble = item.IdCtaCble;
-                        dat.IdCentroCosto = item.IdCentroCosto;
-                        dat.IdSubCentro_Costo = item.IdSubCentro_Costo;
-                        dat.Cbte_cxp = item.Cbte_cxp;
-                        dat.IdEmpresa_cxp = item.IdEmpresa_cxp;
-                        dat.IdTipoCbte_cxp = item.IdTipoCbte_cxp;
-                        dat.IdCbteCble_cxp = item.IdCbteCble_cxp;
-                        dat.IdBanco = item.IdBanco;
-                        dat.Referencia2 = item.Referencia2;
 
-                        lM.Add(dat);
+                    dat.IdEmpresa = item.IdEmpresa;
+                    dat.IdTipo_op = item.IdTipo_op;
+                    dat.Referencia = item.Referencia;
+                    dat.IdOrdenPago = item.IdOrdenPago;
+                    dat.Secuencia_OP = item.Secuencia_OP;
+                    dat.IdTipoPersona = item.IdTipoPersona;
+                    dat.IdPersona = Convert.ToDecimal(item.IdPersona);
+                    dat.IdEntidad = item.IdEntidad;
+                    dat.Fecha_OP = item.Fecha_OP;
+                    dat.Fecha_Fa_Prov = Convert.ToDateTime(item.Fecha_Fa_Prov);
+                    dat.Fecha_Venc_Fac_Prov = Convert.ToDateTime(item.Fecha_Venc_Fac_Prov);
+                    dat.Observacion = item.Observacion;
+                    dat.Nom_Beneficiario = item.Nom_Beneficiario;
+                    dat.Girar_Cheque_a = item.Girar_Cheque_a;
+                    dat.Valor_a_pagar = Convert.ToDouble(item.Valor_a_pagar);
+                    dat.Valor_estimado_a_pagar_OP = item.Valor_estimado_a_pagar_OP;
+                    dat.Total_cancelado_OP = item.Total_cancelado_OP;
+                    dat.Saldo_x_Pagar_OP = item.Saldo_x_Pagar_OP;
+                    dat.IdEstadoAprobacion = item.IdEstadoAprobacion;
+                    dat.IdFormaPago = item.IdFormaPago;
+                    dat.Fecha_Pago = item.Fecha_Pago;
+                    dat.IdCtaCble = item.IdCtaCble;
+                    dat.IdCentroCosto = item.IdCentroCosto;
+                    dat.IdSubCentro_Costo = item.IdSubCentro_Costo;
+                    dat.Cbte_cxp = item.Cbte_cxp;
+                    dat.IdEmpresa_cxp = item.IdEmpresa_cxp;
+                    dat.IdTipoCbte_cxp = item.IdTipoCbte_cxp;
+                    dat.IdCbteCble_cxp = item.IdCbteCble_cxp;
+                    dat.IdBanco = item.IdBanco;
+                    dat.Referencia2 = item.Referencia2;
+
+                    lM.Add(dat);
 
                 }
                 return (lM);
@@ -105,7 +100,7 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion
-          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion)
+          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion, string IdUsuario)
         {
 
 
@@ -125,7 +120,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     IdEntidadIni = 1;
                     IdEntidadFin = 999999;
                     IdTipoPersona = "";
-                        
+
                 }
                 else
                 {
@@ -140,12 +135,8 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
                 db.SetCommandTimeOut(3000);
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEntidad >= IdEntidadIni && T.IdEntidad <= IdEntidadFin
-                                        && T.IdTipoPersona.Contains(IdTipoPersona)
-                                        && T.IdPersona >= IdPersonaIni && T.IdPersona <= IdPersonaFin
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, true)
+
                                select T
                                );
 
@@ -239,7 +230,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
-                
+
                 db.SetCommandTimeOut(3000);
 
                 IQueryable<vwcp_orden_pago_para_aprobacion> select_;
@@ -253,7 +244,8 @@ namespace Core.Erp.Data.CuentasxPagar
                                         && T.IdEstadoAprobacion == IdEstado_Aprobacion
                                select T
                                );
-                }else
+                }
+                else
                     if (IdTipoPersona == "TODOS")
                     {
                         select_ = (from T in db.vwcp_orden_pago_para_aprobacion
@@ -266,12 +258,12 @@ namespace Core.Erp.Data.CuentasxPagar
                     }
                     else
                         if (IdEntidad == 0 && IdTipoPersona != "TODOS")
-                        select_ = (from T in db.vwcp_orden_pago_para_aprobacion
-                                   where T.IdEmpresa == IdEmpresa                                        
-                                            && T.IdTipo_Persona == IdTipoPersona 
-                                            && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                   select T
-                                   );
+                            select_ = (from T in db.vwcp_orden_pago_para_aprobacion
+                                       where T.IdEmpresa == IdEmpresa
+                                                && T.IdTipo_Persona == IdTipoPersona
+                                                && T.IdEstadoAprobacion == IdEstado_Aprobacion
+                                       select T
+                                       );
                         else
                             select_ = (from T in db.vwcp_orden_pago_para_aprobacion
                                        where T.IdEmpresa == IdEmpresa
@@ -339,7 +331,7 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
 
-        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion(int IdEmpresa, ref string mensaje)
+        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion(int IdEmpresa, string IdUsuario, ref string mensaje)
         {
             try
             {
@@ -348,10 +340,10 @@ namespace Core.Erp.Data.CuentasxPagar
                 {
                     //cxp.SetCommandTimeOut(3000);
 
-                    var consulta = from q in cxp.vwcp_orden_pago_con_cancelacion
-                                   where q.IdEmpresa == IdEmpresa &&
-                                   q.Saldo_x_Pagar_OP > 0
-                                   select q;
+                    var consulta = (from T in cxp.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, 1, 99999, "", 1, 99999, "", IdUsuario, false)
+
+                                    select T
+                               );
 
                     foreach (var item in consulta)
                     {
@@ -412,7 +404,7 @@ namespace Core.Erp.Data.CuentasxPagar
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion(int IdEmpresa, decimal IdConciliacion, ref string mensaje)
         {
             try
-            {                
+            {
                 List<vwcp_orden_pago_con_cancelacion_Info> Lst = new List<vwcp_orden_pago_con_cancelacion_Info>();
                 using (EntitiesCuentasxPagar cxp = new EntitiesCuentasxPagar())
                 {
@@ -442,7 +434,7 @@ namespace Core.Erp.Data.CuentasxPagar
                         info.Valor_a_pagar = item.Valor_a_pagar;
                         info.Valor_estimado_a_pagar_OP = item.Valor_estimado_a_pagar_OP;
                         info.Total_cancelado_OP = item.Total_cancelado_OP;
-                        
+
                         info.IdEstadoAprobacion = item.IdEstadoAprobacion;
                         info.IdFormaPago = item.IdFormaPago;
                         info.Fecha_Pago = item.Fecha_Pago;
@@ -453,10 +445,10 @@ namespace Core.Erp.Data.CuentasxPagar
                         info.Valor_aplicado = item.MontoAplicado;
                         info.Saldo_x_Pagar_OP = item.SaldoActual;
                         info.Saldo_x_Pagar2 = item.SaldoAnterior;
-                        
+
                         //info.IdAprobacion = item.IdAprobacion;
                         info.Estado = item.Estado;
-                        
+
 
 
                         Lst.Add(info);
@@ -476,7 +468,7 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_Mayor_a_cero
-          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion)
+          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion, string IdUsuario)
         {
 
             try
@@ -485,7 +477,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 decimal IdPersonaFin = 0;
                 decimal IdEntidadIni = 0;
                 decimal IdEntidadFin = 0;
-                
+
                 if (IdTipoPersona == "" || IdTipoPersona == null)
                 {
                     IdPersonaIni = 1;
@@ -507,13 +499,8 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 db.SetCommandTimeOut(3000);
 
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEntidad >= IdEntidadIni && T.IdEntidad <= IdEntidadFin
-                                        && T.IdTipoPersona.Contains(IdTipoPersona)
-                                        && T.IdPersona >= IdPersonaIni && T.IdPersona <= IdPersonaFin
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, true)
+
                                select T
                                );
                 foreach (var item in select_)
@@ -533,7 +520,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.Observacion = item.Observacion;
                     dat.Nom_Beneficiario = item.Nom_Beneficiario;
                     dat.Girar_Cheque_a = item.Girar_Cheque_a;
-                    dat.Valor_a_pagar =Convert.ToDouble(item.Valor_a_pagar);
+                    dat.Valor_a_pagar = Convert.ToDouble(item.Valor_a_pagar);
                     dat.Valor_estimado_a_pagar_OP = item.Valor_estimado_a_pagar_OP;
                     dat.Total_cancelado_OP = item.Total_cancelado_OP;
                     dat.Saldo_x_Pagar_OP = item.Saldo_x_Pagar_OP;
@@ -571,37 +558,22 @@ namespace Core.Erp.Data.CuentasxPagar
 
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_Mayor_a_cero
-      (int IdEmpresa, string IdTipo_op, decimal IdProveedor, string IdEstado_Aprobacion)
+      (int IdEmpresa, string IdTipo_op, decimal IdProveedor, string IdEstado_Aprobacion, string IdUsuario)
         {
 
             try
             {
-               
+
                 List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
 
                 db.SetCommandTimeOut(3000);
 
-                IQueryable<vwcp_orden_pago_con_cancelacion> select_;
-                if (IdTipo_op == "")
-                {
-                    select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEntidad == IdProveedor
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, 1, 99999, "PROVEE", IdProveedor, IdProveedor, IdEstado_Aprobacion, IdUsuario, false)
+                               where T.IdTipo_op.Contains(IdTipo_op)
                                select T
-                                   );    
-                }else
-                    select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEntidad == IdProveedor
-                                        && T.IdTipo_op == IdTipo_op
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0
-                               select T
-                                   );  
-                
+                               );
+
                 foreach (var item in select_)
                 {
                     vwcp_orden_pago_con_cancelacion_Info dat = new vwcp_orden_pago_con_cancelacion_Info();
@@ -614,19 +586,19 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdPersona = Convert.ToDecimal(item.IdPersona);
                     dat.IdEntidad = item.IdEntidad;
                     dat.Fecha_OP = item.Fecha_OP;
-                    dat.Fecha_Fa_Prov =Convert.ToDateTime( item.Fecha_Fa_Prov);
-                    dat.Fecha_Venc_Fac_Prov = Convert.ToDateTime( item.Fecha_Venc_Fac_Prov);
+                    dat.Fecha_Fa_Prov = Convert.ToDateTime(item.Fecha_Fa_Prov);
+                    dat.Fecha_Venc_Fac_Prov = Convert.ToDateTime(item.Fecha_Venc_Fac_Prov);
                     dat.Observacion = item.Observacion;
                     dat.Nom_Beneficiario = item.Nom_Beneficiario;
                     dat.Girar_Cheque_a = item.Girar_Cheque_a;
 
-                    dat.Valor_a_pagar =Convert.ToDouble(item.Valor_a_pagar);
+                    dat.Valor_a_pagar = Convert.ToDouble(item.Valor_a_pagar);
                     dat.Valor_estimado_a_pagar_OP = item.Valor_estimado_a_pagar_OP;
                     dat.Total_cancelado_OP = item.Total_cancelado_OP;
                     dat.Saldo_x_Pagar_OP = item.Saldo_x_Pagar_OP;
 
                     dat.Saldo_x_Pagar2 = item.Saldo_x_Pagar_OP;
-                    
+
 
                     dat.IdEstadoAprobacion = item.IdEstadoAprobacion;
                     dat.IdFormaPago = item.IdFormaPago;
@@ -660,7 +632,7 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_
-        (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion)
+        (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdUsuario, string IdEstado_Aprobacion)
         {
 
             try
@@ -691,13 +663,8 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 db.SetCommandTimeOut(3000);
 
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEntidad >= IdEntidadIni && T.IdEntidad <= IdEntidadFin
-                                        && T.IdTipoPersona.Contains(IdTipoPersona)
-                                        && T.IdPersona >= IdPersonaIni && T.IdPersona <= IdPersonaFin
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, true)
+
                                select T
                                );
                 foreach (var item in select_)
@@ -712,7 +679,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdPersona = Convert.ToDecimal(item.IdPersona);
                     dat.IdEntidad = item.IdEntidad;
                     dat.Fecha_OP = item.Fecha_OP;
-                    dat.Fecha_Fa_Prov =Convert.ToDateTime( item.Fecha_Fa_Prov);
+                    dat.Fecha_Fa_Prov = Convert.ToDateTime(item.Fecha_Fa_Prov);
                     dat.Fecha_Venc_Fac_Prov = Convert.ToDateTime(item.Fecha_Venc_Fac_Prov);
                     dat.Observacion = item.Observacion;
                     dat.Nom_Beneficiario = item.Nom_Beneficiario;
@@ -752,7 +719,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_Mayor_a_cero_
-          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion)
+          (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdUsuario, string IdEstado_Aprobacion)
         {
             try
             {
@@ -782,11 +749,8 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 db.SetCommandTimeOut(3000);
 
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0 
-                                       
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, false)
+
                                select T
                                );
                 foreach (var item in select_)
@@ -843,12 +807,12 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_Mayor_a_cero_x_OrdenPago
-       (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdEstado_Aprobacion)
+       (int IdEmpresa, string IdTipoPersona, decimal IdPersona, decimal IdEntidad, string IdUsuario, string IdEstado_Aprobacion)
         {
             try
             {
-               
-                
+
+
                 decimal IdPersonaIni = 0;
                 decimal IdPersonaFin = 0;
                 decimal IdEntidadIni = 0;
@@ -875,38 +839,11 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
 
-                IQueryable<vwcp_orden_pago_con_cancelacion> select_;
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, IdPersonaIni, IdPersonaFin, IdTipoPersona, IdEntidadIni, IdEntidadFin, IdEstado_Aprobacion, IdUsuario, false)
 
-                db.SetCommandTimeOut(3000);
+                               select T
+                                );
 
-                if (IdTipoPersona == "") // TODOS
-                {
-                    select_ = from T in db.vwcp_orden_pago_con_cancelacion
-                              where T.IdEmpresa == IdEmpresa
-                                       && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                       && T.Saldo_x_Pagar_OP > 0
-                                       && T.IdOrdenPago > 0
-                                       //&& T.IdPersona >= IdPersonaIni && T.IdPersona <= IdPersonaFin
-                                       //&& T.IdEntidad >= IdEntidadIni && T.IdEntidad <= IdEntidadFin
-                                       && T.Estado == "A"
-                              select T;
-                }
-                else
-                {
-                    select_ = from T in db.vwcp_orden_pago_con_cancelacion
-                              where T.IdEmpresa == IdEmpresa
-                                       && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                       && T.Saldo_x_Pagar_OP > 0
-                                       && T.IdOrdenPago > 0
-                                       && T.IdPersona ==IdPersonaFin
-                                       && T.IdEntidad == IdEntidadFin
-                                       && T.Estado == "A"
-                              select T;
-                }
-                               
-
-                
-                
                 foreach (var item in select_)
                 {
                     vwcp_orden_pago_con_cancelacion_Info dat = new vwcp_orden_pago_con_cancelacion_Info();
@@ -961,23 +898,20 @@ namespace Core.Erp.Data.CuentasxPagar
         }
 
 
-        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_todos_Mayor_a_cero (int IdEmpresa,  string IdEstado_Aprobacion)
-            {
+        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_todos_Mayor_a_cero(int IdEmpresa, string IdEstado_Aprobacion, string IdUsuario)
+        {
             List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
 
             try
             {
-                          
-                
+
+
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
 
                 db.SetCommandTimeOut(3000);
 
-                var select_ = (from T in db.vwcp_orden_pago_con_cancelacion
-                               where T.IdEmpresa == IdEmpresa
-                                        && T.IdEstadoAprobacion == IdEstado_Aprobacion
-                                        && T.Saldo_x_Pagar_OP > 0
-                                        && T.IdTipo_op != "ANTI_PROVEE"
+                var select_ = (from T in db.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, 1, 99999, "", 1, 99999, IdEstado_Aprobacion, IdUsuario, false)
+                               where T.IdTipo_op != "ANTI_PROVEE"
                                         && T.IdTipo_op != "OTROS_CONC"
                                select T
                                );
@@ -998,10 +932,10 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.Observacion = item.Observacion;
                     dat.Nom_Beneficiario = item.Nom_Beneficiario;
                     dat.Girar_Cheque_a = item.Girar_Cheque_a;
-                    dat.Valor_a_pagar =Convert.ToDouble(item.Valor_a_pagar);
+                    dat.Valor_a_pagar = Convert.ToDouble(item.Valor_a_pagar);
                     dat.IdBanco = item.IdBanco;
                     dat.Total_cancelado_OP = item.Total_cancelado_OP;
-                   
+
                     dat.IdEstadoAprobacion = item.IdEstadoAprobacion;
                     dat.IdFormaPago = item.IdFormaPago;
                     dat.Fecha_Pago = item.Fecha_Pago;
@@ -1036,7 +970,7 @@ namespace Core.Erp.Data.CuentasxPagar
             }
         }
 
-        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_transferencia(int IdEmpresa, decimal IdArchivo, DateTime fechaInicio,DateTime fechaFin, string IdUsuario)
+        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_transferencia(int IdEmpresa, decimal IdArchivo, DateTime fechaInicio, DateTime fechaFin, string IdUsuario)
         {
             List<vwcp_orden_pago_con_cancelacion_Info> lM = new List<vwcp_orden_pago_con_cancelacion_Info>();
             List<vwtb_persona_beneficiario_Info> Lista_Beneficiarios = new List<vwtb_persona_beneficiario_Info>();
@@ -1049,7 +983,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
                 // buscar datos del beneficiarios
 
-               Lista_Beneficiarios= Data_Beneficiario.Get_List_Datos_Beneficiarios(IdEmpresa);
+                Lista_Beneficiarios = Data_Beneficiario.Get_List_Datos_Beneficiarios(IdEmpresa);
 
 
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
@@ -1057,9 +991,9 @@ namespace Core.Erp.Data.CuentasxPagar
                 db.SetCommandTimeOut(3000);
 
                 var select_ = db.spcp_Get_Data_orden_pago_con_Transferencia_data(IdEmpresa, IdArchivo, fechaInicio, fechaFin, IdUsuario);
-                
 
-                                
+
+
                 foreach (var item in select_)
                 {
                     vwcp_orden_pago_con_cancelacion_Info dat = new vwcp_orden_pago_con_cancelacion_Info();
@@ -1093,7 +1027,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdCbteCble_cxp = item.IdCbteCble_cxp;
                     dat.Valor_estimado_a_pagar_OP = item.Valor_estimado_a_pagar_OP;
                     dat.Saldo_x_Pagar_OP = item.Saldo_x_Pagar_OP;
-                    dat.Saldo_x_Pagar2 = item.Saldo_x_Pagar_OP;                    
+                    dat.Saldo_x_Pagar2 = item.Saldo_x_Pagar_OP;
                     dat.Referencia2 = item.Referencia2;
                     dat.IdBanco_acreditacion = item.IdBanco_acreditacion;
                     dat.CodigoLegal = item.CodigoLegal;
@@ -1108,12 +1042,12 @@ namespace Core.Erp.Data.CuentasxPagar
                     vwtb_persona_beneficiario_Info info_Beneficiario = new vwtb_persona_beneficiario_Info();
                     try
                     {
-                        info_Beneficiario = Lista_Beneficiarios.Where(v => v.IdTipo_Persona == dat.IdTipoPersona && v.IdEntidad == dat.IdEntidad && v.IdPersona == dat.IdPersona && v.IdEmpresa == dat.IdEmpresa).FirstOrDefault(); 
+                        info_Beneficiario = Lista_Beneficiarios.Where(v => v.IdTipo_Persona == dat.IdTipoPersona && v.IdEntidad == dat.IdEntidad && v.IdPersona == dat.IdPersona && v.IdEmpresa == dat.IdEmpresa).FirstOrDefault();
                     }
                     catch (Exception)
                     {
-                        
-                       
+
+
                     }
                     dat.Beneficiario = info_Beneficiario;
                     lM.Add(dat);
@@ -1131,7 +1065,7 @@ namespace Core.Erp.Data.CuentasxPagar
             }
         }
 
-        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_x_list_op(int IdEmpresa, List<Nullable<decimal>> list_op)
+        public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_x_list_op(int IdEmpresa, List<Nullable<decimal>> list_op, string IdUsuario)
         {
             try
             {
@@ -1141,9 +1075,8 @@ namespace Core.Erp.Data.CuentasxPagar
                 {
                     Context.SetCommandTimeOut(3000);
 
-                    var lst = from q in Context.vwcp_orden_pago_con_cancelacion
-                              where q.IdEmpresa == IdEmpresa &&
-                              list_op.Contains(q.IdOrdenPago)
+                    var lst = from q in Context.spcp_Get_Data_orden_pago_con_cancelacion_data(IdEmpresa, 1, 99999, "", 1, 99999, "APRO", IdUsuario, false)
+                              where list_op.Contains(q.IdOrdenPago)
                               select q;
                 }
 
@@ -1171,7 +1104,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 EntitiesCuentasxPagar db = new EntitiesCuentasxPagar();
                 var select_ = (from T in db.vwcp_ba_Archivo_Transferencia_Det
                                where T.IdEmpresa == IdEmpresa
-                                        && T.IdArchivo==IdArchivo                                     
+                                        && T.IdArchivo == IdArchivo
                                select T
                                );
                 foreach (var item in select_)
@@ -1183,7 +1116,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdEmpresa_OP = item.IdEmpresa_OP;
                     dat.IdOrdenPago = item.IdOrdenPago;
                     dat.Secuencia_OP = item.Secuencia_OP;
-                    dat.Valor =Convert.ToDecimal( item.Valor_a_pagar);
+                    dat.Valor = Convert.ToDecimal(item.Valor_a_pagar);
                     dat.Observacion_op = item.Observacion;
                     dat.Beneficiario = item.pe_nombreCompleto;
                     dat.IdPersona = item.IdPersona;
@@ -1198,7 +1131,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdTipo_Persona = item.IdTipo_Persona;
                     dat.IdPersona = item.IdPersona;
                     dat.pe_cedulaRuc = item.pe_cedulaRuc;
-                    
+
                     lM.Add(dat);
                 }
                 return (lM);
@@ -1214,7 +1147,7 @@ namespace Core.Erp.Data.CuentasxPagar
             }
         }
 
-
+        /*
         public List<vwcp_orden_pago_con_cancelacion_Info> Get_List_orden_pago_con_cancelacion_todos_Mayor_a_cero
       (int IdEmpresa, decimal IdOrdenPago, int Secuencia_OP)
         {
@@ -1286,6 +1219,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 throw new Exception(ex.InnerException.ToString());
             }
         }
+         * */
 
         public vwcp_orden_pago_con_cancelacion_Data()
         {

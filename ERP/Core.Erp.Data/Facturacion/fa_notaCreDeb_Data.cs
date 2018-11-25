@@ -45,66 +45,53 @@ namespace Core.Erp.Data.Facturacion
                     IdBodegaFin = 5000;
                 }
 
-                var SelectNota = from q in oENt.vwfa_notaCreDeb
-                                 where q.IdEmpresa == IdEmpresa
+                lst = oENt.vwfa_notaCreDeb.Where(q => q.IdEmpresa == IdEmpresa
                             && q.IdBodega >= IdBodegaIni && q.IdBodega <= IdBodegaFin
                             && q.IdSucursal >= IdSucursalIni && q.IdSucursal <= IdSucursalFin
                             && q.no_fecha >= FechaIni && q.no_fecha <= FechaFin
-                            && q.CreDeb.Contains(Tipo)
-                                 select q;
+                            && q.CreDeb == Tipo).Select(q => new fa_notaCreDeb_Info
+                            {
+                                IdEmpresa = q.IdEmpresa,
+                                IdBodega = q.IdBodega,
+                                IdSucursal = q.IdSucursal,
+                                Bodega = q.bo_Descripcion,
+                                Sucursal = q.Su_Descripcion,
+                                Vendedor = q.Ve_Vendedor,
+                                Cliente = q.nom_cliente,
+                                IdNota = q.IdNota,
+                                NaturalezaNota = q.NaturalezaNota,
+                                Serie1 = q.Serie1,
+                                Serie2 = q.Serie2,
+                                NumNota_Impresa = q.NumNota_Impresa,
+                                sc_observacion = q.sc_observacion,
+                                no_fecha = q.no_fecha,
+                                CreDeb = q.CreDeb,
+                                NumAutorizacion = q.NumAutorizacion,
+                                Fecha_Autorizacion = q.Fecha_Autorizacion,
+                                Subtotal = q.sc_subtotal,
+                                Iva = q.sc_iva,
+                                Total = q.sc_total,
 
+                                IdTipoNota = q.IdTipoNota,
 
+                                IdVendedor = q.IdVendedor,
+                                IdCliente = q.IdCliente,
+                                no_dev_venta = q.no_dev_venta,
+                                flete = q.flete,
+                                interes = q.interes,
+                                valor1 = q.valor1,
+                                valor2 = q.valor2,
+                                CodNota = q.CodNota,
+                                no_fecha_venc = q.no_fecha_venc,
 
+                                IdCaja = q.IdCaja,
+                                Estado = q.Estado,
+                                IdCtaCble_TipoNota = q.IdCtaCble,
+                                saldo = q.saldo,
+                                valor_cobrado = q.valor_aplicado,
+                            }).ToList();
 
-                foreach (var item in SelectNota)
-                {
-                    fa_notaCreDeb_Info info = new fa_notaCreDeb_Info();
-                    info.IdEmpresa = item.IdEmpresa;
-                    info.IdBodega = item.IdBodega;
-                    info.IdSucursal = item.IdSucursal;
-                    info.Bodega = item.bo_descripcion;
-                    info.Sucursal = item.Su_Descripcion;
-                    info.Vendedor = item.Ve_Vendedor;
-                    info.Cliente = item.nom_cliente;
-                    info.IdNota = item.IdNota;
-                    info.NaturalezaNota = item.NaturalezaNota;
-                    info.Serie1 = item.Serie1;
-                    info.Serie2 = item.Serie2;
-                    info.NumNota_Impresa = item.NumNota_Impresa;
-                    info.sc_observacion = item.sc_observacion;
-                    info.no_fecha = item.no_fecha;
-                    info.CreDeb = item.CreDeb;
-
-                    info.Subtotal = Convert.ToDouble(item.sc_subtotal);
-                    info.Iva = Convert.ToDouble(item.sc_iva);
-                    info.Total = Convert.ToDouble(item.sc_total);
-
-                    info.IdTipoNota = item.IdTipoNota;
-                  
-                    info.IdVendedor = item.IdVendedor;
-                    info.IdCliente = item.IdCliente;
-                    info.no_dev_venta = item.no_dev_venta;
-                    info.flete = Convert.ToDouble(item.flete);
-                    info.interes = Convert.ToDouble(item.interes);
-                    info.valor1 = Convert.ToDouble(item.valor1);
-                    info.valor2 = Convert.ToDouble(item.valor2);
-                    info.CodNota = item.CodNota;
-                    info.no_fecha_venc = (DateTime)item.no_fecha_venc;
-
-                    info.IdEmpresa_fac_doc_mod = info.IdEmpresa_fac_doc_mod;
-                    info.IdSucursal_fac_doc_mod = info.IdSucursal_fac_doc_mod;
-                    info.IdBodega_fac_doc_mod = info.IdBodega_fac_doc_mod;
-                    info.IdCbteVta_fac_doc_mod = info.IdCbteVta_fac_doc_mod;
-
-                    info.IdCaja = Convert.ToInt32(item.IdCaja);
-                    info.Estado = item.Estado;
-                    info.IdCtaCble_TipoNota = item.IdCtaCble;
-                    info.saldo = item.saldo;
-                    info.valor_cobrado = item.valor_aplicado;
-                    
-                    lst.Add(info);
-                }
-
+                lst.ForEach(q => q.EstadoSRI = string.IsNullOrEmpty(q.NumAutorizacion) ? "" : "AUTORIZADA");
                 return lst;
             }
             catch (Exception ex)
@@ -615,5 +602,7 @@ namespace Core.Erp.Data.Facturacion
                 throw new Exception(ex.ToString());
             }
         }
+
+        
     }
 }

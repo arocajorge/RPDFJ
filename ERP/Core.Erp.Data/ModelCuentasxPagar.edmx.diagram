@@ -155,7 +155,6 @@
         <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_orden_giro_x_pagar" Width="1.5" PointX="6.6496644814729988" PointY="6.6271680475339148" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.cp_parametros" Width="1.5" PointX="5.8880194639265628" PointY="24.427963938763348" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_orden_giro_x_Pagos_saldo" Width="1.5" PointX="6.9617717764162332" PointY="24.900163811119349" />
-        <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_orden_pago_con_cancelacion" Width="1.5" PointX="9.1129113142904412" PointY="28.546023009599196" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.cp_Aprobacion_Ing_Bod_x_OC" Width="1.5" PointX="1.4813949807926059" PointY="28.92903755462218" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.cp_orden_pago" Width="1.5" PointX="6.5295728307820724" PointY="6.3297041535050163" />
         <EntityTypeShape EntityType="ModelCuentasxPagar.vwcp_orden_pago" Width="1.5" PointX="1.7820623190058686" PointY="7.4245023314955185" />
