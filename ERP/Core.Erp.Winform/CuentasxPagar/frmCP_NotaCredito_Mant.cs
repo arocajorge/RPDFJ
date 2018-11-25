@@ -153,7 +153,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                         vwcp_orden_pago_con_cancelacion_Bus bus_cancelacion = new vwcp_orden_pago_con_cancelacion_Bus();
                         lista_Cancelacion = new List<vwcp_orden_pago_con_cancelacion_Info>();
 
-                        lista_Cancelacion = bus_cancelacion.Get_List_orden_pago_con_cancelacion_Mayor_a_cero(param.IdEmpresa, "FACT_PROVEE", ucCp_Proveedor1.get_ProveedorInfo().IdProveedor, "APRO");
+                        lista_Cancelacion = bus_cancelacion.Get_List_orden_pago_con_cancelacion_Mayor_a_cero(param.IdEmpresa, "FACT_PROVEE", ucCp_Proveedor1.get_ProveedorInfo().IdProveedor, "");
 
                         if (lista_Cancelacion.Count != 0)
                         {

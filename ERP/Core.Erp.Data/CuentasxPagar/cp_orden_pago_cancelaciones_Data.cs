@@ -477,6 +477,18 @@ namespace Core.Erp.Data.CuentasxPagar
                         Cabe.Observacion = Info.Observacion;
                         Cabe.fechaTransaccion = DateTime.Now;
                         Context.cp_orden_pago_cancelaciones.Add(Cabe);
+
+                        var op = Context.cp_orden_pago.Where(q => q.IdEmpresa == Info.IdEmpresa && q.IdOrdenPago == Info.IdOrdenPago_op).FirstOrDefault();
+                        if (op != null)
+                        {
+                            op.IdEstadoAprobacion = "APRO";
+                            var op_det = Context.cp_orden_pago_det.Where(q => q.IdEmpresa == Info.IdEmpresa && q.IdOrdenPago == Info.IdOrdenPago_op).ToList();
+                            foreach (var item in op_det)
+                            {
+                                item.IdEstadoAprobacion = "APRO";
+                            }
+                        }
+
                         Context.SaveChanges();
 
                 
