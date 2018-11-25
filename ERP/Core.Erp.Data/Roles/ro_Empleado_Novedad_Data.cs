@@ -118,11 +118,7 @@ namespace Core.Erp.Data.Roles
                         contact.Estado = ro_info.Estado;
                         contact.Fecha = ro_info.Fecha;
                         contact.Fecha_UltMod = ro_info.Fecha_UltMod;
-                        contact.IdUsuarioUltMod = ro_info.IdUsuarioUltMod;
-
-                        contact.Fecha_UltAnu = ro_info.Fecha_UltAnu;
-                        contact.IdUsuarioUltAnu = ro_info.IdUsuarioUltAnu;
-                            
+                        contact.IdUsuarioUltMod = ro_info.IdUsuarioUltMod;                            
                         double totalvalor = 0;
 
                         foreach (var item in ro_info.LstDetalle)

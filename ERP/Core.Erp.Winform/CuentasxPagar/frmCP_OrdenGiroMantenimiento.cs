@@ -1733,9 +1733,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 }
 
                 lstCom2 = OC_B.Get_List_ordencompra_local(param.IdEmpresa);
-
-                
-                 * */
+                    * */
                 #endregion
                 cmb_Local_Exterios.SelectedIndex = (Info_OrdenGiro.PagoLocExt == "LOC") ? 0 : 1;
                 cmbPais.EditValue = Info_OrdenGiro.PaisPago;

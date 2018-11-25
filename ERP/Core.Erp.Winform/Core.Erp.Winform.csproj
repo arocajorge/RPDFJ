@@ -19,7 +19,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <PublishUrl>C:\Users\AROCA\Desktop\Publicacion\</PublishUrl>
+    <PublishUrl>C:\Users\CEDENO\Desktop\Publicaciones\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -8717,7 +8717,6 @@
     <EmbeddedResource Include="Produc_Cirdesus\Frm_ProductividadSubgrupoTrabajo_Mantenimiento.resx">
       <DependentUpon>Frm_ProductividadSubgrupoTrabajo_Mantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\frmRo_Nomina_horas_extras_cosul.resx">
       <DependentUpon>frmRo_Nomina_horas_extras_cosul.cs</DependentUpon>
     </EmbeddedResource>

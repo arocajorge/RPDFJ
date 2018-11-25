@@ -422,8 +422,9 @@ namespace Core.Erp.Winform.Roles
                     string ms = "";
                     decimal idNovedad = 0;
                     Calculo_Total();
-                   
 
+                    InfoCabNove.IdUsuarioUltMod = param.IdUsuario;
+                    InfoCabNove.Fecha_UltMod = DateTime.Now;
                     if (OEmpDCabecera.ModificarDB(InfoCabNove, ref ms, idNovedad))
                     {
                         foreach (var item in InfoCabNove.LstDetalle)
