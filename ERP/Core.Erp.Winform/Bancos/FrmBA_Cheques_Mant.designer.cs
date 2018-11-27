@@ -127,11 +127,9 @@
             this.groupBoxCuerpo.Controls.Add(this.tabControl1);
             this.groupBoxCuerpo.Controls.Add(this.grp_OGP);
             this.groupBoxCuerpo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxCuerpo.Location = new System.Drawing.Point(0, 89);
-            this.groupBoxCuerpo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCuerpo.Location = new System.Drawing.Point(0, 72);
             this.groupBoxCuerpo.Name = "groupBoxCuerpo";
-            this.groupBoxCuerpo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxCuerpo.Size = new System.Drawing.Size(1327, 569);
+            this.groupBoxCuerpo.Size = new System.Drawing.Size(995, 463);
             this.groupBoxCuerpo.TabIndex = 1;
             this.groupBoxCuerpo.TabStop = false;
             // 
@@ -140,21 +138,19 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(4, 314);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Location = new System.Drawing.Point(3, 256);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1319, 251);
+            this.tabControl1.Size = new System.Drawing.Size(989, 204);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBoxCheque);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1311, 222);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(981, 178);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cheque";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -179,65 +175,60 @@
             this.groupBoxCheque.Controls.Add(this.label5);
             this.groupBoxCheque.Controls.Add(this.pictureBox1);
             this.groupBoxCheque.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxCheque.Location = new System.Drawing.Point(4, 4);
-            this.groupBoxCheque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCheque.Location = new System.Drawing.Point(3, 3);
             this.groupBoxCheque.Name = "groupBoxCheque";
-            this.groupBoxCheque.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxCheque.Size = new System.Drawing.Size(1303, 214);
+            this.groupBoxCheque.Size = new System.Drawing.Size(975, 172);
             this.groupBoxCheque.TabIndex = 0;
             this.groupBoxCheque.TabStop = false;
             // 
             // ucBa_CuentaBanco
             // 
-            this.ucBa_CuentaBanco.Location = new System.Drawing.Point(196, 27);
-            this.ucBa_CuentaBanco.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucBa_CuentaBanco.Location = new System.Drawing.Point(147, 22);
+            this.ucBa_CuentaBanco.Margin = new System.Windows.Forms.Padding(4);
             this.ucBa_CuentaBanco.Name = "ucBa_CuentaBanco";
-            this.ucBa_CuentaBanco.Size = new System.Drawing.Size(591, 31);
+            this.ucBa_CuentaBanco.Size = new System.Drawing.Size(443, 25);
             this.ucBa_CuentaBanco.TabIndex = 1;
             this.ucBa_CuentaBanco.event_cmb_CuentaBanco_EditValueChanged += new Core.Erp.Winform.Controles.UCBa_CuentaBanco.delegate_cmb_CuentaBanco_EditValueChanged(this.ucBa_CuentaBanco_event_cmb_CuentaBanco_EditValueChanged);
             // 
             // ucBa_TextBox_Girar_a
             // 
-            this.ucBa_TextBox_Girar_a.Location = new System.Drawing.Point(196, 59);
-            this.ucBa_TextBox_Girar_a.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucBa_TextBox_Girar_a.Location = new System.Drawing.Point(147, 48);
+            this.ucBa_TextBox_Girar_a.Margin = new System.Windows.Forms.Padding(4);
             this.ucBa_TextBox_Girar_a.Name = "ucBa_TextBox_Girar_a";
-            this.ucBa_TextBox_Girar_a.Size = new System.Drawing.Size(920, 32);
+            this.ucBa_TextBox_Girar_a.Size = new System.Drawing.Size(690, 26);
             this.ucBa_TextBox_Girar_a.TabIndex = 14;
             this.ucBa_TextBox_Girar_a.Load += new System.EventHandler(this.ucBa_TextBox_Girar_a_Load);
             // 
             // btnSeleccionarChequeTalonario
             // 
             this.btnSeleccionarChequeTalonario.Image = global::Core.Erp.Winform.Properties.Resources._1388723697_1710;
-            this.btnSeleccionarChequeTalonario.Location = new System.Drawing.Point(1124, 31);
-            this.btnSeleccionarChequeTalonario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSeleccionarChequeTalonario.Location = new System.Drawing.Point(843, 25);
             this.btnSeleccionarChequeTalonario.Name = "btnSeleccionarChequeTalonario";
-            this.btnSeleccionarChequeTalonario.Size = new System.Drawing.Size(31, 27);
+            this.btnSeleccionarChequeTalonario.Size = new System.Drawing.Size(23, 22);
             this.btnSeleccionarChequeTalonario.TabIndex = 3;
             this.btnSeleccionarChequeTalonario.UseVisualStyleBackColor = true;
             this.btnSeleccionarChequeTalonario.Click += new System.EventHandler(this.btnSeleccionarChequeTalonario_Click);
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(988, 145);
-            this.txtValor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtValor.Location = new System.Drawing.Point(741, 118);
             this.txtValor.Name = "txtValor";
             this.txtValor.Properties.Mask.EditMask = "n2";
             this.txtValor.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtValor.Properties.ReadOnly = true;
-            this.txtValor.Size = new System.Drawing.Size(129, 22);
+            this.txtValor.Size = new System.Drawing.Size(97, 20);
             this.txtValor.TabIndex = 9;
             // 
             // cmbCiudad
             // 
-            this.cmbCiudad.Location = new System.Drawing.Point(196, 146);
-            this.cmbCiudad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCiudad.Location = new System.Drawing.Point(147, 119);
             this.cmbCiudad.Name = "cmbCiudad";
             this.cmbCiudad.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbCiudad.Properties.DisplayMember = "Descripcion";
             this.cmbCiudad.Properties.ValueMember = "IdCiudad";
             this.cmbCiudad.Properties.View = this.gridView5;
-            this.cmbCiudad.Size = new System.Drawing.Size(147, 22);
+            this.cmbCiudad.Size = new System.Drawing.Size(110, 20);
             this.cmbCiudad.TabIndex = 6;
             // 
             // gridView5
@@ -260,15 +251,14 @@
             // txt_giracheque
             // 
             this.txt_giracheque.Enabled = false;
-            this.txt_giracheque.Location = new System.Drawing.Point(1163, 32);
-            this.txt_giracheque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_giracheque.Location = new System.Drawing.Point(872, 26);
             this.txt_giracheque.Name = "txt_giracheque";
             this.txt_giracheque.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txt_giracheque.Properties.DisplayMember = "pe_nombreCompleto";
             this.txt_giracheque.Properties.ValueMember = "IdPersona";
             this.txt_giracheque.Properties.View = this.gridView4;
-            this.txt_giracheque.Size = new System.Drawing.Size(84, 22);
+            this.txt_giracheque.Size = new System.Drawing.Size(63, 20);
             this.txt_giracheque.TabIndex = 4;
             this.txt_giracheque.Visible = false;
             // 
@@ -294,21 +284,19 @@
             this.chkPostFechado.AutoSize = true;
             this.chkPostFechado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkPostFechado.ForeColor = System.Drawing.Color.Blue;
-            this.chkPostFechado.Location = new System.Drawing.Point(688, 146);
-            this.chkPostFechado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPostFechado.Location = new System.Drawing.Point(516, 119);
             this.chkPostFechado.Name = "chkPostFechado";
-            this.chkPostFechado.Size = new System.Drawing.Size(217, 22);
+            this.chkPostFechado.Size = new System.Drawing.Size(179, 19);
             this.chkPostFechado.TabIndex = 8;
             this.chkPostFechado.Text = "Cheque POSTFECHADO";
             this.chkPostFechado.UseVisualStyleBackColor = true;
             // 
             // txt_NCheque
             // 
-            this.txt_NCheque.Location = new System.Drawing.Point(944, 32);
-            this.txt_NCheque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_NCheque.Location = new System.Drawing.Point(708, 26);
             this.txt_NCheque.Name = "txt_NCheque";
             this.txt_NCheque.ReadOnly = true;
-            this.txt_NCheque.Size = new System.Drawing.Size(169, 22);
+            this.txt_NCheque.Size = new System.Drawing.Size(128, 20);
             this.txt_NCheque.TabIndex = 2;
             this.txt_NCheque.TextChanged += new System.EventHandler(this.txt_NCheque_TextChanged);
             // 
@@ -316,78 +304,70 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(32, 36);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(24, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 17);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Cuenta Bancaria:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(935, 150);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(701, 122);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "Valor:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 118);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(24, 96);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 17);
+            this.label8.Size = new System.Drawing.Size(70, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Observacion:";
             // 
             // dataT_fecha
             // 
-            this.dataT_fecha.Location = new System.Drawing.Point(344, 146);
-            this.dataT_fecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataT_fecha.Location = new System.Drawing.Point(258, 119);
             this.dataT_fecha.Name = "dataT_fecha";
-            this.dataT_fecha.Size = new System.Drawing.Size(321, 22);
+            this.dataT_fecha.Size = new System.Drawing.Size(242, 20);
             this.dataT_fecha.TabIndex = 7;
             this.dataT_fecha.ValueChanged += new System.EventHandler(this.dataT_fecha_ValueChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 146);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(24, 119);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 17);
+            this.label6.Size = new System.Drawing.Size(78, 13);
             this.label6.TabIndex = 9;
             this.label6.Text = "Lugar y Fecha:";
             // 
             // txt_Memo
             // 
-            this.txt_Memo.Location = new System.Drawing.Point(196, 96);
-            this.txt_Memo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Memo.Location = new System.Drawing.Point(147, 78);
             this.txt_Memo.Multiline = true;
             this.txt_Memo.Name = "txt_Memo";
-            this.txt_Memo.Size = new System.Drawing.Size(917, 37);
+            this.txt_Memo.Size = new System.Drawing.Size(689, 31);
             this.txt_Memo.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(851, 36);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(638, 29);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 17);
+            this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "# Cheque:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 68);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(24, 55);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 17);
+            this.label5.Size = new System.Drawing.Size(117, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Paguese a la orden de:";
             // 
@@ -395,10 +375,9 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 19);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 16);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1295, 191);
+            this.pictureBox1.Size = new System.Drawing.Size(969, 153);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
@@ -406,11 +385,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.UC_DiarioContPago);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1311, 220);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(981, 178);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Diario Contable";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -419,10 +397,10 @@
             // 
             this.UC_DiarioContPago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UC_DiarioContPago.IdCtaCble_x_Banco = null;
-            this.UC_DiarioContPago.Location = new System.Drawing.Point(4, 4);
-            this.UC_DiarioContPago.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.UC_DiarioContPago.Location = new System.Drawing.Point(3, 3);
+            this.UC_DiarioContPago.Margin = new System.Windows.Forms.Padding(4);
             this.UC_DiarioContPago.Name = "UC_DiarioContPago";
-            this.UC_DiarioContPago.Size = new System.Drawing.Size(1303, 212);
+            this.UC_DiarioContPago.Size = new System.Drawing.Size(975, 172);
             this.UC_DiarioContPago.TabIndex = 0;
             this.UC_DiarioContPago.Visible_Botones = false;
             this.UC_DiarioContPago.Visible_Cabecera = false;
@@ -433,11 +411,9 @@
             // 
             this.grp_OGP.Controls.Add(this.splitContainer1);
             this.grp_OGP.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grp_OGP.Location = new System.Drawing.Point(4, 19);
-            this.grp_OGP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grp_OGP.Location = new System.Drawing.Point(3, 16);
             this.grp_OGP.Name = "grp_OGP";
-            this.grp_OGP.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grp_OGP.Size = new System.Drawing.Size(1319, 295);
+            this.grp_OGP.Size = new System.Drawing.Size(989, 240);
             this.grp_OGP.TabIndex = 1;
             this.grp_OGP.TabStop = false;
             this.grp_OGP.Text = "Orden de Pago Pendientes";
@@ -445,8 +421,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(4, 19);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -459,50 +434,45 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridAprobacionOrdenPago);
-            this.splitContainer1.Size = new System.Drawing.Size(1311, 272);
-            this.splitContainer1.SplitterDistance = 51;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(983, 221);
+            this.splitContainer1.SplitterDistance = 41;
             this.splitContainer1.TabIndex = 3;
             // 
             // chk_Seleccionar_visibles
             // 
-            this.chk_Seleccionar_visibles.Location = new System.Drawing.Point(24, 12);
-            this.chk_Seleccionar_visibles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_Seleccionar_visibles.Location = new System.Drawing.Point(18, 10);
             this.chk_Seleccionar_visibles.Name = "chk_Seleccionar_visibles";
             this.chk_Seleccionar_visibles.Properties.Caption = "Seleccionar visibles";
-            this.chk_Seleccionar_visibles.Size = new System.Drawing.Size(169, 21);
+            this.chk_Seleccionar_visibles.Size = new System.Drawing.Size(127, 19);
             this.chk_Seleccionar_visibles.TabIndex = 3;
             this.chk_Seleccionar_visibles.CheckedChanged += new System.EventHandler(this.chk_Seleccionar_visibles_CheckedChanged);
             // 
             // ucGe_Beneficiario
             // 
             this.ucGe_Beneficiario.IdTipo_Persona = Core.Erp.Info.General.Cl_Enumeradores.eTipoPersona.PROVEE;
-            this.ucGe_Beneficiario.Location = new System.Drawing.Point(333, 4);
-            this.ucGe_Beneficiario.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucGe_Beneficiario.Location = new System.Drawing.Point(250, 3);
+            this.ucGe_Beneficiario.Margin = new System.Windows.Forms.Padding(4);
             this.ucGe_Beneficiario.Name = "ucGe_Beneficiario";
-            this.ucGe_Beneficiario.Size = new System.Drawing.Size(968, 32);
+            this.ucGe_Beneficiario.Size = new System.Drawing.Size(706, 26);
             this.ucGe_Beneficiario.TabIndex = 1;
             this.ucGe_Beneficiario.event_cmb_beneficiario_EditValueChanged += new Core.Erp.Winform.Controles.UCGe_Beneficiario.delegate_cmb_beneficiario_EditValueChanged(this.ucGe_Beneficiario_event_cmb_beneficiario_EditValueChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(248, 12);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(186, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 17);
+            this.label9.Size = new System.Drawing.Size(61, 13);
             this.label9.TabIndex = 2;
             this.label9.Text = "Buscar por:";
             // 
             // gridAprobacionOrdenPago
             // 
             this.gridAprobacionOrdenPago.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridAprobacionOrdenPago.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridAprobacionOrdenPago.Location = new System.Drawing.Point(0, 0);
             this.gridAprobacionOrdenPago.MainView = this.gridViewOP_Pendientes;
-            this.gridAprobacionOrdenPago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridAprobacionOrdenPago.Name = "gridAprobacionOrdenPago";
-            this.gridAprobacionOrdenPago.Size = new System.Drawing.Size(1311, 216);
+            this.gridAprobacionOrdenPago.Size = new System.Drawing.Size(983, 176);
             this.gridAprobacionOrdenPago.TabIndex = 0;
             this.gridAprobacionOrdenPago.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewOP_Pendientes});
@@ -677,66 +647,60 @@
             this.groupBoxTop.Controls.Add(this.label2);
             this.groupBoxTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxTop.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxTop.Name = "groupBoxTop";
-            this.groupBoxTop.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxTop.Size = new System.Drawing.Size(1327, 89);
+            this.groupBoxTop.Size = new System.Drawing.Size(995, 72);
             this.groupBoxTop.TabIndex = 0;
             this.groupBoxTop.TabStop = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(293, 22);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(220, 18);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 17);
+            this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 9;
             this.label10.Text = "Sucursal:";
             // 
             // UCSucursal
             // 
-            this.UCSucursal.Location = new System.Drawing.Point(369, 16);
-            this.UCSucursal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.UCSucursal.Location = new System.Drawing.Point(277, 13);
+            this.UCSucursal.Margin = new System.Windows.Forms.Padding(4);
             this.UCSucursal.Name = "UCSucursal";
-            this.UCSucursal.Size = new System.Drawing.Size(484, 27);
+            this.UCSucursal.Size = new System.Drawing.Size(363, 22);
             this.UCSucursal.TabIndex = 8;
             // 
             // ucBa_TipoFlujo
             // 
-            this.ucBa_TipoFlujo.Location = new System.Drawing.Point(119, 50);
-            this.ucBa_TipoFlujo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucBa_TipoFlujo.Location = new System.Drawing.Point(89, 41);
+            this.ucBa_TipoFlujo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ucBa_TipoFlujo.Name = "ucBa_TipoFlujo";
-            this.ucBa_TipoFlujo.Size = new System.Drawing.Size(397, 32);
+            this.ucBa_TipoFlujo.Size = new System.Drawing.Size(298, 26);
             this.ucBa_TipoFlujo.TabIndex = 7;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(16, 59);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Location = new System.Drawing.Point(12, 48);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(94, 17);
+            this.label44.Size = new System.Drawing.Size(71, 13);
             this.label44.TabIndex = 4;
             this.label44.Text = "Tipo de Flujo:";
             // 
             // txt_Ncomprobante
             // 
-            this.txt_Ncomprobante.Location = new System.Drawing.Point(128, 18);
-            this.txt_Ncomprobante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Ncomprobante.Location = new System.Drawing.Point(96, 15);
             this.txt_Ncomprobante.Name = "txt_Ncomprobante";
             this.txt_Ncomprobante.ReadOnly = true;
-            this.txt_Ncomprobante.Size = new System.Drawing.Size(156, 22);
+            this.txt_Ncomprobante.Size = new System.Drawing.Size(118, 20);
             this.txt_Ncomprobante.TabIndex = 1;
             this.txt_Ncomprobante.Text = "0";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(7, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 17);
+            this.label1.Size = new System.Drawing.Size(83, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "# Comprobante:";
             // 
@@ -745,10 +709,9 @@
             this.lblCbt_TipoAnulacion.AutoEllipsis = true;
             this.lblCbt_TipoAnulacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCbt_TipoAnulacion.ForeColor = System.Drawing.Color.Red;
-            this.lblCbt_TipoAnulacion.Location = new System.Drawing.Point(743, 54);
-            this.lblCbt_TipoAnulacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCbt_TipoAnulacion.Location = new System.Drawing.Point(557, 44);
             this.lblCbt_TipoAnulacion.Name = "lblCbt_TipoAnulacion";
-            this.lblCbt_TipoAnulacion.Size = new System.Drawing.Size(185, 26);
+            this.lblCbt_TipoAnulacion.Size = new System.Drawing.Size(139, 21);
             this.lblCbt_TipoAnulacion.TabIndex = 6;
             this.lblCbt_TipoAnulacion.Text = "***ANULADO***";
             this.lblCbt_TipoAnulacion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -757,10 +720,9 @@
             // dt_fechaCbte
             // 
             this.dt_fechaCbte.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_fechaCbte.Location = new System.Drawing.Point(1072, 18);
-            this.dt_fechaCbte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dt_fechaCbte.Location = new System.Drawing.Point(804, 15);
             this.dt_fechaCbte.Name = "dt_fechaCbte";
-            this.dt_fechaCbte.Size = new System.Drawing.Size(116, 22);
+            this.dt_fechaCbte.Size = new System.Drawing.Size(88, 20);
             this.dt_fechaCbte.TabIndex = 2;
             this.dt_fechaCbte.Tag = "";
             this.dt_fechaCbte.ValueChanged += new System.EventHandler(this.dt_fechaCbte_ValueChanged);
@@ -768,10 +730,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(983, 22);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(737, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 17);
+            this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Fecha Cbte:";
             // 
@@ -808,9 +769,9 @@
             this.UCMenu.Enabled_btnImprimirSoporte = true;
             this.UCMenu.Enabled_btnproductos = true;
             this.UCMenu.Location = new System.Drawing.Point(0, 0);
-            this.UCMenu.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.UCMenu.Margin = new System.Windows.Forms.Padding(4);
             this.UCMenu.Name = "UCMenu";
-            this.UCMenu.Size = new System.Drawing.Size(1327, 36);
+            this.UCMenu.Size = new System.Drawing.Size(995, 29);
             this.UCMenu.TabIndex = 3;
             this.UCMenu.Visible_bntAnular = true;
             this.UCMenu.Visible_bntAprobar = false;
@@ -851,10 +812,10 @@
             // 
             this.ucGe_BarraEstadoInferior_Forms1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ucGe_BarraEstadoInferior_Forms1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 694);
-            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 564);
+            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(4);
             this.ucGe_BarraEstadoInferior_Forms1.Name = "ucGe_BarraEstadoInferior_Forms1";
-            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1327, 26);
+            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(995, 21);
             this.ucGe_BarraEstadoInferior_Forms1.TabIndex = 5;
             // 
             // panelMain
@@ -862,21 +823,19 @@
             this.panelMain.Controls.Add(this.groupBoxCuerpo);
             this.panelMain.Controls.Add(this.groupBoxTop);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 36);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMain.Location = new System.Drawing.Point(0, 29);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1327, 658);
+            this.panelMain.Size = new System.Drawing.Size(995, 535);
             this.panelMain.TabIndex = 6;
             // 
             // FrmBA_Cheques_Mant
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1327, 720);
+            this.ClientSize = new System.Drawing.Size(995, 585);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.ucGe_BarraEstadoInferior_Forms1);
             this.Controls.Add(this.UCMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmBA_Cheques_Mant";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Emision de Cheques";

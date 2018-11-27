@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCGe_Beneficiario));
             this.cmb_beneficiario = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.imageList1 = new System.Windows.Forms.ImageList();
-            this.MenuAcciones = new System.Windows.Forms.ContextMenuStrip();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.MenuAcciones = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,16 +61,15 @@
             // 
             // cmb_beneficiario
             // 
-            this.cmb_beneficiario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmb_beneficiario.Location = new System.Drawing.Point(130, 4);
+            this.cmb_beneficiario.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmb_beneficiario.Location = new System.Drawing.Point(130, 3);
             this.cmb_beneficiario.Name = "cmb_beneficiario";
             this.cmb_beneficiario.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmb_beneficiario.Properties.DisplayMember = "NombreCompleto";
             this.cmb_beneficiario.Properties.ValueMember = "IdBeneficiario";
             this.cmb_beneficiario.Properties.View = this.searchLookUpEdit1View;
-            this.cmb_beneficiario.Size = new System.Drawing.Size(525, 20);
+            this.cmb_beneficiario.Size = new System.Drawing.Size(386, 20);
             this.cmb_beneficiario.TabIndex = 1;
             this.cmb_beneficiario.EditValueChanged += new System.EventHandler(this.cmb_beneficiario_EditValueChanged);
             // 
@@ -149,10 +149,10 @@
             // 
             // cmb_Acciones
             // 
-            this.cmb_Acciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmb_Acciones.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmb_Acciones.ImageIndex = 1;
             this.cmb_Acciones.ImageList = this.imageList1;
-            this.cmb_Acciones.Location = new System.Drawing.Point(657, 3);
+            this.cmb_Acciones.Location = new System.Drawing.Point(550, 4);
             this.cmb_Acciones.Name = "cmb_Acciones";
             this.cmb_Acciones.ShowArrowButton = false;
             this.cmb_Acciones.Size = new System.Drawing.Size(43, 22);
@@ -281,7 +281,7 @@
             this.Controls.Add(this.cmb_Acciones);
             this.Controls.Add(this.cmb_beneficiario);
             this.Name = "UCGe_Beneficiario";
-            this.Size = new System.Drawing.Size(703, 26);
+            this.Size = new System.Drawing.Size(683, 26);
             this.Load += new System.EventHandler(this.UCGe_Beneficiario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cmb_beneficiario.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();

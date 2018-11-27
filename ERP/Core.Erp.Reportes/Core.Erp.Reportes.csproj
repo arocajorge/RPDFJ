@@ -4228,7 +4228,6 @@
     <EmbeddedResource Include="Inventario\XINV_Rpt028_Rpt.resx">
       <DependentUpon>XINV_Rpt028_Rpt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\XROL_Rpt033_rpt.resx">
       <DependentUpon>XROL_Rpt033_rpt.cs</DependentUpon>
     </EmbeddedResource>
