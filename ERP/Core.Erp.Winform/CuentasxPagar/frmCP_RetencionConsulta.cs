@@ -221,12 +221,12 @@ namespace Core.Erp.Winform.CuentasxPagar
                 var data = gridViewConsRet.GetRow(e.RowHandle) as cp_retencion_Info;
                 if (data == null)
                     return;
-                if (data.Estado == "I")
-                { e.Appearance.ForeColor = Color.Red; }
 
                 if (data.Estado_Auto == "AUTORIZADA")
-                { e.Appearance.ForeColor = Color.Blue; }
+                { e.Appearance.ForeColor = Color.Green; }
 
+                if (data.Estado == "I")
+                { e.Appearance.ForeColor = Color.Red; }
             }
             catch (Exception ex)
             {
@@ -238,6 +238,11 @@ namespace Core.Erp.Winform.CuentasxPagar
         private void ucGe_Menu_Mantenimiento_x_usuario_event_btnBuscar_Click(object sender, EventArgs e)
         {
             cargaGrid();
+        }
+
+        private void gridViewConsRet_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+
         }
     }
 }

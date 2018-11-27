@@ -100,5 +100,9 @@ namespace Core.Erp.Info.Facturacion
             Factura_Fj = new fa_factura_fj_Info();
             Factura_CAH = new Academico.fa_factura_aca_Info();
         }
+
+        public string EstadoSRI { get; set; }
+
+        public DateTime? Fecha_Autorizacion { get; set; }
     }
 }

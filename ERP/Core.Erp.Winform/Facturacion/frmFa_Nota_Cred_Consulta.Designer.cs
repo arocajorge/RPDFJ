@@ -48,6 +48,9 @@
             this.colsc_subtotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colsc_iva = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNota)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewNota)).BeginInit();
             this.SuspendLayout();
@@ -77,15 +80,16 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2017, 4, 23, 12, 13, 6, 606);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2017, 6, 23, 12, 13, 6, 606);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2018, 10, 25, 9, 38, 36, 403);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2018, 12, 25, 9, 38, 36, 403);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.Location = new System.Drawing.Point(0, 0);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ucGe_Menu_Mantenimiento_x_usuario.Name = "ucGe_Menu_Mantenimiento_x_usuario";
             this.ucGe_Menu_Mantenimiento_x_usuario.Perfil_x_usuario = null;
-            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(1079, 180);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(1439, 189);
             this.ucGe_Menu_Mantenimiento_x_usuario.TabIndex = 8;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_bodega = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -124,18 +128,21 @@
             // 
             this.ucGe_BarraEstadoInferior_Forms1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ucGe_BarraEstadoInferior_Forms1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 387);
+            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 477);
+            this.ucGe_BarraEstadoInferior_Forms1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ucGe_BarraEstadoInferior_Forms1.Name = "ucGe_BarraEstadoInferior_Forms1";
-            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1079, 32);
+            this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(1439, 39);
             this.ucGe_BarraEstadoInferior_Forms1.TabIndex = 33;
             // 
             // gridControlNota
             // 
             this.gridControlNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlNota.Location = new System.Drawing.Point(0, 180);
+            this.gridControlNota.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControlNota.Location = new System.Drawing.Point(0, 189);
             this.gridControlNota.MainView = this.gridViewNota;
+            this.gridControlNota.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridControlNota.Name = "gridControlNota";
-            this.gridControlNota.Size = new System.Drawing.Size(1079, 207);
+            this.gridControlNota.Size = new System.Drawing.Size(1439, 288);
             this.gridControlNota.TabIndex = 34;
             this.gridControlNota.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewNota});
@@ -158,7 +165,10 @@
             this.colIdCliente,
             this.colsc_subtotal,
             this.colsc_iva,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4});
             this.gridViewNota.GridControl = this.gridControlNota;
             this.gridViewNota.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sc_subtotal", this.colsc_subtotal, "{c2}"),
@@ -306,14 +316,35 @@
             this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 162;
             // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "SRI";
+            this.gridColumn2.FieldName = "EstadoSRI";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 8;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Fecha Aut.";
+            this.gridColumn3.FieldName = "Fecha_Autorizacion";
+            this.gridColumn3.Name = "gridColumn3";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "# Autorización";
+            this.gridColumn4.FieldName = "NumAutorizacion";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
             // frmFa_Nota_Cred_Consulta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 419);
+            this.ClientSize = new System.Drawing.Size(1439, 516);
             this.Controls.Add(this.gridControlNota);
             this.Controls.Add(this.ucGe_BarraEstadoInferior_Forms1);
             this.Controls.Add(this.ucGe_Menu_Mantenimiento_x_usuario);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmFa_Nota_Cred_Consulta";
             this.Text = "frmFa_Nota_Cred_Consulta";
             this.Load += new System.EventHandler(this.frmFa_Nota_Cred_Consulta_Load);
@@ -345,5 +376,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colsc_subtotal;
         private DevExpress.XtraGrid.Columns.GridColumn colsc_iva;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

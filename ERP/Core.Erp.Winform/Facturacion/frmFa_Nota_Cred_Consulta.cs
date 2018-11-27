@@ -166,6 +166,9 @@ namespace Core.Erp.Winform.Facturacion
                 if (data == null)
                     return;
 
+                if (data.EstadoSRI == "AUTORIZADA")
+                    e.Appearance.ForeColor = Color.Green;
+
                 if (data.Estado == "I")
                     e.Appearance.ForeColor = Color.Red;
             }

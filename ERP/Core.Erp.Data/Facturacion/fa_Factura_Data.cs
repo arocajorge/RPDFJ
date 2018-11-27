@@ -156,72 +156,54 @@ namespace Core.Erp.Data.Facturacion
                 int IdBodegaFin = (IdBodega == 0) ? 99999 : IdBodega;
                 FechaIni = FechaIni.Date;
                 FechaFin = FechaFin.Date;
-              
-                       var SelectFactura = from q in OEFAC.vwfa_factura
-                                        where q.IdEmpresa == IdEmpresa
-                                        && q.IdBodega >= IdBodegaIni && q.IdBodega <= IdBodegaFin
-                                        && q.IdSucursal >= IdSucursalIni && q.IdSucursal <= IdSucursalFin
-                                        && q.vt_fecha >= FechaIni && q.vt_fecha <= FechaFin
-                                        select q;
 
-
-                foreach (var item in SelectFactura)
-                {
-                    fa_factura_Info info = new fa_factura_Info();
-
-                    List<fa_factura_det_info> ListDet = new List<fa_factura_det_info>();
-
-
-                    info.IdCbteVta = item.IdCbteVta;
-                    info.IdEmpresa = item.IdEmpresa;
-                    info.IdSucursal = item.IdSucursal;
-                    info.IdBodega = item.IdBodega;
-                    info.vt_serie1 = item.vt_serie1;
-                    info.vt_serie2 = item.vt_serie2;
-                    info.vt_tipo_venta = item.vt_tipo_venta;
-                    info.Bodega = item.bo_Descripcion;
-                    info.vt_NumFactura = item.vt_NumFactura;
-                    info.Cliente = item.pe_nombreCompleto;
-                    info.Vendedor = item.Ve_Vendedor;
-                    info.Sucursal = item.Su_Descripcion;
-                    info.vt_autorizacion = item.vt_autorizacion;
-                    info.IdCliente = item.IdCliente;
-                    info.vt_fecha = item.vt_fecha;
-                    info.IdVendedor = item.IdVendedor;
-                    info.CodCbteVta = item.CodCbteVta;
-                    info.vt_fech_venc = item.vt_fech_venc;
-                    info.vt_plazo = item.vt_plazo;
-                    info.IdUsuario = item.IdUsuario;
-                    info.vt_Observacion = item.vt_Observacion;
-                    info.Subtotal = Convert.ToDouble(item.vt_Subtotal);
-                    info.vt_OtroValor1 = item.vt_OtroValor1;
-                    info.vt_OtroValor2 = item.vt_OtroValor2;
-                    info.vt_flete = item.vt_flete;
-                    info.vt_interes = item.vt_interes;
-                    info.vt_seguro = item.vt_seguro;
-                    info.vt_tipoDoc = item.vt_tipoDoc;
-                    info.Estado = item.Estado;
-                    info.IVA = Convert.ToDouble(item.vt_iva);
-                    info.Total = Convert.ToDouble(item.vt_total);
-                    info.IdCaja = item.IdCaja;
-                    info.IdPuntoVta = item.IdPuntoVta;
-                    
-                    info.vt_saldo = item.vt_saldo;
-                    info.IdCbteCble = item.cbte;
-                    info.valor_cobro = item.valor_cobro;
-                    info.IdFormaPago = item.IdFormaPago;
-                    info.nom_FormaPago = item.nom_FormaPago;
-                    info.cant_forma_pago = item.cant_forma_pago;
-
-                    info.IdEmpresa_nc_anu=Convert.ToInt32(item.IdEmpresa_nc_anu);
-                    info.IdSucursal_nc_anu = Convert.ToInt32(item.IdSucursal_nc_anu);
-                    info.IdBodega_nc_anu = Convert.ToInt32(item.IdBodega_nc_anu);
-                    info.IdNota_nc_anu = Convert.ToDecimal(item.IdNota_nc_anu);
-
-                    FacturaInfo.Add(info);
-
-                }
-
+                FacturaInfo = OEFAC.vwfa_factura.Where(q => q.IdEmpresa == IdEmpresa
+                                     && q.IdBodega >= IdBodegaIni && q.IdBodega <= IdBodegaFin
+                                     && q.IdSucursal >= IdSucursalIni && q.IdSucursal <= IdSucursalFin
+                                     && q.vt_fecha >= FechaIni && q.vt_fecha <= FechaFin).Select(q => new fa_factura_Info
+                                     {
+                                         IdCbteVta = q.IdCbteVta,
+                                         IdEmpresa = q.IdEmpresa,
+                                         IdSucursal = q.IdSucursal,
+                                         IdBodega = q.IdBodega,
+                                         vt_serie1 = q.vt_serie1,
+                                         vt_serie2 = q.vt_serie2,
+                                         vt_tipo_venta = q.vt_tipo_venta,
+                                         Bodega = q.bo_Descripcion,
+                                         vt_NumFactura = q.vt_NumFactura,
+                                         Cliente = q.pe_nombreCompleto,
+                                         Vendedor = q.Ve_Vendedor,
+                                         Sucursal = q.Su_Descripcion,
+                                         vt_autorizacion = q.vt_autorizacion,
+                                         IdCliente = q.IdCliente,
+                                         vt_fecha = q.vt_fecha,
+                                         IdVendedor = q.IdVendedor,
+                                         CodCbteVta = q.CodCbteVta,
+                                         vt_fech_venc = q.vt_fech_venc,
+                                         vt_plazo = q.vt_plazo,
+                                         IdUsuario = q.IdUsuario,
+                                         vt_Observacion = q.vt_Observacion,
+                                         Subtotal = q.vt_Subtotal,
+                                         vt_OtroValor1 = q.vt_OtroValor1,
+                                         vt_OtroValor2 = q.vt_OtroValor2,
+                                         vt_flete = q.vt_flete,
+                                         vt_interes = q.vt_interes,
+                                         vt_seguro = q.vt_seguro,
+                                         vt_tipoDoc = q.vt_tipoDoc,
+                                         Estado = q.Estado,
+                                         IVA = q.vt_iva,
+                                         Total = q.vt_total,
+                                         IdCaja = q.IdCaja,
+                                         IdPuntoVta = q.IdPuntoVta,
+                                         vt_saldo = q.vt_saldo,
+                                         IdCbteCble = q.cbte,
+                                         valor_cobro = q.valor_cobro,
+                                         IdFormaPago = q.IdFormaPago,
+                                         nom_FormaPago = q.nom_FormaPago,
+                                         cant_forma_pago = q.cant_forma_pago,
+                                         Fecha_Autorizacion = q.Fecha_Autorizacion 
+                                     }).ToList();
+                FacturaInfo.ForEach(q => q.EstadoSRI = string.IsNullOrEmpty(q.vt_autorizacion) ? "" : "AUTORIZADA");
                 return FacturaInfo;
             }
             catch (Exception ex)

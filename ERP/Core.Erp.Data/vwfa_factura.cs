@@ -73,5 +73,6 @@ namespace Core.Erp.Data
         public string IdFormaPago { get; set; }
         public string nom_FormaPago { get; set; }
         public Nullable<int> cant_forma_pago { get; set; }
+        public Nullable<System.DateTime> Fecha_Autorizacion { get; set; }
     }
 }

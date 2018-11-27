@@ -1083,7 +1083,7 @@ namespace Core.Erp.Winform.Bancos
                     idCbteCble = Info_CbteBan.IdCbteCble;
                     get_CbteBan();
 
-                    respuesta = CbteBan_B.ModificarDB(Info_CbteBan, ref MensajeError);
+                    //respuesta = CbteBan_B.ModificarDB(Info_CbteBan, ref MensajeError);
 
 
                     idCbteCble = Info_CbteBan.IdCbteCble;
