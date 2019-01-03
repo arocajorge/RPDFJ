@@ -1630,7 +1630,10 @@ namespace Core.Erp.Business.Facturacion
 
                                 fDetalle.codigoPrincipal = Convert.ToString(item2.IdProducto);
                                 fDetalle.codigoAuxiliar = item2.pr_codigo;
-                                fDetalle.descripcion = item2.pr_descripcion;
+                                if (item2.nom_punto_cargo == null)
+                                    item2.nom_punto_cargo = "";
+                                fDetalle.descripcion = item2.pr_descripcion+" "+item2.nom_punto_cargo;
+                                fDetalle.descripcion.Trim();
 
                                 fDetalle.cantidad = Math.Round(Convert.ToDecimal(item2.vt_cantidad), 6, MidpointRounding.AwayFromZero);
                                 fDetalle.precioUnitario = Math.Round(Convert.ToDecimal(item2.vt_Precio), 6, MidpointRounding.AwayFromZero);

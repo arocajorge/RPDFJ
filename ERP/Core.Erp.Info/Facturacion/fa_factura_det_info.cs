@@ -51,6 +51,7 @@ namespace Core.Erp.Info.Facturacion
         public int IdRubro { get; set; }
         public string IdCentroCosto { get; set; }
         public string IdCentroCosto_sub_centro_costo { get; set; }
+        public string nom_punto_cargo { get; set; }
 
         public List<fa_factura_det_x_fa_descuento_Info> lst_descuento_x_factura_det { get; set; }
 

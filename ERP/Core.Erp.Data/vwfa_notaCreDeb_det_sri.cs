@@ -37,5 +37,6 @@ namespace Core.Erp.Data
         public string sc_observacion { get; set; }
         public string IdCentroCosto { get; set; }
         public string IdCentroCosto_sub_centro_costo { get; set; }
+        public string nom_punto_cargo { get; set; }
     }
 }
