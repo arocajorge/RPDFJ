@@ -1761,7 +1761,6 @@ namespace Core.Erp.Business.Facturacion
                             }
 
                             //campos adicionales 
-                            myObject.infoAdicional = new List<facturaCampoAdicional>();
 
                             if (!String.IsNullOrEmpty(item.pe_correo)) //poniendo el correo como campo adicional
                             {
@@ -1771,6 +1770,7 @@ namespace Core.Erp.Business.Facturacion
 
                                 if (datosAdc.email_bien_escrito(campoAdicional) == true)
                                 {
+                                    myObject.infoAdicional = new List<facturaCampoAdicional>();
                                     facturaCampoAdicional compoadicional = new facturaCampoAdicional();
                                     compoadicional.nombre = "MAIL";
                                     compoadicional.Value = campoAdicional;
