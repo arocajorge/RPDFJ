@@ -1536,6 +1536,10 @@ namespace Core.Erp.Business.Facturacion
 
                                 NCdetalle.codigoInterno = Convert.ToString(item2.IdProducto);
                                 NCdetalle.codigoAdicional = item2.pr_codigo;
+                                if (item2.nom_punto_cargo == null)
+                                    item2.nom_punto_cargo = "";
+                                NCdetalle.descripcion = item2.pr_descripcion + " " + item2.nom_punto_cargo;
+                                NCdetalle.descripcion.Trim();
                                 NCdetalle.descripcion = item2.pr_descripcion;
                                 NCdetalle.cantidad = Convert.ToDecimal(item2.sc_cantidad);
                                 NCdetalle.precioUnitario = Convert.ToDecimal(Math.Round(item2.sc_Precio, 6));

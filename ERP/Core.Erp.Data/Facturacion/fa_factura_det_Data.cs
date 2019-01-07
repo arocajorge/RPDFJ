@@ -132,7 +132,7 @@ namespace Core.Erp.Data.Facturacion
                   info.IdCod_Impuesto_Ice = item.IdCod_Impuesto_Ice;
                   info.IdCentroCosto = item.IdCentroCosto;
                   info.IdCentroCosto_sub_centro_costo = item.IdCentroCosto_sub_centro_costo;
-
+                  info.nom_punto_cargo = item.nom_punto_cargo;
                   //Consulto los descuentos por detalle
                   info.lst_descuento_x_factura_det = oData_des.get_list(IdEmpresa, IdSucursal, IdBodega, IdCbteVta, info.Secuencia);
 

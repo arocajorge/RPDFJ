@@ -162,6 +162,7 @@ namespace Core.Erp.Data.Facturacion
                     infogrid.DetallexItems = item.sc_observacion;
                     infogrid.IdCentroCosto = item.IdCentroCosto;
                     infogrid.IdCentroCosto_sub_centro_costo = item.IdCentroCosto_sub_centro_costo;
+                    infogrid.nom_punto_cargo = item.nom_punto_cargo;
                     lst.Add(infogrid);
                 }
                 return lst;

@@ -1599,6 +1599,7 @@ namespace Core.Erp.Business.Facturacion
 
                             myObject.infoFactura.razonSocialComprador = item.cl_RazonSocial;
                             myObject.infoFactura.identificacionComprador = item.pe_cedulaRuc;
+                            myObject.infoFactura.direccionComprador = item.pe_direccion;
 
                             // calculo impuestos detalle factura
 
@@ -1630,7 +1631,9 @@ namespace Core.Erp.Business.Facturacion
 
                                 fDetalle.codigoPrincipal = Convert.ToString(item2.IdProducto);
                                 fDetalle.codigoAuxiliar = item2.pr_codigo;
+                                
                                 fDetalle.descripcion = item2.pr_descripcion;
+                                fDetalle.descripcion.Trim();
 
                                 fDetalle.cantidad = Math.Round(Convert.ToDecimal(item2.vt_cantidad), 6, MidpointRounding.AwayFromZero);
                                 fDetalle.precioUnitario = Math.Round(Convert.ToDecimal(item2.vt_Precio), 6, MidpointRounding.AwayFromZero);
@@ -1640,13 +1643,9 @@ namespace Core.Erp.Business.Facturacion
                                 //Detalle adicional x item
                                 if (string.IsNullOrEmpty(item2.vt_detallexItems)==false)
                                 {
-                                    fDetalle.detallesAdicionales = new List<facturaDetalleDetAdicional>();
-                                    facturaDetalleDetAdicional det_adicional = new facturaDetalleDetAdicional();
-                                    det_adicional.nombre = "Detalle";
-                                    det_adicional.valor = item2.vt_detallexItems.Trim();
-                                    fDetalle.detallesAdicionales.Add(det_adicional);
+                                    fDetalle.descripcion = fDetalle.descripcion +" "+ item2.vt_detallexItems;
                                 }
-
+                              
 
 
 
@@ -1758,23 +1757,45 @@ namespace Core.Erp.Business.Facturacion
                             }
 
                             //campos adicionales 
-                            myObject.infoAdicional = new List<facturaCampoAdicional>();
 
-                            if (!String.IsNullOrEmpty(item.pe_correo)) //poniendo el correo como campo adicional
-                            {
-                                campoAdicional = item.pe_correo;
+                            if (!String.IsNullOrEmpty(item.pe_correo) 
+                                || !String.IsNullOrEmpty(item.Atencion_a) 
+                                || !String.IsNullOrEmpty(item.num_oc)
+                                || !String.IsNullOrEmpty(item.descripcion_fact)) 
+
                                 
-                                Cl_ValidarEmail_Info datosAdc = new Cl_ValidarEmail_Info();
+                            {
+                                myObject.infoAdicional = new List<facturaCampoAdicional>();
+                                if(!String.IsNullOrEmpty(item.pe_correo))
+                                {
+                                    campoAdicional = item.pe_correo;
+                                    Cl_ValidarEmail_Info datosAdc = new Cl_ValidarEmail_Info();
+                                    if (datosAdc.email_bien_escrito(campoAdicional) == true)
+                                    {
+                                        facturaCampoAdicional compoadicional = new facturaCampoAdicional();
+                                        compoadicional.nombre = "MAIL:";
+                                        compoadicional.Value = campoAdicional;
+                                        myObject.infoAdicional.Add(compoadicional);
+                                    }
+                                }
 
-                                if (datosAdc.email_bien_escrito(campoAdicional) == true)
+                                if (!String.IsNullOrEmpty(item.Atencion_a))
+                                {
+                                        facturaCampoAdicional compoadicional = new facturaCampoAdicional();
+                                        compoadicional.nombre = "DIRIGUIDO A:";
+                                        compoadicional.Value = item.Atencion_a;
+                                        myObject.infoAdicional.Add(compoadicional);
+                                    
+                                }
+                                if (!String.IsNullOrEmpty(item.descripcion_fact))
                                 {
                                     facturaCampoAdicional compoadicional = new facturaCampoAdicional();
-                                    compoadicional.nombre = "MAIL";
-                                    compoadicional.Value = campoAdicional;
-
-                                    
+                                    compoadicional.nombre = "OBSERVACIÓN:";
+                                    compoadicional.Value = item.descripcion_fact;
                                     myObject.infoAdicional.Add(compoadicional);
+
                                 }
+
                             }
 
                        

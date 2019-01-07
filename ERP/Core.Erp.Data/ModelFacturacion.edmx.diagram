@@ -150,10 +150,7 @@
         <AssociationConnector Association="DBERPModelFAC.FK_fa_orden_Desp_fa_cliente" />
         <AssociationConnector Association="DBERPModelFAC.FK_fa_pedido_fa_cliente" />
         <AssociationConnector Association="DBERPModelFAC.FK_fa_venta_telefonica_fa_cliente" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_sri" Width="1.5" PointX="0.93210369205665944" PointY="9.8959175692386534" />
         <EntityTypeShape EntityType="DBERPModelFAC.fa_notaCreDeb_det" Width="1.5" PointX="6.616431710597328" PointY="23.345029603384916" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_det" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb_det_sri" Width="1.5" PointX="21.75" PointY="0.75" />
         <AssociationConnector Association="DBERPModelFAC.FK_fa_notaCreDeb_det_fa_notaCreDeb" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_ContabilizarNotaCredDeb_x_Item" Width="1.5" PointX="10.75" PointY="7.5" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb_sri" Width="1.5" PointX="6.75" PointY="0.5" />
@@ -173,6 +170,9 @@
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_movimientos_x_bodega_x_cat" Width="1.5" PointX="7.4748338253585782" PointY="28.96271794892974" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura" Width="1.5" PointX="0.017186081044928209" PointY="18.081975915507403" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb" Width="1.5" PointX="8.9408734277546742" PointY="24.875025865098007" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_det" Width="1.5" PointX="7.8975784647732876" PointY="20.684863189554243" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb_det_sri" Width="1.5" PointX="10.554295766425458" PointY="19.743104884281337" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_sri" Width="1.5" PointX="6.3204119141774306" PointY="6.7982832374043216" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

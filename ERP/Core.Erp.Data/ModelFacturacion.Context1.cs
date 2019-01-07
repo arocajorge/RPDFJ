@@ -19,10 +19,13 @@ namespace Core.Erp.Data
             : base("name=EntitiesFacturacion")
         {
         }
+        //poner esta funcion dentro de la clase entities no viene por defecto
         public void SetCommandTimeOut(int TimeOut)
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
+    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -118,10 +121,7 @@ namespace Core.Erp.Data
         public DbSet<fa_cliente> fa_cliente { get; set; }
         public DbSet<vwfa_cliente> vwfa_cliente { get; set; }
         public DbSet<vwfa_cliente_vista_previa> vwfa_cliente_vista_previa { get; set; }
-        public DbSet<vwfa_factura_sri> vwfa_factura_sri { get; set; }
         public DbSet<fa_notaCreDeb_det> fa_notaCreDeb_det { get; set; }
-        public DbSet<vwfa_factura_det> vwfa_factura_det { get; set; }
-        public DbSet<vwfa_notaCreDeb_det_sri> vwfa_notaCreDeb_det_sri { get; set; }
         public DbSet<vwfa_ContabilizarNotaCredDeb_x_Item> vwfa_ContabilizarNotaCredDeb_x_Item { get; set; }
         public DbSet<vwfa_notaCreDeb_sri> vwfa_notaCreDeb_sri { get; set; }
         public DbSet<fa_factura_det> fa_factura_det { get; set; }
@@ -135,5 +135,8 @@ namespace Core.Erp.Data
         public DbSet<vwfa_movimientos_x_bodega_x_cat> vwfa_movimientos_x_bodega_x_cat { get; set; }
         public DbSet<vwfa_factura> vwfa_factura { get; set; }
         public DbSet<vwfa_notaCreDeb> vwfa_notaCreDeb { get; set; }
+        public DbSet<vwfa_factura_det> vwfa_factura_det { get; set; }
+        public DbSet<vwfa_notaCreDeb_det_sri> vwfa_notaCreDeb_det_sri { get; set; }
+        public DbSet<vwfa_factura_sri> vwfa_factura_sri { get; set; }
     }
 }

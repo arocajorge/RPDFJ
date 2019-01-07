@@ -1178,7 +1178,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
                     myObjectRete.infoCompRetencion.dirEstablecimiento = item.Su_Direccion; ///sucursal
                     myObjectRete.infoCompRetencion.obligadoContabilidad = (item.ObligadoAllevarConta == "S" || item.ObligadoAllevarConta == "SI") ? "SI" : "NO";
-
+                    myObjectRete.infoCompRetencion.dirEstablecimiento = item.pe_direccion;
                     switch (item.IdTipoDocumento)
                     {
                         case "CED":
