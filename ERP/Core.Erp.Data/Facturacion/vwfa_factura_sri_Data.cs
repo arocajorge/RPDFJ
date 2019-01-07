@@ -54,7 +54,10 @@ namespace Core.Erp.Data.Facturacion
                                     h.pe_correo,
                                     h.vt_plazo,
                                     h.vt_fech_venc,
-                                    h.vt_Observacion
+                                    h.vt_Observacion,
+                                    h.Atencion_a,
+                                    h.num_oc,
+                                    h.descripcion_fact
                                 };
 
                 foreach (var item in consulta)
@@ -90,6 +93,9 @@ namespace Core.Erp.Data.Facturacion
 
                     Info.vt_fech_venc = item.vt_fech_venc;
                     Info.vt_Observacion = item.vt_Observacion;
+                    Info.Atencion_a = item.Atencion_a;
+                    Info.num_oc = item.num_oc;
+                    Info.descripcion_fact = item.descripcion_fact;
                     lista.Add(Info);
                 }
                 return lista;

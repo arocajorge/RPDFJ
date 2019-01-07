@@ -42,5 +42,8 @@ namespace Core.Erp.Data
         public decimal vt_plazo { get; set; }
         public string vt_Observacion { get; set; }
         public System.DateTime vt_fech_venc { get; set; }
+        public string Atencion_a { get; set; }
+        public string num_oc { get; set; }
+        public string descripcion_fact { get; set; }
     }
 }
