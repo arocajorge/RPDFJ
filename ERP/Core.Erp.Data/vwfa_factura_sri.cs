@@ -45,5 +45,6 @@ namespace Core.Erp.Data
         public string Atencion_a { get; set; }
         public string num_oc { get; set; }
         public string descripcion_fact { get; set; }
+        public string pe_direccion { get; set; }
     }
 }

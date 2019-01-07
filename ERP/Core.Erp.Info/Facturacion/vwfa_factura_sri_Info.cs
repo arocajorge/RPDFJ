@@ -41,6 +41,7 @@ namespace Core.Erp.Info.Facturacion
         public string Atencion_a { get; set; }
         public string num_oc { get; set; }
         public string descripcion_fact { get; set; }
+        public string pe_direccion { get; set; }
 
         public List<fa_factura_det_info> lista_FacturaDet = new List<fa_factura_det_info>();
 

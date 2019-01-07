@@ -1599,6 +1599,7 @@ namespace Core.Erp.Business.Facturacion
 
                             myObject.infoFactura.razonSocialComprador = item.cl_RazonSocial;
                             myObject.infoFactura.identificacionComprador = item.pe_cedulaRuc;
+                            myObject.infoFactura.direccionComprador = item.pe_direccion;
 
                             // calculo impuestos detalle factura
 

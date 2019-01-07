@@ -172,7 +172,7 @@
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb" Width="1.5" PointX="8.9408734277546742" PointY="24.875025865098007" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_det" Width="1.5" PointX="7.8975784647732876" PointY="20.684863189554243" />
         <EntityTypeShape EntityType="DBERPModelFAC.vwfa_notaCreDeb_det_sri" Width="1.5" PointX="10.554295766425458" PointY="19.743104884281337" />
-        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_sri" Width="1.5" PointX="10.881301704273234" PointY="23.66839955359157" />
+        <EntityTypeShape EntityType="DBERPModelFAC.vwfa_factura_sri" Width="1.5" PointX="6.3204119141774306" PointY="6.7982832374043216" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

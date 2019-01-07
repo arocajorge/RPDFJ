@@ -762,7 +762,8 @@
       [vwfa_factura_sri].[vt_fech_venc] AS [vt_fech_venc], 
       [vwfa_factura_sri].[Atencion_a] AS [Atencion_a], 
       [vwfa_factura_sri].[num_oc] AS [num_oc], 
-      [vwfa_factura_sri].[descripcion_fact] AS [descripcion_fact]
+      [vwfa_factura_sri].[descripcion_fact] AS [descripcion_fact], 
+      [vwfa_factura_sri].[pe_direccion] AS [pe_direccion]
       FROM [dbo].[vwfa_factura_sri] AS [vwfa_factura_sri]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwfa_factura_x_cbte_cble" EntityType="DBERPModelFAC.Store.vwfa_factura_x_cbte_cble" store:Type="Views" store:Schema="dbo" store:Name="vwfa_factura_x_cbte_cble">
@@ -4141,6 +4142,7 @@
             <PropertyRef Name="vt_plazo" />
             <PropertyRef Name="vt_Observacion" />
             <PropertyRef Name="vt_fech_venc" />
+            <PropertyRef Name="pe_direccion" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdSucursal" Type="int" Nullable="false" />
@@ -4173,6 +4175,7 @@
           <Property Name="Atencion_a" Type="varchar" MaxLength="500" />
           <Property Name="num_oc" Type="varchar" MaxLength="50" />
           <Property Name="descripcion_fact" Type="varchar(max)" />
+          <Property Name="pe_direccion" Type="varchar" Nullable="false" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwfa_factura_x_cbte_cble' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -11454,6 +11457,7 @@
             <PropertyRef Name="vt_plazo" />
             <PropertyRef Name="vt_Observacion" />
             <PropertyRef Name="vt_fech_venc" />
+            <PropertyRef Name="pe_direccion" />
           </Key>
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Int32" Name="IdSucursal" Nullable="false" />
@@ -11486,6 +11490,7 @@
           <Property Type="String" Name="Atencion_a" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="num_oc" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="descripcion_fact" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_direccion" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -14157,6 +14162,7 @@
           <EntitySetMapping Name="vwfa_factura_sri">
             <EntityTypeMapping TypeName="DBERPModelFAC.vwfa_factura_sri">
               <MappingFragment StoreEntitySet="vwfa_factura_sri">
+                <ScalarProperty Name="pe_direccion" ColumnName="pe_direccion" />
                 <ScalarProperty Name="descripcion_fact" ColumnName="descripcion_fact" />
                 <ScalarProperty Name="num_oc" ColumnName="num_oc" />
                 <ScalarProperty Name="Atencion_a" ColumnName="Atencion_a" />
