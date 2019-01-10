@@ -8717,7 +8717,6 @@
     <EmbeddedResource Include="Produc_Cirdesus\Frm_ProductividadSubgrupoTrabajo_Mantenimiento.resx">
       <DependentUpon>Frm_ProductividadSubgrupoTrabajo_Mantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\frmRo_Nomina_horas_extras_cosul.resx">
       <DependentUpon>frmRo_Nomina_horas_extras_cosul.cs</DependentUpon>
     </EmbeddedResource>
