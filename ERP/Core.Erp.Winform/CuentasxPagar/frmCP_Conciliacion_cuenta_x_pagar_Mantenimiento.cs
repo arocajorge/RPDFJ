@@ -492,7 +492,12 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                                     }
                                 }
-
+                                if (info._cbteCble_det_lista_info.Count == 1)
+                                {
+                                    MessageBox.Show("El diario de anticipo a proveedor debe tener más de 1 linea luego de ser agrupada para el reverso, revise las cuentas contables del anticipo");
+                                    return false;
+                                }
+                                    
                                 // Grabar Nuevo Diario
                                 decimal IdCbteCble = 0;
                                 if (bus_cbtecble.GrabarDB(info, ref IdCbteCble, ref msgError))
