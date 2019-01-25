@@ -1384,10 +1384,10 @@ namespace Core.Erp.Data.CuentasxPagar
                     info.IdTipoDocumento = item.IdTipoDocumento.Trim();
 
                     info.IdSucursal = Convert.ToInt32(item.IdSucursal);
-                    info.Su_Descripcion = item.Su_Descripcion.Trim();
-                    info.Su_Direccion = item.Su_Direccion.Trim();
+                    info.Su_Descripcion = (item.Su_Descripcion)==null ? "" : item.Su_Descripcion.Trim();
+                    info.Su_Direccion = (item.Su_Direccion)==null?"":item.Su_Direccion.Trim();
                     info.Estado = item.Estado;
-
+                    
                     lista.Add(info);
                 }
 
