@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="990cf72fd1aa443f83fe5144ddc23c92" Name="Diagrama1" ZoomLevel="21">
-        <EntityTypeShape EntityType="DBERP_FJ_PRODUCCIONModel.vwCOMP_FJ_Rpt001" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBERP_FJ_PRODUCCIONModel.vwCOMP_FJ_Rpt001" Width="1.5" PointX="11.663883134566193" PointY="22.806443418751677" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

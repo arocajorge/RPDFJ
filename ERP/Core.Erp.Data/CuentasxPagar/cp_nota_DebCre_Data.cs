@@ -427,7 +427,7 @@ namespace Core.Erp.Data.CuentasxPagar
                             address.DebCre = info.DebCre;
                             address.cn_Fecha_vcto = Convert.ToDateTime(info.cn_Fecha_vcto.Value.ToShortDateString());
                             address.Fecha_contable = Convert.ToDateTime(info.Fecha_contable.Value.ToShortDateString());
-                            address.PagoLocExt = info.PagoLocExt;
+                            address.PagoLocExt = "LOC";
                             address.PaisPago = info.PaisPago;
                             address.ConvenioTributacion = info.ConvenioTributacion;
                             address.PagoSujetoRetencion = info.PagoSujetoRetencion;
@@ -519,7 +519,7 @@ namespace Core.Erp.Data.CuentasxPagar
                         contact.DebCre = info.DebCre;
                         contact.IdIden_credito = (info.IdIden_credito == 0) ? null : info.IdIden_credito;
                         contact.IdTipoNota = info.IdTipoNota;
-                        contact.PagoLocExt = info.PagoLocExt;
+                        contact.PagoLocExt = "LOC";
                         contact.PaisPago = info.PaisPago;
                         contact.ConvenioTributacion = info.ConvenioTributacion;
                         contact.PagoSujetoRetencion = info.PagoSujetoRetencion;

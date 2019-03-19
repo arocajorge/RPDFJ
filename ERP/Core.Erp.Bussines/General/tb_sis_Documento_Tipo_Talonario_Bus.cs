@@ -143,6 +143,9 @@ namespace Core.Erp.Business.General
                     case Cl_Enumeradores.eCliente_Vzen.GRAFINPRENT:
                         Considerar_punto_emision = false;
                         break;
+                    case Cl_Enumeradores.eCliente_Vzen.FJ:
+                        Considerar_punto_emision = false;
+                        break;
                     default:
                         Considerar_punto_emision = true;
                         break;
