@@ -64,13 +64,15 @@ namespace Core.Erp.Data.Roles_Fj
               using (EntityRoles_FJ db = new EntityRoles_FJ())
               {
 
-                  var add = db.ro_planificacion_x_jornada_desfasada.FirstOrDefault(v => v.IdEmpresa == Info.IdEmpresa && v.IdPeriodo == Info.IdPeriodo && v.IdPlanificacion==Info.IdPlanificacion );
-                  add.Observación = Info.Observación;
-                  add.Fecha_UltMod = DateTime.Now;
-                  add.IdDivision = Info.IdDivision;
-                  add.IdUsuarioUltMod = Info.IdUsuarioUltMod;
-                  db.SaveChanges();
-
+                  var add = db.ro_planificacion_x_jornada_desfasada.FirstOrDefault(v => v.IdEmpresa == Info.IdEmpresa && v.IdPeriodo == Info.IdPeriodo && v.IdDivision==Info.IdDivision );
+                  if (add != null)
+                  {
+                      add.Observación = Info.Observación;
+                      add.Fecha_UltMod = DateTime.Now;
+                      add.IdDivision = Info.IdDivision;
+                      add.IdUsuarioUltMod = Info.IdUsuarioUltMod;
+                      db.SaveChanges();
+                  }
                   
 
                   return true;
