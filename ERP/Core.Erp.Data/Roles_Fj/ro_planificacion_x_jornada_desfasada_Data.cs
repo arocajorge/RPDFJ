@@ -72,6 +72,7 @@ namespace Core.Erp.Data.Roles_Fj
                       add.IdDivision = Info.IdDivision;
                       add.IdUsuarioUltMod = Info.IdUsuarioUltMod;
                       db.SaveChanges();
+                      Info.IdPlanificacion = add.IdPlanificacion;
                   }
                   
 
