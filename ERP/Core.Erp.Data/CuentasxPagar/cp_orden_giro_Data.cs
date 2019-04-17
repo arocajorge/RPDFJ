@@ -186,6 +186,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 List<cp_orden_giro_Info> lM = new List<cp_orden_giro_Info>();
                 EntitiesCuentasxPagar Base = new EntitiesCuentasxPagar();
                 IQueryable<vwcp_orden_giro_x_pagar> select_;
+                Base.SetCommandTimeOut(3000);
                 if (!Mostrar_fact_conci_caja)
                 {
                     select_ = from T in Base.vwcp_orden_giro_x_pagar
