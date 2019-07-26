@@ -85,6 +85,7 @@ namespace Core.Erp.Data
         public DbSet<vwro_planificacion_x_jornada_desfasada> vwro_planificacion_x_jornada_desfasada { get; set; }
         public DbSet<vwro_ro_planificacion_x_jornada_desfasada_empleado> vwro_ro_planificacion_x_jornada_desfasada_empleado { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
+        public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

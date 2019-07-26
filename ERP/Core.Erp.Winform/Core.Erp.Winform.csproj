@@ -4918,6 +4918,18 @@
     <Compile Include="Roles\Frm_Ro_AdministradorReporte.Designer.cs">
       <DependentUpon>Frm_Ro_AdministradorReporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Roles_Fj\frmRo_servicio_cons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles_Fj\frmRo_servicio_cons.Designer.cs">
+      <DependentUpon>frmRo_servicio_cons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles_Fj\frmRo_servicio_mant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles_Fj\frmRo_servicio_mant.Designer.cs">
+      <DependentUpon>frmRo_servicio_mant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles_Fj\frmRo_control_asistencia_eventual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -8792,6 +8804,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\Frm_Ro_AdministradorReporte.resx">
       <DependentUpon>Frm_Ro_AdministradorReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles_Fj\frmRo_servicio_cons.resx">
+      <DependentUpon>frmRo_servicio_cons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles_Fj\frmRo_servicio_mant.resx">
+      <DependentUpon>frmRo_servicio_mant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles_Fj\frmRo_control_asistencia_eventual.resx">
       <DependentUpon>frmRo_control_asistencia_eventual.cs</DependentUpon>

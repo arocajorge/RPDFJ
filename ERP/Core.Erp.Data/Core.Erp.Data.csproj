@@ -3207,6 +3207,7 @@
     <Compile Include="Roles_Fj\ro_empleado_x_turno_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Det_Data.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_tipoServicio_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Det_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_x_empleado_Adm_x_periodo_Data.cs" />
@@ -3410,6 +3411,9 @@
     </Compile>
     <Compile Include="ro_empresa_x_TipoLiqui_Rol.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_fectividad_Entrega_tipoServicio.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_fectividad_Entrega_x_Periodo_Empleado.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>

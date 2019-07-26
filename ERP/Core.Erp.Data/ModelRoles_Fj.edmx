@@ -19,6 +19,7 @@
           <EntitySet Name="ro_empleado_x_rutas_asignadas" EntityType="ModelRoles_Fj.Store.ro_empleado_x_rutas_asignadas" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_empleado_x_rutas_asignadas_Det" EntityType="ModelRoles_Fj.Store.ro_empleado_x_rutas_asignadas_Det" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_empleado_x_turno" EntityType="ModelRoles_Fj.Store.ro_empleado_x_turno" store:Type="Tables" Schema="Fj_servindustrias" />
+          <EntitySet Name="ro_fectividad_Entrega_tipoServicio" EntityType="ModelRoles_Fj.Store.ro_fectividad_Entrega_tipoServicio" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_fectividad_Entrega_x_Periodo_Empleado" EntityType="ModelRoles_Fj.Store.ro_fectividad_Entrega_x_Periodo_Empleado" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_fectividad_Entrega_x_Periodo_Empleado_Det" EntityType="ModelRoles_Fj.Store.ro_fectividad_Entrega_x_Periodo_Empleado_Det" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_fectividad_x_empleado_Adm_x_periodo" EntityType="ModelRoles_Fj.Store.ro_fectividad_x_empleado_Adm_x_periodo" store:Type="Tables" Schema="Fj_servindustrias" />
@@ -763,6 +764,23 @@
           <Property Name="FechaHoraAnul" Type="datetime" />
           <Property Name="IdUsuarioUltAnu" Type="char" MaxLength="20" />
           <Property Name="MotivoAnulacion" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ro_fectividad_Entrega_tipoServicio">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdServicio" Type="int" Nullable="false" />
+          <Property Name="ts_Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="ts_codigo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_Transaccion" Type="datetime" />
+          <Property Name="IdUsuarioUltModi" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltMod" Type="datetime" />
+          <Property Name="IdUsuarioUltAnu" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_UltAnu" Type="datetime" />
         </EntityType>
         <EntityType Name="ro_fectividad_Entrega_x_Periodo_Empleado">
           <Key>
@@ -2482,6 +2500,7 @@
           <EntitySet Name="vwro_planificacion_x_jornada_desfasada" EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" />
           <EntitySet Name="vwro_ro_planificacion_x_jornada_desfasada_empleado" EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" />
           <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" />
+          <EntitySet Name="ro_fectividad_Entrega_tipoServicio" EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -4343,6 +4362,23 @@
           <Property Type="String" Name="ip" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdTipoServicio" />
         </EntityType>
+        <EntityType Name="ro_fectividad_Entrega_tipoServicio">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="String" Name="ts_Descripcion" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ts_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5570,6 +5606,23 @@
                 <ScalarProperty Name="Efec_Entrega_Rango" ColumnName="Efec_Entrega_Rango" />
                 <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
                 <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_fectividad_Entrega_tipoServicio">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio">
+              <MappingFragment StoreEntitySet="ro_fectividad_Entrega_tipoServicio">
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
+                <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="ts_codigo" ColumnName="ts_codigo" />
+                <ScalarProperty Name="ts_Descripcion" ColumnName="ts_Descripcion" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

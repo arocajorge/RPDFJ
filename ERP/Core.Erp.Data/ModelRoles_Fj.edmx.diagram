@@ -87,6 +87,7 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" Width="1.5" PointX="1.5460096809761643" PointY="0.069095850023019989" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" Width="1.5" PointX="6.0300423866277768" PointY="29.060659764828468" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="7.9212631638726512" PointY="23.787656541814869" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" Width="1.5" PointX="9.38229709928031" PointY="27.415538726102344" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -908,6 +908,7 @@
     <Compile Include="Roles_Fj\ro_empleado_x_turno_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Det_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_tipoServicio_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Det_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_x_empleado_Adm_x_periodo_Bus.cs" />
