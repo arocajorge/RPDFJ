@@ -258,7 +258,7 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                var data = gvw_ruta.GetRow(e.RowHandle) as ro_ruta_Info;
+                var data = gvw_ruta.GetRow(e.RowHandle) as ro_fectividad_Entrega_tipoServicio_Info;
                 if (data == null)
                     return;
                 if (data.Estado == false)

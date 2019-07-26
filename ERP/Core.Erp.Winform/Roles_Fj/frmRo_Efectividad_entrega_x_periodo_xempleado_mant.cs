@@ -137,11 +137,13 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
 
-                Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
-                .Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
-                cmb_servicios.Properties.ValueMember = "Key";
-                cmb_servicios.Properties.DisplayMember = "Value";
-                cmb_servicios.Properties.DataSource = colorEnums.ToList();
+                ro_fectividad_Entrega_tipoServicio_Bus bus_servicio = new Business.Roles_Fj.ro_fectividad_Entrega_tipoServicio_Bus();
+                List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicio = new List<ro_fectividad_Entrega_tipoServicio_Info>();
+                lst_servicio = bus_servicio.Get_List(Convert.ToInt32(param.IdEmpresa));
+
+               
+                cmb_servicios.Properties.DataSource = lst_servicio.Where(v => v.Estado == true);
+
 
             }
             catch (Exception ex)

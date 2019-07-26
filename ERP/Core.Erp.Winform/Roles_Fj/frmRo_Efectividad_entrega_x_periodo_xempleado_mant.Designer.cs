@@ -692,8 +692,8 @@
             this.cmb_servicios.Name = "cmb_servicios";
             this.cmb_servicios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_servicios.Properties.DisplayMember = "Value";
-            this.cmb_servicios.Properties.ValueMember = "Key";
+            this.cmb_servicios.Properties.DisplayMember = "ts_Descripcion";
+            this.cmb_servicios.Properties.ValueMember = "IdServicio";
             this.cmb_servicios.Properties.View = this.gridView1;
             this.cmb_servicios.Size = new System.Drawing.Size(347, 20);
             this.cmb_servicios.TabIndex = 156;
@@ -712,7 +712,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "Key";
+            this.gridColumn1.FieldName = "IdServicio";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
@@ -721,7 +721,7 @@
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Servicio";
-            this.gridColumn2.FieldName = "Value";
+            this.gridColumn2.FieldName = "ts_Descripcion";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;

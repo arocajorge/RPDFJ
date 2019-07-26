@@ -13,7 +13,7 @@ using Core.Erp.Info.Roles_Fj;
 using Core.Erp.Business.General;
 using Core.Erp.Business.Roles;
 using Core.Erp.Business.Roles_Fj;
-
+using Core.Erp.Business.Roles_Fj;
 namespace Core.Erp.Winform.Roles_Fj
 {
     public partial class frmRo_Calculo_Pago_Variable_Porcentaje_mant : Form
@@ -134,11 +134,15 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
-               .Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
-                cmb_servicios.Properties.ValueMember = "Key";
-                cmb_servicios.Properties.DisplayMember = "Value";
-                cmb_servicios.Properties.DataSource = colorEnums.ToList();
+                ro_fectividad_Entrega_tipoServicio_Bus bus_servicio = new Business.Roles_Fj.ro_fectividad_Entrega_tipoServicio_Bus();
+                List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicio = new List<ro_fectividad_Entrega_tipoServicio_Info>();
+                lst_servicio = bus_servicio.Get_List(Convert.ToInt32(param.IdEmpresa));
+
+               // Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
+               //.Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
+               // cmb_servicios.Properties.ValueMember = "Key";
+               // cmb_servicios.Properties.DisplayMember = "Value";
+                cmb_servicios.Properties.DataSource = lst_servicio.Where(v=>v.Estado==true);
 
                 Limpiar();
             }

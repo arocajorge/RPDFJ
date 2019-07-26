@@ -30,6 +30,11 @@
         {
             this.ucGe_Menu_Superior_Mant1 = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_servicios = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmb_tipo_nomina = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_IdNomina_Tipo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,19 +49,14 @@
             this.col_Efec_Volumen_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Rango = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.cmb_servicios = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_tipo_nomina.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu_Superior_Mant1
@@ -132,6 +132,55 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(935, 78);
             this.groupControl1.TabIndex = 1;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(8, 53);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.TabIndex = 159;
+            this.labelControl1.Text = "Tipo servicio:";
+            // 
+            // cmb_servicios
+            // 
+            this.cmb_servicios.Location = new System.Drawing.Point(93, 50);
+            this.cmb_servicios.Name = "cmb_servicios";
+            this.cmb_servicios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_servicios.Properties.DisplayMember = "ts_Descripcion";
+            this.cmb_servicios.Properties.ValueMember = "IdServicio";
+            this.cmb_servicios.Properties.View = this.gridView1;
+            this.cmb_servicios.Size = new System.Drawing.Size(237, 20);
+            this.cmb_servicios.TabIndex = 158;
+            this.cmb_servicios.EditValueChanged += new System.EventHandler(this.cmb_servicios_EditValueChanged);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.FieldName = "IdServicio";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 168;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Servicio";
+            this.gridColumn2.FieldName = "ts_Descripcion";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 984;
             // 
             // cmb_tipo_nomina
             // 
@@ -267,55 +316,6 @@
             this.col_Recup_Cartera_Aplica.Visible = true;
             this.col_Recup_Cartera_Aplica.VisibleIndex = 5;
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(8, 53);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(63, 13);
-            this.labelControl1.TabIndex = 159;
-            this.labelControl1.Text = "Tipo servicio:";
-            // 
-            // cmb_servicios
-            // 
-            this.cmb_servicios.Location = new System.Drawing.Point(93, 50);
-            this.cmb_servicios.Name = "cmb_servicios";
-            this.cmb_servicios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_servicios.Properties.DisplayMember = "Value";
-            this.cmb_servicios.Properties.ValueMember = "Key";
-            this.cmb_servicios.Properties.View = this.gridView1;
-            this.cmb_servicios.Size = new System.Drawing.Size(237, 20);
-            this.cmb_servicios.TabIndex = 158;
-            this.cmb_servicios.EditValueChanged += new System.EventHandler(this.cmb_servicios_EditValueChanged);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "Key";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 168;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Servicio";
-            this.gridColumn2.FieldName = "Value";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 984;
-            // 
             // frmRo_Calculo_Pago_Variable_Porcentaje_mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,12 +330,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_tipo_nomina.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
