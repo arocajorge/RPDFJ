@@ -14,6 +14,8 @@ namespace Core.Erp.Info.Roles_Fj
         public int IdPeriodo { get; set; }
         public int IdEfectividad { get; set; }
         public string Observacion { get; set; }
+        public Nullable<int> IdServicioTipo { get; set; }
+
         public bool Estado { get; set; }
         public string IdUsuario { get; set; }
         public string IdUsuarioAnu { get; set; }

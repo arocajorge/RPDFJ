@@ -413,7 +413,11 @@ namespace Core.Erp.Info.General
             OPCIONES5 = 5
         }
 
-
+        public enum eTipoServiciosVariable
+        {
+            Vevidas = 1,
+            Alimentos = 2
+        }
     }
 
 }

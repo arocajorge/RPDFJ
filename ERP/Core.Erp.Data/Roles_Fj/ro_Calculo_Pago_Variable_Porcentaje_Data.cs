@@ -13,7 +13,7 @@ namespace Core.Erp.Data.Roles_Fj
     {
         string mensaje = "";
 
-        public ro_Calculo_Pago_Variable_Porcentaje_Info Get_Info_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina)
+        public ro_Calculo_Pago_Variable_Porcentaje_Info Get_Info_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio)
         {
             try
             {
@@ -23,6 +23,7 @@ namespace Core.Erp.Data.Roles_Fj
                     var contact = from q in Context.ro_Calculo_Pago_Variable_Porcentaje
                                   where q.IdEmpresa == IdEmpresa
                                   && q.IdTipo_Nomina == IdTipo_Nomina
+                                  && q.IdTipoServicio==IdTipoServicio
                                   select q;
 
                     foreach (var item in contact)
@@ -36,6 +37,7 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.Efec_Volumen_Aplica = item.Efec_Volumen_Aplica;
                         Info.Recup_Cartera_Rango = item.Recup_Cartera_Rango;
                         Info.Recup_Cartera_Aplica = item.Recup_Cartera_Aplica;
+                        Info.IdTipoServicio = Info.IdTipoServicio;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -61,7 +63,7 @@ namespace Core.Erp.Data.Roles_Fj
             }
         }
 
-        public List<ro_Calculo_Pago_Variable_Porcentaje_Info> Get_List_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina)
+        public List<ro_Calculo_Pago_Variable_Porcentaje_Info> Get_List_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio)
         {
             try
             {
@@ -72,6 +74,7 @@ namespace Core.Erp.Data.Roles_Fj
                     var contact = from q in Context.ro_Calculo_Pago_Variable_Porcentaje
                                   where q.IdEmpresa == IdEmpresa
                                   && q.IdTipo_Nomina == IdTipo_Nomina
+                                  && q.IdTipoServicio==IdTipoServicio
                                   select q;
 
                     foreach (var item in contact)
@@ -86,6 +89,7 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.Efec_Volumen_Aplica = item.Efec_Volumen_Aplica;
                         Info.Recup_Cartera_Rango = item.Recup_Cartera_Rango;
                         Info.Recup_Cartera_Aplica = item.Recup_Cartera_Aplica;
+                        Info.IdTipoServicio = item.IdTipoServicio;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -163,6 +167,7 @@ namespace Core.Erp.Data.Roles_Fj
                     contact.Efec_Volumen_Aplica = Info.Efec_Volumen_Aplica;
                     contact.Recup_Cartera_Rango = Info.Recup_Cartera_Rango;
                     contact.Recup_Cartera_Aplica = Info.Recup_Cartera_Aplica;
+                    contact.IdTipoServicio = Info.IdTipoServicio;
                     //campos de auditoria
                     contact.Estado = Info.Estado;
                     contact.IdUsuario = Info.IdUsuario;
@@ -214,7 +219,7 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ Context = new EntityRoles_FJ())
                 {
-                    ro_Calculo_Pago_Variable_Porcentaje contact = Context.ro_Calculo_Pago_Variable_Porcentaje.FirstOrDefault(q => q.IdEmpresa == Info.IdEmpresa && q.IdTipo_Nomina == Info.IdTipo_Nomina);
+                    ro_Calculo_Pago_Variable_Porcentaje contact = Context.ro_Calculo_Pago_Variable_Porcentaje.FirstOrDefault(q => q.IdEmpresa == Info.IdEmpresa && q.IdTipo_Nomina == Info.IdTipo_Nomina && q.IdTipoServicio == Info.IdTipoServicio);
                     if (contact != null)
                     {
                         contact.Efec_Entrega_Rango = Info.Efec_Entrega_Rango;
@@ -224,7 +229,7 @@ namespace Core.Erp.Data.Roles_Fj
                         contact.Recup_Cartera_Rango = Info.Recup_Cartera_Rango;
                         contact.Recup_Cartera_Aplica = Info.Recup_Cartera_Aplica;
                         contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
-
+                        contact.IdTipoServicio = Info.IdTipoServicio;
                         contact.Fecha_UltMod = DateTime.Now;
                         contact.nom_pc = Info.nom_pc;
                         contact.ip = Info.ip;
@@ -250,7 +255,7 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ Context = new EntityRoles_FJ())
                 {
-                    ro_Calculo_Pago_Variable_Porcentaje contact = Context.ro_Calculo_Pago_Variable_Porcentaje.FirstOrDefault(q => q.IdEmpresa == Info.IdEmpresa && q.IdTipo_Nomina == Info.IdTipo_Nomina);
+                    ro_Calculo_Pago_Variable_Porcentaje contact = Context.ro_Calculo_Pago_Variable_Porcentaje.FirstOrDefault(q => q.IdEmpresa == Info.IdEmpresa && q.IdTipo_Nomina == Info.IdTipo_Nomina && q.IdTipoServicio==Info.IdTipoServicio);
                     if (contact != null)
                     {
                         contact.IdUsuarioUltAnu = Info.IdUsuarioUltAnu;
@@ -274,13 +279,13 @@ namespace Core.Erp.Data.Roles_Fj
             }
         }
 
-        public bool EliminarDB(int IdEmpresa, int IdTipo_Nomina, ref string mensaje)
+        public bool EliminarDB(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio, ref string mensaje)
         {
             try
             {
                 using (EntityRoles_FJ Context = new EntityRoles_FJ())
                 {
-                    Context.Database.ExecuteSqlCommand("Delete Fj_servindustrias.ro_Calculo_Pago_Variable_Porcentaje Where IdEmpresa =" + IdEmpresa + "and IdTipo_Nomina =" + IdTipo_Nomina);
+                    Context.Database.ExecuteSqlCommand("Delete Fj_servindustrias.ro_Calculo_Pago_Variable_Porcentaje Where IdEmpresa =" + IdEmpresa + "and IdTipo_Nomina =" + IdTipo_Nomina + " and IdTipoServicio="+IdTipo_Nomina);
                 }
                 return true;
             }

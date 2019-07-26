@@ -62,7 +62,6 @@ namespace Core.Erp.Data
         public DbSet<vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<ro_descuento_no_planificados> ro_descuento_no_planificados { get; set; }
         public DbSet<ro_descuento_no_planificados_Det> ro_descuento_no_planificados_Det { get; set; }
-        public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
         public DbSet<vwro_empleado_x_rutas_asignadas_Det> vwro_empleado_x_rutas_asignadas_Det { get; set; }
         public DbSet<vwro_marcaciones_x_empleado_x_incidentes_falt_Perm> vwro_marcaciones_x_empleado_x_incidentes_falt_Perm { get; set; }
         public DbSet<ro_Parametro_calculo_Horas_Extras> ro_Parametro_calculo_Horas_Extras { get; set; }
@@ -85,6 +84,7 @@ namespace Core.Erp.Data
         public DbSet<ro_planificacion_x_jornada_desfasada_empleado> ro_planificacion_x_jornada_desfasada_empleado { get; set; }
         public DbSet<vwro_planificacion_x_jornada_desfasada> vwro_planificacion_x_jornada_desfasada { get; set; }
         public DbSet<vwro_ro_planificacion_x_jornada_desfasada_empleado> vwro_ro_planificacion_x_jornada_desfasada_empleado { get; set; }
+        public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

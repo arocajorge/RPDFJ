@@ -538,6 +538,7 @@
           <Property Name="MotivoAnulacion" Type="varchar" MaxLength="50" />
           <Property Name="nom_pc" Type="varchar" MaxLength="50" />
           <Property Name="ip" Type="varchar" MaxLength="50" />
+          <Property Name="IdTipoServicio" Type="int" />
         </EntityType>
         <EntityType Name="ro_descuento_no_planificados">
           <Key>
@@ -785,6 +786,7 @@
           <Property Name="FechaAnu" Type="datetime" />
           <Property Name="FechaTransac" Type="datetime" Nullable="false" />
           <Property Name="FechaUltModi" Type="datetime" />
+          <Property Name="IdServicioTipo" Type="int" />
         </EntityType>
         <EntityType Name="ro_fectividad_Entrega_x_Periodo_Empleado_Det">
           <Key>
@@ -2391,7 +2393,6 @@
             <Parameter Name="IdNomina_Tipo" Mode="In" Type="Int32" />
             <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" />
           <EntitySet Name="vwro_empleado_x_rutas_asignadas_Det" EntityType="ModelRoles_Fj.vwro_empleado_x_rutas_asignadas_Det" />
           <EntitySet Name="vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" />
           <EntitySet Name="ro_Parametro_calculo_Horas_Extras" EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" />
@@ -2480,6 +2481,7 @@
           </AssociationSet>
           <EntitySet Name="vwro_planificacion_x_jornada_desfasada" EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" />
           <EntitySet Name="vwro_ro_planificacion_x_jornada_desfasada_empleado" EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" />
+          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -2837,6 +2839,7 @@
           <Property Type="DateTime" Name="FechaAnu" Precision="3" />
           <Property Type="DateTime" Name="FechaTransac" Nullable="false" Precision="3" />
           <Property Type="DateTime" Name="FechaUltModi" Precision="3" />
+          <Property Type="Int32" Name="IdServicioTipo" />
         </EntityType>
         <EntityType Name="ro_fectividad_Entrega_x_Periodo_Empleado_Det">
           <Key>
@@ -3501,32 +3504,6 @@
           <Property Type="DateTime" Name="em_fechaSalida" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="IdDivision" Nullable="true" />
         </ComplexType>
-        <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdTipo_Nomina" />
-            <PropertyRef Name="IdEfectividad" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdTipo_Nomina" Nullable="false" />
-          <Property Type="Int32" Name="IdEfectividad" Nullable="false" />
-          <Property Type="String" Name="Efec_Entrega_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Efec_Entrega_Aplica" Nullable="false" />
-          <Property Type="String" Name="Efec_Volumen_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Efec_Volumen_Aplica" Nullable="false" />
-          <Property Type="String" Name="Recup_Cartera_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Recup_Cartera_Aplica" Nullable="false" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
-          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
-          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
-          <Property Type="String" Name="MotivoAnulacion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ip" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vwro_empleado_x_rutas_asignadas_Det">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -4339,6 +4316,33 @@
           <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdPlanificacion" Nullable="false" />
         </EntityType>
+        <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdTipo_Nomina" />
+            <PropertyRef Name="IdEfectividad" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdTipo_Nomina" Nullable="false" />
+          <Property Type="Int32" Name="IdEfectividad" Nullable="false" />
+          <Property Type="String" Name="Efec_Entrega_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Efec_Entrega_Aplica" Nullable="false" />
+          <Property Type="String" Name="Efec_Volumen_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Efec_Volumen_Aplica" Nullable="false" />
+          <Property Type="String" Name="Recup_Cartera_Rango" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Recup_Cartera_Aplica" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+          <Property Type="String" Name="MotivoAnulacion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdTipoServicio" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4606,6 +4610,7 @@
           <EntitySetMapping Name="ro_fectividad_Entrega_x_Periodo_Empleado">
             <EntityTypeMapping TypeName="ModelRoles_Fj.ro_fectividad_Entrega_x_Periodo_Empleado">
               <MappingFragment StoreEntitySet="ro_fectividad_Entrega_x_Periodo_Empleado">
+                <ScalarProperty Name="IdServicioTipo" ColumnName="IdServicioTipo" />
                 <ScalarProperty Name="FechaUltModi" ColumnName="FechaUltModi" />
                 <ScalarProperty Name="FechaTransac" ColumnName="FechaTransac" />
                 <ScalarProperty Name="FechaAnu" ColumnName="FechaAnu" />
@@ -5029,31 +5034,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ro_Calculo_Pago_Variable_Porcentaje">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje">
-              <MappingFragment StoreEntitySet="ro_Calculo_Pago_Variable_Porcentaje">
-                <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
-                <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
-                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
-                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
-                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
-                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
-                <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Recup_Cartera_Aplica" ColumnName="Recup_Cartera_Aplica" />
-                <ScalarProperty Name="Recup_Cartera_Rango" ColumnName="Recup_Cartera_Rango" />
-                <ScalarProperty Name="Efec_Volumen_Aplica" ColumnName="Efec_Volumen_Aplica" />
-                <ScalarProperty Name="Efec_Volumen_Rango" ColumnName="Efec_Volumen_Rango" />
-                <ScalarProperty Name="Efec_Entrega_Aplica" ColumnName="Efec_Entrega_Aplica" />
-                <ScalarProperty Name="Efec_Entrega_Rango" ColumnName="Efec_Entrega_Rango" />
-                <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
-                <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwro_empleado_x_rutas_asignadas_Det">
             <EntityTypeMapping TypeName="ModelRoles_Fj.vwro_empleado_x_rutas_asignadas_Det">
               <MappingFragment StoreEntitySet="vwro_empleado_x_rutas_asignadas_Det">
@@ -5564,6 +5544,32 @@
                 <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_Calculo_Pago_Variable_Porcentaje">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje">
+              <MappingFragment StoreEntitySet="ro_Calculo_Pago_Variable_Porcentaje">
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
+                <ScalarProperty Name="MotivoAnulacion" ColumnName="MotivoAnulacion" />
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
+                <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Recup_Cartera_Aplica" ColumnName="Recup_Cartera_Aplica" />
+                <ScalarProperty Name="Recup_Cartera_Rango" ColumnName="Recup_Cartera_Rango" />
+                <ScalarProperty Name="Efec_Volumen_Aplica" ColumnName="Efec_Volumen_Aplica" />
+                <ScalarProperty Name="Efec_Volumen_Rango" ColumnName="Efec_Volumen_Rango" />
+                <ScalarProperty Name="Efec_Entrega_Aplica" ColumnName="Efec_Entrega_Aplica" />
+                <ScalarProperty Name="Efec_Entrega_Rango" ColumnName="Efec_Entrega_Rango" />
+                <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
+                <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

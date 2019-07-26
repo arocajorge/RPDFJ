@@ -28,5 +28,6 @@ namespace Core.Erp.Data
         public Nullable<System.DateTime> FechaAnu { get; set; }
         public System.DateTime FechaTransac { get; set; }
         public Nullable<System.DateTime> FechaUltModi { get; set; }
+        public Nullable<int> IdServicioTipo { get; set; }
     }
 }

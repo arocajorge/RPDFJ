@@ -44,12 +44,19 @@
             this.col_Efec_Volumen_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Rango = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_servicios = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_tipo_nomina.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu_Superior_Mant1
@@ -99,12 +106,14 @@
             this.ucGe_Menu_Superior_Mant1.Visible_btn_Imprimir_Reten = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnAceptar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnAprobarGuardarSalir = false;
+            this.ucGe_Menu_Superior_Mant1.Visible_btnContabilizar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnEstadosOC = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnGuardar = true;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpFrm = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpLote = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpRep = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImprimirSoporte = false;
+            this.ucGe_Menu_Superior_Mant1.Visible_btnModificar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnproductos = false;
             this.ucGe_Menu_Superior_Mant1.event_btnGuardar_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_Click(this.ucGe_Menu_Superior_Mant1_event_btnGuardar_Click);
             this.ucGe_Menu_Superior_Mant1.event_btnGuardar_y_Salir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_y_Salir_Click(this.ucGe_Menu_Superior_Mant1_event_btnGuardar_y_Salir_Click);
@@ -114,17 +123,19 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labelControl1);
+            this.groupControl1.Controls.Add(this.cmb_servicios);
             this.groupControl1.Controls.Add(this.cmb_tipo_nomina);
             this.groupControl1.Controls.Add(this.label1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 29);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(935, 68);
+            this.groupControl1.Size = new System.Drawing.Size(935, 78);
             this.groupControl1.TabIndex = 1;
             // 
             // cmb_tipo_nomina
             // 
-            this.cmb_tipo_nomina.Location = new System.Drawing.Point(207, 33);
+            this.cmb_tipo_nomina.Location = new System.Drawing.Point(93, 24);
             this.cmb_tipo_nomina.Name = "cmb_tipo_nomina";
             this.cmb_tipo_nomina.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -176,7 +187,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(104, 36);
+            this.label1.Location = new System.Drawing.Point(5, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 0;
@@ -185,10 +196,10 @@
             // gc_ro_Calculo_Pago_Variable_Porcentaje
             // 
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Location = new System.Drawing.Point(0, 97);
+            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Location = new System.Drawing.Point(0, 107);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.MainView = this.gvw_ro_Calculo_Pago_Variable_Porcentaje;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Name = "gc_ro_Calculo_Pago_Variable_Porcentaje";
-            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(935, 332);
+            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(935, 322);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.TabIndex = 2;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje});
@@ -205,11 +216,12 @@
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.GridControl = this.gc_ro_Calculo_Pago_Variable_Porcentaje;
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.Name = "gvw_ro_Calculo_Pago_Variable_Porcentaje";
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gvw_ro_Calculo_Pago_Variable_Porcentaje.OptionsView.ShowAutoFilterRow = true;
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gvw_ro_Calculo_Pago_Variable_Porcentaje_KeyUp);
             // 
             // col_Efec_Entrega_Rango
             // 
-            this.col_Efec_Entrega_Rango.Caption = "Efec_Entrega_Rango";
+            this.col_Efec_Entrega_Rango.Caption = "Efec. entrega rango";
             this.col_Efec_Entrega_Rango.FieldName = "Efec_Entrega_Rango";
             this.col_Efec_Entrega_Rango.Name = "col_Efec_Entrega_Rango";
             this.col_Efec_Entrega_Rango.Visible = true;
@@ -217,7 +229,7 @@
             // 
             // col_Efec_Entrega_Aplica
             // 
-            this.col_Efec_Entrega_Aplica.Caption = "Efec_Entrega_Aplica";
+            this.col_Efec_Entrega_Aplica.Caption = "Efec. entrega aplica";
             this.col_Efec_Entrega_Aplica.FieldName = "Efec_Entrega_Aplica";
             this.col_Efec_Entrega_Aplica.Name = "col_Efec_Entrega_Aplica";
             this.col_Efec_Entrega_Aplica.Visible = true;
@@ -225,7 +237,7 @@
             // 
             // col_Efec_Volumen_Rango
             // 
-            this.col_Efec_Volumen_Rango.Caption = "Efec_Volumen_Rango";
+            this.col_Efec_Volumen_Rango.Caption = "Efec. Volumen rango";
             this.col_Efec_Volumen_Rango.FieldName = "Efec_Volumen_Rango";
             this.col_Efec_Volumen_Rango.Name = "col_Efec_Volumen_Rango";
             this.col_Efec_Volumen_Rango.Visible = true;
@@ -233,7 +245,7 @@
             // 
             // col_Efec_Volumen_Aplica
             // 
-            this.col_Efec_Volumen_Aplica.Caption = "Efec_Volumen_Aplica";
+            this.col_Efec_Volumen_Aplica.Caption = "Efec. Volumen aplica";
             this.col_Efec_Volumen_Aplica.FieldName = "Efec_Volumen_Aplica";
             this.col_Efec_Volumen_Aplica.Name = "col_Efec_Volumen_Aplica";
             this.col_Efec_Volumen_Aplica.Visible = true;
@@ -241,7 +253,7 @@
             // 
             // col_Recup_Cartera_Rango
             // 
-            this.col_Recup_Cartera_Rango.Caption = "Recup_Cartera_Rango";
+            this.col_Recup_Cartera_Rango.Caption = "Recup. Cartera rango";
             this.col_Recup_Cartera_Rango.FieldName = "Recup_Cartera_Rango";
             this.col_Recup_Cartera_Rango.Name = "col_Recup_Cartera_Rango";
             this.col_Recup_Cartera_Rango.Visible = true;
@@ -249,11 +261,60 @@
             // 
             // col_Recup_Cartera_Aplica
             // 
-            this.col_Recup_Cartera_Aplica.Caption = "Recup_Cartera_Aplica";
+            this.col_Recup_Cartera_Aplica.Caption = "Recup. Cartera  aplica";
             this.col_Recup_Cartera_Aplica.FieldName = "Recup_Cartera_Aplica";
             this.col_Recup_Cartera_Aplica.Name = "col_Recup_Cartera_Aplica";
             this.col_Recup_Cartera_Aplica.Visible = true;
             this.col_Recup_Cartera_Aplica.VisibleIndex = 5;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(8, 53);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.TabIndex = 159;
+            this.labelControl1.Text = "Tipo servicio:";
+            // 
+            // cmb_servicios
+            // 
+            this.cmb_servicios.Location = new System.Drawing.Point(93, 50);
+            this.cmb_servicios.Name = "cmb_servicios";
+            this.cmb_servicios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_servicios.Properties.DisplayMember = "Value";
+            this.cmb_servicios.Properties.ValueMember = "Key";
+            this.cmb_servicios.Properties.View = this.gridView1;
+            this.cmb_servicios.Size = new System.Drawing.Size(237, 20);
+            this.cmb_servicios.TabIndex = 158;
+            this.cmb_servicios.EditValueChanged += new System.EventHandler(this.cmb_servicios_EditValueChanged);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.FieldName = "Key";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 168;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Servicio";
+            this.gridColumn2.FieldName = "Value";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 984;
             // 
             // frmRo_Calculo_Pago_Variable_Porcentaje_mant
             // 
@@ -273,6 +334,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,5 +358,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn col_IdNomina_Tipo;
         private DevExpress.XtraGrid.Columns.GridColumn col_Descripcion_nomina;
         private DevExpress.XtraGrid.Columns.GridColumn col_Estado_tipo_nomina;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_servicios;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

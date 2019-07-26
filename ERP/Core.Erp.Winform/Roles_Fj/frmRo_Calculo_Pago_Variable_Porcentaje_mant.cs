@@ -60,11 +60,21 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 Lista_Calculo = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
-
+                if(cmb_tipo_nomina.EditValue == null)
+                {
+                    MessageBox.Show("Seleccione la nomina");
+                    return;
+                }
+                if (cmb_servicios.EditValue == null)
+                {
+                    MessageBox.Show("Seleccione el tipo de servicio");
+                    return;
+                }
                 foreach (var item in Bind_Lista_Calculo)
                 {
                     item.IdEmpresa = param.IdEmpresa;
                     item.IdTipo_Nomina = Convert.ToInt32(cmb_tipo_nomina.EditValue);
+                    item.IdTipoServicio =Convert.ToInt32( cmb_servicios.EditValue);
                 }
             }
             catch (Exception ex)
@@ -82,7 +92,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 {
                     Get_Info();
                     IdTipo_Nomina = Convert.ToInt32(cmb_tipo_nomina.EditValue);
-                    Bus_Calculo.ModificarDB(param.IdEmpresa, IdTipo_Nomina, Bind_Lista_Calculo.ToList(), ref mensaje);
+                    Bus_Calculo.ModificarDB(param.IdEmpresa, IdTipo_Nomina,Convert.ToInt32(cmb_servicios.EditValue),  Bind_Lista_Calculo.ToList(), ref mensaje);
                     MessageBox.Show("Registro Guardados correctamente", "Sistemas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    
                     return true;
@@ -124,6 +134,12 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+                Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
+               .Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
+                cmb_servicios.Properties.ValueMember = "Key";
+                cmb_servicios.Properties.DisplayMember = "Value";
+                cmb_servicios.Properties.DataSource = colorEnums.ToList();
+
                 Limpiar();
             }
             catch (Exception ex)
@@ -205,9 +221,12 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+                int IdTipoServicio=cmb_tipo_nomina.EditValue==null?0:Convert.ToInt32(cmb_servicios.EditValue);
 
-                Bind_Lista_Calculo = new BindingList<ro_Calculo_Pago_Variable_Porcentaje_Info>(Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmb_tipo_nomina.EditValue)));
+                Bind_Lista_Calculo = new BindingList<ro_Calculo_Pago_Variable_Porcentaje_Info>(Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa,Convert.ToInt32( cmb_tipo_nomina.EditValue),IdTipoServicio ));
                 gc_ro_Calculo_Pago_Variable_Porcentaje.DataSource = Bind_Lista_Calculo;
+
+
             }
             catch (Exception ex)
             {
@@ -231,6 +250,23 @@ namespace Core.Erp.Winform.Roles_Fj
             catch (Exception ex)
             {
                 Log_Error_bus.Log_Error(ex.ToString());
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmb_servicios_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdTipoServicio = cmb_tipo_nomina.EditValue == null ? 0 : Convert.ToInt32(cmb_servicios.EditValue);
+                Bind_Lista_Calculo = new BindingList<ro_Calculo_Pago_Variable_Porcentaje_Info>(Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmb_tipo_nomina.EditValue), IdTipoServicio));
+                gc_ro_Calculo_Pago_Variable_Porcentaje.DataSource = Bind_Lista_Calculo;
+
+            }
+            catch (Exception ex)
+            {
+                
+               Log_Error_bus.Log_Error(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

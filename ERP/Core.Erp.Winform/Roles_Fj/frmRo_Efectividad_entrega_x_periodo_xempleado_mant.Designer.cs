@@ -79,6 +79,11 @@
             this.nuevaRutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_servicios = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.txtobservacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
@@ -105,6 +110,8 @@
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
             this.splitContainerControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             this.SuspendLayout();
@@ -300,9 +307,9 @@
             this.groupControl2.Controls.Add(this.xtraTabControl1);
             this.groupControl2.Controls.Add(this.menuStrip1);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(0, 145);
+            this.groupControl2.Location = new System.Drawing.Point(0, 163);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1239, 445);
+            this.groupControl2.Size = new System.Drawing.Size(1239, 427);
             this.groupControl2.TabIndex = 12;
             // 
             // xtraTabControl1
@@ -311,7 +318,7 @@
             this.xtraTabControl1.Location = new System.Drawing.Point(2, 45);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1235, 398);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1235, 380);
             this.xtraTabControl1.TabIndex = 4;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -321,7 +328,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.gridControl_Efectividad);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1229, 370);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1229, 352);
             this.xtraTabPage1.Text = "Detalle de Efectividad por Empleado";
             // 
             // gridControl_Efectividad
@@ -333,7 +340,7 @@
             this.gridControl_Efectividad.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmb_ruta,
             this.cmb_imagen});
-            this.gridControl_Efectividad.Size = new System.Drawing.Size(1229, 370);
+            this.gridControl_Efectividad.Size = new System.Drawing.Size(1229, 352);
             this.gridControl_Efectividad.TabIndex = 5;
             this.gridControl_Efectividad.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_Efectividad});
@@ -526,7 +533,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.gc_ro_Calculo_Pago_Variable_Porcentaje);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1229, 370);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1229, 352);
             this.xtraTabPage2.Text = "Tabla de rango de valores";
             // 
             // gc_ro_Calculo_Pago_Variable_Porcentaje
@@ -535,7 +542,7 @@
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Location = new System.Drawing.Point(0, 0);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.MainView = this.gvw_ro_Calculo_Pago_Variable_Porcentaje;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Name = "gc_ro_Calculo_Pago_Variable_Porcentaje";
-            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(1229, 370);
+            this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(1229, 352);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.TabIndex = 3;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje});
@@ -646,7 +653,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 29);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1239, 116);
+            this.groupControl1.Size = new System.Drawing.Size(1239, 134);
             this.groupControl1.TabIndex = 11;
             this.groupControl1.Text = "Fecha y parametros de planificacion de ruta por empleado";
             // 
@@ -655,6 +662,8 @@
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Location = new System.Drawing.Point(2, 21);
             this.splitContainerControl2.Name = "splitContainerControl2";
+            this.splitContainerControl2.Panel1.Controls.Add(this.labelControl1);
+            this.splitContainerControl2.Panel1.Controls.Add(this.cmb_servicios);
             this.splitContainerControl2.Panel1.Controls.Add(this.labelControl3);
             this.splitContainerControl2.Panel1.Controls.Add(this.cmbnomina);
             this.splitContainerControl2.Panel1.Controls.Add(this.labelControl4);
@@ -664,10 +673,59 @@
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.groupControl3);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1235, 93);
+            this.splitContainerControl2.Size = new System.Drawing.Size(1235, 111);
             this.splitContainerControl2.SplitterPosition = 439;
             this.splitContainerControl2.TabIndex = 157;
             this.splitContainerControl2.Text = "splitContainerControl2";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(8, 87);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.TabIndex = 157;
+            this.labelControl1.Text = "Tipo servicio:";
+            // 
+            // cmb_servicios
+            // 
+            this.cmb_servicios.Location = new System.Drawing.Point(80, 85);
+            this.cmb_servicios.Name = "cmb_servicios";
+            this.cmb_servicios.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_servicios.Properties.DisplayMember = "Value";
+            this.cmb_servicios.Properties.ValueMember = "Key";
+            this.cmb_servicios.Properties.View = this.gridView1;
+            this.cmb_servicios.Size = new System.Drawing.Size(347, 20);
+            this.cmb_servicios.TabIndex = 156;
+            this.cmb_servicios.EditValueChanged += new System.EventHandler(this.cmb_servicios_EditValueChanged);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.FieldName = "Key";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 168;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Servicio";
+            this.gridColumn2.FieldName = "Value";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 984;
             // 
             // groupControl3
             // 
@@ -675,7 +733,7 @@
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl3.Location = new System.Drawing.Point(0, 0);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(791, 93);
+            this.groupControl3.Size = new System.Drawing.Size(791, 111);
             this.groupControl3.TabIndex = 157;
             this.groupControl3.Text = "Observación";
             // 
@@ -685,7 +743,7 @@
             this.txtobservacion.Location = new System.Drawing.Point(2, 21);
             this.txtobservacion.Multiline = true;
             this.txtobservacion.Name = "txtobservacion";
-            this.txtobservacion.Size = new System.Drawing.Size(787, 70);
+            this.txtobservacion.Size = new System.Drawing.Size(787, 88);
             this.txtobservacion.TabIndex = 0;
             // 
             // frmRo_Efectividad_entrega_x_periodo_xempleado_mant
@@ -725,6 +783,8 @@
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
             this.splitContainerControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
@@ -785,5 +845,10 @@
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private System.Windows.Forms.TextBox txtobservacion;
         private DevExpress.XtraGrid.Columns.GridColumn Col_Error;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_servicios;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

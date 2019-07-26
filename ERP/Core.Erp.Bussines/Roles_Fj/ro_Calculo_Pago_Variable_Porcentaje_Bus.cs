@@ -15,11 +15,11 @@ namespace Core.Erp.Business.Roles_Fj
         string mensaje;
         ro_Calculo_Pago_Variable_Porcentaje_Data oData = new ro_Calculo_Pago_Variable_Porcentaje_Data();
 
-        public ro_Calculo_Pago_Variable_Porcentaje_Info Get_Info_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina)
+        public ro_Calculo_Pago_Variable_Porcentaje_Info Get_Info_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio)
         {
             try
             {
-                return oData.Get_Info_Calculo_Pago_Porcentaje(IdEmpresa, IdTipo_Nomina);
+                return oData.Get_Info_Calculo_Pago_Porcentaje(IdEmpresa, IdTipo_Nomina,  IdTipoServicio);
             }
             catch (Exception ex)
             {
@@ -32,11 +32,11 @@ namespace Core.Erp.Business.Roles_Fj
             }
         }
 
-        public List<ro_Calculo_Pago_Variable_Porcentaje_Info> Get_List_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina)
+        public List<ro_Calculo_Pago_Variable_Porcentaje_Info> Get_List_Calculo_Pago_Porcentaje(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio)
         {
             try
             {
-                return oData.Get_List_Calculo_Pago_Porcentaje(IdEmpresa, IdTipo_Nomina);
+                return oData.Get_List_Calculo_Pago_Porcentaje(IdEmpresa, IdTipo_Nomina, IdTipoServicio);
             }
             catch (Exception ex)
             {
@@ -100,12 +100,12 @@ namespace Core.Erp.Business.Roles_Fj
             }
         }
 
-        public bool ModificarDB(int IdEmpresa, int IdTipo_Nomina, List<ro_Calculo_Pago_Variable_Porcentaje_Info> List_Info, ref string mensaje)
+        public bool ModificarDB(int IdEmpresa, int IdTipo_Nomina,int IdTipoServicio, List<ro_Calculo_Pago_Variable_Porcentaje_Info> List_Info, ref string mensaje)
         {
             try
             {
                 Boolean resGrabar = false;
-                resGrabar = EliminarDB(IdEmpresa, IdTipo_Nomina, ref mensaje);
+                resGrabar = EliminarDB(IdEmpresa, IdTipo_Nomina, IdTipoServicio, ref mensaje);
                 resGrabar = GuardarDB(List_Info, IdTipo_Nomina, ref mensaje);
                 return resGrabar;
             }
@@ -137,11 +137,11 @@ namespace Core.Erp.Business.Roles_Fj
             }
         }
 
-        public bool EliminarDB(int IdEmpresa, int IdTipo_Nomina, ref string mensaje)
+        public bool EliminarDB(int IdEmpresa, int IdTipo_Nomina, int IdTipoServicio, ref string mensaje)
         {
             try
             {
-                return oData.EliminarDB(IdEmpresa, IdTipo_Nomina, ref mensaje);
+                return oData.EliminarDB(IdEmpresa, IdTipo_Nomina,IdTipoServicio, ref mensaje);
             }
             catch (Exception ex)
             {

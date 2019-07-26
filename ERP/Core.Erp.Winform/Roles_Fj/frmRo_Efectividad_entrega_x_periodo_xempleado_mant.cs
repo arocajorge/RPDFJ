@@ -130,10 +130,18 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmb_ruta.DataSource = lista_ruta;
 
 
-
+                
 
                 listadoNomina = oRo_Nomina_Tipo_Bus.Get_List_Nomina_Tipo(param.IdEmpresa);
                 cmbnomina.Properties.DataSource = listadoNomina;
+
+
+
+                Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
+                .Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
+                cmb_servicios.Properties.ValueMember = "Key";
+                cmb_servicios.Properties.DisplayMember = "Value";
+                cmb_servicios.Properties.DataSource = colorEnums.ToList();
 
             }
             catch (Exception ex)
@@ -227,6 +235,8 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+                int IdTipoServicio=cmb_servicios.Properties.ValueMember==null?0:Convert.ToInt32(cmb_servicios.Properties.ValueMember);
+
                 info_periodo = (ro_periodo_x_ro_Nomina_TipoLiqui_Info)cmbPeriodos.Properties.View.GetFocusedRow();
                 if (info_periodo == null)
                     info_periodo = listadoPeriodo.Where(v => v.IdPeriodo == info_efectividad.IdPeriodo).FirstOrDefault();
@@ -235,7 +245,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
 
-                Lista_Calculo = Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue));
+                Lista_Calculo = Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue) , IdTipoServicio);
                 gc_ro_Calculo_Pago_Variable_Porcentaje.DataSource = Lista_Calculo;
          
 
@@ -257,6 +267,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_efectividad.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
                 info_efectividad.IdNomina_tipo_Liq = Convert.ToInt32(cmbnominaTipo.EditValue);
                 info_efectividad.IdPeriodo = Convert.ToInt32(cmbPeriodos.EditValue);
+                info_efectividad.IdServicioTipo = Convert.ToInt32(cmb_servicios.Properties.ValueMember);
                 info_efectividad.Observacion = txtobservacion.Text;
                 info_efectividad.IdUsuario = param.IdUsuario;
                 info_efectividad.FechaTransac = DateTime.Now;
@@ -803,6 +814,21 @@ namespace Core.Erp.Winform.Roles_Fj
                 
                  MessageBox.Show(ex.ToString());
                 Log_Error_bus.Log_Error(ex.ToString());  
+            }
+        }
+
+        private void cmb_servicios_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                 int IdTipoServicio=cmb_servicios.Properties.ValueMember==null?0:Convert.ToInt32(cmb_servicios.Properties.ValueMember);
+                Lista_Calculo = Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue) , IdTipoServicio);
+                gc_ro_Calculo_Pago_Variable_Porcentaje.DataSource = Lista_Calculo;
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
    

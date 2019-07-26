@@ -26,6 +26,7 @@ namespace Core.Erp.Data.Roles_Fj
                   add.IdEfectividad = getId(info.IdEmpresa);
                   add.IdPeriodo = info.IdPeriodo;
                   add.Observacion = info.Observacion;
+                  add.IdServicioTipo = info.IdServicioTipo;
                   add.FechaTransac =DateTime.Now;
                   add.IdUsuario = info.IdUsuario;
                   add.Estado = info.Estado;
@@ -59,7 +60,6 @@ namespace Core.Erp.Data.Roles_Fj
                   add.Observacion = info.Observacion;
                   add.Fecha_UltMod = DateTime.Now;
                   add.IdUsuarioUltModi = info.IdUsuarioUltModi;
-
                   db.SaveChanges();
                   return true;
               }

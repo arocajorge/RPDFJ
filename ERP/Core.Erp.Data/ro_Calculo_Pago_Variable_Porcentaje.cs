@@ -33,5 +33,6 @@ namespace Core.Erp.Data
         public string MotivoAnulacion { get; set; }
         public string nom_pc { get; set; }
         public string ip { get; set; }
+        public Nullable<int> IdTipoServicio { get; set; }
     }
 }
