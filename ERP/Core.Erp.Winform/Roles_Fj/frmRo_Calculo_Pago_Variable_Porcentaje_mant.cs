@@ -142,7 +142,7 @@ namespace Core.Erp.Winform.Roles_Fj
                //.Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
                // cmb_servicios.Properties.ValueMember = "Key";
                // cmb_servicios.Properties.DisplayMember = "Value";
-                cmb_servicios.Properties.DataSource = lst_servicio.Where(v=>v.Estado==true);
+                cmb_servicios.Properties.DataSource = lst_servicio.Where(v=>v.Estado==true).ToList();
 
                 Limpiar();
             }

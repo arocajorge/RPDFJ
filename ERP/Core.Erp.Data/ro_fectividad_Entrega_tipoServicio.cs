@@ -18,6 +18,7 @@ namespace Core.Erp.Data
         public int IdServicio { get; set; }
         public string ts_Descripcion { get; set; }
         public string ts_codigo { get; set; }
+        public double Porcentaje { get; set; }
         public bool Estado { get; set; }
         public string IdUsuario { get; set; }
         public Nullable<System.DateTime> Fecha_Transaccion { get; set; }

@@ -30,6 +30,8 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.IdEmpresa = item.IdEmpresa;
                         Info.IdServicio = item.IdServicio;
                         Info.ts_Descripcion = item.ts_Descripcion;
+                        Info.ts_codigo = item.ts_codigo;
+                        Info.Porcentaje = item.Porcentaje;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -70,6 +72,8 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.IdEmpresa = item.IdEmpresa;
                         Info.IdServicio = item.IdServicio;
                         Info.ts_Descripcion = item.ts_Descripcion;
+                        Info.ts_codigo = item.ts_codigo;
+                        Info.Porcentaje = item.Porcentaje;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -137,6 +141,7 @@ namespace Core.Erp.Data.Roles_Fj
                     contact.IdServicio = Info.IdServicio = IdServicio;
                     contact.ts_Descripcion = Info.ts_Descripcion;
                     contact.ts_codigo = Info.ts_codigo;
+                    contact.Porcentaje = Info.Porcentaje;
                     contact.Estado = Info.Estado;
                     contact.IdUsuario = Info.IdUsuario;
                     contact.Fecha_Transaccion = Info.Fecha_Transaccion;
@@ -169,6 +174,7 @@ namespace Core.Erp.Data.Roles_Fj
                     {
                         contact.ts_Descripcion = Info.ts_Descripcion;
                         contact.ts_codigo = Info.ts_codigo;
+                        contact.Porcentaje = Info.Porcentaje;
                         contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
                         contact.Fecha_UltMod = DateTime.Now;
                         Context.SaveChanges();

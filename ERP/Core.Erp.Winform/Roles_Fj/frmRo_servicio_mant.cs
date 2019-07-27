@@ -154,6 +154,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 txt_ruta.Text = info_servicio.ts_Descripcion;
                 chkEstado.Checked = info_servicio.Estado;
                 txtcodigo.Text = info_servicio.ts_codigo;
+                txtporcentaje.Text = info_servicio.Porcentaje.ToString();
                 lblanulado.Visible = (info_servicio.Estado == false) ? true : false;
             }
             catch (Exception ex)
@@ -173,7 +174,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_servicio.ts_Descripcion = txt_ruta.Text;
                 info_servicio.Estado = chkEstado.Checked;
                 info_servicio.ts_codigo = txtcodigo.Text;
-
+                info_servicio.Porcentaje =Convert.ToDouble( txtporcentaje.Text);
                 return info_servicio;
             }
             catch (Exception ex)
@@ -315,7 +316,17 @@ namespace Core.Erp.Winform.Roles_Fj
             {
                 if (txt_ruta.EditValue == null || txt_ruta.Text == "")
                 {
-                    MessageBox.Show("Ingrese un número de Ruta", param.Nombre_sistema);
+                    MessageBox.Show("Ingrese nombre servicio", param.Nombre_sistema);
+                    return false;
+                }
+                if (txtcodigo.EditValue == null || txtcodigo.Text == "")
+                {
+                    MessageBox.Show("Ingrese codigo servicio", param.Nombre_sistema);
+                    return false;
+                }
+                if (txtporcentaje.EditValue == null || txtporcentaje.Text == "")
+                {
+                    MessageBox.Show("Ingrese porcentaje servicio", param.Nombre_sistema);
                     return false;
                 }
                 return true;

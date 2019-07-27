@@ -38,16 +38,19 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtcodigo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.txtporcentaje = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txt_ruta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId_ruta.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtcodigo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtporcentaje.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_BarraEstadoInferior_Forms1
             // 
             this.ucGe_BarraEstadoInferior_Forms1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ucGe_BarraEstadoInferior_Forms1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 146);
+            this.ucGe_BarraEstadoInferior_Forms1.Location = new System.Drawing.Point(0, 187);
             this.ucGe_BarraEstadoInferior_Forms1.Name = "ucGe_BarraEstadoInferior_Forms1";
             this.ucGe_BarraEstadoInferior_Forms1.Size = new System.Drawing.Size(416, 26);
             this.ucGe_BarraEstadoInferior_Forms1.TabIndex = 84;
@@ -119,7 +122,7 @@
             this.lblanulado.AutoSize = true;
             this.lblanulado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblanulado.ForeColor = System.Drawing.Color.Red;
-            this.lblanulado.Location = new System.Drawing.Point(149, 110);
+            this.lblanulado.Location = new System.Drawing.Point(140, 146);
             this.lblanulado.Name = "lblanulado";
             this.lblanulado.Size = new System.Drawing.Size(136, 20);
             this.lblanulado.TabIndex = 90;
@@ -140,14 +143,14 @@
             // 
             // txt_ruta
             // 
-            this.txt_ruta.Location = new System.Drawing.Point(129, 87);
+            this.txt_ruta.Location = new System.Drawing.Point(129, 113);
             this.txt_ruta.Name = "txt_ruta";
             this.txt_ruta.Size = new System.Drawing.Size(194, 20);
             this.txt_ruta.TabIndex = 88;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(45, 90);
+            this.labelControl3.Location = new System.Drawing.Point(45, 120);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(37, 13);
             this.labelControl3.TabIndex = 87;
@@ -173,7 +176,7 @@
             // 
             this.txtcodigo.Location = new System.Drawing.Point(129, 61);
             this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(76, 20);
+            this.txtcodigo.Size = new System.Drawing.Size(119, 20);
             this.txtcodigo.TabIndex = 92;
             // 
             // labelControl2
@@ -184,11 +187,28 @@
             this.labelControl2.TabIndex = 91;
             this.labelControl2.Text = "Codigo";
             // 
+            // txtporcentaje
+            // 
+            this.txtporcentaje.Location = new System.Drawing.Point(129, 87);
+            this.txtporcentaje.Name = "txtporcentaje";
+            this.txtporcentaje.Size = new System.Drawing.Size(119, 20);
+            this.txtporcentaje.TabIndex = 94;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(45, 90);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(52, 13);
+            this.labelControl4.TabIndex = 93;
+            this.labelControl4.Text = "Porcentaje";
+            // 
             // frmRo_servicio_mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 172);
+            this.ClientSize = new System.Drawing.Size(416, 213);
+            this.Controls.Add(this.txtporcentaje);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.txtcodigo);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.lblanulado);
@@ -206,6 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txt_ruta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtId_ruta.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtcodigo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtporcentaje.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +244,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtcodigo;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TextEdit txtporcentaje;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

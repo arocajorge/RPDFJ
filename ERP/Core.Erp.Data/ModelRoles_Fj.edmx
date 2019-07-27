@@ -774,6 +774,7 @@
           <Property Name="IdServicio" Type="int" Nullable="false" />
           <Property Name="ts_Descripcion" Type="varchar(max)" Nullable="false" />
           <Property Name="ts_codigo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Porcentaje" Type="float" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="IdUsuario" Type="varchar" MaxLength="50" />
           <Property Name="Fecha_Transaccion" Type="datetime" />
@@ -4371,6 +4372,7 @@
           <Property Type="Int32" Name="IdServicio" Nullable="false" />
           <Property Type="String" Name="ts_Descripcion" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ts_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Porcentaje" Nullable="false" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
           <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
@@ -5620,6 +5622,7 @@
                 <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
                 <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
                 <ScalarProperty Name="ts_codigo" ColumnName="ts_codigo" />
                 <ScalarProperty Name="ts_Descripcion" ColumnName="ts_Descripcion" />
                 <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />

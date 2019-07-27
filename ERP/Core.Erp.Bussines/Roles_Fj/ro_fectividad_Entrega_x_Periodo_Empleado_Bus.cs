@@ -178,14 +178,7 @@ namespace Core.Erp.Business.Roles_Fj
 
               foreach (var item in lista)
               {
-
-                  if (item.IdEmpleado == 1)
-                  {
-                  }
-
-                  string IdRubro = "";
-                  double Valor_ganado = 0;
-
+                  
                   #region EFEC_ENTRE
                   if (item.Efectividad_Entrega_aplica > 0)
                   {
@@ -226,10 +219,6 @@ namespace Core.Erp.Business.Roles_Fj
                   }
 
                   #endregion
-
-
-
-
                   #region EFEC_ENTRE
                   if (item.Efectividad_Entrega_aplica > 0)
                   {
@@ -270,12 +259,6 @@ namespace Core.Erp.Business.Roles_Fj
                   }
 
                   #endregion
-
-
-
-
-
-
                   #region EFEC_VOL
                   if (item.Efectividad_Entrega_aplica > 0)
                   {
@@ -317,7 +300,6 @@ namespace Core.Erp.Business.Roles_Fj
 
                   #endregion
                   
-
 
               }
 
