@@ -89,7 +89,7 @@ namespace Core.Erp.Data.Bancos
                 List<vwba_TransaccionesAConciliar_Info> lM = new List<vwba_TransaccionesAConciliar_Info>();
                 EntitiesBanco b = new EntitiesBanco();
 
-
+                b.SetCommandTimeOut(3000);
                 var select_ = from T in b.vwba_TransaccionesAConciliar
                               where T.IdEmpresa == IdEmpresa && T.IdCtaCble == IdCtaCble
                               && T.IdBanco == IdBanco 
