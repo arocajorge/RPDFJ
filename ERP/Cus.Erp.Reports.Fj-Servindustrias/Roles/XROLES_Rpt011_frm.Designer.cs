@@ -49,6 +49,12 @@
             this.Col_variable = new DevExpress.XtraPivotGrid.PivotGridField();
             this.Col_Rubro = new DevExpress.XtraPivotGrid.PivotGridField();
             this.Col_Valor = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField3 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField5 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField2 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField4 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.pivotGridField6 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.ucRo_Menu = new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes();
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +84,13 @@
             this.Col_Recuperacion_cartera_aplica,
             this.Col_variable,
             this.Col_Rubro,
-            this.Col_Valor});
+            this.Col_Valor,
+            this.pivotGridField1,
+            this.pivotGridField3,
+            this.pivotGridField5,
+            this.pivotGridField2,
+            this.pivotGridField4,
+            this.pivotGridField6});
             this.pivotGridControl1.Location = new System.Drawing.Point(0, 74);
             this.pivotGridControl1.Name = "pivotGridControl1";
             this.pivotGridControl1.OptionsBehavior.HorizontalScrolling = DevExpress.XtraPivotGrid.PivotGridScrolling.Control;
@@ -270,14 +282,64 @@
             this.Col_Valor.FieldName = "Valor";
             this.Col_Valor.Name = "Col_Valor";
             // 
+            // pivotGridField1
+            // 
+            this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField1.AreaIndex = 18;
+            this.pivotGridField1.Caption = "Efectividad Entrega  (ALIMENTOS)";
+            this.pivotGridField1.FieldName = "Efectividad_Entrega_ali";
+            this.pivotGridField1.Name = "pivotGridField1";
+            // 
+            // pivotGridField3
+            // 
+            this.pivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField3.AreaIndex = 19;
+            this.pivotGridField3.Caption = "Efectividad Volumne  (ALIMENTOS)";
+            this.pivotGridField3.FieldName = "Efectividad_Volumen_ali";
+            this.pivotGridField3.Name = "pivotGridField3";
+            // 
+            // pivotGridField5
+            // 
+            this.pivotGridField5.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField5.AreaIndex = 20;
+            this.pivotGridField5.Caption = "Recuperacion de cartera (ALIMENTOS)";
+            this.pivotGridField5.FieldName = "Recuperacion_cartera_ali";
+            this.pivotGridField5.Name = "pivotGridField5";
+            // 
+            // pivotGridField2
+            // 
+            this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField2.AreaIndex = 21;
+            this.pivotGridField2.Caption = "Pedido  (ALIMENTOS)";
+            this.pivotGridField2.FieldName = "Efectividad_Entrega_aplica_ali";
+            this.pivotGridField2.Name = "pivotGridField2";
+            // 
+            // pivotGridField4
+            // 
+            this.pivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField4.AreaIndex = 22;
+            this.pivotGridField4.Caption = "Volumen  (ALIMENTOS)";
+            this.pivotGridField4.FieldName = "Efectividad_Volumen_aplica_ali";
+            this.pivotGridField4.Name = "pivotGridField4";
+            // 
+            // pivotGridField6
+            // 
+            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField6.AreaIndex = 23;
+            this.pivotGridField6.Caption = "Cartera  (ALIMENTOS)";
+            this.pivotGridField6.FieldName = "Recuperacion_cartera_aplica_ali";
+            this.pivotGridField6.Name = "pivotGridField6";
+            // 
             // ucRo_Menu
             // 
+            this.ucRo_Menu.caption_bei_check1 = "Check";
             this.ucRo_Menu.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucRo_Menu.EnableBotonImprimir = true;
             this.ucRo_Menu.Location = new System.Drawing.Point(0, 0);
             this.ucRo_Menu.Name = "ucRo_Menu";
             this.ucRo_Menu.Size = new System.Drawing.Size(1354, 74);
             this.ucRo_Menu.TabIndex = 146;
+            this.ucRo_Menu.Visible_bei_check1 = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbCentroCosto = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbDivision = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucRo_Menu.VisibleCmbEmpleado = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -334,6 +396,12 @@
         private DevExpress.XtraPivotGrid.PivotGridField Col_variable;
         private DevExpress.XtraPivotGrid.PivotGridField Col_Rubro;
         private DevExpress.XtraPivotGrid.PivotGridField Col_Valor;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField1;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField3;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField5;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField2;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField4;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField6;
 
 
 

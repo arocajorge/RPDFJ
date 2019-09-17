@@ -35,7 +35,6 @@ namespace Core.Erp.Data
         public DbSet<vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado> vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado { get; set; }
         public DbSet<vwro_fectividad_x_empleado_Adm_x_periodo_Det> vwro_fectividad_x_empleado_Adm_x_periodo_Det { get; set; }
         public DbSet<vwro_fectividad_Entrega_x_Periodo_Empleado_Det> vwro_fectividad_Entrega_x_Periodo_Empleado_Det { get; set; }
-        public DbSet<vwro_Grupo_empleado_det> vwro_Grupo_empleado_det { get; set; }
         public DbSet<ro_disco> ro_disco { get; set; }
         public DbSet<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<ro_empleado_x_parametro_x_pago_variable_Det> ro_empleado_x_parametro_x_pago_variable_Det { get; set; }
@@ -46,7 +45,6 @@ namespace Core.Erp.Data
         public DbSet<ro_fectividad_Entrega_x_Periodo_Empleado_Det> ro_fectividad_Entrega_x_Periodo_Empleado_Det { get; set; }
         public DbSet<ro_fectividad_x_empleado_Adm_x_periodo> ro_fectividad_x_empleado_Adm_x_periodo { get; set; }
         public DbSet<ro_fectividad_x_empleado_Adm_x_periodo_Det> ro_fectividad_x_empleado_Adm_x_periodo_Det { get; set; }
-        public DbSet<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
         public DbSet<ro_parametro_x_pago_variable> ro_parametro_x_pago_variable { get; set; }
         public DbSet<ro_parametro_x_pago_variable_Det> ro_parametro_x_pago_variable_Det { get; set; }
         public DbSet<ro_parametro_x_pago_variable_tipo> ro_parametro_x_pago_variable_tipo { get; set; }
@@ -84,8 +82,10 @@ namespace Core.Erp.Data
         public DbSet<ro_planificacion_x_jornada_desfasada_empleado> ro_planificacion_x_jornada_desfasada_empleado { get; set; }
         public DbSet<vwro_planificacion_x_jornada_desfasada> vwro_planificacion_x_jornada_desfasada { get; set; }
         public DbSet<vwro_ro_planificacion_x_jornada_desfasada_empleado> vwro_ro_planificacion_x_jornada_desfasada_empleado { get; set; }
-        public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
         public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
+        public DbSet<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
+        public DbSet<vwro_Grupo_empleado_det> vwro_Grupo_empleado_det { get; set; }
+        public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

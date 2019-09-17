@@ -192,7 +192,7 @@ namespace Core.Erp.Data.Roles_Fj
                         add.Efectividad_Entrega_aplica = info.Efectividad_Entrega_aplica;
                         add.Efectividad_Volumen_aplica = info.Efectividad_Volumen_aplica;
                         add.Recuperacion_cartera_aplica = info.Recuperacion_cartera_aplica;   
-                   
+                        
                         lista.Add(add);
                     }
                 }

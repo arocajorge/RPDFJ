@@ -132,35 +132,6 @@ namespace Cus.Erp.Reports.FJ
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt017_Result>("spROLES_Rpt017", idEmpresaParameter, idNominaParameter, idDivisionParameter, fechaInicioParameter, fechaFinParameter);
         }
     
-        public virtual ObjectResult<spROLES_Rpt011_Result> spROLES_Rpt011(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<int> idNomina_tipo_Liqui, Nullable<int> idPeriodo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            var idNomina_tipoParameter = idNomina_tipo.HasValue ?
-                new ObjectParameter("IdNomina_tipo", idNomina_tipo) :
-                new ObjectParameter("IdNomina_tipo", typeof(int));
-    
-            var idNomina_tipo_LiquiParameter = idNomina_tipo_Liqui.HasValue ?
-                new ObjectParameter("IdNomina_tipo_Liqui", idNomina_tipo_Liqui) :
-                new ObjectParameter("IdNomina_tipo_Liqui", typeof(int));
-    
-            var idPeriodoParameter = idPeriodo.HasValue ?
-                new ObjectParameter("IdPeriodo", idPeriodo) :
-                new ObjectParameter("IdPeriodo", typeof(int));
-    
-            var fecha_InicioParameter = fecha_Inicio.HasValue ?
-                new ObjectParameter("Fecha_Inicio", fecha_Inicio) :
-                new ObjectParameter("Fecha_Inicio", typeof(System.DateTime));
-    
-            var fecha_FinParameter = fecha_Fin.HasValue ?
-                new ObjectParameter("Fecha_Fin", fecha_Fin) :
-                new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt011_Result>("spROLES_Rpt011", idEmpresaParameter, idNomina_tipoParameter, idNomina_tipo_LiquiParameter, idPeriodoParameter, fecha_InicioParameter, fecha_FinParameter);
-        }
-    
         public virtual ObjectResult<spROLES_Rpt006_Result> spROLES_Rpt006(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
@@ -280,6 +251,35 @@ namespace Cus.Erp.Reports.FJ
                 new ObjectParameter("Idperiodo_fin", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt005_Result>("spROLES_Rpt005", idEmpresaParameter, idNomina_tipoParameter, fecha_InicioParameter, fecha_FinParameter, idperiodo_inicioParameter, idperiodo_finParameter);
+        }
+    
+        public virtual ObjectResult<spROLES_Rpt011_Result> spROLES_Rpt011(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<int> idNomina_tipo_Liqui, Nullable<int> idPeriodo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idNomina_tipoParameter = idNomina_tipo.HasValue ?
+                new ObjectParameter("IdNomina_tipo", idNomina_tipo) :
+                new ObjectParameter("IdNomina_tipo", typeof(int));
+    
+            var idNomina_tipo_LiquiParameter = idNomina_tipo_Liqui.HasValue ?
+                new ObjectParameter("IdNomina_tipo_Liqui", idNomina_tipo_Liqui) :
+                new ObjectParameter("IdNomina_tipo_Liqui", typeof(int));
+    
+            var idPeriodoParameter = idPeriodo.HasValue ?
+                new ObjectParameter("IdPeriodo", idPeriodo) :
+                new ObjectParameter("IdPeriodo", typeof(int));
+    
+            var fecha_InicioParameter = fecha_Inicio.HasValue ?
+                new ObjectParameter("Fecha_Inicio", fecha_Inicio) :
+                new ObjectParameter("Fecha_Inicio", typeof(System.DateTime));
+    
+            var fecha_FinParameter = fecha_Fin.HasValue ?
+                new ObjectParameter("Fecha_Fin", fecha_Fin) :
+                new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt011_Result>("spROLES_Rpt011", idEmpresaParameter, idNomina_tipoParameter, idNomina_tipo_LiquiParameter, idPeriodoParameter, fecha_InicioParameter, fecha_FinParameter);
         }
     }
 }

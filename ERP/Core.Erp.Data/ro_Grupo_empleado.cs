@@ -16,8 +16,8 @@ namespace Core.Erp.Data
     {
         public ro_Grupo_empleado()
         {
-            this.ro_Grupo_empleado_det = new HashSet<ro_Grupo_empleado_det>();
             this.ro_empleado_x_cargo_fuerza_grupo = new HashSet<ro_empleado_x_cargo_fuerza_grupo>();
+            this.ro_Grupo_empleado_det = new HashSet<ro_Grupo_empleado_det>();
         }
     
         public int IdEmpresa { get; set; }
@@ -42,7 +42,7 @@ namespace Core.Erp.Data
         public string MotiAnula { get; set; }
         public Nullable<double> Sueldo { get; set; }
     
-        public virtual ICollection<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
         public virtual ICollection<ro_empleado_x_cargo_fuerza_grupo> ro_empleado_x_cargo_fuerza_grupo { get; set; }
+        public virtual ICollection<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
     }
 }

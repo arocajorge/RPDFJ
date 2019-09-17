@@ -50,7 +50,7 @@ namespace Core.Erp.Business.Roles_Fj
 
                   if (ba = data_detalle.Guardar_DB(info.lista))
                   {
-                      foreach (var item in Get_Novedades(info.lista))
+                      foreach (var item in Get_Novedades(info.lista,Convert.ToInt32( info.IdServicioTipo)))
                       {
                         ba=  bus_novedad.GrabarDB(item, ref id_nov);
                       }
@@ -97,7 +97,7 @@ namespace Core.Erp.Business.Roles_Fj
 
                   if (data_detalle.Modificar_DB(info.lista))
                   {
-                     foreach (var item in Get_Novedades(info.lista))
+                      foreach (var item in Get_Novedades(info.lista, Convert.ToInt32(info.IdServicioTipo)))
                      {
                          info_detalle = novedad_detalle_bus.get_si_existe_novedad(item.IdEmpresa, item.IdEmpleado, item.IdRubro, item.IdCalendario);
                          if (info_detalle != null)
@@ -164,12 +164,14 @@ namespace Core.Erp.Business.Roles_Fj
               throw new Exception(mensaje);
           }
       }
-      private List<ro_Empleado_Novedad_Info> Get_Novedades(List<ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info> lista)
+      private List<ro_Empleado_Novedad_Info> Get_Novedades(List<ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info> lista, int TipoServicio)
       {
 
           try
           {
+              ro_fectividad_Entrega_tipoServicio_Data odata_servicio = new ro_fectividad_Entrega_tipoServicio_Data();
 
+              var info_servicio = odata_servicio.Get_Info(param.IdEmpresa,TipoServicio);
 
               List<ro_Empleado_Novedad_Info> listado_novedades = new List<ro_Empleado_Novedad_Info>();
               ero_parametro_x_pago_variable_tipo tipo_variable = new ero_parametro_x_pago_variable_tipo();
@@ -178,26 +180,33 @@ namespace Core.Erp.Business.Roles_Fj
 
               foreach (var item in lista)
               {
-                  
+                  if (item.IdEmpleado == 424)
+                  {
+
+                  }
+                  #region SI LA VARIABLE ES VEVIDAS
+
+                  if (info_servicio.ts_codigo == etipoServicio.BEBIDAS.ToString())
+                  {
                   #region EFEC_ENTRE
                   if (item.Efectividad_Entrega_aplica > 0)
                   {
                       tipo_variable = ero_parametro_x_pago_variable_tipo.EFEC_ENTRE;
                       ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
-                      info_grupo_detalle = lista_detalle_grupos.Where(v => v.cod_Pago_Variable_enum == tipo_variable && v.IdGrupo==item.IdGrupo).FirstOrDefault();
+                      info_grupo_detalle = lista_detalle_grupos.Where(v => v.cod_Pago_Variable_enum == tipo_variable && v.IdGrupo == item.IdGrupo).FirstOrDefault();
 
                       info_novedad.IdEmpresa = item.IdEmpresa;
                       info_novedad.IdNomina_Tipo = item.IdNomina_Tipo;
                       info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
                       info_novedad.IdEmpleado = item.IdEmpleado;
                       info_novedad.Fecha = item.fecha_Pago;
-                      info_novedad.TotalValor = item.Efectividad_Entrega_aplica*info_grupo_detalle.Valor_bono*info_grupo_detalle.Porcentaje_calculo;
+                      info_novedad.TotalValor = item.Efectividad_Entrega_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo;
                       info_novedad.Fecha_PrimerPago = item.fecha_Pago;
                       info_novedad.NumCoutas = 1;
                       info_novedad.IdUsuario = param.IdUsuario;
                       info_novedad.Fecha_Transac = DateTime.Now;
                       info_novedad.Estado = "A";
-                      info_novedad.IdCalendario = item.IdPeriodo + "V";
+                      info_novedad.IdCalendario = item.IdPeriodo + "VB";
 
                       // detalle de la novedad 
 
@@ -208,19 +217,19 @@ namespace Core.Erp.Business.Roles_Fj
                       info_detalle.IdRol = null;
                       info_detalle.IdRubro = info_grupo_detalle.IdRubro;
                       info_detalle.FechaPago = item.fecha_Pago;
-                      info_detalle.Valor =item.Efectividad_Entrega_aplica*info_grupo_detalle.Valor_bono*info_grupo_detalle.Porcentaje_calculo;
+                      info_detalle.Valor = (item.Efectividad_Entrega_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
                       info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
                       info_detalle.EstadoCobro = "PEN";
                       info_detalle.Estado = "A";
-                      info_detalle.IdCalendario = item.IdPeriodo + "V";
+                      info_detalle.IdCalendario = item.IdPeriodo + "VB";
                       info_novedad.InfoNovedadDet = info_detalle;
-
+                      info_novedad.LstDetalle.Add(info_detalle);
                       listado_novedades.Add(info_novedad);
                   }
 
                   #endregion
                   #region EFEC_ENTRE
-                  if (item.Efectividad_Entrega_aplica > 0)
+                  if (item.Recuperacion_cartera_aplica > 0)
                   {
                       tipo_variable = ero_parametro_x_pago_variable_tipo.REC_CAR;
                       ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
@@ -231,13 +240,13 @@ namespace Core.Erp.Business.Roles_Fj
                       info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
                       info_novedad.IdEmpleado = item.IdEmpleado;
                       info_novedad.Fecha = item.fecha_Pago;
-                      info_novedad.TotalValor = item.Recuperacion_cartera_aplica*info_grupo_detalle.Valor_bono*info_grupo_detalle.Porcentaje_calculo;
+                      info_novedad.TotalValor = item.Recuperacion_cartera_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo;
                       info_novedad.Fecha_PrimerPago = item.fecha_Pago;
                       info_novedad.NumCoutas = 1;
                       info_novedad.IdUsuario = param.IdUsuario;
                       info_novedad.Fecha_Transac = DateTime.Now;
                       info_novedad.Estado = "A";
-                      info_novedad.IdCalendario = item.IdPeriodo.ToString()+"V";
+                      info_novedad.IdCalendario = item.IdPeriodo.ToString() + "VB";
 
 
                       // detalle de la novedad 
@@ -249,18 +258,19 @@ namespace Core.Erp.Business.Roles_Fj
                       info_detalle.IdRol = null;
                       info_detalle.IdRubro = info_grupo_detalle.IdRubro;
                       info_detalle.FechaPago = item.fecha_Pago;
-                      info_detalle.Valor = item.Recuperacion_cartera_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo;
+                      info_detalle.Valor = (item.Recuperacion_cartera_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
                       info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
                       info_detalle.EstadoCobro = "PEN";
                       info_detalle.Estado = "A";
                       info_detalle.IdCalendario = item.IdPeriodo.ToString() + "V";
                       info_novedad.InfoNovedadDet = info_detalle;
+                      info_novedad.LstDetalle.Add(info_detalle); 
                       listado_novedades.Add(info_novedad);
                   }
 
                   #endregion
                   #region EFEC_VOL
-                  if (item.Efectividad_Entrega_aplica > 0)
+                  if (item.Efectividad_Volumen_aplica > 0)
                   {
                       tipo_variable = ero_parametro_x_pago_variable_tipo.EFEC_VOL;
                       ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
@@ -270,14 +280,14 @@ namespace Core.Erp.Business.Roles_Fj
                       info_novedad.IdNomina_Tipo = item.IdNomina_Tipo;
                       info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
                       info_novedad.IdEmpleado = item.IdEmpleado;
-                      info_novedad.Fecha =  item.fecha_Pago;
-                      info_novedad.TotalValor = item.Efectividad_Volumen_aplica*info_grupo_detalle.Valor_bono*info_grupo_detalle.Porcentaje_calculo;;
-                      info_novedad.Fecha_PrimerPago =  item.fecha_Pago;
+                      info_novedad.Fecha = item.fecha_Pago;
+                      info_novedad.TotalValor = item.Efectividad_Volumen_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo; ;
+                      info_novedad.Fecha_PrimerPago = item.fecha_Pago;
                       info_novedad.NumCoutas = 1;
                       info_novedad.IdUsuario = param.IdUsuario;
                       info_novedad.Fecha_Transac = DateTime.Now;
                       info_novedad.Estado = "A";
-                      info_novedad.IdCalendario = item.IdPeriodo.ToString()+"V";
+                      info_novedad.IdCalendario = item.IdPeriodo.ToString() + "VB";
 
 
                       // detalle de la novedad 
@@ -288,19 +298,172 @@ namespace Core.Erp.Business.Roles_Fj
                       info_detalle.Secuencia = 1;
                       info_detalle.IdRol = null;
                       info_detalle.IdRubro = info_grupo_detalle.IdRubro;
-                      info_detalle.FechaPago =  item.fecha_Pago;
-                      info_detalle.Valor =item.Efectividad_Volumen_aplica*info_grupo_detalle.Valor_bono*info_grupo_detalle.Porcentaje_calculo;
+                      info_detalle.FechaPago = item.fecha_Pago;
+                      info_detalle.Valor = (item.Efectividad_Volumen_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
                       info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
                       info_detalle.EstadoCobro = "PEN";
                       info_detalle.Estado = "A";
-                      info_detalle.IdCalendario = item.IdPeriodo.ToString()+"V";
+                      info_detalle.IdCalendario = item.IdPeriodo.ToString() + "V";
                       info_novedad.InfoNovedadDet = info_detalle;
+                      info_novedad.LstDetalle.Add(info_detalle); 
                       listado_novedades.Add(info_novedad);
                   }
 
                   #endregion
+                  }
                   
+                  #endregion
 
+
+                  #region SI LA VARIABLE ES ALIMENTOS
+
+                  if (info_servicio.ts_codigo == etipoServicio.ALIMENTOS.ToString())
+                  {
+                      #region EFEC_ENTRE
+                      if (item.Efectividad_Entrega_aplica > 0)
+                      {
+                          tipo_variable = ero_parametro_x_pago_variable_tipo.EFEC_ENTRE_ALIM;
+                          ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
+                          info_grupo_detalle = lista_detalle_grupos.Where(v => v.cod_Pago_Variable_enum == tipo_variable && v.IdGrupo == item.IdGrupo).FirstOrDefault();
+
+                          info_novedad.IdEmpresa = item.IdEmpresa;
+                          info_novedad.IdNomina_Tipo = item.IdNomina_Tipo;
+                          info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
+                          info_novedad.IdEmpleado = item.IdEmpleado;
+                          info_novedad.Fecha = item.fecha_Pago;
+                          if (item.Efectividad_Entrega_aplica <= 1)
+                              info_novedad.TotalValor = (item.Efectividad_Entrega_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
+                          else
+                              info_novedad.TotalValor = item.Efectividad_Entrega_aplica;
+                          info_novedad.Fecha_PrimerPago = item.fecha_Pago;
+                          info_novedad.NumCoutas = 1;
+                          info_novedad.IdUsuario = param.IdUsuario;
+                          info_novedad.Fecha_Transac = DateTime.Now;
+                          info_novedad.Estado = "A";
+                          info_novedad.IdCalendario = item.IdPeriodo + "VA";
+
+                          // detalle de la novedad 
+
+                          ro_Empleado_Novedad_Det_Info info_detalle = new ro_Empleado_Novedad_Det_Info();
+                          info_detalle.IdEmpresa = item.IdEmpresa;
+                          info_detalle.IdEmpleado = item.IdEmpleado;
+                          info_detalle.Secuencia = 1;
+                          info_detalle.IdRol = null;
+                          info_detalle.IdRubro = info_grupo_detalle.IdRubro;
+                          info_detalle.FechaPago = item.fecha_Pago;
+                          if (item.Efectividad_Entrega_aplica <= 1)
+                          info_detalle.Valor = (item.Efectividad_Entrega_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
+                          else
+                              info_detalle.Valor = item.Efectividad_Entrega_aplica;
+                          info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
+                          info_detalle.EstadoCobro = "PEN";
+                          info_detalle.Estado = "A";
+                          info_detalle.IdCalendario = item.IdPeriodo + "VA";
+                          info_novedad.InfoNovedadDet = info_detalle;
+                          info_novedad.LstDetalle.Add(info_detalle);
+
+                          listado_novedades.Add(info_novedad);
+                      }
+
+                      #endregion
+                      #region EFEC_ENTRE
+                      if (item.Recuperacion_cartera_aplica > 0)
+                      {
+                          tipo_variable = ero_parametro_x_pago_variable_tipo.REC_CAR_ALIM;
+                          ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
+                          info_grupo_detalle = lista_detalle_grupos.Where(v => v.cod_Pago_Variable_enum == tipo_variable && v.IdGrupo == item.IdGrupo).FirstOrDefault();
+
+                          info_novedad.IdEmpresa = item.IdEmpresa;
+                          info_novedad.IdNomina_Tipo = item.IdNomina_Tipo;
+                          info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
+                          info_novedad.IdEmpleado = item.IdEmpleado;
+                          info_novedad.Fecha = item.fecha_Pago;
+                          if (item.Recuperacion_cartera_aplica <= 1)
+                              info_novedad.TotalValor = item.Recuperacion_cartera_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo;
+                          else
+                              info_novedad.TotalValor = item.Recuperacion_cartera_aplica;
+                          info_novedad.Fecha_PrimerPago = item.fecha_Pago;
+                          info_novedad.NumCoutas = 1;
+                          info_novedad.IdUsuario = param.IdUsuario;
+                          info_novedad.Fecha_Transac = DateTime.Now;
+                          info_novedad.Estado = "A";
+                          info_novedad.IdCalendario = item.IdPeriodo.ToString() + "VA";
+
+
+                          // detalle de la novedad 
+
+                          ro_Empleado_Novedad_Det_Info info_detalle = new ro_Empleado_Novedad_Det_Info();
+                          info_detalle.IdEmpresa = item.IdEmpresa;
+                          info_detalle.IdEmpleado = item.IdEmpleado;
+                          info_detalle.Secuencia = 1;
+                          info_detalle.IdRol = null;
+                          info_detalle.IdRubro = info_grupo_detalle.IdRubro;
+                          info_detalle.FechaPago = item.fecha_Pago;
+                          if (item.Recuperacion_cartera_aplica <= 1)
+                              info_detalle.Valor = (item.Recuperacion_cartera_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
+                          else
+                              info_detalle.Valor = item.Recuperacion_cartera_aplica;
+                          info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
+                          info_detalle.EstadoCobro = "PEN";
+                          info_detalle.Estado = "A";
+                          info_detalle.IdCalendario = item.IdPeriodo.ToString() + "VA";
+                          info_novedad.InfoNovedadDet = info_detalle;
+                          info_novedad.LstDetalle.Add(info_detalle);
+                          listado_novedades.Add(info_novedad);
+                      }
+
+                      #endregion
+                      #region EFEC_VOL
+                      if (item.Efectividad_Volumen > 0)
+                      {
+                          tipo_variable = ero_parametro_x_pago_variable_tipo.EFEC_VOL_ALIM;
+                          ro_Empleado_Novedad_Info info_novedad = new ro_Empleado_Novedad_Info();
+                          info_grupo_detalle = lista_detalle_grupos.Where(v => v.cod_Pago_Variable_enum == tipo_variable && v.IdGrupo == item.IdGrupo).FirstOrDefault();
+
+                          info_novedad.IdEmpresa = item.IdEmpresa;
+                          info_novedad.IdNomina_Tipo = item.IdNomina_Tipo;
+                          info_novedad.IdNomina_TipoLiqui = item.IdNomina_tipo_Liq;
+                          info_novedad.IdEmpleado = item.IdEmpleado;
+                          info_novedad.Fecha = item.fecha_Pago;
+                          if (item.Efectividad_Volumen_aplica <= 1)
+                              info_novedad.TotalValor = (item.Efectividad_Volumen_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
+                          else
+                              info_novedad.TotalValor = item.Efectividad_Volumen_aplica;
+                          info_novedad.Fecha_PrimerPago = item.fecha_Pago;
+                          info_novedad.NumCoutas = 1;
+                          info_novedad.IdUsuario = param.IdUsuario;
+                          info_novedad.Fecha_Transac = DateTime.Now;
+                          info_novedad.Estado = "A";
+                          info_novedad.IdCalendario = item.IdPeriodo.ToString() + "VA";
+
+
+                          // detalle de la novedad 
+
+                          ro_Empleado_Novedad_Det_Info info_detalle = new ro_Empleado_Novedad_Det_Info();
+                          info_detalle.IdEmpresa = item.IdEmpresa;
+                          info_detalle.IdEmpleado = item.IdEmpleado;
+                          info_detalle.Secuencia = 1;
+                          info_detalle.IdRol = null;
+                          info_detalle.IdRubro = info_grupo_detalle.IdRubro;
+                          info_detalle.FechaPago = item.fecha_Pago;
+                          if (item.Efectividad_Volumen_aplica <= 1)
+                              info_detalle.Valor = (item.Efectividad_Volumen_aplica * info_grupo_detalle.Valor_bono * info_grupo_detalle.Porcentaje_calculo) * info_servicio.Porcentaje;
+                          else
+                              info_detalle.Valor = item.Efectividad_Volumen_aplica;
+                          info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
+                          info_detalle.EstadoCobro = "PEN";
+                          info_detalle.Estado = "A";
+                          info_detalle.IdCalendario = item.IdPeriodo.ToString() + "VA";
+                          info_novedad.InfoNovedadDet = info_detalle;
+                          info_novedad.LstDetalle.Add(info_detalle); 
+                          listado_novedades.Add(info_novedad);
+                      }
+
+                      #endregion
+                  }
+
+                  #endregion
+                 
               }
 
               return listado_novedades;

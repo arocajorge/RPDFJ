@@ -86,6 +86,10 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.txtobservacion = new System.Windows.Forms.TextBox();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_grupo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbnominaTipo.Properties)).BeginInit();
@@ -114,6 +118,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_grupo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu
@@ -542,6 +548,8 @@
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Location = new System.Drawing.Point(0, 0);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.MainView = this.gvw_ro_Calculo_Pago_Variable_Porcentaje;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Name = "gc_ro_Calculo_Pago_Variable_Porcentaje";
+            this.gc_ro_Calculo_Pago_Variable_Porcentaje.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmb_grupo});
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(1229, 352);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.TabIndex = 3;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -555,7 +563,8 @@
             this.col_Efec_Volumen_Rango,
             this.col_Efec_Volumen_Aplica,
             this.col_Recup_Cartera_Rango,
-            this.col_Recup_Cartera_Aplica});
+            this.col_Recup_Cartera_Aplica,
+            this.gridColumn3});
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.GridControl = this.gc_ro_Calculo_Pago_Variable_Porcentaje;
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.Name = "gvw_ro_Calculo_Pago_Variable_Porcentaje";
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
@@ -572,6 +581,7 @@
             this.col_Efec_Entrega_Rango.OptionsColumn.AllowEdit = false;
             this.col_Efec_Entrega_Rango.Visible = true;
             this.col_Efec_Entrega_Rango.VisibleIndex = 0;
+            this.col_Efec_Entrega_Rango.Width = 118;
             // 
             // col_Efec_Entrega_Aplica
             // 
@@ -581,6 +591,7 @@
             this.col_Efec_Entrega_Aplica.OptionsColumn.AllowEdit = false;
             this.col_Efec_Entrega_Aplica.Visible = true;
             this.col_Efec_Entrega_Aplica.VisibleIndex = 1;
+            this.col_Efec_Entrega_Aplica.Width = 123;
             // 
             // col_Efec_Volumen_Rango
             // 
@@ -592,6 +603,7 @@
             this.col_Efec_Volumen_Rango.OptionsColumn.AllowEdit = false;
             this.col_Efec_Volumen_Rango.Visible = true;
             this.col_Efec_Volumen_Rango.VisibleIndex = 2;
+            this.col_Efec_Volumen_Rango.Width = 120;
             // 
             // col_Efec_Volumen_Aplica
             // 
@@ -601,6 +613,7 @@
             this.col_Efec_Volumen_Aplica.OptionsColumn.AllowEdit = false;
             this.col_Efec_Volumen_Aplica.Visible = true;
             this.col_Efec_Volumen_Aplica.VisibleIndex = 3;
+            this.col_Efec_Volumen_Aplica.Width = 119;
             // 
             // col_Recup_Cartera_Rango
             // 
@@ -612,6 +625,7 @@
             this.col_Recup_Cartera_Rango.OptionsColumn.AllowEdit = false;
             this.col_Recup_Cartera_Rango.Visible = true;
             this.col_Recup_Cartera_Rango.VisibleIndex = 4;
+            this.col_Recup_Cartera_Rango.Width = 128;
             // 
             // col_Recup_Cartera_Aplica
             // 
@@ -621,6 +635,7 @@
             this.col_Recup_Cartera_Aplica.OptionsColumn.AllowEdit = false;
             this.col_Recup_Cartera_Aplica.Visible = true;
             this.col_Recup_Cartera_Aplica.VisibleIndex = 5;
+            this.col_Recup_Cartera_Aplica.Width = 126;
             // 
             // menuStrip1
             // 
@@ -746,6 +761,43 @@
             this.txtobservacion.Size = new System.Drawing.Size(787, 88);
             this.txtobservacion.TabIndex = 0;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Grupo";
+            this.gridColumn3.ColumnEdit = this.cmb_grupo;
+            this.gridColumn3.FieldName = "IdGrupo";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 6;
+            this.gridColumn3.Width = 477;
+            // 
+            // cmb_grupo
+            // 
+            this.cmb_grupo.AutoHeight = false;
+            this.cmb_grupo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_grupo.DisplayMember = "Nombre_Grupo";
+            this.cmb_grupo.Name = "cmb_grupo";
+            this.cmb_grupo.ValueMember = "IdGrupo";
+            this.cmb_grupo.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Grupo";
+            this.gridColumn4.FieldName = "Nombre_Grupo";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 0;
+            // 
             // frmRo_Efectividad_entrega_x_periodo_xempleado_mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -788,6 +840,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_grupo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -850,5 +904,9 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_grupo;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

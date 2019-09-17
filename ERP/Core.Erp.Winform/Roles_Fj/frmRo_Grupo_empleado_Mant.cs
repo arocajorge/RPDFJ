@@ -26,6 +26,8 @@ namespace Core.Erp.Winform.Roles_Fj
         ro_Grupo_empleado_Bus bus_grupo = new ro_Grupo_empleado_Bus();
         List<ro_parametro_x_pago_variable_tipo_Info> lista_tipo_variable = new List<ro_parametro_x_pago_variable_tipo_Info>();
         ro_parametro_x_pago_variable_tipo_Bus bus_tipo_variable = new ro_parametro_x_pago_variable_tipo_Bus();
+        ro_fectividad_Entrega_tipoServicio_Bus bus_servicios = new ro_fectividad_Entrega_tipoServicio_Bus();
+        List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicios = new List<ro_fectividad_Entrega_tipoServicio_Info>();
 
 
         ro_rubro_tipo_Bus bus_rubro = new ro_rubro_tipo_Bus();
@@ -132,6 +134,11 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmb_rubro_pago_variable.DisplayMember = "nom_Pago_Variable";
                 cmb_rubro_pago_variable.DataSource = lista_tipo_variable;
 
+                lst_servicios=bus_servicios.Get_List(param.IdEmpresa);
+
+                cmb_servicios.DataSource = lst_servicios.ToList();
+
+
             }
             catch (Exception ex)
             {
@@ -198,6 +205,7 @@ namespace Core.Erp.Winform.Roles_Fj
         
         public bool Grabar()
         {
+            txt_valor_bono.Focus();
             int IdGrupo=0;
             try
             {
@@ -274,12 +282,16 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+               
+
                 switch (accion)
                 {
                     case Cl_Enumeradores.eTipo_action.grabar:
                        
                         dtFechaSalida.EditValue = DateTime.Now;
                         ucGe_Menu.Visible_bntAnular = false;
+                         lista_grupo_det = new BindingList<ro_Grupo_empleado_det_Info>();
+                gridControl_parametro_Variable.DataSource = lista_grupo_det;
                         break;
                     case Cl_Enumeradores.eTipo_action.actualizar:
                         ucGe_Menu.Visible_bntAnular = false;

@@ -59,6 +59,13 @@ namespace Cus.Erp.Reports.FJ.Roles
                       info.Iess = item.Iess;
                       info.dias_trabajados = item.dias_trabajados;
                       info.dias_Efectivos = item.dias_Efectivos;
+
+                      info.Efectividad_Entrega_ali = item.Efectividad_Entrega_ali;
+                      info.Efectividad_Entrega_aplica_ali = item.Efectividad_Entrega_aplica_ali;
+                      info.Efectividad_Volumen_ali = item.Efectividad_Volumen_ali;
+                      info.Efectividad_Volumen_aplica_ali = item.Efectividad_Volumen_aplica_ali;
+                      info.Recuperacion_cartera_ali = item.Recuperacion_cartera_ali;
+                      info.Recuperacion_cartera_aplica_ali = item.Recuperacion_cartera_aplica_ali;
                       lista.Add(info);
 
 

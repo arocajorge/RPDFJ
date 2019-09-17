@@ -57,6 +57,8 @@ namespace Core.Erp.Winform.Roles_Fj
         BindingList<ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info> lista_efectividad = new BindingList<ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info>();
         ro_fectividad_Entrega_x_Periodo_Empleado_Det_Bus bus_efectividad_detalle = new ro_fectividad_Entrega_x_Periodo_Empleado_Det_Bus();
 
+        List<ro_Grupo_empleado_Info> lst_grupo = new List<ro_Grupo_empleado_Info>();
+        ro_Grupo_empleado_Bus bus_grupo = new Business.Roles_Fj.ro_Grupo_empleado_Bus();
 
 
         List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_Calculo = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
@@ -116,7 +118,6 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-
         public void cargar_dato()
         {
             try
@@ -142,9 +143,10 @@ namespace Core.Erp.Winform.Roles_Fj
                 lst_servicio = bus_servicio.Get_List(Convert.ToInt32(param.IdEmpresa));
 
                
-                cmb_servicios.Properties.DataSource = lst_servicio.Where(v => v.Estado == true);
+                cmb_servicios.Properties.DataSource = lst_servicio.Where(v => v.Estado == true).ToList();
 
-
+                lst_grupo = bus_grupo.listado_Grupos(param.IdEmpresa);
+                cmb_grupo.DataSource = lst_grupo;
             }
             catch (Exception ex)
             {
@@ -237,7 +239,7 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                int IdTipoServicio=cmb_servicios.Properties.ValueMember==null?0:Convert.ToInt32(cmb_servicios.Properties.ValueMember);
+                int IdTipoServicio = cmb_servicios.EditValue == null ? 0 : Convert.ToInt32(cmb_servicios.EditValue);
 
                 info_periodo = (ro_periodo_x_ro_Nomina_TipoLiqui_Info)cmbPeriodos.Properties.View.GetFocusedRow();
                 if (info_periodo == null)
@@ -269,7 +271,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_efectividad.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
                 info_efectividad.IdNomina_tipo_Liq = Convert.ToInt32(cmbnominaTipo.EditValue);
                 info_efectividad.IdPeriodo = Convert.ToInt32(cmbPeriodos.EditValue);
-                info_efectividad.IdServicioTipo = Convert.ToInt32(cmb_servicios.Properties.ValueMember);
+                info_efectividad.IdServicioTipo = Convert.ToInt32(cmb_servicios.EditValue);
                 info_efectividad.Observacion = txtobservacion.Text;
                 info_efectividad.IdUsuario = param.IdUsuario;
                 info_efectividad.FechaTransac = DateTime.Now;
@@ -326,7 +328,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
                 if (cmbnominaTipo.EditValue == null || cmbnominaTipo.EditValue == "")
                 {
-                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_la) + " Proceso", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_el) + " Proceso", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -336,9 +338,15 @@ namespace Core.Erp.Winform.Roles_Fj
                     return false;
                 }
 
-                if (cmbPeriodos.Text == "")
+                if (cmb_servicios.EditValue == null || cmb_servicios.EditValue == "")
                 {
-                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_la) + " Ingrese una observación", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_el) + " Seleccione el tipo de servicio", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                if (txtobservacion.Text == "")
+                {
+                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Ingrese_la) + " Ingrese una observación", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
 
@@ -650,74 +658,101 @@ namespace Core.Erp.Winform.Roles_Fj
                     decimal Volumen = Convert.ToDecimal(rowData[2]);
                     decimal Cartera = Convert.ToDecimal(rowData[3]);
                     
-                   
-
-
                     ro_fectividad_Entrega_x_Periodo_Empleado_Info emp = new ro_fectividad_Entrega_x_Periodo_Empleado_Info();
                     if (!string.IsNullOrWhiteSpace(Ruta.ToString()))
                     {
                         if (fx_Verificar_Reg_Repetidos(emp, false, 0))
                         {
-
-
-
                             foreach (var item in lista_efectividad)
                             {
-
-                                if (item.ru_descripcion == Ruta)
+                                #region BEBIDAS
+                                if (Convert.ToInt32(cmb_servicios.EditValue) == 1)
                                 {
-                                    List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_tmp = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
-                                    item.ruta_excel = Ruta;
-                                    // busco el porcentaje correspondiente de efectividad
-
-
-
-                                    item.Efectividad_Entrega = Convert.ToDecimal(Entrega);
-                                    Lista_tmp = Lista_Calculo.Where(v => v.Efec_Entrega_Rango == Entrega.ToString()).ToList();
-                                    if (Lista_tmp.Count() > 0)
-                                        item.Efectividad_Entrega_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Entrega_Aplica);
-                                    else
-                                        if (Entrega >= 1)
-                                            item.Efectividad_Entrega_aplica = 1.3;
+                                    if (item.ru_descripcion == Ruta)
+                                    {
+                                        List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_tmp = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
+                                        item.ruta_excel = Ruta;
+                                        // busco el porcentaje correspondiente de efectividad
+                                        item.Efectividad_Entrega = Convert.ToDecimal(Entrega);
+                                        Lista_tmp = Lista_Calculo.Where(v => v.Efec_Entrega_Rango == Entrega.ToString()).ToList();
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Efectividad_Entrega_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Entrega_Aplica);
                                         else
-                                            item.Efectividad_Entrega_aplica = 0;
+                                            if (Entrega >= 1)
+                                                item.Efectividad_Entrega_aplica = 1.3;
+                                            else
+                                                item.Efectividad_Entrega_aplica = 0;
+                                        // busco el porcentaje correspondiente de volumen de entrega
 
-
-
-
-                                    // busco el porcentaje correspondiente de volumen de entrega
-
-                                    item.Efectividad_Volumen = Convert.ToDecimal(Volumen);
-                                    Lista_tmp = Lista_Calculo.Where(v => v.Efec_Volumen_Rango == Volumen.ToString()).ToList();
-                                    if (Lista_tmp.Count() > 0)
-                                        item.Efectividad_Volumen_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Volumen_Aplica);
-                                    else
-                                        if (Volumen >= 1)
-                                            item.Efectividad_Volumen_aplica = 1.3;
+                                        item.Efectividad_Volumen = Convert.ToDecimal(Volumen);
+                                        Lista_tmp = Lista_Calculo.Where(v => v.Efec_Volumen_Rango == Volumen.ToString()).ToList();
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Efectividad_Volumen_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Volumen_Aplica);
                                         else
-                                            item.Efectividad_Volumen_aplica = 0;
-                                    // busco el porcentaje correspondiente de volumen de entrega
+                                            if (Volumen >= 1)
+                                                item.Efectividad_Volumen_aplica = 1.3;
+                                            else
+                                                item.Efectividad_Volumen_aplica = 0;
+                                        // busco el porcentaje correspondiente de volumen de entrega
 
-
-
-
-
-
-                                    item.Recuperacion_cartera = Convert.ToDecimal(Cartera);
-                                    Lista_tmp = Lista_Calculo.Where(v => v.Recup_Cartera_Rango == Cartera.ToString().Trim()).ToList();
-                                    if (Lista_tmp.Count() > 0)
-                                        item.Recuperacion_cartera_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Recup_Cartera_Aplica);
-                                    else
-                                        if (Cartera >= 1)
-                                            item.Recuperacion_cartera_aplica = 1;
+                                        item.Recuperacion_cartera = Convert.ToDecimal(Cartera);
+                                        Lista_tmp = Lista_Calculo.Where(v => v.Recup_Cartera_Rango == Cartera.ToString().Trim()).ToList();
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Recuperacion_cartera_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Recup_Cartera_Aplica);
                                         else
-                                            item.Recuperacion_cartera_aplica = 0;
-                                    item.Error = null;
-
-
+                                            if (Cartera >= 1)
+                                                item.Recuperacion_cartera_aplica = 1;
+                                            else
+                                                item.Recuperacion_cartera_aplica = 0;
+                                        item.Error = null;
+                                    }
+                                    else
+                                        item.Error = "Ruta no coincide";
                                 }
-                                else
-                                    item.Error = "Ruta no coincide";
+                                #endregion
+
+                                #region ALIMENTOS
+                                if (Convert.ToInt32(cmb_servicios.EditValue) == 2)
+                                {
+                                    if (item.ru_descripcion == Ruta)
+                                    {
+
+                                        if (Entrega >= 1)
+                                        {
+
+                                        }
+                                        List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_tmp = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
+                                        item.ruta_excel = Ruta;
+                                        // busco el porcentaje correspondiente de efectividad
+                                        item.Efectividad_Entrega = Convert.ToDecimal(Entrega);
+                                        Lista_tmp = Lista_Calculo.Where(v => Convert.ToDecimal( v.Efec_Entrega_Rango) ==Convert.ToDecimal( Entrega.ToString())&& v.IdGrupo==item.IdGrupo).ToList();
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Efectividad_Entrega_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Entrega_Aplica);
+                                            else
+                                                item.Efectividad_Entrega_aplica = 0;
+
+                                        item.Efectividad_Volumen = Convert.ToDecimal(Volumen);
+                                        Lista_tmp = Lista_Calculo.Where(v => Convert.ToDecimal(v.Efec_Volumen_Rango) == Convert.ToDecimal(Volumen.ToString()) && v.IdGrupo == item.IdGrupo).ToList();
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Efectividad_Volumen_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Efec_Volumen_Aplica);
+                                            else
+                                                item.Efectividad_Volumen_aplica = 0;
+                                        // busco el porcentaje correspondiente de volumen de entrega
+
+                                        item.Recuperacion_cartera = Convert.ToDecimal(Cartera);
+                                        Lista_tmp = Lista_Calculo.Where(v => Convert.ToDecimal(v.Recup_Cartera_Rango) == Convert.ToDecimal(Cartera.ToString()) && v.IdGrupo == item.IdGrupo).ToList();
+
+                                        if (Lista_tmp.Count() > 0)
+                                            item.Recuperacion_cartera_aplica = Convert.ToDouble(Lista_tmp.FirstOrDefault().Recup_Cartera_Aplica);
+                                        else
+                                                item.Recuperacion_cartera_aplica = 0;
+                                        item.Error = null;
+                                    }
+                                    else
+                                        item.Error = "Ruta no coincide";
+                                }
+                                #endregion
+
                             }
                         }
                         else
@@ -823,14 +858,13 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                 int IdTipoServicio=cmb_servicios.Properties.ValueMember==null?0:Convert.ToInt32(cmb_servicios.Properties.ValueMember);
+                int IdTipoServicio = cmb_servicios.EditValue == null ? 0 : Convert.ToInt32(cmb_servicios.EditValue);
                 Lista_Calculo = Bus_Calculo.Get_List_Calculo_Pago_Porcentaje(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue) , IdTipoServicio);
                 gc_ro_Calculo_Pago_Variable_Porcentaje.DataSource = Lista_Calculo;
             }
             catch (Exception)
             {
                 
-                throw;
             }
         }
    

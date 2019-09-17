@@ -20,5 +20,6 @@ namespace Core.Erp.Data
         public double Porcentaje_calculo { get; set; }
         public string IdRubro { get; set; }
         public double Valor_bono { get; set; }
+        public Nullable<int> IdTipoServicio { get; set; }
     }
 }

@@ -18,8 +18,9 @@ namespace Core.Erp.Data
         public int IdGrupo { get; set; }
         public string cod_Pago_Variable { get; set; }
         public double Porcentaje_calculo { get; set; }
+        public Nullable<int> IdTipoServicio { get; set; }
     
-        public virtual ro_parametro_x_pago_variable_tipo ro_parametro_x_pago_variable_tipo { get; set; }
         public virtual ro_Grupo_empleado ro_Grupo_empleado { get; set; }
+        public virtual ro_parametro_x_pago_variable_tipo ro_parametro_x_pago_variable_tipo { get; set; }
     }
 }

@@ -38,6 +38,8 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.Recup_Cartera_Rango = item.Recup_Cartera_Rango;
                         Info.Recup_Cartera_Aplica = item.Recup_Cartera_Aplica;
                         Info.IdTipoServicio = Info.IdTipoServicio;
+                        Info.IdTipoServicio = item.IdTipoServicio;
+                        Info.IdGrupo = item.IdGrupo;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -90,6 +92,8 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.Recup_Cartera_Rango = item.Recup_Cartera_Rango;
                         Info.Recup_Cartera_Aplica = item.Recup_Cartera_Aplica;
                         Info.IdTipoServicio = item.IdTipoServicio;
+                        Info.SignoOperacion = item.SignoOperacion;
+                        Info.IdGrupo = item.IdGrupo;
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -152,7 +156,7 @@ namespace Core.Erp.Data.Roles_Fj
         {
             try
             {
-                IdTipo_Nomina = Get_Id(Info.IdEmpresa, Info.IdTipo_Nomina, ref mensaje);
+                int IdEfectividad = Get_Id(Info.IdEmpresa, Info.IdTipo_Nomina, ref mensaje);
 
                 using (EntityRoles_FJ Context = new EntityRoles_FJ())
                 {
@@ -160,7 +164,7 @@ namespace Core.Erp.Data.Roles_Fj
 
                     contact.IdEmpresa = Info.IdEmpresa;
                     contact.IdTipo_Nomina = Info.IdTipo_Nomina;
-                    contact.IdEfectividad = IdTipo_Nomina;
+                    contact.IdEfectividad = IdEfectividad;
                     contact.Efec_Entrega_Rango = Info.Efec_Entrega_Rango;
                     contact.Efec_Entrega_Aplica = Info.Efec_Entrega_Aplica;
                     contact.Efec_Volumen_Rango = Info.Efec_Volumen_Rango;
@@ -168,6 +172,8 @@ namespace Core.Erp.Data.Roles_Fj
                     contact.Recup_Cartera_Rango = Info.Recup_Cartera_Rango;
                     contact.Recup_Cartera_Aplica = Info.Recup_Cartera_Aplica;
                     contact.IdTipoServicio = Info.IdTipoServicio;
+                    contact.SignoOperacion = Info.SignoOperacion;
+                    contact.IdGrupo = Info.IdGrupo;
                     //campos de auditoria
                     contact.Estado = Info.Estado;
                     contact.IdUsuario = Info.IdUsuario;
@@ -228,8 +234,11 @@ namespace Core.Erp.Data.Roles_Fj
                         contact.Efec_Volumen_Aplica = Info.Efec_Volumen_Aplica;
                         contact.Recup_Cartera_Rango = Info.Recup_Cartera_Rango;
                         contact.Recup_Cartera_Aplica = Info.Recup_Cartera_Aplica;
-                        contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
                         contact.IdTipoServicio = Info.IdTipoServicio;
+                        contact.IdGrupo = Info.IdGrupo;
+                        contact.SignoOperacion = Info.SignoOperacion;
+                        contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
+
                         contact.Fecha_UltMod = DateTime.Now;
                         contact.nom_pc = Info.nom_pc;
                         contact.ip = Info.ip;
@@ -285,7 +294,7 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ Context = new EntityRoles_FJ())
                 {
-                    Context.Database.ExecuteSqlCommand("Delete Fj_servindustrias.ro_Calculo_Pago_Variable_Porcentaje Where IdEmpresa =" + IdEmpresa + "and IdTipo_Nomina =" + IdTipo_Nomina + " and IdTipoServicio="+IdTipo_Nomina);
+                    Context.Database.ExecuteSqlCommand("Delete Fj_servindustrias.ro_Calculo_Pago_Variable_Porcentaje Where IdEmpresa =" + IdEmpresa + "and IdTipo_Nomina =" + IdTipo_Nomina + " and IdTipoServicio=" + IdTipoServicio);
                 }
                 return true;
             }

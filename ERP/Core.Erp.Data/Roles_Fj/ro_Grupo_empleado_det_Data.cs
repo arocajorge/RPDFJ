@@ -25,8 +25,8 @@ namespace Core.Erp.Data.Roles_Fj
                   add.IdEmpresa = item.IdEmpresa;
                   add.IdGrupo =item.IdGrupo;
                   add.cod_Pago_Variable = item.cod_Pago_Variable;
-                  //add.Valor = item.Valor;
-                //  add.Observacion = item.Observacion;
+                  add.Porcentaje_calculo = item.Porcentaje_calculo;
+                  add.IdTipoServicio = item.IdTipoServicio;
                   db.ro_Grupo_empleado_det.Add(add);
                   db.SaveChanges();
                   }
@@ -82,9 +82,11 @@ namespace Core.Erp.Data.Roles_Fj
                       sec++;
                       ro_Grupo_empleado_det add = new ro_Grupo_empleado_det();
                       add.IdEmpresa = info.IdEmpresa;
+                     
                       add.IdGrupo = info.IdGrupo;
                       add.cod_Pago_Variable = info.cod_Pago_Variable;
                       add.Porcentaje_calculo = info.Porcentaje_calculo;
+                      add.IdTipoServicio = info.IdTipoServicio;
                       db.ro_Grupo_empleado_det.Add(add);
                       db.SaveChanges();
                   }
@@ -132,6 +134,7 @@ namespace Core.Erp.Data.Roles_Fj
                       add.cod_Pago_Variable = info.cod_Pago_Variable;
                       add.Porcentaje_calculo = info.Porcentaje_calculo;
                       add.icono_eliminar = true;
+                      add.IdTipoServicio = info.IdTipoServicio;
                       lista.Add(add);
                   }
               }
@@ -173,6 +176,7 @@ namespace Core.Erp.Data.Roles_Fj
                       add.cod_Pago_Variable_enum = (ero_parametro_x_pago_variable_tipo)Enum.Parse(typeof(ero_parametro_x_pago_variable_tipo), info.cod_Pago_Variable);
                       add.Valor_bono = info.Valor_bono;
                       add.IdRubro=info.IdRubro;
+                      add.IdTipoServicio = info.IdTipoServicio;
                       lista.Add(add);
                   }
               }

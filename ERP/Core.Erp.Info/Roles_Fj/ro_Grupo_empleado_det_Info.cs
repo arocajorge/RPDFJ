@@ -16,6 +16,7 @@ namespace Core.Erp.Info.Roles_Fj
        public string IdRubro { get; set; }
        public ero_parametro_x_pago_variable_tipo cod_Pago_Variable_enum { get; set; }
        public double Valor_bono { get; set; }
+       public Nullable<int> IdTipoServicio { get; set; }
 
 
     }

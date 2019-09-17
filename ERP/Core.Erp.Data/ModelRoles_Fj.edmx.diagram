@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado" Width="1.5" PointX="6.5774044350615721" PointY="26.259911579200956" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_x_empleado_Adm_x_periodo_Det" Width="1.5" PointX="1.9611689830018064" PointY="4.69354805568864" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_x_Periodo_Empleado_Det" Width="1.5" PointX="1.6665062390577545" PointY="1.0531251286403858" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" Width="1.5" PointX="0.67627215416928388" PointY="4.0507009197262587" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_disco" Width="1.5" PointX="10.420679607624505" PointY="24.752517890535536" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="9.446520604866798" PointY="13.148832118673637" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_parametro_x_pago_variable_Det" Width="1.5" PointX="11.158704595248544" PointY="14.003980896437533" />
@@ -23,7 +22,6 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_x_Periodo_Empleado_Det" Width="1.5" PointX="7.3057745486990431" PointY="15.703324101727141" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_x_empleado_Adm_x_periodo" Width="1.5" PointX="0.65499378212494486" PointY="30.327905177291438" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_x_empleado_Adm_x_periodo_Det" Width="1.5" PointX="1.532606699286311" PointY="4.1827777494596212" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.ro_Grupo_empleado_det" Width="1.5" PointX="7.5933651624216534" PointY="16.101976163732807" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable" Width="1.5" PointX="5.258418009271109" PointY="19.658897826289245" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable_Det" Width="1.5" PointX="5.9858685666629432" PointY="21.350145022082209" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable_tipo" Width="1.5" PointX="3.4256653764404663" PointY="18.081729286388367" />
@@ -38,7 +36,6 @@
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_empleado_x_rutas_asignadas_Det_ro_ruta" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_fectividad_x_empleado_Adm_x_periodo" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_parametro_x_pago_variable_tipo" />
-        <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_parametro_x_pago_variable_Det_ro_parametro_x_pago_variable" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_parametro_x_pago_variable_Det_ro_parametro_x_pago_variable_tipo" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_planificacion_x_ruta_x_empleado_det_ro_placa" />
@@ -55,7 +52,6 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" Width="1.5" PointX="4.6238338596298512" PointY="27.883285565247427" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" Width="1.5" PointX="5.6044146295657455" PointY="2.7364846629726163" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Grupo_empleado" Width="1.5" PointX="8.7953924894311424" PointY="8.3932649830324877" />
-        <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_cargo_fuerza_grupo" Width="1.5" PointX="3.815761569801607" PointY="21.2399045774899" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_marcaciones_x_empleado_x_incidentes_falt_Perm" Width="1.5" PointX="6.5613664065307784" PointY="10.011755381716302" />
@@ -86,8 +82,12 @@
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_planificacion_x_jornada_desfasada_empleado_ro_planificacion_x_jornada_desfasada" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" Width="1.5" PointX="1.5460096809761643" PointY="0.069095850023019989" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" Width="1.5" PointX="6.0300423866277768" PointY="29.060659764828468" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="7.9212631638726512" PointY="23.787656541814869" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" Width="1.5" PointX="0.10984934499014604" PointY="11.773386796830868" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_Grupo_empleado_det" Width="1.5" PointX="5.1455587172627251" PointY="31.15154260357448" />
+        <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" />
+        <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" Width="1.5" PointX="11.880334904361671" PointY="21.410176093415441" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="2.5254061606365283" PointY="24.156077217383345" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

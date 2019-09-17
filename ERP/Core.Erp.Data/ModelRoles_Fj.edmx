@@ -231,7 +231,8 @@
       [vwro_Grupo_empleado_det].[cod_Pago_Variable] AS [cod_Pago_Variable], 
       [vwro_Grupo_empleado_det].[Porcentaje_calculo] AS [Porcentaje_calculo], 
       [vwro_Grupo_empleado_det].[IdRubro] AS [IdRubro], 
-      [vwro_Grupo_empleado_det].[Valor_bono] AS [Valor_bono]
+      [vwro_Grupo_empleado_det].[Valor_bono] AS [Valor_bono], 
+      [vwro_Grupo_empleado_det].[IdTipoServicio] AS [IdTipoServicio]
       FROM [Fj_servindustrias].[vwro_Grupo_empleado_det] AS [vwro_Grupo_empleado_det]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" EntityType="ModelRoles_Fj.Store.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" store:Type="Views" store:Schema="Fj_servindustrias" store:Name="vwro_marcaciones_x_empleado_x_incidentes_falt_Perm">
@@ -540,6 +541,8 @@
           <Property Name="nom_pc" Type="varchar" MaxLength="50" />
           <Property Name="ip" Type="varchar" MaxLength="50" />
           <Property Name="IdTipoServicio" Type="int" />
+          <Property Name="SignoOperacion" Type="char" MaxLength="1" />
+          <Property Name="IdGrupo" Type="int" />
         </EntityType>
         <EntityType Name="ro_descuento_no_planificados">
           <Key>
@@ -936,6 +939,7 @@
           <Property Name="IdGrupo" Type="int" Nullable="false" />
           <Property Name="cod_Pago_Variable" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Porcentaje_calculo" Type="float" Nullable="false" />
+          <Property Name="IdTipoServicio" Type="int" />
         </EntityType>
         <EntityType Name="ro_marcaciones_x_empleado_x_incidentes_falt_Perm">
           <Key>
@@ -1600,6 +1604,7 @@
           <Property Name="Porcentaje_calculo" Type="float" Nullable="false" />
           <Property Name="IdRubro" Type="varchar" MaxLength="50" />
           <Property Name="Valor_bono" Type="float" Nullable="false" />
+          <Property Name="IdTipoServicio" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -2319,7 +2324,6 @@
             <Parameter Name="IdNomina_Tipo" Mode="In" Type="Int32" />
             <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="vwro_Grupo_empleado_det" EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" />
           <EntitySet Name="ro_disco" EntityType="ModelRoles_Fj.ro_disco" />
           <EntitySet Name="ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" />
           <EntitySet Name="ro_empleado_x_parametro_x_pago_variable_Det" EntityType="ModelRoles_Fj.ro_empleado_x_parametro_x_pago_variable_Det" />
@@ -2330,7 +2334,6 @@
           <EntitySet Name="ro_fectividad_Entrega_x_Periodo_Empleado_Det" EntityType="ModelRoles_Fj.ro_fectividad_Entrega_x_Periodo_Empleado_Det" />
           <EntitySet Name="ro_fectividad_x_empleado_Adm_x_periodo" EntityType="ModelRoles_Fj.ro_fectividad_x_empleado_Adm_x_periodo" />
           <EntitySet Name="ro_fectividad_x_empleado_Adm_x_periodo_Det" EntityType="ModelRoles_Fj.ro_fectividad_x_empleado_Adm_x_periodo_Det" />
-          <EntitySet Name="ro_Grupo_empleado_det" EntityType="ModelRoles_Fj.ro_Grupo_empleado_det" />
           <EntitySet Name="ro_parametro_x_pago_variable" EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable" />
           <EntitySet Name="ro_parametro_x_pago_variable_Det" EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable_Det" />
           <EntitySet Name="ro_parametro_x_pago_variable_tipo" EntityType="ModelRoles_Fj.ro_parametro_x_pago_variable_tipo" />
@@ -2362,10 +2365,6 @@
           <AssociationSet Name="FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_parametro_x_pago_variable_tipo" Association="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_parametro_x_pago_variable_tipo">
             <End Role="ro_parametro_x_pago_variable_tipo" EntitySet="ro_parametro_x_pago_variable_tipo" />
             <End Role="ro_fectividad_x_empleado_Adm_x_periodo_Det" EntitySet="ro_fectividad_x_empleado_Adm_x_periodo_Det" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo">
-            <End Role="ro_parametro_x_pago_variable_tipo" EntitySet="ro_parametro_x_pago_variable_tipo" />
-            <End Role="ro_Grupo_empleado_det" EntitySet="ro_Grupo_empleado_det" />
           </AssociationSet>
           <AssociationSet Name="FK_ro_parametro_x_pago_variable_Det_ro_parametro_x_pago_variable" Association="ModelRoles_Fj.FK_ro_parametro_x_pago_variable_Det_ro_parametro_x_pago_variable">
             <End Role="ro_parametro_x_pago_variable" EntitySet="ro_parametro_x_pago_variable" />
@@ -2416,10 +2415,6 @@
           <EntitySet Name="vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" />
           <EntitySet Name="ro_Parametro_calculo_Horas_Extras" EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" />
           <EntitySet Name="ro_Grupo_empleado" EntityType="ModelRoles_Fj.ro_Grupo_empleado" />
-          <AssociationSet Name="FK_ro_Grupo_empleado_det_ro_Grupo_empleado" Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado">
-            <End Role="ro_Grupo_empleado" EntitySet="ro_Grupo_empleado" />
-            <End Role="ro_Grupo_empleado_det" EntitySet="ro_Grupo_empleado_det" />
-          </AssociationSet>
           <EntitySet Name="ro_empleado_x_cargo_fuerza_grupo" EntityType="ModelRoles_Fj.ro_empleado_x_cargo_fuerza_grupo" />
           <AssociationSet Name="FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado" Association="ModelRoles_Fj.FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado">
             <End Role="ro_Grupo_empleado" EntitySet="ro_Grupo_empleado" />
@@ -2500,8 +2495,18 @@
           </AssociationSet>
           <EntitySet Name="vwro_planificacion_x_jornada_desfasada" EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" />
           <EntitySet Name="vwro_ro_planificacion_x_jornada_desfasada_empleado" EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" />
-          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" />
           <EntitySet Name="ro_fectividad_Entrega_tipoServicio" EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" />
+          <EntitySet Name="ro_Grupo_empleado_det" EntityType="ModelRoles_Fj.ro_Grupo_empleado_det" />
+          <AssociationSet Name="FK_ro_Grupo_empleado_det_ro_Grupo_empleado" Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado">
+            <End Role="ro_Grupo_empleado" EntitySet="ro_Grupo_empleado" />
+            <End Role="ro_Grupo_empleado_det" EntitySet="ro_Grupo_empleado_det" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo">
+            <End Role="ro_parametro_x_pago_variable_tipo" EntitySet="ro_parametro_x_pago_variable_tipo" />
+            <End Role="ro_Grupo_empleado_det" EntitySet="ro_Grupo_empleado_det" />
+          </AssociationSet>
+          <EntitySet Name="vwro_Grupo_empleado_det" EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" />
+          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -2709,21 +2714,6 @@
           <Property Type="Double" Name="efectividad_volumen" Nullable="true" />
           <Property Type="Double" Name="recuperacion_cartera" Nullable="true" />
         </ComplexType>
-        <EntityType Name="vwro_Grupo_empleado_det">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdGrupo" />
-            <PropertyRef Name="cod_Pago_Variable" />
-            <PropertyRef Name="Porcentaje_calculo" />
-            <PropertyRef Name="Valor_bono" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdGrupo" Nullable="false" />
-          <Property Type="String" Name="cod_Pago_Variable" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Porcentaje_calculo" Nullable="false" />
-          <Property Type="String" Name="IdRubro" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Valor_bono" Nullable="false" />
-        </EntityType>
         <EntityType Name="ro_disco">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -2932,19 +2922,6 @@
           <NavigationProperty Name="ro_fectividad_x_empleado_Adm_x_periodo" Relationship="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_fectividad_x_empleado_Adm_x_periodo" FromRole="ro_fectividad_x_empleado_Adm_x_periodo_Det" ToRole="ro_fectividad_x_empleado_Adm_x_periodo" />
           <NavigationProperty Name="ro_parametro_x_pago_variable_tipo" Relationship="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_parametro_x_pago_variable_tipo" FromRole="ro_fectividad_x_empleado_Adm_x_periodo_Det" ToRole="ro_parametro_x_pago_variable_tipo" />
         </EntityType>
-        <EntityType Name="ro_Grupo_empleado_det">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdGrupo" />
-            <PropertyRef Name="cod_Pago_Variable" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdGrupo" Nullable="false" />
-          <Property Type="String" Name="cod_Pago_Variable" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Porcentaje_calculo" Nullable="false" />
-          <NavigationProperty Name="ro_parametro_x_pago_variable_tipo" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" FromRole="ro_Grupo_empleado_det" ToRole="ro_parametro_x_pago_variable_tipo" />
-          <NavigationProperty Name="ro_Grupo_empleado" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" FromRole="ro_Grupo_empleado_det" ToRole="ro_Grupo_empleado" />
-        </EntityType>
         <EntityType Name="ro_parametro_x_pago_variable">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -2994,8 +2971,8 @@
           <Property Type="String" Name="nom_Pago_Variable" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="IdRubro" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ro_fectividad_x_empleado_Adm_x_periodo_Det" Relationship="ModelRoles_Fj.FK_ro_fectividad_x_empleado_Adm_x_periodo_Det_ro_parametro_x_pago_variable_tipo" FromRole="ro_parametro_x_pago_variable_tipo" ToRole="ro_fectividad_x_empleado_Adm_x_periodo_Det" />
-          <NavigationProperty Name="ro_Grupo_empleado_det" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" FromRole="ro_parametro_x_pago_variable_tipo" ToRole="ro_Grupo_empleado_det" />
           <NavigationProperty Name="ro_parametro_x_pago_variable_Det" Relationship="ModelRoles_Fj.FK_ro_parametro_x_pago_variable_Det_ro_parametro_x_pago_variable_tipo" FromRole="ro_parametro_x_pago_variable_tipo" ToRole="ro_parametro_x_pago_variable_Det" />
+          <NavigationProperty Name="ro_Grupo_empleado_det" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" FromRole="ro_parametro_x_pago_variable_tipo" ToRole="ro_Grupo_empleado_det" />
         </EntityType>
         <EntityType Name="ro_placa">
           <Key>
@@ -3196,20 +3173,6 @@
               <PropertyRef Name="cod_Pago_Variable" />
             </Principal>
             <Dependent Role="ro_fectividad_x_empleado_Adm_x_periodo_Det">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="cod_Pago_Variable" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo">
-          <End Type="ModelRoles_Fj.ro_parametro_x_pago_variable_tipo" Role="ro_parametro_x_pago_variable_tipo" Multiplicity="1" />
-          <End Type="ModelRoles_Fj.ro_Grupo_empleado_det" Role="ro_Grupo_empleado_det" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_parametro_x_pago_variable_tipo">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="cod_Pago_Variable" />
-            </Principal>
-            <Dependent Role="ro_Grupo_empleado_det">
               <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="cod_Pago_Variable" />
             </Dependent>
@@ -3614,23 +3577,9 @@
           <Property Type="String" Name="Estado" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="MotiAnula" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Double" Name="Sueldo" />
-          <NavigationProperty Name="ro_Grupo_empleado_det" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" FromRole="ro_Grupo_empleado" ToRole="ro_Grupo_empleado_det" />
           <NavigationProperty Name="ro_empleado_x_cargo_fuerza_grupo" Relationship="ModelRoles_Fj.FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado" FromRole="ro_Grupo_empleado" ToRole="ro_empleado_x_cargo_fuerza_grupo" />
+          <NavigationProperty Name="ro_Grupo_empleado_det" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" FromRole="ro_Grupo_empleado" ToRole="ro_Grupo_empleado_det" />
         </EntityType>
-        <Association Name="FK_ro_Grupo_empleado_det_ro_Grupo_empleado">
-          <End Type="ModelRoles_Fj.ro_Grupo_empleado" Role="ro_Grupo_empleado" Multiplicity="1" />
-          <End Type="ModelRoles_Fj.ro_Grupo_empleado_det" Role="ro_Grupo_empleado_det" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Grupo_empleado">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdGrupo" />
-            </Principal>
-            <Dependent Role="ro_Grupo_empleado_det">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdGrupo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ro_empleado_x_cargo_fuerza_grupo">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -4336,6 +4285,82 @@
           <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdPlanificacion" Nullable="false" />
         </EntityType>
+        <EntityType Name="ro_fectividad_Entrega_tipoServicio">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdServicio" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdServicio" Nullable="false" />
+          <Property Type="String" Name="ts_Descripcion" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ts_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Porcentaje" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
+          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+        </EntityType>
+        <EntityType Name="ro_Grupo_empleado_det">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdGrupo" />
+            <PropertyRef Name="cod_Pago_Variable" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdGrupo" Nullable="false" />
+          <Property Type="String" Name="cod_Pago_Variable" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Porcentaje_calculo" Nullable="false" />
+          <Property Type="Int32" Name="IdTipoServicio" />
+          <NavigationProperty Name="ro_Grupo_empleado" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" FromRole="ro_Grupo_empleado_det" ToRole="ro_Grupo_empleado" />
+          <NavigationProperty Name="ro_parametro_x_pago_variable_tipo" Relationship="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" FromRole="ro_Grupo_empleado_det" ToRole="ro_parametro_x_pago_variable_tipo" />
+        </EntityType>
+        <Association Name="FK_ro_Grupo_empleado_det_ro_Grupo_empleado">
+          <End Type="ModelRoles_Fj.ro_Grupo_empleado" Role="ro_Grupo_empleado" Multiplicity="1" />
+          <End Type="ModelRoles_Fj.ro_Grupo_empleado_det" Role="ro_Grupo_empleado_det" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Grupo_empleado">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdGrupo" />
+            </Principal>
+            <Dependent Role="ro_Grupo_empleado_det">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo">
+          <End Type="ModelRoles_Fj.ro_parametro_x_pago_variable_tipo" Role="ro_parametro_x_pago_variable_tipo" Multiplicity="1" />
+          <End Type="ModelRoles_Fj.ro_Grupo_empleado_det" Role="ro_Grupo_empleado_det" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_parametro_x_pago_variable_tipo">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="cod_Pago_Variable" />
+            </Principal>
+            <Dependent Role="ro_Grupo_empleado_det">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="cod_Pago_Variable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwro_Grupo_empleado_det">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdGrupo" />
+            <PropertyRef Name="cod_Pago_Variable" />
+            <PropertyRef Name="Porcentaje_calculo" />
+            <PropertyRef Name="Valor_bono" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdGrupo" Nullable="false" />
+          <Property Type="String" Name="cod_Pago_Variable" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Porcentaje_calculo" Nullable="false" />
+          <Property Type="String" Name="IdRubro" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Valor_bono" Nullable="false" />
+          <Property Type="Int32" Name="IdTipoServicio" />
+        </EntityType>
         <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -4362,24 +4387,8 @@
           <Property Type="String" Name="nom_pc" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ip" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdTipoServicio" />
-        </EntityType>
-        <EntityType Name="ro_fectividad_Entrega_tipoServicio">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdServicio" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdServicio" Nullable="false" />
-          <Property Type="String" Name="ts_Descripcion" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ts_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="Porcentaje" Nullable="false" />
-          <Property Type="Boolean" Name="Estado" Nullable="false" />
-          <Property Type="String" Name="IdUsuario" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_Transaccion" Precision="3" />
-          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_UltMod" Precision="3" />
-          <Property Type="String" Name="IdUsuarioUltAnu" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Fecha_UltAnu" Precision="3" />
+          <Property Type="String" Name="SignoOperacion" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="IdGrupo" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4538,18 +4547,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="vwro_Grupo_empleado_det">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.vwro_Grupo_empleado_det">
-              <MappingFragment StoreEntitySet="vwro_Grupo_empleado_det">
-                <ScalarProperty Name="Valor_bono" ColumnName="Valor_bono" />
-                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
-                <ScalarProperty Name="Porcentaje_calculo" ColumnName="Porcentaje_calculo" />
-                <ScalarProperty Name="cod_Pago_Variable" ColumnName="cod_Pago_Variable" />
-                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ro_disco">
             <EntityTypeMapping TypeName="ModelRoles_Fj.ro_disco">
               <MappingFragment StoreEntitySet="ro_disco">
@@ -4719,16 +4716,6 @@
                 <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
                 <ScalarProperty Name="IdNomina_Tipo_Liq" ColumnName="IdNomina_Tipo_Liq" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ro_Grupo_empleado_det">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Grupo_empleado_det">
-              <MappingFragment StoreEntitySet="ro_Grupo_empleado_det">
-                <ScalarProperty Name="Porcentaje_calculo" ColumnName="Porcentaje_calculo" />
-                <ScalarProperty Name="cod_Pago_Variable" ColumnName="cod_Pago_Variable" />
-                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -5586,9 +5573,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ro_fectividad_Entrega_tipoServicio">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio">
+              <MappingFragment StoreEntitySet="ro_fectividad_Entrega_tipoServicio">
+                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
+                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
+                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
+                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
+                <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+                <ScalarProperty Name="ts_codigo" ColumnName="ts_codigo" />
+                <ScalarProperty Name="ts_Descripcion" ColumnName="ts_Descripcion" />
+                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_Grupo_empleado_det">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Grupo_empleado_det">
+              <MappingFragment StoreEntitySet="ro_Grupo_empleado_det">
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="Porcentaje_calculo" ColumnName="Porcentaje_calculo" />
+                <ScalarProperty Name="cod_Pago_Variable" ColumnName="cod_Pago_Variable" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_Grupo_empleado_det">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.vwro_Grupo_empleado_det">
+              <MappingFragment StoreEntitySet="vwro_Grupo_empleado_det">
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="Valor_bono" ColumnName="Valor_bono" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="Porcentaje_calculo" ColumnName="Porcentaje_calculo" />
+                <ScalarProperty Name="cod_Pago_Variable" ColumnName="cod_Pago_Variable" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ro_Calculo_Pago_Variable_Porcentaje">
             <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje">
               <MappingFragment StoreEntitySet="ro_Calculo_Pago_Variable_Porcentaje">
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="SignoOperacion" ColumnName="SignoOperacion" />
                 <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
                 <ScalarProperty Name="ip" ColumnName="ip" />
                 <ScalarProperty Name="nom_pc" ColumnName="nom_pc" />
@@ -5608,24 +5639,6 @@
                 <ScalarProperty Name="Efec_Entrega_Rango" ColumnName="Efec_Entrega_Rango" />
                 <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
                 <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ro_fectividad_Entrega_tipoServicio">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio">
-              <MappingFragment StoreEntitySet="ro_fectividad_Entrega_tipoServicio">
-                <ScalarProperty Name="Fecha_UltAnu" ColumnName="Fecha_UltAnu" />
-                <ScalarProperty Name="IdUsuarioUltAnu" ColumnName="IdUsuarioUltAnu" />
-                <ScalarProperty Name="Fecha_UltMod" ColumnName="Fecha_UltMod" />
-                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
-                <ScalarProperty Name="Fecha_Transaccion" ColumnName="Fecha_Transaccion" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
-                <ScalarProperty Name="ts_codigo" ColumnName="ts_codigo" />
-                <ScalarProperty Name="ts_Descripcion" ColumnName="ts_Descripcion" />
-                <ScalarProperty Name="IdServicio" ColumnName="IdServicio" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

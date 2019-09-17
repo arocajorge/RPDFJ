@@ -33,6 +33,8 @@ namespace Core.Erp.Winform.Roles_Fj
         ro_Calculo_Pago_Variable_Porcentaje_Info Info_Calculo = new ro_Calculo_Pago_Variable_Porcentaje_Info();
         List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_Calculo = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
         BindingList<ro_Calculo_Pago_Variable_Porcentaje_Info> Bind_Lista_Calculo = new BindingList<ro_Calculo_Pago_Variable_Porcentaje_Info>();
+        List<ro_Grupo_empleado_Info> lst_grupo = new List<ro_Grupo_empleado_Info>();
+        ro_Grupo_empleado_Bus bus_grupo = new Business.Roles_Fj.ro_Grupo_empleado_Bus();
 
         string mensaje = "";
         int IdTipo_Nomina = 0;
@@ -137,13 +139,17 @@ namespace Core.Erp.Winform.Roles_Fj
                 ro_fectividad_Entrega_tipoServicio_Bus bus_servicio = new Business.Roles_Fj.ro_fectividad_Entrega_tipoServicio_Bus();
                 List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicio = new List<ro_fectividad_Entrega_tipoServicio_Info>();
                 lst_servicio = bus_servicio.Get_List(Convert.ToInt32(param.IdEmpresa));
+                cmb_servicios.Properties.DataSource = lst_servicio.Where(v => v.Estado == true).ToList();
 
-               // Dictionary<int, string> colorEnums = Enum.GetValues(typeof(Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable))
-               //.Cast<Core.Erp.Info.General.Cl_Enumeradores.eTipoServiciosVariable>().ToDictionary(x => (int)x, x => x.ToString());
-               // cmb_servicios.Properties.ValueMember = "Key";
-               // cmb_servicios.Properties.DisplayMember = "Value";
-                cmb_servicios.Properties.DataSource = lst_servicio.Where(v=>v.Estado==true).ToList();
 
+                List<string> lst_operacion = new List<string>();
+                lst_operacion.Add("S");
+                lst_operacion.Add("%");
+
+                lst_grupo = bus_grupo.listado_Grupos(param.IdEmpresa);
+                cmb_grupo.DataSource = lst_grupo;
+
+               
                 Limpiar();
             }
             catch (Exception ex)

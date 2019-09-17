@@ -787,14 +787,6 @@
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="spROLES_Rpt011" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt011_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-            <Parameter Name="IdNomina_tipo" Mode="In" Type="Int32" />
-            <Parameter Name="IdNomina_tipo_Liqui" Mode="In" Type="Int32" />
-            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
-            <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
-            <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="spROLES_Rpt006" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt006_Result)">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="IdNomina_tipo" Mode="In" Type="Int32" />
@@ -835,6 +827,14 @@
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
             <Parameter Name="Idperiodo_inicio" Mode="In" Type="Int32" />
             <Parameter Name="Idperiodo_fin" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spROLES_Rpt011" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt011_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdNomina_tipo" Mode="In" Type="Int32" />
+            <Parameter Name="IdNomina_tipo_Liqui" Mode="In" Type="Int32" />
+            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="vwROLES_Rpt008">
@@ -1053,33 +1053,6 @@
           <Property Type="Int32" Name="SinLaborar" Nullable="true" />
           <Property Type="Int32" Name="Suspendido" Nullable="true" />
           <Property Type="Int32" Name="Vacaciones" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="spROLES_Rpt011_Result">
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" />
-          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Double" Name="SueldoActual" Nullable="false" />
-          <Property Type="Double" Name="Valor_bono" Nullable="false" />
-          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ru_descripcion" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="em_fechaIngaRol" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="em_fechaSalida" Nullable="true" Precision="23" />
-          <Property Type="String" Name="em_status" Nullable="true" MaxLength="10" />
-          <Property Type="Double" Name="Efectividad_Entrega" Nullable="false" />
-          <Property Type="Double" Name="Efectividad_Entrega_aplica" Nullable="false" />
-          <Property Type="Double" Name="Efectividad_Volumen" Nullable="false" />
-          <Property Type="Double" Name="Efectividad_Volumen_aplica" Nullable="false" />
-          <Property Type="Double" Name="Recuperacion_cartera" Nullable="false" />
-          <Property Type="Double" Name="Recuperacion_cartera_aplica" Nullable="false" />
-          <Property Type="Double" Name="Valor" Nullable="false" />
-          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="variable" Nullable="true" />
-          <Property Type="Double" Name="Iess" Nullable="true" />
-          <Property Type="Double" Name="dias_trabajados" Nullable="true" />
-          <Property Type="Double" Name="dias_Efectivos" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spROLES_Rpt006_Result">
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
@@ -1456,6 +1429,39 @@
           <Property Type="Int32" Name="IdDivision" Nullable="true" />
           <Property Type="Int32" Name="IdArea" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="spROLES_Rpt011_Result">
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="SueldoActual" Nullable="true" />
+          <Property Type="Double" Name="Valor_bono" Nullable="false" />
+          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ru_descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="em_fechaIngaRol" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="em_fechaSalida" Nullable="true" Precision="23" />
+          <Property Type="String" Name="em_status" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="Efectividad_Entrega" Nullable="false" />
+          <Property Type="Double" Name="Efectividad_Entrega_aplica" Nullable="false" />
+          <Property Type="Double" Name="Efectividad_Volumen" Nullable="false" />
+          <Property Type="Double" Name="Efectividad_Volumen_aplica" Nullable="false" />
+          <Property Type="Double" Name="Recuperacion_cartera" Nullable="false" />
+          <Property Type="Double" Name="Recuperacion_cartera_aplica" Nullable="false" />
+          <Property Type="Double" Name="Valor" Nullable="false" />
+          <Property Type="String" Name="Rubro" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="variable" Nullable="true" />
+          <Property Type="Double" Name="Iess" Nullable="true" />
+          <Property Type="Double" Name="dias_trabajados" Nullable="true" />
+          <Property Type="Double" Name="dias_Efectivos" Nullable="true" />
+          <Property Type="Double" Name="Efectividad_Entrega_ali" Nullable="true" />
+          <Property Type="Double" Name="Efectividad_Entrega_aplica_ali" Nullable="true" />
+          <Property Type="Double" Name="Efectividad_Volumen_ali" Nullable="true" />
+          <Property Type="Double" Name="Efectividad_Volumen_aplica_ali" Nullable="true" />
+          <Property Type="Double" Name="Recuperacion_cartera_ali" Nullable="true" />
+          <Property Type="Double" Name="Recuperacion_cartera_aplica_ali" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1631,37 +1637,6 @@
                 <ScalarProperty Name="SinLaborar" ColumnName="SinLaborar" />
                 <ScalarProperty Name="Suspendido" ColumnName="Suspendido" />
                 <ScalarProperty Name="Vacaciones" ColumnName="Vacaciones" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spROLES_Rpt011" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt011">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt011_Result">
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
-                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
-                <ScalarProperty Name="SueldoActual" ColumnName="SueldoActual" />
-                <ScalarProperty Name="Valor_bono" ColumnName="Valor_bono" />
-                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
-                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
-                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
-                <ScalarProperty Name="em_fechaSalida" ColumnName="em_fechaSalida" />
-                <ScalarProperty Name="em_status" ColumnName="em_status" />
-                <ScalarProperty Name="Efectividad_Entrega" ColumnName="Efectividad_Entrega" />
-                <ScalarProperty Name="Efectividad_Entrega_aplica" ColumnName="Efectividad_Entrega_aplica" />
-                <ScalarProperty Name="Efectividad_Volumen" ColumnName="Efectividad_Volumen" />
-                <ScalarProperty Name="Efectividad_Volumen_aplica" ColumnName="Efectividad_Volumen_aplica" />
-                <ScalarProperty Name="Recuperacion_cartera" ColumnName="Recuperacion_cartera" />
-                <ScalarProperty Name="Recuperacion_cartera_aplica" ColumnName="Recuperacion_cartera_aplica" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
-                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
-                <ScalarProperty Name="variable" ColumnName="variable" />
-                <ScalarProperty Name="Iess" ColumnName="Iess" />
-                <ScalarProperty Name="dias_trabajados" ColumnName="dias_trabajados" />
-                <ScalarProperty Name="dias_Efectivos" ColumnName="dias_Efectivos" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1973,6 +1948,43 @@
                 <ScalarProperty Name="HorasExtras" ColumnName="HorasExtras" />
                 <ScalarProperty Name="IdDivision" ColumnName="IdDivision" />
                 <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spROLES_Rpt011" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt011">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt011_Result">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="SueldoActual" ColumnName="SueldoActual" />
+                <ScalarProperty Name="Valor_bono" ColumnName="Valor_bono" />
+                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
+                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
+                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
+                <ScalarProperty Name="em_fechaSalida" ColumnName="em_fechaSalida" />
+                <ScalarProperty Name="em_status" ColumnName="em_status" />
+                <ScalarProperty Name="Efectividad_Entrega" ColumnName="Efectividad_Entrega" />
+                <ScalarProperty Name="Efectividad_Entrega_aplica" ColumnName="Efectividad_Entrega_aplica" />
+                <ScalarProperty Name="Efectividad_Volumen" ColumnName="Efectividad_Volumen" />
+                <ScalarProperty Name="Efectividad_Volumen_aplica" ColumnName="Efectividad_Volumen_aplica" />
+                <ScalarProperty Name="Recuperacion_cartera" ColumnName="Recuperacion_cartera" />
+                <ScalarProperty Name="Recuperacion_cartera_aplica" ColumnName="Recuperacion_cartera_aplica" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
+                <ScalarProperty Name="variable" ColumnName="variable" />
+                <ScalarProperty Name="Iess" ColumnName="Iess" />
+                <ScalarProperty Name="dias_trabajados" ColumnName="dias_trabajados" />
+                <ScalarProperty Name="dias_Efectivos" ColumnName="dias_Efectivos" />
+                <ScalarProperty Name="Efectividad_Entrega_ali" ColumnName="Efectividad_Entrega_ali" />
+                <ScalarProperty Name="Efectividad_Entrega_aplica_ali" ColumnName="Efectividad_Entrega_aplica_ali" />
+                <ScalarProperty Name="Efectividad_Volumen_ali" ColumnName="Efectividad_Volumen_ali" />
+                <ScalarProperty Name="Efectividad_Volumen_aplica_ali" ColumnName="Efectividad_Volumen_aplica_ali" />
+                <ScalarProperty Name="Recuperacion_cartera_ali" ColumnName="Recuperacion_cartera_ali" />
+                <ScalarProperty Name="Recuperacion_cartera_aplica_ali" ColumnName="Recuperacion_cartera_aplica_ali" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

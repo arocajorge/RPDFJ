@@ -49,7 +49,6 @@ namespace Core.Erp.Data.Roles_Fj
                throw new Exception(ex.ToString());
            }
        }
-
        public List<ro_parametro_x_pago_variable_tipo_Info> Get_lista_tipo_pago_variable(int IdEmpresa)
        {
            try

@@ -49,6 +49,13 @@
             this.col_Efec_Volumen_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Rango = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Recup_Cartera_Aplica = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_grupo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_operacion = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios.Properties)).BeginInit();
@@ -57,6 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_grupo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_operacion)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu_Superior_Mant1
@@ -248,6 +259,10 @@
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Location = new System.Drawing.Point(0, 107);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.MainView = this.gvw_ro_Calculo_Pago_Variable_Porcentaje;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Name = "gc_ro_Calculo_Pago_Variable_Porcentaje";
+            this.gc_ro_Calculo_Pago_Variable_Porcentaje.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmb_operacion,
+            this.repositoryItemComboBox1,
+            this.cmb_grupo});
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.Size = new System.Drawing.Size(935, 322);
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.TabIndex = 2;
             this.gc_ro_Calculo_Pago_Variable_Porcentaje.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -261,7 +276,9 @@
             this.col_Efec_Volumen_Rango,
             this.col_Efec_Volumen_Aplica,
             this.col_Recup_Cartera_Rango,
-            this.col_Recup_Cartera_Aplica});
+            this.col_Recup_Cartera_Aplica,
+            this.gridColumn3,
+            this.gridColumn4});
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.GridControl = this.gc_ro_Calculo_Pago_Variable_Porcentaje;
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.Name = "gvw_ro_Calculo_Pago_Variable_Porcentaje";
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
@@ -275,6 +292,7 @@
             this.col_Efec_Entrega_Rango.Name = "col_Efec_Entrega_Rango";
             this.col_Efec_Entrega_Rango.Visible = true;
             this.col_Efec_Entrega_Rango.VisibleIndex = 0;
+            this.col_Efec_Entrega_Rango.Width = 108;
             // 
             // col_Efec_Entrega_Aplica
             // 
@@ -283,6 +301,7 @@
             this.col_Efec_Entrega_Aplica.Name = "col_Efec_Entrega_Aplica";
             this.col_Efec_Entrega_Aplica.Visible = true;
             this.col_Efec_Entrega_Aplica.VisibleIndex = 1;
+            this.col_Efec_Entrega_Aplica.Width = 107;
             // 
             // col_Efec_Volumen_Rango
             // 
@@ -291,6 +310,7 @@
             this.col_Efec_Volumen_Rango.Name = "col_Efec_Volumen_Rango";
             this.col_Efec_Volumen_Rango.Visible = true;
             this.col_Efec_Volumen_Rango.VisibleIndex = 2;
+            this.col_Efec_Volumen_Rango.Width = 109;
             // 
             // col_Efec_Volumen_Aplica
             // 
@@ -299,6 +319,7 @@
             this.col_Efec_Volumen_Aplica.Name = "col_Efec_Volumen_Aplica";
             this.col_Efec_Volumen_Aplica.Visible = true;
             this.col_Efec_Volumen_Aplica.VisibleIndex = 3;
+            this.col_Efec_Volumen_Aplica.Width = 107;
             // 
             // col_Recup_Cartera_Rango
             // 
@@ -307,6 +328,7 @@
             this.col_Recup_Cartera_Rango.Name = "col_Recup_Cartera_Rango";
             this.col_Recup_Cartera_Rango.Visible = true;
             this.col_Recup_Cartera_Rango.VisibleIndex = 4;
+            this.col_Recup_Cartera_Rango.Width = 116;
             // 
             // col_Recup_Cartera_Aplica
             // 
@@ -315,6 +337,72 @@
             this.col_Recup_Cartera_Aplica.Name = "col_Recup_Cartera_Aplica";
             this.col_Recup_Cartera_Aplica.Visible = true;
             this.col_Recup_Cartera_Aplica.VisibleIndex = 5;
+            this.col_Recup_Cartera_Aplica.Width = 121;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Operación";
+            this.gridColumn3.ColumnEdit = this.repositoryItemComboBox1;
+            this.gridColumn3.FieldName = "SignoOperacion";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 6;
+            this.gridColumn3.Width = 58;
+            // 
+            // repositoryItemComboBox1
+            // 
+            this.repositoryItemComboBox1.AutoHeight = false;
+            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox1.Items.AddRange(new object[] {
+            "%",
+            "$"});
+            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Grupo";
+            this.gridColumn4.ColumnEdit = this.cmb_grupo;
+            this.gridColumn4.FieldName = "IdGrupo";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 7;
+            this.gridColumn4.Width = 191;
+            // 
+            // cmb_grupo
+            // 
+            this.cmb_grupo.AutoHeight = false;
+            this.cmb_grupo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_grupo.DisplayMember = "Nombre_Grupo";
+            this.cmb_grupo.Name = "cmb_grupo";
+            this.cmb_grupo.ValueMember = "IdGrupo";
+            this.cmb_grupo.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Grupo";
+            this.gridColumn5.FieldName = "Nombre_Grupo";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 0;
+            // 
+            // cmb_operacion
+            // 
+            this.cmb_operacion.AutoHeight = false;
+            this.cmb_operacion.Items.AddRange(new object[] {
+            "$",
+            "%"});
+            this.cmb_operacion.Name = "cmb_operacion";
             // 
             // frmRo_Calculo_Pago_Variable_Porcentaje_mant
             // 
@@ -336,6 +424,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gc_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvw_ro_Calculo_Pago_Variable_Porcentaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_grupo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_operacion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -363,5 +455,12 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmb_operacion;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_grupo;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
     }
 }

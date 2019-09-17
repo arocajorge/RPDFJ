@@ -17,8 +17,8 @@ namespace Core.Erp.Data
         public ro_parametro_x_pago_variable_tipo()
         {
             this.ro_fectividad_x_empleado_Adm_x_periodo_Det = new HashSet<ro_fectividad_x_empleado_Adm_x_periodo_Det>();
-            this.ro_Grupo_empleado_det = new HashSet<ro_Grupo_empleado_det>();
             this.ro_parametro_x_pago_variable_Det = new HashSet<ro_parametro_x_pago_variable_Det>();
+            this.ro_Grupo_empleado_det = new HashSet<ro_Grupo_empleado_det>();
         }
     
         public int IdEmpresa { get; set; }
@@ -27,7 +27,7 @@ namespace Core.Erp.Data
         public string IdRubro { get; set; }
     
         public virtual ICollection<ro_fectividad_x_empleado_Adm_x_periodo_Det> ro_fectividad_x_empleado_Adm_x_periodo_Det { get; set; }
-        public virtual ICollection<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
         public virtual ICollection<ro_parametro_x_pago_variable_Det> ro_parametro_x_pago_variable_Det { get; set; }
+        public virtual ICollection<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
     }
 }

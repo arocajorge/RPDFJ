@@ -11,4 +11,14 @@
     REV_NOM,
     ROT_PERSO,
     SER_CLI,
+    EFEC_ENTRE_ALIM,
+    EFEC_VOL_ALIM,
+    REC_CAR_ALIM
+}
+
+public enum etipoServicio
+{
+
+    BEBIDAS,
+    ALIMENTOS
 }

@@ -34,5 +34,7 @@ namespace Core.Erp.Data
         public string nom_pc { get; set; }
         public string ip { get; set; }
         public Nullable<int> IdTipoServicio { get; set; }
+        public string SignoOperacion { get; set; }
+        public Nullable<int> IdGrupo { get; set; }
     }
 }

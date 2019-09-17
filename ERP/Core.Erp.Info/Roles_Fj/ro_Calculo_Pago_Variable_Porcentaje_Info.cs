@@ -18,6 +18,9 @@ namespace Core.Erp.Info.Roles_Fj
         public string Recup_Cartera_Rango { get; set; }
         public double Recup_Cartera_Aplica { get; set; }
         public Nullable<int> IdTipoServicio { get; set; }
+        public string SignoOperacion { get; set; }
+        public Nullable<int> IdGrupo { get; set; }
+
         public bool Estado { get; set; }
         public string IdUsuario { get; set; }
         public Nullable<System.DateTime> Fecha_Transaccion { get; set; }

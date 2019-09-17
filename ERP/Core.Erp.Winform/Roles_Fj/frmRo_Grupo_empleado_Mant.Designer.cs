@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Grupo_empleado_Mant));
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.txtsueldo = new DevExpress.XtraEditors.TextEdit();
             this.txt_Valor_trans = new DevExpress.XtraEditors.TextEdit();
             this.txt_Valor_alime = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
@@ -69,11 +72,15 @@
             this.Col_porcentaje_Pago = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_icono_eliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.imageList1 = new System.Windows.Forms.ImageList();
-            this.txtsueldo = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmb_servicios = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsueldo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Valor_trans.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Valor_alime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_rubros_transp.Properties)).BeginInit();
@@ -96,7 +103,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmb_rubro_pago_variable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsueldo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu
@@ -189,6 +197,21 @@
             this.groupControl1.TabIndex = 75;
             this.groupControl1.Text = "Datos Grupo";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Location = new System.Drawing.Point(461, 121);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(41, 13);
+            this.labelControl11.TabIndex = 168;
+            this.labelControl11.Text = "Sueldo $";
+            // 
+            // txtsueldo
+            // 
+            this.txtsueldo.Location = new System.Drawing.Point(508, 118);
+            this.txtsueldo.Name = "txtsueldo";
+            this.txtsueldo.Size = new System.Drawing.Size(70, 20);
+            this.txtsueldo.TabIndex = 167;
             // 
             // txt_Valor_trans
             // 
@@ -454,7 +477,8 @@
             this.gridControl_parametro_Variable.Name = "gridControl_parametro_Variable";
             this.gridControl_parametro_Variable.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmb_rubro_pago_variable,
-            this.repositoryItemImageComboBox1});
+            this.repositoryItemImageComboBox1,
+            this.cmb_servicios});
             this.gridControl_parametro_Variable.Size = new System.Drawing.Size(586, 129);
             this.gridControl_parametro_Variable.TabIndex = 0;
             this.gridControl_parametro_Variable.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -465,7 +489,8 @@
             this.gridView_parametro_Variable.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Cool_IdRubro,
             this.Col_porcentaje_Pago,
-            this.Col_icono_eliminar});
+            this.Col_icono_eliminar,
+            this.gridColumn3});
             this.gridView_parametro_Variable.GridControl = this.gridControl_parametro_Variable;
             this.gridView_parametro_Variable.Images = this.imageList1;
             this.gridView_parametro_Variable.Name = "gridView_parametro_Variable";
@@ -482,7 +507,7 @@
             this.Cool_IdRubro.Name = "Cool_IdRubro";
             this.Cool_IdRubro.Visible = true;
             this.Cool_IdRubro.VisibleIndex = 1;
-            this.Cool_IdRubro.Width = 951;
+            this.Cool_IdRubro.Width = 325;
             // 
             // cmb_rubro_pago_variable
             // 
@@ -528,8 +553,8 @@
             this.Col_porcentaje_Pago.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Porcentaje_calculo", "n2")});
             this.Col_porcentaje_Pago.Visible = true;
-            this.Col_porcentaje_Pago.VisibleIndex = 2;
-            this.Col_porcentaje_Pago.Width = 184;
+            this.Col_porcentaje_Pago.VisibleIndex = 3;
+            this.Col_porcentaje_Pago.Width = 56;
             // 
             // Col_icono_eliminar
             // 
@@ -540,7 +565,7 @@
             this.Col_icono_eliminar.OptionsColumn.AllowEdit = false;
             this.Col_icono_eliminar.Visible = true;
             this.Col_icono_eliminar.VisibleIndex = 0;
-            this.Col_icono_eliminar.Width = 45;
+            this.Col_icono_eliminar.Width = 20;
             // 
             // repositoryItemImageComboBox1
             // 
@@ -559,20 +584,51 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "anular2_32.x32png.png");
             // 
-            // txtsueldo
+            // gridColumn3
             // 
-            this.txtsueldo.Location = new System.Drawing.Point(508, 118);
-            this.txtsueldo.Name = "txtsueldo";
-            this.txtsueldo.Size = new System.Drawing.Size(70, 20);
-            this.txtsueldo.TabIndex = 167;
+            this.gridColumn3.Caption = "Tipo servicio";
+            this.gridColumn3.ColumnEdit = this.cmb_servicios;
+            this.gridColumn3.FieldName = "IdTipoServicio";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 167;
             // 
-            // labelControl11
+            // cmb_servicios
             // 
-            this.labelControl11.Location = new System.Drawing.Point(461, 121);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(41, 13);
-            this.labelControl11.TabIndex = 168;
-            this.labelControl11.Text = "Sueldo $";
+            this.cmb_servicios.AutoHeight = false;
+            this.cmb_servicios.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_servicios.DisplayMember = "ts_Descripcion";
+            this.cmb_servicios.Name = "cmb_servicios";
+            this.cmb_servicios.ValueMember = "IdServicio";
+            this.cmb_servicios.View = this.gridView2;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5});
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "ID";
+            this.gridColumn4.FieldName = "IdServicio";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 0;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Servicio";
+            this.gridColumn5.FieldName = "ts_Descripcion";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
             // 
             // frmRo_Grupo_empleado_Mant
             // 
@@ -589,6 +645,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtsueldo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Valor_trans.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Valor_alime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_rubros_transp.Properties)).EndInit();
@@ -611,7 +668,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmb_rubro_pago_variable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtsueldo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_servicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -661,6 +719,11 @@
         private System.Windows.Forms.ImageList imageList1;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.TextEdit txtsueldo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmb_servicios;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
 
     }
 }
