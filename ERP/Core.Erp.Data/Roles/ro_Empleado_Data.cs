@@ -4638,6 +4638,7 @@ namespace Core.Erp.Data.Roles
                 using (EntitiesRoles db = new EntitiesRoles())
                 {
 
+                    db.SetCommandTimeOut(3000);
                     var select = (from a in db.spROL_Nomina_a_Liquidar(idEmpresa, IdTipoNomina, IdPeriodo, FechaInicio,FechaFin)
                                   where a.IdEmpresa == idEmpresa 
                                   && a.IdTipoNomina == IdTipoNomina
