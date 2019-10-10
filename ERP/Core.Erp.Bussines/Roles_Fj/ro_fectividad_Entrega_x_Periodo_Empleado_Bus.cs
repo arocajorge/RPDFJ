@@ -135,6 +135,11 @@ namespace Core.Erp.Business.Roles_Fj
       {
           try
           {
+              if (info.IdServicioTipo == 1)
+                  info.IdCalendario = info.IdPeriodo.ToString() + "VB";
+              else
+                  info.IdCalendario = info.IdPeriodo.ToString() + "VA";
+
               return data.Anular_DB(info);
           }
           catch (Exception ex)
@@ -262,7 +267,7 @@ namespace Core.Erp.Business.Roles_Fj
                       info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
                       info_detalle.EstadoCobro = "PEN";
                       info_detalle.Estado = "A";
-                      info_detalle.IdCalendario = item.IdPeriodo.ToString() + "V";
+                      info_detalle.IdCalendario = item.IdPeriodo.ToString() + "VB";
                       info_novedad.InfoNovedadDet = info_detalle;
                       info_novedad.LstDetalle.Add(info_detalle); 
                       listado_novedades.Add(info_novedad);
@@ -303,7 +308,7 @@ namespace Core.Erp.Business.Roles_Fj
                       info_detalle.Observacion = "Novedad generada por procesos del sistema del periodo " + item.IdPeriodo;
                       info_detalle.EstadoCobro = "PEN";
                       info_detalle.Estado = "A";
-                      info_detalle.IdCalendario = item.IdPeriodo.ToString() + "V";
+                      info_detalle.IdCalendario = item.IdPeriodo.ToString() + "VB";
                       info_novedad.InfoNovedadDet = info_detalle;
                       info_novedad.LstDetalle.Add(info_detalle); 
                       listado_novedades.Add(info_novedad);

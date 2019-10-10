@@ -82,11 +82,11 @@ namespace Core.Erp.Data.Roles_Fj
           {
               using (EntityRoles_FJ db = new EntityRoles_FJ())
               {
-                  string IdCalendario=info.IdPeriodo+"V";
+                  string IdCalendario = info.IdCalendario;
                   string DeteNov = "delete ro_empleado_novedad_det where idempresa='" + info.IdEmpresa + "' and IdCalendario like '" + IdCalendario + "'";
                   string CabeNov = "delete ro_empleado_novedad where idempresa='" + info.IdEmpresa + "' and IdCalendario like '" + IdCalendario + "'";
-                  string DeteEfec = "delete fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det where idempresa='" + info.IdEmpresa + "' and IdPeriodo = '" + info.IdPeriodo + "'";
-                  string CabeEfec = "delete fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado where idempresa='" + info.IdEmpresa + "' and IdPeriodo = '" + info.IdPeriodo + "'";
+                  string DeteEfec = "delete fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det where idempresa='" + info.IdEmpresa + "' and IdPeriodo = '" + info.IdPeriodo + "' and IdEfectividad='" + info.IdEfectividad + "'";
+                  string CabeEfec = "delete fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado where idempresa='" + info.IdEmpresa + "' and IdPeriodo = '" + info.IdPeriodo + "'  and IdEfectividad='" + info.IdEfectividad + "'";
                   db.Database.ExecuteSqlCommand(DeteNov);
                   db.Database.ExecuteSqlCommand(CabeNov);
                   db.Database.ExecuteSqlCommand(DeteEfec);

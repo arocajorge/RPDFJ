@@ -26,6 +26,7 @@ namespace Core.Erp.Info.Roles_Fj
         public Nullable<System.DateTime> FechaUltModi { get; set; }
         public System.DateTime pe_FechaIni { get; set; }
         public System.DateTime pe_FechaFin { get; set; }
+        public string IdCalendario { get; set; }
         public List<ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info> lista { get; set; }
     }
 }
