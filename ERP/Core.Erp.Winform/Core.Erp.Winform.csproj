@@ -4918,6 +4918,12 @@
     <Compile Include="Roles\Frm_Ro_AdministradorReporte.Designer.cs">
       <DependentUpon>Frm_Ro_AdministradorReporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Roles_Fj\frm_Ro_empleados_x_extension_salud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles_Fj\frm_Ro_empleados_x_extension_salud.Designer.cs">
+      <DependentUpon>frm_Ro_empleados_x_extension_salud.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles_Fj\frmRo_servicio_cons.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -8804,6 +8810,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\Frm_Ro_AdministradorReporte.resx">
       <DependentUpon>Frm_Ro_AdministradorReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles_Fj\frm_Ro_empleados_x_extension_salud.resx">
+      <DependentUpon>frm_Ro_empleados_x_extension_salud.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles_Fj\frmRo_servicio_cons.resx">
       <DependentUpon>frmRo_servicio_cons.cs</DependentUpon>

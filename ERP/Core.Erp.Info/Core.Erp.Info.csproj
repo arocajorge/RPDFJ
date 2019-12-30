@@ -1200,6 +1200,7 @@
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Info.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Info.cs" />
     <Compile Include="Roles_Fj\ro_disco_Info.cs" />
+    <Compile Include="Roles_Fj\ro_empleado_extension_salud_Info.cs" />
     <Compile Include="Roles_Fj\ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Info.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Historico_Info.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Info.cs" />

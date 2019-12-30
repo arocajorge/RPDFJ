@@ -1017,6 +1017,13 @@ namespace Core.Erp.Business.Roles
                     subCadena = GetSubString(nombreFuncion, Convert.ToChar("["), Convert.ToChar("]"));
                     nombreFuncion = "DIAS_TRA_X_D14()";
                 }
+
+                if (nombreFuncion.Contains("OBTENER_EXTENSION_SALUD"))
+                {
+                    subCadena = GetSubString(nombreFuncion, Convert.ToChar("["), Convert.ToChar("]"));
+                    nombreFuncion = "OBTENER_EXTENSION_SALUD()";
+                }
+                
                 
                 //
 
@@ -1233,6 +1240,13 @@ namespace Core.Erp.Business.Roles
                              valorRetornar = bus_marcaciones.Get_DiasFaltados(info.IdEmpresa, info.IdEmpleado, oRo_PeriodoInfo.pe_FechaIni, oRo_PeriodoInfo.pe_FechaFin);
                     break;
 
+                    case "OBTENER_EXTENSION_SALUD()":
+
+                    ro_empleado_extension_salud_Bus bus_empleado_ext_salud = new ro_empleado_extension_salud_Bus();
+
+                    valorRetornar = bus_empleado_ext_salud.get_info(info.IdEmpresa, info.IdEmpleado);
+
+                    break;
 
                     case "UTILIDADES()"://
                     valorRetornar = bus_utilidades.Get_Valor_x_mpledo(info.IdEmpresa,oRo_PeriodoInfo.IdPeriodo,  info.IdEmpleado);

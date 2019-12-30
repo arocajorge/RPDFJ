@@ -3198,6 +3198,7 @@
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Data.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Data.cs" />
     <Compile Include="Roles_Fj\ro_disco_Data.cs" />
+    <Compile Include="Roles_Fj\ro_empleado_extension_salud_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Historico_Data.cs" />
@@ -3336,6 +3337,9 @@
     </Compile>
     <Compile Include="ro_empleado_estudios.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_empleado_extension_salud.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_empleado_gastos_perso.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
