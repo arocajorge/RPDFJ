@@ -1841,5 +1841,22 @@ namespace Core.Erp.Business.Roles
                 throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "Get_List_Empleado_x_Nomina", ex.Message), ex) { EntityType = typeof(ro_Empleado_Bus) };
             }
         }
+
+
+        public List<ro_Empleado_Info> get_list_empleado_cargar_combo(int idEmpresa)
+        {
+            try
+            {
+                return oRro_Empleado_Data.get_list_empleado_cargar_combo(idEmpresa);
+            }
+            catch (Exception ex)
+            {
+
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GetListPorNovedadAvisoNuevoSueldo", ex.Message), ex) { EntityType = typeof(ro_Empleado_Bus) };
+
+            }
+        }
+
     }
 }

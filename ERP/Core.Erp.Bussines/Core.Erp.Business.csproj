@@ -899,6 +899,7 @@
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Bus.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Bus.cs" />
     <Compile Include="Roles_Fj\ro_disco_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_empleado_extension_salud_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_Activo_Fijo_Historico_Bus.cs" />

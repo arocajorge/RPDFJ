@@ -5395,7 +5395,43 @@ namespace Core.Erp.Data.Roles
         }
 
 
+        public List<ro_Empleado_Info> get_list_empleado_cargar_combo(int IdEmpresa)
+        {
+            List<ro_Empleado_Info> lst = new List<ro_Empleado_Info>();
+            EntitiesRoles Oemp = new EntitiesRoles();
+            try
+            {
 
+
+                var Emple = from q in Oemp.vwro_empleado_combo
+                            where q.IdEmpresa == IdEmpresa 
+                            select q;
+
+                foreach (var item in Emple)
+                {
+                    ro_Empleado_Info info = new ro_Empleado_Info();
+                    info.IdEmpresa = item.IdEmpresa;
+                    info.IdEmpleado = item.IdEmpleado;
+                    info.IdNomina_Tipo = item.IdTipoNomina;
+                    info.pe_cedulaRuc = item.pe_cedulaRuc;
+                    info.NomCompleto = item.Empleado;
+
+                    lst.Add(info);
+                }
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                mensaje = ex.InnerException + " " + ex.Message;
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+     
 
     }
 }

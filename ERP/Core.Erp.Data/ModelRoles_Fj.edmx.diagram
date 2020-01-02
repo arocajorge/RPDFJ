@@ -88,6 +88,7 @@
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" Width="1.5" PointX="11.880334904361671" PointY="21.410176093415441" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="2.5254061606365283" PointY="24.156077217383345" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_extension_salud" Width="1.5" PointX="5.1286337325017124" PointY="3.9211499858280412" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
