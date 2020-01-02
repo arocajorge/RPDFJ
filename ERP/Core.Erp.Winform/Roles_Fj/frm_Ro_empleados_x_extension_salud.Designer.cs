@@ -50,6 +50,10 @@
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmb_nomina = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_ca_desp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -65,6 +69,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -81,7 +88,7 @@
             // gridControl_parametros
             // 
             this.gridControl_parametros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl_parametros.Location = new System.Drawing.Point(2, 52);
+            this.gridControl_parametros.Location = new System.Drawing.Point(2, 80);
             this.gridControl_parametros.MainView = this.gridView_parametros;
             this.gridControl_parametros.Name = "gridControl_parametros";
             this.gridControl_parametros.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -90,7 +97,7 @@
             this.cmb_rubro,
             this.cmb_catalogo,
             this.repositoryItemImageComboBox1});
-            this.gridControl_parametros.Size = new System.Drawing.Size(1021, 425);
+            this.gridControl_parametros.Size = new System.Drawing.Size(1021, 397);
             this.gridControl_parametros.TabIndex = 4;
             this.gridControl_parametros.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_parametros});
@@ -105,6 +112,7 @@
             this.gridView_parametros.Name = "gridView_parametros";
             this.gridView_parametros.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView_parametros.OptionsView.ShowAutoFilterRow = true;
+            this.gridView_parametros.OptionsView.ShowFooter = true;
             this.gridView_parametros.OptionsView.ShowGroupPanel = false;
             this.gridView_parametros.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView_parametros_FocusedRowChanged);
             this.gridView_parametros.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_parametros_KeyDown);
@@ -115,6 +123,8 @@
             this.col_NomCompleto.ColumnEdit = this.cmb_empleado;
             this.col_NomCompleto.FieldName = "IdEmpleado";
             this.col_NomCompleto.Name = "col_NomCompleto";
+            this.col_NomCompleto.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count)});
             this.col_NomCompleto.Visible = true;
             this.col_NomCompleto.VisibleIndex = 0;
             this.col_NomCompleto.Width = 541;
@@ -247,12 +257,53 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.label1);
+            this.groupControl1.Controls.Add(this.cmb_nomina);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(2, 31);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1021, 21);
+            this.groupControl1.Size = new System.Drawing.Size(1021, 49);
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "Empleados con extension de salud";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Nomina";
+            // 
+            // cmb_nomina
+            // 
+            this.cmb_nomina.Location = new System.Drawing.Point(69, 24);
+            this.cmb_nomina.Name = "cmb_nomina";
+            this.cmb_nomina.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_nomina.Properties.DisplayMember = "Descripcion";
+            this.cmb_nomina.Properties.ValueMember = "IdNomina_Tipo";
+            this.cmb_nomina.Properties.View = this.searchLookUpEdit1View;
+            this.cmb_nomina.Size = new System.Drawing.Size(475, 20);
+            this.cmb_nomina.TabIndex = 3;
+            this.cmb_nomina.EditValueChanged += new System.EventHandler(this.cmb_nomina_EditValueChanged_1);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_ca_desp});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // col_ca_desp
+            // 
+            this.col_ca_desp.Caption = "Nomina";
+            this.col_ca_desp.FieldName = "Descripcion";
+            this.col_ca_desp.Name = "col_ca_desp";
+            this.col_ca_desp.Visible = true;
+            this.col_ca_desp.VisibleIndex = 0;
             // 
             // ucGe_Menu
             // 
@@ -338,6 +389,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -365,5 +420,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn Col_ca_descripcion;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn Observacion;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_nomina;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ca_desp;
     }
 }

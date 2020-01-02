@@ -17,5 +17,6 @@ namespace Core.Erp.Data
         public int IdEmpresa { get; set; }
         public decimal IdEmpleado { get; set; }
         public string Observacion { get; set; }
+        public Nullable<int> IdNomina { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Core.Erp.Data.Roles_Fj
 
         string mensaje = "";
 
-        public List<ro_empleado_extension_salud_Info> Get_List_Disco(int IdEmpresa)
+        public List<ro_empleado_extension_salud_Info> Get_List_Disco(int IdEmpresa, int IdNomina)
         {
             List<ro_empleado_extension_salud_Info> Lista_Disco = new List<ro_empleado_extension_salud_Info>();
             try
@@ -23,6 +23,7 @@ namespace Core.Erp.Data.Roles_Fj
                 {
                     var contact = from q in Context.ro_empleado_extension_salud
                                   where q.IdEmpresa == IdEmpresa
+                                  && q.IdNomina==IdNomina
                                   select q;
 
                     foreach (var item in contact)
@@ -30,6 +31,7 @@ namespace Core.Erp.Data.Roles_Fj
                         ro_empleado_extension_salud_Info Info = new ro_empleado_extension_salud_Info();
                         Info.IdEmpresa = item.IdEmpresa;
                         Info.IdEmpleado = item.IdEmpleado;
+                        Info.IdNomina = item.IdNomina;
                         Lista_Disco.Add(Info);
                     }
                 }
@@ -51,9 +53,12 @@ namespace Core.Erp.Data.Roles_Fj
             try
             {
                 int IdEmpresa = 0;
+                int IdNomina = 0;
+
                 if (Info.Count > 0)
                 {
                     IdEmpresa = Info.FirstOrDefault().IdEmpresa;
+                    IdNomina =Convert.ToInt32( Info.FirstOrDefault().IdNomina);
                 }
 
                 var groupedCustomerList = Info
@@ -65,7 +70,7 @@ namespace Core.Erp.Data.Roles_Fj
                 {
 
 
-                    Context.Database.ExecuteSqlCommand("delete Fj_servindustrias.ro_empleado_extension_salud where IdEmpresa= " + IdEmpresa + "");
+                    Context.Database.ExecuteSqlCommand("delete Fj_servindustrias.ro_empleado_extension_salud where IdEmpresa= " + IdEmpresa + " and IdNomina=" + IdNomina + "");
 
 
 
@@ -75,7 +80,8 @@ namespace Core.Erp.Data.Roles_Fj
                            Context.ro_empleado_extension_salud.Add(new ro_empleado_extension_salud
                         {
                         IdEmpresa=IdEmpresa,
-                        IdEmpleado = item.Key
+                        IdEmpleado = item.Key,
+                        IdNomina=IdNomina
                        // Observacion=item.Observacion
                         });
                     }

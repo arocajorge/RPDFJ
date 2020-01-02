@@ -16,11 +16,11 @@ namespace Core.Erp.Business.Roles_Fj
        string mensaje = "";
 
        ro_empleado_extension_salud_Data odata = new ro_empleado_extension_salud_Data();
-       public List<ro_empleado_extension_salud_Info> Get_List_Fuerza(int IdEmpresa)
+       public List<ro_empleado_extension_salud_Info> Get_List_Fuerza(int IdEmpresa, int IdNomina)
        {
            try
            {
-               return odata.Get_List_Disco(IdEmpresa);
+               return odata.Get_List_Disco(IdEmpresa,IdNomina);
            }
            catch (Exception ex)
            {
