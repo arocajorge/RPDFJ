@@ -12,6 +12,20 @@ namespace Core.Erp.Business.CuentasxPagar
     {
         tb_sis_Log_Error_Vzen_Bus oLog = new tb_sis_Log_Error_Vzen_Bus();
         string mensaje="";
+
+        public List<cp_proveedor_codigo_SRI_Info> GetList(int IdEmpresa, string pe_cedulaRuc)
+        {
+            try
+            {
+                cp_proveedor_codigo_SRI_Data tp_data_ = new cp_proveedor_codigo_SRI_Data();
+                return tp_data_.GetList(IdEmpresa, pe_cedulaRuc);
+            }
+            catch (Exception ex)
+            {
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "Get_List_proveedor_codigo_SRI", ex.Message), ex) { EntityType = typeof(cp_proveedor_codigo_SRI_Bus) };
+            }
+        }
         public List<cp_proveedor_codigo_SRI_Info> Get_List_proveedor_codigo_SRI(int empresa, decimal proveedor)
         {
             try

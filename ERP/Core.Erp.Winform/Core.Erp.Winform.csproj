@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Core.Erp.Winform</RootNamespace>
     <AssemblyName>Core.Erp.Winform</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -195,6 +195,9 @@
     <Reference Include="DevExpress.XtraVerticalGrid.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraWizard.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
+    </Reference>
+    <Reference Include="GenericParsing">
+      <HintPath>..\packages\GenericParsing.1.2.1\lib\net452\GenericParsing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -385,6 +388,12 @@
     <Compile Include="Controles\UCIn_Responsable.Designer.cs">
       <DependentUpon>UCIn_Responsable.cs</DependentUpon>
     </Compile>
+    <Compile Include="CuentasxPagar\frmCP_DigitalizacionXML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_DigitalizacionXML.Designer.cs">
+      <DependentUpon>frmCP_DigitalizacionXML.cs</DependentUpon>
+    </Compile>
     <Compile Include="CuentasxPagar\frmCP_OrdenGiroMantenimiento_simplificada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,6 +405,36 @@
     </Compile>
     <Compile Include="CuentasxPagar\frmCP_Retenciones_masiva_sin_talonario.Designer.cs">
       <DependentUpon>frmCP_Retenciones_masiva_sin_talonario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_Consulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_Consulta.Designer.cs">
+      <DependentUpon>frmCP_XML_Consulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_DocumentosNoContabilizados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_DocumentosNoContabilizados.Designer.cs">
+      <DependentUpon>frmCP_XML_DocumentosNoContabilizados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_Mantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_Mantenimiento.Designer.cs">
+      <DependentUpon>frmCP_XML_Mantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_RetencionesAnuladas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_RetencionesAnuladas.Designer.cs">
+      <DependentUpon>frmCP_XML_RetencionesAnuladas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_ValidacionMasiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_ValidacionMasiva.Designer.cs">
+      <DependentUpon>frmCP_XML_ValidacionMasiva.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturacion\frmFa_Descuento_Cons.cs">
       <SubType>Form</SubType>
@@ -6550,11 +6589,29 @@
     <EmbeddedResource Include="Controles\UCIn_Responsable.resx">
       <DependentUpon>UCIn_Responsable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_DigitalizacionXML.resx">
+      <DependentUpon>frmCP_DigitalizacionXML.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuentasxPagar\frmCP_OrdenGiroMantenimiento_simplificada.resx">
       <DependentUpon>frmCP_OrdenGiroMantenimiento_simplificada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CuentasxPagar\frmCP_Retenciones_masiva_sin_talonario.resx">
       <DependentUpon>frmCP_Retenciones_masiva_sin_talonario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_Consulta.resx">
+      <DependentUpon>frmCP_XML_Consulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_DocumentosNoContabilizados.resx">
+      <DependentUpon>frmCP_XML_DocumentosNoContabilizados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_Mantenimiento.resx">
+      <DependentUpon>frmCP_XML_Mantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_RetencionesAnuladas.resx">
+      <DependentUpon>frmCP_XML_RetencionesAnuladas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_ValidacionMasiva.resx">
+      <DependentUpon>frmCP_XML_ValidacionMasiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturacion\frmFa_Descuento_Cons.resx">
       <DependentUpon>frmFa_Descuento_Cons.cs</DependentUpon>

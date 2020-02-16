@@ -12,7 +12,41 @@ namespace Core.Erp.Data.CuentasxPagar
     public class cp_orden_giro_Data
     {
         string mensaje = "";
-    
+
+        public cp_orden_giro_Info GetInfoPorDocumento(int IdEmpresa, string Establecimiento, string PuntoEmision, string NumDocumento, string pe_cedulaRuc)
+        {
+            try
+            {
+                cp_orden_giro_Info info = new cp_orden_giro_Info();
+
+                EntitiesGeneral dbg = new EntitiesGeneral();
+                var persona = dbg.tb_persona.Where(q => q.pe_cedulaRuc == pe_cedulaRuc).FirstOrDefault();
+                if (persona == null)
+                    return null;
+
+                using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
+                {
+                    var proveedor = db.cp_proveedor.Where(q => q.IdEmpresa == IdEmpresa && q.IdPersona == persona.IdPersona).FirstOrDefault();
+                    if (proveedor == null)
+                        return null;
+                    string Serie = Establecimiento + "-" + PuntoEmision;
+                    var og = db.cp_orden_giro.Where(q => q.IdEmpresa == IdEmpresa && q.IdOrden_giro_Tipo == "01" && q.IdProveedor == proveedor.IdProveedor && q.co_serie == Serie && q.co_factura == NumDocumento && q.Estado == "A").FirstOrDefault();
+                    if (og == null)
+                        return null;
+
+                    info.IdEmpresa = IdEmpresa;
+                    info.IdTipoCbte_Ogiro = og.IdTipoCbte_Ogiro;
+                    info.IdCbteCble_Ogiro = og.IdCbteCble_Ogiro;
+                }
+                return info;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<cp_orden_giro_consulta_Info> Get_List_orden_giro(int IdEmpresa, DateTime F_inicio, DateTime F_fin)
         {
             try
