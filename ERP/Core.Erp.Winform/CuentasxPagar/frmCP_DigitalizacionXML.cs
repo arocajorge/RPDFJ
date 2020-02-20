@@ -282,6 +282,13 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
+                tb_sis_Documento_Tipo_Talonario_Bus busTalonario = new tb_sis_Documento_Tipo_Talonario_Bus();
+                var Talonario = busTalonario.GetInfoRetElectronico(param.IdEmpresa);
+                if (Talonario == null)
+                {
+                    MessageBox.Show("Para crear retenciones automáticas el sistema necesita un talonario electrónico",param.Nombre_sistema,MessageBoxButtons.OK);
+                    return;
+                }
                 bool GenerarXML = true;
                 foreach (var item in blst)
                 {
@@ -290,7 +297,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                     if (item.Tipo == "FACTURA")
                     {
                         item.ret_Establecimiento = param.InfoSucursal.Su_CodigoEstablecimiento;
-                        item.ret_PuntoEmision = "001";
+                        item.ret_PuntoEmision = Talonario.PuntoEmision;
                         item.lstRetencion = new List<cp_XML_Documento_Retencion_Info>();
                         var lstDet = ListaCodigoProveedor.Where(q => q.pe_cedulRuc == item.emi_Ruc).ToList();
                         if (lstDet.Count > 0)
