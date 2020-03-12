@@ -1417,7 +1417,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 txtSubtotalIVAXML.Text = XML.SubtotalIVA.ToString();
                 txtValorIVAXML.Text = XML.ValorIVA.ToString();
                 txtTotalXML.Text = XML.Total.ToString();
-
+                txtObservacion.Text = XML.Observacion;
                 de_FechaVctoAuto.EditValue = DateTime.Now.Date.AddYears(20);
             }
             catch (Exception)

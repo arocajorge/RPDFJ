@@ -138,14 +138,14 @@ namespace Core.Erp.Data
         public DbSet<vwcp_retencion> vwcp_retencion { get; set; }
         public DbSet<vwcp_orden_giro_consulta> vwcp_orden_giro_consulta { get; set; }
         public DbSet<cp_RutaPorEmpresaPorUsuario> cp_RutaPorEmpresaPorUsuario { get; set; }
-        public DbSet<cp_XML_Documento> cp_XML_Documento { get; set; }
         public DbSet<cp_XML_Documento_Retencion> cp_XML_Documento_Retencion { get; set; }
         public DbSet<cp_XML_DocumentoDet> cp_XML_DocumentoDet { get; set; }
         public DbSet<cp_XML_DocumentoRetAnulado> cp_XML_DocumentoRetAnulado { get; set; }
         public DbSet<cp_XML_DocumentoRetAnuladoDet> cp_XML_DocumentoRetAnuladoDet { get; set; }
         public DbSet<vwcp_proveedor_codigo_SRI> vwcp_proveedor_codigo_SRI { get; set; }
-        public DbSet<vwcp_XML_Documento> vwcp_XML_Documento { get; set; }
         public DbSet<vwcp_proveedor_combo> vwcp_proveedor_combo { get; set; }
+        public DbSet<cp_XML_Documento> cp_XML_Documento { get; set; }
+        public DbSet<vwcp_XML_Documento> vwcp_XML_Documento { get; set; }
     
         public virtual ObjectResult<string> spCXP_eliminar_factura_vale_conciliacion_caja(Nullable<int> idEmpresa, Nullable<int> idTipoCbte, Nullable<decimal> idCbteCble, string tipoCbte_conci, Nullable<bool> borrar_o_desvincular)
         {

@@ -23,17 +23,14 @@ namespace Core.Erp.Data.Facturacion
             {
                 List<fa_formaPago_Info> Lst = new List<fa_formaPago_Info>();
                 EntitiesFacturacion oEnti = new EntitiesFacturacion();
-                var Query = from q in oEnti.fa_formaPago
-                            select q;
-
-                
+                var Query = oEnti.fa_formaPago.ToList();                
 
                 foreach (var item in Query)
                 {
-                    fa_formaPago_Info Obj = new fa_formaPago_Info();
-                    Obj.IdFormaPago = item.IdFormaPago;
-                    Obj.nom_FormaPago = item.nom_FormaPago;
-                    
+                    fa_formaPago_Info Obj = new fa_formaPago_Info{
+                    IdFormaPago = item.IdFormaPago,
+                    nom_FormaPago = item.nom_FormaPago,
+                };
                 
                     Lst.Add(Obj);
                 }

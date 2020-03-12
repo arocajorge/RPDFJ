@@ -68,7 +68,16 @@ namespace Core.Erp.Data.CuentasxPagar
                         ret_PuntoEmision = info.ret_PuntoEmision,
                         IdTipoCbte = info.IdTipoCbte,
                         IdCbteCble = info.IdCbteCble,
-                        EnviaXML = info.Estado && !string.IsNullOrEmpty(info.ret_NumeroDocumento) && string.IsNullOrEmpty(info.ret_NumeroAutorizacion)
+                        Observacion = info.Observacion,
+                        IdPunto_cargo = info.IdPunto_cargo,
+                        IdCentroCosto = info.IdCentroCosto,
+                        IdCentroCosto_sub_centro_costo = info.IdCentroCosto_sub_centro_costo,
+                        EnviaXML = info.Estado && !string.IsNullOrEmpty(info.ret_NumeroDocumento) && string.IsNullOrEmpty(info.ret_NumeroAutorizacion),
+
+                        IdTipoFlujo = info.IdTipoFlujo,
+                        IdTipoMovi = info.IdTipoMovi,
+                        IdFormaPago = info.IdFormaPago,
+                        
                     });
                     }
                 }
@@ -130,7 +139,16 @@ namespace Core.Erp.Data.CuentasxPagar
                             ret_FechaAutorizacion = info.ret_FechaAutorizacion,
                             ret_NumeroAutorizacion = info.ret_NumeroAutorizacion,
                             ret_NumeroDocumento = info.ret_NumeroDocumento,
-                            ret_PuntoEmision = info.ret_PuntoEmision
+                            ret_PuntoEmision = info.ret_PuntoEmision,
+                            Observacion = info.Observacion,
+
+                            IdPunto_cargo = info.IdPunto_cargo,
+                            IdCentroCosto = info.IdCentroCosto,
+                            IdCentroCosto_sub_centro_costo = info.IdCentroCosto_sub_centro_costo,
+
+                            IdTipoFlujo = info.IdTipoFlujo,
+                            IdTipoMovi = info.IdTipoMovi,
+                            IdFormaPago = info.IdFormaPago
                         });
                     }
                 }
@@ -148,154 +166,179 @@ namespace Core.Erp.Data.CuentasxPagar
         {
             try
             {
-                bool PasarRetencion = false;
-                if (Existe(info.IdEmpresa, info.emi_Ruc, info.CodDocumento, info.Establecimiento, info.PuntoEmision, info.NumeroDocumento) == 2)
-                    return true;
-
-                 EntitiesGeneral dbG = new EntitiesGeneral();
-                var persona = dbG.tb_persona.Where(q => q.pe_cedulaRuc.Trim() == info.emi_Ruc.Trim()).FirstOrDefault();
-                cp_proveedor proveedor = new cp_proveedor();
-                using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
+                try
                 {
-                    info.ret_CodDocumentoTipo = info.ret_CodDocumentoTipo = "RETEN";
 
-                    #region Validar si existe factura
-                    if (persona != null)
+
+                    bool PasarRetencion = false;
+                    if (Existe(info.IdEmpresa, info.emi_Ruc, info.CodDocumento, info.Establecimiento, info.PuntoEmision, info.NumeroDocumento) == 2)
+                        return true;
+
+                    EntitiesGeneral dbG = new EntitiesGeneral();
+                    var persona = dbG.tb_persona.Where(q => q.pe_cedulaRuc.Trim() == info.emi_Ruc.Trim()).FirstOrDefault();
+                    cp_proveedor proveedor = new cp_proveedor();
+                    using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
                     {
-                        proveedor = db.cp_proveedor.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPersona == persona.IdPersona).FirstOrDefault();
-                        if (proveedor != null)
+                        info.ret_CodDocumentoTipo = info.ret_CodDocumentoTipo = "RETEN";
+
+                        #region Validar si existe factura
+                        if (persona != null)
                         {
-                            var OG = db.cp_orden_giro.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdOrden_giro_Tipo == info.CodDocumento && q.co_serie == info.Establecimiento + "-" + info.PuntoEmision && q.co_factura == info.NumeroDocumento && q.Estado == "A" && q.IdProveedor == proveedor.IdProveedor).FirstOrDefault();
-                            if (OG != null)
+                            proveedor = db.cp_proveedor.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPersona == persona.IdPersona).FirstOrDefault();
+                            if (proveedor != null)
                             {
-                                info.IdTipoCbte = OG.IdTipoCbte_Ogiro;
-                                info.IdCbteCble = OG.IdCbteCble_Ogiro;
-
-                                var retencion = db.cp_retencion.Where(q => q.IdEmpresa_Ogiro == OG.IdEmpresa && q.IdTipoCbte_Ogiro == OG.IdTipoCbte_Ogiro && q.IdCbteCble_Ogiro == OG.IdCbteCble_Ogiro && q.Estado == "A").FirstOrDefault();
-                                if (retencion != null)
+                                var OG = db.cp_orden_giro.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdOrden_giro_Tipo == info.CodDocumento && q.co_serie == info.Establecimiento + "-" + info.PuntoEmision && q.co_factura == info.NumeroDocumento && q.Estado == "A" && q.IdProveedor == proveedor.IdProveedor).FirstOrDefault();
+                                if (OG != null)
                                 {
-                                    GenerarXML = false;
-                                    info.ret_Establecimiento = retencion.serie1;
-                                    info.ret_PuntoEmision = retencion.serie2;
-                                    info.ret_NumeroDocumento = retencion.NumRetencion;
-                                    info.ret_Fecha = retencion.fecha;
-                                    info.ret_FechaAutorizacion = retencion.Fecha_Autorizacion;
-                                    info.ret_NumeroAutorizacion = retencion.NAutorizacion;
+                                    info.IdTipoCbte = OG.IdTipoCbte_Ogiro;
+                                    info.IdCbteCble = OG.IdCbteCble_Ogiro;
+
+                                    var retencion = db.cp_retencion.Where(q => q.IdEmpresa_Ogiro == OG.IdEmpresa && q.IdTipoCbte_Ogiro == OG.IdTipoCbte_Ogiro && q.IdCbteCble_Ogiro == OG.IdCbteCble_Ogiro && q.Estado == "A").FirstOrDefault();
+                                    if (retencion != null)
+                                    {
+                                        GenerarXML = false;
+                                        info.ret_Establecimiento = retencion.serie1;
+                                        info.ret_PuntoEmision = retencion.serie2;
+                                        info.ret_NumeroDocumento = retencion.NumRetencion;
+                                        info.ret_Fecha = retencion.fecha;
+                                        info.ret_FechaAutorizacion = retencion.Fecha_Autorizacion;
+                                        info.ret_NumeroAutorizacion = retencion.NAutorizacion;
+                                    }
+                                    else
+                                        PasarRetencion = true;
                                 }
-                                else
-                                    PasarRetencion = true;
                             }
-                        }                        
-                    }
-                    
-                    #endregion
-
-                    if (info.lstRetencion.Count > 0 && string.IsNullOrEmpty(info.ret_NumeroDocumento))
-                    {
-                        GenerarXML = true;
-                        var talonario = odataTalonario.GetDocumentoElectronicoUpdateUsado(info.IdEmpresa, info.ret_CodDocumentoTipo, info.ret_Establecimiento, info.ret_PuntoEmision);
-                        if (talonario == null)
-                        {
-                            return false;
                         }
-                        info.ret_NumeroDocumento = talonario.NumDocumento;
-                        info.ret_Establecimiento = info.ret_Establecimiento;
-                        info.ret_PuntoEmision = info.ret_PuntoEmision;
-                        info.ret_NumeroDocumento = info.ret_NumeroDocumento;
-                        info.ret_Fecha = info.FechaEmision;
-                    }
 
-                
-                    db.cp_XML_Documento.Add(new cp_XML_Documento
-                    {
-                        IdEmpresa = info.IdEmpresa,
-                        IdDocumento = info.IdDocumento = GetID(info.IdEmpresa),
-                        XML = info.XML,
-                        Tipo = info.Tipo,
-                        emi_RazonSocial = info.emi_RazonSocial,
-                        emi_NombreComercial = info.emi_NombreComercial,
-                        emi_Ruc = info.emi_Ruc,
-                        emi_DireccionMatriz = info.emi_DireccionMatriz,
-                        emi_ContribuyenteEspecial = info.emi_ContribuyenteEspecial,
-                        ClaveAcceso = info.ClaveAcceso,
-                        CodDocumento = info.CodDocumento,
-                        Establecimiento = info.Establecimiento,
-                        PuntoEmision = info.PuntoEmision,
-                        NumeroDocumento = info.NumeroDocumento,
-                        FechaEmision = info.FechaEmision,
-                        rec_RazonSocial = info.rec_RazonSocial,
-                        rec_Identificacion = info.rec_Identificacion,
-                        Subtotal0 = info.Subtotal0,
-                        SubtotalIVA = info.SubtotalIVA,
-                        Porcentaje = info.Porcentaje,
-                        ValorIVA = info.ValorIVA,
-                        Total = info.Total,
-                        FormaPago = info.FormaPago,
-                        Plazo = info.Plazo,
-                        Comprobante = info.Comprobante,
-                        Estado = true,
+                        #endregion
 
-                        ret_CodDocumentoTipo = info.ret_CodDocumentoTipo,
-                        ret_Establecimiento = info.ret_Establecimiento,
-                        ret_Fecha = info.ret_Fecha,
-                        ret_PuntoEmision = info.ret_PuntoEmision,
-                        ret_NumeroDocumento = info.ret_NumeroDocumento,
-                        ret_FechaAutorizacion = info.ret_FechaAutorizacion,
-                        ret_NumeroAutorizacion = info.ret_NumeroAutorizacion,
-                        
-                        IdTipoCbte = info.IdTipoCbte,
-                        IdCbteCble = info.IdCbteCble,
-                        IdUsuarioCreacion = info.IdUsuario,
-                        FechaCreacion = DateTime.Now
-                    });
-                    int Secuencia = 1;
-                    if (info.lstRetencion.Count > 0)
-                    {                        
-                        foreach (var item in info.lstRetencion)
+                        if (info.lstRetencion.Count > 0 && string.IsNullOrEmpty(info.ret_NumeroDocumento))
                         {
-                            db.cp_XML_Documento_Retencion.Add(new cp_XML_Documento_Retencion
+                            GenerarXML = true;
+                            var talonario = odataTalonario.GetDocumentoElectronicoUpdateUsado(info.IdEmpresa, info.ret_CodDocumentoTipo, info.ret_Establecimiento, info.ret_PuntoEmision);
+                            if (talonario == null)
+                            {
+                                return false;
+                            }
+                            info.ret_NumeroDocumento = talonario.NumDocumento;
+                            info.ret_Establecimiento = info.ret_Establecimiento;
+                            info.ret_PuntoEmision = info.ret_PuntoEmision;
+                            info.ret_NumeroDocumento = info.ret_NumeroDocumento;
+                            info.ret_Fecha = info.FechaEmision;
+                        }
+
+
+                        db.cp_XML_Documento.Add(new cp_XML_Documento
+                        {
+                            IdEmpresa = info.IdEmpresa,
+                            IdDocumento = info.IdDocumento = GetID(info.IdEmpresa),
+                            XML = info.XML,
+                            Tipo = info.Tipo,
+                            emi_RazonSocial = info.emi_RazonSocial,
+                            emi_NombreComercial = info.emi_NombreComercial,
+                            emi_Ruc = info.emi_Ruc,
+                            emi_DireccionMatriz = info.emi_DireccionMatriz,
+                            emi_ContribuyenteEspecial = info.emi_ContribuyenteEspecial,
+                            ClaveAcceso = info.ClaveAcceso,
+                            CodDocumento = info.CodDocumento,
+                            Establecimiento = info.Establecimiento,
+                            PuntoEmision = info.PuntoEmision,
+                            NumeroDocumento = info.NumeroDocumento,
+                            FechaEmision = info.FechaEmision,
+                            rec_RazonSocial = info.rec_RazonSocial,
+                            rec_Identificacion = info.rec_Identificacion,
+                            Subtotal0 = info.Subtotal0,
+                            SubtotalIVA = info.SubtotalIVA,
+                            Porcentaje = info.Porcentaje,
+                            ValorIVA = info.ValorIVA,
+                            Total = info.Total,
+                            FormaPago = info.FormaPago,
+                            Plazo = info.Plazo,
+                            Comprobante = info.Comprobante,
+                            Estado = true,
+
+                            ret_CodDocumentoTipo = info.ret_CodDocumentoTipo,
+                            ret_Establecimiento = info.ret_Establecimiento,
+                            ret_Fecha = info.ret_Fecha,
+                            ret_PuntoEmision = info.ret_PuntoEmision,
+                            ret_NumeroDocumento = info.ret_NumeroDocumento,
+                            ret_FechaAutorizacion = info.ret_FechaAutorizacion,
+                            ret_NumeroAutorizacion = info.ret_NumeroAutorizacion,
+
+                            IdTipoCbte = info.IdTipoCbte,
+                            IdCbteCble = info.IdCbteCble,
+                            IdUsuarioCreacion = info.IdUsuario,
+                            FechaCreacion = DateTime.Now,
+
+                            Observacion = info.Observacion,
+                            IdPunto_cargo = info.IdPunto_cargo,
+                            IdCentroCosto_sub_centro_costo = info.IdCentroCosto_sub_centro_costo,
+                            IdCentroCosto = info.IdCentroCosto,
+
+                            IdTipoFlujo = info.IdTipoFlujo,
+                            IdTipoMovi = info.IdTipoMovi,
+                            IdFormaPago = info.IdFormaPago
+                        });
+                        int Secuencia = 1;
+                        if (info.lstRetencion.Count > 0)
+                        {
+                            foreach (var item in info.lstRetencion)
+                            {
+                                db.cp_XML_Documento_Retencion.Add(new cp_XML_Documento_Retencion
+                                {
+                                    IdEmpresa = info.IdEmpresa,
+                                    IdDocumento = info.IdDocumento,
+                                    Secuencia = Secuencia++,
+                                    IdCodigo_SRI = item.IdCodigo_SRI,
+                                    re_baseRetencion = item.re_baseRetencion,
+                                    re_tipoRet = item.re_tipoRet,
+                                    re_valor_retencion = item.re_valor_retencion,
+                                    re_Codigo_impuesto = item.re_Codigo_impuesto,
+                                    re_Porcen_retencion = item.re_Porcen_retencion
+                                });
+                            }
+                        }
+                        Secuencia = 1;
+                        foreach (var item in info.lstDetalle)
+                        {
+                            db.cp_XML_DocumentoDet.Add(new cp_XML_DocumentoDet
                             {
                                 IdEmpresa = info.IdEmpresa,
                                 IdDocumento = info.IdDocumento,
                                 Secuencia = Secuencia++,
-                                IdCodigo_SRI = item.IdCodigo_SRI,
-                                re_baseRetencion = item.re_baseRetencion,
-                                re_tipoRet = item.re_tipoRet,
-                                re_valor_retencion = item.re_valor_retencion,
-                                re_Codigo_impuesto = item.re_Codigo_impuesto,
-                                re_Porcen_retencion = item.re_Porcen_retencion
+                                NombreProducto = item.NombreProducto,
+                                Cantidad = item.Cantidad,
+                                Precio = item.Precio,
+                                ValorIva = item.ValorIva,
+                                PorcentajeIVA = item.PorcentajeIVA,
+                                Total = item.Total
                             });
-                        }    
-                    }
-                    Secuencia = 1;
-                    foreach (var item in info.lstDetalle)
-                    {
-                        db.cp_XML_DocumentoDet.Add(new cp_XML_DocumentoDet
+                        }
+
+                        info.Imagen = 2;
+                        db.SaveChanges();
+
+                        if (PasarRetencion && proveedor != null)
                         {
-                            IdEmpresa = info.IdEmpresa,
-                            IdDocumento = info.IdDocumento,
-                            Secuencia = Secuencia++,
-                            NombreProducto = item.NombreProducto,
-                            Cantidad = item.Cantidad,
-                            Precio = item.Precio,
-                            ValorIva = item.ValorIva,
-                            PorcentajeIVA = item.PorcentajeIVA,
-                            Total = item.Total
-                        });
+                            ContabilizarDocumento(info.IdEmpresa, info.IdDocumento, info.IdTipoCbte ?? 0, info.IdCbteCble ?? 0, info.IdUsuario, true);
+                        }
                     }
-                    
-                    info.Imagen = 2;
-                    db.SaveChanges();
 
-                    if (PasarRetencion && proveedor != null)
-                    {
-                        ContabilizarDocumento(info.IdEmpresa, info.IdDocumento, info.IdTipoCbte ?? 0, info.IdCbteCble ?? 0, info.IdUsuario, true);
-                    }
+
+
+                    return true;
                 }
-
-                
-
-                return true;
+                catch (DbEntityValidationException ex)
+                {
+                    string mensaje = "";
+                    string arreglo = ToString();
+                    tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                    tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                    oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                    mensaje = ex.ToString() + " " + ex.Message;
+                    mensaje = "Error al Grabar" + ex.Message;
+                    throw new Exception(ex.ToString());
+                }
             }
             catch (Exception)
             {
@@ -330,6 +373,10 @@ namespace Core.Erp.Data.CuentasxPagar
                     documento.ret_NumeroDocumento = info.ret_NumeroDocumento;
                     documento.ret_Fecha = info.ret_Fecha;
                     documento.IdUsuarioModificacion = info.IdUsuario;
+                    documento.Observacion = info.Observacion;
+                    documento.IdCentroCosto = info.IdCentroCosto;
+                    documento.IdCentroCosto_sub_centro_costo = info.IdCentroCosto_sub_centro_costo;
+                    documento.IdPunto_cargo = info.IdPunto_cargo;
                     documento.FechaModificacion = DateTime.Now;
 
                     //documento.ret_NumeroAutorizacion = info.ret_NumeroAutorizacion;                    
@@ -379,8 +426,6 @@ namespace Core.Erp.Data.CuentasxPagar
                             }
                         }
                         #endregion
-                        
-                        
                     }
                 }
 

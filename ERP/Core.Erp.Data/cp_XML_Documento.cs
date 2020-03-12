@@ -61,6 +61,13 @@ namespace Core.Erp.Data
         public Nullable<System.DateTime> FechaModificacion { get; set; }
         public string IdUsuarioAnulacion { get; set; }
         public Nullable<System.DateTime> FechaAnulacion { get; set; }
+        public string Observacion { get; set; }
+        public Nullable<int> IdPunto_cargo { get; set; }
+        public string IdCentroCosto { get; set; }
+        public string IdCentroCosto_sub_centro_costo { get; set; }
+        public Nullable<decimal> IdTipoFlujo { get; set; }
+        public Nullable<int> IdTipoMovi { get; set; }
+        public string IdFormaPago { get; set; }
     
         public virtual ICollection<cp_XML_Documento_Retencion> cp_XML_Documento_Retencion { get; set; }
         public virtual ICollection<cp_XML_DocumentoDet> cp_XML_DocumentoDet { get; set; }

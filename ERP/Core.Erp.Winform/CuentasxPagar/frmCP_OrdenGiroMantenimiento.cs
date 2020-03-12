@@ -4492,6 +4492,9 @@ namespace Core.Erp.Winform.CuentasxPagar
                 txE_total.EditValue = XML.Total.ToString();
                 txE_BaseImponible.EditValue = (XML.Subtotal0 + XML.SubtotalIVA).ToString();
                 dteFecAutoriza.EditValue = XML.FechaEmision;
+                txt_observacion.Text = XML.Observacion;
+                ucBa_TipoFlujo1.set_TipoFlujoInfo(XML.IdTipoFlujo);
+                ucCaj_MovEgresoCaj_cmb1.set_MovimientoInfo(XML.IdTipoMovi ?? 0);
 
                 if (XML.ValorIVA > 0)
                 {
@@ -4502,6 +4505,23 @@ namespace Core.Erp.Winform.CuentasxPagar
                 cmbTipoDocu.EditValue = "01";
 
                 GeneraDiario();
+                if (!string.IsNullOrEmpty(XML.IdFormaPago))
+                {
+                    BindingList_pagosSRI.Where(q => q.codigo_pago_sri == XML.IdFormaPago).FirstOrDefault().check = true;
+                    gridControl_formasPagoSRI.RefreshDataSource();    
+                }
+
+                var LstDiario = UC_Diario_x_cxp.Get_List_Cbtecble_det();
+                foreach (var item in LstDiario)
+                {
+                    if (item.dc_Valor_D > 0 && item.IdCtaCble != paramCP_I.pa_ctacble_iva.Trim())
+                    {
+                        item.IdPunto_cargo = XML.IdPunto_cargo;
+                        item.IdCentroCosto = XML.IdCentroCosto;
+                        item.IdCentroCosto_sub_centro_costo = XML.IdCentroCosto_sub_centro_costo;
+                    }
+                }
+                UC_Diario_x_cxp.setDetalle(LstDiario);
             }
             catch (Exception)
             {

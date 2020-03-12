@@ -345,6 +345,11 @@ namespace Core.Erp.Winform.CuentasxPagar
             }
         }
 
+        private void ucGe_Menu_Superior_Mant1_Load(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }

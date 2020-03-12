@@ -1,6 +1,6 @@
 ﻿namespace Core.Erp.Winform.CuentasxPagar
 {
-    partial class frmCP_XML_Mantenimiento
+    partial class frmCP_XML_RetencionSubida
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucGe_Menu_Superior_Mant1 = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnGuardar = new System.Windows.Forms.ToolStripButton();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.gcRetencion = new DevExpress.XtraGrid.GridControl();
+            this.gvRetencion = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCodigoSRI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbCodigoSRI = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBaseImponible = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.txtRetTotal = new DevExpress.XtraEditors.TextEdit();
+            this.txtRetSubtotal0 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.txtRetIVA = new DevExpress.XtraEditors.TextEdit();
+            this.txtRetSubtotalIVA = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.txtContribuyente = new DevExpress.XtraEditors.TextEdit();
@@ -63,19 +87,6 @@
             this.txtTipo = new DevExpress.XtraEditors.TextEdit();
             this.txtID = new DevExpress.XtraEditors.TextEdit();
             this.txtDireccion = new DevExpress.XtraEditors.MemoEdit();
-            this.gcRetencion = new DevExpress.XtraGrid.GridControl();
-            this.gvRetencion = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCodigoSRI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmbCodigoSRI = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBaseImponible = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.gcDetalleXML = new DevExpress.XtraGrid.GridControl();
             this.gvDetalleXML = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -86,19 +97,20 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnEliminarRetencion = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.deRetFechaAutorizacion = new DevExpress.XtraEditors.DateEdit();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
-            this.deRetFecha = new DevExpress.XtraEditors.DateEdit();
-            this.txtRetAutorizacion = new DevExpress.XtraEditors.TextEdit();
-            this.txtRetNumeroDocumento = new DevExpress.XtraEditors.TextEdit();
-            this.txtRetPuntoEmision = new DevExpress.XtraEditors.TextEdit();
-            this.txtRetEstablecimiento = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRetencion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRetencion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCodigoSRI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetTotal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetSubtotal0.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetIVA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetSubtotalIVA.Properties)).BeginInit();
+            this.xtraTabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtContribuyente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
@@ -119,90 +131,271 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTipo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcRetencion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRetencion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCodigoSRI)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDetalleXML)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetalleXML)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFechaAutorizacion.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFechaAutorizacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFecha.Properties.VistaTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFecha.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetAutorizacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetNumeroDocumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetPuntoEmision.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetEstablecimiento.Properties)).BeginInit();
             this.SuspendLayout();
             // 
-            // ucGe_Menu_Superior_Mant1
+            // toolStrip1
             // 
-            this.ucGe_Menu_Superior_Mant1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bnRetImprimir = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntAnular = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntAprobar = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntGuardar_y_Salir = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntImprimir = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntImprimir_Guia = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntLimpiar = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_bntSalir = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_conciliacion_Auto = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_DiseñoReporte = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_Generar_XML = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_Imprimir_Cbte = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_Imprimir_Cheq = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btn_Imprimir_Reten = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnAceptar = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnAprobarGuardarSalir = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnEstadosOC = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnGuardar = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnImpFrm = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnImpLote = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnImpRep = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnImprimirSoporte = true;
-            this.ucGe_Menu_Superior_Mant1.Enabled_btnproductos = true;
-            this.ucGe_Menu_Superior_Mant1.Location = new System.Drawing.Point(0, 0);
-            this.ucGe_Menu_Superior_Mant1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ucGe_Menu_Superior_Mant1.Name = "ucGe_Menu_Superior_Mant1";
-            this.ucGe_Menu_Superior_Mant1.Size = new System.Drawing.Size(1493, 28);
-            this.ucGe_Menu_Superior_Mant1.TabIndex = 0;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntAnular = true;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntAprobar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntDiseñoReporte = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntGuardar_y_Salir = true;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntImprimir = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntImprimir_Guia = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntLimpiar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntReImprimir = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_bntSalir = true;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_Actualizar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_conciliacion_Auto = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_Generar_XML = true;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_Imprimir_Cbte = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_Imprimir_Cheq = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btn_Imprimir_Reten = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnAceptar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnAprobarGuardarSalir = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnContabilizar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnEstadosOC = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnGuardar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnImpFrm = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnImpLote = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnImpRep = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnImprimirSoporte = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnModificar = false;
-            this.ucGe_Menu_Superior_Mant1.Visible_btnproductos = false;
-            this.ucGe_Menu_Superior_Mant1.event_btnGuardar_y_Salir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_y_Salir_Click(this.ucGe_Menu_Superior_Mant1_event_btnGuardar_y_Salir_Click);
-            this.ucGe_Menu_Superior_Mant1.event_btnAnular_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnAnular_Click(this.ucGe_Menu_Superior_Mant1_event_btnAnular_Click);
-            this.ucGe_Menu_Superior_Mant1.event_btnSalir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnSalir_Click(this.ucGe_Menu_Superior_Mant1_event_btnSalir_Click);
-            this.ucGe_Menu_Superior_Mant1.event_btn_Generar_XML_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btn_Generar_XML_Click(this.ucGe_Menu_Superior_Mant1_event_btn_Generar_XML_Click);
-            this.ucGe_Menu_Superior_Mant1.Load += new System.EventHandler(this.ucGe_Menu_Superior_Mant1_Load);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnGuardar});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(996, 27);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Image = global::Core.Erp.Winform.Properties.Resources.guardar_32x32;
+            this.btnGuardar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(82, 24);
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 27);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
+            this.xtraTabControl1.Size = new System.Drawing.Size(996, 617);
+            this.xtraTabControl1.TabIndex = 32;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage3,
+            this.xtraTabPage2});
+            this.xtraTabControl1.Click += new System.EventHandler(this.xtraTabControl1_Click);
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.gcRetencion);
+            this.xtraTabPage2.Controls.Add(this.panel2);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(990, 586);
+            this.xtraTabPage2.Text = "Datos retención";
+            // 
+            // gcRetencion
+            // 
+            this.gcRetencion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcRetencion.Location = new System.Drawing.Point(0, 94);
+            this.gcRetencion.MainView = this.gvRetencion;
+            this.gcRetencion.Name = "gcRetencion";
+            this.gcRetencion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.cmbCodigoSRI});
+            this.gcRetencion.Size = new System.Drawing.Size(990, 492);
+            this.gcRetencion.TabIndex = 2;
+            this.gcRetencion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvRetencion});
+            // 
+            // gvRetencion
+            // 
+            this.gvRetencion.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCodigoSRI,
+            this.colBaseImponible,
+            this.gridColumn3});
+            this.gvRetencion.GridControl = this.gcRetencion;
+            this.gvRetencion.Name = "gvRetencion";
+            this.gvRetencion.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gvRetencion.OptionsView.ShowFooter = true;
+            this.gvRetencion.OptionsView.ShowGroupPanel = false;
+            this.gvRetencion.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvRetencion_CellValueChanged);
+            // 
+            // colCodigoSRI
+            // 
+            this.colCodigoSRI.Caption = "Código";
+            this.colCodigoSRI.ColumnEdit = this.cmbCodigoSRI;
+            this.colCodigoSRI.FieldName = "IdCodigo_SRI";
+            this.colCodigoSRI.Name = "colCodigoSRI";
+            this.colCodigoSRI.Visible = true;
+            this.colCodigoSRI.VisibleIndex = 0;
+            this.colCodigoSRI.Width = 768;
+            // 
+            // cmbCodigoSRI
+            // 
+            this.cmbCodigoSRI.AutoHeight = false;
+            this.cmbCodigoSRI.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCodigoSRI.DisplayMember = "co_descripcion";
+            this.cmbCodigoSRI.Name = "cmbCodigoSRI";
+            this.cmbCodigoSRI.ValueMember = "IdCodigo_SRI";
+            this.cmbCodigoSRI.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7});
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "ID";
+            this.gridColumn4.FieldName = "IdCodigo_SRI";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.Width = 85;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Codigo";
+            this.gridColumn5.FieldName = "codigoSRI";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 0;
+            this.gridColumn5.Width = 174;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Descripción";
+            this.gridColumn6.FieldName = "co_descripcion";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 1;
+            this.gridColumn6.Width = 829;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "% ";
+            this.gridColumn7.FieldName = "co_porRetencion";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
+            this.gridColumn7.Width = 128;
+            // 
+            // colBaseImponible
+            // 
+            this.colBaseImponible.Caption = "Base imponible";
+            this.colBaseImponible.FieldName = "re_baseRetencion";
+            this.colBaseImponible.Name = "colBaseImponible";
+            this.colBaseImponible.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "re_baseRetencion", "{0:n2}")});
+            this.colBaseImponible.Visible = true;
+            this.colBaseImponible.VisibleIndex = 1;
+            this.colBaseImponible.Width = 223;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Valor";
+            this.gridColumn3.FieldName = "re_valor_retencion";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "re_valor_retencion", "{0:n2}")});
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 225;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.labelControl16);
+            this.panel2.Controls.Add(this.txtRetTotal);
+            this.panel2.Controls.Add(this.txtRetSubtotal0);
+            this.panel2.Controls.Add(this.labelControl17);
+            this.panel2.Controls.Add(this.labelControl15);
+            this.panel2.Controls.Add(this.txtRetIVA);
+            this.panel2.Controls.Add(this.txtRetSubtotalIVA);
+            this.panel2.Controls.Add(this.labelControl18);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(990, 94);
+            this.panel2.TabIndex = 35;
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Location = new System.Drawing.Point(27, 22);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(74, 16);
+            this.labelControl16.TabIndex = 25;
+            this.labelControl16.Text = "Subtotal 0 %";
+            // 
+            // txtRetTotal
+            // 
+            this.txtRetTotal.Location = new System.Drawing.Point(412, 47);
+            this.txtRetTotal.Name = "txtRetTotal";
+            this.txtRetTotal.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtRetTotal.Properties.Appearance.Options.UseBackColor = true;
+            this.txtRetTotal.Properties.Mask.EditMask = "n2";
+            this.txtRetTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRetTotal.Properties.ReadOnly = true;
+            this.txtRetTotal.Size = new System.Drawing.Size(133, 22);
+            this.txtRetTotal.TabIndex = 34;
+            // 
+            // txtRetSubtotal0
+            // 
+            this.txtRetSubtotal0.Location = new System.Drawing.Point(145, 19);
+            this.txtRetSubtotal0.Name = "txtRetSubtotal0";
+            this.txtRetSubtotal0.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtRetSubtotal0.Properties.Appearance.Options.UseBackColor = true;
+            this.txtRetSubtotal0.Properties.Mask.EditMask = "n2";
+            this.txtRetSubtotal0.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRetSubtotal0.Properties.ReadOnly = true;
+            this.txtRetSubtotal0.Size = new System.Drawing.Size(132, 22);
+            this.txtRetSubtotal0.TabIndex = 26;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(344, 50);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(29, 16);
+            this.labelControl17.TabIndex = 33;
+            this.labelControl17.Text = "Total";
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(27, 50);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(71, 16);
+            this.labelControl15.TabIndex = 27;
+            this.labelControl15.Text = "Subtotal IVA";
+            // 
+            // txtRetIVA
+            // 
+            this.txtRetIVA.Location = new System.Drawing.Point(412, 19);
+            this.txtRetIVA.Name = "txtRetIVA";
+            this.txtRetIVA.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtRetIVA.Properties.Appearance.Options.UseBackColor = true;
+            this.txtRetIVA.Properties.Mask.EditMask = "n2";
+            this.txtRetIVA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRetIVA.Properties.ReadOnly = true;
+            this.txtRetIVA.Size = new System.Drawing.Size(133, 22);
+            this.txtRetIVA.TabIndex = 32;
+            // 
+            // txtRetSubtotalIVA
+            // 
+            this.txtRetSubtotalIVA.Location = new System.Drawing.Point(145, 47);
+            this.txtRetSubtotalIVA.Name = "txtRetSubtotalIVA";
+            this.txtRetSubtotalIVA.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtRetSubtotalIVA.Properties.Appearance.Options.UseBackColor = true;
+            this.txtRetSubtotalIVA.Properties.Mask.EditMask = "n2";
+            this.txtRetSubtotalIVA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRetSubtotalIVA.Properties.ReadOnly = true;
+            this.txtRetSubtotalIVA.Size = new System.Drawing.Size(132, 22);
+            this.txtRetSubtotalIVA.TabIndex = 28;
+            // 
+            // labelControl18
+            // 
+            this.labelControl18.Location = new System.Drawing.Point(344, 22);
+            this.labelControl18.Name = "labelControl18";
+            this.labelControl18.Size = new System.Drawing.Size(32, 16);
+            this.labelControl18.TabIndex = 31;
+            this.labelControl18.Text = "I.V.A.";
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.panel1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(990, 586);
+            this.xtraTabPage1.Text = "Datos documento";
             // 
             // panel1
             // 
@@ -242,7 +435,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1487, 661);
+            this.panel1.Size = new System.Drawing.Size(990, 586);
             this.panel1.TabIndex = 1;
             // 
             // labelControl19
@@ -560,149 +753,11 @@
             this.txtDireccion.Size = new System.Drawing.Size(706, 67);
             this.txtDireccion.TabIndex = 19;
             // 
-            // gcRetencion
-            // 
-            this.gcRetencion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcRetencion.Location = new System.Drawing.Point(0, 130);
-            this.gcRetencion.MainView = this.gvRetencion;
-            this.gcRetencion.Name = "gcRetencion";
-            this.gcRetencion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.cmbCodigoSRI});
-            this.gcRetencion.Size = new System.Drawing.Size(1487, 531);
-            this.gcRetencion.TabIndex = 2;
-            this.gcRetencion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvRetencion});
-            // 
-            // gvRetencion
-            // 
-            this.gvRetencion.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCodigoSRI,
-            this.colBaseImponible,
-            this.gridColumn3});
-            this.gvRetencion.GridControl = this.gcRetencion;
-            this.gvRetencion.Name = "gvRetencion";
-            this.gvRetencion.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
-            this.gvRetencion.OptionsView.ShowFooter = true;
-            this.gvRetencion.OptionsView.ShowGroupPanel = false;
-            this.gvRetencion.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvRetencion_CellValueChanged);
-            this.gvRetencion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvRetencion_KeyDown);
-            // 
-            // colCodigoSRI
-            // 
-            this.colCodigoSRI.Caption = "Código";
-            this.colCodigoSRI.ColumnEdit = this.cmbCodigoSRI;
-            this.colCodigoSRI.FieldName = "IdCodigo_SRI";
-            this.colCodigoSRI.Name = "colCodigoSRI";
-            this.colCodigoSRI.Visible = true;
-            this.colCodigoSRI.VisibleIndex = 0;
-            this.colCodigoSRI.Width = 768;
-            // 
-            // cmbCodigoSRI
-            // 
-            this.cmbCodigoSRI.AutoHeight = false;
-            this.cmbCodigoSRI.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbCodigoSRI.DisplayMember = "co_descripcion";
-            this.cmbCodigoSRI.Name = "cmbCodigoSRI";
-            this.cmbCodigoSRI.ValueMember = "IdCodigo_SRI";
-            this.cmbCodigoSRI.View = this.repositoryItemSearchLookUpEdit1View;
-            // 
-            // repositoryItemSearchLookUpEdit1View
-            // 
-            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn4,
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7});
-            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
-            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
-            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "ID";
-            this.gridColumn4.FieldName = "IdCodigo_SRI";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 85;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Codigo";
-            this.gridColumn5.FieldName = "codigoSRI";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 0;
-            this.gridColumn5.Width = 174;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Descripción";
-            this.gridColumn6.FieldName = "co_descripcion";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 1;
-            this.gridColumn6.Width = 829;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "% ";
-            this.gridColumn7.FieldName = "co_porRetencion";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 2;
-            this.gridColumn7.Width = 128;
-            // 
-            // colBaseImponible
-            // 
-            this.colBaseImponible.Caption = "Base imponible";
-            this.colBaseImponible.FieldName = "re_baseRetencion";
-            this.colBaseImponible.Name = "colBaseImponible";
-            this.colBaseImponible.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "re_baseRetencion", "{0:n2}")});
-            this.colBaseImponible.Visible = true;
-            this.colBaseImponible.VisibleIndex = 1;
-            this.colBaseImponible.Width = 223;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Valor";
-            this.gridColumn3.FieldName = "re_valor_retencion";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "re_valor_retencion", "{0:n2}")});
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 225;
-            // 
-            // xtraTabControl1
-            // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 28);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1493, 692);
-            this.xtraTabControl1.TabIndex = 31;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage3,
-            this.xtraTabPage2});
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.panel1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1487, 661);
-            this.xtraTabPage1.Text = "Datos documento";
-            // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.gcDetalleXML);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1487, 661);
+            this.xtraTabPage3.Size = new System.Drawing.Size(990, 586);
             this.xtraTabPage3.Text = "Detalle";
             // 
             // gcDetalleXML
@@ -711,7 +766,7 @@
             this.gcDetalleXML.Location = new System.Drawing.Point(0, 0);
             this.gcDetalleXML.MainView = this.gvDetalleXML;
             this.gcDetalleXML.Name = "gcDetalleXML";
-            this.gcDetalleXML.Size = new System.Drawing.Size(1487, 661);
+            this.gcDetalleXML.Size = new System.Drawing.Size(990, 586);
             this.gcDetalleXML.TabIndex = 0;
             this.gcDetalleXML.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDetalleXML});
@@ -800,145 +855,33 @@
             this.gridColumn12.VisibleIndex = 5;
             this.gridColumn12.Width = 151;
             // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.gcRetencion);
-            this.xtraTabPage2.Controls.Add(this.panel2);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1487, 661);
-            this.xtraTabPage2.Text = "Datos retención";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnEliminarRetencion);
-            this.panel2.Controls.Add(this.labelControl18);
-            this.panel2.Controls.Add(this.labelControl17);
-            this.panel2.Controls.Add(this.deRetFechaAutorizacion);
-            this.panel2.Controls.Add(this.labelControl16);
-            this.panel2.Controls.Add(this.deRetFecha);
-            this.panel2.Controls.Add(this.txtRetAutorizacion);
-            this.panel2.Controls.Add(this.txtRetNumeroDocumento);
-            this.panel2.Controls.Add(this.txtRetPuntoEmision);
-            this.panel2.Controls.Add(this.txtRetEstablecimiento);
-            this.panel2.Controls.Add(this.labelControl15);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1487, 130);
-            this.panel2.TabIndex = 0;
-            // 
-            // btnEliminarRetencion
-            // 
-            this.btnEliminarRetencion.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnEliminarRetencion.Location = new System.Drawing.Point(864, 65);
-            this.btnEliminarRetencion.Name = "btnEliminarRetencion";
-            this.btnEliminarRetencion.Size = new System.Drawing.Size(142, 21);
-            this.btnEliminarRetencion.TabIndex = 26;
-            this.btnEliminarRetencion.Text = "Eliminar retención";
-            this.btnEliminarRetencion.Click += new System.EventHandler(this.btnEliminarRetencion_Click);
-            // 
-            // labelControl18
-            // 
-            this.labelControl18.Location = new System.Drawing.Point(25, 67);
-            this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(70, 16);
-            this.labelControl18.TabIndex = 25;
-            this.labelControl18.Text = "Autorización";
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Location = new System.Drawing.Point(25, 95);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(107, 16);
-            this.labelControl17.TabIndex = 24;
-            this.labelControl17.Text = "Fecha autorización";
-            // 
-            // deRetFechaAutorizacion
-            // 
-            this.deRetFechaAutorizacion.EditValue = null;
-            this.deRetFechaAutorizacion.Location = new System.Drawing.Point(143, 92);
-            this.deRetFechaAutorizacion.Name = "deRetFechaAutorizacion";
-            this.deRetFechaAutorizacion.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deRetFechaAutorizacion.Properties.ReadOnly = true;
-            this.deRetFechaAutorizacion.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.deRetFechaAutorizacion.Size = new System.Drawing.Size(172, 22);
-            this.deRetFechaAutorizacion.TabIndex = 23;
-            // 
-            // labelControl16
-            // 
-            this.labelControl16.Location = new System.Drawing.Point(638, 11);
-            this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(34, 16);
-            this.labelControl16.TabIndex = 22;
-            this.labelControl16.Text = "Fecha";
-            // 
-            // deRetFecha
-            // 
-            this.deRetFecha.EditValue = null;
-            this.deRetFecha.Location = new System.Drawing.Point(705, 8);
-            this.deRetFecha.Name = "deRetFecha";
-            this.deRetFecha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.deRetFecha.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.deRetFecha.Size = new System.Drawing.Size(144, 22);
-            this.deRetFecha.TabIndex = 21;
-            // 
-            // txtRetAutorizacion
-            // 
-            this.txtRetAutorizacion.Location = new System.Drawing.Point(143, 64);
-            this.txtRetAutorizacion.Name = "txtRetAutorizacion";
-            this.txtRetAutorizacion.Properties.ReadOnly = true;
-            this.txtRetAutorizacion.Size = new System.Drawing.Size(706, 22);
-            this.txtRetAutorizacion.TabIndex = 20;
-            // 
-            // txtRetNumeroDocumento
-            // 
-            this.txtRetNumeroDocumento.Location = new System.Drawing.Point(321, 36);
-            this.txtRetNumeroDocumento.Name = "txtRetNumeroDocumento";
-            this.txtRetNumeroDocumento.Properties.ReadOnly = true;
-            this.txtRetNumeroDocumento.Size = new System.Drawing.Size(528, 22);
-            this.txtRetNumeroDocumento.TabIndex = 19;
-            // 
-            // txtRetPuntoEmision
-            // 
-            this.txtRetPuntoEmision.EditValue = "001";
-            this.txtRetPuntoEmision.Location = new System.Drawing.Point(232, 36);
-            this.txtRetPuntoEmision.Name = "txtRetPuntoEmision";
-            this.txtRetPuntoEmision.Properties.ReadOnly = true;
-            this.txtRetPuntoEmision.Size = new System.Drawing.Size(83, 22);
-            this.txtRetPuntoEmision.TabIndex = 18;
-            // 
-            // txtRetEstablecimiento
-            // 
-            this.txtRetEstablecimiento.EditValue = "001";
-            this.txtRetEstablecimiento.Location = new System.Drawing.Point(143, 36);
-            this.txtRetEstablecimiento.Name = "txtRetEstablecimiento";
-            this.txtRetEstablecimiento.Properties.ReadOnly = true;
-            this.txtRetEstablecimiento.Size = new System.Drawing.Size(83, 22);
-            this.txtRetEstablecimiento.TabIndex = 17;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Location = new System.Drawing.Point(25, 39);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(74, 16);
-            this.labelControl15.TabIndex = 16;
-            this.labelControl15.Text = "# Retención:";
-            // 
-            // frmCP_XML_Mantenimiento
+            // frmCP_XML_RetencionSubida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1493, 720);
+            this.ClientSize = new System.Drawing.Size(996, 644);
             this.Controls.Add(this.xtraTabControl1);
-            this.Controls.Add(this.ucGe_Menu_Superior_Mant1);
-            this.Name = "frmCP_XML_Mantenimiento";
-            this.Text = "frmCP_XML_Mantenimiento";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCP_XML_Mantenimiento_FormClosed);
-            this.Load += new System.EventHandler(this.frmCP_XML_Mantenimiento_Load);
+            this.Controls.Add(this.toolStrip1);
+            this.Name = "frmCP_XML_RetencionSubida";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Hacer retención manual";
+            this.Load += new System.EventHandler(this.frmCP_XML_RetencionSubida_Load);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcRetencion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRetencion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCodigoSRI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetTotal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetSubtotal0.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetIVA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRetSubtotalIVA.Properties)).EndInit();
+            this.xtraTabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtContribuyente.Properties)).EndInit();
@@ -960,36 +903,37 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTipo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDireccion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcRetencion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRetencion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCodigoSRI)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcDetalleXML)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDetalleXML)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFechaAutorizacion.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFechaAutorizacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFecha.Properties.VistaTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deRetFecha.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetAutorizacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetNumeroDocumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetPuntoEmision.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRetEstablecimiento.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Controles.UCGe_Menu_Superior_Mant ucGe_Menu_Superior_Mant1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnGuardar;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraEditors.TextEdit txtID;
+        private DevExpress.XtraEditors.LabelControl labelControl19;
+        private DevExpress.XtraEditors.TextEdit txtContribuyente;
+        private DevExpress.XtraEditors.TextEdit txtTotal;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private DevExpress.XtraEditors.TextEdit txtIVA;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.TextEdit txtPorcentaje;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.TextEdit txtSubtotalIVA;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.TextEdit txtSubtotal0;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.DateEdit deFecha;
+        private DevExpress.XtraEditors.TextEdit txtCodDocumento;
         private DevExpress.XtraEditors.TextEdit txtNumDocumento;
         private DevExpress.XtraEditors.TextEdit txtPuntoEmision;
         private DevExpress.XtraEditors.LabelControl labelControl7;
@@ -1005,48 +949,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtTipo;
-        private DevExpress.XtraEditors.TextEdit txtCodDocumento;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
-        private DevExpress.XtraEditors.DateEdit deFecha;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.TextEdit txtSubtotal0;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit txtSubtotalIVA;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.TextEdit txtPorcentaje;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.TextEdit txtIVA;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.TextEdit txtTotal;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraGrid.GridControl gcRetencion;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvRetencion;
-        private DevExpress.XtraGrid.Columns.GridColumn colCodigoSRI;
-        private DevExpress.XtraGrid.Columns.GridColumn colBaseImponible;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.TextEdit txtID;
         private DevExpress.XtraEditors.MemoEdit txtDireccion;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private System.Windows.Forms.Panel panel2;
-        private DevExpress.XtraEditors.TextEdit txtRetNumeroDocumento;
-        private DevExpress.XtraEditors.TextEdit txtRetPuntoEmision;
-        private DevExpress.XtraEditors.TextEdit txtRetEstablecimiento;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
-        private DevExpress.XtraEditors.LabelControl labelControl17;
-        private DevExpress.XtraEditors.DateEdit deRetFechaAutorizacion;
-        private DevExpress.XtraEditors.LabelControl labelControl16;
-        private DevExpress.XtraEditors.DateEdit deRetFecha;
-        private DevExpress.XtraEditors.TextEdit txtRetAutorizacion;
-        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmbCodigoSRI;
-        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.TextEdit txtContribuyente;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private DevExpress.XtraGrid.GridControl gcDetalleXML;
         private DevExpress.XtraGrid.Views.Grid.GridView gvDetalleXML;
@@ -1057,7 +961,26 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraEditors.SimpleButton btnEliminarRetencion;
-
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraGrid.GridControl gcRetencion;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvRetencion;
+        private DevExpress.XtraGrid.Columns.GridColumn colCodigoSRI;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit cmbCodigoSRI;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn colBaseImponible;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.TextEdit txtRetSubtotalIVA;
+        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private DevExpress.XtraEditors.TextEdit txtRetSubtotal0;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private DevExpress.XtraEditors.TextEdit txtRetTotal;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
+        private DevExpress.XtraEditors.TextEdit txtRetIVA;
+        private DevExpress.XtraEditors.LabelControl labelControl18;
+        private System.Windows.Forms.Panel panel2;
     }
 }
