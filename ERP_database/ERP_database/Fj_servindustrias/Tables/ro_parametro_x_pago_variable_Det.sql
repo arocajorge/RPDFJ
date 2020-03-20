@@ -11,3 +11,5 @@
     CONSTRAINT [FK_ro_parametro_x_pago_variable_Det_tb_empresa] FOREIGN KEY ([Idempresa]) REFERENCES [dbo].[tb_empresa] ([IdEmpresa])
 );
 
+
+

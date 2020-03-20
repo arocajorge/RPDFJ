@@ -31,12 +31,17 @@ CREATE procedure [Fj_servindustrias].[spROLES_Rpt011]
 				
 
 SELECT        emp.IdEmpresa, emp.IdEmpleado, person.pe_cedulaRuc, person.pe_apellido + ' ' + person.pe_nombre AS Empleado, cargo.ca_descripcion, Sueldo.SueldoActual, grupo.Valor_bono, zona.zo_descripcion, 
-                         Fj_servindustrias.ro_ruta.ru_descripcion, emp.em_fechaIngaRol, emp.em_fechaSalida, emp.em_status, Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Efectividad_Entrega, 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Efectividad_Entrega_aplica, Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Efectividad_Volumen, 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Efectividad_Volumen_aplica, Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Recuperacion_cartera, 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Recuperacion_cartera_aplica, rol_det.Valor, rubro.ru_descripcion AS Rubro,
-						  Fj_servindustrias.ro_fuerza.fu_descripcion,
-
+                         Fj_servindustrias.ro_ruta.ru_descripcion, emp.em_fechaIngaRol, emp.em_fechaSalida, emp.em_status, Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega, 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega_aplica, Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen, 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen_aplica, Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera, 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera_aplica, rol_det.Valor, rubro.ru_descripcion AS Rubro,
+						 Fj_servindustrias.ro_fuerza.fu_descripcion,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega_ali,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega_aplica_ali,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen_ali,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen_aplica_ali,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera_ali,
+						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera_aplica_ali,
 
 						 
 						   (select valor from ro_rol_detalle R where R.IdEmpresa=emp.idempresa 
@@ -85,16 +90,16 @@ FROM            dbo.ro_empleado AS emp INNER JOIN
                          Palnifica.IdRuta = Fj_servindustrias.ro_ruta.IdRuta AND Palnifica.IdEmpresa = Fj_servindustrias.ro_ruta.IdEmpresa AND Palnifica.IdRuta = Fj_servindustrias.ro_ruta.IdRuta INNER JOIN
                          Fj_servindustrias.ro_zona AS zona ON Palnifica.IdEmpresa = zona.IdEmpresa AND Palnifica.IdZona = zona.IdZona AND Palnifica.IdEmpresa = zona.IdEmpresa AND Palnifica.IdZona = zona.IdZona AND 
                          Palnifica.IdEmpresa = zona.IdEmpresa AND Palnifica.IdZona = zona.IdZona AND Palnifica.IdEmpresa = zona.IdEmpresa AND Palnifica.IdZona = zona.IdZona INNER JOIN
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det ON Palnifica.IdEmpresa = Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdEmpresa AND 
-                         Palnifica.IdNomina_Tipo = Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdNomina_Tipo AND 
-                         Palnifica.IdPeriodo = Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdPeriodo AND 
-                         Palnifica.IdEmpleado = Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdEmpleado INNER JOIN
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio ON Palnifica.IdEmpresa = Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdEmpresa AND 
+                         Palnifica.IdNomina_Tipo = Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdNomina_Tipo AND 
+                         Palnifica.IdPeriodo = Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdPeriodo AND 
+                         Palnifica.IdEmpleado = Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdEmpleado INNER JOIN
                          dbo.ro_rol_detalle AS rol_det ON emp.IdEmpresa = rol_det.IdEmpresa AND emp.IdEmpleado = rol_det.IdEmpleado AND 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdEmpresa = rol_det.IdEmpresa AND 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdNomina_Tipo = rol_det.IdNominaTipo AND 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdNomina_tipo_Liq = rol_det.IdNominaTipoLiqui AND 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdPeriodo = rol_det.IdPeriodo AND 
-                         Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det.IdEmpleado = rol_det.IdEmpleado INNER JOIN
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdEmpresa = rol_det.IdEmpresa AND 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdNomina_Tipo = rol_det.IdNominaTipo AND 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdNomina_tipo_Liq = rol_det.IdNominaTipoLiqui AND 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdPeriodo = rol_det.IdPeriodo AND 
+                         Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.IdEmpleado = rol_det.IdEmpleado INNER JOIN
                          dbo.ro_rubro_tipo AS rubro ON rol_det.IdEmpresa = rubro.IdEmpresa AND rol_det.IdRubro = rubro.IdRubro AND rol_det.IdEmpresa = rubro.IdEmpresa AND rol_det.IdRubro = rubro.IdRubro AND 
                          rol_det.IdEmpresa = rubro.IdEmpresa AND rol_det.IdRubro = rubro.IdRubro AND rol_det.IdEmpresa = rubro.IdEmpresa AND rol_det.IdRubro = rubro.IdRubro AND rol_det.IdEmpresa = rubro.IdEmpresa AND 
                          rol_det.IdRubro = rubro.IdRubro AND rol_det.IdEmpresa = rubro.IdEmpresa AND rol_det.IdRubro = rubro.IdRubro INNER JOIN

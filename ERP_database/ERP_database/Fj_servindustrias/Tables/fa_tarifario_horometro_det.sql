@@ -11,3 +11,5 @@
     CONSTRAINT [FK_fa_tarifario_horometro_det_fa_tarifario_horometro] FOREIGN KEY ([IdEmpresa], [IdTarifario]) REFERENCES [Fj_servindustrias].[fa_tarifario_horometro] ([IdEmpresa], [IdTarifario])
 );
 
+
+

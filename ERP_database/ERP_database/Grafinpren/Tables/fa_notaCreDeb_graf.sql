@@ -13,3 +13,5 @@
     CONSTRAINT [FK_fa_notaCreDeb_graf_fa_notaCreDeb] FOREIGN KEY ([IdEmpresa], [IdSucursal], [IdBodega], [IdNota]) REFERENCES [dbo].[fa_notaCreDeb] ([IdEmpresa], [IdSucursal], [IdBodega], [IdNota])
 );
 
+
+

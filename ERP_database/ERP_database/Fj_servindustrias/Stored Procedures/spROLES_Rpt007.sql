@@ -50,7 +50,7 @@ BEGIN
 				  
 				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
+				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
 				  
 				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
@@ -98,9 +98,16 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 						and ISNULL( ro_planifi_x_ruta.IdEmpresa,@IdEmpresa)=@IdEmpresa
 					    and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=1
 					    and ro_emp.IdEmpresa=@IdEmpresa
-					    AND ro_emp.em_status='EST_ACT'
+					    AND ro_emp.em_status<>'EST_LIQ'
+						--and (ro_emp.em_status<>'EST_LIQ' and isnull( ro_emp.em_fechaSalida, @Fecha_Inicio) between @Fecha_Inicio and @Fecha_Fin )
+						
+						and exists(select * from vwRo_Rol_Detalle where vwRo_Rol_Detalle.IdEmpresa=ro_emp.IdEmpresa
+						and vwRo_Rol_Detalle.IdEmpleado=ro_emp.IdEmpleado
+						and vwRo_Rol_Detalle.IdPeriodo=@IdPeriodo
+						--and vwRo_Rol_Detalle.IdNominaTipo=@IdNomina_Tipo
+						--and vwRo_Rol_Detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq
+						)
 						and ro_emp.IdDivision=2
-
 
 					   UNION
 
@@ -125,7 +132,7 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				  
 				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
+				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
 				  
 				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
@@ -174,7 +181,15 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 						and ISNULL( ro_planifi_x_ruta.IdEmpresa,@IdEmpresa)=@IdEmpresa
 					    and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=1
 					    and ro_emp.IdEmpresa=@IdEmpresa
-					    and cast( isnull(ro_emp.em_fechaSalida,@Fecha_Inicio) as date) between @Fecha_Inicio and @Fecha_Fin
+					    AND ro_emp.em_status<>'EST_LIQ'
+						--and (ro_emp.em_status<>'EST_LIQ' and isnull( ro_emp.em_fechaSalida, @Fecha_Inicio) between @Fecha_Inicio and @Fecha_Fin )
+						
+						and exists(select * from vwRo_Rol_Detalle where vwRo_Rol_Detalle.IdEmpresa=ro_emp.IdEmpresa
+						and vwRo_Rol_Detalle.IdEmpleado=ro_emp.IdEmpleado
+						and vwRo_Rol_Detalle.IdPeriodo=@IdPeriodo
+						--and vwRo_Rol_Detalle.IdNominaTipo=@IdNomina_Tipo
+						--and vwRo_Rol_Detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq
+						)
 					    and ro_emp.IdDivision=2
 
 		union			  
@@ -203,7 +218,7 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				  
 				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Vacaciones,
+				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
 				  
 				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
 				 
@@ -255,7 +270,15 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 						where 
 					     dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=1
 					    and ro_emp.IdEmpresa=@IdEmpresa
-					    and cast( isnull(ro_emp.em_fechaSalida,@Fecha_Inicio) as date) between @Fecha_Inicio and @Fecha_Fin
+					   AND ro_emp.em_status<>'EST_LIQ'
+						--and (ro_emp.em_status<>'EST_LIQ' and isnull( ro_emp.em_fechaSalida, @Fecha_Inicio) between @Fecha_Inicio and @Fecha_Fin )
+						
+						and exists(select * from vwRo_Rol_Detalle where vwRo_Rol_Detalle.IdEmpresa=ro_emp.IdEmpresa
+						and vwRo_Rol_Detalle.IdEmpleado=ro_emp.IdEmpleado
+						and vwRo_Rol_Detalle.IdPeriodo=@IdPeriodo
+						--and vwRo_Rol_Detalle.IdNominaTipo=@IdNomina_Tipo
+						--and vwRo_Rol_Detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq
+						)
 					    and ro_emp.IdDivision=1
 						
 
@@ -343,6 +366,15 @@ FROM            Fj_servindustrias.ro_empleado_x_cargo_fuerza_grupo INNER JOIN
 						 and IdNominaTipoLiqui=5
 						 and ro_rol_detalle.Valor>0
 						 and  Fj_servindustrias.ro_empleado_x_cargo_fuerza_grupo.IdPeriodo=@IdPeriodo
+						 AND ro_emp.em_status<>'EST_LIQ'
+						--and (ro_emp.em_status<>'EST_LIQ' and isnull( ro_emp.em_fechaSalida, @Fecha_Inicio) between @Fecha_Inicio and @Fecha_Fin )
+						
+						and exists(select * from vwRo_Rol_Detalle where vwRo_Rol_Detalle.IdEmpresa=ro_emp.IdEmpresa
+						and vwRo_Rol_Detalle.IdEmpleado=ro_emp.IdEmpleado
+						and vwRo_Rol_Detalle.IdPeriodo=@IdPeriodo
+						--and vwRo_Rol_Detalle.IdNominaTipo=@IdNomina_Tipo
+						--and vwRo_Rol_Detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq
+						)
 --************************************************************************************************************************************************************************
 --*******************************************************************************GASTOS FIJO*******************************************************************************
 union

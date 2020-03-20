@@ -204,31 +204,34 @@ namespace Core.Erp.Winform.CuentasxPagar
                             Documento.Subtotal0 = Convert.ToDouble(infoFactura.Element("totalSinImpuestos").Value) - Documento.Descuento;
                             Documento.Total = Documento.Subtotal0; 
                         }
-
-                        var listAdicional = rootElement.Element("infoAdicional").Elements("campoAdicional")
-                          .Select(element => element).ToList();
-                        if (listAdicional.Count > 0)
+                        if (rootElement.Element("infoAdicional") != null)
                         {
-                            var Kilometraje = listAdicional.Where(x => (string)x.Attribute("nombre") == "kilometraje").FirstOrDefault();
-                            var Placa = listAdicional.Where(x => (string)x.Attribute("nombre") == "placa").FirstOrDefault();
-                            var Disco = listAdicional.Where(x => (string)x.Attribute("nombre") == "disco").FirstOrDefault();
-
-                            if (Kilometraje != null && Placa != null && Disco != null)
+                            var listAdicional = rootElement.Element("infoAdicional").Elements("campoAdicional")
+                            .Select(element => element).ToList();
+                            if (listAdicional.Count > 0)
                             {
-                                Documento.Observacion = (Documento.lstDetalle.Count > 0 ? Documento.lstDetalle.First().NombreProducto : "") +"-km" + Kilometraje.Value.ToString() + "-D" + Disco.Value.ToString() + "-" + Placa.Value.ToString() + "-";
-                                int numValue = 0;
-                                if (Int32.TryParse(Disco.Value.ToString(), out numValue))
+                                var Kilometraje = listAdicional.Where(x => (string)x.Attribute("nombre") == "kilometraje").FirstOrDefault();
+                                var Placa = listAdicional.Where(x => (string)x.Attribute("nombre") == "placa").FirstOrDefault();
+                                var Disco = listAdicional.Where(x => (string)x.Attribute("nombre") == "disco").FirstOrDefault();
+
+                                if (Kilometraje != null && Placa != null && Disco != null)
                                 {
-                                    var PuntoCargo = lstPuntoCargo.Where(q => q.codPunto_cargo == "DISCO " + Convert.ToInt32(Disco.Value).ToString()).FirstOrDefault();
-                                    if (PuntoCargo != null)
+                                    Documento.Observacion = (Documento.lstDetalle.Count > 0 ? Documento.lstDetalle.First().NombreProducto : "") + "-km" + Kilometraje.Value.ToString() + "-D" + Disco.Value.ToString() + "-" + Placa.Value.ToString() + "-";
+                                    int numValue = 0;
+                                    if (Int32.TryParse(Disco.Value.ToString(), out numValue))
                                     {
-                                        Documento.IdPunto_cargo = PuntoCargo.IdPunto_cargo;
-                                        Documento.IdCentroCosto = PuntoCargo.IdCentroCosto_Scc;
-                                        Documento.IdCentroCosto_sub_centro_costo = PuntoCargo.IdCentroCosto_sub_centro_costo_Scc;
+                                        var PuntoCargo = lstPuntoCargo.Where(q => q.codPunto_cargo == "DISCO " + Convert.ToInt32(Disco.Value).ToString()).FirstOrDefault();
+                                        if (PuntoCargo != null)
+                                        {
+                                            Documento.IdPunto_cargo = PuntoCargo.IdPunto_cargo;
+                                            Documento.IdCentroCosto = PuntoCargo.IdCentroCosto_Scc;
+                                            Documento.IdCentroCosto_sub_centro_costo = PuntoCargo.IdCentroCosto_sub_centro_costo_Scc;
+                                        }
                                     }
                                 }
-                            }    
+                            }  
                         }
+                        
                         
                         Documento.Imagen = bus_xml.Existe(param.IdEmpresa, Documento.emi_Ruc, Documento.CodDocumento, Documento.Establecimiento, Documento.PuntoEmision, Documento.NumeroDocumento);
                         Documento.lstRetencion = new List<cp_XML_Documento_Retencion_Info>();
@@ -306,7 +309,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 lblContador.Text = blst.Count.ToString();
                 gcDetalle.DataSource = blst;
             }
-            catch (Exception ex)
+             catch (Exception ex)
             {
                 gcDetalle.DataSource = blst;
                 lblContador.Text = blst.Count.ToString();

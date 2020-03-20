@@ -7,3 +7,5 @@
     CONSTRAINT [FK_fa_parametro_FJ_fa_catalogo] FOREIGN KEY ([p_tipo_porc_ganancia_tarifario_cat]) REFERENCES [dbo].[fa_catalogo] ([IdCatalogo])
 );
 
+
+

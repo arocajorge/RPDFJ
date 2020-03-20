@@ -12,3 +12,5 @@
     CONSTRAINT [FK_tlh_evaluacion_opciones_preguntas_respuesta_det_tlh_evaluacion_opciones_preguntas_respuesta] FOREIGN KEY ([IdEmpresa], [IdCalendario]) REFERENCES [Talento_humano].[tlh_evaluacion_opciones_preguntas_respuesta] ([IdEmpresa], [IdCalendario])
 );
 
+
+

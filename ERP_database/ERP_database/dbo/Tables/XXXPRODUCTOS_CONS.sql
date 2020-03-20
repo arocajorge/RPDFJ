@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[XXXPRODUCTOS_CONS] (
+    [ID]          INT            IDENTITY (1, 1) NOT NULL,
+    [Codigo]      VARCHAR (50)   NULL,
+    [Descripcion] VARCHAR (1000) NULL,
+    CONSTRAINT [PK_XXXPRODUCTOS_CONS] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

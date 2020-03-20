@@ -27,6 +27,8 @@ CREATE TABLE [Fj_servindustrias].[ro_planificacion_x_jornada_desfasada] (
 
 
 
+
+
 GO
 
 

@@ -7,3 +7,5 @@
     CONSTRAINT [FK_Aca_Anio_Lectivo_x_mg_anio_lectivo_Aca_Anio_Lectivo] FOREIGN KEY ([IdInstitucion], [IdAnioLectivo]) REFERENCES [dbo].[Aca_Anio_Lectivo] ([IdInstitucion], [IdAnioLectivo])
 );
 
+
+

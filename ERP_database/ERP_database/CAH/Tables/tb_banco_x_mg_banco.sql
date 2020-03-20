@@ -11,3 +11,5 @@
     CONSTRAINT [FK_tb_banco_x_mg_banco_tb_banco] FOREIGN KEY ([IdBanco_Erp]) REFERENCES [dbo].[tb_banco] ([IdBanco])
 );
 
+
+

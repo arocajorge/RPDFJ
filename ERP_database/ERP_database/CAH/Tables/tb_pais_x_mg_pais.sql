@@ -9,3 +9,5 @@
     CONSTRAINT [FK_tb_pais_x_mg_pais_tb_pais] FOREIGN KEY ([IdPais_Erp]) REFERENCES [dbo].[tb_pais] ([IdPais])
 );
 
+
+

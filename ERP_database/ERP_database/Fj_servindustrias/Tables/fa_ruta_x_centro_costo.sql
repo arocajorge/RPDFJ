@@ -8,3 +8,5 @@
     CONSTRAINT [FK_fa_ruta_x_centro_costo_ct_centro_costo] FOREIGN KEY ([IdEmpresa], [IdCentroCosto]) REFERENCES [dbo].[ct_centro_costo] ([IdEmpresa], [IdCentroCosto])
 );
 
+
+

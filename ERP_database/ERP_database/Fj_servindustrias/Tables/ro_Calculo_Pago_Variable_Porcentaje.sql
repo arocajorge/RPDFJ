@@ -18,6 +18,11 @@
     [MotivoAnulacion]      VARCHAR (50) NULL,
     [nom_pc]               VARCHAR (50) NULL,
     [ip]                   VARCHAR (50) NULL,
+    [IdTipoServicio]       INT          NULL,
+    [SignoOperacion]       CHAR (1)     NULL,
+    [IdGrupo]              INT          NULL,
     CONSTRAINT [PK_ro_Calculo_Pago_Variable_Porcentaje] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdTipo_Nomina] ASC, [IdEfectividad] ASC)
 );
+
+
 

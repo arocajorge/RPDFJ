@@ -34,3 +34,5 @@
     CONSTRAINT [FK_Af_Poliza_x_AF_cp_proveedor] FOREIGN KEY ([IdEmpresa], [IdProveedor]) REFERENCES [dbo].[cp_proveedor] ([IdEmpresa], [IdProveedor])
 );
 
+
+

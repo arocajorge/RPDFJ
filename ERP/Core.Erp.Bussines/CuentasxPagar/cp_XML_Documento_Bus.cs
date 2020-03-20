@@ -175,7 +175,7 @@ namespace Core.Erp.Business.CuentasxPagar
                         return res;
 
                     }
-
+                    /*
                     if (String.IsNullOrEmpty(item.ContribuyenteEspecial))
                     {
                         MensajeError = "Falta Número de Contribuyente Especial Empresa. Por Favor verifique";
@@ -183,7 +183,7 @@ namespace Core.Erp.Business.CuentasxPagar
                         return res;
 
                     }
-
+                    */
                     //Retencion
                     if (String.IsNullOrEmpty(item.serie))
                     {
