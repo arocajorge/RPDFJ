@@ -12,15 +12,14 @@ namespace Core.Erp.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class cp_proveedor_codigo_SRI
+    public partial class cp_proveedor_producto
     {
         public int IdEmpresa { get; set; }
         public decimal IdProveedor { get; set; }
-        public int IdCodigo_SRI { get; set; }
-        public string observacion { get; set; }
+        public int Secuencia { get; set; }
+        public string CodProducto { get; set; }
         public string BienServicio { get; set; }
     
-        public virtual cp_codigo_SRI cp_codigo_SRI { get; set; }
         public virtual cp_proveedor cp_proveedor { get; set; }
     }
 }

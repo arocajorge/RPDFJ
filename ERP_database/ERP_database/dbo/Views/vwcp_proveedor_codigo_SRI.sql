@@ -1,7 +1,7 @@
-﻿CREATE VIEW [dbo].[vwcp_proveedor_codigo_SRI]
+﻿CREATE VIEW dbo.vwcp_proveedor_codigo_SRI
 AS
-SELECT c.IdEmpresa, c.IdProveedor, per.pe_cedulaRuc, CASE WHEN co.IdTipoSRI = 'COD_RET_IVA' THEN 'IVA' ELSE 'RTF' END AS re_tipo, c.IdCodigo_SRI, co.codigoSRI AS re_Codigo_impuesto, 
-                  co.co_porRetencion AS re_Porcen_retencion
+SELECT c.IdEmpresa, c.IdProveedor, per.pe_cedulaRuc, CASE WHEN co.IdTipoSRI = 'COD_RET_IVA' THEN 'IVA' ELSE 'RTF' END AS re_tipo, c.IdCodigo_SRI, co.codigoSRI AS re_Codigo_impuesto, co.co_porRetencion AS re_Porcen_retencion, 
+                  c.BienServicio
 FROM     dbo.cp_proveedor AS PRO INNER JOIN
                   dbo.tb_persona AS per ON PRO.IdPersona = per.IdPersona INNER JOIN
                   dbo.cp_proveedor_codigo_SRI AS c ON c.IdEmpresa = PRO.IdEmpresa AND c.IdProveedor = PRO.IdProveedor INNER JOIN
@@ -78,7 +78,7 @@ Begin DesignProperties =
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = 0
+         Top = -360
          Left = 0
       End
       Begin Tables = 
@@ -110,7 +110,7 @@ Begin DesignProperties =
                Right = 242
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 1
          End
          Begin Table = "co"
             Begin Extent = 
@@ -134,14 +134,14 @@ Begin DesignProperties =
       Begin ColumnWidths = 11
          Column = 1440
          Alias = 900
-         Table = 1170
+         Table = 1176
          Output = 720
          Append = 1400
          NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
+         SortType = 1356
+         SortOrder = 1416
          GroupBy = 1350
-         Filter = 1350
+         Filter = 1356
          Or = 1350
          Or = 1350
          Or = 1350
@@ -149,4 +149,6 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwcp_proveedor_codigo_SRI';
+
+
 

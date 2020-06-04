@@ -21,5 +21,6 @@ namespace Core.Erp.Data
         public int IdCodigo_SRI { get; set; }
         public string re_Codigo_impuesto { get; set; }
         public double re_Porcen_retencion { get; set; }
+        public string BienServicio { get; set; }
     }
 }

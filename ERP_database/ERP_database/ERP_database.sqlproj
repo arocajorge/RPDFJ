@@ -3896,6 +3896,7 @@
     <Build Include="dbo\Stored Procedures\sp_sys_Borrar_tablas_compras.sql" />
     <Build Include="dbo\Stored Procedures\sp_RO_ERDP.sql" />
     <Build Include="Security\Digitalizacion.sql" />
+    <Build Include="dbo\Tables\cp_proveedor_producto.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />

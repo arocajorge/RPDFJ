@@ -2,6 +2,7 @@
     [IdEmpresa]      INT           NOT NULL,
     [IdDocumento]    NUMERIC (18)  NOT NULL,
     [Secuencia]      INT           NOT NULL,
+    [CodigoProducto] VARCHAR (200) NULL,
     [NombreProducto] VARCHAR (500) NULL,
     [Cantidad]       FLOAT (53)    NULL,
     [Precio]         FLOAT (53)    NULL,
@@ -11,4 +12,6 @@
     CONSTRAINT [PK_cp_XML_DocumentoDet] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdDocumento] ASC, [Secuencia] ASC),
     CONSTRAINT [FK_cp_XML_DocumentoDet_cp_XML_Documento] FOREIGN KEY ([IdEmpresa], [IdDocumento]) REFERENCES [Digitalizacion].[cp_XML_Documento] ([IdEmpresa], [IdDocumento])
 );
+
+
 

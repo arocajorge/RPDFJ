@@ -63,22 +63,24 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbTipoMovimiento = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbTipoFlujo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbFormaPago = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmbConta = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRutaXml.Properties)).BeginInit();
@@ -94,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFormaPago)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbConta)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -208,7 +211,8 @@
             this.cmbPuntoCargo,
             this.cmbTipoMovimiento,
             this.cmbTipoFlujo,
-            this.cmbFormaPago});
+            this.cmbFormaPago,
+            this.cmbConta});
             this.gcDetalle.Size = new System.Drawing.Size(1294, 564);
             this.gcDetalle.TabIndex = 2;
             this.gcDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -231,7 +235,8 @@
             this.ColIdPuntoCargo,
             this.gridColumn17,
             this.gridColumn21,
-            this.gridColumn22});
+            this.gridColumn22,
+            this.gridColumn25});
             this.gvDetalle.GridControl = this.gcDetalle;
             this.gvDetalle.Images = this.imageList1;
             this.gvDetalle.Name = "gvDetalle";
@@ -249,7 +254,7 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.VisibleIndex = 3;
             this.gridColumn1.Width = 200;
             // 
             // gridColumn2
@@ -259,7 +264,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.VisibleIndex = 2;
             // 
             // gridColumn3
             // 
@@ -278,7 +283,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.ReadOnly = true;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 4;
             // 
             // gridColumn5
             // 
@@ -289,7 +294,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.ReadOnly = true;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 5;
             // 
             // gridColumn6
             // 
@@ -300,7 +305,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 6;
             // 
             // gridColumn7
             // 
@@ -311,7 +316,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.ReadOnly = true;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 7;
             // 
             // gridColumn8
             // 
@@ -320,7 +325,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.ReadOnly = true;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 0;
+            this.gridColumn8.VisibleIndex = 1;
             this.gridColumn8.Width = 150;
             // 
             // gridColumn9
@@ -333,7 +338,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.VisibleIndex = 8;
             this.gridColumn9.Width = 50;
             // 
             // cmbImagen
@@ -357,6 +362,7 @@
             this.imageList1.Images.SetKeyName(0, "Add_16_x_16.png");
             this.imageList1.Images.SetKeyName(1, "Doc_16x16.png");
             this.imageList1.Images.SetKeyName(2, "config_16x16.png");
+            this.imageList1.Images.SetKeyName(3, "iconfinder_money-3_322465.png");
             // 
             // gridColumn10
             // 
@@ -366,7 +372,7 @@
             this.gridColumn10.ImageIndex = 2;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn10.VisibleIndex = 9;
             this.gridColumn10.Width = 50;
             // 
             // cmbAutomatico
@@ -388,7 +394,7 @@
             this.gridColumn11.FieldName = "Observacion";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
+            this.gridColumn11.VisibleIndex = 10;
             this.gridColumn11.Width = 200;
             // 
             // ColIdPuntoCargo
@@ -398,7 +404,7 @@
             this.ColIdPuntoCargo.FieldName = "IdPunto_cargo";
             this.ColIdPuntoCargo.Name = "ColIdPuntoCargo";
             this.ColIdPuntoCargo.Visible = true;
-            this.ColIdPuntoCargo.VisibleIndex = 10;
+            this.ColIdPuntoCargo.VisibleIndex = 11;
             this.ColIdPuntoCargo.Width = 300;
             // 
             // cmbPuntoCargo
@@ -450,6 +456,16 @@
             this.gridColumn15.VisibleIndex = 1;
             this.gridColumn15.Width = 245;
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "Tipo de movimiento";
+            this.gridColumn17.ColumnEdit = this.cmbTipoMovimiento;
+            this.gridColumn17.FieldName = "IdTipoMovi";
+            this.gridColumn17.Name = "gridColumn17";
+            this.gridColumn17.Visible = true;
+            this.gridColumn17.VisibleIndex = 12;
+            this.gridColumn17.Width = 300;
+            // 
             // cmbTipoMovimiento
             // 
             this.cmbTipoMovimiento.AutoHeight = false;
@@ -489,15 +505,15 @@
             this.gridColumn16.VisibleIndex = 1;
             this.gridColumn16.Width = 648;
             // 
-            // gridColumn17
+            // gridColumn21
             // 
-            this.gridColumn17.Caption = "Tipo de movimiento";
-            this.gridColumn17.ColumnEdit = this.cmbTipoMovimiento;
-            this.gridColumn17.FieldName = "IdTipoMovi";
-            this.gridColumn17.Name = "gridColumn17";
-            this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 11;
-            this.gridColumn17.Width = 300;
+            this.gridColumn21.Caption = "Tipo de flujo";
+            this.gridColumn21.ColumnEdit = this.cmbTipoFlujo;
+            this.gridColumn21.FieldName = "IdTipoFlujo";
+            this.gridColumn21.Name = "gridColumn21";
+            this.gridColumn21.Visible = true;
+            this.gridColumn21.VisibleIndex = 13;
+            this.gridColumn21.Width = 300;
             // 
             // cmbTipoFlujo
             // 
@@ -548,16 +564,6 @@
             this.gridColumn20.VisibleIndex = 2;
             this.gridColumn20.Width = 104;
             // 
-            // gridColumn21
-            // 
-            this.gridColumn21.Caption = "Tipo de flujo";
-            this.gridColumn21.ColumnEdit = this.cmbTipoFlujo;
-            this.gridColumn21.FieldName = "IdTipoFlujo";
-            this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 12;
-            this.gridColumn21.Width = 300;
-            // 
             // gridColumn22
             // 
             this.gridColumn22.Caption = "Forma de pago";
@@ -565,7 +571,7 @@
             this.gridColumn22.FieldName = "IdFormaPago";
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 13;
+            this.gridColumn22.VisibleIndex = 14;
             this.gridColumn22.Width = 300;
             // 
             // cmbFormaPago
@@ -607,6 +613,29 @@
             this.gridColumn24.VisibleIndex = 1;
             this.gridColumn24.Width = 651;
             // 
+            // gridColumn25
+            // 
+            this.gridColumn25.ColumnEdit = this.cmbConta;
+            this.gridColumn25.FieldName = "SeContabiliza";
+            this.gridColumn25.ImageAlignment = System.Drawing.StringAlignment.Center;
+            this.gridColumn25.ImageIndex = 3;
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 0;
+            // 
+            // cmbConta
+            // 
+            this.cmbConta.AllowDropDownWhenReadOnly = DevExpress.Utils.DefaultBoolean.False;
+            this.cmbConta.AutoHeight = false;
+            this.cmbConta.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbConta.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.cmbConta.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", true, 3)});
+            this.cmbConta.Name = "cmbConta";
+            this.cmbConta.ReadOnly = true;
+            this.cmbConta.SmallImages = this.imageList1;
+            // 
             // frmCP_DigitalizacionXML
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -635,6 +664,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbFormaPago)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbConta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -691,5 +721,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox cmbConta;
     }
 }

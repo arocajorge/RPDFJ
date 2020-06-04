@@ -159,6 +159,7 @@
     <Compile Include="Contabilidad_Fj\ct_punto_cargo_FJ_Info.cs" />
     <Compile Include="CuentasxPagar\cp_cuotas_x_doc_det_Info.cs" />
     <Compile Include="CuentasxPagar\cp_cuotas_x_doc_Info.cs" />
+    <Compile Include="CuentasxPagar\cp_proveedor_producto_Info.cs" />
     <Compile Include="CuentasxPagar\cp_RutaPorEmpresaPorUsuario_Info.cs" />
     <Compile Include="CuentasxPagar\cp_XML_DocumentoDet_Info.cs" />
     <Compile Include="CuentasxPagar\cp_XML_DocumentoRetAnuladoDet_Info.cs" />

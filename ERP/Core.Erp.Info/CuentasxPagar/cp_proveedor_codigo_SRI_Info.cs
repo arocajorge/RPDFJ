@@ -24,5 +24,7 @@ namespace Core.Erp.Info.CuentasxPagar
         public string re_Codigo_impuesto { get; set; }
 
         public string re_tipo { get; set; }
+
+        public string BienServicio { get; set; }
     }
 }

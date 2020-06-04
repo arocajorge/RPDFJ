@@ -40,6 +40,10 @@ namespace Core.Erp.Winform.CuentasxPagar
         ba_TipoFlujo_Bus busTipoFlujo;
         caj_Caja_Movimiento_Tipo_Bus busTipoMovimiento;
         fa_formaPago_Bus busFormaPago;
+        List<cp_proveedor_Info> ListaProveedor;
+        cp_proveedor_Bus busProveedor;
+        List<cp_proveedor_producto_Info> ListaProveedorProducto;
+        cp_proveedor_producto_Bus busProveedorProducto;
         #endregion
 
         public frmCP_DigitalizacionXML()
@@ -56,6 +60,10 @@ namespace Core.Erp.Winform.CuentasxPagar
             busTipoFlujo = new ba_TipoFlujo_Bus();
             busTipoMovimiento = new caj_Caja_Movimiento_Tipo_Bus();
             busFormaPago = new fa_formaPago_Bus();
+            ListaProveedor = new List<cp_proveedor_Info>();
+            busProveedor = new cp_proveedor_Bus();
+            busProveedorProducto = new cp_proveedor_producto_Bus();
+            ListaProveedorProducto = new List<cp_proveedor_producto_Info>();
         }
 
         private void txtRutaXml_Click(object sender, EventArgs e)
@@ -83,6 +91,8 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
+                ListaProveedorProducto = new List<cp_proveedor_producto_Info>();
+                ListaProveedor = new List<cp_proveedor_Info>();
                 bus_ruta.GuardarDB(new cp_RutaPorEmpresaPorUsuario_Info
                 {
                     IdEmpresa = param.IdEmpresa,
@@ -110,6 +120,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                     if (IdentificacionComprador == param.InfoEmpresa.em_ruc)
                     {
+                        #region Cabecera
                         var Documento = new cp_XML_Documento_Info
                         {
                             XML = sXml_a_descerializar,
@@ -118,7 +129,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                             emi_RazonSocial = infoTributaria.Element("razonSocial").Value,
                             emi_NombreComercial = infoTributaria.Element("nombreComercial") == null ? infoTributaria.Element("razonSocial").Value : infoTributaria.Element("nombreComercial").Value,
                             ClaveAcceso = infoTributaria.Element("claveAcceso").Value,
-                            emi_ContribuyenteEspecial = infoFactura.Element("contribuyenteEspecial") == null ?  "NO" : infoFactura.Element("contribuyenteEspecial").Value,
+                            emi_ContribuyenteEspecial = infoFactura.Element("contribuyenteEspecial") == null ? "NO" : infoFactura.Element("contribuyenteEspecial").Value,
                             CodDocumento = infoTributaria.Element("codDoc").Value,
                             Establecimiento = infoTributaria.Element("estab").Value,
                             PuntoEmision = infoTributaria.Element("ptoEmi").Value,
@@ -126,13 +137,16 @@ namespace Core.Erp.Winform.CuentasxPagar
                             emi_DireccionMatriz = infoTributaria.Element("dirMatriz").Value,
 
 
-                            FechaEmision = DateTime.ParseExact(infoFactura.Element("fechaEmision").Value, "dd/MM/yyyy",System.Globalization.CultureInfo.CurrentCulture),
+                            FechaEmision = DateTime.ParseExact(infoFactura.Element("fechaEmision").Value, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture),
                             rec_RazonSocial = infoFactura.Element("razonSocialComprador").Value,
-                            rec_Identificacion = infoFactura.Element("identificacionComprador").Value    
+                            rec_Identificacion = infoFactura.Element("identificacionComprador").Value
                         };
                         Documento.FormaPago = infoFactura.Element("pagos") == null ? null : infoFactura.Element("pagos").Element("pago") == null ? null : (infoFactura.Element("pagos").Element("pago").Element("formaPago") == null ? null : infoFactura.Element("pagos").Element("pago").Element("formaPago").Value);
+                        Documento.IdFormaPago = Documento.FormaPago;
                         Documento.Plazo = infoFactura.Element("pagos") == null ? 0 : infoFactura.Element("pagos").Element("pago") == null ? 0 : (infoFactura.Element("pagos").Element("pago").Element("plazo") == null ? 0 : Convert.ToInt32(Convert.ToDecimal(infoFactura.Element("pagos").Element("pago").Element("plazo").Value)));
+                        #endregion
 
+                        #region Detalle
                         var list = infoFactura.Element("totalConImpuestos").Elements("totalImpuesto")
                            .Select(element => element)
                            .ToList();
@@ -157,14 +171,14 @@ namespace Core.Erp.Winform.CuentasxPagar
                                     Documento.SubtotalIVA += Convert.ToDouble(Impuesto.Element("baseImponible").Value) - Documento.Descuento;
                                     Documento.ValorIVA += Convert.ToDouble(Impuesto.Element("valor").Value);
                                     Documento.Porcentaje = bus_impuesto.Get_Info_impuesto(param.Get_Parametro_Info(tb_parametro_enum.P_IVA).Valor).porcentaje;
-                                }    
+                                }
                             }
                         }
                         Documento.Total = Documento.Subtotal0 + Documento.SubtotalIVA + Documento.ValorIVA;
-                        double ValorIva = Math.Round((double)Documento.SubtotalIVA * 0.12,2,MidpointRounding.AwayFromZero);
+                        double ValorIva = Math.Round((double)Documento.SubtotalIVA * 0.12, 2, MidpointRounding.AwayFromZero);
                         if (ValorIva != Documento.ValorIVA)
                         {
-                            MessageBox.Show("Revisar: \n"+ item+"\nIVA no cuadra con el subtotal con IVA :\nIVA calculado: " + ValorIva.ToString("c2") + "\nIVA en factura: " + Convert.ToDouble(Documento.ValorIVA).ToString("c2"));
+                            MessageBox.Show("Revisar: \n" + item + "\nIVA no cuadra con el subtotal con IVA :\nIVA calculado: " + ValorIva.ToString("c2") + "\nIVA en factura: " + Convert.ToDouble(Documento.ValorIVA).ToString("c2"));
                         }
                         Documento.Comprobante = Documento.CodDocumento + '-' + Documento.Establecimiento + "-" + Documento.PuntoEmision + "-" + Documento.NumeroDocumento;
 
@@ -173,15 +187,21 @@ namespace Core.Erp.Winform.CuentasxPagar
                            .ToList();
 
                         Documento.lstDetalle = new List<cp_XML_DocumentoDet_Info>();
+                        int Contador = 1;
                         foreach (var Detalle in listD)
                         {
                             var d = new cp_XML_DocumentoDet_Info
                             {
+                                CodigoProducto = Detalle.Element("codigoPrincipal").Value.ToString(),
                                 NombreProducto = Detalle.Element("descripcion").Value.ToString(),
                                 Cantidad = Convert.ToDouble(Detalle.Element("cantidad").Value),
-                                Precio = Convert.ToDouble(Detalle.Element("precioTotalSinImpuesto").Value)  
+                                Precio = Convert.ToDouble(Detalle.Element("precioTotalSinImpuesto").Value)
                             };
-
+                            if (Contador == 1)
+                            {
+                                Documento.Observacion = d.NombreProducto;
+                                Contador = 2;
+                            }
                             var ImpuestoD = Detalle.Element("impuestos").Elements("impuesto")
                            .Select(element => element)
                            .FirstOrDefault();
@@ -190,20 +210,38 @@ namespace Core.Erp.Winform.CuentasxPagar
                             d.ValorIva = Convert.ToDouble(ImpuestoD.Element("valor").Value);
                             d.Total = d.Precio + d.ValorIva;
                             Documento.lstDetalle.Add(d);
+
                         }
-                        /*
-                        Documento.SubtotalIVA = Documento.lstDetalle.Where(q=> q.PorcentajeIVA > 0).Sum(q=> q.Precio);
-                        Documento.Subtotal0 = Documento.lstDetalle.Where(q=> q.PorcentajeIVA == 0).Sum(q=> q.Precio);
-                        Documento.ValorIVA = Documento.lstDetalle.Sum(q => q.ValorIva);
-                        Documento.Total = Documento.lstDetalle.Sum(q => q.Total);
-                        */
 
                         if (Documento.Total == 0)
                         {
                             Documento.Descuento = infoFactura.Element("totalDescuento") == null ? 0 : Convert.ToDouble(infoFactura.Element("totalDescuento").Value);
                             Documento.Subtotal0 = Convert.ToDouble(infoFactura.Element("totalSinImpuestos").Value) - Documento.Descuento;
-                            Documento.Total = Documento.Subtotal0; 
+                            Documento.Total = Documento.Subtotal0;
                         }
+                        #endregion
+
+                        #region Valida contabilización automática
+                        var proveedor = ListaProveedor.Where(q => q.IdEmpresa == param.IdEmpresa && q.Persona_Info.pe_cedulaRuc == Documento.emi_Ruc).FirstOrDefault();
+                        if (proveedor == null)
+                        {
+                            proveedor = busProveedor.Get_Info_Proveedor(param.IdEmpresa, Documento.emi_Ruc);
+                            if (proveedor != null)
+                                ListaProveedor.Add(proveedor);
+                        }
+
+                        if (proveedor != null && !string.IsNullOrEmpty(proveedor.IdCtaCble_Gasto) && !string.IsNullOrEmpty(proveedor.IdCtaCble_CXP))
+                            Documento.SeContabiliza = true;
+                        #endregion 
+
+                        #region Proveedor producto
+                        if (proveedor != null && ListaProveedorProducto.Where(q=> q.IdProveedor == proveedor.IdProveedor).Count() == 0)
+                        {
+                            ListaProveedorProducto.AddRange(busProveedorProducto.GetList(param.IdEmpresa,proveedor.IdProveedor));
+                        }
+                        #endregion
+
+                        #region Info adicional
                         if (rootElement.Element("infoAdicional") != null)
                         {
                             var listAdicional = rootElement.Element("infoAdicional").Elements("campoAdicional")
@@ -229,17 +267,25 @@ namespace Core.Erp.Winform.CuentasxPagar
                                         }
                                     }
                                 }
-                            }  
+                            }
                         }
+                        #endregion                       
                         
-                        
+                        #region Codigos de retención
                         Documento.Imagen = bus_xml.Existe(param.IdEmpresa, Documento.emi_Ruc, Documento.CodDocumento, Documento.Establecimiento, Documento.PuntoEmision, Documento.NumeroDocumento);
                         Documento.lstRetencion = new List<cp_XML_Documento_Retencion_Info>();
+
+                        
+                        bool DividirBases = false;
+                        
                         if (ListaCodigoProveedor.Where(q => q.IdEmpresa == param.IdEmpresa && q.pe_cedulRuc == Documento.emi_Ruc).Count() == 0)
                         {
                             var ListaDet = bus_codigoProveedor.GetList(param.IdEmpresa, Documento.emi_Ruc);
                             if (ListaDet.Count > 0)
                             {
+                             if (ListaDet.Where(q => string.IsNullOrEmpty(q.BienServicio)).Count() == 1)
+                                    DividirBases = true;
+
                                 Documento.Automatico = true;
                                 Documento.lstRetencion = new List<cp_XML_Documento_Retencion_Info>();
                                 var lstDup = ListaDet.GroupBy(q => q.re_tipo).Select(q => new
@@ -247,19 +293,57 @@ namespace Core.Erp.Winform.CuentasxPagar
                                     re_tipo = q.Key,
                                     Contador = q.Count()
                                 }).ToList();
+                               
+
                                 if (lstDup.Where(q => q.Contador > 1).Count() > 0 && Documento.Imagen == 1)
                                 {
+                                   
                                     foreach (var Detalle in ListaDet)
                                     {
-                                        Documento.lstRetencion.Add(new cp_XML_Documento_Retencion_Info
+                                        double BaseImponible = Documento.Subtotal0 + Documento.SubtotalIVA;
+                                        cp_XML_Documento_Retencion_Info deta = new cp_XML_Documento_Retencion_Info
                                         {
-                                            re_tipoRet = Detalle.re_tipo,
-                                            re_baseRetencion = Math.Round(Convert.ToDouble(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : (Documento.Subtotal0 + Documento.SubtotalIVA)), 2, MidpointRounding.AwayFromZero),
+                                            re_tipoRet = Detalle.re_tipo,                                            
                                             IdCodigo_SRI = Detalle.IdCodigo_SRI,
                                             re_Codigo_impuesto = Detalle.re_Codigo_impuesto,
-                                            re_Porcen_retencion = Detalle.re_Porcen_retencion,
-                                            re_valor_retencion = Math.Round(Math.Round(Convert.ToDouble(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : (Documento.Subtotal0 + Documento.SubtotalIVA)), 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero)
-                                        });
+                                            re_Porcen_retencion = Detalle.re_Porcen_retencion
+                                        };
+                                        if (DividirBases && Detalle.re_tipo != "IVA")
+                                        {
+                                            var LstBase = (from a in Documento.lstDetalle
+                                                           join b in ListaProveedorProducto
+                                                           on a.CodigoProducto equals b.CodProducto
+                                                           select new
+                                                           {
+                                                               b.BienServicio,
+                                                               a.Precio
+                                                           }).ToList();
+
+                                            if (LstBase.Count == 0)
+                                            {
+                                                deta.re_baseRetencion = Math.Round(BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                                deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                            }
+                                            else
+                                            {
+                                                if (!string.IsNullOrEmpty(Detalle.BienServicio))
+                                                {
+                                                    BaseImponible = Math.Round(LstBase.Sum(q => q.Precio ?? 0), 2, MidpointRounding.AwayFromZero);
+                                                }
+                                                else
+                                                {
+                                                    BaseImponible = BaseImponible - Math.Round(LstBase.Sum(q => q.Precio ?? 0), 2, MidpointRounding.AwayFromZero);
+                                                }
+                                                deta.re_baseRetencion = Math.Round(BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                                deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            deta.re_baseRetencion = Math.Round(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                            deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                        }
+                                        Documento.lstRetencion.Add(deta);
                                     }
 
                                     frmCP_XML_RetencionSubida frmRet = new frmCP_XML_RetencionSubida();
@@ -278,19 +362,57 @@ namespace Core.Erp.Winform.CuentasxPagar
                                 re_tipo = q.Key,
                                 Contador = q.Count()
                             }).ToList();
+
+                            if (ListaDet.Where(q => string.IsNullOrEmpty(q.BienServicio)).Count() == 1)
+                                DividirBases = true;
+
                             if (lstDup.Where(q => q.Contador > 1).Count() > 0 && Documento.Imagen == 1)
                             {
                                 foreach (var Detalle in ListaDet)
                                 {
-                                    Documento.lstRetencion.Add(new cp_XML_Documento_Retencion_Info
+                                    double BaseImponible = Documento.Subtotal0 + Documento.SubtotalIVA;
+                                    cp_XML_Documento_Retencion_Info deta = new cp_XML_Documento_Retencion_Info
                                     {
                                         re_tipoRet = Detalle.re_tipo,
-                                        re_baseRetencion = Math.Round(Convert.ToDouble(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : (Documento.Subtotal0 + Documento.SubtotalIVA)), 2, MidpointRounding.AwayFromZero),
                                         IdCodigo_SRI = Detalle.IdCodigo_SRI,
                                         re_Codigo_impuesto = Detalle.re_Codigo_impuesto,
-                                        re_Porcen_retencion = Detalle.re_Porcen_retencion,
-                                        re_valor_retencion = Math.Round(Math.Round(Convert.ToDouble(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : (Documento.Subtotal0 + Documento.SubtotalIVA)), 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero)
-                                    });
+                                        re_Porcen_retencion = Detalle.re_Porcen_retencion
+                                    };
+                                    if (DividirBases && Detalle.re_tipo != "IVA")
+                                    {
+                                        var LstBase = (from a in Documento.lstDetalle
+                                                       join b in ListaProveedorProducto
+                                                       on a.CodigoProducto equals b.CodProducto
+                                                       select new
+                                                       {
+                                                           b.BienServicio,
+                                                            a.Precio
+                                                       }).ToList();
+                                        if (LstBase.Count == 0)
+                                        {
+                                            deta.re_baseRetencion = Math.Round(BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                            deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                        }
+                                        else
+                                        {
+                                            if (!string.IsNullOrEmpty(Detalle.BienServicio))
+                                            {
+                                                BaseImponible = Math.Round(LstBase.Sum(q => q.Precio ?? 0), 2, MidpointRounding.AwayFromZero);
+                                            }
+                                            else
+                                            {
+                                                BaseImponible = BaseImponible - Math.Round(LstBase.Sum(q => q.Precio ?? 0), 2, MidpointRounding.AwayFromZero);
+                                            }
+                                            deta.re_baseRetencion = Math.Round(BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                            deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        deta.re_baseRetencion = Math.Round(Detalle.re_tipo == "IVA" ? Documento.ValorIVA : BaseImponible, 2, MidpointRounding.AwayFromZero);
+                                        deta.re_valor_retencion = Math.Round(Math.Round(deta.re_baseRetencion, 2, MidpointRounding.AwayFromZero) * (Detalle.re_Porcen_retencion / 100), 2, MidpointRounding.AwayFromZero);
+                                    }
+                                    Documento.lstRetencion.Add(deta);
                                 }
 
                                 frmCP_XML_RetencionSubida frmRet = new frmCP_XML_RetencionSubida();
@@ -300,8 +422,10 @@ namespace Core.Erp.Winform.CuentasxPagar
                             }
                             Documento.Automatico = true;
                         }
-                        if(blst.Where(q=> q.Comprobante == Documento.Comprobante && q.emi_Ruc == Documento.emi_Ruc).Count() == 0)
+                        if (blst.Where(q => q.Comprobante == Documento.Comprobante && q.emi_Ruc == Documento.emi_Ruc).Count() == 0)
                             blst.Add(Documento);
+                        #endregion
+                        
                         gcDetalle.DataSource = null;
                         gcDetalle.DataSource = blst;
                     }
@@ -445,9 +569,17 @@ namespace Core.Erp.Winform.CuentasxPagar
                     if (bus_xml.GuardarDB(item, ref GenerarXML))
                     {
                         string MensajeError = string.Empty;
+                        
                         if (GenerarXML && !bus_xml.Generacion_xml_SRI(item.IdEmpresa, item.IdDocumento, ref MensajeError))
                         {
                             MessageBox.Show("No se ha podido generar el XML de la retención del documento "+ item.Comprobante+" de "+item.RazonSocial, param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                
+                        }
+                        if (item.SeContabiliza)
+                        {
+                            if (item.IdDocumento != 0 && !bus_xml.GenerarOG(item.IdEmpresa, item.IdDocumento, param.IdUsuario))
+                            {
+                                MessageBox.Show("No se ha podido contabilizar el documento " + item.Comprobante + " de " + item.RazonSocial, param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);                
+                            }
                         }
                     }
                     item.Imagen = 2;

@@ -1,5 +1,4 @@
-﻿
---exec [dbo].[spBAN_Rpt011] 1,2,1
+﻿--exec [dbo].[spBAN_Rpt011] 1,2,1
 CREATE proc [dbo].[spBAN_Rpt011]
 (
  @IdEmpresa int
@@ -111,7 +110,7 @@ FROM            ct_cbtecble_det AS D INNER JOIN
 WHERE        (C.IdEmpresa = @IdEmpresa) AND (D.IdCtaCble = @IdCtaCble) AND (D.dc_Valor < 0) 
 AND  C.cb_Fecha <= @i_FechaFin
 AND C.cb_Estado = 'I'     
-    --AND C.cb_Observacion NOT LIKE '%**REVERS%' AND SUBSTRING(C.cb_Observacion, 1, 2) != '**' 
+    AND C.cb_Observacion NOT LIKE '%**REVERS%' AND SUBSTRING(C.cb_Observacion, 1, 2) != '**' 
     AND ISNULL(D.dc_para_conciliar,0) = 1
     AND EXISTS
             (
@@ -275,7 +274,8 @@ INSERT INTO [dbo].[ba_BAN_Rpt011]
 
 SELECT       @IdEmpresa,@IdConciliacion,C.IdTipoCbte,C.IdCbteCble,D.secuencia
 FROM            ct_cbtecble_det AS D INNER JOIN
-ct_cbtecble AS C ON C.IdEmpresa = D.IdEmpresa AND C.IdTipoCbte = D.IdTipoCbte AND D.IdCbteCble = C.IdCbteCble
+ct_cbtecble AS C ON C.IdEmpresa = D.IdEmpresa AND C.IdTipoCbte = D.IdTipoCbte AND D.IdCbteCble = C.IdCbteCble -- inner join
+--ba_Cbte_Ban as G on C.IdEmpresa = G.IdEmpresa AND C.IdTipoCbte = G.IdTipoCbte AND G.IdCbteCble = C.IdCbteCble 
 WHERE        (C.IdEmpresa = @IdEmpresa) AND (D.IdCtaCble = @IdCtaCble) AND (D.dc_Valor < 0) 
 AND C.cb_Fecha <= @i_FechaFin AND C.cb_Estado = 'A' 
 AND C.cb_Observacion NOT LIKE '%**REVERS%' AND SUBSTRING(C.cb_Observacion, 1, 2) != '**'
@@ -363,16 +363,16 @@ set @TotalConciliado = ISNULL(@w_TIng,0) + ISNULL(@w_TEgr,0)
 if (@TotalRegistros>0)
 begin
 SELECT        A.IdEmpresa, A.IdConciliacion, A.IdBanco, A.IdPeriodo, dbo.ba_Banco_Cuenta.ba_descripcion AS nom_banco, dbo.ba_Banco_Cuenta.ba_Num_Cuenta, 
-                         dbo.ba_Banco_Cuenta.IdCtaCble, CAST(dbo.ba_Cbte_Ban.cb_Fecha AS date) AS Fecha, dbo.ct_cbtecble_tipo.CodTipoCbte, 
+                         dbo.ba_Banco_Cuenta.IdCtaCble, CAST(isnull(dbo.ba_Cbte_Ban.cb_Fecha,ct_cbtecble.cb_Fecha) AS date) AS Fecha, dbo.ct_cbtecble_tipo.CodTipoCbte, 
                          dbo.ct_cbtecble_tipo.tc_TipoCbte AS Tipo_Cbte,dbo.ba_BAN_Rpt011.IdCbteCble, dbo.ba_BAN_Rpt011.IdTipoCbte,dbo.ba_BAN_Rpt011.secuencia AS SecuenciaCbte, 
                          isnull(dbo.ct_cbtecble_det.dc_Valor,0) AS Valor, dbo.ct_cbtecble_det.dc_Observacion AS Observacion, 
                          dbo.ba_Cbte_Ban.cb_Cheque AS Cheque, ISNULL(@SaldoInicial, 0) AS SaldoInicial, ISNULL(@SaldoFin, 0) AS SaldoFinal, RTRIM(dbo.ct_cbtecble_tipo.tc_TipoCbte) 
-                         + 'S GIRADOS Y NO COBRADOS' AS Titulo_grupo, CASE WHEN ISNULL(ba_Cbte_Ban.cb_Cheque, '') <> '' THEN rtrim(ct_cbtecble_tipo.CodTipoCbte) 
-                         + '#:' + ba_Cbte_Ban.cb_Cheque + ' cbte:' + rtrim(CAST(ba_BAN_Rpt011.IdCbteCble AS varchar(20))) ELSE rtrim(ct_cbtecble_tipo.CodTipoCbte) 
+                         + 'S GIRADOS Y NO COBRADOS' AS Titulo_grupo, CASE WHEN ISNULL(ba_Cbte_Ban.cb_Cheque, '????') <> '' THEN rtrim(ct_cbtecble_tipo.CodTipoCbte) 
+                         + '#:' + isnull(ba_Cbte_Ban.cb_Cheque,'????') + ' cbte:' + rtrim(CAST(ba_BAN_Rpt011.IdCbteCble AS varchar(20))) ELSE rtrim(ct_cbtecble_tipo.CodTipoCbte) 
                          + '#: ' + rtrim(CAST(ba_BAN_Rpt011.IdCbteCble AS varchar(20))) END AS referencia, dbo.tb_empresa.em_ruc AS ruc_empresa, 
                          dbo.tb_empresa.em_nombre AS nom_empresa, A.co_SaldoBanco_EstCta AS SaldoBanco_EstCta, A.IdEstado_Concil_Cat AS Estado_Conciliacion, 
                          case when dbo.ba_Cbte_Ban.Estado = 'I' THEN '**ANULADO** ' ELSE '' END +
-						 CASE WHEN dbo.ba_Cbte_Ban.cb_giradoA IS NULL THEN dbo.ba_Cbte_Ban.cb_Observacion ELSE 
+						 CASE WHEN dbo.ba_Cbte_Ban.cb_giradoA IS NULL THEN isnull(dbo.ba_Cbte_Ban.cb_Observacion,ct_cbtecble.cb_Observacion) ELSE 
                          dbo.ba_Cbte_Ban.cb_giradoA END AS GiradoA,
 						 
 						  dbo.ba_TipoFlujo.IdTipoFlujo, dbo.ba_TipoFlujo.Descricion AS nom_tipo_flujo, ISNULL(@TotalConciliado, 0) 
@@ -386,7 +386,8 @@ FROM            ba_TipoFlujo RIGHT OUTER JOIN
                          ct_cbtecble_tipo INNER JOIN
                          ct_cbtecble_det ON ct_cbtecble_tipo.IdTipoCbte = ct_cbtecble_det.IdTipoCbte AND ct_cbtecble_tipo.IdEmpresa = ct_cbtecble_det.IdEmpresa ON ba_BAN_Rpt011.IdEmpresa = ct_cbtecble_det.IdEmpresa AND 
                          ba_BAN_Rpt011.IdTipoCbte = ct_cbtecble_det.IdTipoCbte AND ba_BAN_Rpt011.IdCbteCble = ct_cbtecble_det.IdCbteCble AND ba_BAN_Rpt011.secuencia = ct_cbtecble_det.secuencia ON 
-                         ba_TipoFlujo.IdEmpresa = ba_Cbte_Ban.IdEmpresa AND ba_TipoFlujo.IdTipoFlujo = ba_Cbte_Ban.IdTipoFlujo
+                         ba_TipoFlujo.IdEmpresa = ba_Cbte_Ban.IdEmpresa AND ba_TipoFlujo.IdTipoFlujo = ba_Cbte_Ban.IdTipoFlujo inner join
+						 ct_cbtecble on ba_BAN_Rpt011.IdEmpresa = ct_cbtecble.IdEmpresa and ba_BAN_Rpt011.IdTipoCbte = ct_cbtecble.IdTipoCbte and ba_BAN_Rpt011.IdCbteCble = ct_cbtecble.IdCbteCble
 where dbo.ba_BAN_Rpt011.IdEmpresa = @IdEmpresa AND isnull(ct_cbtecble_det.dc_para_conciliar,0) = 1
 end 
 else

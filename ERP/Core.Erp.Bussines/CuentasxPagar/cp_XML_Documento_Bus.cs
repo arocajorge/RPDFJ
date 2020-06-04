@@ -16,6 +16,7 @@ namespace Core.Erp.Business.CuentasxPagar
     {
         cp_XML_Documento_Data odata = new cp_XML_Documento_Data();
         cp_XML_Documento_Retencion_Data odata_ret = new cp_XML_Documento_Retencion_Data();
+        cp_orden_giro_Bus busOG = new cp_orden_giro_Bus();
 
         public bool GuardarDB(cp_XML_Documento_Info info, ref bool GenerarXML)
         {
@@ -296,6 +297,32 @@ namespace Core.Erp.Business.CuentasxPagar
             try
             {
                 return odata.EliminarRetencion(IdEmpresa, IdDocumento, IdUsuario);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        public bool GenerarOG(int IdEmpresa, decimal IdDocumento, string IdUsuario)
+        {
+            try
+            {
+                var OG = odata.GenerarOG(IdEmpresa, IdDocumento, IdUsuario);
+                if (OG != null)
+                {
+                    decimal IdCbteCble_Ogiro = 0;
+                    string mensaje = string.Empty;
+                    if (busOG.GrabarDB(OG, ref IdCbteCble_Ogiro, ref mensaje))
+                    {
+                        if (ContabilizarDocumento(IdEmpresa,IdDocumento,OG.IdTipoCbte_Ogiro,OG.IdCbteCble_Ogiro,IdUsuario,true))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
             catch (Exception)
             {

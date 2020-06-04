@@ -1,4 +1,5 @@
 ﻿using Core.Erp.Data.General;
+using Core.Erp.Info.Contabilidad;
 using Core.Erp.Info.CuentasxPagar;
 using Core.Erp.Info.General;
 using System;
@@ -90,6 +91,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 throw;
             }
         }
+
         public List<cp_XML_Documento_Info> GetList(int IdEmpresa, string pe_cedulaRuc)
         {
             try
@@ -311,7 +313,8 @@ namespace Core.Erp.Data.CuentasxPagar
                                 Precio = item.Precio,
                                 ValorIva = item.ValorIva,
                                 PorcentajeIVA = item.PorcentajeIVA,
-                                Total = item.Total
+                                Total = item.Total,
+                                CodigoProducto = item.CodigoProducto
                             });
                         }
 
@@ -619,6 +622,7 @@ namespace Core.Erp.Data.CuentasxPagar
                 throw;
             }
         }
+
         public cp_XML_Documento_Info GetInfo(int IdEmpresa, string CodDocumento, string Comprobante, string pe_cedulaRuc)
         {
             try
@@ -722,7 +726,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
                         Entity.IdTipoCbte = IdTipoCbte;
                         Entity.IdCbteCble = IdCbteCble;
-
+                        db.SaveChanges();
 
                         if (GenerarRetencion && !string.IsNullOrEmpty(Entity.ret_NumeroDocumento))
                         {
@@ -879,6 +883,166 @@ namespace Core.Erp.Data.CuentasxPagar
             }
             catch (Exception)
             {
+                throw;
+            }
+        }
+
+        public cp_orden_giro_Info GenerarOG(int IdEmpresa, decimal IdDocumento, string IdUsuario)
+        {
+            try
+            {
+                EntitiesCuentasxPagar dbCxp = new EntitiesCuentasxPagar();
+                EntitiesDBConta dbConta = new EntitiesDBConta();
+                EntitiesGeneral dbGen = new EntitiesGeneral();
+                EntitiesFacturacion dbFac = new EntitiesFacturacion();
+
+                #region GetInfo y Validaciones
+                var Documento = dbCxp.cp_XML_Documento.Where(q => q.IdEmpresa == IdEmpresa && q.IdDocumento == IdDocumento).FirstOrDefault();
+                if (Documento == null)
+                    return null;
+
+                var Persona = dbGen.tb_persona.Where(q => q.pe_cedulaRuc == Documento.emi_Ruc).FirstOrDefault();
+                if (Persona == null)
+                    return null;
+
+                var Proveedor = dbCxp.cp_proveedor.Where(q => q.IdEmpresa == IdEmpresa && q.IdPersona == Persona.IdPersona).FirstOrDefault();
+                if (Proveedor == null)
+                    return null;
+
+                if (string.IsNullOrEmpty(Proveedor.IdCtaCble_Gasto) || string.IsNullOrEmpty(Proveedor.IdCtaCble_CXP))
+                    return null;
+
+                var paramCXP = dbCxp.cp_parametros.Where(q => q.IdEmpresa == IdEmpresa).FirstOrDefault();
+                if (paramCXP == null)
+                    return null;
+
+                var ListaFormaPago = dbFac.fa_formaPago.ToList();
+                #endregion
+
+                #region OG
+                cp_orden_giro_Info OG = new cp_orden_giro_Info
+                {
+                    IdEmpresa = IdEmpresa,
+                    IdTipoCbte_Ogiro = paramCXP.pa_TipoCbte_OG ?? 0,
+                    IdCbteCble_Ogiro = 0,
+                    IdOrden_giro_Tipo = "01",
+                    IdIden_credito = Documento.ValorIVA > 0 ? 838 : 839,
+                    IdProveedor = Proveedor.IdProveedor,
+                    co_fechaOg = Documento.FechaEmision,
+                    co_FechaContabilizacion = Documento.FechaEmision,
+                    co_FechaFactura = Documento.FechaEmision,
+                    co_FechaFactura_vct = Documento.FechaEmision.AddDays(Proveedor.pr_plazo ?? 0),
+                    co_serie = Documento.Establecimiento+'-'+Documento.PuntoEmision,
+                    co_factura = Documento.NumeroDocumento,
+                    co_plazo = Proveedor.pr_plazo ?? 0,
+                    co_observacion = Documento.Observacion ?? "",
+                    co_subtotal_iva = Documento.SubtotalIVA,
+                    co_subtotal_siniva = Documento.Subtotal0,
+                    co_baseImponible = Documento.Subtotal0 + Documento.SubtotalIVA,
+                    co_Por_iva = Math.Round((Documento.ValorIVA / Documento.SubtotalIVA)*100,2,MidpointRounding.AwayFromZero),
+                    co_valoriva = Documento.ValorIVA,
+                    co_total = Documento.Total,
+                    IdCod_ICE = 866,
+                    co_Ice_base = 0,
+                    co_Ice_por = 0,
+                    co_Ice_valor = 0,
+                    co_Serv_por = 0,
+                    co_Serv_valor = 0,
+                    co_OtroValor_a_descontar = 0,
+                    co_OtroValor_a_Sumar = 0,
+                    co_BaseSeguro = 0,
+                    co_valorpagar = Documento.Total,
+                    co_vaCoa = "S",
+                    IdTipoFlujo = Documento.IdTipoFlujo,
+                    IdTipoServicio = "",
+                    IdCtaCble_Gasto = Proveedor.IdCtaCble_Gasto,
+                    IdCtaCble_IVA = paramCXP.pa_ctacble_iva,
+                    IdUsuario = IdUsuario,
+                    Estado = "A",
+                    nom_pc = "",
+                    ip = "",
+                    co_retencionManual = "N",
+                    IdSucursal = 1,
+                    PagoLocExt = "LOC",
+                    ConvenioTributacion = "NA",
+                    PagoSujetoRetencion = "NA",
+                    BseImpNoObjDeIva = Documento.Subtotal0,
+                    fecha_autorizacion = Documento.FechaEmision,
+                    Num_Autorizacion = Documento.ClaveAcceso,
+                    Num_Autorizacion_Imprenta = "",
+                    co_propina = 0,
+                    co_IRBPNR = 0,
+                    es_retencion_electronica = null,
+                    cp_es_comprobante_electronico = true,
+                    IdTipoMovi = Documento.IdTipoMovi,
+                    lst_formasPagoSRI = new List<cp_orden_giro_pagos_sri_Info>(),
+                    Info_CbteCble_x_OG = new ct_Cbtecble_Info()
+                };
+
+                var formaPago = ListaFormaPago.Where(q => q.IdFormaPago == Documento.IdFormaPago).FirstOrDefault();
+                if (formaPago != null)
+                {
+                    OG.lst_formasPagoSRI.Add(new cp_orden_giro_pagos_sri_Info
+                    {
+                        codigo_pago_sri = Documento.IdFormaPago,
+                        formas_pago_sri = formaPago.nom_FormaPago
+                    });    
+                }
+                
+                #endregion
+
+                #region Diario contable
+		        OG.Info_CbteCble_x_OG = new ct_Cbtecble_Info{
+                    IdEmpresa = OG.IdEmpresa,
+                    IdTipoCbte = OG.IdTipoCbte_Ogiro,
+                    IdPeriodo = Convert.ToInt32(OG.co_FechaFactura.ToString("yyyyMM")),
+                    cb_Fecha = OG.co_FechaFactura,
+                    cb_Observacion = OG.co_observacion+" "+OG.co_serie+"-"+OG.co_factura+" Prov: "+Persona.pe_nombreCompleto.Trim(),
+                    Anio = OG.co_FechaFactura.Year,
+                    Mes = OG.co_FechaFactura.Month,
+                    IdUsuario = IdUsuario,
+                    Mayorizado = "N",
+                    IdSucursal = 1,
+                    _cbteCble_det_lista_info = new List<ct_Cbtecble_det_Info>()
+                };
+
+                #region Gasto
+		        OG.Info_CbteCble_x_OG._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info{
+                        IdTipoCbte = OG.Info_CbteCble_x_OG.IdTipoCbte,
+                        IdCtaCble = Proveedor.IdCtaCble_Gasto,
+                        dc_Valor = Documento.Subtotal0 + Documento.SubtotalIVA,
+                        dc_Observacion = "",
+                        IdCentroCosto = Documento.IdCentroCosto,
+                        IdCentroCosto_sub_centro_costo = Documento.IdCentroCosto_sub_centro_costo,
+                        IdPunto_cargo = Documento.IdPunto_cargo
+                    });
+	            #endregion
+
+                #region IVA
+		        OG.Info_CbteCble_x_OG._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info{
+                        IdTipoCbte = OG.Info_CbteCble_x_OG.IdTipoCbte,
+                        IdCtaCble = paramCXP.pa_ctacble_iva,
+                        dc_Valor = Documento.ValorIVA,
+                        dc_Observacion = ""
+                    });
+	            #endregion
+
+                #region Proveedor
+		        OG.Info_CbteCble_x_OG._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info{
+                        IdTipoCbte = OG.Info_CbteCble_x_OG.IdTipoCbte,
+                        IdCtaCble = Proveedor.IdCtaCble_CXP,
+                        dc_Valor = Documento.Total *-1,
+                        dc_Observacion = ""
+                    });
+	            #endregion
+                
+	            #endregion
+
+                return OG;
+            }
+            catch (Exception ex)
+            {
+                
                 throw;
             }
         }

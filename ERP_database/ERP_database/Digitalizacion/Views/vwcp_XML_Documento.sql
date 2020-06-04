@@ -1,15 +1,16 @@
 ﻿CREATE VIEW Digitalizacion.vwcp_XML_Documento
 AS
-SELECT a.IdEmpresa, a.IdDocumento, a.ret_Establecimiento + '-' + a.ret_PuntoEmision AS serie, a.ret_NumeroDocumento, a.ret_Fecha, a.emi_RazonSocial AS pe_nombreCompleto, a.emi_RazonSocial, a.emi_Ruc, per.pe_correo, per.pe_direccion, 
-                  per.pe_telfono_Contacto, pro.IdProveedor, a.Establecimiento + '-' + a.PuntoEmision AS co_serie, a.NumeroDocumento, a.FechaEmision, a.CodDocumento, CASE WHEN LEN(A.emi_Ruc) = 10 THEN 'CED' WHEN LEN(A.emi_Ruc) 
-                  = 13 THEN 'RUC' ELSE 'PAS' END AS IdTipoDocumento, su.IdSucursal, su.Su_Descripcion, su.Su_Direccion, em.RazonSocial, em.NombreComercial, em.ContribuyenteEspecial, em.ObligadoAllevarConta, em.em_ruc, em.em_direccion, 
-                  a.Estado, a.IdPunto_cargo, a.IdCentroCosto, a.IdCentroCosto_sub_centro_costo, a.Observacion, a.IdTipoFlujo, a.IdTipoMovi, a.IdFormaPago
-FROM     Digitalizacion.cp_XML_Documento AS a LEFT OUTER JOIN
-                  dbo.tb_persona AS per ON a.emi_Ruc = per.pe_cedulaRuc LEFT OUTER JOIN
-                  dbo.cp_proveedor AS pro ON per.IdPersona = pro.IdPersona AND a.IdEmpresa = pro.IdEmpresa INNER JOIN
-                  dbo.tb_sucursal AS su ON su.IdEmpresa = a.IdEmpresa AND su.IdSucursal = 1 INNER JOIN
-                  dbo.tb_empresa AS em ON em.IdEmpresa = a.IdEmpresa
-WHERE  (a.ret_NumeroDocumento IS NOT NULL) AND (a.Estado = 1) AND (a.Tipo = 'FACTURA')
+SELECT        a.IdEmpresa, a.IdDocumento, a.ret_Establecimiento + '-' + a.ret_PuntoEmision AS serie, a.ret_NumeroDocumento, a.ret_Fecha, a.emi_RazonSocial AS pe_nombreCompleto, a.emi_RazonSocial, a.emi_Ruc, 
+                         per.pe_correo, per.pe_direccion, per.pe_telfono_Contacto, pro.IdProveedor, a.Establecimiento + '-' + a.PuntoEmision AS co_serie, a.NumeroDocumento, a.FechaEmision, a.CodDocumento, 
+                         CASE WHEN LEN(A.emi_Ruc) = 10 THEN 'CED' WHEN LEN(A.emi_Ruc) = 13 THEN 'RUC' ELSE 'PAS' END AS IdTipoDocumento, su.IdSucursal, su.Su_Descripcion, su.Su_Direccion, em.RazonSocial, 
+                         em.NombreComercial, em.ContribuyenteEspecial, em.ObligadoAllevarConta, em.em_ruc, em.em_direccion, a.Estado, a.IdPunto_cargo, a.IdCentroCosto, a.IdCentroCosto_sub_centro_costo, a.Observacion, 
+                         a.IdTipoMovi, a.IdTipoFlujo, a.IdFormaPago
+FROM            Digitalizacion.cp_XML_Documento AS a LEFT OUTER JOIN
+                         dbo.tb_persona AS per ON a.emi_Ruc = per.pe_cedulaRuc LEFT OUTER JOIN
+                         dbo.cp_proveedor AS pro ON per.IdPersona = pro.IdPersona AND a.IdEmpresa = pro.IdEmpresa INNER JOIN
+                         dbo.tb_sucursal AS su ON su.IdEmpresa = a.IdEmpresa AND su.IdSucursal = 1 INNER JOIN
+                         dbo.tb_empresa AS em ON em.IdEmpresa = a.IdEmpresa
+WHERE        (a.ret_NumeroDocumento IS NOT NULL) AND (a.Estado = 1) AND (a.Tipo = 'FACTURA')
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @level0type = N'SCHEMA', @level0name = N'Digitalizacion', @level1type = N'VIEW', @level1name = N'vwcp_XML_Documento';
 
@@ -99,7 +100,7 @@ Begin DesignProperties =
                Right = 321
             End
             DisplayFlags = 280
-            TopColumn = 44
+            TopColumn = 42
          End
          Begin Table = "per"
             Begin Extent = 
@@ -153,18 +154,20 @@ Begin DesignProperties =
       Begin ColumnWidths = 11
          Column = 1440
          Alias = 900
-         Table = 1176
+         Table = 1170
          Output = 720
          Append = 1400
          NewValue = 1170
-         SortType = 1356
-         SortOrder = 1416
+         SortType = 1350
+         SortOrder = 1410
          GroupBy = 1350
-         Filter = 1356
+         Filter = 1350
          Or = 1350
          Or = 1350
          Or = 1350
       End
    End
 End', @level0type = N'SCHEMA', @level0name = N'Digitalizacion', @level1type = N'VIEW', @level1name = N'vwcp_XML_Documento';
+
+
 

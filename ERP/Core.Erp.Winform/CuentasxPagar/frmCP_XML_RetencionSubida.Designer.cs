@@ -97,6 +97,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -780,7 +781,8 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn12});
+            this.gridColumn12,
+            this.gridColumn13});
             this.gvDetalleXML.GridControl = this.gcDetalleXML;
             this.gvDetalleXML.Name = "gvDetalleXML";
             this.gvDetalleXML.OptionsBehavior.ReadOnly = true;
@@ -802,7 +804,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 121;
+            this.gridColumn2.Width = 115;
             // 
             // gridColumn8
             // 
@@ -810,8 +812,8 @@
             this.gridColumn8.FieldName = "NombreProducto";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 1;
-            this.gridColumn8.Width = 1060;
+            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.Width = 939;
             // 
             // gridColumn9
             // 
@@ -821,8 +823,8 @@
             this.gridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Precio", "{0:n2}")});
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 2;
-            this.gridColumn9.Width = 134;
+            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.Width = 118;
             // 
             // gridColumn10
             // 
@@ -830,8 +832,8 @@
             this.gridColumn10.FieldName = "PorcentajeIVA";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 3;
-            this.gridColumn10.Width = 134;
+            this.gridColumn10.VisibleIndex = 4;
+            this.gridColumn10.Width = 118;
             // 
             // gridColumn11
             // 
@@ -841,8 +843,8 @@
             this.gridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValorIva", "{0:n2}")});
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 4;
-            this.gridColumn11.Width = 134;
+            this.gridColumn11.VisibleIndex = 5;
+            this.gridColumn11.Width = 118;
             // 
             // gridColumn12
             // 
@@ -852,8 +854,17 @@
             this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n2}")});
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 5;
-            this.gridColumn12.Width = 151;
+            this.gridColumn12.VisibleIndex = 6;
+            this.gridColumn12.Width = 138;
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Código";
+            this.gridColumn13.FieldName = "CodigoProducto";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 1;
+            this.gridColumn13.Width = 188;
             // 
             // frmCP_XML_RetencionSubida
             // 
@@ -982,5 +993,6 @@
         private DevExpress.XtraEditors.TextEdit txtRetIVA;
         private DevExpress.XtraEditors.LabelControl labelControl18;
         private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
     }
 }

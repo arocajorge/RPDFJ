@@ -667,6 +667,19 @@ namespace Core.Erp.Data.CuentasxPagar
                         address.es_empresa_relacionada = info.es_empresa_relacionada;
 
                         context.cp_proveedor.Add(address);
+                        info.lista_proveedor_producto = info.lista_proveedor_producto ?? new List<cp_proveedor_producto_Info>();
+                        int Secuencia = 1;
+                        foreach (var item in info.lista_proveedor_producto)
+                        {
+                            context.cp_proveedor_producto.Add(new cp_proveedor_producto
+                            {
+                                IdEmpresa = address.IdEmpresa,
+                                IdProveedor = address.IdProveedor,
+                                Secuencia = Secuencia++,
+                                CodProducto = item.CodProducto,
+                                BienServicio = item.BienServicio
+                            });
+                        }
                         context.SaveChanges();
                     }
                     return true;
@@ -777,6 +790,26 @@ namespace Core.Erp.Data.CuentasxPagar
                         address.IdPunto_cargo_grupo = info.IdPunto_cargo_grupo;
 
                         address.es_empresa_relacionada = info.es_empresa_relacionada;
+
+                        var lstProducto = context.cp_proveedor_producto.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdProveedor == info.IdProveedor).ToList();
+                        foreach (var item in lstProducto)
+                        {
+                            context.cp_proveedor_producto.Remove(item);
+                        }
+                        int Secuencia = 1;
+                        info.lista_proveedor_producto = info.lista_proveedor_producto ?? new List<cp_proveedor_producto_Info>();
+
+                        foreach (var item in info.lista_proveedor_producto)
+                        {
+                            context.cp_proveedor_producto.Add(new cp_proveedor_producto
+                            {
+                                IdEmpresa = address.IdEmpresa,
+                                IdProveedor = address.IdProveedor,
+                                Secuencia = Secuencia++,
+                                CodProducto = item.CodProducto,
+                                BienServicio = item.BienServicio
+                            });
+                        }
 
                         context.SaveChanges();
                         res = true;

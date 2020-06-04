@@ -44,8 +44,8 @@
     [IdPunto_cargo]                  INT            NULL,
     [IdCentroCosto]                  VARCHAR (20)   NULL,
     [IdCentroCosto_sub_centro_costo] VARCHAR (20)   NULL,
-    [IdTipoFlujo]                    NUMERIC (18)   NULL,
     [IdTipoMovi]                     INT            NULL,
+    [IdTipoFlujo]                    NUMERIC (18)   NULL,
     [IdFormaPago]                    VARCHAR (2)    NULL,
     CONSTRAINT [PK_cp_XML_Documento] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdDocumento] ASC),
     CONSTRAINT [FK_cp_XML_Documento_ba_TipoFlujo] FOREIGN KEY ([IdEmpresa], [IdTipoFlujo]) REFERENCES [dbo].[ba_TipoFlujo] ([IdEmpresa], [IdTipoFlujo]),
@@ -53,4 +53,6 @@
     CONSTRAINT [FK_cp_XML_Documento_ct_punto_cargo] FOREIGN KEY ([IdEmpresa], [IdPunto_cargo]) REFERENCES [dbo].[ct_punto_cargo] ([IdEmpresa], [IdPunto_cargo]),
     CONSTRAINT [FK_cp_XML_Documento_fa_formaPago] FOREIGN KEY ([IdFormaPago]) REFERENCES [dbo].[fa_formaPago] ([IdFormaPago])
 );
+
+
 

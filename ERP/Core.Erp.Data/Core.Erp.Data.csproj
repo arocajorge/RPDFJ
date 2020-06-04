@@ -1105,6 +1105,9 @@
     <Compile Include="cp_proveedor_contactos.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
+    <Compile Include="cp_proveedor_producto.cs">
+      <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
+    </Compile>
     <Compile Include="cp_reembolso.cs">
       <DependentUpon>ModelCuentasxPagar.tt</DependentUpon>
     </Compile>
@@ -1348,6 +1351,7 @@
     <Compile Include="CuentasxPagar\cp_proveedor_clase_Data.cs" />
     <Compile Include="CuentasxPagar\cp_proveedor_codigo_SRI_Data.cs" />
     <Compile Include="CuentasxPagar\cp_proveedor_Data.cs" />
+    <Compile Include="CuentasxPagar\cp_proveedor_producto_Data.cs" />
     <Compile Include="CuentasxPagar\cp_reembolso_Data.cs" />
     <Compile Include="CuentasxPagar\cp_retencion_Data.cs" />
     <Compile Include="CuentasxPagar\cp_retencion_det_Data.cs" />
