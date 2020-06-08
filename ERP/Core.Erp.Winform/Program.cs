@@ -91,7 +91,7 @@ namespace Core.Erp.Winform
             tb_Empresa_Info InfoEmpresa = new tb_Empresa_Info();
             tb_Sucursal_Info InfoSucursal = new tb_Sucursal_Info();
             tb_Sucursal_Bus BusSucursal = new tb_Sucursal_Bus();
-
+            /*
             try
             {
                 InfoEmpresa  = BusEmpresa.Get_Info_Empresa(1); //CAMBIAR PARA INICIAR CON LA EMPRESA Q SE DESEE
@@ -99,10 +99,10 @@ namespace Core.Erp.Winform
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al conectarse a la Base Verifique la cadena de conexion APP..\n\n\n\n" + ex.Message , "Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message+"\nError al conectarse a la Base Verifique la cadena de conexion APP" , "Conexion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            
             Core.Erp.Business.General.cl_parametrosGenerales_Bus param = Core.Erp.Business.General.cl_parametrosGenerales_Bus.Instance;
             param.IdEmpresa = InfoEmpresa.IdEmpresa;
             param.IdSucursal = InfoSucursal.IdSucursal;
@@ -112,7 +112,7 @@ namespace Core.Erp.Winform
             param.InfoSucursal = InfoSucursal;
             param.IdInstitucion = 1;
             param.em_Email = InfoEmpresa.em_Email;
-
+            */
             Application.Run(new FrmMain());
          }
     }

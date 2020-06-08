@@ -167,5 +167,13 @@ namespace Core.Erp.Winform.CuentasxPagar
                 throw;
             }
         }
+
+        private void gvRetencion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                gvRetencion.DeleteSelectedRows();
+            }
+        }
     }
 }

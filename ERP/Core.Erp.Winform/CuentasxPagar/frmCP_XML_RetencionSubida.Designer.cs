@@ -203,6 +203,7 @@
             this.gvRetencion.OptionsView.ShowFooter = true;
             this.gvRetencion.OptionsView.ShowGroupPanel = false;
             this.gvRetencion.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvRetencion_CellValueChanged);
+            this.gvRetencion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvRetencion_KeyDown);
             // 
             // colCodigoSRI
             // 
