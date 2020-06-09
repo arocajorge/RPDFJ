@@ -310,6 +310,8 @@
     <Compile Include="CuentasxCobrar\cxc_EstadoCobro_Bus.cs" />
     <Compile Include="CuentasxCobrar\cxc_Parametros_x_cheqProtesto_Bus.cs" />
     <Compile Include="CuentasxCobrar\cxc_parametro_Bus.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_DocumentoDet_Bus.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_Documento_Bus.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_anticipos_x_cruzar_Bus.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_cartera_x_cobrar_Bus.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_cobros_conciliados_Bus.cs" />

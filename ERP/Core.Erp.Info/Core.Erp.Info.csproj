@@ -157,6 +157,8 @@
     <Compile Include="Contabilidad_Fj\ct_distribucion_gastos_x_periodo_det_Info.cs" />
     <Compile Include="Contabilidad_Fj\ct_distribucion_gastos_x_periodo_Info.cs" />
     <Compile Include="Contabilidad_Fj\ct_punto_cargo_FJ_Info.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_DocumentoDet_Info.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_Documento_Info.cs" />
     <Compile Include="CuentasxPagar\cp_cuotas_x_doc_det_Info.cs" />
     <Compile Include="CuentasxPagar\cp_cuotas_x_doc_Info.cs" />
     <Compile Include="CuentasxPagar\cp_proveedor_producto_Info.cs" />

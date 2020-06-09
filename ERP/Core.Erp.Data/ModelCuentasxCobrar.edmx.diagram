@@ -89,6 +89,10 @@
         <EntityTypeShape EntityType="DBERP_GRAFPRUEBASModel.cxc_Parametro" Width="1.5" PointX="9.7019042417881565" PointY="13.900573841249837" />
         <AssociationConnector Association="DBERP_GRAFPRUEBASModel.FK_cxc_Parametro_cxc_cobro_tipo" />
         <AssociationConnector Association="DBERP_GRAFPRUEBASModel.FK_cxc_Parametro_cxc_cobro_tipo1" />
+        <EntityTypeShape EntityType="DBERP_GRAFPRUEBASModel.cxc_XML_Documento" Width="1.5" PointX="6.8847315362117865" PointY="29.073763026424572" />
+        <EntityTypeShape EntityType="DBERP_GRAFPRUEBASModel.cxc_XML_DocumentoDet" Width="1.5" PointX="3.0240977327451568" PointY="26.940268782405308" />
+        <AssociationConnector Association="DBERP_GRAFPRUEBASModel.FK_cxc_XML_DocumentoDet_cxc_cobro" />
+        <AssociationConnector Association="DBERP_GRAFPRUEBASModel.FK_cxc_XML_DocumentoDet_cxc_XML_Documento" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1284,6 +1284,8 @@
     <Compile Include="CuentasxCobrar\cxc_EstadoCobro_Data.cs" />
     <Compile Include="CuentasxCobrar\cxc_Parametros_x_cheqProtesto_Data.cs" />
     <Compile Include="CuentasxCobrar\cxc_parametro_Data.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_DocumentoDet_Data.cs" />
+    <Compile Include="CuentasxCobrar\cxc_XML_Documento_Data.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_anticipos_x_cruzar_Data.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_cartera_x_cobrar_Data.cs" />
     <Compile Include="CuentasxCobrar\vwcxc_cobros_conciliados_Data.cs" />
@@ -1444,6 +1446,12 @@
       <DependentUpon>ModelCuentasxCobrar.tt</DependentUpon>
     </Compile>
     <Compile Include="cxc_Rango_dias_x_Vencimiento.cs">
+      <DependentUpon>ModelCuentasxCobrar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cxc_XML_Documento.cs">
+      <DependentUpon>ModelCuentasxCobrar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cxc_XML_DocumentoDet.cs">
       <DependentUpon>ModelCuentasxCobrar.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturacion\fa_catalogo_Data.cs" />

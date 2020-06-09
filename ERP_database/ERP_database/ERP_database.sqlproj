@@ -3897,6 +3897,8 @@
     <Build Include="dbo\Stored Procedures\sp_RO_ERDP.sql" />
     <Build Include="Security\Digitalizacion.sql" />
     <Build Include="dbo\Tables\cp_proveedor_producto.sql" />
+    <Build Include="Digitalizacion\Tables\cxc_XML_DocumentoDet.sql" />
+    <Build Include="Digitalizacion\Tables\cxc_XML_Documento.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
