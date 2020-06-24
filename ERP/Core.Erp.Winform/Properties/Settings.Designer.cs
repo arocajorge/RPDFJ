@@ -56,8 +56,8 @@ namespace Core.Erp.Winform.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=DBERP_FJ_PRODUCCION;User ID=sa;Password=adm" +
-            "in*2016")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.254;Initial Catalog=DBERP_FJ_PRODUCCION;User ID=sa;Password" +
+            "=admin*2016")]
         public string DBERP_FJ_PRODUCCIONConnectionString {
             get {
                 return ((string)(this["DBERP_FJ_PRODUCCIONConnectionString"]));

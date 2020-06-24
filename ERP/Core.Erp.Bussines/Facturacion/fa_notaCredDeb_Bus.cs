@@ -1115,13 +1115,13 @@ namespace Core.Erp.Business.Facturacion
                         MensajeError = "Falta Tipo de Identificación Empresa. Por Favor verifique";
                         res = false;
                     }
-
+                    /*
                     if (String.IsNullOrEmpty(item.ContribuyenteEspecial))
                     {
                         MensajeError = "Falta Número de Contribuyente Especial Empresa. Por Favor verifique";
                         res = false;
                     }
-
+                    */
                     //Factura
                     if (String.IsNullOrEmpty(item.Serie1))
                     {

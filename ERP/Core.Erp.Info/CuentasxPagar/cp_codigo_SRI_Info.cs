@@ -43,6 +43,7 @@ namespace Core.Erp.Info.CuentasxPagar
         public string FecValiHasta { get; set; }
 
         public string co_descripcion2 { get; set; }
+        public string BienServicio { get; set; }
 
         //Parametro para editar el campo en la retención
         public bool Modificable { get; set; }

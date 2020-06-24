@@ -25,3 +25,5 @@
     CONSTRAINT [FK_fa_pre_facturacion_det_tb_sis_Impuesto] FOREIGN KEY ([IdCod_Impuesto]) REFERENCES [dbo].[tb_sis_Impuesto] ([IdCod_Impuesto])
 );
 
+
+

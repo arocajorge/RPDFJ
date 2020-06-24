@@ -12,6 +12,7 @@ namespace Core.Erp.Info.CuentasxPagar
         public decimal IdDocumento { get; set; }
         public int Secuencia { get; set; }
         public string NombreProducto { get; set; }
+        public string CodigoProducto { get; set; }
         public Nullable<double> Cantidad { get; set; }
         public Nullable<double> Precio { get; set; }
         public Nullable<double> PorcentajeIVA { get; set; }

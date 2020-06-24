@@ -9,3 +9,5 @@
     CONSTRAINT [FK_in_Ing_Egr_Inven_fj_ro_empleado] FOREIGN KEY ([IdEmpresa], [IdEmpleado]) REFERENCES [dbo].[ro_empleado] ([IdEmpresa], [IdEmpleado])
 );
 
+
+

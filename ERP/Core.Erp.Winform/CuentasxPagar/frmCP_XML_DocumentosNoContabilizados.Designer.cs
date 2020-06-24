@@ -59,7 +59,7 @@
             this.gcDetalle.Name = "gcDetalle";
             this.gcDetalle.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmbImagen});
-            this.gcDetalle.Size = new System.Drawing.Size(974, 613);
+            this.gcDetalle.Size = new System.Drawing.Size(1347, 630);
             this.gcDetalle.TabIndex = 4;
             this.gcDetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDetalle});
@@ -222,7 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 613);
+            this.ClientSize = new System.Drawing.Size(1347, 630);
             this.Controls.Add(this.gcDetalle);
             this.Name = "frmCP_XML_DocumentosNoContabilizados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -16,3 +16,5 @@
     CONSTRAINT [FK_fa_compensacion_x_ct_centro_costo_tb_empresa] FOREIGN KEY ([IdEmpresa]) REFERENCES [dbo].[tb_empresa] ([IdEmpresa])
 );
 
+
+

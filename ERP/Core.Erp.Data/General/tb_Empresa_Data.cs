@@ -236,13 +236,20 @@ namespace Core.Erp.Data.General
             }
             catch (Exception ex)
             {
-                string arreglo = ToString();
-                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
-                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "",
-                                    "", "", "", "", DateTime.Now);
-                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
-                mensaje = ex.ToString() + " " + ex.Message;
-                throw new Exception(ex.ToString());
+                try
+                {
+                    string arreglo = ToString();
+                    tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                    tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "",
+                                        "", "", "", "", DateTime.Now);
+                    oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                    mensaje = ex.ToString() + " " + ex.Message;
+                    throw new Exception(ex.ToString());
+                }
+                catch (Exception)
+                {
+                    throw new Exception(ex.ToString());
+                }
             }
         }
 

@@ -1,7 +1,5 @@
 ﻿
---exec [Fj_servindustrias].[spROLES_Rpt012] 1,1,2017,9,201709
-
-create PROCEDURE [Fj_servindustrias].[spROLES_Rpt012]  
+CREATE PROCEDURE [Fj_servindustrias].[spROLES_Rpt012]  
 	@IdEmpresa int,
 	@IdNomina_tipo int,
 	@Anio int,
@@ -10,8 +8,8 @@ create PROCEDURE [Fj_servindustrias].[spROLES_Rpt012]
 	
 
 AS
-/*
 
+/*
 declare
     @IdEmpresa int,
 	@IdNomina_tipo int,
@@ -21,12 +19,12 @@ declare
     @idperiodo int
 	set @IdEmpresa=2
 	set @IdNomina_tipo=1
-	set @Anio ='2017'
+	set @Anio ='2019'
 	set @Mes ='10'
 	set @idempleado=37
-	set @idperiodo=201709
-	*/
+	set @idperiodo=201910
 	
+	*/
 
 	declare 
 	@FechaI date,
@@ -202,7 +200,8 @@ union
 						 and vac.IdEmpleado=emp.IdEmpleado
 						 and vac.Fecha_Desde between @FechaI and @FechaF
 						 and vac.Fecha_Hasta  between @FechaI and @FechaF
-						 and IdOrdenPago>0) Dias_vacaciones
+						 and IdOrdenPago>0
+						 AND vac.Estado='A') Dias_vacaciones
 
 FROM            dbo.ro_catalogo AS ro_catalogo_1 INNER JOIN
                          Fj_servindustrias.ro_parametros_reporte AS param_repo ON ro_catalogo_1.CodCatalogo = param_repo.Id_Catalogo INNER JOIN

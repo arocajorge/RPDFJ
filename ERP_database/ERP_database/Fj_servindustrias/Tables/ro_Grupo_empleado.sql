@@ -24,3 +24,5 @@
     CONSTRAINT [FK_ro_Grupo_empleado_tb_empresa] FOREIGN KEY ([IdEmpresa]) REFERENCES [dbo].[tb_empresa] ([IdEmpresa])
 );
 
+
+

@@ -191,7 +191,10 @@ namespace Core.Erp.Winform.CuentasxPagar
             try
             {
                 txtEstablecimiento.Text = param.InfoSucursal.Su_CodigoEstablecimiento;
-
+                tb_sis_Documento_Tipo_Talonario_Bus busTalonario = new tb_sis_Documento_Tipo_Talonario_Bus();
+                var Talonario = busTalonario.GetInfoRetElectronico(param.IdEmpresa);
+                txtEstablecimiento.Text = Talonario.Establecimiento;
+                txtPuntoEmision.Text = Talonario.PuntoEmision;
                 lst_codigoSRI = bus_codigoSRI.Get_List_codigo_SRI_IvaRet(param.IdEmpresa);
                 cmbCodigoSRI.DataSource = lst_codigoSRI;
             }
@@ -206,11 +209,14 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
+                tb_sis_Documento_Tipo_Talonario_Bus busTalonario = new tb_sis_Documento_Tipo_Talonario_Bus();
+                var Talonario = busTalonario.GetInfoRetElectronico(param.IdEmpresa);
+                
                 txtTipo.Focus();
                 info.ret_Fecha = deRetFecha.DateTime.Date;
                 info.ret_CodDocumentoTipo = "RETEN";
-                info.ret_Establecimiento = txtRetEstablecimiento.Text;
-                info.ret_PuntoEmision = txtRetPuntoEmision.Text;
+                info.ret_Establecimiento = Talonario.Establecimiento;
+                info.ret_PuntoEmision = Talonario.PuntoEmision;
                 info.lstRetencion = new List<cp_XML_Documento_Retencion_Info>(blst);
             }
             catch (Exception)
@@ -337,6 +343,11 @@ namespace Core.Erp.Winform.CuentasxPagar
                 
                 throw;
             }
+        }
+
+        private void ucGe_Menu_Superior_Mant1_Load(object sender, EventArgs e)
+        {
+
         }
 
         

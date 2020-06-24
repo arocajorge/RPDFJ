@@ -13,6 +13,9 @@
     [FechaAnu]          DATETIME      NULL,
     [FechaTransac]      DATETIME      NOT NULL,
     [FechaUltModi]      DATETIME      NULL,
+    [IdServicioTipo]    INT           NULL,
     CONSTRAINT [PK_ro_fectividad_Entrega_x_Periodo_Empleado] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdNomina_Tipo] ASC, [IdNomina_tipo_Liq] ASC, [IdPeriodo] ASC, [IdEfectividad] ASC)
 );
+
+
 

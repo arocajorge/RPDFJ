@@ -15,3 +15,5 @@
     CONSTRAINT [FK_fa_compensacion_x_ct_centro_costo_det_ct_periodo] FOREIGN KEY ([IdEmpresa], [IdPeriodo]) REFERENCES [dbo].[ct_periodo] ([IdEmpresa], [IdPeriodo])
 );
 
+
+

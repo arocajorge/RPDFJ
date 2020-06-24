@@ -1,5 +1,4 @@
-﻿
-CREATE PROCEDURE  [Fj_servindustrias].[spROLES_Rpt002] 
+﻿CREATE PROCEDURE  [Fj_servindustrias].[spROLES_Rpt002] 
 	@IdEmpresa int,
 	@IdNomina int,
 	@IdEmpleado numeric,
@@ -26,16 +25,14 @@ declare
 	@Mes int
 
 	set @IdEmpresa =2
-	set @IdNomina =2
-	set @IdEmpleado =267
-	set @IdPeriodo =201707
-	set @Anio =2017
-	set @Mes =07
+	set @IdNomina =1
+	set @IdEmpleado =2
+	set @IdPeriodo =201905
+	set @Anio =2019
+	set @Mes =05
 
 	
 	*/
-	
-
  declare 
  @DiasTrabajados int ,
  @FindeMes float,
@@ -224,10 +221,9 @@ and Valor>0
 and ro_rol_detalle.IdNominaTipoLiqui=2
 and ro_rol_detalle.IdRubro=24
 and ro_rol_detalle.IdEmpleado=@IdEmpleado
+--and ro_rol_detalle.IdPeriodo = @IdPeriodo
 and isnull(Fj_servindustrias.ro_planificacion_x_ruta_x_empleado_det.IdPeriodo,@IdPeriodo)=@IdPeriodo
 --and IdDivision=2
-
-
 UNION
 
 

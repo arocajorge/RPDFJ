@@ -16,6 +16,7 @@ using Core.Erp.Info.General;
 using Core.Erp.Winform.General;
 using Core.Erp.Info.Inventario;
 using Core.Erp.Winform.Inventario;
+using Core.Erp.Business.Bancos;
 
 namespace Core.Erp.Winform.CuentasxPagar
 {
@@ -34,7 +35,7 @@ namespace Core.Erp.Winform.CuentasxPagar
 
         cp_Aprobacion_Ing_Bod_x_OC_Info Info;
         cp_Aprobacion_Ing_Bod_x_OC_det_Info InfoDet = new cp_Aprobacion_Ing_Bod_x_OC_det_Info();
-
+        ba_TipoFlujo_Bus busFlujo = new ba_TipoFlujo_Bus();
         Cl_Enumeradores.eTipo_action Accion;
         public cp_Aprobacion_Ing_Bod_x_OC_Info _SetInfo { get; set; }
         List<cp_Aprobacion_Ing_Bod_x_OC_det_Info> lista;
@@ -67,7 +68,9 @@ namespace Core.Erp.Winform.CuentasxPagar
         cp_parametros_Info info_cpParam;
 
         string proveedor = "";
-
+        cp_XML_Documento_Bus busXML = new cp_XML_Documento_Bus();
+        cp_XML_Documento_Info infoXML = new cp_XML_Documento_Info();
+        cp_XML_Documento_Retencion_Bus busXMLDet = new cp_XML_Documento_Retencion_Bus();
         #endregion
 
         public frmCP_Aprobacion_Ing_Bod_x_OC_Mant()
@@ -242,6 +245,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 list_centroCosto = Bus_CentroCosto.Get_list_Centro_Costo_cuentas_de_movimiento(param.IdEmpresa, ref MensajeError);
                 cmb_centroCosoto.DataSource = list_centroCosto;
 
+                cmbFlujo.Properties.DataSource = busFlujo.Get_List_TipoFlujo(param.IdEmpresa);
 
                 listaSubcentero = bus_subcentro.Get_list_centro_costo_sub_centro_costo(param.IdEmpresa);
                 cmbSubcentro.DataSource = listaSubcentero;
@@ -363,7 +367,10 @@ namespace Core.Erp.Winform.CuentasxPagar
                     Info.IdTipoMovi = null;
                 else
                     Info.IdTipoMovi = ucCaj_MovEgresoCaj_cmb1.get_MovimientoInfo().IdTipoMovi;
-                
+                if (cmbFlujo.EditValue != null)
+                    Info.IdTipoFlujo = Convert.ToInt32(cmbFlujo.EditValue);
+                else
+                    Info.IdTipoFlujo = null;
 
                 Info.co_valoriva = Math.Round((txtTotalIva.EditValue == "" ? 0 : Convert.ToDouble(txtTotalIva.EditValue)), 2);
                 Info.co_total = Math.Round((txtTotal.EditValue == "" ? 0 : Convert.ToDouble(txtTotal.EditValue)), 2);
@@ -542,6 +549,13 @@ namespace Core.Erp.Winform.CuentasxPagar
                                 if (Info.IdCbteCble_Ogiro != null)
                                 {
                                     MessageBox.Show("Se ha procedido a grabar el registro de Aprobación #: " + IdIdAprobacion.ToString() + ", con Factura Proveedor #: " + Info.IdCbteCble_Ogiro + " exitosamente.", "Operación Exitosa");
+                                    if (ValidarExisteXML())
+                                    {
+                                        if (busXML.ContabilizarDocumento(infoXML.IdEmpresa, infoXML.IdDocumento, (int)Info.IdTipoCbte_Ogiro, (int)Info.IdCbteCble_Ogiro, param.IdUsuario, true))
+                                        {
+                                            MessageBox.Show("Documento XML contabilizado exitósamente", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -570,6 +584,30 @@ namespace Core.Erp.Winform.CuentasxPagar
                 Log_Error_bus.Log_Error(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Buscar_Ingresos();
+                return false;
+            }
+        }
+
+        private bool ValidarExisteXML()
+        {
+            try
+            {
+                var prov = ucCp_Proveedor1.get_ProveedorInfo();
+                if (prov == null)
+                    return false;
+
+                var Documento = LstTipDoc.Where(q => q.CodTipoDocumento == cmbTipoDocu.EditValue.ToString()).FirstOrDefault();
+                if (Documento == null)
+                    return false;
+
+                infoXML = busXML.GetInfo(param.IdEmpresa, Documento.CodSRI, prov.Persona_Info.pe_cedulaRuc, txtSerie.Text, txtSerie2.Text, txtNumDocu.Text);
+                if (infoXML == null)
+                    return false;
+
+                return true;
+            }
+            catch (Exception)
+            {
                 return false;
             }
         }
@@ -1332,6 +1370,60 @@ namespace Core.Erp.Winform.CuentasxPagar
                Log_Error_bus = new tb_sis_Log_Error_Vzen_Bus();
                 Log_Error_bus.Log_Error(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscarXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var prov = ucCp_Proveedor1.get_ProveedorInfo();
+                frmCP_XML_DocumentosNoContabilizados frm = new frmCP_XML_DocumentosNoContabilizados();
+                frm.pe_cedulaRuc = prov == null ? "" : prov.Persona_Info.pe_cedulaRuc;
+                frm.ShowDialog();
+                if (frm.infoXML != null)
+                    SetXml(frm.infoXML);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private void SetXml(cp_XML_Documento_Info XML)
+        {
+            try
+            {
+                infoXML = XML;
+                cp_proveedor_Bus busProv = new cp_proveedor_Bus();
+                var prov = busProv.Get_Info_Proveedor(param.IdEmpresa, XML.emi_Ruc);
+                if (prov == null)
+                {
+                    MessageBox.Show("El proveedor no se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                ucCp_Proveedor1.set_ProveedorInfo(prov.IdProveedor);
+                txtSerie.Text = XML.Establecimiento;
+                txtSerie2.Text = XML.PuntoEmision;
+                txtNumDocu.Text = XML.NumeroDocumento;
+                txtNumAutProve.Text = XML.ClaveAcceso;
+                dtpFecAproba.EditValue = XML.FechaEmision;
+                dtpFecFactura.EditValue = XML.FechaEmision;
+                dtp_fecha_contabilizacion.EditValue = XML.FechaEmision;
+                txt_plazo.Text = XML.Plazo.ToString();
+
+                txtSubtotal0XML.Text = XML.Subtotal0.ToString();
+                txtSubtotalIVAXML.Text = XML.SubtotalIVA.ToString();
+                txtValorIVAXML.Text = XML.ValorIVA.ToString();
+                txtTotalXML.Text = XML.Total.ToString();
+                txtObservacion.Text = XML.Observacion;
+                de_FechaVctoAuto.EditValue = DateTime.Now.Date.AddYears(20);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

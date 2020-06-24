@@ -11,3 +11,5 @@
     CONSTRAINT [FK_ct_distribucion_gastos_x_periodo_det_ct_punto_cargo] FOREIGN KEY ([IdEmpresa], [IdPunto_cargo]) REFERENCES [dbo].[ct_punto_cargo] ([IdEmpresa], [IdPunto_cargo])
 );
 
+
+

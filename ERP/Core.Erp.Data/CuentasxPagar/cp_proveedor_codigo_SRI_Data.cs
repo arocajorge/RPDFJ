@@ -28,6 +28,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.IdEmpresa = item.IdEmpresa;
                     dat.IdProveedor = item.IdProveedor;
                     dat.IdCodigo_SRI = item.IdCodigo_SRI;
+                    dat.BienServicio = item.BienServicio;
                    // dat.IdCtaCble = item.IdCtaCble;
 
                     dat.observacion = item.observacion;
@@ -61,6 +62,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     address.IdProveedor = info.IdProveedor;
                     address.IdCodigo_SRI = info.IdCodigo_SRI;
                     address.observacion = info.observacion == null ? "" : info.observacion.Trim();
+                    address.BienServicio = info.BienServicio;
                     context.cp_proveedor_codigo_SRI.Add(address);
                     context.SaveChanges();
                 }
@@ -254,7 +256,8 @@ namespace Core.Erp.Data.CuentasxPagar
                             re_tipo = item.re_tipo,
                             IdCodigo_SRI = item.IdCodigo_SRI,
                             re_Codigo_impuesto = item.re_Codigo_impuesto,
-                            re_Porcen_retencion = item.re_Porcen_retencion
+                            re_Porcen_retencion = item.re_Porcen_retencion,
+                            BienServicio = item.BienServicio
                         });
                     }
                 }

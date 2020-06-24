@@ -112,7 +112,10 @@ namespace Core.Erp.Data.CuentasxPagar
 
 
                     myObjectRete.infoCompRetencion.dirEstablecimiento = item.em_direccion; ///sucursal
-                    myObjectRete.infoCompRetencion.contribuyenteEspecial = item.ContribuyenteEspecial; //empresa   
+                    if (!string.IsNullOrEmpty(item.ContribuyenteEspecial) && item.ContribuyenteEspecial.Trim() != "NO")
+                    {
+                        myObjectRete.infoCompRetencion.contribuyenteEspecial = item.ContribuyenteEspecial; //empresa       
+                    }
                     myObjectRete.infoCompRetencion.obligadoContabilidad = (item.ObligadoAllevarConta == "S" || item.ObligadoAllevarConta == "SI") ? "SI" : "NO";
 
                     switch (item.IdTipoDocumento)

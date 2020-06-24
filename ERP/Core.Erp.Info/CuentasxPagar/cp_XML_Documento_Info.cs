@@ -68,6 +68,7 @@ namespace Core.Erp.Info.CuentasxPagar
         public string em_ruc { get; set; }
         public string em_direccion { get; set; }
         public bool Automatico { get; set; }
+        public bool SeContabiliza { get; set; }
         #endregion
 
         public bool EnviaXML { get; set; }
@@ -79,5 +80,19 @@ namespace Core.Erp.Info.CuentasxPagar
         public bool ValidacionR { get; set; }
 
         public bool ValidacionC { get; set; }
+
+        public string Observacion { get; set; }
+
+        public string IdCentroCosto_sub_centro_costo { get; set; }
+
+        public string IdCentroCosto { get; set; }
+
+        public int? IdPunto_cargo { get; set; }
+
+        public decimal? IdTipoFlujo { get; set; }
+
+        public int? IdTipoMovi { get; set; }
+
+        public string IdFormaPago { get; set; }
     }
 }

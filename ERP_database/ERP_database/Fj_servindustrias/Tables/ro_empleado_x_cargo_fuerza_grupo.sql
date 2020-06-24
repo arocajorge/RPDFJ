@@ -14,3 +14,5 @@
     CONSTRAINT [FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado] FOREIGN KEY ([IdEmpresa], [IdGrupo]) REFERENCES [Fj_servindustrias].[ro_Grupo_empleado] ([IdEmpresa], [IdGrupo])
 );
 
+
+

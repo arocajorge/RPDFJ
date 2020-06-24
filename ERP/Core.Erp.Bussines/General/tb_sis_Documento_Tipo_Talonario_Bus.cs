@@ -30,6 +30,19 @@ namespace Core.Erp.Business.General
             }
         }
 
+        public tb_sis_Documento_Tipo_Talonario_Info GetInfoRetElectronico(int IdEmpresa)
+        {
+            try
+            {
+                return data.GetInfoRetElectronico(IdEmpresa);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
         public List<tb_sis_Documento_Tipo_Talonario_Info> Get_List_DocTipoxSecTalonario(int idEmpresa)
         {
             try

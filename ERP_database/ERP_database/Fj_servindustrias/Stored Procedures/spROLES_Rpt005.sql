@@ -33,7 +33,7 @@ BEGIN
 						 WHEN Ma.Id_catalogo_Cat ='FAL' THEN 'F'
 						 WHEN Ma.Id_catalogo_Cat ='SUSP' THEN 'S'
 						 WHEN Ma.Id_catalogo_Cat ='SINLABORAR' THEN 'SL'
-						 WHEN Ma.es_jornada_desfasada =1 AND Ma.Id_catalogo_Cat='ASIST'  THEN 'JD'
+						 WHEN  Ma.Id_catalogo_Cat='JD'  THEN 'JD'
 						 ELSE '' END aS Id_catalogo_Cat,
 						 planifica.zo_descripcion,
 						 planifica.Disco,

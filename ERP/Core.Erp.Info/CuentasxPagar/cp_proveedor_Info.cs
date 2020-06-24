@@ -61,6 +61,7 @@ namespace Core.Erp.Info.CuentasxPagar
         public tb_persona_Info Persona_Info  { get; set; }
         public List<cp_proveedor_codigo_SRI_Info> lista_codigoSRI_Proveedor { get; set; }
         public List<cp_proveedor_codigo_SRI_Info> lista_codigoSRI_Proveedor_Old { get; set; }
+        public List<cp_proveedor_producto_Info> lista_proveedor_producto { get; set; }
 
         public string MotivoAnulacion { get; set; }
 

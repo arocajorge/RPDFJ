@@ -263,14 +263,8 @@ namespace Core.Erp.Business.CuentasxPagar
             try
             {
                //validar serie y #Documento Factura
-
-
-                
-
                 if (Validar_y_corregir_objeto(Info_OrdenGiro, ref mensaje))
                 {
-
-
                     if (data.ExisteFacturaPorProveedor(Info_OrdenGiro.IdEmpresa, Info_OrdenGiro.IdProveedor, Info_OrdenGiro.co_serie, Info_OrdenGiro.co_factura))
                     {
 
@@ -334,15 +328,11 @@ namespace Core.Erp.Business.CuentasxPagar
                                 {
                                     mensaje = "Hubo un inconveniente al ingresar la retención comuniquese con sistemas.." + mensaje; res = false;
                                 }
-
                             }
                         }
 
                         decimal IdCbteCble = 0; IdCbteCble = idCbteCble;
-                        
-
                     }
-
                 }
                 else
                 {

@@ -11,3 +11,5 @@
     CONSTRAINT [FK_tb_ciudad_x_mg_ciudad_tb_ciudad] FOREIGN KEY ([IdCiudad_Erp]) REFERENCES [dbo].[tb_ciudad] ([IdCiudad])
 );
 
+
+

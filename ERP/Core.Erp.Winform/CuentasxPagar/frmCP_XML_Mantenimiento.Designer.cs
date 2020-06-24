@@ -99,6 +99,7 @@
             this.txtRetPuntoEmision = new DevExpress.XtraEditors.TextEdit();
             this.txtRetEstablecimiento = new DevExpress.XtraEditors.TextEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtContribuyente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal.Properties)).BeginInit();
@@ -168,7 +169,7 @@
             this.ucGe_Menu_Superior_Mant1.Enabled_btnImprimirSoporte = true;
             this.ucGe_Menu_Superior_Mant1.Enabled_btnproductos = true;
             this.ucGe_Menu_Superior_Mant1.Location = new System.Drawing.Point(0, 0);
-            this.ucGe_Menu_Superior_Mant1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucGe_Menu_Superior_Mant1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucGe_Menu_Superior_Mant1.Name = "ucGe_Menu_Superior_Mant1";
             this.ucGe_Menu_Superior_Mant1.Size = new System.Drawing.Size(1493, 28);
             this.ucGe_Menu_Superior_Mant1.TabIndex = 0;
@@ -202,6 +203,7 @@
             this.ucGe_Menu_Superior_Mant1.event_btnAnular_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnAnular_Click(this.ucGe_Menu_Superior_Mant1_event_btnAnular_Click);
             this.ucGe_Menu_Superior_Mant1.event_btnSalir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnSalir_Click(this.ucGe_Menu_Superior_Mant1_event_btnSalir_Click);
             this.ucGe_Menu_Superior_Mant1.event_btn_Generar_XML_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btn_Generar_XML_Click(this.ucGe_Menu_Superior_Mant1_event_btn_Generar_XML_Click);
+            this.ucGe_Menu_Superior_Mant1.Load += new System.EventHandler(this.ucGe_Menu_Superior_Mant1_Load);
             // 
             // panel1
             // 
@@ -724,11 +726,13 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn12});
+            this.gridColumn12,
+            this.gridColumn13});
             this.gvDetalleXML.GridControl = this.gcDetalleXML;
             this.gvDetalleXML.Name = "gvDetalleXML";
             this.gvDetalleXML.OptionsBehavior.ReadOnly = true;
             this.gvDetalleXML.OptionsView.ShowAutoFilterRow = true;
+            this.gvDetalleXML.OptionsView.ShowFooter = true;
             this.gvDetalleXML.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn1
@@ -745,7 +749,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 121;
+            this.gridColumn2.Width = 115;
             // 
             // gridColumn8
             // 
@@ -753,17 +757,19 @@
             this.gridColumn8.FieldName = "NombreProducto";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 1;
-            this.gridColumn8.Width = 1060;
+            this.gridColumn8.VisibleIndex = 2;
+            this.gridColumn8.Width = 954;
             // 
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Precio total";
             this.gridColumn9.FieldName = "Precio";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Precio", "{0:n2}")});
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 2;
-            this.gridColumn9.Width = 134;
+            this.gridColumn9.VisibleIndex = 3;
+            this.gridColumn9.Width = 119;
             // 
             // gridColumn10
             // 
@@ -771,26 +777,30 @@
             this.gridColumn10.FieldName = "PorcentajeIVA";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 3;
-            this.gridColumn10.Width = 134;
+            this.gridColumn10.VisibleIndex = 4;
+            this.gridColumn10.Width = 119;
             // 
             // gridColumn11
             // 
             this.gridColumn11.Caption = "I.V.A.";
             this.gridColumn11.FieldName = "ValorIva";
             this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ValorIva", "{0:n2}")});
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 4;
-            this.gridColumn11.Width = 134;
+            this.gridColumn11.VisibleIndex = 5;
+            this.gridColumn11.Width = 119;
             // 
             // gridColumn12
             // 
             this.gridColumn12.Caption = "Total";
             this.gridColumn12.FieldName = "Total";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:n2}")});
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 5;
-            this.gridColumn12.Width = 151;
+            this.gridColumn12.VisibleIndex = 6;
+            this.gridColumn12.Width = 144;
             // 
             // xtraTabPage2
             // 
@@ -919,6 +929,15 @@
             this.labelControl15.Size = new System.Drawing.Size(74, 16);
             this.labelControl15.TabIndex = 16;
             this.labelControl15.Text = "# Retención:";
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "Código";
+            this.gridColumn13.FieldName = "CodigoProducto";
+            this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.Visible = true;
+            this.gridColumn13.VisibleIndex = 1;
+            this.gridColumn13.Width = 164;
             // 
             // frmCP_XML_Mantenimiento
             // 
@@ -1050,6 +1069,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraEditors.SimpleButton btnEliminarRetencion;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
 
     }
 }

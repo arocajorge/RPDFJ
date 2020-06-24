@@ -8,3 +8,5 @@
     CONSTRAINT [FK_mg_Aca_matricula_x_matricula_Aca_matricula] FOREIGN KEY ([IdInstitucion], [IdSede], [IdMatricula]) REFERENCES [dbo].[Aca_matricula] ([IdInstitucion], [IdSede], [IdMatricula])
 );
 
+
+

@@ -17,6 +17,7 @@ namespace Core.Erp.Data
         public int IdEmpresa { get; set; }
         public decimal IdDocumento { get; set; }
         public int Secuencia { get; set; }
+        public string CodigoProducto { get; set; }
         public string NombreProducto { get; set; }
         public Nullable<double> Cantidad { get; set; }
         public Nullable<double> Precio { get; set; }

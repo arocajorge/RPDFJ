@@ -42,6 +42,8 @@ namespace Core.Erp.Winform.CuentasxPagar
         int IdClaseProveedor = 0;
         string[] CodRetencion = new string[] { "COD_RET_FUE", "COD_RET_IVA" };
 
+        BindingList<cp_proveedor_producto_Info> blstProvProducto = new BindingList<cp_proveedor_producto_Info>();
+        cp_proveedor_producto_Bus busProvProducto = new cp_proveedor_producto_Bus();
 
         //cp_proveedor_
         cp_proveedor_Info InfoProveedor = new Info.CuentasxPagar.cp_proveedor_Info();
@@ -392,9 +394,8 @@ namespace Core.Erp.Winform.CuentasxPagar
                cmbCtaCbleAnti.set_PlanCtarInfo(InfoProveedor.IdCtaCble_Anticipo);
                cmbCtaCbleGasto.set_PlanCtarInfo(InfoProveedor.IdCtaCble_Gasto);
 
-
-             
-
+               blstProvProducto = new BindingList<cp_proveedor_producto_Info>(busProvProducto.GetList(param.IdEmpresa, InfoProveedor.IdProveedor));
+               gcProducto.DataSource = blstProvProducto;
 
                UCTipoGasto.set_TipoGasto(InfoProveedor.IdTipoGasto);
                UCTipoSer.set_TipoServixProvee(InfoProveedor.IdTipoServicio);
@@ -410,6 +411,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                        info_codSRIprov.codigoSRI = item2.codigoSRI;
                        info_codSRIprov.co_codigoBase = item2.co_codigoBase;
                        info_codSRIprov.Tipo = item2.Tipo;
+                       info_codSRIprov.BienServicio = item.BienServicio;
                        info_codSRIprov.co_porRetencion = item2.co_porRetencion;
                        listaAux_codigoSRI_grid.Add(info_codSRIprov);
                    }
@@ -459,6 +461,7 @@ namespace Core.Erp.Winform.CuentasxPagar
        {
            try
            {
+               txt_codigoProv.Focus();
 
                InfoProveedor = new cp_proveedor_Info();
 
@@ -530,6 +533,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                        cp_proveedor_codigo_SRI_Info info = new cp_proveedor_codigo_SRI_Info();
                        info.IdEmpresa = param.IdEmpresa;
                        info.IdCodigo_SRI = item.IdCodigo_SRI;
+                       info.BienServicio = item.BienServicio;
                        InfoProveedor.lista_codigoSRI_Proveedor.Add(info);
                    }
                }
@@ -545,7 +549,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                 if (uCct_Pto_Cargo_Grupo1.Get_info_punto_cargo() != null) InfoProveedor.IdPunto_cargo = uCct_Pto_Cargo_Grupo1.Get_Id_punto_cargo();
 
                 InfoProveedor.es_empresa_relacionada = chk_parte_relacionada.Checked;
-
+                InfoProveedor.lista_proveedor_producto = new List<Info.CuentasxPagar.cp_proveedor_producto_Info>(blstProvProducto);
                return InfoProveedor;
            }
            catch (Exception ex)
@@ -1253,6 +1257,8 @@ namespace Core.Erp.Winform.CuentasxPagar
                     txe_cedRucPas.Properties.Mask.EditMask = @"\d{0,10}";
                 }
 
+                blstProvProducto = new BindingList<cp_proveedor_producto_Info>();
+                gcProducto.DataSource = blstProvProducto;
 
                 Cargar_Combos();
                 Set_Id_Combos_Ubicacion();
@@ -1436,6 +1442,25 @@ namespace Core.Erp.Winform.CuentasxPagar
             {
                 Log_Error_bus.Log_Error(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void gvProducto_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyValue.ToString() == "46")
+                {
+                    gvProducto.DeleteSelectedRows();
+                    gcProducto.RefreshDataSource();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string NameMetodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                MessageBox.Show(NameMetodo + " - " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
             }
         }
 

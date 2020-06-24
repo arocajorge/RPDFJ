@@ -41,5 +41,12 @@ namespace Core.Erp.Data
         public string em_ruc { get; set; }
         public string em_direccion { get; set; }
         public bool Estado { get; set; }
+        public Nullable<int> IdPunto_cargo { get; set; }
+        public string IdCentroCosto { get; set; }
+        public string IdCentroCosto_sub_centro_costo { get; set; }
+        public string Observacion { get; set; }
+        public Nullable<decimal> IdTipoFlujo { get; set; }
+        public Nullable<int> IdTipoMovi { get; set; }
+        public string IdFormaPago { get; set; }
     }
 }

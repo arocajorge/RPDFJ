@@ -22,3 +22,5 @@
     CONSTRAINT [FK_ro_descuento_no_planificados_ro_empleado_Novedad] FOREIGN KEY ([IdEmpresa], [IdNovedad], [IdEmpleado]) REFERENCES [dbo].[ro_empleado_Novedad] ([IdEmpresa], [IdNovedad], [IdEmpleado])
 );
 
+
+

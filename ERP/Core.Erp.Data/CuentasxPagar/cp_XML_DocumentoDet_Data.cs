@@ -30,7 +30,8 @@ namespace Core.Erp.Data.CuentasxPagar
                             Precio = item.Precio,
                             PorcentajeIVA = item.PorcentajeIVA,
                             ValorIva = item.ValorIva,
-                            Total = item.Total
+                            Total = item.Total,
+                            CodigoProducto = item.CodigoProducto
                         });
                     }
                 }

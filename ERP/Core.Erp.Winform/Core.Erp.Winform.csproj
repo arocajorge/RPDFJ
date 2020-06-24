@@ -19,7 +19,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <PublishUrl>C:\Users\CEDENO\Desktop\Publicaciones\</PublishUrl>
+    <PublishUrl>\\192.168.0.254\instalador vZen\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -35,7 +35,7 @@
     <SuiteName>Vzen Erp 2017</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2003</ApplicationRevision>
+    <ApplicationRevision>2031</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -429,6 +429,12 @@
     </Compile>
     <Compile Include="CuentasxPagar\frmCP_XML_RetencionesAnuladas.Designer.cs">
       <DependentUpon>frmCP_XML_RetencionesAnuladas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_RetencionSubida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxPagar\frmCP_XML_RetencionSubida.Designer.cs">
+      <DependentUpon>frmCP_XML_RetencionSubida.cs</DependentUpon>
     </Compile>
     <Compile Include="CuentasxPagar\frmCP_XML_ValidacionMasiva.cs">
       <SubType>Form</SubType>
@@ -6622,6 +6628,9 @@
     <EmbeddedResource Include="CuentasxPagar\frmCP_XML_RetencionesAnuladas.resx">
       <DependentUpon>frmCP_XML_RetencionesAnuladas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxPagar\frmCP_XML_RetencionSubida.resx">
+      <DependentUpon>frmCP_XML_RetencionSubida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuentasxPagar\frmCP_XML_ValidacionMasiva.resx">
       <DependentUpon>frmCP_XML_ValidacionMasiva.cs</DependentUpon>
     </EmbeddedResource>
@@ -9705,9 +9714,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
       <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
+      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>

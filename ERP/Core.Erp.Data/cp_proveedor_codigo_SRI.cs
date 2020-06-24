@@ -18,6 +18,7 @@ namespace Core.Erp.Data
         public decimal IdProveedor { get; set; }
         public int IdCodigo_SRI { get; set; }
         public string observacion { get; set; }
+        public string BienServicio { get; set; }
     
         public virtual cp_codigo_SRI cp_codigo_SRI { get; set; }
         public virtual cp_proveedor cp_proveedor { get; set; }

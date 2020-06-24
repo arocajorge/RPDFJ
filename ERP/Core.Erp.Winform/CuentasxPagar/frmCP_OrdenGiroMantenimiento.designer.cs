@@ -38,7 +38,6 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtp_fecha_contabilizacion = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_Importar_XML = new System.Windows.Forms.Button();
             this.cmb_idtCredito = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_descriConcate_ = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -191,6 +190,7 @@
             this.tp_detalle_cuotas = new DevExpress.XtraTab.XtraTabPage();
             this.ucCp_cuotas_x_doc1 = new Core.Erp.Winform.Controles.UCCp_cuotas_x_doc();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnBuscarXML = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_sucursal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_idtCredito.Properties)).BeginInit();
@@ -267,7 +267,7 @@
             // 
             this.cmb_sucursal.EditValue = 1;
             this.cmb_sucursal.Location = new System.Drawing.Point(327, 9);
-            this.cmb_sucursal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_sucursal.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_sucursal.Name = "cmb_sucursal";
             this.cmb_sucursal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -330,7 +330,7 @@
             // 
             this.dtp_fecha_contabilizacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_fecha_contabilizacion.Location = new System.Drawing.Point(1148, 33);
-            this.dtp_fecha_contabilizacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_fecha_contabilizacion.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_fecha_contabilizacion.Name = "dtp_fecha_contabilizacion";
             this.dtp_fecha_contabilizacion.Size = new System.Drawing.Size(125, 22);
             this.dtp_fecha_contabilizacion.TabIndex = 121;
@@ -346,21 +346,10 @@
             this.label1.TabIndex = 122;
             this.label1.Text = "Fecha/Conta.";
             // 
-            // btn_Importar_XML
-            // 
-            this.btn_Importar_XML.Location = new System.Drawing.Point(615, 1);
-            this.btn_Importar_XML.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_Importar_XML.Name = "btn_Importar_XML";
-            this.btn_Importar_XML.Size = new System.Drawing.Size(107, 32);
-            this.btn_Importar_XML.TabIndex = 120;
-            this.btn_Importar_XML.Text = "Importar XML";
-            this.btn_Importar_XML.UseVisualStyleBackColor = true;
-            this.btn_Importar_XML.Click += new System.EventHandler(this.btn_Importar_XML_Click);
-            // 
             // cmb_idtCredito
             // 
             this.cmb_idtCredito.Location = new System.Drawing.Point(148, 69);
-            this.cmb_idtCredito.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_idtCredito.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_idtCredito.Name = "cmb_idtCredito";
             this.cmb_idtCredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -397,7 +386,7 @@
             // ucCp_Proveedor1
             // 
             this.ucCp_Proveedor1.Location = new System.Drawing.Point(144, 36);
-            this.ucCp_Proveedor1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucCp_Proveedor1.Margin = new System.Windows.Forms.Padding(5);
             this.ucCp_Proveedor1.Name = "ucCp_Proveedor1";
             this.ucCp_Proveedor1.Size = new System.Drawing.Size(484, 32);
             this.ucCp_Proveedor1.TabIndex = 117;
@@ -419,7 +408,7 @@
             // 
             this.dtp_FechaVcto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_FechaVcto.Location = new System.Drawing.Point(1145, 65);
-            this.dtp_FechaVcto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_FechaVcto.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_FechaVcto.Name = "dtp_FechaVcto";
             this.dtp_FechaVcto.Size = new System.Drawing.Size(128, 22);
             this.dtp_FechaVcto.TabIndex = 114;
@@ -441,9 +430,9 @@
             this.groupBox3.Controls.Add(this.txeIdNumAutoriza);
             this.groupBox3.Controls.Add(this.label52);
             this.groupBox3.Location = new System.Drawing.Point(655, 90);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(605, 144);
             this.groupBox3.TabIndex = 112;
             this.groupBox3.TabStop = false;
@@ -453,7 +442,7 @@
             // 
             this.chk_Cbte_Electronico.AutoSize = true;
             this.chk_Cbte_Electronico.Location = new System.Drawing.Point(16, 20);
-            this.chk_Cbte_Electronico.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_Cbte_Electronico.Margin = new System.Windows.Forms.Padding(4);
             this.chk_Cbte_Electronico.Name = "chk_Cbte_Electronico";
             this.chk_Cbte_Electronico.Size = new System.Drawing.Size(189, 21);
             this.chk_Cbte_Electronico.TabIndex = 122;
@@ -463,7 +452,7 @@
             // btn_Autoriza
             // 
             this.btn_Autoriza.Location = new System.Drawing.Point(524, 41);
-            this.btn_Autoriza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Autoriza.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Autoriza.Name = "btn_Autoriza";
             this.btn_Autoriza.Size = new System.Drawing.Size(44, 28);
             this.btn_Autoriza.TabIndex = 120;
@@ -475,7 +464,7 @@
             // 
             this.tm_hora_aut.EditValue = new System.DateTime(2015, 6, 4, 0, 0, 0, 0);
             this.tm_hora_aut.Location = new System.Drawing.Point(321, 116);
-            this.tm_hora_aut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tm_hora_aut.Margin = new System.Windows.Forms.Padding(4);
             this.tm_hora_aut.Name = "tm_hora_aut";
             this.tm_hora_aut.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -486,7 +475,7 @@
             // 
             this.dteFecAutoriza.EditValue = new System.DateTime(2014, 11, 24, 0, 0, 0, 0);
             this.dteFecAutoriza.Location = new System.Drawing.Point(144, 116);
-            this.dteFecAutoriza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dteFecAutoriza.Margin = new System.Windows.Forms.Padding(4);
             this.dteFecAutoriza.Name = "dteFecAutoriza";
             this.dteFecAutoriza.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -538,7 +527,7 @@
             // txeNumDocum
             // 
             this.txeNumDocum.Location = new System.Drawing.Point(284, 86);
-            this.txeNumDocum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txeNumDocum.Margin = new System.Windows.Forms.Padding(4);
             this.txeNumDocum.Name = "txeNumDocum";
             this.txeNumDocum.Properties.Mask.EditMask = "\\d{0,9}";
             this.txeNumDocum.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -550,7 +539,7 @@
             // txeSerie
             // 
             this.txeSerie.Location = new System.Drawing.Point(144, 86);
-            this.txeSerie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txeSerie.Margin = new System.Windows.Forms.Padding(4);
             this.txeSerie.Name = "txeSerie";
             this.txeSerie.Properties.Mask.EditMask = "\\d\\d\\d-\\d\\d\\d";
             this.txeSerie.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Regular;
@@ -573,7 +562,7 @@
             // txeIdNumAutoriza
             // 
             this.txeIdNumAutoriza.Location = new System.Drawing.Point(144, 43);
-            this.txeIdNumAutoriza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txeIdNumAutoriza.Margin = new System.Windows.Forms.Padding(4);
             this.txeIdNumAutoriza.Name = "txeIdNumAutoriza";
             this.txeIdNumAutoriza.Properties.Mask.EditMask = "\\d{0,49}";
             this.txeIdNumAutoriza.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -594,7 +583,7 @@
             // cmbTipoDocu
             // 
             this.cmbTipoDocu.Location = new System.Drawing.Point(148, 98);
-            this.cmbTipoDocu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTipoDocu.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoDocu.Name = "cmbTipoDocu";
             this.cmbTipoDocu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -634,7 +623,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(649, 39);
+            this.label39.Location = new System.Drawing.Point(652, 65);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(40, 17);
@@ -654,8 +643,8 @@
             // chk_coa
             // 
             this.chk_coa.AutoSize = true;
-            this.chk_coa.Location = new System.Drawing.Point(735, 9);
-            this.chk_coa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_coa.Location = new System.Drawing.Point(889, 5);
+            this.chk_coa.Margin = new System.Windows.Forms.Padding(4);
             this.chk_coa.Name = "chk_coa";
             this.chk_coa.Size = new System.Drawing.Size(105, 21);
             this.chk_coa.TabIndex = 26;
@@ -670,8 +659,8 @@
             "BIEN",
             "SERVI",
             "AMBAS"});
-            this.cmb_tipoOG.Location = new System.Drawing.Point(699, 36);
-            this.cmb_tipoOG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_tipoOG.Location = new System.Drawing.Point(702, 62);
+            this.cmb_tipoOG.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_tipoOG.Name = "cmb_tipoOG";
             this.cmb_tipoOG.Size = new System.Drawing.Size(111, 24);
             this.cmb_tipoOG.TabIndex = 24;
@@ -689,7 +678,7 @@
             // txt_observacion
             // 
             this.txt_observacion.Location = new System.Drawing.Point(16, 149);
-            this.txt_observacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_observacion.Margin = new System.Windows.Forms.Padding(4);
             this.txt_observacion.Multiline = true;
             this.txt_observacion.Name = "txt_observacion";
             this.txt_observacion.Size = new System.Drawing.Size(605, 85);
@@ -700,7 +689,7 @@
             // 
             this.dtp_fechaFactura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_fechaFactura.Location = new System.Drawing.Point(1147, 5);
-            this.dtp_fechaFactura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_fechaFactura.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_fechaFactura.Name = "dtp_fechaFactura";
             this.dtp_fechaFactura.Size = new System.Drawing.Size(127, 22);
             this.dtp_fechaFactura.TabIndex = 1;
@@ -750,7 +739,7 @@
             // 
             this.dtp_fechaOG.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtp_fechaOG.Location = new System.Drawing.Point(889, 33);
-            this.dtp_fechaOG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtp_fechaOG.Margin = new System.Windows.Forms.Padding(4);
             this.dtp_fechaOG.Name = "dtp_fechaOG";
             this.dtp_fechaOG.Size = new System.Drawing.Size(119, 22);
             this.dtp_fechaOG.TabIndex = 3;
@@ -770,7 +759,7 @@
             // txt_NOrdeG
             // 
             this.txt_NOrdeG.Location = new System.Drawing.Point(148, 6);
-            this.txt_NOrdeG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_NOrdeG.Margin = new System.Windows.Forms.Padding(4);
             this.txt_NOrdeG.Name = "txt_NOrdeG";
             this.txt_NOrdeG.ReadOnly = true;
             this.txt_NOrdeG.Size = new System.Drawing.Size(99, 22);
@@ -800,7 +789,7 @@
             // txt_plazo
             // 
             this.txt_plazo.Location = new System.Drawing.Point(944, 65);
-            this.txt_plazo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_plazo.Margin = new System.Windows.Forms.Padding(4);
             this.txt_plazo.Name = "txt_plazo";
             this.txt_plazo.Size = new System.Drawing.Size(64, 22);
             this.txt_plazo.TabIndex = 7;
@@ -813,7 +802,7 @@
             this.UC_Diario_x_cxp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UC_Diario_x_cxp.IdCtaCble_x_Banco = null;
             this.UC_Diario_x_cxp.Location = new System.Drawing.Point(0, 182);
-            this.UC_Diario_x_cxp.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.UC_Diario_x_cxp.Margin = new System.Windows.Forms.Padding(5);
             this.UC_Diario_x_cxp.Name = "UC_Diario_x_cxp";
             this.UC_Diario_x_cxp.Size = new System.Drawing.Size(1465, 219);
             this.UC_Diario_x_cxp.TabIndex = 36;
@@ -837,7 +826,7 @@
             this.panel3.Controls.Add(this.label41);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1465, 182);
             this.panel3.TabIndex = 108;
@@ -845,7 +834,7 @@
             // ucCaj_MovEgresoCaj_cmb1
             // 
             this.ucCaj_MovEgresoCaj_cmb1.Location = new System.Drawing.Point(1119, 73);
-            this.ucCaj_MovEgresoCaj_cmb1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucCaj_MovEgresoCaj_cmb1.Margin = new System.Windows.Forms.Padding(5);
             this.ucCaj_MovEgresoCaj_cmb1.Name = "ucCaj_MovEgresoCaj_cmb1";
             this.ucCaj_MovEgresoCaj_cmb1.Size = new System.Drawing.Size(284, 32);
             this.ucCaj_MovEgresoCaj_cmb1.TabIndex = 128;
@@ -871,7 +860,7 @@
             // cmb_101
             // 
             this.cmb_101.Location = new System.Drawing.Point(1119, 7);
-            this.cmb_101.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_101.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_101.Name = "cmb_101";
             this.cmb_101.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -945,9 +934,9 @@
             this.grp_datosFactura.Controls.Add(this.label10);
             this.grp_datosFactura.Controls.Add(this.label9);
             this.grp_datosFactura.Location = new System.Drawing.Point(7, 4);
-            this.grp_datosFactura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grp_datosFactura.Margin = new System.Windows.Forms.Padding(4);
             this.grp_datosFactura.Name = "grp_datosFactura";
-            this.grp_datosFactura.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grp_datosFactura.Padding = new System.Windows.Forms.Padding(4);
             this.grp_datosFactura.Size = new System.Drawing.Size(989, 175);
             this.grp_datosFactura.TabIndex = 28;
             this.grp_datosFactura.TabStop = false;
@@ -958,7 +947,7 @@
             // 
             this.check_propina.AutoSize = true;
             this.check_propina.Location = new System.Drawing.Point(719, 142);
-            this.check_propina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.check_propina.Margin = new System.Windows.Forms.Padding(4);
             this.check_propina.Name = "check_propina";
             this.check_propina.Size = new System.Drawing.Size(115, 21);
             this.check_propina.TabIndex = 132;
@@ -979,7 +968,7 @@
             // txe_propina
             // 
             this.txe_propina.Location = new System.Drawing.Point(844, 138);
-            this.txe_propina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txe_propina.Margin = new System.Windows.Forms.Padding(4);
             this.txe_propina.Name = "txe_propina";
             this.txe_propina.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txe_propina.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -994,7 +983,7 @@
             // txe_IRBPNR
             // 
             this.txe_IRBPNR.Location = new System.Drawing.Point(844, 106);
-            this.txe_IRBPNR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txe_IRBPNR.Margin = new System.Windows.Forms.Padding(4);
             this.txe_IRBPNR.Name = "txe_IRBPNR";
             this.txe_IRBPNR.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txe_IRBPNR.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1010,7 +999,7 @@
             // txE_subTotalIVA_12
             // 
             this.txE_subTotalIVA_12.Location = new System.Drawing.Point(132, 14);
-            this.txE_subTotalIVA_12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_subTotalIVA_12.Margin = new System.Windows.Forms.Padding(4);
             this.txE_subTotalIVA_12.Name = "txE_subTotalIVA_12";
             this.txE_subTotalIVA_12.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_subTotalIVA_12.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1026,7 +1015,7 @@
             // txE_baseSeguros
             // 
             this.txE_baseSeguros.Location = new System.Drawing.Point(844, 74);
-            this.txE_baseSeguros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_baseSeguros.Margin = new System.Windows.Forms.Padding(4);
             this.txE_baseSeguros.Name = "txE_baseSeguros";
             this.txE_baseSeguros.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_baseSeguros.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1042,7 +1031,7 @@
             // txE_BaseImponible
             // 
             this.txE_BaseImponible.Location = new System.Drawing.Point(844, 42);
-            this.txE_BaseImponible.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_BaseImponible.Margin = new System.Windows.Forms.Padding(4);
             this.txE_BaseImponible.Name = "txE_BaseImponible";
             this.txE_BaseImponible.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_BaseImponible.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1058,7 +1047,7 @@
             // txENoObjetoDeIva
             // 
             this.txENoObjetoDeIva.Location = new System.Drawing.Point(844, 12);
-            this.txENoObjetoDeIva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txENoObjetoDeIva.Margin = new System.Windows.Forms.Padding(4);
             this.txENoObjetoDeIva.Name = "txENoObjetoDeIva";
             this.txENoObjetoDeIva.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txENoObjetoDeIva.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1080,9 +1069,9 @@
             this.groupBox1.Controls.Add(this.txE_PICE);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Location = new System.Drawing.Point(281, 69);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(436, 107);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
@@ -1091,7 +1080,7 @@
             // cmb_ICE
             // 
             this.cmb_ICE.Location = new System.Drawing.Point(92, 20);
-            this.cmb_ICE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_ICE.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_ICE.Name = "cmb_ICE";
             this.cmb_ICE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1138,7 +1127,7 @@
             // txE_montoICE
             // 
             this.txE_montoICE.Location = new System.Drawing.Point(92, 76);
-            this.txE_montoICE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_montoICE.Margin = new System.Windows.Forms.Padding(4);
             this.txE_montoICE.Name = "txE_montoICE";
             this.txE_montoICE.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_montoICE.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1174,7 +1163,7 @@
             // txE_baseICE
             // 
             this.txE_baseICE.Location = new System.Drawing.Point(92, 49);
-            this.txE_baseICE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_baseICE.Margin = new System.Windows.Forms.Padding(4);
             this.txE_baseICE.Name = "txE_baseICE";
             this.txE_baseICE.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_baseICE.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1200,7 +1189,7 @@
             // txE_PICE
             // 
             this.txE_PICE.Location = new System.Drawing.Point(307, 53);
-            this.txE_PICE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_PICE.Margin = new System.Windows.Forms.Padding(4);
             this.txE_PICE.Name = "txE_PICE";
             this.txE_PICE.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_PICE.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1225,7 +1214,7 @@
             // txE_valorServicio
             // 
             this.txE_valorServicio.Location = new System.Drawing.Point(492, 42);
-            this.txE_valorServicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_valorServicio.Margin = new System.Windows.Forms.Padding(4);
             this.txE_valorServicio.Name = "txE_valorServicio";
             this.txE_valorServicio.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_valorServicio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1241,7 +1230,7 @@
             // txE_servicio
             // 
             this.txE_servicio.Location = new System.Drawing.Point(407, 41);
-            this.txE_servicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_servicio.Margin = new System.Windows.Forms.Padding(4);
             this.txE_servicio.Name = "txE_servicio";
             this.txE_servicio.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_servicio.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1256,7 +1245,7 @@
             // txE_SubTotal0
             // 
             this.txE_SubTotal0.Location = new System.Drawing.Point(404, 12);
-            this.txE_SubTotal0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_SubTotal0.Margin = new System.Windows.Forms.Padding(4);
             this.txE_SubTotal0.Name = "txE_SubTotal0";
             this.txE_SubTotal0.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_SubTotal0.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1272,7 +1261,7 @@
             // txE_total
             // 
             this.txE_total.Location = new System.Drawing.Point(132, 140);
-            this.txE_total.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_total.Margin = new System.Windows.Forms.Padding(4);
             this.txE_total.Name = "txE_total";
             this.txE_total.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_total.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1286,7 +1275,7 @@
             // txE_vRestar
             // 
             this.txE_vRestar.Location = new System.Drawing.Point(132, 110);
-            this.txE_vRestar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_vRestar.Margin = new System.Windows.Forms.Padding(4);
             this.txE_vRestar.Name = "txE_vRestar";
             this.txE_vRestar.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_vRestar.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1302,7 +1291,7 @@
             // txE_vSumar
             // 
             this.txE_vSumar.Location = new System.Drawing.Point(132, 78);
-            this.txE_vSumar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_vSumar.Margin = new System.Windows.Forms.Padding(4);
             this.txE_vSumar.Name = "txE_vSumar";
             this.txE_vSumar.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_vSumar.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1318,7 +1307,7 @@
             // txE_valorIVA
             // 
             this.txE_valorIVA.Location = new System.Drawing.Point(132, 46);
-            this.txE_valorIVA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_valorIVA.Margin = new System.Windows.Forms.Padding(4);
             this.txE_valorIVA.Name = "txE_valorIVA";
             this.txE_valorIVA.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00 ";
             this.txE_valorIVA.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1335,7 +1324,7 @@
             // txE_IVA
             // 
             this.txE_IVA.Location = new System.Drawing.Point(43, 46);
-            this.txE_IVA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_IVA.Margin = new System.Windows.Forms.Padding(4);
             this.txE_IVA.Name = "txE_IVA";
             this.txE_IVA.Size = new System.Drawing.Size(53, 22);
             this.txE_IVA.TabIndex = 110;
@@ -1468,7 +1457,7 @@
             // txE_saldo
             // 
             this.txE_saldo.Location = new System.Drawing.Point(1123, 142);
-            this.txE_saldo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_saldo.Margin = new System.Windows.Forms.Padding(4);
             this.txE_saldo.Name = "txE_saldo";
             this.txE_saldo.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_saldo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1504,7 +1493,7 @@
             // txE_valorApagar
             // 
             this.txE_valorApagar.Location = new System.Drawing.Point(1123, 113);
-            this.txE_valorApagar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txE_valorApagar.Margin = new System.Windows.Forms.Padding(4);
             this.txE_valorApagar.Name = "txE_valorApagar";
             this.txE_valorApagar.Properties.DisplayFormat.FormatString = "#,#######0.00 ;#,#######0.00";
             this.txE_valorApagar.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -1532,7 +1521,7 @@
             // 
             this.ucCp_Retencion1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucCp_Retencion1.Location = new System.Drawing.Point(0, 38);
-            this.ucCp_Retencion1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucCp_Retencion1.Margin = new System.Windows.Forms.Padding(5);
             this.ucCp_Retencion1.Name = "ucCp_Retencion1";
             this.ucCp_Retencion1.Size = new System.Drawing.Size(1465, 363);
             this.ucCp_Retencion1.TabIndex = 112;
@@ -1544,7 +1533,7 @@
             this.panel1.Controls.Add(this.chk_TieneRetencion);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1465, 38);
             this.panel1.TabIndex = 109;
@@ -1554,7 +1543,7 @@
             this.chk_TieneRetencion.AutoSize = true;
             this.chk_TieneRetencion.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_TieneRetencion.Location = new System.Drawing.Point(11, 11);
-            this.chk_TieneRetencion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chk_TieneRetencion.Margin = new System.Windows.Forms.Padding(4);
             this.chk_TieneRetencion.Name = "chk_TieneRetencion";
             this.chk_TieneRetencion.Size = new System.Drawing.Size(243, 21);
             this.chk_TieneRetencion.TabIndex = 25;
@@ -1571,10 +1560,10 @@
             // gridControl_formasPagoSRI
             // 
             this.gridControl_formasPagoSRI.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gridControl_formasPagoSRI.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl_formasPagoSRI.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl_formasPagoSRI.Location = new System.Drawing.Point(494, 0);
             this.gridControl_formasPagoSRI.MainView = this.gridView_formasPagoSRI;
-            this.gridControl_formasPagoSRI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridControl_formasPagoSRI.Margin = new System.Windows.Forms.Padding(4);
             this.gridControl_formasPagoSRI.Name = "gridControl_formasPagoSRI";
             this.gridControl_formasPagoSRI.Size = new System.Drawing.Size(971, 401);
             this.gridControl_formasPagoSRI.TabIndex = 66;
@@ -1651,7 +1640,7 @@
             // cmbPais
             // 
             this.cmbPais.Location = new System.Drawing.Point(239, 58);
-            this.cmbPais.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbPais.Margin = new System.Windows.Forms.Padding(4);
             this.cmbPais.Name = "cmbPais";
             this.cmbPais.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1671,9 +1660,9 @@
             this.grupo_PagoSujetoRetencion.Controls.Add(this.rb_pagExtSujRetNorLegNO);
             this.grupo_PagoSujetoRetencion.Controls.Add(this.rb_pagExtSujRetNorLegSI);
             this.grupo_PagoSujetoRetencion.Location = new System.Drawing.Point(25, 171);
-            this.grupo_PagoSujetoRetencion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grupo_PagoSujetoRetencion.Margin = new System.Windows.Forms.Padding(4);
             this.grupo_PagoSujetoRetencion.Name = "grupo_PagoSujetoRetencion";
-            this.grupo_PagoSujetoRetencion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grupo_PagoSujetoRetencion.Padding = new System.Windows.Forms.Padding(4);
             this.grupo_PagoSujetoRetencion.Size = new System.Drawing.Size(415, 47);
             this.grupo_PagoSujetoRetencion.TabIndex = 64;
             this.grupo_PagoSujetoRetencion.TabStop = false;
@@ -1683,7 +1672,7 @@
             // 
             this.rb_pagExtSujRetNorLegNO.AutoSize = true;
             this.rb_pagExtSujRetNorLegNO.Location = new System.Drawing.Point(172, 20);
-            this.rb_pagExtSujRetNorLegNO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb_pagExtSujRetNorLegNO.Margin = new System.Windows.Forms.Padding(4);
             this.rb_pagExtSujRetNorLegNO.Name = "rb_pagExtSujRetNorLegNO";
             this.rb_pagExtSujRetNorLegNO.Size = new System.Drawing.Size(50, 21);
             this.rb_pagExtSujRetNorLegNO.TabIndex = 1;
@@ -1695,7 +1684,7 @@
             // 
             this.rb_pagExtSujRetNorLegSI.AutoSize = true;
             this.rb_pagExtSujRetNorLegSI.Location = new System.Drawing.Point(32, 21);
-            this.rb_pagExtSujRetNorLegSI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb_pagExtSujRetNorLegSI.Margin = new System.Windows.Forms.Padding(4);
             this.rb_pagExtSujRetNorLegSI.Name = "rb_pagExtSujRetNorLegSI";
             this.rb_pagExtSujRetNorLegSI.Size = new System.Drawing.Size(41, 21);
             this.rb_pagExtSujRetNorLegSI.TabIndex = 0;
@@ -1708,9 +1697,9 @@
             this.grupo_convenioDobleTributacion.Controls.Add(this.rb_aplicConvDobTribNO);
             this.grupo_convenioDobleTributacion.Controls.Add(this.rb_aplicConvDobTribSI);
             this.grupo_convenioDobleTributacion.Location = new System.Drawing.Point(25, 101);
-            this.grupo_convenioDobleTributacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grupo_convenioDobleTributacion.Margin = new System.Windows.Forms.Padding(4);
             this.grupo_convenioDobleTributacion.Name = "grupo_convenioDobleTributacion";
-            this.grupo_convenioDobleTributacion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grupo_convenioDobleTributacion.Padding = new System.Windows.Forms.Padding(4);
             this.grupo_convenioDobleTributacion.Size = new System.Drawing.Size(353, 47);
             this.grupo_convenioDobleTributacion.TabIndex = 62;
             this.grupo_convenioDobleTributacion.TabStop = false;
@@ -1720,7 +1709,7 @@
             // 
             this.rb_aplicConvDobTribNO.AutoSize = true;
             this.rb_aplicConvDobTribNO.Location = new System.Drawing.Point(172, 20);
-            this.rb_aplicConvDobTribNO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb_aplicConvDobTribNO.Margin = new System.Windows.Forms.Padding(4);
             this.rb_aplicConvDobTribNO.Name = "rb_aplicConvDobTribNO";
             this.rb_aplicConvDobTribNO.Size = new System.Drawing.Size(50, 21);
             this.rb_aplicConvDobTribNO.TabIndex = 1;
@@ -1732,7 +1721,7 @@
             // 
             this.rb_aplicConvDobTribSI.AutoSize = true;
             this.rb_aplicConvDobTribSI.Location = new System.Drawing.Point(32, 20);
-            this.rb_aplicConvDobTribSI.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb_aplicConvDobTribSI.Margin = new System.Windows.Forms.Padding(4);
             this.rb_aplicConvDobTribSI.Name = "rb_aplicConvDobTribSI";
             this.rb_aplicConvDobTribSI.Size = new System.Drawing.Size(41, 21);
             this.rb_aplicConvDobTribSI.TabIndex = 0;
@@ -1748,7 +1737,7 @@
             "Local",
             "Exterior"});
             this.cmb_Local_Exterios.Location = new System.Drawing.Point(241, 22);
-            this.cmb_Local_Exterios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmb_Local_Exterios.Margin = new System.Windows.Forms.Padding(4);
             this.cmb_Local_Exterios.Name = "cmb_Local_Exterios";
             this.cmb_Local_Exterios.Size = new System.Drawing.Size(136, 24);
             this.cmb_Local_Exterios.TabIndex = 51;
@@ -1791,9 +1780,9 @@
             this.groupBox2.Controls.Add(this.txt_serie_a_modificar);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(4, 4);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(580, 188);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
@@ -1802,7 +1791,7 @@
             // cmbTipoDocu_a_modificar
             // 
             this.cmbTipoDocu_a_modificar.Location = new System.Drawing.Point(191, 42);
-            this.cmbTipoDocu_a_modificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTipoDocu_a_modificar.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoDocu_a_modificar.Name = "cmbTipoDocu_a_modificar";
             this.cmbTipoDocu_a_modificar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1841,7 +1830,7 @@
             // txt_num_auto_a_modificar
             // 
             this.txt_num_auto_a_modificar.Location = new System.Drawing.Point(183, 135);
-            this.txt_num_auto_a_modificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_num_auto_a_modificar.Margin = new System.Windows.Forms.Padding(4);
             this.txt_num_auto_a_modificar.Name = "txt_num_auto_a_modificar";
             this.txt_num_auto_a_modificar.Properties.Mask.EditMask = "\\d{0,49}";
             this.txt_num_auto_a_modificar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -1882,7 +1871,7 @@
             // txt_num_doc_a_modificar
             // 
             this.txt_num_doc_a_modificar.Location = new System.Drawing.Point(183, 103);
-            this.txt_num_doc_a_modificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_num_doc_a_modificar.Margin = new System.Windows.Forms.Padding(4);
             this.txt_num_doc_a_modificar.Name = "txt_num_doc_a_modificar";
             this.txt_num_doc_a_modificar.Properties.Mask.EditMask = "\\d{0,9}";
             this.txt_num_doc_a_modificar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
@@ -1892,7 +1881,7 @@
             // txt_serie_a_modificar
             // 
             this.txt_serie_a_modificar.Location = new System.Drawing.Point(43, 103);
-            this.txt_serie_a_modificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_serie_a_modificar.Margin = new System.Windows.Forms.Padding(4);
             this.txt_serie_a_modificar.Name = "txt_serie_a_modificar";
             this.txt_serie_a_modificar.Properties.Mask.EditMask = "\\d\\d\\d-\\d\\d\\d";
             this.txt_serie_a_modificar.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Regular;
@@ -1936,7 +1925,7 @@
             this.uCMenu.Enabled_btnImprimirSoporte = true;
             this.uCMenu.Enabled_btnproductos = true;
             this.uCMenu.Location = new System.Drawing.Point(0, 0);
-            this.uCMenu.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.uCMenu.Margin = new System.Windows.Forms.Padding(5);
             this.uCMenu.Name = "uCMenu";
             this.uCMenu.Size = new System.Drawing.Size(1471, 36);
             this.uCMenu.TabIndex = 5;
@@ -1981,7 +1970,7 @@
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 36);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1471, 678);
             this.panel4.TabIndex = 6;
@@ -1990,7 +1979,7 @@
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 246);
-            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.tp_Datos_generales;
             this.xtraTabControl1.Size = new System.Drawing.Size(1471, 432);
@@ -2006,7 +1995,7 @@
             // 
             this.tp_Datos_generales.Controls.Add(this.UC_Diario_x_cxp);
             this.tp_Datos_generales.Controls.Add(this.panel3);
-            this.tp_Datos_generales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_Datos_generales.Margin = new System.Windows.Forms.Padding(4);
             this.tp_Datos_generales.Name = "tp_Datos_generales";
             this.tp_Datos_generales.Size = new System.Drawing.Size(1465, 401);
             this.tp_Datos_generales.Text = "Datos generales";
@@ -2015,7 +2004,7 @@
             // 
             this.tp_retencion.Controls.Add(this.ucCp_Retencion1);
             this.tp_retencion.Controls.Add(this.panel1);
-            this.tp_retencion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_retencion.Margin = new System.Windows.Forms.Padding(4);
             this.tp_retencion.Name = "tp_retencion";
             this.tp_retencion.Size = new System.Drawing.Size(1465, 401);
             this.tp_retencion.Text = "Datos retención";
@@ -2023,7 +2012,7 @@
             // tp_campos_ND
             // 
             this.tp_campos_ND.Controls.Add(this.groupBox2);
-            this.tp_campos_ND.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_campos_ND.Margin = new System.Windows.Forms.Padding(4);
             this.tp_campos_ND.Name = "tp_campos_ND";
             this.tp_campos_ND.Size = new System.Drawing.Size(1465, 401);
             this.tp_campos_ND.Text = "Documento modificado";
@@ -2037,7 +2026,7 @@
             this.tp_info_pago.Controls.Add(this.grupo_PagoSujetoRetencion);
             this.tp_info_pago.Controls.Add(this.cmb_Local_Exterios);
             this.tp_info_pago.Controls.Add(this.grupo_convenioDobleTributacion);
-            this.tp_info_pago.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_info_pago.Margin = new System.Windows.Forms.Padding(4);
             this.tp_info_pago.Name = "tp_info_pago";
             this.tp_info_pago.Size = new System.Drawing.Size(1465, 401);
             this.tp_info_pago.Text = "Información del pago";
@@ -2045,21 +2034,22 @@
             // tp_detalle_cuotas
             // 
             this.tp_detalle_cuotas.Controls.Add(this.ucCp_cuotas_x_doc1);
-            this.tp_detalle_cuotas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tp_detalle_cuotas.Margin = new System.Windows.Forms.Padding(4);
             this.tp_detalle_cuotas.Name = "tp_detalle_cuotas";
-            this.tp_detalle_cuotas.Size = new System.Drawing.Size(1414, 306);
+            this.tp_detalle_cuotas.Size = new System.Drawing.Size(1465, 401);
             this.tp_detalle_cuotas.Text = "Detalle de cuotas";
             // 
             // ucCp_cuotas_x_doc1
             // 
             this.ucCp_cuotas_x_doc1.Location = new System.Drawing.Point(25, 12);
-            this.ucCp_cuotas_x_doc1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ucCp_cuotas_x_doc1.Margin = new System.Windows.Forms.Padding(5);
             this.ucCp_cuotas_x_doc1.Name = "ucCp_cuotas_x_doc1";
             this.ucCp_cuotas_x_doc1.Size = new System.Drawing.Size(923, 273);
             this.ucCp_cuotas_x_doc1.TabIndex = 0;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnBuscarXML);
             this.panel5.Controls.Add(this.groupBox3);
             this.panel5.Controls.Add(this.cmb_sucursal);
             this.panel5.Controls.Add(this.cmbTipoDocu);
@@ -2070,7 +2060,6 @@
             this.panel5.Controls.Add(this.label1);
             this.panel5.Controls.Add(this.label30);
             this.panel5.Controls.Add(this.label7);
-            this.panel5.Controls.Add(this.btn_Importar_XML);
             this.panel5.Controls.Add(this.label25);
             this.panel5.Controls.Add(this.cmb_idtCredito);
             this.panel5.Controls.Add(this.txt_NOrdeG);
@@ -2089,10 +2078,21 @@
             this.panel5.Controls.Add(this.chk_coa);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1471, 246);
             this.panel5.TabIndex = 5;
+            // 
+            // btnBuscarXML
+            // 
+            this.btnBuscarXML.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.btnBuscarXML.Location = new System.Drawing.Point(614, 12);
+            this.btnBuscarXML.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarXML.Name = "btnBuscarXML";
+            this.btnBuscarXML.Size = new System.Drawing.Size(199, 28);
+            this.btnBuscarXML.TabIndex = 125;
+            this.btnBuscarXML.Text = "Buscar XML sin contabilizar";
+            this.btnBuscarXML.Click += new System.EventHandler(this.btnBuscarXML_Click);
             // 
             // frmCP_OrdenGiroMantenimiento
             // 
@@ -2101,7 +2101,7 @@
             this.ClientSize = new System.Drawing.Size(1471, 714);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.uCMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCP_OrdenGiroMantenimiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mantenimiento Facturas Proveedor";
@@ -2308,7 +2308,6 @@
         private DevExpress.XtraEditors.TextEdit txE_subTotalIVA_12;
         private System.Windows.Forms.Button btn_Autoriza;
         private DevExpress.Utils.ImageCollection imageCollection1;
-        private System.Windows.Forms.Button btn_Importar_XML;
         private System.Windows.Forms.Label label32;
         private DevExpress.XtraEditors.TextEdit txe_propina;
         private DevExpress.XtraEditors.TextEdit txe_IRBPNR;
@@ -2355,5 +2354,6 @@
         private Controles.UCCp_cuotas_x_doc ucCp_cuotas_x_doc1;
         private System.Windows.Forms.Label label6;
         private Controles.UCCaj_MovEgresoCaj_cmb ucCaj_MovEgresoCaj_cmb1;
+        private DevExpress.XtraEditors.SimpleButton btnBuscarXML;
     }
 }

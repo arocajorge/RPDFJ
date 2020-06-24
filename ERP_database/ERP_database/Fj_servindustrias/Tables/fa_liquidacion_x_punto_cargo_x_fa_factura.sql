@@ -16,6 +16,8 @@
 );
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_fa_liquidacion_x_punto_cargo_x_fa_factura_2]
     ON [Fj_servindustrias].[fa_liquidacion_x_punto_cargo_x_fa_factura]([vta_total] ASC);

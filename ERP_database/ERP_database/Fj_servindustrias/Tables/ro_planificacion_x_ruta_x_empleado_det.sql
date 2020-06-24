@@ -20,3 +20,5 @@
     CONSTRAINT [FK_ro_planificacion_x_ruta_x_empleado_det_ro_zona] FOREIGN KEY ([IdEmpresa], [IdZona]) REFERENCES [Fj_servindustrias].[ro_zona] ([IdEmpresa], [IdZona])
 );
 
+
+

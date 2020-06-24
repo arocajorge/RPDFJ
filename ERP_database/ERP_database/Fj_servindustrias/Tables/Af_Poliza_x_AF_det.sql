@@ -13,3 +13,5 @@
     CONSTRAINT [FK_Af_Poliza_x_AF_det_Af_Activo_fijo] FOREIGN KEY ([IdEmpresa], [IdActivoFijo]) REFERENCES [dbo].[Af_Activo_fijo] ([IdEmpresa], [IdActivoFijo])
 );
 
+
+

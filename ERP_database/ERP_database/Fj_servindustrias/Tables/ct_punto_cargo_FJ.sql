@@ -9,3 +9,5 @@
     CONSTRAINT [FK_ct_punto_cargo_FJ_ct_punto_cargo] FOREIGN KEY ([IdEmpresa], [IdPunto_cargo]) REFERENCES [dbo].[ct_punto_cargo] ([IdEmpresa], [IdPunto_cargo])
 );
 
+
+

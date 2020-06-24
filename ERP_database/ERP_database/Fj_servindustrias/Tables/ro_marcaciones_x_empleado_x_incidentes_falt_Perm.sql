@@ -21,3 +21,5 @@
     CONSTRAINT [FK_ro_marcaciones_x_empleado_x_incidentes_falt_Perm_ro_turno] FOREIGN KEY ([IdEmpresa], [IdTurno]) REFERENCES [dbo].[ro_turno] ([IdEmpresa], [IdTurno])
 );
 
+
+
