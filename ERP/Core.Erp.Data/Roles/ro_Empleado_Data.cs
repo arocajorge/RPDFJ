@@ -5142,7 +5142,7 @@ namespace Core.Erp.Data.Roles
             }
         }
 
-        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia(int IdEmpresa,int IdNomina_tipo, DateTime Fecha, int IdDivision_)
+        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia(int IdEmpresa,int IdNomina_tipo, DateTime Fecha, int IdDivision_, string IdCatalogo)
         {
             try
             {
@@ -5165,10 +5165,12 @@ namespace Core.Erp.Data.Roles
                             info.de_descripcion = item.de_descripcion;
                             info.cargo = item.ca_descripcion;
                             info.pe_cedulaRuc = item.pe_cedulaRuc;
+                            if (item.Tipo_asistencia_Cat == "ASIST")
+                                info.CodCatalogo = IdCatalogo;
+                            else
                             info.CodCatalogo = item.Tipo_asistencia_Cat;
                             info.Info_marcaciones_x_empleado.es_Hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                             info.Info_turno = new ro_turno_Info();
-                            info.Info_turno.es_jornada_desfasada = item.es_jornada_desfasada;
                             info.Info_turno.tu_descripcion = item.tu_descripcion;
                             info.Info_turno.IdTurno = item.IdTurno;
                             info.IdDepartamento = item.IdCargo;
@@ -5193,7 +5195,7 @@ namespace Core.Erp.Data.Roles
 
 
 
-        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia_eventuiales(int IdEmpresa, int IdNomina_tipo, DateTime Fecha)
+        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia_eventuiales(int IdEmpresa, int IdNomina_tipo, DateTime Fecha, string IdCatalogo)
         {
             try
             {
@@ -5216,11 +5218,13 @@ namespace Core.Erp.Data.Roles
                             info.de_descripcion = item.de_descripcion;
                             info.cargo = item.ca_descripcion;
                             info.pe_cedulaRuc = item.pe_cedulaRuc;
-                            info.CodCatalogo = item.Tipo_asistencia_Cat;
+                            if (item.Tipo_asistencia_Cat == "ASIST")
+                                info.CodCatalogo = IdCatalogo;
+                            else
+                                info.CodCatalogo = item.Tipo_asistencia_Cat;
                             info.Info_marcaciones_x_empleado.es_Hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                             info.Info_turno = new ro_turno_Info();
-                            //info.Info_turno.es_jornada_desfasada = item.es_jornada_desfasada;
-                           // info.Info_turno.tu_descripcion = item.tu_descripcion;
+                          
                             //info.Info_turno.IdTurno = item.IdTurno;
                             info.IdDepartamento = item.IdCargo;
                             oListadoInfo.Add(info);

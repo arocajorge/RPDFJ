@@ -71,6 +71,8 @@
             this.colUsuarioModifica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.cmbTipoCalculo = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.txt_sp = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ronominatipoliquiordenInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rorubrotipoInfoBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -108,6 +110,7 @@
             this.ucGe_Menu.Enabled_btn_Generar_XML = true;
             this.ucGe_Menu.Enabled_btn_Imprimir_Cbte = true;
             this.ucGe_Menu.Enabled_btn_Imprimir_Cheq = true;
+            this.ucGe_Menu.Enabled_btn_Imprimir_Reten = true;
             this.ucGe_Menu.Enabled_btnAceptar = true;
             this.ucGe_Menu.Enabled_btnAprobarGuardarSalir = true;
             this.ucGe_Menu.Enabled_btnEstadosOC = true;
@@ -130,18 +133,22 @@
             this.ucGe_Menu.Visible_bntLimpiar = false;
             this.ucGe_Menu.Visible_bntReImprimir = false;
             this.ucGe_Menu.Visible_bntSalir = true;
+            this.ucGe_Menu.Visible_btn_Actualizar = false;
             this.ucGe_Menu.Visible_btn_conciliacion_Auto = false;
             this.ucGe_Menu.Visible_btn_Generar_XML = false;
             this.ucGe_Menu.Visible_btn_Imprimir_Cbte = false;
             this.ucGe_Menu.Visible_btn_Imprimir_Cheq = false;
+            this.ucGe_Menu.Visible_btn_Imprimir_Reten = false;
             this.ucGe_Menu.Visible_btnAceptar = false;
             this.ucGe_Menu.Visible_btnAprobarGuardarSalir = false;
+            this.ucGe_Menu.Visible_btnContabilizar = false;
             this.ucGe_Menu.Visible_btnEstadosOC = false;
             this.ucGe_Menu.Visible_btnGuardar = true;
             this.ucGe_Menu.Visible_btnImpFrm = false;
             this.ucGe_Menu.Visible_btnImpLote = false;
             this.ucGe_Menu.Visible_btnImpRep = false;
             this.ucGe_Menu.Visible_btnImprimirSoporte = false;
+            this.ucGe_Menu.Visible_btnModificar = false;
             this.ucGe_Menu.Visible_btnproductos = false;
             // 
             // ronominatipoliquiordenInfoBindingSource
@@ -154,6 +161,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txt_sp);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.checkBoxEstado);
             this.groupBox1.Controls.Add(this.grid);
             this.groupBox1.Controls.Add(this.cmbNomina);
@@ -166,7 +175,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1205, 111);
+            this.groupBox1.Size = new System.Drawing.Size(1205, 121);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
@@ -197,7 +206,7 @@
             // 
             // cmbNomina
             // 
-            this.cmbNomina.Location = new System.Drawing.Point(86, 43);
+            this.cmbNomina.Location = new System.Drawing.Point(121, 43);
             this.cmbNomina.Name = "cmbNomina";
             this.cmbNomina.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -227,11 +236,10 @@
             // txtDescripcion
             // 
             this.txtDescripcion.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.txtDescripcion.Location = new System.Drawing.Point(86, 69);
+            this.txtDescripcion.Location = new System.Drawing.Point(121, 69);
             this.txtDescripcion.MaxLength = 50;
-            this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(234, 34);
+            this.txtDescripcion.Size = new System.Drawing.Size(234, 20);
             this.txtDescripcion.TabIndex = 3;
             // 
             // label4
@@ -256,7 +264,7 @@
             // 
             this.txtId.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(86, 17);
+            this.txtId.Location = new System.Drawing.Point(121, 19);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(65, 20);
@@ -286,9 +294,9 @@
             // 
             this.groupBox2.Controls.Add(this.gridListado);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 140);
+            this.groupBox2.Location = new System.Drawing.Point(0, 150);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1205, 465);
+            this.groupBox2.Size = new System.Drawing.Size(1205, 455);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             // 
@@ -306,7 +314,7 @@
             this.cmdEditar,
             this.cmbTipoCalculo,
             this.cmbTipoCalc});
-            this.gridListado.Size = new System.Drawing.Size(1199, 446);
+            this.gridListado.Size = new System.Drawing.Size(1199, 436);
             this.gridListado.TabIndex = 0;
             this.gridListado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewListado});
@@ -511,6 +519,24 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbTipoCalculo.Name = "cmbTipoCalculo";
             // 
+            // txt_sp
+            // 
+            this.txt_sp.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txt_sp.Location = new System.Drawing.Point(121, 95);
+            this.txt_sp.MaxLength = 50;
+            this.txt_sp.Name = "txt_sp";
+            this.txt_sp.Size = new System.Drawing.Size(234, 20);
+            this.txt_sp.TabIndex = 75;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 13);
+            this.label3.TabIndex = 74;
+            this.label3.Text = "Nombre procedimiento";
+            // 
             // frmRo_Nomina_Tipoliqui_Mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,5 +621,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colUsuarioModifica;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit cmdEditar;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cmbTipoCalculo;
+        private System.Windows.Forms.TextBox txt_sp;
+        private System.Windows.Forms.Label label3;
     }
 }

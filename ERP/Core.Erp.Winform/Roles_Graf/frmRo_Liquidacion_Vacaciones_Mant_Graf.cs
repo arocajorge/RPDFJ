@@ -375,7 +375,7 @@ namespace Core.Erp.Winform.Roles_Graf
                                 Info_historico_cancelacion.IdEmpresa = param.IdEmpresa;
                                 Info_historico_cancelacion.IdOrdenPago = id_OP;
                                 Info_historico_cancelacion.IdEmpresa_OP = Info_Orden_Pago.IdEmpresa;
-                                if (Bus_liquidacion_vacaciones.GrabarBD(Info_historico_cancelacion, ref IdSolicitud))
+                                if (Bus_liquidacion_vacaciones.GrabarBD(Info_historico_cancelacion))
                                 {
                                     bandera_sigrabo = true;
                                     if (bandera_sigrabo)

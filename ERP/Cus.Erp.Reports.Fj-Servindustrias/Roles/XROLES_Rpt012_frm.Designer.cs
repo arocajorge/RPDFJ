@@ -46,8 +46,9 @@
             this.cOL_Descripcion = new DevExpress.XtraPivotGrid.PivotGridField();
             this.COL_Valor = new DevExpress.XtraPivotGrid.PivotGridField();
             this.Col_Catalogo = new DevExpress.XtraPivotGrid.PivotGridField();
-            this.ucRo_Menu = new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes();
             this.Col_Dias_vacaciones = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.ucRo_Menu = new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes();
+            this.pivotGridField1 = new DevExpress.XtraPivotGrid.PivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,8 @@
             this.cOL_Descripcion,
             this.COL_Valor,
             this.Col_Catalogo,
-            this.Col_Dias_vacaciones});
+            this.Col_Dias_vacaciones,
+            this.pivotGridField1});
             pivotGridGroup1.Caption = "Grupos";
             pivotGridGroup1.Hierarchy = null;
             pivotGridGroup1.ShowNewValues = true;
@@ -248,6 +250,14 @@
             this.Col_Catalogo.FieldName = "Catalogo";
             this.Col_Catalogo.Name = "Col_Catalogo";
             // 
+            // Col_Dias_vacaciones
+            // 
+            this.Col_Dias_vacaciones.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.Col_Dias_vacaciones.AreaIndex = 12;
+            this.Col_Dias_vacaciones.Caption = "Días vacaciones";
+            this.Col_Dias_vacaciones.FieldName = "Dias_vacaciones";
+            this.Col_Dias_vacaciones.Name = "Col_Dias_vacaciones";
+            // 
             // ucRo_Menu
             // 
             this.ucRo_Menu.caption_bei_check1 = "Check";
@@ -274,13 +284,13 @@
             this.ucRo_Menu.event_cmdCargar_ItemClick += new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes.delegate_cmdCargar_ItemClick(this.ucRo_Menu_event_cmdCargar_ItemClick);
             this.ucRo_Menu.event_btnsalir_ItemClick += new Core.Erp.Reportes.Controles.UCRo_Menu_Reportes.delegate_btnsalir_ItemClick(this.ucRo_Menu_event_btnsalir_ItemClick);
             // 
-            // Col_Dias_vacaciones
+            // pivotGridField1
             // 
-            this.Col_Dias_vacaciones.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.Col_Dias_vacaciones.AreaIndex = 12;
-            this.Col_Dias_vacaciones.Caption = "Días vacaciones";
-            this.Col_Dias_vacaciones.FieldName = "Dias_vacaciones";
-            this.Col_Dias_vacaciones.Name = "Col_Dias_vacaciones";
+            this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField1.AreaIndex = 13;
+            this.pivotGridField1.Caption = "Permiso";
+            this.pivotGridField1.FieldName = "Dias_permiso";
+            this.pivotGridField1.Name = "pivotGridField1";
             // 
             // XROLES_Rpt012_frm
             // 
@@ -317,5 +327,6 @@
         private DevExpress.XtraPivotGrid.PivotGridField COL_Valor;
         private DevExpress.XtraPivotGrid.PivotGridField Col_Catalogo;
         private DevExpress.XtraPivotGrid.PivotGridField Col_Dias_vacaciones;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField1;
     }
 }

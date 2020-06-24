@@ -937,6 +937,7 @@
     <Compile Include="Roles_Fj\ro_planificacion_x_ruta_x_empleado_det_Bus.cs" />
     <Compile Include="Roles_Fj\ro_presupuesto_x_fuerza_x_cargo_Bus.cs" />
     <Compile Include="Roles_Fj\ro_Remplazo_x_emplado_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_rubros_calculados_Bus.cs" />
     <Compile Include="Roles_Fj\ro_ruta_Bus.cs" />
     <Compile Include="Roles_Fj\ro_sala_Bus.cs" />
     <Compile Include="Roles_Fj\ro_zona_Bus.cs" />

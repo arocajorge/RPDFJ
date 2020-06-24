@@ -52,8 +52,16 @@
             this.Col_check = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_division_eliminar = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Vol_Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.check_marcaciones = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_nomina_eliminar = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btn_eliminar = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Actualizar = new DevExpress.XtraEditors.SimpleButton();
             this.Cmb_buscar = new DevExpress.XtraEditors.SimpleButton();
@@ -74,6 +82,10 @@
             this.Col_Estado_aprobacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_es_fecha_registro = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.cmb_division = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -96,10 +108,6 @@
             this.cmb_buscar_novedads_x_HE = new DevExpress.XtraEditors.SimpleButton();
             this.dtp_Fecha_inicio_buscar_novedades = new DevExpress.XtraEditors.DateEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.cmb_nomina_eliminar = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -113,8 +121,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_division_eliminar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_marcaciones.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_eliminar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaSalida.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaSalida.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaInicio.Properties.VistaTimeProperties)).BeginInit();
@@ -125,6 +137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView_novedades_xHE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_division.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbnominaTipo.Properties)).BeginInit();
@@ -137,8 +151,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtp_fecha_fin_buscar_novedades.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_Fecha_inicio_buscar_novedades.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_Fecha_inicio_buscar_novedades.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_eliminar.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // ucGe_Menu
@@ -219,9 +231,9 @@
             // 
             this.groupControl2.Controls.Add(this.gridControl_novedades_x_asistencia);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(0, 102);
+            this.groupControl2.Location = new System.Drawing.Point(0, 108);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(568, 388);
+            this.groupControl2.Size = new System.Drawing.Size(568, 382);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Novedades por asistencia";
             // 
@@ -235,7 +247,7 @@
             this.cmb_catalogo,
             this.repositoryItemImageComboBox1,
             this.repositoryItemCheckEdit1});
-            this.gridControl_novedades_x_asistencia.Size = new System.Drawing.Size(564, 365);
+            this.gridControl_novedades_x_asistencia.Size = new System.Drawing.Size(564, 359);
             this.gridControl_novedades_x_asistencia.TabIndex = 0;
             this.gridControl_novedades_x_asistencia.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView__novedades_x_asistencia});
@@ -416,6 +428,9 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labelControl7);
+            this.groupControl1.Controls.Add(this.cmb_division_eliminar);
+            this.groupControl1.Controls.Add(this.check_marcaciones);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.cmb_nomina_eliminar);
             this.groupControl1.Controls.Add(this.panel1);
@@ -426,36 +441,110 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(568, 102);
+            this.groupControl1.Size = new System.Drawing.Size(568, 108);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Filtro de Busqueda";
             // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(5, 72);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(40, 13);
+            this.labelControl7.TabIndex = 170;
+            this.labelControl7.Text = "Division:";
+            // 
+            // cmb_division_eliminar
+            // 
+            this.cmb_division_eliminar.Location = new System.Drawing.Point(48, 69);
+            this.cmb_division_eliminar.Name = "cmb_division_eliminar";
+            this.cmb_division_eliminar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_division_eliminar.Properties.DisplayMember = "Descripcion";
+            this.cmb_division_eliminar.Properties.ValueMember = "IdDivision";
+            this.cmb_division_eliminar.Properties.View = this.gridView5;
+            this.cmb_division_eliminar.Size = new System.Drawing.Size(211, 20);
+            this.cmb_division_eliminar.TabIndex = 169;
+            // 
+            // gridView5
+            // 
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Vol_Descripcion});
+            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // Vol_Descripcion
+            // 
+            this.Vol_Descripcion.Caption = "Division";
+            this.Vol_Descripcion.FieldName = "Descripcion";
+            this.Vol_Descripcion.Name = "Vol_Descripcion";
+            this.Vol_Descripcion.Visible = true;
+            this.Vol_Descripcion.VisibleIndex = 0;
+            this.Vol_Descripcion.Width = 1062;
+            // 
+            // check_marcaciones
+            // 
+            this.check_marcaciones.Location = new System.Drawing.Point(13, 89);
+            this.check_marcaciones.Name = "check_marcaciones";
+            this.check_marcaciones.Properties.Caption = "Seleccionar";
+            this.check_marcaciones.Size = new System.Drawing.Size(84, 19);
+            this.check_marcaciones.TabIndex = 83;
+            this.check_marcaciones.CheckedChanged += new System.EventHandler(this.check_marcaciones_CheckedChanged);
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(5, 49);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(39, 13);
+            this.labelControl6.TabIndex = 149;
+            this.labelControl6.Text = "Nómina:";
+            // 
+            // cmb_nomina_eliminar
+            // 
+            this.cmb_nomina_eliminar.Location = new System.Drawing.Point(48, 46);
+            this.cmb_nomina_eliminar.Name = "cmb_nomina_eliminar";
+            this.cmb_nomina_eliminar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_nomina_eliminar.Properties.DisplayMember = "Descripcion";
+            this.cmb_nomina_eliminar.Properties.ValueMember = "IdNomina_Tipo";
+            this.cmb_nomina_eliminar.Properties.View = this.gridView3;
+            this.cmb_nomina_eliminar.Size = new System.Drawing.Size(211, 20);
+            this.cmb_nomina_eliminar.TabIndex = 148;
+            // 
+            // gridView3
+            // 
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1});
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Nomina";
+            this.gridColumn1.FieldName = "Descripcion";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.check_marcaciones);
             this.panel1.Controls.Add(this.btn_eliminar);
             this.panel1.Controls.Add(this.btn_Actualizar);
             this.panel1.Controls.Add(this.Cmb_buscar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(365, 21);
+            this.panel1.Location = new System.Drawing.Point(456, 21);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(201, 79);
+            this.panel1.Size = new System.Drawing.Size(110, 85);
             this.panel1.TabIndex = 80;
-            // 
-            // check_marcaciones
-            // 
-            this.check_marcaciones.Location = new System.Drawing.Point(4, 57);
-            this.check_marcaciones.Name = "check_marcaciones";
-            this.check_marcaciones.Properties.Caption = "Seleccionar";
-            this.check_marcaciones.Size = new System.Drawing.Size(109, 19);
-            this.check_marcaciones.TabIndex = 83;
-            this.check_marcaciones.CheckedChanged += new System.EventHandler(this.check_marcaciones_CheckedChanged);
             // 
             // btn_eliminar
             // 
             this.btn_eliminar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btn_eliminar.Image = global::Core.Erp.Winform.Properties.Resources.re_hacer_16x161;
-            this.btn_eliminar.Location = new System.Drawing.Point(119, 53);
+            this.btn_eliminar.Location = new System.Drawing.Point(22, 56);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(75, 23);
             this.btn_eliminar.TabIndex = 81;
@@ -466,7 +555,7 @@
             // 
             this.btn_Actualizar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btn_Actualizar.Image = global::Core.Erp.Winform.Properties.Resources.editar1_16x161;
-            this.btn_Actualizar.Location = new System.Drawing.Point(119, 28);
+            this.btn_Actualizar.Location = new System.Drawing.Point(22, 27);
             this.btn_Actualizar.Name = "btn_Actualizar";
             this.btn_Actualizar.Size = new System.Drawing.Size(75, 23);
             this.btn_Actualizar.TabIndex = 80;
@@ -477,7 +566,7 @@
             // 
             this.Cmb_buscar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.Cmb_buscar.Image = global::Core.Erp.Winform.Properties.Resources.Buscar_16x161;
-            this.Cmb_buscar.Location = new System.Drawing.Point(119, 4);
+            this.Cmb_buscar.Location = new System.Drawing.Point(22, 0);
             this.Cmb_buscar.Name = "Cmb_buscar";
             this.Cmb_buscar.Size = new System.Drawing.Size(75, 23);
             this.Cmb_buscar.TabIndex = 79;
@@ -487,42 +576,42 @@
             // dtFechaSalida
             // 
             this.dtFechaSalida.EditValue = null;
-            this.dtFechaSalida.Location = new System.Drawing.Point(92, 45);
+            this.dtFechaSalida.Location = new System.Drawing.Point(174, 24);
             this.dtFechaSalida.Name = "dtFechaSalida";
             this.dtFechaSalida.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFechaSalida.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dtFechaSalida.Size = new System.Drawing.Size(100, 20);
+            this.dtFechaSalida.Size = new System.Drawing.Size(85, 20);
             this.dtFechaSalida.TabIndex = 78;
             // 
             // labelControl16
             // 
-            this.labelControl16.Location = new System.Drawing.Point(15, 47);
+            this.labelControl16.Location = new System.Drawing.Point(138, 27);
             this.labelControl16.Name = "labelControl16";
-            this.labelControl16.Size = new System.Drawing.Size(50, 13);
+            this.labelControl16.Size = new System.Drawing.Size(32, 13);
             this.labelControl16.TabIndex = 77;
-            this.labelControl16.Text = "Fecha Fin:";
+            this.labelControl16.Text = "Hasta:";
             // 
             // dtFechaInicio
             // 
             this.dtFechaInicio.EditValue = null;
-            this.dtFechaInicio.Location = new System.Drawing.Point(92, 23);
+            this.dtFechaInicio.Location = new System.Drawing.Point(48, 24);
             this.dtFechaInicio.Name = "dtFechaInicio";
             this.dtFechaInicio.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtFechaInicio.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.dtFechaInicio.Size = new System.Drawing.Size(100, 20);
+            this.dtFechaInicio.Size = new System.Drawing.Size(85, 20);
             this.dtFechaInicio.TabIndex = 76;
             // 
             // labelControl15
             // 
-            this.labelControl15.Location = new System.Drawing.Point(13, 26);
+            this.labelControl15.Location = new System.Drawing.Point(5, 27);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(61, 13);
+            this.labelControl15.Size = new System.Drawing.Size(34, 13);
             this.labelControl15.TabIndex = 75;
-            this.labelControl15.Text = "Fecha Inicio:";
+            this.labelControl15.Text = "Desde:";
             // 
             // groupControl3
             // 
@@ -577,7 +666,7 @@
             this.Col_pe_nombr.OptionsColumn.AllowEdit = false;
             this.Col_pe_nombr.Visible = true;
             this.Col_pe_nombr.VisibleIndex = 0;
-            this.Col_pe_nombr.Width = 146;
+            this.Col_pe_nombr.Width = 123;
             // 
             // Col_pe_apellid
             // 
@@ -587,7 +676,7 @@
             this.Col_pe_apellid.OptionsColumn.AllowEdit = false;
             this.Col_pe_apellid.Visible = true;
             this.Col_pe_apellid.VisibleIndex = 1;
-            this.Col_pe_apellid.Width = 146;
+            this.Col_pe_apellid.Width = 123;
             // 
             // Col_de_descripcio
             // 
@@ -611,7 +700,7 @@
             this.Col_ru_descripcion.OptionsColumn.AllowEdit = false;
             this.Col_ru_descripcion.Visible = true;
             this.Col_ru_descripcion.VisibleIndex = 2;
-            this.Col_ru_descripcion.Width = 146;
+            this.Col_ru_descripcion.Width = 208;
             // 
             // Col_numHorasExtras
             // 
@@ -627,7 +716,7 @@
             this.Col_Estado_aprobacion.Name = "Col_Estado_aprobacion";
             this.Col_Estado_aprobacion.Visible = true;
             this.Col_Estado_aprobacion.VisibleIndex = 4;
-            this.Col_Estado_aprobacion.Width = 124;
+            this.Col_Estado_aprobacion.Width = 55;
             // 
             // col_es_fecha_registro
             // 
@@ -636,10 +725,12 @@
             this.col_es_fecha_registro.Name = "col_es_fecha_registro";
             this.col_es_fecha_registro.Visible = true;
             this.col_es_fecha_registro.VisibleIndex = 3;
-            this.col_es_fecha_registro.Width = 170;
+            this.col_es_fecha_registro.Width = 109;
             // 
             // groupControl4
             // 
+            this.groupControl4.Controls.Add(this.labelControl8);
+            this.groupControl4.Controls.Add(this.cmb_division);
             this.groupControl4.Controls.Add(this.labelControl3);
             this.groupControl4.Controls.Add(this.labelControl4);
             this.groupControl4.Controls.Add(this.labelControl5);
@@ -652,11 +743,49 @@
             this.groupControl4.Name = "groupControl4";
             this.groupControl4.Size = new System.Drawing.Size(638, 108);
             this.groupControl4.TabIndex = 1;
-            this.groupControl4.Text = "Fecha Pago Novedad";
+            this.groupControl4.Text = "Aprobar Horas extras (S/D Y FERIADO)";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Location = new System.Drawing.Point(8, 92);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(40, 13);
+            this.labelControl8.TabIndex = 172;
+            this.labelControl8.Text = "Division:";
+            // 
+            // cmb_division
+            // 
+            this.cmb_division.Location = new System.Drawing.Point(54, 89);
+            this.cmb_division.Name = "cmb_division";
+            this.cmb_division.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_division.Properties.DisplayMember = "Descripcion";
+            this.cmb_division.Properties.ValueMember = "IdDivision";
+            this.cmb_division.Properties.View = this.gridView4;
+            this.cmb_division.Size = new System.Drawing.Size(182, 20);
+            this.cmb_division.TabIndex = 171;
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn2});
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Division";
+            this.gridColumn2.FieldName = "Descripcion";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 1062;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(8, 72);
+            this.labelControl3.Location = new System.Drawing.Point(8, 70);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(40, 13);
             this.labelControl3.TabIndex = 155;
@@ -664,7 +793,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(6, 49);
+            this.labelControl4.Location = new System.Drawing.Point(6, 47);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(42, 13);
             this.labelControl4.TabIndex = 154;
@@ -672,7 +801,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(9, 25);
+            this.labelControl5.Location = new System.Drawing.Point(9, 23);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(39, 13);
             this.labelControl5.TabIndex = 153;
@@ -680,7 +809,7 @@
             // 
             // cmbPeriodos
             // 
-            this.cmbPeriodos.Location = new System.Drawing.Point(75, 70);
+            this.cmbPeriodos.Location = new System.Drawing.Point(54, 67);
             this.cmbPeriodos.Name = "cmbPeriodos";
             this.cmbPeriodos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -721,7 +850,7 @@
             // 
             // cmbnominaTipo
             // 
-            this.cmbnominaTipo.Location = new System.Drawing.Point(75, 45);
+            this.cmbnominaTipo.Location = new System.Drawing.Point(54, 44);
             this.cmbnominaTipo.Name = "cmbnominaTipo";
             this.cmbnominaTipo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -751,7 +880,7 @@
             // 
             // cmbnomina
             // 
-            this.cmbnomina.Location = new System.Drawing.Point(75, 19);
+            this.cmbnomina.Location = new System.Drawing.Point(54, 22);
             this.cmbnomina.Name = "cmbnomina";
             this.cmbnomina.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -799,19 +928,19 @@
             // 
             this.btn_Reversar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btn_Reversar.Image = global::Core.Erp.Winform.Properties.Resources.if_Rewind_20018731;
-            this.btn_Reversar.Location = new System.Drawing.Point(302, 57);
+            this.btn_Reversar.Location = new System.Drawing.Point(302, 45);
             this.btn_Reversar.Name = "btn_Reversar";
-            this.btn_Reversar.Size = new System.Drawing.Size(82, 23);
+            this.btn_Reversar.Size = new System.Drawing.Size(82, 20);
             this.btn_Reversar.TabIndex = 83;
             this.btn_Reversar.Text = "Reversar.";
             this.btn_Reversar.Click += new System.EventHandler(this.btn_Reversar_Click);
             // 
             // checkSeleccionar
             // 
-            this.checkSeleccionar.Location = new System.Drawing.Point(199, 65);
+            this.checkSeleccionar.Location = new System.Drawing.Point(302, 63);
             this.checkSeleccionar.Name = "checkSeleccionar";
             this.checkSeleccionar.Properties.Caption = "Seleccionar";
-            this.checkSeleccionar.Size = new System.Drawing.Size(75, 19);
+            this.checkSeleccionar.Size = new System.Drawing.Size(82, 19);
             this.checkSeleccionar.TabIndex = 82;
             this.checkSeleccionar.CheckedChanged += new System.EventHandler(this.checkSeleccionar_CheckedChanged);
             // 
@@ -831,9 +960,9 @@
             // 
             this.cmb_aprobar_horasExtras.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.cmb_aprobar_horasExtras.Image = global::Core.Erp.Winform.Properties.Resources.grid_16x161;
-            this.cmb_aprobar_horasExtras.Location = new System.Drawing.Point(302, 28);
+            this.cmb_aprobar_horasExtras.Location = new System.Drawing.Point(302, 22);
             this.cmb_aprobar_horasExtras.Name = "cmb_aprobar_horasExtras";
-            this.cmb_aprobar_horasExtras.Size = new System.Drawing.Size(82, 23);
+            this.cmb_aprobar_horasExtras.Size = new System.Drawing.Size(82, 20);
             this.cmb_aprobar_horasExtras.TabIndex = 81;
             this.cmb_aprobar_horasExtras.Text = "Aprobar HE";
             this.cmb_aprobar_horasExtras.Click += new System.EventHandler(this.cmb_aprobar_horasExtras_Click);
@@ -842,9 +971,9 @@
             // 
             this.labelControl1.Location = new System.Drawing.Point(6, 44);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(123, 13);
+            this.labelControl1.Size = new System.Drawing.Size(32, 13);
             this.labelControl1.TabIndex = 77;
-            this.labelControl1.Text = "Fecha Hasta (Asistencia):";
+            this.labelControl1.Text = "Hasta:";
             // 
             // cmb_buscar_novedads_x_HE
             // 
@@ -852,7 +981,7 @@
             this.cmb_buscar_novedads_x_HE.Image = global::Core.Erp.Winform.Properties.Resources.Buscar_16x162;
             this.cmb_buscar_novedads_x_HE.Location = new System.Drawing.Point(302, 3);
             this.cmb_buscar_novedads_x_HE.Name = "cmb_buscar_novedads_x_HE";
-            this.cmb_buscar_novedads_x_HE.Size = new System.Drawing.Size(82, 23);
+            this.cmb_buscar_novedads_x_HE.Size = new System.Drawing.Size(82, 20);
             this.cmb_buscar_novedads_x_HE.TabIndex = 79;
             this.cmb_buscar_novedads_x_HE.Text = "Buscar";
             this.cmb_buscar_novedads_x_HE.Click += new System.EventHandler(this.cmb_buscar_novedads_x_HE_Click);
@@ -873,46 +1002,9 @@
             // 
             this.labelControl2.Location = new System.Drawing.Point(4, 6);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(125, 13);
+            this.labelControl2.Size = new System.Drawing.Size(34, 13);
             this.labelControl2.TabIndex = 75;
-            this.labelControl2.Text = "Fecha Desde (Asistencia):";
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(13, 72);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(39, 13);
-            this.labelControl6.TabIndex = 149;
-            this.labelControl6.Text = "Nómina:";
-            // 
-            // cmb_nomina_eliminar
-            // 
-            this.cmb_nomina_eliminar.Location = new System.Drawing.Point(92, 69);
-            this.cmb_nomina_eliminar.Name = "cmb_nomina_eliminar";
-            this.cmb_nomina_eliminar.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_nomina_eliminar.Properties.DisplayMember = "Descripcion";
-            this.cmb_nomina_eliminar.Properties.ValueMember = "IdNomina_Tipo";
-            this.cmb_nomina_eliminar.Properties.View = this.gridView3;
-            this.cmb_nomina_eliminar.Size = new System.Drawing.Size(166, 20);
-            this.cmb_nomina_eliminar.TabIndex = 148;
-            // 
-            // gridView3
-            // 
-            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1});
-            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Nomina";
-            this.gridColumn1.FieldName = "Descripcion";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.labelControl2.Text = "Desde:";
             // 
             // frmRo_Novedades_x_asistencia
             // 
@@ -938,8 +1030,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_division_eliminar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_marcaciones.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_eliminar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaSalida.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaSalida.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFechaInicio.Properties.VistaTimeProperties)).EndInit();
@@ -951,6 +1047,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.groupControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_division.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbnominaTipo.Properties)).EndInit();
@@ -964,8 +1062,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtp_fecha_fin_buscar_novedades.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_Fecha_inicio_buscar_novedades.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_Fecha_inicio_buscar_novedades.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmb_nomina_eliminar.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1042,6 +1138,14 @@
         private DevExpress.XtraEditors.SearchLookUpEdit cmb_nomina_eliminar;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_division_eliminar;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Columns.GridColumn Vol_Descripcion;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_division;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
 
     }
 }

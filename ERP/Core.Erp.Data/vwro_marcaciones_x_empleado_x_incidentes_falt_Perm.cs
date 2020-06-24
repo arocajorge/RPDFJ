@@ -29,5 +29,6 @@ namespace Core.Erp.Data
         public System.DateTime es_fecha_registro { get; set; }
         public int IdNomina_Tipo { get; set; }
         public Nullable<int> IdGrupo { get; set; }
+        public Nullable<int> IdDivision { get; set; }
     }
 }

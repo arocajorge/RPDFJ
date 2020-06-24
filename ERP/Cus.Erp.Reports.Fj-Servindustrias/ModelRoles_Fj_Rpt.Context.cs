@@ -22,7 +22,13 @@ namespace Cus.Erp.Reports.FJ
             : base("name=Entities_Roles_Fj_Rpt")
         {
         }
+        //poner esta funcion dentro de la clase entities no viene por defecto
+        public void SetCommandTimeOut(int TimeOut)
+        {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
+        }
     
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -199,31 +205,6 @@ namespace Cus.Erp.Reports.FJ
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt010_Result>("spROLES_Rpt010", idEmpresaParameter, idNomina_tipoParameter, idNomina_tipo_LiquiParameter, idPeriodoParameter, fecha_InicioParameter, fecha_FinParameter);
         }
     
-        public virtual ObjectResult<spROLES_Rpt012_Result> spROLES_Rpt012(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<int> anio, Nullable<int> mes, Nullable<int> idPeriodo)
-        {
-            var idEmpresaParameter = idEmpresa.HasValue ?
-                new ObjectParameter("IdEmpresa", idEmpresa) :
-                new ObjectParameter("IdEmpresa", typeof(int));
-    
-            var idNomina_tipoParameter = idNomina_tipo.HasValue ?
-                new ObjectParameter("IdNomina_tipo", idNomina_tipo) :
-                new ObjectParameter("IdNomina_tipo", typeof(int));
-    
-            var anioParameter = anio.HasValue ?
-                new ObjectParameter("Anio", anio) :
-                new ObjectParameter("Anio", typeof(int));
-    
-            var mesParameter = mes.HasValue ?
-                new ObjectParameter("Mes", mes) :
-                new ObjectParameter("Mes", typeof(int));
-    
-            var idPeriodoParameter = idPeriodo.HasValue ?
-                new ObjectParameter("IdPeriodo", idPeriodo) :
-                new ObjectParameter("IdPeriodo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt012_Result>("spROLES_Rpt012", idEmpresaParameter, idNomina_tipoParameter, anioParameter, mesParameter, idPeriodoParameter);
-        }
-    
         public virtual ObjectResult<spROLES_Rpt005_Result> spROLES_Rpt005(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin, Nullable<int> idperiodo_inicio, Nullable<int> idperiodo_fin)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
@@ -280,6 +261,31 @@ namespace Cus.Erp.Reports.FJ
                 new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt011_Result>("spROLES_Rpt011", idEmpresaParameter, idNomina_tipoParameter, idNomina_tipo_LiquiParameter, idPeriodoParameter, fecha_InicioParameter, fecha_FinParameter);
+        }
+    
+        public virtual ObjectResult<spROLES_Rpt012_Result> spROLES_Rpt012(Nullable<int> idEmpresa, Nullable<int> idNomina_tipo, Nullable<int> anio, Nullable<int> mes, Nullable<int> idPeriodo)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idNomina_tipoParameter = idNomina_tipo.HasValue ?
+                new ObjectParameter("IdNomina_tipo", idNomina_tipo) :
+                new ObjectParameter("IdNomina_tipo", typeof(int));
+    
+            var anioParameter = anio.HasValue ?
+                new ObjectParameter("Anio", anio) :
+                new ObjectParameter("Anio", typeof(int));
+    
+            var mesParameter = mes.HasValue ?
+                new ObjectParameter("Mes", mes) :
+                new ObjectParameter("Mes", typeof(int));
+    
+            var idPeriodoParameter = idPeriodo.HasValue ?
+                new ObjectParameter("IdPeriodo", idPeriodo) :
+                new ObjectParameter("IdPeriodo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt012_Result>("spROLES_Rpt012", idEmpresaParameter, idNomina_tipoParameter, anioParameter, mesParameter, idPeriodoParameter);
         }
     }
 }

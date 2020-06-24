@@ -261,5 +261,30 @@ namespace Core.Erp.Data.Roles
             }
 
         }
+
+        public Boolean procesar(int IdEmpresa, int IdNomina_Tipo, int IdNomina_TipoLiqui, int IdPeriodo,decimal IdEmpleado, string nombre_procedimiento, string observacion, string usuario)
+        {
+            try
+            {
+
+                if (observacion == null | observacion=="")
+                    observacion = "PERIODO " + IdPeriodo.ToString() ;
+                using (EntitiesRoles base_ = new EntitiesRoles())
+                {
+                    string query = "exec  " + nombre_procedimiento + " " + IdEmpresa + " , " + IdNomina_Tipo + "," + IdNomina_TipoLiqui + ", " + IdPeriodo + ","+IdEmpleado+",'" + usuario + "','" + observacion + "' ";
+                    base_.Database.ExecuteSqlCommand(query);
+
+                    return true;
+                }
+
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+    
     }
 }

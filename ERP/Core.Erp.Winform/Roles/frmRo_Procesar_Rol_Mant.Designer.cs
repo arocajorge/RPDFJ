@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Procesar_Rol_Mant));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_novedades_noc_cobradas = new DevExpress.XtraEditors.SimpleButton();
@@ -51,11 +52,12 @@
             this.cmdCargar = new DevExpress.XtraEditors.SimpleButton();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.roperiodoInfoBindingSource = new System.Windows.Forms.BindingSource();
+            this.roperiodoInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.check_operativo = new DevExpress.XtraEditors.CheckEdit();
             this.check_administrativo = new DevExpress.XtraEditors.CheckEdit();
             this.gridControlEmpleado = new DevExpress.XtraGrid.GridControl();
-            this.roEmpleadoInfoBindingSource = new System.Windows.Forms.BindingSource();
+            this.roEmpleadoInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewEmpleado = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colcheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Check = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -69,7 +71,7 @@
             this.Col_nomina = new DevExpress.XtraGrid.Columns.GridColumn();
             this.checkTodos = new System.Windows.Forms.CheckBox();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
-            this.xROLRpt002InfoBindingSource = new System.Windows.Forms.BindingSource();
+            this.xROLRpt002InfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gridControl_Saldo_Neg = new DevExpress.XtraGrid.GridControl();
             this.gridView_Saldo_Neg = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -86,11 +88,11 @@
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Col_pe_Descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_TotalValor = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.roRolDetalleInfoBindingSource = new System.Windows.Forms.BindingSource();
+            this.roRolDetalleInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.check_operativo = new DevExpress.XtraEditors.CheckEdit();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -100,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roperiodoInfoBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_administrativo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roEmpleadoInfoBindingSource)).BeginInit();
@@ -121,7 +124,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roRolDetalleInfoBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -240,7 +242,8 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ColDescripcionProcesoNomina});
+            this.ColDescripcionProcesoNomina,
+            this.gridColumn1});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -368,6 +371,14 @@
             this.groupBox2.Size = new System.Drawing.Size(554, 310);
             this.groupBox2.TabIndex = 46;
             this.groupBox2.TabStop = false;
+            // 
+            // check_operativo
+            // 
+            this.check_operativo.Location = new System.Drawing.Point(219, 14);
+            this.check_operativo.Name = "check_operativo";
+            this.check_operativo.Properties.Caption = "Operativos";
+            this.check_operativo.Size = new System.Drawing.Size(174, 19);
+            this.check_operativo.TabIndex = 152;
             // 
             // check_administrativo
             // 
@@ -761,13 +772,11 @@
             this.lblStatus.Text = "0%                                                           ";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // check_operativo
+            // gridColumn1
             // 
-            this.check_operativo.Location = new System.Drawing.Point(219, 14);
-            this.check_operativo.Name = "check_operativo";
-            this.check_operativo.Properties.Caption = "Operativos";
-            this.check_operativo.Size = new System.Drawing.Size(174, 19);
-            this.check_operativo.TabIndex = 152;
+            this.gridColumn1.Caption = "gridColumn1";
+            this.gridColumn1.FieldName = "nom_store_procedure";
+            this.gridColumn1.Name = "gridColumn1";
             // 
             // frmRo_Procesar_Rol_Mant
             // 
@@ -795,6 +804,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.roperiodoInfoBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_administrativo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlEmpleado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roEmpleadoInfoBindingSource)).EndInit();
@@ -817,7 +827,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.roRolDetalleInfoBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.check_operativo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -887,5 +896,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_novedades_noc_cobradas;
         private DevExpress.XtraEditors.CheckEdit check_administrativo;
         private DevExpress.XtraEditors.CheckEdit check_operativo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

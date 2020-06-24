@@ -940,15 +940,15 @@ namespace Core.Erp.Data.Roles
         }
 
 
-        public bool EliminarNovedadSaldoNegativos(int idempresa, int idnomina, string idcalendario)
+        public bool EliminarNovedadSaldoNegativos(int idempresa, int idnomina, int IdNomina_TipoLiqui, string idcalendario)
         {
             try
             {
 
                 using (EntitiesRoles context = new EntitiesRoles())
                 {
-                    context.Database.ExecuteSqlCommand("delete ro_empleado_novedad_det where IdEmpresa='" + idempresa + "' and IdNomina_tipo='" + idnomina + "' and  IdCalendario='" + idcalendario + "'  ");
-                    context.Database.ExecuteSqlCommand("delete ro_empleado_novedad where IdEmpresa='" + idempresa + "' and IdNomina_tipo='" + idnomina + "'  and IdCalendario='" + idcalendario + "'  ");
+                    context.Database.ExecuteSqlCommand("delete ro_empleado_novedad_det where IdEmpresa='" + idempresa + "' and IdNomina_tipo='" + idnomina + "' and  IdCalendario='" + idcalendario + "' and IdNomina_TipoLiqui='" + IdNomina_TipoLiqui + "' ");
+                    context.Database.ExecuteSqlCommand("delete ro_empleado_novedad where IdEmpresa='" + idempresa + "' and IdNomina_tipo='" + idnomina + "'  and IdCalendario='" + idcalendario + "' and IdNomina_Tipo_Liq='" + IdNomina_TipoLiqui + "' ");
                
                 }
 
@@ -1063,6 +1063,34 @@ namespace Core.Erp.Data.Roles
             }
         }
 
+        public bool Reversar_HorasExtras(int idempresa, decimal IdEmpleado, int IdPeriodo, string IdCalendario)
+        {
+            try
+            {
 
+                using (EntitiesRoles context = new EntitiesRoles())
+                {
+                    string sql = "delete ro_empleado_novedad_det where IdEmpresa='" + idempresa + "' and IdEmpleado='" + IdEmpleado + "' and  IdPeriodo='" + IdPeriodo + "' and IdCalendario = '" + IdCalendario + "' ";
+
+                    context.Database.ExecuteSqlCommand(sql);
+                    sql = "delete ro_empleado_novedad where IdEmpresa='" + idempresa + "' and IdEmpleado='" + IdEmpleado + "'  and IdPeriodo='" + IdPeriodo + "'   and IdCalendario = '" + IdCalendario + "'";
+                    context.Database.ExecuteSqlCommand(sql);
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                mensaje = ex.InnerException + " " + ex.Message;
+                mensaje = "Error al grabar .." + ex.Message;
+                return false;
+            }
+        }
     }
 }

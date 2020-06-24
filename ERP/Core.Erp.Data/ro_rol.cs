@@ -37,12 +37,14 @@ namespace Core.Erp.Data
         public string UsuarioCierre { get; set; }
         public Nullable<System.DateTime> FechaCierre { get; set; }
         public string IdCentroCosto { get; set; }
+        public Nullable<double> PorAportePersonal { get; set; }
+        public Nullable<double> SalarioBasico { get; set; }
     
-        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
         public virtual ro_periodo_x_ro_Nomina_TipoLiqui ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public virtual ICollection<ro_rol_individual> ro_rol_individual { get; set; }
         public virtual ro_Nomina_Tipo ro_Nomina_Tipo { get; set; }
         public virtual ro_periodo ro_periodo { get; set; }
         public virtual ICollection<ro_rol_detalle> ro_rol_detalle { get; set; }
+        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
     }
 }

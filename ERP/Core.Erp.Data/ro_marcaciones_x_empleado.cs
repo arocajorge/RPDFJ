@@ -42,5 +42,7 @@ namespace Core.Erp.Data
         public string nom_pc { get; set; }
         public string Motivo_Anu { get; set; }
         public Nullable<int> IdNomina { get; set; }
+    
+        public virtual ro_empleado ro_empleado { get; set; }
     }
 }

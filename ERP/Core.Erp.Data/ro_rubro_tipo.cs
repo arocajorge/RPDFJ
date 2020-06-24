@@ -63,6 +63,9 @@ namespace Core.Erp.Data
         public Nullable<bool> rub_Contabiliza_x_empleado { get; set; }
         public Nullable<bool> rub_mustra_liquidacion_cliente { get; set; }
         public string rub_Acuerdo_Descuento { get; set; }
+        public Nullable<int> ru_orden_rol_general { get; set; }
+        public Nullable<bool> ru_muestra_rol_general { get; set; }
+        public Nullable<bool> ru_calcula_basado_dias_efectivos { get; set; }
     
         public virtual ICollection<ro_empleado_novedad_det> ro_empleado_novedad_det { get; set; }
         public virtual ICollection<ro_rol_detalle> ro_rol_detalle { get; set; }

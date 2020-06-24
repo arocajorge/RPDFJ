@@ -44,6 +44,8 @@ namespace Core.Erp.Info.Roles
         public Nullable<Boolean> rub_nocontab { get; set; }
         public Nullable<Boolean> rub_utilid { get; set; }
         public string rub_codigo { get; set; }
+        public Nullable<int> ru_orden_rol_general { get; set; }
+        public Nullable<bool> ru_calcula_basado_dias_efectivos { get; set; }
 
         //campos vista vwRo_Config_rubros_x_Prestamo
         public string IdRubro_prest { get; set; }
@@ -55,6 +57,7 @@ namespace Core.Erp.Info.Roles
 
         public Nullable<Boolean> rub_guarda_rol { get; set; }
         public Nullable<Boolean> rub_aplica_IESS { get; set; }
+        public Nullable<bool> ru_muestra_rol_general { get; set; }
 
 
         public Nullable<Boolean> rub_AplicaEmpleado_Vac { get; set; }

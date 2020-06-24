@@ -156,6 +156,7 @@ namespace Core.Erp.Winform.Roles
                     txtId.Text = Convert.ToString(Info.IdNomina_Tipo);
                     txtDescripcion.Text = Info.DescripcionProcesoNomina;
                     cmbNomina.EditValue = Info.IdNomina_Tipo;
+                    txt_sp.Text = Info.nom_store_procedure;
                     checkBoxEstado.Checked = (Info.Estado == "A") ? true : false;
                     if (Info.Estado == "I" && Accion == Cl_Enumeradores.eTipo_action.actualizar)
                         checkBoxEstado.Enabled = true;
@@ -203,7 +204,7 @@ namespace Core.Erp.Winform.Roles
                     Cab.DescripcionProcesoNomina = txtDescripcion.Text;
                     Cab.IdNomina_Tipo = Convert.ToInt32(cmbNomina.EditValue);
                     Cab.Estado = (checkBoxEstado.Checked == true) ? "A" : "I";
-
+                    Cab.nom_store_procedure = txt_sp.Text;
                     //PERMITE ACTUALIZAR LOS DATOS DE LA GRILLA
                     if (oLstOrdenRubrosNomina_Info.Count>0){
                         Cab.oLstNominaRubroOrden.Clear();

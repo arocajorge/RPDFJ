@@ -5,15 +5,7 @@ using System.Text;
 using Core.Erp.Info.Roles;
 using Core.Erp.Data.General;
 using Core.Erp.Info.General;
-///
-///katiuska unific 08012014 1441
-///
-//
-//
 
-///Prog: Héctor Ayauca
-///V 10.13 22022014
-///
 
 
 namespace Core.Erp.Data.Roles
@@ -46,9 +38,6 @@ namespace Core.Erp.Data.Roles
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
-
-
         public Boolean PROCESARMUCHOS(int IDempresa, int IDproceso, int IDperiodo, decimal IDEmpleado1, decimal IDEmpleado2, int IDtipo_nomina)
         {
             try
@@ -76,8 +65,6 @@ namespace Core.Erp.Data.Roles
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
-// haac 09/01/2014
         public Boolean Pago_Decimo_XIII(int IdPeriodo_Ini, int IdPeriodo_Fin)
         {
             try
@@ -102,8 +89,7 @@ namespace Core.Erp.Data.Roles
                 mensaje = ex.InnerException + " " + ex.Message;
                 throw new Exception(ex.InnerException.ToString());
             }
-        }// haac 09/01/2014
-
+        }
         public Boolean InsertaCalculosIESS_x_empleado(List<ro_Ing_Egre_x_Empleado> List , ref string msg)
         {
             try
@@ -198,6 +184,6 @@ namespace Core.Erp.Data.Roles
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-
+      
     }
 }

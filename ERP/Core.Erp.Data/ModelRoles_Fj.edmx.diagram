@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_x_empleado_Adm_x_periodo_Det" Width="1.5" PointX="1.9611689830018064" PointY="4.69354805568864" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_x_Periodo_Empleado_Det" Width="1.5" PointX="1.6665062390577545" PointY="1.0531251286403858" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_disco" Width="1.5" PointX="10.420679607624505" PointY="24.752517890535536" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="9.446520604866798" PointY="13.148832118673637" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_parametro_x_pago_variable_Det" Width="1.5" PointX="11.158704595248544" PointY="14.003980896437533" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_rutas_asignadas" Width="1.5" PointX="5.811642958694903" PointY="12.850007227086465" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_rutas_asignadas_Det" Width="1.5" PointX="3.3565761257692133" PointY="21.835656116640035" />
@@ -45,11 +44,9 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_parametros_reporte" Width="1.5" PointX="10.695578734714342" PointY="1.3172265893394251" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_planificacion_x_ruta_entrega_x_empleado" Width="1.5" PointX="5.224539189238353" PointY="0.64175041049800363" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_descuento_no_planificados" Width="1.5" PointX="2.4558722332380114" PointY="27.6074900606682" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="3.5749891715007784" PointY="10.373609413566816" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_descuento_no_planificados" Width="1.5" PointX="0.97349298231932013" PointY="28.224388195306243" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_descuento_no_planificados_Det" Width="1.5" PointX="2.3806033685713093" PointY="26.213611108350385" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_empleado_x_rutas_asignadas_Det" Width="1.5" PointX="2.6530562092797161" PointY="4.04367903063245" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" Width="1.5" PointX="4.6238338596298512" PointY="27.883285565247427" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" Width="1.5" PointX="5.6044146295657455" PointY="2.7364846629726163" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Grupo_empleado" Width="1.5" PointX="8.7953924894311424" PointY="8.3932649830324877" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_x_cargo_fuerza_grupo" Width="1.5" PointX="3.815761569801607" PointY="21.2399045774899" />
@@ -89,6 +86,11 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" Width="1.5" PointX="11.880334904361671" PointY="21.410176093415441" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="2.5254061606365283" PointY="24.156077217383345" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_extension_salud" Width="1.5" PointX="5.1286337325017124" PointY="3.9211499858280412" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_rubros_calculados" Width="1.5" PointX="4.4660757242078315" PointY="5.8072403398376142" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_marcaciones_no_aplica_sobretiempo" Width="1.5" PointX="11.388047570077724" PointY="0.63078935473728426" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="8.6970736871925531" PointY="17.262965955428296" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="5.9920330261774515" PointY="31.467183664192998" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" Width="1.5" PointX="3.08574184732779" PointY="25.18850029687793" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

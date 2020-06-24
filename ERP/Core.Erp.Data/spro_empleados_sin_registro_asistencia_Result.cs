@@ -27,7 +27,7 @@ namespace Core.Erp.Data
         public string Tipo_asistencia_Cat { get; set; }
         public string tu_descripcion { get; set; }
         public Nullable<bool> es_jornada_desfasada { get; set; }
-        public decimal IdTurno { get; set; }
+        public int IdTurno { get; set; }
         public Nullable<System.DateTime> em_fechaSalida { get; set; }
         public Nullable<int> IdDivision { get; set; }
     }

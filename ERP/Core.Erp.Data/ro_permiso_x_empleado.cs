@@ -47,5 +47,7 @@ namespace Core.Erp.Data
         public string nom_pc { get; set; }
         public string MotivoAnulacion { get; set; }
         public Nullable<decimal> IdNovedad { get; set; }
+    
+        public virtual ro_permiso_x_empleado_x_novedad ro_permiso_x_empleado_x_novedad { get; set; }
     }
 }

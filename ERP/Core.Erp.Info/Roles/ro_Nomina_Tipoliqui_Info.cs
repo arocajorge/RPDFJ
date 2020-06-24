@@ -20,6 +20,7 @@ namespace Core.Erp.Info.Roles
         public DateTime FechaTransac { get; set; }
         public DateTime FechaUltModi { get; set; }
         public string Estado { get; set; }
+        public string nom_store_procedure { get; set; }
 
         public List<ro_nomina_tipo_liqui_orden_Info> oLstNominaRubroOrden = new List<ro_nomina_tipo_liqui_orden_Info>();
         

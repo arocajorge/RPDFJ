@@ -811,13 +811,6 @@
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="spROLES_Rpt012" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt012_Result)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-            <Parameter Name="IdNomina_tipo" Mode="In" Type="Int32" />
-            <Parameter Name="Anio" Mode="In" Type="Int32" />
-            <Parameter Name="Mes" Mode="In" Type="Int32" />
-            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="vwROLES_Rpt013" EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt013" />
           <EntitySet Name="vwROLES_Rpt021" EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt021" />
           <FunctionImport Name="spROLES_Rpt005" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt005_Result)">
@@ -835,6 +828,13 @@
             <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spROLES_Rpt012" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt012_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdNomina_tipo" Mode="In" Type="Int32" />
+            <Parameter Name="Anio" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
+            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="vwROLES_Rpt008">
@@ -1303,33 +1303,6 @@
           <Property Type="Double" Name="TotalPagar" Nullable="true" />
           <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="spROLES_Rpt012_Result">
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdNominaTipo" Nullable="false" />
-          <Property Type="Int32" Name="IdNominaTipoLiqui" Nullable="false" />
-          <Property Type="Int32" Name="IdPeriodo" Nullable="false" />
-          <Property Type="Int32" Name="pe_anio" Nullable="true" />
-          <Property Type="Int32" Name="pe_mes" Nullable="true" />
-          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Disco" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Placa" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ru_descripcion" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="em_fechaIngaRol" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="pe_FechaIni" Nullable="false" Precision="16" />
-          <Property Type="String" Name="em_fechaSalida" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="201" />
-          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="ca_orden" Nullable="false" />
-          <Property Type="String" Name="ca_estado" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="Catalogo" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
-          <Property Type="Double" Name="Valor" Nullable="false" />
-          <Property Type="Int32" Name="Orden" Nullable="false" />
-          <Property Type="Int32" Name="Dias_vacaciones" Nullable="true" />
-        </ComplexType>
         <EntityType Name="vwROLES_Rpt013">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -1461,6 +1434,34 @@
           <Property Type="Double" Name="Efectividad_Volumen_aplica_ali" Nullable="true" />
           <Property Type="Double" Name="Recuperacion_cartera_ali" Nullable="true" />
           <Property Type="Double" Name="Recuperacion_cartera_aplica_ali" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spROLES_Rpt012_Result">
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNominaTipo" Nullable="false" />
+          <Property Type="Int32" Name="IdNominaTipoLiqui" Nullable="false" />
+          <Property Type="Int32" Name="IdPeriodo" Nullable="false" />
+          <Property Type="Int32" Name="pe_anio" Nullable="true" />
+          <Property Type="Int32" Name="pe_mes" Nullable="true" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Disco" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Placa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ru_descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="em_fechaIngaRol" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="pe_FechaIni" Nullable="false" Precision="16" />
+          <Property Type="String" Name="em_fechaSalida" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Cedula" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ca_orden" Nullable="false" />
+          <Property Type="String" Name="ca_estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Catalogo" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="Valor" Nullable="false" />
+          <Property Type="Int32" Name="Orden" Nullable="false" />
+          <Property Type="Int32" Name="Dias_vacaciones" Nullable="true" />
+          <Property Type="Int32" Name="Dias_permiso" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1841,37 +1842,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spROLES_Rpt012" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt012">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt012_Result">
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="IdNominaTipo" ColumnName="IdNominaTipo" />
-                <ScalarProperty Name="IdNominaTipoLiqui" ColumnName="IdNominaTipoLiqui" />
-                <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
-                <ScalarProperty Name="pe_anio" ColumnName="pe_anio" />
-                <ScalarProperty Name="pe_mes" ColumnName="pe_mes" />
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
-                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
-                <ScalarProperty Name="Disco" ColumnName="Disco" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
-                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
-                <ScalarProperty Name="pe_FechaIni" ColumnName="pe_FechaIni" />
-                <ScalarProperty Name="em_fechaSalida" ColumnName="em_fechaSalida" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
-                <ScalarProperty Name="ca_orden" ColumnName="ca_orden" />
-                <ScalarProperty Name="ca_estado" ColumnName="ca_estado" />
-                <ScalarProperty Name="Catalogo" ColumnName="Catalogo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="Orden" ColumnName="Orden" />
-                <ScalarProperty Name="Dias_vacaciones" ColumnName="Dias_vacaciones" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="vwROLES_Rpt013">
             <EntityTypeMapping TypeName="Entities_RolesFj_Rpt.vwROLES_Rpt013">
               <MappingFragment StoreEntitySet="vwROLES_Rpt013">
@@ -1985,6 +1955,38 @@
                 <ScalarProperty Name="Efectividad_Volumen_aplica_ali" ColumnName="Efectividad_Volumen_aplica_ali" />
                 <ScalarProperty Name="Recuperacion_cartera_ali" ColumnName="Recuperacion_cartera_ali" />
                 <ScalarProperty Name="Recuperacion_cartera_aplica_ali" ColumnName="Recuperacion_cartera_aplica_ali" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spROLES_Rpt012" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt012">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt012_Result">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdNominaTipo" ColumnName="IdNominaTipo" />
+                <ScalarProperty Name="IdNominaTipoLiqui" ColumnName="IdNominaTipoLiqui" />
+                <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
+                <ScalarProperty Name="pe_anio" ColumnName="pe_anio" />
+                <ScalarProperty Name="pe_mes" ColumnName="pe_mes" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
+                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
+                <ScalarProperty Name="Disco" ColumnName="Disco" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
+                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
+                <ScalarProperty Name="pe_FechaIni" ColumnName="pe_FechaIni" />
+                <ScalarProperty Name="em_fechaSalida" ColumnName="em_fechaSalida" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="ca_orden" ColumnName="ca_orden" />
+                <ScalarProperty Name="ca_estado" ColumnName="ca_estado" />
+                <ScalarProperty Name="Catalogo" ColumnName="Catalogo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Dias_vacaciones" ColumnName="Dias_vacaciones" />
+                <ScalarProperty Name="Dias_permiso" ColumnName="Dias_permiso" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

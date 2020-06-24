@@ -286,11 +286,11 @@ namespace Core.Erp.Business.Roles
            }
        }
 
-       public bool EliminarNovedadSaldoNegativos(int idempresa, int idnomina, string idcalendario)
+       public bool EliminarNovedadSaldoNegativos(int idempresa, int idnomina,int IdNomina_TipoLiqui, string idcalendario)
        {
            try
            {
-              return oData.EliminarNovedadSaldoNegativos( idempresa, idnomina, idcalendario);
+               return oData.EliminarNovedadSaldoNegativos(idempresa, idnomina, IdNomina_TipoLiqui, idcalendario);
            }
            catch (Exception ex)
            {
@@ -337,6 +337,22 @@ namespace Core.Erp.Business.Roles
            }
        }
 
+       public bool Reversar_HorasExtras(int idempresa, decimal IdEmpleado, int IdPeriodo, string IdCalendario)
+       {
+           try
+           {
+
+               return oData.Reversar_HorasExtras(idempresa, IdEmpleado, IdPeriodo, IdCalendario);
+           }
+           catch (Exception ex)
+           {
+
+               Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+               throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GrabarDB", ex.Message), ex) { EntityType = typeof(ro_Empleado_Novedad_Bus) };
+
+
+           }
+       }
 
 
        public ro_Empleado_Novedad_Bus() { }

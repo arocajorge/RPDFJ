@@ -110,15 +110,14 @@ namespace Core.Erp.Winform.Roles_Fj
                 if (cmb_division.EditValue == null)
                 {
                     lista_empleado = Bus_empleado.Get_list_empleado_con_jornada_desfasada(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), info_Periodo, Convert.ToInt32(cmb_turnos_cambia_usuario.EditValue));
-                    gridControl_Turnos.DataSource = lista_empleado;
                 }
 
                 if (cmb_division.EditValue != null)
                 {
                     lista_empleado = Bus_empleado.Get_list_empleado_con_jornada_desfasada_car(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), info_Periodo, Convert.ToDecimal(cmb_division.EditValue),  Convert.ToInt32(cmb_turnos_cambia_usuario.EditValue));
-                    gridControl_Turnos.DataSource = lista_empleado;
                 }
 
+                gridControl_Turnos.DataSource = lista_empleado; 
 
 
 

@@ -214,7 +214,7 @@ namespace Core.Erp.Info.Roles
         public int IdSala { get; set; }
         public int Iddisco { get; set; }
         public int IdRuta { get; set; }
-
+        public int cantidad { get; set; }
 
 
         //TMP WIZARD - IMPORTACION DE EMPLEADOS

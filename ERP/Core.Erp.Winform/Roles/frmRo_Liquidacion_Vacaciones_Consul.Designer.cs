@@ -90,8 +90,8 @@
             this.ucGe_Menu.Enable_boton_salir = true;
             this.ucGe_Menu.Enable_btnImpExcel = true;
             this.ucGe_Menu.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu.fecha_desde = new System.DateTime(2017, 7, 28, 13, 13, 26, 284);
-            this.ucGe_Menu.fecha_hasta = new System.DateTime(2017, 9, 28, 13, 13, 26, 284);
+            this.ucGe_Menu.fecha_desde = new System.DateTime(2020, 4, 30, 21, 43, 10, 4);
+            this.ucGe_Menu.fecha_hasta = new System.DateTime(2020, 6, 30, 21, 43, 10, 5);
             this.ucGe_Menu.FormConsulta = null;
             this.ucGe_Menu.FormMain = null;
             this.ucGe_Menu.GridControlConsulta = null;
@@ -101,7 +101,7 @@
             this.ucGe_Menu.Size = new System.Drawing.Size(1023, 175);
             this.ucGe_Menu.TabIndex = 1;
             this.ucGe_Menu.Visible_bodega = false;
-            this.ucGe_Menu.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_CancelarCuotas = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_CargaMarcaciónExcel = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_boton_consular = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -122,7 +122,7 @@
             this.ucGe_Menu.Visible_btnImpExcel = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_Descargar_Marca_Base_exter = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_fechas = true;
-            this.ucGe_Menu.Visible_Grupo_Cancelaciones = false;
+            this.ucGe_Menu.Visible_Grupo_Cancelaciones = true;
             this.ucGe_Menu.Visible_Grupo_Diseño_Reporte = false;
             this.ucGe_Menu.Visible_Grupo_filtro = false;
             this.ucGe_Menu.Visible_Grupo_Impresion = false;
@@ -132,6 +132,7 @@
             this.ucGe_Menu.Visible_ribbon_control = true;
             this.ucGe_Menu.Visible_sucursal = false;
             this.ucGe_Menu.event_btnconsultar_ItemClick += new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario.delegate_btnconsultar_ItemClick(this.ucGe_Menu_event_btnconsultar_ItemClick);
+            this.ucGe_Menu.event_btnAnular_ItemClick += new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario.delegate_btnAnular_ItemClick(this.ucGe_Menu_event_btnAnular_ItemClick);
             this.ucGe_Menu.event_btnSalir_ItemClick += new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario.delegate_btnSalir_ItemClick(this.ucGe_Menu_event_btnSalir_ItemClick);
             this.ucGe_Menu.event_btnCancelarCuotas_ItemClick += new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario.delegate_btnCancelarCuotas_ItemClick(this.ucGe_Menu_event_btnCancelarCuotas_ItemClick);
             this.ucGe_Menu.event_btnBuscar_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario.delegate_btnBuscar_Click(this.ucGe_Menu_event_btnBuscar_Click);

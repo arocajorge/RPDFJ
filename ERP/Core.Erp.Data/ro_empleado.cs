@@ -39,6 +39,7 @@ namespace Core.Erp.Data
             this.ro_rol_detalle = new HashSet<ro_rol_detalle>();
             this.ro_Acta_Finiquito = new HashSet<ro_Acta_Finiquito>();
             this.ro_cargaFamiliar = new HashSet<ro_cargaFamiliar>();
+            this.ro_marcaciones_x_empleado = new HashSet<ro_marcaciones_x_empleado>();
         }
     
         public int IdEmpresa { get; set; }
@@ -149,5 +150,6 @@ namespace Core.Erp.Data
         public virtual ICollection<ro_Acta_Finiquito> ro_Acta_Finiquito { get; set; }
         public virtual ro_cargo ro_cargo { get; set; }
         public virtual ICollection<ro_cargaFamiliar> ro_cargaFamiliar { get; set; }
+        public virtual ICollection<ro_marcaciones_x_empleado> ro_marcaciones_x_empleado { get; set; }
     }
 }

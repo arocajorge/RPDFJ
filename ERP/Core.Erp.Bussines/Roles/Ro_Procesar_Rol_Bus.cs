@@ -4,12 +4,8 @@ using System.Linq;
 using System.Text;
 using Core.Erp.Data.Roles;
 using Core.Erp.Business.General;
-///katiuska unific 08012014 1441
 namespace Core.Erp.Business.Roles
-{///Prog: Héctor Ayauca
-    ///V 10.13 22022014
-    ///
-
+{
 
     public class ro_Procesar_Rol_Bus
     {
@@ -17,8 +13,6 @@ namespace Core.Erp.Business.Roles
         string mensaje = "";
         ro_Procesar_Rol_data obj = new ro_Procesar_Rol_data();
         ro_calculos_formula_IESS_bus calc = new ro_calculos_formula_IESS_bus();
-    
-        // haac 09/01/2014   
         public Boolean Pago_Decimo_XIII(int IdPeriodo_Ini, int IdPeriodo_Fin)
         {
             Boolean procesado = false;
@@ -36,6 +30,7 @@ namespace Core.Erp.Business.Roles
             return procesado;
         }// haac 09/01/2014
 
+       
       
     }
 }

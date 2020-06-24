@@ -12,106 +12,49 @@ namespace Core.Erp.Data.Roles
     {
           ro_Empleado_Data empleado_data = new ro_Empleado_Data();  
           string mensaje = "";
-        public Boolean GrabarBD( ro_historico_liquidacion_vacaciones_Info Info, ref int IdSolicitud)
-        {
-            try
-            {
-
-                using (EntitiesRoles db = new EntitiesRoles())
-                {
-
-
-
-
-                    var select = from q in db.ro_Historico_Liquidacion_Vacaciones
-                                 where q.IdEmpresa == Info.IdEmpresa
-                                 && q.IdLiquidacion == Info.IdSolicitud_Vacaciones
-                                 && q.IdEmpleado == Info.IdEmpleado
-                                 select q;
-
-                    if (select.ToList().Count > 0)
-                    {
-                        
-                            var contact = db.ro_Historico_Liquidacion_Vacaciones.First(obj => obj.IdEmpresa == Info.IdEmpresa &&
-                            obj.IdLiquidacion == Info.IdSolicitud_Vacaciones && obj.IdEmpleado == Info.IdEmpleado);
-
-                            contact.FechaPago = Info.FechaPago;
-                            contact.IdNomina_Tipo = Info.IdNomina_Tipo;
-                            contact.ValorCancelado = Info.ValorCancelado;
-                            db.SaveChanges();
-                       
-                    }
-                    else
-                    {
-
-                        ro_Historico_Liquidacion_Vacaciones Data = new ro_Historico_Liquidacion_Vacaciones();
-
-                        Data.IdEmpresa = Info.IdEmpresa;
-                        Data.IdNomina_Tipo = Info.IdNomina_Tipo;
-                        Data.IdLiquidacion = getId(Info.IdEmpresa,Convert.ToInt32( Info.IdEmpleado));
-                        Data.IdEmpresa_OP = Info.IdEmpresa_OP;
-                        Data.IdOrdenPago = Info.IdOrdenPago;
-                        Data.IdEmpleado = Info.IdEmpleado;
-                        Data.ValorCancelado = Info.ValorCancelado;
-                        Data.FechaPago = Info.FechaPago;
-                        Data.Observaciones = Info.Observaciones;
-                        Data.IdUsuario = Info.IdUsuario;
-                        Data.Estado = "A";
-                        Data.Fecha_Transac = DateTime.Now;
-
-                        db.ro_Historico_Liquidacion_Vacaciones.Add(Data);
-                        db.SaveChanges();
-
-                        IdSolicitud = Data.IdLiquidacion;
-                       // empleado_data.Modificar_Estado(Info.IdEmpresa, Info.IdNomina_Tipo, Convert.ToInt32(Info.IdEmpleado), "EST_VAC");
-                    }
-
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                string arreglo = ToString();
-                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
-                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
-                mensaje = ex.InnerException + " " + ex.Message;
-                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
-                throw new Exception(ex.InnerException.ToString());
-            }
-
-        }
-
+      
         public Boolean EliminarDB(ro_historico_liquidacion_vacaciones_Info info)
         {
             try
             {
-                EntitiesRoles OERoles = new EntitiesRoles();
-                var select = from q in OERoles.ro_Historico_Liquidacion_Vacaciones
-                             where q.IdEmpresa == info.IdEmpresa
-                             && q.IdLiquidacion == info.IdSolicitud_Vacaciones
-                             && q.IdEmpleado==info.IdEmpleado
-                             select q;
 
-                if (select.ToList().Count > 0)
+
+                info.IdLiquidacion = info.IdSolicitud_Vacaciones;
+
+                int dias_tomados = 0;
+                using (EntitiesRoles db = new EntitiesRoles())
                 {
-                    using (EntitiesRoles context = new EntitiesRoles())
+                    var Entity = db.ro_Solicitud_Vacaciones_x_empleado.Where(v => v.IdEmpresa == info.IdEmpresa
+                        && v.IdSolicitudVaca == info.IdLiquidacion).FirstOrDefault();
+                    if (Entity == null)
+                        return false;
+                    Entity.Estado = "I";
+                    Entity.MotivoAnulacion = "ERROR DE RRHH";
+                    var ro_historico_vacaciones_x_empleado = db.ro_historico_vacaciones_x_empleado.Where(
+                        v => v.IdEmpresa == info.IdEmpresa
+                        && v.IdEmpleado == info.IdEmpleado
+                        && v.FechaIni == Entity.Anio_Desde
+                        && v.FechaFin == Entity.Anio_Hasta).FirstOrDefault();
+                    if (ro_historico_vacaciones_x_empleado != null)
                     {
-                        var contact = context.ro_Historico_Liquidacion_Vacaciones.First(obj => obj.IdEmpresa == info.IdEmpresa &&
-                             obj.IdLiquidacion == info.IdSolicitud_Vacaciones && obj.IdEmpleado == info.IdEmpleado);
-                        contact.Estado = "I";
-                        contact.IdUsuarioUltAnu = info.IdUsuarioUltAnu;
-                        contact.FechaHoraAnul = DateTime.Now;
-                        contact.MotiAnula = info.MotiAnula;
-                        context.SaveChanges();
+                        dias_tomados = ro_historico_vacaciones_x_empleado.DiasTomados == null ? 0 : Convert.ToInt32(ro_historico_vacaciones_x_empleado.DiasTomados);
+                        dias_tomados = dias_tomados - Entity.Dias_a_disfrutar;
+                        ro_historico_vacaciones_x_empleado.DiasTomados = dias_tomados;
                     }
 
-                    return true;
+                    var entity_liquidacion = db.ro_Historico_Liquidacion_Vacaciones.Where(v => v.IdEmpresa == info.IdEmpresa
+                        && v.IdLiquidacion == info.IdSolicitud_Vacaciones).FirstOrDefault();
+
+                    if (entity_liquidacion != null)
+                    {
+                        entity_liquidacion.Estado = "I";
+                        entity_liquidacion.MotiAnula = "ERROR DE RRHH";
+                    }
+                    db.SaveChanges();
                 }
-                else
-                {
-                   // msg = "No es posible anular el registro del Cargo #: " + info.IdCargo.ToString() + " debido a que ya se encuentra anulado.";
-                    return false;
-                }
+                return true;
+
+
             }
             catch (Exception ex)
             {
@@ -223,10 +166,6 @@ namespace Core.Erp.Data.Roles
 
                 using (EntitiesRoles db = new EntitiesRoles())
                 {
-
-
-
-
                     var select = from q in db.ro_Historico_Liquidacion_Vacaciones
                                  where q.IdEmpresa == Info.IdEmpresa
                                  && q.IdLiquidacion == Info.IdSolicitud_Vacaciones
@@ -238,7 +177,6 @@ namespace Core.Erp.Data.Roles
 
                         var contact = db.ro_Historico_Liquidacion_Vacaciones.First(obj => obj.IdEmpresa == Info.IdEmpresa &&
                         obj.IdLiquidacion == Info.IdSolicitud_Vacaciones && obj.IdEmpleado == Info.IdEmpleado);
-
                         contact.FechaPago = Info.FechaPago;
                         contact.IdNomina_Tipo = Info.IdNomina_Tipo;
                         contact.ValorCancelado = Info.ValorCancelado;
@@ -249,7 +187,6 @@ namespace Core.Erp.Data.Roles
                     {
 
                         ro_Historico_Liquidacion_Vacaciones Data = new ro_Historico_Liquidacion_Vacaciones();
-
                         Data.IdEmpresa = Info.IdEmpresa;
                         Data.IdNomina_Tipo = Info.IdNomina_Tipo;
                         Data.IdLiquidacion = Info.IdSolicitud_Vacaciones;
@@ -269,22 +206,6 @@ namespace Core.Erp.Data.Roles
                       //  IdSolicitud = Data.IdLiquidacion;
                         // empleado_data.Modificar_Estado(Info.IdEmpresa, Info.IdNomina_Tipo, Convert.ToInt32(Info.IdEmpleado), "EST_VAC");
                     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 }
                 return true;

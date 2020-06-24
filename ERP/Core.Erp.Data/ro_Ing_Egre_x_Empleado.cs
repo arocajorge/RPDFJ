@@ -33,8 +33,8 @@ namespace Core.Erp.Data
         public string TipoRegistro { get; set; }
         public string Unid_Medida { get; set; }
     
-        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
         public virtual ro_periodo ro_periodo { get; set; }
         public virtual ro_empleado ro_empleado { get; set; }
+        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
     }
 }

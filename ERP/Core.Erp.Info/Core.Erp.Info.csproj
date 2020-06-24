@@ -1240,6 +1240,7 @@
     <Compile Include="Roles_Fj\ro_planificacion_x_ruta_x_empleado_Info.cs" />
     <Compile Include="Roles_Fj\ro_presupuesto_x_fuerza_x_cargo_Info.cs" />
     <Compile Include="Roles_Fj\ro_Remplazo_x_emplado_Info.cs" />
+    <Compile Include="Roles_Fj\ro_rubros_calculados_Info.cs" />
     <Compile Include="Roles_Fj\ro_ruta_Info.cs" />
     <Compile Include="Roles_Fj\ro_sala_Info.cs" />
     <Compile Include="Roles_Fj\ro_zona_Info.cs" />

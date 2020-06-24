@@ -56,11 +56,6 @@ namespace Core.Erp.Winform.Roles_Fj
             Cargar_Datos();
         }
 
-        private void gridControlAsistencia_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dTPFechaIni_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -132,13 +127,11 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 DateTime fecha=Convert.ToDateTime( dtp_es_fecha_registro.Value.ToShortDateString());
-                lista_emplados = new BindingList<ro_Empleado_Info>(bus_emplaeado.Get_list_empleado_sin_registro_asistencia(param.IdEmpresa,Convert.ToInt32( cmbnomina.EditValue) ,fecha , Convert.ToInt32(cmb_division.EditValue) ));
+                if(cmbStatus.EditValue!=null)
+                lista_emplados = new BindingList<ro_Empleado_Info>(bus_emplaeado.Get_list_empleado_sin_registro_asistencia(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), fecha, Convert.ToInt32(cmb_division.EditValue), cmbStatus.EditValue.ToString()));
                 gridControlAsistencia.DataSource = lista_emplados;
 
-                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
-                cmb_asistencia.DataSource = lista_catalogo;
-                cmb_asistencia.DisplayMember = "ca_descripcion";
-                cmb_asistencia.ValueMember = "CodCatalogo";
+                
             }
             catch (Exception ex)
             {
@@ -151,22 +144,26 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-               
-                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
-                cmb_asistencia.DataSource = lista_catalogo;
-                cmb_asistencia.DisplayMember = "ca_descripcion";
-                cmb_asistencia.ValueMember = "CodCatalogo";
 
+                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
+                cmb_asis.DataSource = lista_catalogo;
+                cmb_resumen.DataSource = lista_catalogo;
+                
                 listadoNomina = oRo_Nomina_Tipo_Bus.Get_List_Nomina_Tipo(param.IdEmpresa);
                 cmbnomina.Properties.DataSource = listadoNomina;
                 cmbnomina.EditValue = 1;
-
+                cmb_division.EditValue = 2;
 
                 lista_cargo = bus_cargo.ObtenerLstCargo(param.IdEmpresa);
-                cmb_departamento_.DataSource = lista_cargo;
-
+                cmb_departa.DataSource = lista_cargo;
+                
                 ListaDivision = Bus_division.ConsultaGeneral(param.IdEmpresa);
                 cmb_division.Properties.DataSource = ListaDivision;
+
+                cmbStatus.Properties.ValueMember = "CodCatalogo";
+                cmbStatus.Properties.DisplayMember = "ca_descripcion";
+                cmbStatus.Properties.DataSource = lista_catalogo;
+                cmbStatus.EditValue = "ASIST";
 
 
             }
@@ -221,8 +218,8 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                colIdTurnoDia0.Caption = fechas[0];
-                colIdTurnoDia0.Visible = visibles[0]; colIdTurnoDia0.VisibleIndex = (visibles[0] == true) ? 10 : -1;
+                gridColumn4.Caption = fechas[0];
+                gridColumn4.Visible = visibles[0]; gridColumn4.VisibleIndex = (visibles[0] == true) ? 10 : -1;
                 
             }
             catch (Exception ex)
@@ -385,30 +382,7 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void gridViewAsistencia_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            try
-            {
-
-                if (e.Column.Name == "colIdTurnoDia0")
-                {
-                    TimeSpan es_hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    if (Convert.ToString( gridViewAsistencia.GetFocusedRowCellValue(col_esHoras))=="")
-                    {
-                        gridViewAsistencia.SetFocusedRowCellValue(col_esHoras, es_hora);
-
-                    }
-                   
-                }
-
-            }
-            catch (Exception ex)
-            {
-                
-              MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());
-            }
-        }
+      
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -421,6 +395,15 @@ namespace Core.Erp.Winform.Roles_Fj
                     item.Info_marcaciones_x_empleado.es_Hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                     gridControlAsistencia.RefreshDataSource();
                 }
+
+                var line = lista_emplados.GroupBy(info => info.CodCatalogo)
+                        .Select(group => new {
+                            CodCatalogo = group.Key,
+                            cantidad = group.Count() 
+                        });
+                gridControl_resumen.DataSource = line;
+                gridControl_resumen.RefreshDataSource();
+
             }
             catch (Exception ex)
             {
@@ -430,23 +413,7 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void cmbnomina_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-                Cargar_empleado();
-
-                if (lista_emplados.Count() == 0)
-                    MessageBox.Show("No existe planificación para la semana actual!!!", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());
-            }
-        }
+       
 
         public void Cargar_Datos()
         {
@@ -470,7 +437,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
                 lista_salas = bus_sala.Get_List_sala(param.IdEmpresa);
-                cmb_sala.DataSource = lista_salas;
+                //cmb_sala.DataSource = lista_salas;
 
 
             }
@@ -539,29 +506,61 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void gridViewAsistencia_KeyDown(object sender, KeyEventArgs e)
+       
+
+        private void ucGe_Menu_event_btnImprimir_Click(object sender, EventArgs e)
         {
+            //gridViewAsistencia 
             try
             {
-                if (e.KeyCode == Keys.Delete)
-                {
-
-
-                    if (MessageBox.Show("¿Está seguro que desea eliminar este registro ?", "Elimina", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        gridViewAsistencia.DeleteSelectedRows();
-                    }
-
-                }
+                gridViewAsistencia.ShowPrintPreview();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
             }
         }
 
-        private void cmb_division_EditValueChanged(object sender, EventArgs e)
+        
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtp_es_fecha_registro_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (cmb_division.EditValue == null)
+                    cmb_division.EditValue = 2;
+                int dia = Convert.ToInt32(Convert.ToDateTime(dtp_es_fecha_registro.Value).DayOfWeek);
+                pu_AgregarNombreCabeceraColumnas();
+                InfoCalendario = Bus_Calendario.Get_Info_Calendario(dtp_es_fecha_registro.Value);
+                Cargar_empleado();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+ 
+
+       
+
+
+        private void cmbStatus_EditValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -583,12 +582,31 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void ucGe_Menu_event_btnImprimir_Click(object sender, EventArgs e)
+        private void cmbnomina_EditValueChanged(object sender, EventArgs e)
         {
-            //gridViewAsistencia 
             try
             {
-                gridViewAsistencia.ShowPrintPreview();
+
+                Cargar_empleado();
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+                Log_Error_bus.Log_Error(ex.ToString());
+            }
+        }
+
+        private void cmb_division_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int dia = Convert.ToInt32(Convert.ToDateTime(dtp_es_fecha_registro.Value).DayOfWeek);
+                pu_AgregarNombreCabeceraColumnas();
+                InfoCalendario = Bus_Calendario.Get_Info_Calendario(dtp_es_fecha_registro.Value);
+                Cargar_empleado();
             }
             catch (Exception ex)
             {
@@ -596,6 +614,11 @@ namespace Core.Erp.Winform.Roles_Fj
                 MessageBox.Show(ex.Message);
                 Log_Error_bus.Log_Error(ex.Message);
             }
+        }
+
+        private void cmb_asis_EditValueChanged(object sender, EventArgs e)
+        {
+            gridView_resumen.Focus();
         }
     }
 }
