@@ -157,7 +157,7 @@ namespace Core.Erp.Data.CuentasxCobrar
                         Observacion = info.Observacion
                     };
 
-                    db.cxc_XML_Documento.Add(entity);
+                    db.cxc_XML_Documento.Add(Entity);
                     db.SaveChanges();
                 }
 

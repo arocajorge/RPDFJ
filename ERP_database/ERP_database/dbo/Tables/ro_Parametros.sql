@@ -29,6 +29,11 @@
     [IdTipoFlujoOP_ActaFiniquito]               INT          NULL,
     [IdFormaPagoOP_ActaFiniquito]               VARCHAR (20) NULL,
     [IdBancoOP_ActaFiniquito]                   INT          NULL,
+    [Sueldo_basico]                             FLOAT (53)   NULL,
+    [Porcentaje_aporte_pers]                    FLOAT (53)   NULL,
+    [Porcentaje_aporte_patr]                    FLOAT (53)   NULL,
     CONSTRAINT [PK_ro_Parametros] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC)
 );
+
+
 

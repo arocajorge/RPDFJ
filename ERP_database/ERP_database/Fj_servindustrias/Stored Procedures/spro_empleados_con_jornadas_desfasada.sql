@@ -1,6 +1,5 @@
 ﻿
-
-create PROCEDURE  [Fj_servindustrias].[spro_empleados_con_jornadas_desfasada]  
+CREATE PROCEDURE  [Fj_servindustrias].[spro_empleados_con_jornadas_desfasada]  
 	@Idempres int,
 	@IdNomina int,
 	@IdPeriodo int,
@@ -48,10 +47,8 @@ FROM            dbo.ro_empleado INNER JOIN
                          dbo.ro_Division ON dbo.ro_empleado.IdEmpresa = dbo.ro_Division.IdEmpresa AND dbo.ro_empleado.IdDivision = dbo.ro_Division.IdDivision
 						 where  dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa=@Idempres 
 						 and  dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina
-						 and (dbo.ro_empleado.em_status!='EST_LIQ')
+						 and (dbo.ro_empleado.em_status='EST_ACT')
 						 and dbo.ro_empleado.em_estado='A'
-						 AND(
-						 
-						  ISNULL(YEAR(dbo.ro_empleado.em_fechaSalida),@anio)=@anio
-						 OR ISNULL(YEAR(dbo.ro_empleado.em_fechaSalida),@mes)=@mes)
+						 --AND(ISNULL(YEAR(dbo.ro_empleado.em_fechaSalida),@anio)=@anio
+						 --OR ISNULL(YEAR(dbo.ro_empleado.em_fechaSalida),@mes)=@mes)
 END

@@ -37,8 +37,8 @@ FROM            dbo.ro_area INNER JOIN
                          dbo.ro_rol.IdNominaTipoLiqui = dbo.ro_Nomina_Tipoliqui.IdNomina_TipoLiqui AND dbo.ro_Nomina_Tipo.IdEmpresa = dbo.ro_Nomina_Tipoliqui.IdEmpresa AND 
                          dbo.ro_Nomina_Tipo.IdNomina_Tipo = dbo.ro_Nomina_Tipoliqui.IdNomina_Tipo INNER JOIN
                          dbo.tb_sucursal ON dbo.ro_empleado.IdEmpresa = dbo.tb_sucursal.IdEmpresa AND dbo.ro_empleado.IdSucursal = dbo.tb_sucursal.IdSucursal AND dbo.tb_empresa.IdEmpresa = dbo.tb_sucursal.IdEmpresa INNER JOIN
-                         dbo.ro_Division ON dbo.ro_empleado.IdEmpresa = dbo.ro_Division.IdEmpresa AND dbo.ro_empleado.IdDivision = dbo.ro_Division.IdDivision 
-						 ON dbo.ro_area.IdArea = dbo.ro_empleado.IdArea AND dbo.ro_area.IdEmpresa = dbo.ro_empleado.IdEmpresa and ro_area.IdDivision = ro_empleado.IdDivision INNER JOIN
+                         dbo.ro_Division ON dbo.ro_empleado.IdEmpresa = dbo.ro_Division.IdEmpresa AND dbo.ro_empleado.IdDivision = dbo.ro_Division.IdDivision ON dbo.ro_area.IdArea = dbo.ro_empleado.IdArea AND 
+                         dbo.ro_area.IdEmpresa = dbo.ro_empleado.IdEmpresa INNER JOIN
                          dbo.vwro_rol_detalle_agrupado_x_proceso ON dbo.ro_rol_detalle.IdEmpresa = dbo.vwro_rol_detalle_agrupado_x_proceso.IdEmpresa AND 
                          dbo.ro_rol_detalle.IdNominaTipo = dbo.vwro_rol_detalle_agrupado_x_proceso.IdNominaTipo AND dbo.ro_rol_detalle.IdNominaTipoLiqui = dbo.vwro_rol_detalle_agrupado_x_proceso.IdNominaTipoLiqui AND 
                          dbo.ro_rol_detalle.IdPeriodo = dbo.vwro_rol_detalle_agrupado_x_proceso.IdPeriodo AND dbo.ro_rol_detalle.IdEmpleado = dbo.vwro_rol_detalle_agrupado_x_proceso.IdEmpleado LEFT OUTER JOIN

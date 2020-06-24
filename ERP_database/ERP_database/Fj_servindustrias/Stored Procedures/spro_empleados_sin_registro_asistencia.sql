@@ -1,8 +1,8 @@
 ﻿
---  exec [Fj_servindustrias].[spro_empleados_sin_registro_asistencia] 2,'08/05/2017',1
+--  exec [Fj_servindustrias].[spro_empleados_sin_registro_asistencia] 2,'07/06/2020',1,202006
 
 CREATE PROCEDURE [Fj_servindustrias].[spro_empleados_sin_registro_asistencia]
-@Idempres int,
+	@Idempres int,
 	@Fecha date,
 	@IdNomina_Tipo int,
 	@IdPeriodo int
@@ -23,7 +23,12 @@ BEGIN
 	*/
 	declare 
 	@vacaciones int,
-	@permiso int
+	@permiso int,
+	@Fecha_inicio date,
+	@Fecha_fin date
+
+	select @Fecha_inicio=pe_FechaIni, @Fecha_fin=pe_FechaFin from ro_periodo where IdEmpresa=@Idempres and IdPeriodo=@IdPeriodo
+	
 	
 	-- traet todos los empleados que no tienen marcaciones en ese dia
 SELECT                  dbo.ro_empleado.IdEmpresa,
@@ -60,42 +65,44 @@ SELECT                  dbo.ro_empleado.IdEmpresa,
 						   and ro_permiso_x_empleado.Estado='A'
 						  and  @Fecha between CAST( ro_permiso_x_empleado.FechaSalida AS DATE) and CAST( ro_permiso_x_empleado.FechaEntrada AS DATE))>0
 						  THEN 'PER'
+						  WHEN  (select COUNT( Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo.IdEmpleado)
+						  from Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo 
+						  where Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo.IdEmpresa=ro_empleado.IdEmpresa
+						  and Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo.idempleado=ro_empleado.IdEmpleado
+						  and Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo.es_fecha_registro=@Fecha
+						  and Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo.IdEmpresa=@Idempres)>0 then
+			     		   'S/S'
+
 						 else 'ASIST' end Tipo_asistencia_Cat,
 
 
 
 
-						 Fj_servindustrias.vwro_planificacion_turno_periodo.tu_descripcion, 
-						 Fj_servindustrias.vwro_planificacion_turno_periodo.es_jornada_desfasada,
-						 Fj_servindustrias.vwro_planificacion_turno_periodo.IdTurno,
+						 '' tu_descripcion, 
+						CAST ( 0 as bit)es_jornada_desfasada,
+						 1 IdTurno,
 						 ro_empleado.em_fechaSalida,
 						 dbo.ro_empleado.IdDivision
 
 
 
-FROM				     dbo.ro_empleado INNER JOIN
+FROM            dbo.ro_empleado INNER JOIN
                          dbo.tb_persona ON dbo.ro_empleado.IdPersona = dbo.tb_persona.IdPersona INNER JOIN
-                         dbo.ro_Departamento ON dbo.ro_empleado.IdEmpresa = dbo.ro_Departamento.IdEmpresa AND 
-                         dbo.ro_empleado.IdDepartamento = dbo.ro_Departamento.IdDepartamento INNER JOIN
+                         dbo.ro_Departamento ON dbo.ro_empleado.IdEmpresa = dbo.ro_Departamento.IdEmpresa AND dbo.ro_empleado.IdDepartamento = dbo.ro_Departamento.IdDepartamento INNER JOIN
                          dbo.ro_cargo ON dbo.ro_empleado.IdEmpresa = dbo.ro_cargo.IdEmpresa AND dbo.ro_empleado.IdCargo = dbo.ro_cargo.IdCargo INNER JOIN
-                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND 
-                         dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado AND 
-                         dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND 
-                         dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado INNER JOIN
-                         Fj_servindustrias.vwro_planificacion_turno_periodo ON 
-                         dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa = Fj_servindustrias.vwro_planificacion_turno_periodo.IdEmpresa AND 
-                         dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado = Fj_servindustrias.vwro_planificacion_turno_periodo.IdEmpleado AND 
-                         dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina = Fj_servindustrias.vwro_planificacion_turno_periodo.IdNomina_Tipo
+                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado AND 
+                         dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado
 						 and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina_Tipo
 						 and dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa=@Idempres
-						 and  Fj_servindustrias.vwro_planificacion_turno_periodo.IdPeriodo=@IdPeriodo
 						 and cast( dbo.ro_empleado.em_fechaIngaRol as date)<=@Fecha
-						-- and dbo.ro_empleado.IdDivision=@IdDivision
-						--and  dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado=70
 WHERE                    
                         dbo.ro_empleado.em_status not in('EST_LIQ')
 						and dbo.ro_empleado.em_estado='A'              
-						and @Fecha between Fj_servindustrias.vwro_planificacion_turno_periodo.pe_FechaIni and Fj_servindustrias.vwro_planificacion_turno_periodo.pe_FechaFin
+						and ro_empleado.em_status<>'ECT_LIQ'
+						and (ro_empleado.em_status<>'EST_LIQ' 
+						and isnull( ro_empleado.em_fechaSalida, @Fecha) between @Fecha_inicio and @Fecha_fin
+						and isnull( ro_empleado.em_fechaSalida, @Fecha) <=@Fecha
+						)
 						and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina_Tipo
 						and dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa=@Idempres
 						and dbo.ro_empleado.IdEmpresa=@Idempres

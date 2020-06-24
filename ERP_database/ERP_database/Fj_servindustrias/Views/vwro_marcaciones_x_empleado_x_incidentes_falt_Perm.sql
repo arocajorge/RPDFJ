@@ -3,7 +3,7 @@ AS
 SELECT        dbo.ro_empleado.IdEmpresa, dbo.ro_empleado.IdEmpleado, dbo.tb_persona.IdPersona, dbo.ro_cargo.IdCargo, dbo.ro_Departamento.IdDepartamento, 
                          Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.IdRegistro, Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.Id_catalogo_Cat, dbo.tb_persona.pe_cedulaRuc, 
                          dbo.tb_persona.pe_apellido, dbo.tb_persona.pe_nombre, dbo.ro_cargo.ca_descripcion, dbo.ro_Departamento.de_descripcion, Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.es_fecha_registro, 
-                         Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.IdNomina_Tipo, dbo.ro_empleado.IdGrupo
+                         Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.IdNomina_Tipo, dbo.ro_empleado.IdGrupo, dbo.ro_empleado.IdDivision
 FROM            dbo.ro_empleado INNER JOIN
                          Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm ON dbo.ro_empleado.IdEmpresa = Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.IdEmpresa AND 
                          dbo.ro_empleado.IdEmpleado = Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.IdEmpleado INNER JOIN
@@ -114,11 +114,11 @@ Begin DesignProperties =
             Begin Extent = 
                Top = 6
                Left = 38
-               Bottom = 136
+               Bottom = 239
                Right = 327
             End
             DisplayFlags = 280
-            TopColumn = 71
+            TopColumn = 38
          End
          Begin Table = "ro_marcaciones_x_empleado_x_incidentes_falt_Perm (Fj_servindustrias)"
             Begin Extent = 
@@ -181,4 +181,6 @@ Begin DesignProperties =
       End
    End
    Begin C', @level0type = N'SCHEMA', @level0name = N'Fj_servindustrias', @level1type = N'VIEW', @level1name = N'vwro_marcaciones_x_empleado_x_incidentes_falt_Perm';
+
+
 

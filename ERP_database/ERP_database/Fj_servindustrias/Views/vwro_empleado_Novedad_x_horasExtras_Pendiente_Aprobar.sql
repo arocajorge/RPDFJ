@@ -1,40 +1,30 @@
 ﻿CREATE VIEW Fj_servindustrias.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar
 AS
-SELECT        Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpleado, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdRegistro, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdRubro, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.es_fecha_registro, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Num_horasExtras, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Observacion, 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Estado_aprobacion, dbo.ro_rubro_tipo.ru_descripcion, dbo.ro_cargo.ca_descripcion, 
-                         dbo.ro_Departamento.de_descripcion, Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_apellido, 
-                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_nombre, 
-                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_cedulaRuc, 
-                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.SueldoActual, 
-                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.Calculo_Horas_extras_Sobre, 
-                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.Max_num_horas_sab_dom, dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina
+SELECT        Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa, Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpleado, 
+                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdRegistro, Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdRubro, 
+                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.es_fecha_registro, Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Num_horasExtras, 
+                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Observacion, Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.Estado_aprobacion, dbo.ro_rubro_tipo.ru_descripcion, 
+                         dbo.ro_cargo.ca_descripcion, dbo.ro_Departamento.de_descripcion, Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_apellido, 
+                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_nombre, Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.pe_cedulaRuc, 
+                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.SueldoActual, Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.Calculo_Horas_extras_Sobre, 
+                         Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.Max_num_horas_sab_dom, dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina, dbo.ro_empleado.IdDivision
 FROM            Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar INNER JOIN
                          dbo.ro_empleado ON Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa = dbo.ro_empleado.IdEmpresa AND 
                          Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpleado = dbo.ro_empleado.IdEmpleado INNER JOIN
                          dbo.ro_rubro_tipo ON Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdRubro = dbo.ro_rubro_tipo.IdRubro AND 
                          Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa = dbo.ro_rubro_tipo.IdEmpresa INNER JOIN
                          dbo.ro_cargo ON dbo.ro_empleado.IdEmpresa = dbo.ro_cargo.IdEmpresa AND dbo.ro_empleado.IdCargo = dbo.ro_cargo.IdCargo INNER JOIN
-                         dbo.ro_Departamento ON dbo.ro_empleado.IdEmpresa = dbo.ro_Departamento.IdEmpresa AND 
-                         dbo.ro_empleado.IdDepartamento = dbo.ro_Departamento.IdDepartamento INNER JOIN
+                         dbo.ro_Departamento ON dbo.ro_empleado.IdEmpresa = dbo.ro_Departamento.IdEmpresa AND dbo.ro_empleado.IdDepartamento = dbo.ro_Departamento.IdDepartamento INNER JOIN
                          Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE ON 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa = Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.IdEmpresa
-                          AND 
-                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpleado = Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.IdEmpleado
-                          INNER JOIN
-                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND 
-                         dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado
+                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpresa = Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.IdEmpresa AND 
+                         Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar.IdEmpleado = Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE.IdEmpleado INNER JOIN
+                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @level0type = N'SCHEMA', @level0name = N'Fj_servindustrias', @level1type = N'VIEW', @level1name = N'vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar';
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'= 
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N' = 
                Top = 798
                Left = 38
                Bottom = 927
@@ -82,6 +72,8 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'=
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'Fj_servindustrias', @level1type = N'VIEW', @level1name = N'vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar';
+
+
 
 
 GO
@@ -170,11 +162,11 @@ Begin DesignProperties =
             Begin Extent = 
                Top = 138
                Left = 38
-               Bottom = 267
+               Bottom = 407
                Right = 327
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 32
          End
          Begin Table = "ro_rubro_tipo"
             Begin Extent = 
@@ -217,5 +209,7 @@ Begin DesignProperties =
             TopColumn = 0
          End
          Begin Table = "ro_empleado_x_ro_tipoNomina"
-            Begin Extent ', @level0type = N'SCHEMA', @level0name = N'Fj_servindustrias', @level1type = N'VIEW', @level1name = N'vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar';
+            Begin Extent', @level0type = N'SCHEMA', @level0name = N'Fj_servindustrias', @level1type = N'VIEW', @level1name = N'vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar';
+
+
 
