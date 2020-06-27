@@ -79,7 +79,6 @@
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_planificacion_x_jornada_desfasada_empleado_ro_planificacion_x_jornada_desfasada" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_planificacion_x_jornada_desfasada" Width="1.5" PointX="1.5460096809761643" PointY="0.069095850023019989" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_ro_planificacion_x_jornada_desfasada_empleado" Width="1.5" PointX="6.0300423866277768" PointY="29.060659764828468" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" Width="1.5" PointX="0.10984934499014604" PointY="11.773386796830868" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Grupo_empleado_det" Width="1.5" PointX="5.1455587172627251" PointY="31.15154260357448" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_Grupo_empleado" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_Grupo_empleado_det_ro_parametro_x_pago_variable_tipo" />
@@ -91,6 +90,13 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="8.6970736871925531" PointY="17.262965955428296" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="5.9920330261774515" PointY="31.467183664192998" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm" Width="1.5" PointX="3.08574184732779" PointY="25.18850029687793" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_tipoServicio" Width="1.5" PointX="7.8762871957739291" PointY="8.2744766959336" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_servicio_det" Width="1.5" PointX="0.63022290013275239" PointY="20.032216811567647" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_servicio_det" Width="1.5" PointX="3.0050700525776808" PointY="22.696279417116326" />
+        <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_Entrega_x_Periodo_Empleado_Det_ro_fectividad_Entrega_x_Periodo_Empleado" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_servicio" Width="1.5" PointX="4.9798197974356917" PointY="23.60388774778875" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_servicio" Width="1.5" PointX="0.60271965181581666" PointY="26.199076873343007" />
+        <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_Entrega_servicio_det_ro_fectividad_Entrega_servicio" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

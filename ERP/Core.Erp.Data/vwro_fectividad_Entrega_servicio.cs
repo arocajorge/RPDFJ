@@ -12,23 +12,20 @@ namespace Core.Erp.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ro_fectividad_Entrega_x_Periodo_Empleado_Det
+    public partial class vwro_fectividad_Entrega_servicio
     {
         public int IdEmpresa { get; set; }
+        public decimal IdNivelServicio { get; set; }
         public int IdNomina_Tipo { get; set; }
         public int IdNomina_tipo_Liq { get; set; }
         public int IdPeriodo { get; set; }
-        public int IdEmpleado { get; set; }
-        public int IdRuta { get; set; }
-        public int IdEfectividad { get; set; }
-        public double Efectividad_Entrega { get; set; }
-        public double Efectividad_Entrega_aplica { get; set; }
-        public double Efectividad_Volumen { get; set; }
-        public double Efectividad_Volumen_aplica { get; set; }
-        public double Recuperacion_cartera { get; set; }
-        public double Recuperacion_cartera_aplica { get; set; }
         public string Observacion { get; set; }
-    
-        public virtual ro_fectividad_Entrega_x_Periodo_Empleado ro_fectividad_Entrega_x_Periodo_Empleado { get; set; }
+        public bool Estado { get; set; }
+        public string IdUsuario { get; set; }
+        public string DescripcionProcesoNomina { get; set; }
+        public string Descripcion { get; set; }
+        public Nullable<System.DateTime> pe_FechaIni { get; set; }
+        public Nullable<System.DateTime> pe_FechaFin { get; set; }
+        public int IdServicioTipo { get; set; }
     }
 }

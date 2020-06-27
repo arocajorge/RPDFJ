@@ -32,6 +32,12 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.ts_Descripcion = item.ts_Descripcion;
                         Info.ts_codigo = item.ts_codigo;
                         Info.Porcentaje = item.Porcentaje;
+
+                        Info.Efectividad_entrega = item.Efectividad_entrega;
+                        Info.Efectividad_volumen = item.Efectividad_volumen;
+                        Info.Recuperacion_cartera = item.Recuperacion_cartera;
+                        Info.Genera_novedad = item.Genera_novedad;
+
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -74,6 +80,12 @@ namespace Core.Erp.Data.Roles_Fj
                         Info.ts_Descripcion = item.ts_Descripcion;
                         Info.ts_codigo = item.ts_codigo;
                         Info.Porcentaje = item.Porcentaje;
+
+                        Info.Efectividad_entrega = item.Efectividad_entrega;
+                        Info.Efectividad_volumen = item.Efectividad_volumen;
+                        Info.Recuperacion_cartera = item.Recuperacion_cartera;
+                        Info.Genera_novedad = item.Genera_novedad;
+
                         Info.Estado = item.Estado;
                         Info.IdUsuario = item.IdUsuario;
                         Info.Fecha_Transaccion = item.Fecha_Transaccion;
@@ -145,6 +157,10 @@ namespace Core.Erp.Data.Roles_Fj
                     contact.Estado = Info.Estado;
                     contact.IdUsuario = Info.IdUsuario;
                     contact.Fecha_Transaccion = Info.Fecha_Transaccion;
+                    contact.Efectividad_entrega = Info.Efectividad_entrega;
+                    contact.Efectividad_volumen = Info.Efectividad_volumen;
+                    contact.Recuperacion_cartera = Info.Recuperacion_cartera;
+                    contact.Genera_novedad = Info.Genera_novedad;
 
                     Context.ro_fectividad_Entrega_tipoServicio.Add(contact);
                     Context.SaveChanges();
@@ -175,6 +191,12 @@ namespace Core.Erp.Data.Roles_Fj
                         contact.ts_Descripcion = Info.ts_Descripcion;
                         contact.ts_codigo = Info.ts_codigo;
                         contact.Porcentaje = Info.Porcentaje;
+
+                        contact.Efectividad_entrega = Info.Efectividad_entrega;
+                        contact.Efectividad_volumen = Info.Efectividad_volumen;
+                        contact.Recuperacion_cartera = Info.Recuperacion_cartera;
+                        contact.Genera_novedad = Info.Genera_novedad;
+
                         contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
                         contact.Fecha_UltMod = DateTime.Now;
                         Context.SaveChanges();

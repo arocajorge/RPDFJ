@@ -21,5 +21,10 @@ namespace Core.Erp.Info.Roles_Fj
        public Nullable<System.DateTime> Fecha_UltMod { get; set; }
        public string IdUsuarioUltAnu { get; set; }
        public Nullable<System.DateTime> Fecha_UltAnu { get; set; }
+
+       public Nullable<bool> Efectividad_entrega { get; set; }
+       public Nullable<bool> Efectividad_volumen { get; set; }
+       public Nullable<bool> Recuperacion_cartera { get; set; }
+       public Nullable<bool> Genera_novedad { get; set; }
     }
 }

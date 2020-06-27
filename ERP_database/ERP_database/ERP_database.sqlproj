@@ -3899,6 +3899,21 @@
     <Build Include="dbo\Tables\cp_proveedor_producto.sql" />
     <Build Include="Digitalizacion\Tables\cxc_XML_DocumentoDet.sql" />
     <Build Include="Digitalizacion\Tables\cxc_XML_Documento.sql" />
+    <Build Include="Fj_servindustrias\Tables\ro_marcaciones_no_aplica_sobretiempo.sql" />
+    <Build Include="dbo\Tables\ro_rubros_calculados.sql" />
+    <Build Include="dbo\Tables\ro_rol_x_prestamo_detalle.sql" />
+    <Build Include="dbo\Tables\ro_rol_x_empleado_novedades.sql" />
+    <Build Include="dbo\Tables\ro_permiso_x_empleado_x_novedad.sql" />
+    <Build Include="dbo\Views\vwro_permiso_x_empleado_x_novedad.sql" />
+    <Build Include="dbo\Views\vwro_empleado_historial_Sueldo_actual.sql" />
+    <Build Include="dbo\Views\vwro_contrato_activo.sql" />
+    <Build Include="dbo\Functions\calcular_dias_trabajados.sql" />
+    <Build Include="dbo\Functions\calcular_dias_fondos_reserva.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_segunda_quincena_fijo.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_pago_variable_fijo.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_liquidacion_cliente.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_fondo_reserva.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_anticipo_fijo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />

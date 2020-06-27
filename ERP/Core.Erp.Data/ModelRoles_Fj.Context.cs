@@ -27,8 +27,6 @@ namespace Core.Erp.Data
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
-    
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -85,7 +83,6 @@ namespace Core.Erp.Data
         public DbSet<ro_planificacion_x_jornada_desfasada_empleado> ro_planificacion_x_jornada_desfasada_empleado { get; set; }
         public DbSet<vwro_planificacion_x_jornada_desfasada> vwro_planificacion_x_jornada_desfasada { get; set; }
         public DbSet<vwro_ro_planificacion_x_jornada_desfasada_empleado> vwro_ro_planificacion_x_jornada_desfasada_empleado { get; set; }
-        public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
         public DbSet<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
         public DbSet<vwro_Grupo_empleado_det> vwro_Grupo_empleado_det { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
@@ -95,6 +92,11 @@ namespace Core.Erp.Data
         public DbSet<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<vwro_marcaciones_x_empleado_x_incidentes_falt_Perm> vwro_marcaciones_x_empleado_x_incidentes_falt_Perm { get; set; }
+        public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
+        public DbSet<ro_fectividad_Entrega_servicio_det> ro_fectividad_Entrega_servicio_det { get; set; }
+        public DbSet<vwro_fectividad_Entrega_servicio_det> vwro_fectividad_Entrega_servicio_det { get; set; }
+        public DbSet<ro_fectividad_Entrega_servicio> ro_fectividad_Entrega_servicio { get; set; }
+        public DbSet<vwro_fectividad_Entrega_servicio> vwro_fectividad_Entrega_servicio { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

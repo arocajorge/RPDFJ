@@ -156,6 +156,13 @@ namespace Core.Erp.Winform.Roles_Fj
                 txtcodigo.Text = info_servicio.ts_codigo;
                 txtporcentaje.Text = info_servicio.Porcentaje.ToString();
                 lblanulado.Visible = (info_servicio.Estado == false) ? true : false;
+
+                check_cartera.Checked = info_servicio.Recuperacion_cartera == null ? false : Convert.ToBoolean(info_servicio.Recuperacion_cartera);
+                check_volumen.Checked = info_servicio.Efectividad_volumen == null ? false : Convert.ToBoolean(info_servicio.Efectividad_volumen);
+                check_entrega.Checked = info_servicio.Efectividad_entrega == null ? false : Convert.ToBoolean(info_servicio.Efectividad_entrega);
+                check_novedad.Checked = info_servicio.Genera_novedad == null ? false : Convert.ToBoolean(info_servicio.Genera_novedad);
+
+                
             }
             catch (Exception ex)
             {
@@ -173,6 +180,12 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_servicio.IdEmpresa = param.IdEmpresa;
                 info_servicio.ts_Descripcion = txt_ruta.Text;
                 info_servicio.Estado = chkEstado.Checked;
+
+                info_servicio.Genera_novedad = check_novedad.Checked;
+                info_servicio.Recuperacion_cartera = check_cartera.Checked;
+                info_servicio.Efectividad_volumen = check_volumen.Checked;
+                info_servicio.Efectividad_entrega = check_entrega.Checked;
+
                 info_servicio.ts_codigo = txtcodigo.Text;
                 info_servicio.Porcentaje =Convert.ToDouble( txtporcentaje.Text);
                 return info_servicio;

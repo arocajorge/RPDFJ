@@ -12,18 +12,19 @@ namespace Core.Erp.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ro_fectividad_Entrega_x_Periodo_Empleado
+    public partial class ro_fectividad_Entrega_servicio
     {
-        public ro_fectividad_Entrega_x_Periodo_Empleado()
+        public ro_fectividad_Entrega_servicio()
         {
-            this.ro_fectividad_Entrega_x_Periodo_Empleado_Det = new HashSet<ro_fectividad_Entrega_x_Periodo_Empleado_Det>();
+            this.ro_fectividad_Entrega_servicio_det = new HashSet<ro_fectividad_Entrega_servicio_det>();
         }
     
         public int IdEmpresa { get; set; }
+        public decimal IdNivelServicio { get; set; }
+        public int IdServicioTipo { get; set; }
         public int IdNomina_Tipo { get; set; }
         public int IdNomina_tipo_Liq { get; set; }
         public int IdPeriodo { get; set; }
-        public int IdEfectividad { get; set; }
         public string Observacion { get; set; }
         public bool Estado { get; set; }
         public string IdUsuario { get; set; }
@@ -33,8 +34,7 @@ namespace Core.Erp.Data
         public Nullable<System.DateTime> FechaAnu { get; set; }
         public System.DateTime FechaTransac { get; set; }
         public Nullable<System.DateTime> FechaUltModi { get; set; }
-        public Nullable<int> IdServicioTipo { get; set; }
     
-        public virtual ICollection<ro_fectividad_Entrega_x_Periodo_Empleado_Det> ro_fectividad_Entrega_x_Periodo_Empleado_Det { get; set; }
+        public virtual ICollection<ro_fectividad_Entrega_servicio_det> ro_fectividad_Entrega_servicio_det { get; set; }
     }
 }
