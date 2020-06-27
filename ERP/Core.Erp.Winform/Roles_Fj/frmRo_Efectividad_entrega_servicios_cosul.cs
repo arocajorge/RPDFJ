@@ -33,7 +33,7 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                frmRo_Efectividad_entrega_x_periodo_xempleado_mant frm = new frmRo_Efectividad_entrega_x_periodo_xempleado_mant();
+                frmRo_Efectividad_entrega_servicios_mant frm = new frmRo_Efectividad_entrega_servicios_mant();
                 frm.Accion = Cl_Enumeradores.eTipo_action.grabar;
                 frm.MdiParent = this.MdiParent;
                 frm.Show();

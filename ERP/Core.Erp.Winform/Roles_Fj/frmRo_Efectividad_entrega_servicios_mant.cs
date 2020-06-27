@@ -71,53 +71,7 @@ namespace Core.Erp.Winform.Roles_Fj
             InitializeComponent();
         }
 
-        private void ucGe_Menu_event_btnSalir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-
-                Log_Error_bus.Log_Error(ex.ToString());
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ucGe_Menu_event_btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Validar())
-                    Guardar_Datos();
-            }
-            catch (Exception ex)
-            {
-
-                Log_Error_bus.Log_Error(ex.ToString());
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ucGe_Menu_event_btnGuardar_y_Salir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!Validar())
-                    return;
-                if (Guardar_Datos())
-                    this.Close();
-
-            }
-            catch (Exception ex)
-            {
-
-                Log_Error_bus.Log_Error(ex.ToString());
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+      
         public void cargar_dato()
         {
             try
@@ -167,7 +121,6 @@ namespace Core.Erp.Winform.Roles_Fj
             switch (Accion)
             {
                 case Cl_Enumeradores.eTipo_action.grabar:
-                    ucGe_Menu.Visible_bntAnular = false;
                     break;
                 case Cl_Enumeradores.eTipo_action.actualizar:
                     cmbnomina.Enabled = false;
@@ -175,14 +128,11 @@ namespace Core.Erp.Winform.Roles_Fj
                     cmbPeriodos.Enabled = false;
                     break;
                 case Cl_Enumeradores.eTipo_action.Anular:
-                      ucGe_Menu.Visible_btnGuardar = false;
-                       ucGe_Menu.Visible_bntGuardar_y_Salir = false;
-                       ucGe_Menu.Visible_bntAnular = true;
+                      
 
                     break;
                 case Cl_Enumeradores.eTipo_action.consultar:
-                    ucGe_Menu.Visible_btnGuardar = false;
-                    ucGe_Menu.Visible_bntGuardar_y_Salir = false;
+                  
                     break;
                 case Cl_Enumeradores.eTipo_action.duplicar:
                     break;
@@ -272,7 +222,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_efectividad.IdNomina_tipo_Liq = Convert.ToInt32(cmbnominaTipo.EditValue);
                 info_efectividad.IdPeriodo = Convert.ToInt32(cmbPeriodos.EditValue);
                 info_efectividad.IdServicioTipo = Convert.ToInt32(cmb_servicios.EditValue);
-                info_efectividad.Observacion = txtobservacion.Text;
+                //info_efectividad.Observacion = txtobservacion.Text;
                 info_efectividad.IdUsuario = param.IdUsuario;
                 info_efectividad.FechaTransac = DateTime.Now;
                 info_efectividad.IdUsuarioUltModi = param.IdUsuario;
@@ -297,7 +247,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmbnomina.EditValue = info.IdNomina_Tipo;
                 cmbnominaTipo.EditValue = info.IdNomina_tipo_Liq;
                 cmbPeriodos.EditValue = info.IdPeriodo;
-                txtobservacion.Text = info.Observacion;
+               // txtobservacion.Text = info.Observacion;
                 lista_efectividad = new BindingList<ro_fectividad_Entrega_servicio_det_Info>(bus_efectividad_detalle.get_list(info.IdEmpresa,info.IdNivelServicio));
                 gridControl_Efectividad.DataSource = lista_efectividad;
             }
@@ -336,11 +286,7 @@ namespace Core.Erp.Winform.Roles_Fj
                     return false;
                 }
 
-                if (txtobservacion.Text == "")
-                {
-                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Ingrese_la) + " Ingrese una observación", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+                
 
                 return true;
             }
@@ -465,25 +411,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 }
             }
         }
-        private void nuevaRutaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                frmRo_ruta_mant frm = new frmRo_ruta_mant();
-                frm.Set_Accion(Cl_Enumeradores.eTipo_action.grabar);
-                frm.ShowDialog();
-                lista_ruta = bus_ruta.Get_List_Ruta(param.IdEmpresa);
-                cmb_ruta.DataSource = lista_ruta;
-            }
-            catch (Exception ex)
-            {
-
-                Log_Error_bus.Log_Error(ex.ToString());
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }      
-        bool Validar_Carga_Archivo()
+         bool Validar_Carga_Archivo()
         {
             try
             {
@@ -519,11 +447,7 @@ namespace Core.Erp.Winform.Roles_Fj
                     return false;
                 }
 
-                if (txtobservacion.Text == "")
-                {
-                    MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_la) + " Ingrese una observación", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+               
 
                 if (lista_efectividad.Count() == 0)
                 {
@@ -562,39 +486,9 @@ namespace Core.Erp.Winform.Roles_Fj
                 Log_Error_bus.Log_Error(ex.ToString());
             }
         }
-        private void gridView_Efectividad_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            try
-            {
-                if (e.KeyCode == Keys.V && e.Control == true)
-                {
-                    if (cmb_servicios.EditValue != null)
-                        ro_fectividad_Entrega_tipoServicio_Info_ = ro_fectividad_Entrega_tipoServicio_Bus.Get_Info(param.IdEmpresa, Convert.ToInt32(cmb_servicios.EditValue));
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
+       
       
-        private void ucGe_Menu_event_btnAnular_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Guardar_Datos();
-            }
-            catch (Exception ex)
-            {
-                
-                 MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());  
-            }
-        }
-
+      
         private void cmb_servicios_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -606,6 +500,48 @@ namespace Core.Erp.Winform.Roles_Fj
             catch (Exception)
             {
                 
+            }
+        }
+
+        private void cmb_grabar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guardar_Datos();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private void cmdProcesar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Get();
+                bus_efectividad.procesar(info_efectividad);
+                lista_efectividad =new BindingList<ro_fectividad_Entrega_servicio_det_Info>( bus_efectividad_detalle.get_list(param.IdEmpresa, info_efectividad.IdNivelServicio));
+                gridControl_Efectividad.DataSource = lista_efectividad;
+                gridControl_Efectividad.RefreshDataSource();
+            }
+            catch (Exception)
+            {
+               
+            }
+        }
+
+        private void cmdDetener_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 this.Close();
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
    

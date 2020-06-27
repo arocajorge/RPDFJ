@@ -27,6 +27,7 @@ namespace Core.Erp.Data
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -234,6 +235,39 @@ namespace Core.Erp.Data
                 new ObjectParameter("IdPeriodo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spro_empleados_sin_registro_asistencia_Result>("spro_empleados_sin_registro_asistencia", idempresParameter, fechaParameter, idNomina_TipoParameter, idPeriodoParameter);
+        }
+    
+        public virtual int spro_calculo_nivel_servicio(Nullable<int> idEmpresa, Nullable<decimal> idNomina, Nullable<decimal> idNominaTipo, Nullable<decimal> idPEriodo, Nullable<decimal> idNivelServicio, string observacion, string idUsuario)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idNominaParameter = idNomina.HasValue ?
+                new ObjectParameter("IdNomina", idNomina) :
+                new ObjectParameter("IdNomina", typeof(decimal));
+    
+            var idNominaTipoParameter = idNominaTipo.HasValue ?
+                new ObjectParameter("IdNominaTipo", idNominaTipo) :
+                new ObjectParameter("IdNominaTipo", typeof(decimal));
+    
+            var idPEriodoParameter = idPEriodo.HasValue ?
+                new ObjectParameter("IdPEriodo", idPEriodo) :
+                new ObjectParameter("IdPEriodo", typeof(decimal));
+    
+            var idNivelServicioParameter = idNivelServicio.HasValue ?
+                new ObjectParameter("IdNivelServicio", idNivelServicio) :
+                new ObjectParameter("IdNivelServicio", typeof(decimal));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("Observacion", observacion) :
+                new ObjectParameter("Observacion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spro_calculo_nivel_servicio", idEmpresaParameter, idNominaParameter, idNominaTipoParameter, idPEriodoParameter, idNivelServicioParameter, observacionParameter, idUsuarioParameter);
         }
     }
 }

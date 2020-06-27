@@ -2548,6 +2548,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spro_calculo_nivel_servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fj_servindustrias">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="IdNomina" Type="numeric" Mode="In" />
+          <Parameter Name="IdNominaTipo" Type="numeric" Mode="In" />
+          <Parameter Name="IdPEriodo" Type="numeric" Mode="In" />
+          <Parameter Name="IdNivelServicio" Type="numeric" Mode="In" />
+          <Parameter Name="Observacion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="IdUsuario" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spro_calculo_pocentajes_pago_variable_Adm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fj_servindustrias">
           <Parameter Name="Idempres" Type="int" Mode="In" />
           <Parameter Name="Fecha_Inicio" Type="date" Mode="In" />
@@ -2804,6 +2813,15 @@
             <End Role="ro_fectividad_Entrega_servicio" EntitySet="ro_fectividad_Entrega_servicio" />
             <End Role="ro_fectividad_Entrega_servicio_det" EntitySet="ro_fectividad_Entrega_servicio_det" />
           </AssociationSet>
+          <FunctionImport Name="spro_calculo_nivel_servicio">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdNomina" Mode="In" Type="Decimal" />
+            <Parameter Name="IdNominaTipo" Mode="In" Type="Decimal" />
+            <Parameter Name="IdPEriodo" Mode="In" Type="Decimal" />
+            <Parameter Name="IdNivelServicio" Mode="In" Type="Decimal" />
+            <Parameter Name="Observacion" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -6316,6 +6334,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spro_calculo_nivel_servicio" FunctionName="ModelRoles_Fj.Store.spro_calculo_nivel_servicio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

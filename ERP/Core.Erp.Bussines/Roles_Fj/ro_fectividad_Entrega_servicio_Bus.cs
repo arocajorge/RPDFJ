@@ -69,5 +69,20 @@ namespace Core.Erp.Business.Roles_Fj
                 throw ;
             }
         }
+        public bool procesar(ro_fectividad_Entrega_servicio_Info info)
+        {
+
+            try
+            {
+                return odata.procesar(info);
+            }
+            catch (Exception ex)
+            {
+
+
+                throw;
+            }
+        }
+
     }
 }

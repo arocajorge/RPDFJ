@@ -131,10 +131,10 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ db = new EntityRoles_FJ())
                 {
-                    var add = db.ro_planificacion_x_ruta_x_empleado.FirstOrDefault(v => v.IdEmpresa == info.IdEmpresa && v.IdNomina_Tipo == info.IdNomina_Tipo && v.IdPeriodo == info.IdPeriodo);
+                    var add = db.ro_fectividad_Entrega_servicio.FirstOrDefault(v => v.IdEmpresa == info.IdEmpresa && v.IdNivelServicio == info.IdNivelServicio);
 
                     add.Observacion = info.Observacion;
-                    add.Fecha_UltMod = DateTime.Now;
+                    add.FechaUltModi = DateTime.Now;
                     add.IdUsuarioUltModi = info.IdUsuarioUltModi;
                     db.Database.ExecuteSqlCommand(" delete Fj_servindustrias.ro_fectividad_Entrega_servicio_det where IdEmpresa='" + info.IdEmpresa + "' and IdNomina_Tipo='" + info.IdNomina_Tipo + "' and IdPeriodo='" + info.IdPeriodo + "' and IdNivelServicio='" + info.IdNivelServicio + "'  ");
                     foreach (var item in info.lst)
@@ -245,5 +245,41 @@ namespace Core.Erp.Data.Roles_Fj
             }
 
         }
+
+        public bool procesar(ro_fectividad_Entrega_servicio_Info info)
+        {
+            try
+            {
+               
+                info.Observacion = " ";
+                using (EntityRoles_FJ db = new EntityRoles_FJ())
+                {
+                    var Entity = db.ro_fectividad_Entrega_servicio.FirstOrDefault(v => v.IdEmpresa == info.IdEmpresa 
+                        && v.IdNomina_Tipo == info.IdNomina_Tipo 
+                        && v.IdNomina_tipo_Liq==info.IdNomina_tipo_Liq
+                        && v.IdPeriodo == info.IdPeriodo
+                        && v.Estado==true);
+                    if (Entity == null)
+                        info.IdNivelServicio = getId(info.IdEmpresa);
+                    else
+                        info.IdNivelServicio = Entity.IdNivelServicio;
+                       db.spro_calculo_nivel_servicio(info.IdEmpresa, info.IdNomina_Tipo, info.IdNomina_tipo_Liq, info.IdPeriodo,
+                        info.IdNivelServicio, info.Observacion, info.IdUsuario);
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref MensajeError);
+                MensajeError = ex.ToString();
+                throw new Exception(ex.ToString());
+            }
+        }
+      
     }
 }
