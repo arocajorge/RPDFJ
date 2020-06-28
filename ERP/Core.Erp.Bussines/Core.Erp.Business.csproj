@@ -903,6 +903,7 @@
     <Compile Include="Roles\ro_turno_x_tb_dia_Bus.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Bus.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Bus.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Bus.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Bus.cs" />

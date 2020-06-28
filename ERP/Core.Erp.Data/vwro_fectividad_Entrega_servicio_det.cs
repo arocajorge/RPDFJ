@@ -37,5 +37,8 @@ namespace Core.Erp.Data
         public double Valor_volumen { get; set; }
         public double Valor_servicio { get; set; }
         public string pe_nombreCompleto { get; set; }
+        public int IdNomina_Tipo { get; set; }
+        public int IdNomina_tipo_Liq { get; set; }
+        public int IdPeriodo { get; set; }
     }
 }

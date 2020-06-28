@@ -97,6 +97,7 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_fectividad_Entrega_servicio" Width="1.5" PointX="4.9798197974356917" PointY="23.60388774778875" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_servicio" Width="1.5" PointX="0.60271965181581666" PointY="26.199076873343007" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_Entrega_servicio_det_ro_fectividad_Entrega_servicio" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio" Width="1.5" PointX="2.9028272176640235" PointY="17.837581404409175" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

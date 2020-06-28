@@ -8,6 +8,7 @@
         <EntityContainer Name="ModelRoles_FjStoreContainer">
           <EntitySet Name="ro_rubros_calculados" EntityType="ModelRoles_Fj.Store.ro_rubros_calculados" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje" EntityType="ModelRoles_Fj.Store.ro_Calculo_Pago_Variable_Porcentaje" store:Type="Tables" Schema="Fj_servindustrias" />
+          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje_servicio" EntityType="ModelRoles_Fj.Store.ro_Calculo_Pago_Variable_Porcentaje_servicio" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_descuento_no_planificados" EntityType="ModelRoles_Fj.Store.ro_descuento_no_planificados" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_descuento_no_planificados_Det" EntityType="ModelRoles_Fj.Store.ro_descuento_no_planificados_Det" store:Type="Tables" Schema="Fj_servindustrias" />
           <EntitySet Name="ro_disco" EntityType="ModelRoles_Fj.Store.ro_disco" store:Type="Tables" Schema="Fj_servindustrias" />
@@ -216,7 +217,10 @@
       [vwro_fectividad_Entrega_servicio_det].[Nivel_servicio] AS [Nivel_servicio], 
       [vwro_fectividad_Entrega_servicio_det].[Valor_volumen] AS [Valor_volumen], 
       [vwro_fectividad_Entrega_servicio_det].[Valor_servicio] AS [Valor_servicio], 
-      [vwro_fectividad_Entrega_servicio_det].[pe_nombreCompleto] AS [pe_nombreCompleto]
+      [vwro_fectividad_Entrega_servicio_det].[pe_nombreCompleto] AS [pe_nombreCompleto], 
+      [vwro_fectividad_Entrega_servicio_det].[IdNomina_Tipo] AS [IdNomina_Tipo], 
+      [vwro_fectividad_Entrega_servicio_det].[IdNomina_tipo_Liq] AS [IdNomina_tipo_Liq], 
+      [vwro_fectividad_Entrega_servicio_det].[IdPeriodo] AS [IdPeriodo]
       FROM [Fj_servindustrias].[vwro_fectividad_Entrega_servicio_det] AS [vwro_fectividad_Entrega_servicio_det]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwro_fectividad_Entrega_x_Periodo_Empleado" EntityType="ModelRoles_Fj.Store.vwro_fectividad_Entrega_x_Periodo_Empleado" store:Type="Views" store:Schema="Fj_servindustrias" store:Name="vwro_fectividad_Entrega_x_Periodo_Empleado">
@@ -633,6 +637,19 @@
           <Property Name="SignoOperacion" Type="char" MaxLength="1" />
           <Property Name="IdGrupo" Type="int" />
         </EntityType>
+        <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje_servicio">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEfectividad" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdEfectividad" Type="int" Nullable="false" />
+          <Property Name="IdTipo_Nomina" Type="int" Nullable="false" />
+          <Property Name="IdTipoServicio" Type="int" Nullable="false" />
+          <Property Name="Efec_desde" Type="float" Nullable="false" />
+          <Property Name="Efec_hasta" Type="float" Nullable="false" />
+          <Property Name="Efec_aplica" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="ro_descuento_no_planificados">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -916,6 +933,8 @@
           <Property Name="Nivel_servicio" Type="float" Nullable="false" />
           <Property Name="Valor_volumen" Type="float" Nullable="false" />
           <Property Name="Valor_servicio" Type="float" Nullable="false" />
+          <Property Name="Por_bebida" Type="float" Nullable="false" />
+          <Property Name="Por_alimento" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="ro_fectividad_Entrega_tipoServicio">
           <Key>
@@ -1708,6 +1727,9 @@
             <PropertyRef Name="Valor_volumen" />
             <PropertyRef Name="Valor_servicio" />
             <PropertyRef Name="pe_nombreCompleto" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdNomina_tipo_Liq" />
+            <PropertyRef Name="IdPeriodo" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdNivelServicio" Type="numeric" Nullable="false" />
@@ -1732,6 +1754,9 @@
           <Property Name="Valor_volumen" Type="float" Nullable="false" />
           <Property Name="Valor_servicio" Type="float" Nullable="false" />
           <Property Name="pe_nombreCompleto" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IdNomina_Tipo" Type="int" Nullable="false" />
+          <Property Name="IdNomina_tipo_Liq" Type="int" Nullable="false" />
+          <Property Name="IdPeriodo" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -2822,6 +2847,7 @@
             <Parameter Name="Observacion" Mode="In" Type="String" />
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje_servicio" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -4794,6 +4820,8 @@
           <Property Type="Double" Name="Valor_volumen" Nullable="false" />
           <Property Type="Double" Name="Valor_servicio" Nullable="false" />
           <NavigationProperty Name="ro_fectividad_Entrega_servicio" Relationship="ModelRoles_Fj.FK_ro_fectividad_Entrega_servicio_det_ro_fectividad_Entrega_servicio" FromRole="ro_fectividad_Entrega_servicio_det" ToRole="ro_fectividad_Entrega_servicio" />
+          <Property Type="Double" Name="Por_bebida" Nullable="false" />
+          <Property Type="Double" Name="Por_alimento" Nullable="false" />
         </EntityType>
         <EntityType Name="vwro_fectividad_Entrega_servicio_det">
           <Key>
@@ -4820,6 +4848,9 @@
             <PropertyRef Name="Valor_volumen" />
             <PropertyRef Name="Valor_servicio" />
             <PropertyRef Name="pe_nombreCompleto" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdNomina_tipo_Liq" />
+            <PropertyRef Name="IdPeriodo" />
           </Key>
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Decimal" Name="IdNivelServicio" Nullable="false" Precision="18" Scale="0" />
@@ -4844,6 +4875,9 @@
           <Property Type="Double" Name="Valor_volumen" Nullable="false" />
           <Property Type="Double" Name="Valor_servicio" Nullable="false" />
           <Property Type="String" Name="pe_nombreCompleto" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_tipo_Liq" Nullable="false" />
+          <Property Type="Int32" Name="IdPeriodo" Nullable="false" />
         </EntityType>
         <Association Name="FK_ro_fectividad_Entrega_x_Periodo_Empleado_Det_ro_fectividad_Entrega_x_Periodo_Empleado">
           <End Type="ModelRoles_Fj.ro_fectividad_Entrega_x_Periodo_Empleado" Role="ro_fectividad_Entrega_x_Periodo_Empleado" Multiplicity="1" />
@@ -4926,6 +4960,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje_servicio">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEfectividad" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdEfectividad" Nullable="false" />
+          <Property Type="Int32" Name="IdTipo_Nomina" Nullable="false" />
+          <Property Type="Int32" Name="IdTipoServicio" Nullable="false" />
+          <Property Type="Double" Name="Efec_desde" Nullable="false" />
+          <Property Type="Double" Name="Efec_hasta" Nullable="false" />
+          <Property Type="Double" Name="Efec_aplica" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6240,6 +6287,8 @@
           <EntitySetMapping Name="ro_fectividad_Entrega_servicio_det">
             <EntityTypeMapping TypeName="ModelRoles_Fj.ro_fectividad_Entrega_servicio_det">
               <MappingFragment StoreEntitySet="ro_fectividad_Entrega_servicio_det">
+                <ScalarProperty Name="Por_alimento" ColumnName="Por_alimento" />
+                <ScalarProperty Name="Por_bebida" ColumnName="Por_bebida" />
                 <ScalarProperty Name="Valor_servicio" ColumnName="Valor_servicio" />
                 <ScalarProperty Name="Valor_volumen" ColumnName="Valor_volumen" />
                 <ScalarProperty Name="Nivel_servicio" ColumnName="Nivel_servicio" />
@@ -6268,6 +6317,9 @@
           <EntitySetMapping Name="vwro_fectividad_Entrega_servicio_det">
             <EntityTypeMapping TypeName="ModelRoles_Fj.vwro_fectividad_Entrega_servicio_det">
               <MappingFragment StoreEntitySet="vwro_fectividad_Entrega_servicio_det">
+                <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
+                <ScalarProperty Name="IdNomina_tipo_Liq" ColumnName="IdNomina_tipo_Liq" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="pe_nombreCompleto" ColumnName="pe_nombreCompleto" />
                 <ScalarProperty Name="Valor_servicio" ColumnName="Valor_servicio" />
                 <ScalarProperty Name="Valor_volumen" ColumnName="Valor_volumen" />
@@ -6335,6 +6387,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="spro_calculo_nivel_servicio" FunctionName="ModelRoles_Fj.Store.spro_calculo_nivel_servicio" />
+          <EntitySetMapping Name="ro_Calculo_Pago_Variable_Porcentaje_servicio">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio">
+              <MappingFragment StoreEntitySet="ro_Calculo_Pago_Variable_Porcentaje_servicio">
+                <ScalarProperty Name="Efec_aplica" ColumnName="Efec_aplica" />
+                <ScalarProperty Name="Efec_hasta" ColumnName="Efec_hasta" />
+                <ScalarProperty Name="Efec_desde" ColumnName="Efec_desde" />
+                <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
+                <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
+                <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

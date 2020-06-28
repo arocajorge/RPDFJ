@@ -22,11 +22,6 @@ namespace Core.Erp.Data
             : base("name=EntityRoles_FJ")
         {
         }
-        //poner esta funcion dentro de la clase entities no viene por defecto
-        public void SetCommandTimeOut(int TimeOut)
-        {
-            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
-        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -98,6 +93,7 @@ namespace Core.Erp.Data
         public DbSet<vwro_fectividad_Entrega_servicio_det> vwro_fectividad_Entrega_servicio_det { get; set; }
         public DbSet<ro_fectividad_Entrega_servicio> ro_fectividad_Entrega_servicio { get; set; }
         public DbSet<vwro_fectividad_Entrega_servicio> vwro_fectividad_Entrega_servicio { get; set; }
+        public DbSet<ro_Calculo_Pago_Variable_Porcentaje_servicio> ro_Calculo_Pago_Variable_Porcentaje_servicio { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

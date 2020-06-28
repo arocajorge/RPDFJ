@@ -1205,6 +1205,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Academico\vwAca_Institucion_x_Sede_x_Jorn_x_Sec_Curso_x_Para_Info.cs" />
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Info.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Info.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Info.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Info.cs" />

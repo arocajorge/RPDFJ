@@ -3229,6 +3229,7 @@
     <Compile Include="Roles\ro_turno_x_tb_dia_Data.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Data.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Data.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Data.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Data.cs" />
@@ -3302,6 +3303,9 @@
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_Calculo_Pago_Variable_Porcentaje.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_Calculo_Pago_Variable_Porcentaje_servicio.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_Capacitaciones_x_Empleado.cs">

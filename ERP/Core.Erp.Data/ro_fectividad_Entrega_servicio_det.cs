@@ -36,6 +36,8 @@ namespace Core.Erp.Data
         public double Nivel_servicio { get; set; }
         public double Valor_volumen { get; set; }
         public double Valor_servicio { get; set; }
+        public double Por_bebida { get; set; }
+        public double Por_alimento { get; set; }
     
         public virtual ro_fectividad_Entrega_servicio ro_fectividad_Entrega_servicio { get; set; }
     }
