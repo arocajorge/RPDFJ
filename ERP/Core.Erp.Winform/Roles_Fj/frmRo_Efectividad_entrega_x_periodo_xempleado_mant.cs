@@ -64,7 +64,11 @@ namespace Core.Erp.Winform.Roles_Fj
         List<ro_Calculo_Pago_Variable_Porcentaje_Info> Lista_Calculo = new List<ro_Calculo_Pago_Variable_Porcentaje_Info>();
 
         ro_Calculo_Pago_Variable_Porcentaje_Bus Bus_Calculo = new ro_Calculo_Pago_Variable_Porcentaje_Bus();
-        
+
+
+        ro_fectividad_Entrega_tipoServicio_Bus bus_servicio = new Business.Roles_Fj.ro_fectividad_Entrega_tipoServicio_Bus();
+        List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicio = new List<ro_fectividad_Entrega_tipoServicio_Info>();
+        ro_fectividad_Entrega_tipoServicio_Info ro_fectividad_Entrega_tipoServicio_Info = new ro_fectividad_Entrega_tipoServicio_Info();
         #endregion
         public frmRo_Efectividad_entrega_x_periodo_xempleado_mant()
         {
@@ -137,9 +141,6 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmbnomina.Properties.DataSource = listadoNomina;
 
 
-
-                ro_fectividad_Entrega_tipoServicio_Bus bus_servicio = new Business.Roles_Fj.ro_fectividad_Entrega_tipoServicio_Bus();
-                List<ro_fectividad_Entrega_tipoServicio_Info> lst_servicio = new List<ro_fectividad_Entrega_tipoServicio_Info>();
                 lst_servicio = bus_servicio.Get_List(Convert.ToInt32(param.IdEmpresa));
 
                
@@ -599,6 +600,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
             try
             {
+                ro_fectividad_Entrega_tipoServicio_Info = bus_servicio.Get_Info(param.IdEmpresa, Convert.ToInt32(cmb_servicios.EditValue));
                 if (e.KeyCode == Keys.V && e.Control == true)
                 {
                     Pegar_Data();
@@ -651,12 +653,21 @@ namespace Core.Erp.Winform.Roles_Fj
                 ro_fectividad_Entrega_x_Periodo_Empleado_Info newRow = new ro_fectividad_Entrega_x_Periodo_Empleado_Info();
                 if (rowData.Count() >= 3) //return false;          
                 {
+                    
 
 
-                    string Ruta = Convert.ToString(rowData[0]);
-                    decimal Entrega = Convert.ToDecimal(rowData[1]);
-                    decimal Volumen = Convert.ToDecimal(rowData[2]);
-                    decimal Cartera = Convert.ToDecimal(rowData[3]);
+                    string Ruta = "";;
+                    decimal Entrega = 0;
+                    decimal Volumen = 0;
+                    decimal Cartera = 0;
+
+                     Ruta = Convert.ToString(rowData[0]);
+                     if (ro_fectividad_Entrega_tipoServicio_Info.Efectividad_entrega==true)
+                     Entrega = Convert.ToDecimal(rowData[1]);
+                     if (ro_fectividad_Entrega_tipoServicio_Info.Efectividad_volumen == true)
+                     Volumen = Convert.ToDecimal(rowData[2]);
+                     if (ro_fectividad_Entrega_tipoServicio_Info.Recuperacion_cartera == true)
+                     Cartera = Convert.ToDecimal(rowData[3]);
                     
                     ro_fectividad_Entrega_x_Periodo_Empleado_Info emp = new ro_fectividad_Entrega_x_Periodo_Empleado_Info();
                     if (!string.IsNullOrWhiteSpace(Ruta.ToString()))

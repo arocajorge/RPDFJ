@@ -205,8 +205,8 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
 
-               // lista_planificada = new BindingList<ro_planificacion_x_ruta_x_empleado_det_Info>(bus_planificacion_detalle.get_lista_planificacion(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue),Convert.ToInt32( cmbPeriodos.EditValue)));
-              //  gridControl_planificacion.DataSource = lista_planificada;
+                lista_planificada = new BindingList<ro_planificacion_x_ruta_x_empleado_det_Info>(bus_planificacion_detalle.get_lista_planificacion(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue),Convert.ToInt32( cmbPeriodos.EditValue)));
+                gridControl_planificacion.DataSource = lista_planificada;
            
 
             }
