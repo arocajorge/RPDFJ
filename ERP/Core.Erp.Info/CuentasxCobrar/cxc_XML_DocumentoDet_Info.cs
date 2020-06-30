@@ -24,5 +24,10 @@ namespace Core.Erp.Info.CuentasxCobrar
         public string dc_TipoDocumento { get; set; }
         public Nullable<int> IdBodega_Cbte { get; set; }
         public Nullable<decimal> IdCbte_vta_nota { get; set; }
+
+        #region Campos que no existen en la tabla
+        public string IdCobro_tipo { get; set; }
+        public int AplicaRetencion { get; set; }
+        #endregion
     }
 }

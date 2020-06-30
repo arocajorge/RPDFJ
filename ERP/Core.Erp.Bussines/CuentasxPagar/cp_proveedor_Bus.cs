@@ -165,9 +165,10 @@ namespace Core.Erp.Business.CuentasxPagar
                 Boolean res = true;
 
                 res = data.ModificarDB(info);
-                        
+                    
+                /*
                 if (info.lista_codigoSRI_Proveedor.Count != 0)
-                {
+                {*/
                    //consultar
                     cp_proveedor_codigo_SRI_Data odata = new cp_proveedor_codigo_SRI_Data();
                     List<cp_proveedor_codigo_SRI_Info> lista = new List<cp_proveedor_codigo_SRI_Info>();
@@ -178,8 +179,8 @@ namespace Core.Erp.Business.CuentasxPagar
                         item.IdProveedor = info.IdProveedor;
                     }
                                         
-                    if (lista.Count != 0)
-                    {
+                    /*if (lista.Count != 0)
+                    {*/
                         if (odata.EliminarDB(info.IdEmpresa, info.IdProveedor))
                         {
                             if (odata.GrabarDB(info.lista_codigoSRI_Proveedor))
@@ -187,16 +188,16 @@ namespace Core.Erp.Business.CuentasxPagar
 
                             }
                         }
-                    }
-                    else
+                    //}
+                    /*else
                     {
                         if (odata.GrabarDB(info.lista_codigoSRI_Proveedor))
                         {
 
                         }
                     
-                    }                                                         
-                }
+                    }*/                                                         
+                //}
                 return res;
             }
             catch (Exception ex)

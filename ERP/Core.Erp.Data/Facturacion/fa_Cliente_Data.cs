@@ -760,7 +760,6 @@ namespace Core.Erp.Data.Facturacion
             }
         }
 
-
         public Boolean Get_Cliente_Es_Parte_Relacionada(int IdEmpresa, string CedulaRuc)
         {
             try
@@ -790,6 +789,40 @@ namespace Core.Erp.Data.Facturacion
                 mensaje = ex.ToString();
                 oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
                 throw new Exception(ex.ToString());
+            }
+        }
+
+        public fa_Cliente_Info GetCliente(int IdEmpresa, string CedulaRuc)
+        {
+            try
+            {
+                fa_Cliente_Info info = new fa_Cliente_Info();
+
+                using (EntitiesFacturacion db = new EntitiesFacturacion())
+                {
+                    var Cliente = db.vwfa_cliente.Where(q => q.IdEmpresa == IdEmpresa && q.pe_cedulaRuc == CedulaRuc && q.Estado == "A").FirstOrDefault();
+                    if (Cliente == null)
+                        return null;
+
+                    info = new fa_Cliente_Info
+                    {
+                        IdEmpresa = Cliente.IdEmpresa,
+                        IdCliente = Cliente.IdCliente,
+                        IdPersona = Cliente.IdPersona,
+                        Persona_Info = new tb_persona_Info
+                        {
+                            pe_cedulaRuc = Cliente.pe_cedulaRuc,
+                            pe_nombreCompleto = Cliente.pe_nombreCompleto
+                        }
+                    };
+                }
+
+                return info;
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
 
@@ -827,8 +860,6 @@ namespace Core.Erp.Data.Facturacion
                 throw new Exception(ex.ToString());
             }
         }
-
-
 
         public fa_Cliente_Info Get_info_cliente_x_cedula_para_saldo_inicial(int IdEmpresa, string cedula_cliente, ref string mensajeError)
         {

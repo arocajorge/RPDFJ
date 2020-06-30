@@ -43,9 +43,9 @@ namespace Core.Erp.Business.CuentasxCobrar
             {
                 return odata.GuardarDB(info);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 

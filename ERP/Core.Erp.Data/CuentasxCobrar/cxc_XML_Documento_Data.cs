@@ -1,6 +1,9 @@
-﻿using Core.Erp.Info.CuentasxCobrar;
+﻿using Core.Erp.Data.General;
+using Core.Erp.Info.CuentasxCobrar;
+using Core.Erp.Info.General;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,44 +132,91 @@ namespace Core.Erp.Data.CuentasxCobrar
         {
             try
             {
-                using (EntitiesCuentas_x_Cobrar db = new EntitiesCuentas_x_Cobrar())
+                try
                 {
-                    var Entity = new cxc_XML_Documento
+                    using (EntitiesCuentas_x_Cobrar db = new EntitiesCuentas_x_Cobrar())
                     {
-                        IdEmpresa = info.IdEmpresa,
-                        IdDocumento = info.IdDocumento = GetID(info.IdEmpresa),
-                        Comprobante = info.Comprobante,
-                        XML = info.XML,
-                        Tipo = info.Tipo,
-                        emi_RazonSocial = info.emi_RazonSocial,
-                        emi_NombreComercial = info.emi_NombreComercial,
-                        emi_Ruc = info.emi_Ruc,
-                        emi_DireccionMatriz = info.emi_DireccionMatriz,
-                        emi_ContribuyenteEspecial = info.emi_ContribuyenteEspecial,
-                        ClaveAcceso = info.ClaveAcceso,
-                        CodDocumento = info.CodDocumento,
-                        Establecimiento = info.Establecimiento,
-                        PuntoEmision = info.PuntoEmision,
-                        NumeroDocumento = info.NumeroDocumento,
-                        FechaEmision = info.FechaEmision,
-                        rec_RazonSocial = info.rec_RazonSocial,
-                        rec_Identificacion = info.rec_Identificacion,
-                        Estado = true,
-                        IdUsuarioCreacion = info.IdUsuarioCreacion,
-                        FechaCreacion = DateTime.Now,
-                        Observacion = info.Observacion
-                    };
+                        var Entity = new cxc_XML_Documento
+                        {
+                            IdEmpresa = info.IdEmpresa,
+                            IdDocumento = info.IdDocumento = GetID(info.IdEmpresa),
+                            Comprobante = info.Comprobante,
+                            XML = info.XML,
+                            Tipo = info.Tipo,
+                            emi_RazonSocial = info.emi_RazonSocial,
+                            emi_NombreComercial = info.emi_NombreComercial,
+                            emi_Ruc = info.emi_Ruc,
+                            emi_DireccionMatriz = info.emi_DireccionMatriz,
+                            emi_ContribuyenteEspecial = info.emi_ContribuyenteEspecial,
+                            ClaveAcceso = info.ClaveAcceso,
+                            CodDocumento = info.CodDocumento,
+                            Establecimiento = info.Establecimiento,
+                            PuntoEmision = info.PuntoEmision,
+                            NumeroDocumento = info.NumeroDocumento,
+                            FechaEmision = info.FechaEmision,
+                            rec_RazonSocial = info.rec_RazonSocial,
+                            rec_Identificacion = info.rec_Identificacion,
+                            Estado = true,
+                            IdUsuarioCreacion = info.IdUsuarioCreacion,
+                            FechaCreacion = DateTime.Now,
+                            Observacion = info.Observacion ?? "",
+                            DocumentoSustento = info.DocumentoSustento,
+                            TotalRetencionIVA = info.TotalRetencionIVA,
+                            TotalRetencionFTE = info.TotalRetencionFTE
+                        };
 
-                    db.cxc_XML_Documento.Add(entity);
-                    db.SaveChanges();
+                        int Secuencia = 1;
+                        foreach (var item in info.ListaDet)
+                        {
+                            db.cxc_XML_DocumentoDet.Add(new cxc_XML_DocumentoDet
+                            {
+                                IdEmpresa = info.IdEmpresa,
+                                IdDocumento = info.IdDocumento,
+                                Secuencia = Secuencia++,
+                                TipoRetencion = item.TipoRetencion,
+                                CodigoRetencion = item.CodigoRetencion,
+                                BaseImponible = item.BaseImponible,
+                                PorcentajeRetencion = item.PorcentajeRetencion,
+                                ValorRetenido = item.ValorRetenido,
+                                CodDocSustento = item.CodDocSustento,
+                                NumDocSustento = item.NumDocSustento,
+                                FechaEmisionDocSustento = item.FechaEmisionDocSustento,
+                                IdSucursal = item.IdSucursal,
+                                IdCobro = item.IdCobro,
+                                dc_TipoDocumento = item.dc_TipoDocumento,
+                                IdBodega_Cbte = item.IdBodega_Cbte,
+                                IdCbte_vta_nota = item.IdCbte_vta_nota,
+                                IdCobro_tipo = item.IdCobro_tipo
+                            });
+                        }
+
+                        db.cxc_XML_Documento.Add(Entity);
+                        db.SaveChanges();
+                    }
+
+                    return true;
                 }
-
-                return true;
+                catch (DbEntityValidationException ex)
+                {
+                    string mensaje = string.Empty;
+                    string arreglo = ToString();
+                    tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                    tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                    oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                    mensaje = ex.ToString() + " " + ex.Message;
+                    mensaje = "Error al Grabar" + ex.Message;
+                    throw new Exception(ex.ToString());
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                string arreglo = ToString();
+                string strMensaje = "";
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                strMensaje = ex.ToString() + " " + ex.Message;
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref strMensaje);
+                throw new Exception(ex.ToString());
             }
         }
 

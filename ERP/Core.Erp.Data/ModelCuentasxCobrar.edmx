@@ -1428,6 +1428,9 @@
           <Property Name="rec_RazonSocial" Type="varchar" Nullable="false" MaxLength="2000" />
           <Property Name="rec_Identificacion" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="DocumentoSustento" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="TotalRetencionFTE" Type="float" Nullable="false" />
+          <Property Name="TotalRetencionIVA" Type="float" Nullable="false" />
           <Property Name="IdUsuarioCreacion" Type="varchar" MaxLength="50" />
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="IdUsuarioModificacion" Type="varchar" MaxLength="50" />
@@ -1458,6 +1461,7 @@
           <Property Name="dc_TipoDocumento" Type="varchar" MaxLength="20" />
           <Property Name="IdBodega_Cbte" Type="int" />
           <Property Name="IdCbte_vta_nota" Type="numeric" />
+          <Property Name="IdCobro_tipo" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwcxc_anticipos_x_cruzar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -5192,6 +5196,9 @@
           <Property Type="String" Name="rec_RazonSocial" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="rec_Identificacion" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="DocumentoSustento" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="TotalRetencionFTE" Nullable="false" />
+          <Property Type="Double" Name="TotalRetencionIVA" Nullable="false" />
           <Property Type="String" Name="IdUsuarioCreacion" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="FechaCreacion" Precision="3" />
           <Property Type="String" Name="IdUsuarioModificacion" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -5223,6 +5230,7 @@
           <Property Type="String" Name="dc_TipoDocumento" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="IdBodega_Cbte" />
           <Property Type="Decimal" Name="IdCbte_vta_nota" Precision="18" Scale="0" />
+          <Property Type="String" Name="IdCobro_tipo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="cxc_cobro" Relationship="DBERP_GRAFPRUEBASModel.FK_cxc_XML_DocumentoDet_cxc_cobro" FromRole="cxc_XML_DocumentoDet" ToRole="cxc_cobro" />
           <NavigationProperty Name="cxc_XML_Documento" Relationship="DBERP_GRAFPRUEBASModel.FK_cxc_XML_DocumentoDet_cxc_XML_Documento" FromRole="cxc_XML_DocumentoDet" ToRole="cxc_XML_Documento" />
         </EntityType>
@@ -6584,6 +6592,9 @@
                 <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="TotalRetencionIVA" ColumnName="TotalRetencionIVA" />
+                <ScalarProperty Name="TotalRetencionFTE" ColumnName="TotalRetencionFTE" />
+                <ScalarProperty Name="DocumentoSustento" ColumnName="DocumentoSustento" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="rec_Identificacion" ColumnName="rec_Identificacion" />
                 <ScalarProperty Name="rec_RazonSocial" ColumnName="rec_RazonSocial" />
@@ -6609,6 +6620,7 @@
           <EntitySetMapping Name="cxc_XML_DocumentoDet">
             <EntityTypeMapping TypeName="DBERP_GRAFPRUEBASModel.cxc_XML_DocumentoDet">
               <MappingFragment StoreEntitySet="cxc_XML_DocumentoDet">
+                <ScalarProperty Name="IdCobro_tipo" ColumnName="IdCobro_tipo" />
                 <ScalarProperty Name="IdCbte_vta_nota" ColumnName="IdCbte_vta_nota" />
                 <ScalarProperty Name="IdBodega_Cbte" ColumnName="IdBodega_Cbte" />
                 <ScalarProperty Name="dc_TipoDocumento" ColumnName="dc_TipoDocumento" />

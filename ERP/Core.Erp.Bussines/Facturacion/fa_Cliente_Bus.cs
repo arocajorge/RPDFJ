@@ -412,6 +412,19 @@ namespace Core.Erp.Business.Facturacion
             }
         }
 
+        public fa_Cliente_Info GetCliente(int IdEmpresa, string CedulaRuc)
+        {
+            try
+            {
+                return data.GetCliente(IdEmpresa, CedulaRuc);
+            }
+            catch (Exception ex)
+            {
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GetCliente", ex.Message), ex) { EntityType = typeof(fa_Cliente_Bus) };
+            }
+        }
+
         public fa_Cliente_Info Get_Info_Cliente(int Idempresa, decimal IdCliente)
         {
             try

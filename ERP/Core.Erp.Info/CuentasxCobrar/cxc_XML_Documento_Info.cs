@@ -32,6 +32,21 @@ namespace Core.Erp.Info.CuentasxCobrar
 
         #region Campos que no existen en la base
         public List<cxc_XML_DocumentoDet_Info> ListaDet { get; set; }
+        public int IdSucursal { get; set; }
+        public int IdBodega_Cbte { get; set; }
+        public decimal IdCbte_vta_nota { get; set; }
+        public int AplicaRetencion { get; set; }
+        public string Motivo { get; set; }
+        public decimal IdCliente { get; set; }
+        public double TotalRetencionFTE { get; set; }
+        public double TotalRetencionIVA { get; set; }
+        public string DocumentoSustento { get; set; }
         #endregion
+
+
+
+
+
+        
     }
 }

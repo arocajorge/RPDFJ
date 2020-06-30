@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Core.Erp.Business.CuentasxCobrar
@@ -20,7 +21,18 @@ namespace Core.Erp.Business.CuentasxCobrar
             }
             catch (Exception)
             {
-                
+                throw;
+            }
+        }
+
+        public cxc_XML_Documento_Info GetInfoParaCruzar(int IdEmpresa, string dc_TipoDocumento, string NumDocSustento, double ValorRetenido, decimal IdCliente)
+        {
+            try
+            {
+                return odata.GetInfoParaCruzar(IdEmpresa, dc_TipoDocumento, NumDocSustento, ValorRetenido, IdCliente);
+            }
+            catch (Exception)
+            {   
                 throw;
             }
         }

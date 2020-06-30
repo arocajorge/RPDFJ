@@ -38,6 +38,9 @@ namespace Core.Erp.Data
         public string rec_RazonSocial { get; set; }
         public string rec_Identificacion { get; set; }
         public bool Estado { get; set; }
+        public string DocumentoSustento { get; set; }
+        public double TotalRetencionFTE { get; set; }
+        public double TotalRetencionIVA { get; set; }
         public string IdUsuarioCreacion { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public string IdUsuarioModificacion { get; set; }

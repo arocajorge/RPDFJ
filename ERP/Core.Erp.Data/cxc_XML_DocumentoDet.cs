@@ -30,6 +30,7 @@ namespace Core.Erp.Data
         public string dc_TipoDocumento { get; set; }
         public Nullable<int> IdBodega_Cbte { get; set; }
         public Nullable<decimal> IdCbte_vta_nota { get; set; }
+        public string IdCobro_tipo { get; set; }
     
         public virtual cxc_cobro cxc_cobro { get; set; }
         public virtual cxc_XML_Documento cxc_XML_Documento { get; set; }
