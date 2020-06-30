@@ -25,7 +25,7 @@ namespace Core.Erp.Business.Roles_Fj
       ro_Empleado_Novedad_Bus bus_novedad = new ro_Empleado_Novedad_Bus();
       ro_Empleado_Novedad_Det_Bus novedad_detalle_bus = new ro_Empleado_Novedad_Det_Bus();
       ro_Empleado_Novedad_Det_Info info_detalle = new ro_Empleado_Novedad_Det_Info();
-
+      ro_fectividad_Entrega_tipoServicio_Data ro_fectividad_Entrega_tipoServicio_Data = new ro_fectividad_Entrega_tipoServicio_Data();
       string mensaje;
       public bool Guardar_DB(ro_fectividad_Entrega_x_Periodo_Empleado_Info info)
       {
@@ -34,29 +34,16 @@ namespace Core.Erp.Business.Roles_Fj
           bool ba=false;
           int idefectividad = 0;
           decimal id_nov = 0;
+          var ro_fectividad_Entrega_tipoServicio_info=ro_fectividad_Entrega_tipoServicio_Data.Get_Info(info.IdEmpresa,(int)info.IdServicioTipo);
           try
           {
               if (data.Guardar_DB(info, ref idefectividad))
               {
-                  foreach (var item in info.lista)
+                 if (ro_fectividad_Entrega_tipoServicio_info.Genera_novedad==true)
+                 foreach (var item in Get_Novedades(info.lista,Convert.ToInt32( info.IdServicioTipo)))
                   {
-                      item.IdEmpresa = info.IdEmpresa;
-                      item.IdNomina_Tipo = info.IdNomina_Tipo;
-                      item.IdPeriodo = info.IdPeriodo;
-                      item.IdEfectividad = info.IdEfectividad;
-                      item.IdEfectividad = idefectividad;
-                      item.IdNomina_tipo_Liq = info.IdNomina_tipo_Liq;
+                   ba=  bus_novedad.GrabarDB(item, ref id_nov);
                   }
-
-                  if (ba = data_detalle.Guardar_DB(info.lista))
-                  {
-                      foreach (var item in Get_Novedades(info.lista,Convert.ToInt32( info.IdServicioTipo)))
-                      {
-                        ba=  bus_novedad.GrabarDB(item, ref id_nov);
-                      }
-                  }
-
-
               }
 
               return ba;
@@ -75,47 +62,26 @@ namespace Core.Erp.Business.Roles_Fj
       public bool Modificar_DB(ro_fectividad_Entrega_x_Periodo_Empleado_Info info)
       {
           bool ba = false;
-          int idefectividad = 0;
           decimal id_nov = 0;
-
           try
           {
               if (data.Modificar_DB(info))
               {
-
-                  foreach (var item in info.lista)
-                  {
-                      item.IdEmpresa = info.IdEmpresa;
-                      item.IdNomina_Tipo = info.IdNomina_Tipo;
-                      item.IdEfectividad = info.IdEfectividad;
-                      item.IdEfectividad = idefectividad;
-                      item.IdPeriodo = info.IdPeriodo;
-                  }
-
-
-
-
-                  if (data_detalle.Modificar_DB(info.lista))
-                  {
-                      foreach (var item in Get_Novedades(info.lista, Convert.ToInt32(info.IdServicioTipo)))
+                  var ro_fectividad_Entrega_tipoServicio_info = ro_fectividad_Entrega_tipoServicio_Data.Get_Info(info.IdEmpresa, (int)info.IdServicioTipo);
+                  if (ro_fectividad_Entrega_tipoServicio_info.Genera_novedad == true)
+                    foreach (var item in Get_Novedades(info.lista, Convert.ToInt32(info.IdServicioTipo)))
                      {
                          info_detalle = novedad_detalle_bus.get_si_existe_novedad(item.IdEmpresa, item.IdEmpleado, item.IdRubro, item.IdCalendario);
                          if (info_detalle != null)
                          {
                              item.IdNovedad = info_detalle.IdNovedad;
                              ba = bus_novedad.ModificarDB(item);
-
                          }
                          else
                          {
                              ba = bus_novedad.GrabarDB(item, ref id_nov);
-
                          }
                      }
-                 }
-
-
-
               }
 
               return ba;
@@ -157,7 +123,7 @@ namespace Core.Erp.Business.Roles_Fj
       {
           try
           {
-              return data.listado_Grupos(IdEmpresa, Fecha_Inicio, Fecha_fin);
+              return data.get_list(IdEmpresa, Fecha_Inicio, Fecha_fin);
           }
           catch (Exception ex)
           {
@@ -185,10 +151,7 @@ namespace Core.Erp.Business.Roles_Fj
 
               foreach (var item in lista)
               {
-                  if (item.IdEmpleado == 424)
-                  {
-
-                  }
+                 
                   #region SI LA VARIABLE ES VEVIDAS
 
                   if (info_servicio.ts_codigo == etipoServicio.BEBIDAS.ToString())

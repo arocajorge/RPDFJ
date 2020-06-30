@@ -37,7 +37,7 @@ namespace Core.Erp.Data
         public Nullable<int> IdPeriodo { get; set; }
     
         public virtual ro_empleado_Novedad ro_empleado_Novedad { get; set; }
-        public virtual ro_rubro_tipo ro_rubro_tipo { get; set; }
         public virtual ICollection<ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad> ro_Historico_Liquidacion_Vacaciones_Det_DescNovedad { get; set; }
+        public virtual ro_rubro_tipo ro_rubro_tipo { get; set; }
     }
 }

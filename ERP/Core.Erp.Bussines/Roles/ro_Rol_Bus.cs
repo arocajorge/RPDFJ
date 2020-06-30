@@ -2337,6 +2337,18 @@ namespace Core.Erp.Business.Roles
            }
        }
 
+       public Boolean procesar(int IdEmpresa, int IdNomina_Tipo, int IdNomina_TipoLiqui, int IdPeriodo,decimal Idempleado, string nombre_procedimiento, string observacion, string usuario)
+       {
+           try
+           {
+               return oRo_Rol_Data.procesar(IdEmpresa, IdNomina_Tipo, IdNomina_TipoLiqui, IdPeriodo,Idempleado, nombre_procedimiento, observacion, usuario);
+           }
+           catch (Exception)
+           {
+
+               throw;
+           }
+       }
     
     }
 }

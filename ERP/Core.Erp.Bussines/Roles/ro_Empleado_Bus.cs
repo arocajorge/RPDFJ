@@ -1785,12 +1785,12 @@ namespace Core.Erp.Business.Roles
 
         }
 
-        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia(int IdEmpresa, int IdNomina_tipo, DateTime Fecha, int IdDivision)
+        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia(int IdEmpresa, int IdNomina_tipo, DateTime Fecha, int IdDivision, string cmbStatus)
         {
             try
             {
 
-                return oRro_Empleado_Data.Get_list_empleado_sin_registro_asistencia(IdEmpresa, IdNomina_tipo, Fecha, IdDivision);
+                return oRro_Empleado_Data.Get_list_empleado_sin_registro_asistencia(IdEmpresa, IdNomina_tipo, Fecha, IdDivision, cmbStatus);
             }
             catch (Exception ex)
             {
@@ -1798,12 +1798,12 @@ namespace Core.Erp.Business.Roles
                 throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "Get_List_Empleado_x_Nomina", ex.Message), ex) { EntityType = typeof(ro_Empleado_Bus) };
             }
         }
-        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia_eventuiales(int IdEmpresa, int IdNomina_tipo, DateTime Fecha)
+        public List<ro_Empleado_Info> Get_list_empleado_sin_registro_asistencia_eventuiales(int IdEmpresa, int IdNomina_tipo, DateTime Fecha, string estado)
         {
             try
             {
 
-                return oRro_Empleado_Data.Get_list_empleado_sin_registro_asistencia_eventuiales(IdEmpresa, IdNomina_tipo, Fecha);
+                return oRro_Empleado_Data.Get_list_empleado_sin_registro_asistencia_eventuiales(IdEmpresa, IdNomina_tipo, Fecha, estado);
             }
             catch (Exception ex)
             {

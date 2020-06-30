@@ -22,6 +22,7 @@ namespace Core.Erp.Data
             : base("name=EntitiesRoles")
         {
         }
+        //poner esta funcion dentro de la clase entities no viene por defecto
         public void SetCommandTimeOut(int TimeOut)
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
@@ -55,7 +56,6 @@ namespace Core.Erp.Data
         public DbSet<ro_marcaciones_Equipo_x_TipoMarcacion> ro_marcaciones_Equipo_x_TipoMarcacion { get; set; }
         public DbSet<ro_marcaciones_tipo> ro_marcaciones_tipo { get; set; }
         public DbSet<ro_nomina_tipo_liqui_orden> ro_nomina_tipo_liqui_orden { get; set; }
-        public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
         public DbSet<ro_novedad_x_empleado> ro_novedad_x_empleado { get; set; }
         public DbSet<ro_Pago_decimos_x_Empleado> ro_Pago_decimos_x_Empleado { get; set; }
         public DbSet<ro_participacion_utilidad_empleado> ro_participacion_utilidad_empleado { get; set; }
@@ -180,7 +180,6 @@ namespace Core.Erp.Data
         public DbSet<VWRO_empleado> VWRO_empleado { get; set; }
         public DbSet<ro_Parametros> ro_Parametros { get; set; }
         public DbSet<ro_prestamo> ro_prestamo { get; set; }
-        public DbSet<ro_rubro_tipo> ro_rubro_tipo { get; set; }
         public DbSet<ro_periodo> ro_periodo { get; set; }
         public DbSet<vwRO_Empleado_X_Nomina_Liquidar> vwRO_Empleado_X_Nomina_Liquidar { get; set; }
         public DbSet<ro_marcaciones_x_empleado> ro_marcaciones_x_empleado { get; set; }
@@ -218,6 +217,10 @@ namespace Core.Erp.Data
         public DbSet<vwRo_CargaFamiliar_X_Catalogo> vwRo_CargaFamiliar_X_Catalogo { get; set; }
         public DbSet<vwro_empleadoXdepXcargo> vwro_empleadoXdepXcargo { get; set; }
         public DbSet<vwRo_Permiso_x_Empleado> vwRo_Permiso_x_Empleado { get; set; }
+        public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
+        public DbSet<ro_rubro_tipo> ro_rubro_tipo { get; set; }
+        public DbSet<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
+        public DbSet<vwro_permiso_x_empleado_x_novedad> vwro_permiso_x_empleado_x_novedad { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {
@@ -268,35 +271,6 @@ namespace Core.Erp.Data
                 new ObjectParameter("IdNomina_TipoLiqui", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spRo_ObtenerPeriodoDespues_Result>("spRo_ObtenerPeriodoDespues", idEmpresaParameter, idPeriodoParameter, idNomina_TipoParameter, idNomina_TipoLiquiParameter);
-        }
-    
-        public virtual int spRo_procesa_Rol(Nullable<int> i_empresa, Nullable<decimal> i_empleadoIni, Nullable<decimal> i_empleadoFin, Nullable<decimal> i_tipoNomina, Nullable<decimal> i_procesoRol, Nullable<decimal> i_periodo)
-        {
-            var i_empresaParameter = i_empresa.HasValue ?
-                new ObjectParameter("i_empresa", i_empresa) :
-                new ObjectParameter("i_empresa", typeof(int));
-    
-            var i_empleadoIniParameter = i_empleadoIni.HasValue ?
-                new ObjectParameter("i_empleadoIni", i_empleadoIni) :
-                new ObjectParameter("i_empleadoIni", typeof(decimal));
-    
-            var i_empleadoFinParameter = i_empleadoFin.HasValue ?
-                new ObjectParameter("i_empleadoFin", i_empleadoFin) :
-                new ObjectParameter("i_empleadoFin", typeof(decimal));
-    
-            var i_tipoNominaParameter = i_tipoNomina.HasValue ?
-                new ObjectParameter("i_tipoNomina", i_tipoNomina) :
-                new ObjectParameter("i_tipoNomina", typeof(decimal));
-    
-            var i_procesoRolParameter = i_procesoRol.HasValue ?
-                new ObjectParameter("i_procesoRol", i_procesoRol) :
-                new ObjectParameter("i_procesoRol", typeof(decimal));
-    
-            var i_periodoParameter = i_periodo.HasValue ?
-                new ObjectParameter("i_periodo", i_periodo) :
-                new ObjectParameter("i_periodo", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spRo_procesa_Rol", i_empresaParameter, i_empleadoIniParameter, i_empleadoFinParameter, i_tipoNominaParameter, i_procesoRolParameter, i_periodoParameter);
         }
     
         public virtual ObjectResult<spRo_Calculo_Dias_Trabajados_Result> spRo_Calculo_Dias_Trabajados(Nullable<int> i_idempresa, Nullable<System.DateTime> i_fechaIni, Nullable<System.DateTime> i_fechaFin, Nullable<decimal> i_IdEmpleadoIni, Nullable<decimal> i_IdEmpleadoFin)

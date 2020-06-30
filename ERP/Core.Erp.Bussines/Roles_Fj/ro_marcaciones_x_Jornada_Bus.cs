@@ -17,7 +17,7 @@ namespace Core.Erp.Business.Roles_Fj
        ro_Parametro_calculo_Horas_Extras_Info info_parametro = new ro_Parametro_calculo_Horas_Extras_Info();
      
        TimeSpan inicioHora25 = TimeSpan.FromHours(19); //19:00 PM
-       TimeSpan finalHora25 = TimeSpan.FromHours(6); //06:00 AM
+       TimeSpan finalHora25 = TimeSpan.FromHours(6);   //06:00 AM
        //HORAS EXTRAS 50
        TimeSpan inicioHora50 = TimeSpan.FromHours(6); //06:00 AM
        TimeSpan finalHora50 = TimeSpan.FromHours(24); //24:00 PM

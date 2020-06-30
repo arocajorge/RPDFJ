@@ -69,6 +69,10 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+
+                List<ro_division_Info> ListaDivision = new System.Collections.Generic.List<ro_division_Info>();
+                ro_division_Bus Bus_division = new ro_division_Bus();
+
                 lista_Catalogo = bus_catalo.Get_List_Catalogo_x_Tipo(37);
                 cmb_catalogo.DataSource = lista_Catalogo;
                 cmb_catalogo.ValueMember = "CodCatalogo";
@@ -78,6 +82,11 @@ namespace Core.Erp.Winform.Roles_Fj
                 listadoNomina = oRo_Nomina_Tipo_Bus.Get_List_Nomina_Tipo(param.IdEmpresa);
                 cmbnomina.Properties.DataSource = listadoNomina;
                 cmb_nomina_eliminar.Properties.DataSource = listadoNomina;
+
+                ListaDivision = Bus_division.ConsultaGeneral(param.IdEmpresa);
+                cmb_division.Properties.DataSource = ListaDivision;
+
+                cmb_division_eliminar.Properties.DataSource = ListaDivision;
 
             }
             catch (Exception ex)
@@ -100,8 +109,14 @@ namespace Core.Erp.Winform.Roles_Fj
                     return;
 
                 }
+                if (cmb_nomina_eliminar.EditValue == null)
+                {
+                    MessageBox.Show("Selecciona la division", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
 
-                lista_empleado_novedad_x_ingreso = bus_novedades_x_ingreso.lista_atrasos_faltas_x_empleado(param.IdEmpresa,Convert.ToInt32(cmb_nomina_eliminar.EditValue), Convert.ToDateTime(dtFechaInicio.EditValue), Convert.ToDateTime(dtFechaSalida.EditValue));
+                }
+                lista_empleado_novedad_x_ingreso = bus_novedades_x_ingreso.lista_atrasos_faltas_x_empleado(param.IdEmpresa,Convert.ToInt32(cmb_nomina_eliminar.EditValue),Convert.ToInt32(cmb_division_eliminar.EditValue),
+                 Convert.ToDateTime(dtFechaInicio.EditValue), Convert.ToDateTime(dtFechaSalida.EditValue));
                 gridControl_novedades_x_asistencia.DataSource = lista_empleado_novedad_x_ingreso;
             }
             catch (Exception ex)
@@ -224,7 +239,35 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                lista_horas_extras_pendiente_aprobar = new BindingList<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Info>( bus_hpras_extras_pendientes_aprobar.Get_lista_horas_extras_x_aproba(param.IdEmpresa,Convert.ToDateTime( dtp_Fecha_inicio_buscar_novedades.EditValue),Convert.ToDateTime( dtp_fecha_fin_buscar_novedades.EditValue)));
+
+                if (cmbnomina.EditValue == null)
+                {
+                    MessageBox.Show("Selecciona la nomina", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+                if (cmbnominaTipo.EditValue == null)
+                {
+                    MessageBox.Show("Selecciona el tipo liquidacion de nomina", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+                if (cmbPeriodos.EditValue == null)
+                {
+                    MessageBox.Show("Selecciona el periodo", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+
+                if (cmb_division.EditValue == null)
+                {
+                    MessageBox.Show("Selecciona la division", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+
+                lista_horas_extras_pendiente_aprobar = new BindingList<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Info>(bus_hpras_extras_pendientes_aprobar.Get_lista_horas_extras_x_aproba(param.IdEmpresa, 
+                 Convert.ToInt32(cmbnomina.EditValue),Convert.ToInt32(cmb_division.EditValue),  Convert.ToDateTime(dtp_Fecha_inicio_buscar_novedades.EditValue), Convert.ToDateTime(dtp_fecha_fin_buscar_novedades.EditValue)));
                 gridControl_novedades_xHE.DataSource = lista_horas_extras_pendiente_aprobar;
      
 
@@ -525,11 +568,16 @@ namespace Core.Erp.Winform.Roles_Fj
                 {
                     foreach (var item in lista_empleado_novedad_x_ingreso.Where(v => v.check == true).ToList())
                     {
+                        string IdCalendario = item.es_fecha_registro.Year.ToString() + item.es_fecha_registro.Month.ToString().PadLeft(2, '0') + item.es_fecha_registro.Day.ToString().PadLeft(2, '0') + "H";
+
                         bus_marcaciones.EliminarDB(item.IdEmpresa, item.IdEmpleado, item.IdRegistro);
                         bus_novedades_x_ingreso.EliminarDB(item, ref msg);
+                        bus_novedad.Reversar_HorasExtras(param.IdEmpresa,
+                          item.IdEmpleado, Convert.ToInt32(Convert.ToDateTime(item.es_fecha_registro).ToString("yyyyMM")), IdCalendario);
+
                     }
 
-                    lista_empleado_novedad_x_ingreso = bus_novedades_x_ingreso.lista_atrasos_faltas_x_empleado(param.IdEmpresa,Convert.ToInt32(cmb_nomina_eliminar.EditValue),  Convert.ToDateTime(dtFechaInicio.EditValue), Convert.ToDateTime(dtFechaSalida.EditValue));
+                    lista_empleado_novedad_x_ingreso = bus_novedades_x_ingreso.lista_atrasos_faltas_x_empleado(param.IdEmpresa,Convert.ToInt32(cmb_nomina_eliminar.EditValue), Convert.ToInt32(cmb_division_eliminar.EditValue), Convert.ToDateTime(dtFechaInicio.EditValue), Convert.ToDateTime(dtFechaSalida.EditValue));
                     gridControl_novedades_x_asistencia.DataSource = lista_empleado_novedad_x_ingreso;
                 }
             }

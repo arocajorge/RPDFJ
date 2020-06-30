@@ -41,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucGe_Menu_Mantenimiento_x_usuario = new Core.Erp.Winform.Controles.UCGe_Menu_Mantenimiento_x_usuario();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridCtrlRubro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewRubro)).BeginInit();
             this.panel1.SuspendLayout();
@@ -53,7 +54,7 @@
             this.gridCtrlRubro.Location = new System.Drawing.Point(0, 0);
             this.gridCtrlRubro.MainView = this.gridViewRubro;
             this.gridCtrlRubro.Name = "gridCtrlRubro";
-            this.gridCtrlRubro.Size = new System.Drawing.Size(687, 311);
+            this.gridCtrlRubro.Size = new System.Drawing.Size(914, 311);
             this.gridCtrlRubro.TabIndex = 12;
             this.gridCtrlRubro.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewRubro});
@@ -67,7 +68,8 @@
             this.ColTipo,
             this.ColEstado,
             this.ColOrden,
-            this.ColID});
+            this.ColID,
+            this.gridColumn1});
             this.gridViewRubro.CustomizationFormBounds = new System.Drawing.Rectangle(512, 442, 216, 185);
             this.gridViewRubro.GridControl = this.gridCtrlRubro;
             this.gridViewRubro.Name = "gridViewRubro";
@@ -84,8 +86,8 @@
             this.ColCodRubro.FieldName = "rub_codigo";
             this.ColCodRubro.Name = "ColCodRubro";
             this.ColCodRubro.Visible = true;
-            this.ColCodRubro.VisibleIndex = 1;
-            this.ColCodRubro.Width = 105;
+            this.ColCodRubro.VisibleIndex = 0;
+            this.ColCodRubro.Width = 53;
             // 
             // ColDescripcion
             // 
@@ -93,8 +95,8 @@
             this.ColDescripcion.FieldName = "ru_descripcion";
             this.ColDescripcion.Name = "ColDescripcion";
             this.ColDescripcion.Visible = true;
-            this.ColDescripcion.VisibleIndex = 2;
-            this.ColDescripcion.Width = 587;
+            this.ColDescripcion.VisibleIndex = 3;
+            this.ColDescripcion.Width = 268;
             // 
             // ColNombreC
             // 
@@ -102,8 +104,8 @@
             this.ColNombreC.FieldName = "NombreCorto";
             this.ColNombreC.Name = "ColNombreC";
             this.ColNombreC.Visible = true;
-            this.ColNombreC.VisibleIndex = 3;
-            this.ColNombreC.Width = 124;
+            this.ColNombreC.VisibleIndex = 4;
+            this.ColNombreC.Width = 55;
             // 
             // ColTipo
             // 
@@ -111,8 +113,8 @@
             this.ColTipo.FieldName = "ru_tipo";
             this.ColTipo.Name = "ColTipo";
             this.ColTipo.Visible = true;
-            this.ColTipo.VisibleIndex = 4;
-            this.ColTipo.Width = 130;
+            this.ColTipo.VisibleIndex = 5;
+            this.ColTipo.Width = 58;
             // 
             // ColEstado
             // 
@@ -120,17 +122,17 @@
             this.ColEstado.FieldName = "ru_estado";
             this.ColEstado.Name = "ColEstado";
             this.ColEstado.Visible = true;
-            this.ColEstado.VisibleIndex = 5;
-            this.ColEstado.Width = 134;
+            this.ColEstado.VisibleIndex = 6;
+            this.ColEstado.Width = 73;
             // 
             // ColOrden
             // 
-            this.ColOrden.Caption = "Orden";
+            this.ColOrden.Caption = "Orden rol individual";
             this.ColOrden.FieldName = "ru_orden";
             this.ColOrden.Name = "ColOrden";
             this.ColOrden.Visible = true;
-            this.ColOrden.VisibleIndex = 0;
-            this.ColOrden.Width = 94;
+            this.ColOrden.VisibleIndex = 1;
+            this.ColOrden.Width = 84;
             // 
             // ColID
             // 
@@ -142,7 +144,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 405);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(687, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(914, 22);
             this.statusStrip1.TabIndex = 13;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -152,20 +154,25 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(687, 94);
+            this.panel1.Size = new System.Drawing.Size(914, 94);
             this.panel1.TabIndex = 14;
             // 
             // ucGe_Menu_Mantenimiento_x_usuario
             // 
+            this.ucGe_Menu_Mantenimiento_x_usuario.CargarTodasBodegas = false;
+            this.ucGe_Menu_Mantenimiento_x_usuario.CargarTodasSucursales = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_anular = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_CancelarCuotas = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_CargaMarcaciónExcel = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_consultar = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_DiseñoCheque = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_DiseñoChequeComprobante = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_Duplicar = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_GenerarPeriodos = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_GenerarXml = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_Habilitar_Reg = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_Importar_XML = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_imprimir = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_LoteCheque = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_modificar = true;
@@ -173,15 +180,17 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_NuevoCheque = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_periodo = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Enable_boton_salir = true;
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2015, 2, 23, 9, 18, 35, 327);
-            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2015, 4, 23, 9, 18, 35, 327);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Enable_btnImpExcel = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Enable_Descargar_Marca_Base_exter = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_desde = new System.DateTime(2020, 4, 10, 21, 54, 23, 775);
+            this.ucGe_Menu_Mantenimiento_x_usuario.fecha_hasta = new System.DateTime(2020, 6, 10, 21, 54, 23, 775);
             this.ucGe_Menu_Mantenimiento_x_usuario.FormConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.FormMain = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.GridControlConsulta = null;
             this.ucGe_Menu_Mantenimiento_x_usuario.Location = new System.Drawing.Point(0, 0);
             this.ucGe_Menu_Mantenimiento_x_usuario.Name = "ucGe_Menu_Mantenimiento_x_usuario";
             this.ucGe_Menu_Mantenimiento_x_usuario.Perfil_x_usuario = null;
-            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(687, 94);
+            this.ucGe_Menu_Mantenimiento_x_usuario.Size = new System.Drawing.Size(914, 94);
             this.ucGe_Menu_Mantenimiento_x_usuario.TabIndex = 0;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_bodega = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_anular = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -189,21 +198,30 @@
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_CargaMarcaciónExcel = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_consular = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_DiseñoCheque = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_DiseñoChequeComprobante = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_DiseNoReport = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_Duplicar = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_GenerarPeriodos = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_GenerarXml = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_Habilitar_Reg = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_Importar_XML = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_imprimir = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_LoteCheque = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_modificar = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_nuevo = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_boton_NuevoCheque = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_btn_imprimir_lote = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_btnImpExcel = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Descargar_Marca_Base_exter = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_fechas = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_Cancelaciones = true;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_Diseño_Reporte = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_filtro = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_Impresion = false;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_Otras_Trans = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Grupo_Transacciones = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_Pie_fechas_Boton_buscar = false;
+            this.ucGe_Menu_Mantenimiento_x_usuario.Visible_ribbon_control = true;
             this.ucGe_Menu_Mantenimiento_x_usuario.Visible_sucursal = false;
             // 
             // panel2
@@ -212,14 +230,23 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 94);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(687, 311);
+            this.panel2.Size = new System.Drawing.Size(914, 311);
             this.panel2.TabIndex = 15;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Orden rol general";
+            this.gridColumn1.FieldName = "ru_orden_rol_general";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 78;
             // 
             // frmRo_RubroTipo_Cons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 427);
+            this.ClientSize = new System.Drawing.Size(914, 427);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -251,5 +278,6 @@
         private System.Windows.Forms.Panel panel1;
         private Controles.UCGe_Menu_Mantenimiento_x_usuario ucGe_Menu_Mantenimiento_x_usuario;
         private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

@@ -149,6 +149,20 @@ namespace Core.Erp.Business.Roles
                     throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GrabarBD", ex.Message), ex) { EntityType = typeof(ro_SolicitudVacaciones_Bus) };
                 }
         }
+        public Boolean AnularBD(ro_SolicitudVacaciones_Info info, ref int id, ref string msg)
+        {
+            try
+            {
+
+                return oRo_SolicitudVacaciones_Data.AnularDB(info, ref msg);
+
+            }
+            catch (Exception ex)
+            {
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GrabarBD", ex.Message), ex) { EntityType = typeof(ro_SolicitudVacaciones_Bus) };
+            }
+        }
 
 
 

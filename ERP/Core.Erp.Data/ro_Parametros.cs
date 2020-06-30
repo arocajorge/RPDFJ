@@ -44,5 +44,8 @@ namespace Core.Erp.Data
         public Nullable<int> IdTipoFlujoOP_ActaFiniquito { get; set; }
         public string IdFormaPagoOP_ActaFiniquito { get; set; }
         public Nullable<int> IdBancoOP_ActaFiniquito { get; set; }
+        public Nullable<double> Sueldo_basico { get; set; }
+        public Nullable<double> Porcentaje_aporte_pers { get; set; }
+        public Nullable<double> Porcentaje_aporte_patr { get; set; }
     }
 }

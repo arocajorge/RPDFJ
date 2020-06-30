@@ -49,6 +49,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.panelCab = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtOrden_general = new System.Windows.Forms.NumericUpDown();
             this.CheckEstado = new DevExpress.XtraEditors.CheckEdit();
             this.label8 = new System.Windows.Forms.Label();
             this.txtIdRolProceso = new System.Windows.Forms.TextBox();
@@ -64,7 +66,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelDetalle = new System.Windows.Forms.Panel();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControlMasConfig = new DevExpress.XtraEditors.GroupControl();
+            this.check_calcula_base_dias_efec = new DevExpress.XtraEditors.CheckEdit();
+            this.check_muestra_rol_general = new DevExpress.XtraEditors.CheckEdit();
             this.check_aparece_liq_fact = new DevExpress.XtraEditors.CheckEdit();
             this.check_rub_Contabiliza_x_empleado = new DevExpress.XtraEditors.CheckEdit();
             this.cmbCuentaContable_ = new Core.Erp.Winform.Controles.UCCon_Plan_de_Cuenta_x_Movimiento();
@@ -84,8 +90,6 @@
             this.labelGrupo = new System.Windows.Forms.Label();
             this.CmbTipoCampo = new System.Windows.Forms.ComboBox();
             this.LbtipoCampo = new System.Windows.Forms.Label();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.txtAcuedro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chkPermiteContabilizacion.Properties)).BeginInit();
@@ -101,11 +105,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.view)).BeginInit();
             this.panelCab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOrden_general)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEstado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrden)).BeginInit();
             this.panelDetalle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControlMasConfig)).BeginInit();
             this.groupControlMasConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_calcula_base_dias_efec.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.check_muestra_rol_general.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_aparece_liq_fact.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_rub_Contabiliza_x_empleado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkSubcidio.Properties)).BeginInit();
@@ -120,9 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkAnticip.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkConcept.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditabelUsuario.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -319,7 +326,7 @@
             this.ucGe_Menu.Enabled_btnproductos = true;
             this.ucGe_Menu.Location = new System.Drawing.Point(0, 0);
             this.ucGe_Menu.Name = "ucGe_Menu";
-            this.ucGe_Menu.Size = new System.Drawing.Size(529, 29);
+            this.ucGe_Menu.Size = new System.Drawing.Size(554, 29);
             this.ucGe_Menu.TabIndex = 127;
             this.ucGe_Menu.Visible_bntAnular = true;
             this.ucGe_Menu.Visible_bntAprobar = false;
@@ -350,6 +357,8 @@
             // 
             // panelCab
             // 
+            this.panelCab.Controls.Add(this.label9);
+            this.panelCab.Controls.Add(this.txtOrden_general);
             this.panelCab.Controls.Add(this.CheckEstado);
             this.panelCab.Controls.Add(this.label8);
             this.panelCab.Controls.Add(this.txtIdRolProceso);
@@ -367,8 +376,29 @@
             this.panelCab.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCab.Location = new System.Drawing.Point(0, 29);
             this.panelCab.Name = "panelCab";
-            this.panelCab.Size = new System.Drawing.Size(529, 146);
+            this.panelCab.Size = new System.Drawing.Size(554, 146);
             this.panelCab.TabIndex = 128;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(381, 118);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 160;
+            this.label9.Text = "Orden rol general";
+            // 
+            // txtOrden_general
+            // 
+            this.txtOrden_general.Location = new System.Drawing.Point(482, 114);
+            this.txtOrden_general.Maximum = new decimal(new int[] {
+            90000,
+            0,
+            0,
+            0});
+            this.txtOrden_general.Name = "txtOrden_general";
+            this.txtOrden_general.Size = new System.Drawing.Size(67, 20);
+            this.txtOrden_general.TabIndex = 159;
             // 
             // CheckEstado
             // 
@@ -411,37 +441,42 @@
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(120, 112);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(149, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(87, 21);
             this.cmbTipo.TabIndex = 148;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(346, 116);
+            this.label5.Location = new System.Drawing.Point(215, 116);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 154;
-            this.label5.Text = "Orden:";
+            this.label5.Text = "Orden rol individual:";
             // 
             // txtOrden
             // 
-            this.txtOrden.Location = new System.Drawing.Point(396, 112);
+            this.txtOrden.Location = new System.Drawing.Point(318, 114);
+            this.txtOrden.Maximum = new decimal(new int[] {
+            90000,
+            0,
+            0,
+            0});
             this.txtOrden.Name = "txtOrden";
-            this.txtOrden.Size = new System.Drawing.Size(100, 20);
+            this.txtOrden.Size = new System.Drawing.Size(58, 20);
             this.txtOrden.TabIndex = 149;
             // 
             // textNombreC
             // 
             this.textNombreC.Location = new System.Drawing.Point(120, 88);
             this.textNombreC.Name = "textNombreC";
-            this.textNombreC.Size = new System.Drawing.Size(376, 20);
+            this.textNombreC.Size = new System.Drawing.Size(422, 20);
             this.textNombreC.TabIndex = 147;
             // 
             // textDescripcion
             // 
             this.textDescripcion.Location = new System.Drawing.Point(120, 64);
             this.textDescripcion.Name = "textDescripcion";
-            this.textDescripcion.Size = new System.Drawing.Size(376, 20);
+            this.textDescripcion.Size = new System.Drawing.Size(422, 20);
             this.textDescripcion.TabIndex = 146;
             // 
             // txtIdRubro
@@ -494,11 +529,32 @@
             this.panelDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDetalle.Location = new System.Drawing.Point(0, 175);
             this.panelDetalle.Name = "panelDetalle";
-            this.panelDetalle.Size = new System.Drawing.Size(529, 344);
+            this.panelDetalle.Size = new System.Drawing.Size(554, 390);
             this.panelDetalle.TabIndex = 129;
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.Size = new System.Drawing.Size(554, 390);
+            this.xtraTabControl1.TabIndex = 1;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage2});
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.groupControlMasConfig);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(548, 362);
+            this.xtraTabPage1.Text = "Configuraciones";
             // 
             // groupControlMasConfig
             // 
+            this.groupControlMasConfig.Controls.Add(this.check_calcula_base_dias_efec);
+            this.groupControlMasConfig.Controls.Add(this.check_muestra_rol_general);
             this.groupControlMasConfig.Controls.Add(this.check_aparece_liq_fact);
             this.groupControlMasConfig.Controls.Add(this.check_rub_Contabiliza_x_empleado);
             this.groupControlMasConfig.Controls.Add(this.cmbCuentaContable_);
@@ -521,8 +577,24 @@
             this.groupControlMasConfig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControlMasConfig.Location = new System.Drawing.Point(0, 0);
             this.groupControlMasConfig.Name = "groupControlMasConfig";
-            this.groupControlMasConfig.Size = new System.Drawing.Size(523, 316);
+            this.groupControlMasConfig.Size = new System.Drawing.Size(548, 362);
             this.groupControlMasConfig.TabIndex = 0;
+            // 
+            // check_calcula_base_dias_efec
+            // 
+            this.check_calcula_base_dias_efec.Location = new System.Drawing.Point(325, 80);
+            this.check_calcula_base_dias_efec.Name = "check_calcula_base_dias_efec";
+            this.check_calcula_base_dias_efec.Properties.Caption = "Se calcula en base dias efectivos";
+            this.check_calcula_base_dias_efec.Size = new System.Drawing.Size(192, 19);
+            this.check_calcula_base_dias_efec.TabIndex = 175;
+            // 
+            // check_muestra_rol_general
+            // 
+            this.check_muestra_rol_general.Location = new System.Drawing.Point(17, 172);
+            this.check_muestra_rol_general.Name = "check_muestra_rol_general";
+            this.check_muestra_rol_general.Properties.Caption = "Muestra rol general";
+            this.check_muestra_rol_general.Size = new System.Drawing.Size(199, 19);
+            this.check_muestra_rol_general.TabIndex = 174;
             // 
             // check_aparece_liq_fact
             // 
@@ -531,11 +603,10 @@
             this.check_aparece_liq_fact.Properties.Caption = "Se muestra Liquidacion";
             this.check_aparece_liq_fact.Size = new System.Drawing.Size(157, 19);
             this.check_aparece_liq_fact.TabIndex = 173;
-            this.check_aparece_liq_fact.Visible = false;
             // 
             // check_rub_Contabiliza_x_empleado
             // 
-            this.check_rub_Contabiliza_x_empleado.Location = new System.Drawing.Point(17, 293);
+            this.check_rub_Contabiliza_x_empleado.Location = new System.Drawing.Point(17, 317);
             this.check_rub_Contabiliza_x_empleado.Name = "check_rub_Contabiliza_x_empleado";
             this.check_rub_Contabiliza_x_empleado.Properties.Caption = "Se contabiliza individual por empleado";
             this.check_rub_Contabiliza_x_empleado.Size = new System.Drawing.Size(214, 19);
@@ -543,14 +614,14 @@
             // 
             // cmbCuentaContable_
             // 
-            this.cmbCuentaContable_.Location = new System.Drawing.Point(170, 265);
+            this.cmbCuentaContable_.Location = new System.Drawing.Point(170, 289);
             this.cmbCuentaContable_.Name = "cmbCuentaContable_";
             this.cmbCuentaContable_.Size = new System.Drawing.Size(347, 29);
             this.cmbCuentaContable_.TabIndex = 171;
             // 
             // checkSubcidio
             // 
-            this.checkSubcidio.Location = new System.Drawing.Point(17, 248);
+            this.checkSubcidio.Location = new System.Drawing.Point(17, 272);
             this.checkSubcidio.Name = "checkSubcidio";
             this.checkSubcidio.Properties.Caption = "Este Rubro se Aplica si el Empleado Esta Subsidio";
             this.checkSubcidio.Size = new System.Drawing.Size(294, 19);
@@ -558,7 +629,7 @@
             // 
             // checkAfectaEmpleadoVac
             // 
-            this.checkAfectaEmpleadoVac.Location = new System.Drawing.Point(17, 226);
+            this.checkAfectaEmpleadoVac.Location = new System.Drawing.Point(17, 250);
             this.checkAfectaEmpleadoVac.Name = "checkAfectaEmpleadoVac";
             this.checkAfectaEmpleadoVac.Properties.Caption = "Este Rubro se Aplica si el Empleado Esta de Vacaciones";
             this.checkAfectaEmpleadoVac.Size = new System.Drawing.Size(294, 19);
@@ -566,7 +637,7 @@
             // 
             // checkContabiliza
             // 
-            this.checkContabiliza.Location = new System.Drawing.Point(17, 267);
+            this.checkContabiliza.Location = new System.Drawing.Point(17, 291);
             this.checkContabiliza.Name = "checkContabiliza";
             this.checkContabiliza.Properties.Caption = "Este Rubro se Contabiliza";
             this.checkContabiliza.Size = new System.Drawing.Size(157, 19);
@@ -575,7 +646,7 @@
             // 
             // checkConsideraIESS
             // 
-            this.checkConsideraIESS.Location = new System.Drawing.Point(17, 206);
+            this.checkConsideraIESS.Location = new System.Drawing.Point(17, 230);
             this.checkConsideraIESS.Name = "checkConsideraIESS";
             this.checkConsideraIESS.Properties.Caption = "Este Rubro es Considerado para Impuesto Renta";
             this.checkConsideraIESS.Size = new System.Drawing.Size(277, 19);
@@ -583,7 +654,7 @@
             // 
             // checkGuardaRol
             // 
-            this.checkGuardaRol.Location = new System.Drawing.Point(17, 187);
+            this.checkGuardaRol.Location = new System.Drawing.Point(17, 211);
             this.checkGuardaRol.Name = "checkGuardaRol";
             this.checkGuardaRol.Properties.Caption = "Este Rubro se Guarda al Rol";
             this.checkGuardaRol.Size = new System.Drawing.Size(174, 19);
@@ -591,7 +662,7 @@
             // 
             // check_Acumula
             // 
-            this.check_Acumula.Location = new System.Drawing.Point(17, 170);
+            this.check_Acumula.Location = new System.Drawing.Point(17, 194);
             this.check_Acumula.Name = "check_Acumula";
             this.check_Acumula.Properties.Caption = "Este Rubro se Acumula por un Periodo Determinado";
             this.check_Acumula.Size = new System.Drawing.Size(294, 19);
@@ -601,7 +672,7 @@
             // 
             this.checkAfectaRol.Location = new System.Drawing.Point(17, 151);
             this.checkAfectaRol.Name = "checkAfectaRol";
-            this.checkAfectaRol.Properties.Caption = "Este Rubro Afecta Rol Preliminar";
+            this.checkAfectaRol.Properties.Caption = "Muestra rol individual";
             this.checkAfectaRol.Size = new System.Drawing.Size(199, 19);
             this.checkAfectaRol.TabIndex = 163;
             // 
@@ -683,30 +754,11 @@
             this.LbtipoCampo.TabIndex = 155;
             this.LbtipoCampo.Text = "Tipo de Campo:";
             // 
-            // xtraTabControl1
-            // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(529, 344);
-            this.xtraTabControl1.TabIndex = 1;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.groupControlMasConfig);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(523, 316);
-            this.xtraTabPage1.Text = "Configuraciones";
-            // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.txtAcuedro);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(523, 316);
+            this.xtraTabPage2.Size = new System.Drawing.Size(548, 362);
             this.xtraTabPage2.Text = "Acuerdo de descuento";
             // 
             // txtAcuedro
@@ -715,14 +767,14 @@
             this.txtAcuedro.Location = new System.Drawing.Point(0, 0);
             this.txtAcuedro.Multiline = true;
             this.txtAcuedro.Name = "txtAcuedro";
-            this.txtAcuedro.Size = new System.Drawing.Size(523, 316);
+            this.txtAcuedro.Size = new System.Drawing.Size(548, 362);
             this.txtAcuedro.TabIndex = 0;
             // 
             // frmRo_RubroTipo_Mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 519);
+            this.ClientSize = new System.Drawing.Size(554, 565);
             this.Controls.Add(this.panelDetalle);
             this.Controls.Add(this.panelCab);
             this.Controls.Add(this.ucGe_Menu);
@@ -750,12 +802,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.view)).EndInit();
             this.panelCab.ResumeLayout(false);
             this.panelCab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOrden_general)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckEstado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOrden)).EndInit();
             this.panelDetalle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControlMasConfig)).EndInit();
             this.groupControlMasConfig.ResumeLayout(false);
             this.groupControlMasConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.check_calcula_base_dias_efec.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.check_muestra_rol_general.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_aparece_liq_fact.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_rub_Contabiliza_x_empleado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkSubcidio.Properties)).EndInit();
@@ -770,9 +828,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkAnticip.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkConcept.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditabelUsuario.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -843,5 +898,9 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private System.Windows.Forms.TextBox txtAcuedro;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown txtOrden_general;
+        private DevExpress.XtraEditors.CheckEdit check_muestra_rol_general;
+        private DevExpress.XtraEditors.CheckEdit check_calcula_base_dias_efec;
     }
 }

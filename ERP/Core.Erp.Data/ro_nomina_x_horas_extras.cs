@@ -40,9 +40,9 @@ namespace Core.Erp.Data
         public Nullable<bool> es_HorasExtrasAutorizadas { get; set; }
     
         public virtual ro_horario ro_horario { get; set; }
-        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
         public virtual ro_turno ro_turno { get; set; }
         public virtual ro_periodo ro_periodo { get; set; }
         public virtual ro_empleado ro_empleado { get; set; }
+        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
     }
 }

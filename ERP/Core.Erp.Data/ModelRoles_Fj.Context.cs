@@ -36,7 +36,6 @@ namespace Core.Erp.Data
         public DbSet<vwro_fectividad_x_empleado_Adm_x_periodo_Det> vwro_fectividad_x_empleado_Adm_x_periodo_Det { get; set; }
         public DbSet<vwro_fectividad_Entrega_x_Periodo_Empleado_Det> vwro_fectividad_Entrega_x_Periodo_Empleado_Det { get; set; }
         public DbSet<ro_disco> ro_disco { get; set; }
-        public DbSet<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<ro_empleado_x_parametro_x_pago_variable_Det> ro_empleado_x_parametro_x_pago_variable_Det { get; set; }
         public DbSet<ro_empleado_x_rutas_asignadas> ro_empleado_x_rutas_asignadas { get; set; }
         public DbSet<ro_empleado_x_rutas_asignadas_Det> ro_empleado_x_rutas_asignadas_Det { get; set; }
@@ -57,11 +56,9 @@ namespace Core.Erp.Data
         public DbSet<ro_parametros_reporte> ro_parametros_reporte { get; set; }
         public DbSet<vwro_planificacion_x_ruta_entrega_x_empleado> vwro_planificacion_x_ruta_entrega_x_empleado { get; set; }
         public DbSet<vwro_descuento_no_planificados> vwro_descuento_no_planificados { get; set; }
-        public DbSet<vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<ro_descuento_no_planificados> ro_descuento_no_planificados { get; set; }
         public DbSet<ro_descuento_no_planificados_Det> ro_descuento_no_planificados_Det { get; set; }
         public DbSet<vwro_empleado_x_rutas_asignadas_Det> vwro_empleado_x_rutas_asignadas_Det { get; set; }
-        public DbSet<vwro_marcaciones_x_empleado_x_incidentes_falt_Perm> vwro_marcaciones_x_empleado_x_incidentes_falt_Perm { get; set; }
         public DbSet<ro_Parametro_calculo_Horas_Extras> ro_Parametro_calculo_Horas_Extras { get; set; }
         public DbSet<ro_Grupo_empleado> ro_Grupo_empleado { get; set; }
         public DbSet<ro_empleado_x_cargo_fuerza_grupo> ro_empleado_x_cargo_fuerza_grupo { get; set; }
@@ -82,11 +79,21 @@ namespace Core.Erp.Data
         public DbSet<ro_planificacion_x_jornada_desfasada_empleado> ro_planificacion_x_jornada_desfasada_empleado { get; set; }
         public DbSet<vwro_planificacion_x_jornada_desfasada> vwro_planificacion_x_jornada_desfasada { get; set; }
         public DbSet<vwro_ro_planificacion_x_jornada_desfasada_empleado> vwro_ro_planificacion_x_jornada_desfasada_empleado { get; set; }
-        public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
         public DbSet<ro_Grupo_empleado_det> ro_Grupo_empleado_det { get; set; }
         public DbSet<vwro_Grupo_empleado_det> vwro_Grupo_empleado_det { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
         public DbSet<ro_empleado_extension_salud> ro_empleado_extension_salud { get; set; }
+        public DbSet<ro_rubros_calculados> ro_rubros_calculados { get; set; }
+        public DbSet<ro_marcaciones_no_aplica_sobretiempo> ro_marcaciones_no_aplica_sobretiempo { get; set; }
+        public DbSet<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
+        public DbSet<vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
+        public DbSet<vwro_marcaciones_x_empleado_x_incidentes_falt_Perm> vwro_marcaciones_x_empleado_x_incidentes_falt_Perm { get; set; }
+        public DbSet<ro_fectividad_Entrega_tipoServicio> ro_fectividad_Entrega_tipoServicio { get; set; }
+        public DbSet<ro_fectividad_Entrega_servicio_det> ro_fectividad_Entrega_servicio_det { get; set; }
+        public DbSet<vwro_fectividad_Entrega_servicio_det> vwro_fectividad_Entrega_servicio_det { get; set; }
+        public DbSet<ro_fectividad_Entrega_servicio> ro_fectividad_Entrega_servicio { get; set; }
+        public DbSet<vwro_fectividad_Entrega_servicio> vwro_fectividad_Entrega_servicio { get; set; }
+        public DbSet<ro_Calculo_Pago_Variable_Porcentaje_servicio> ro_Calculo_Pago_Variable_Porcentaje_servicio { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {
@@ -155,27 +162,6 @@ namespace Core.Erp.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spro_empleados_sin_registro_asistencia_Eventuales_Result>("spro_empleados_sin_registro_asistencia_Eventuales", idempresParameter, fechaParameter, idNomina_TipoParameter);
         }
     
-        public virtual ObjectResult<spro_empleados_sin_registro_asistencia_Result> spro_empleados_sin_registro_asistencia(Nullable<int> idempres, Nullable<System.DateTime> fecha, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
-        {
-            var idempresParameter = idempres.HasValue ?
-                new ObjectParameter("Idempres", idempres) :
-                new ObjectParameter("Idempres", typeof(int));
-    
-            var fechaParameter = fecha.HasValue ?
-                new ObjectParameter("Fecha", fecha) :
-                new ObjectParameter("Fecha", typeof(System.DateTime));
-    
-            var idNomina_TipoParameter = idNomina_Tipo.HasValue ?
-                new ObjectParameter("IdNomina_Tipo", idNomina_Tipo) :
-                new ObjectParameter("IdNomina_Tipo", typeof(int));
-    
-            var idPeriodoParameter = idPeriodo.HasValue ?
-                new ObjectParameter("IdPeriodo", idPeriodo) :
-                new ObjectParameter("IdPeriodo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spro_empleados_sin_registro_asistencia_Result>("spro_empleados_sin_registro_asistencia", idempresParameter, fechaParameter, idNomina_TipoParameter, idPeriodoParameter);
-        }
-    
         public virtual ObjectResult<spro_Eventuales_con_marcaciones_Result> spro_Eventuales_con_marcaciones(Nullable<int> idempres, Nullable<int> idNomina_Tipo, Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta)
         {
             var idempresParameter = idempres.HasValue ?
@@ -224,6 +210,60 @@ namespace Core.Erp.Data
                 new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spROLES_Rpt007_Result>("spROLES_Rpt007", idEmpresaParameter, idNomina_TipoParameter, idNomina_Tipo_LiqParameter, idPeriodoParameter, fecha_InicioParameter, fecha_FinParameter);
+        }
+    
+        public virtual ObjectResult<spro_empleados_sin_registro_asistencia_Result> spro_empleados_sin_registro_asistencia(Nullable<int> idempres, Nullable<System.DateTime> fecha, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
+        {
+            var idempresParameter = idempres.HasValue ?
+                new ObjectParameter("Idempres", idempres) :
+                new ObjectParameter("Idempres", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            var idNomina_TipoParameter = idNomina_Tipo.HasValue ?
+                new ObjectParameter("IdNomina_Tipo", idNomina_Tipo) :
+                new ObjectParameter("IdNomina_Tipo", typeof(int));
+    
+            var idPeriodoParameter = idPeriodo.HasValue ?
+                new ObjectParameter("IdPeriodo", idPeriodo) :
+                new ObjectParameter("IdPeriodo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spro_empleados_sin_registro_asistencia_Result>("spro_empleados_sin_registro_asistencia", idempresParameter, fechaParameter, idNomina_TipoParameter, idPeriodoParameter);
+        }
+    
+        public virtual int spro_calculo_nivel_servicio(Nullable<int> idEmpresa, Nullable<decimal> idNomina, Nullable<decimal> idNominaTipo, Nullable<decimal> idPEriodo, Nullable<decimal> idNivelServicio, string observacion, string idUsuario)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idNominaParameter = idNomina.HasValue ?
+                new ObjectParameter("IdNomina", idNomina) :
+                new ObjectParameter("IdNomina", typeof(decimal));
+    
+            var idNominaTipoParameter = idNominaTipo.HasValue ?
+                new ObjectParameter("IdNominaTipo", idNominaTipo) :
+                new ObjectParameter("IdNominaTipo", typeof(decimal));
+    
+            var idPEriodoParameter = idPEriodo.HasValue ?
+                new ObjectParameter("IdPEriodo", idPEriodo) :
+                new ObjectParameter("IdPEriodo", typeof(decimal));
+    
+            var idNivelServicioParameter = idNivelServicio.HasValue ?
+                new ObjectParameter("IdNivelServicio", idNivelServicio) :
+                new ObjectParameter("IdNivelServicio", typeof(decimal));
+    
+            var observacionParameter = observacion != null ?
+                new ObjectParameter("Observacion", observacion) :
+                new ObjectParameter("Observacion", typeof(string));
+    
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spro_calculo_nivel_servicio", idEmpresaParameter, idNominaParameter, idNominaTipoParameter, idPEriodoParameter, idNivelServicioParameter, observacionParameter, idUsuarioParameter);
         }
     }
 }

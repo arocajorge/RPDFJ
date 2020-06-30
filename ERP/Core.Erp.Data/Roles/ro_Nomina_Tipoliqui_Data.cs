@@ -32,7 +32,7 @@ namespace Core.Erp.Data.Roles
                 info.Estado = tipo.Estado;
                 info.FechaTransac = tipo.FechaTransac;
                 info.MotivoAnu = tipo.MotivoAnu;
-
+                info.nom_store_procedure = tipo.nom_store_procedure;
                 return info;
             }
             catch (Exception ex)
@@ -69,6 +69,7 @@ namespace Core.Erp.Data.Roles
                         info.FechaTransac = tipo.FechaTransac;
                         info.IdUsuario = tipo.IdUsuario;
                         info.MotivoAnu = tipo.MotivoAnu;
+                        info.nom_store_procedure = tipo.nom_store_procedure;
                         Lista.Add(info);
 
                     }
@@ -112,6 +113,7 @@ namespace Core.Erp.Data.Roles
                         info.FechaTransac = tipo.FechaTransac;
                         info.IdUsuario = tipo.IdUsuario;
                         info.MotivoAnu = tipo.MotivoAnu;
+                        info.nom_store_procedure = tipo.nom_store_procedure;
                         Lista.Add(info);
 
                     }
@@ -150,6 +152,7 @@ namespace Core.Erp.Data.Roles
                     info.DescripcionProcesoNomina = item.DescripcionProcesoNomina;
                     info.Estado = item.Estado;
                     info.MotivoAnu = item.MotivoAnu;
+                    info.nom_store_procedure = item.nom_store_procedure;
                     lista.Add(info);
                 }
 
@@ -182,7 +185,7 @@ namespace Core.Erp.Data.Roles
                     address.Estado = "A";
                     address.FechaTransac = Info.FechaTransac;
                     address.IdUsuario = Info.IdUsuario;
-
+                    address.nom_store_procedure = Info.nom_store_procedure;
                     context.ro_Nomina_Tipoliqui.Add(address);
                     context.SaveChanges();
 
@@ -267,6 +270,7 @@ namespace Core.Erp.Data.Roles
                     contact.FechaUltModi = Info.FechaUltModi;
                     contact.IdUsuarioUltModi = Info.IdUsuarioUltModi;
                     contact.MotivoAnu = "";
+                    contact.nom_store_procedure = Info.nom_store_procedure;
                     context.SaveChanges();
 
                     //GUARDA EL DETALLE

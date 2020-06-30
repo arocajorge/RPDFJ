@@ -16,8 +16,7 @@ using Core.Erp.Info.Roles_Fj;
 using Core.Erp.Business.Roles_Fj;
 namespace Core.Erp.Winform.Roles_Fj
 {
-    public partial class frmRo_control_asistencia_eventual
- : Form
+    public partial class frmRo_control_asistencia_eventual : Form
     {
 
         #region clases
@@ -47,18 +46,14 @@ namespace Core.Erp.Winform.Roles_Fj
         List<ro_sala_Info> lista_salas = new List<ro_sala_Info>();
         List<ro_Cargo_Info> lista_cargo = new List<ro_Cargo_Info>();
         ro_Cargo_Bus bus_cargo = new ro_Cargo_Bus();
-
+        List<ro_division_Info> ListaDivision = new System.Collections.Generic.List<ro_division_Info>();
+        ro_division_Bus Bus_division = new ro_division_Bus();
 
         #endregion
         public frmRo_control_asistencia_eventual()
         {
             InitializeComponent();
             Cargar_Datos();
-        }
-
-        private void gridControlAsistencia_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void dTPFechaIni_ValueChanged(object sender, EventArgs e)
@@ -101,7 +96,7 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void frmRo_control_asistencia_Load(object sender, EventArgs e)
+        private void frmRo_control_asistencia_eventual_Load(object sender, EventArgs e)
         {
             try
             {
@@ -125,14 +120,13 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                DateTime fecha=Convert.ToDateTime( dtp_es_fecha_registro.Value.ToShortDateString());
-                lista_emplados = new BindingList<ro_Empleado_Info>(bus_emplaeado.Get_list_empleado_sin_registro_asistencia_eventuiales(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), fecha));
+                DateTime fecha = Convert.ToDateTime(dtp_es_fecha_registro.Value.ToShortDateString());
+
+                if(cmbStatus.EditValue!=null&& cmbnomina.EditValue!=null)
+                lista_emplados = new BindingList<ro_Empleado_Info>(bus_emplaeado.Get_list_empleado_sin_registro_asistencia_eventuiales(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), fecha, cmbStatus.EditValue.ToString()));
                 gridControlAsistencia.DataSource = lista_emplados;
 
-                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
-                cmb_asistencia.DataSource = lista_catalogo;
-                cmb_asistencia.DisplayMember = "ca_descripcion";
-                cmb_asistencia.ValueMember = "CodCatalogo";
+              
             }
             catch (Exception ex)
             {
@@ -145,19 +139,25 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-               
-                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
-                cmb_asistencia.DataSource = lista_catalogo;
-                cmb_asistencia.DisplayMember = "ca_descripcion";
-                cmb_asistencia.ValueMember = "CodCatalogo";
 
+                lista_catalogo = bus_catalogo.Get_List_Catalogo_x_Tipo(37);
+                cmb_asis.DataSource = lista_catalogo;
+                cmb_resumen.DataSource = lista_catalogo;
+                
                 listadoNomina = oRo_Nomina_Tipo_Bus.Get_List_Nomina_Tipo(param.IdEmpresa);
                 cmbnomina.Properties.DataSource = listadoNomina;
                 cmbnomina.EditValue = 2;
 
-
                 lista_cargo = bus_cargo.ObtenerLstCargo(param.IdEmpresa);
-                cmb_departamento_.DataSource = lista_cargo;
+                cmb_departa.DataSource = lista_cargo;
+                
+               
+
+                cmbStatus.Properties.ValueMember = "CodCatalogo";
+                cmbStatus.Properties.DisplayMember = "ca_descripcion";
+                cmbStatus.Properties.DataSource = lista_catalogo;
+                cmbStatus.EditValue = "ASIST";
+
 
             }
             catch (Exception ex)
@@ -211,8 +211,8 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-                colIdTurnoDia0.Caption = fechas[0];
-                colIdTurnoDia0.Visible = visibles[0]; colIdTurnoDia0.VisibleIndex = (visibles[0] == true) ? 10 : -1;
+                gridColumn4.Caption = fechas[0];
+                gridColumn4.Visible = visibles[0]; gridColumn4.VisibleIndex = (visibles[0] == true) ? 10 : -1;
                 
             }
             catch (Exception ex)
@@ -261,16 +261,12 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
-              
+                dtp_es_fecha_registro.Focus();
                 dtp_es_fecha_registro.Focus();
                 Get_Marcaciones();
                 bus_marcaciones.GrabarDB_Transgandia(listado_marcaciones);
 
-                     foreach (var item in lista_dias_falta)
-	                {
-                        dias_faltado_bus.GuardarDB(item);
-
-	                }
+      
                 MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Se_guardaron_los_datos_correctamente), param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cargar_empleado();
                 return true;
@@ -289,18 +285,18 @@ namespace Core.Erp.Winform.Roles_Fj
         {
             try
             {
+                dtp_es_fecha_registro.Focus();
                 lista_dias_falta = new List<ro_DiasFaltados_x_Empleado_Info>();
                 listado_marcaciones = new List<ro_marcaciones_x_empleado_Info>();
-                foreach (var item in lista_emplados)
+                foreach (var item in lista_emplados.Where(v=>v.check==true))
                 {
                     if (item.CodCatalogo != null)
                     {
-                        if (item.check == true)
-                        {
                        
                         ro_marcaciones_x_empleado_Info info = new ro_marcaciones_x_empleado_Info();
                         info.IdEmpresa = param.IdEmpresa;
                         info.IdEmpleado = item.IdEmpleado;
+                        info.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
                         info.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
                         info.IdRegistro = InfoCalendario.IdCalendario.ToString();
                         info.IdTipoMarcaciones = "IN1";
@@ -328,7 +324,7 @@ namespace Core.Erp.Winform.Roles_Fj
                         info.info_novedad_x_ingreso.IdEmpresa = item.IdEmpresa;
                         info.info_novedad_x_ingreso.IdNomina_Tipo =Convert.ToInt32(cmbnomina.EditValue);
                         info.info_novedad_x_ingreso.IdEmpleado = item.IdEmpleado;
-                        info.info_novedad_x_ingreso.IdTurno =1;
+                        info.info_novedad_x_ingreso.IdTurno =Convert.ToInt32( item.Info_turno.IdTurno);
                         info.info_novedad_x_ingreso.es_jornada_desfasada =Convert.ToBoolean( item.Info_turno.es_jornada_desfasada);
                         info.info_novedad_x_ingreso.IdRegistro = info.IdRegistro + "-" + "IdE" + "-" + item.IdEmpleado.ToString();
                         info.info_novedad_x_ingreso.es_fecha_registro = Convert.ToDateTime(Convert.ToDateTime(dtp_es_fecha_registro.Value).ToShortDateString());
@@ -351,30 +347,7 @@ namespace Core.Erp.Winform.Roles_Fj
                         listado_marcaciones.Add(info);
 
 
-                        if (item.CodCatalogo == "FAL")
-                        {
-                            ro_DiasFaltados_x_Empleado_Info info_faltas = new ro_DiasFaltados_x_Empleado_Info();
-                            double sueldoActual = 0;
-                            sueldoActual = bus_emplaeado.GetSueldoActual(item.IdEmpresa, item.IdEmpleado);
-
-                            info_faltas.IdEmpresa = item.IdEmpresa;
-                            info_faltas.IdNominaTipo = 1;
-                            info_faltas.IdNominaTipoLiq=2;
-                            info_faltas.IdEmpleado =Convert.ToInt32( item.IdEmpleado);
-                            info_faltas.CodCatalogo = "218";
-                            info_faltas.FechaFaltaDesde = dtp_es_fecha_registro.Value;
-                            info_faltas.FechaFaltaHasta = dtp_es_fecha_registro.Value;
-                            info_faltas.DiasFaltados = "1 Dia";
-                            info_faltas.DiasDescuento = 2;
-                            info_faltas.FechaDescuentaRol = dtp_es_fecha_registro.Value;
-                            info_faltas.ValorDescuentaRol = Convert.ToDecimal((sueldoActual / 30) * 2);
-                            info_faltas.Observacion = "Falta no justificada el " + dtp_es_fecha_registro.Value.ToString().Substring(0,10);
-                            info_faltas.estado = "A";
-                            info_faltas.IdUsuario = param.IdUsuario;
-                            info_faltas.Fecha_Transac = DateTime.Now;
-                            lista_dias_falta.Add(info_faltas);
-                        }
-                    }
+                       
                     }
                 }
 
@@ -402,30 +375,7 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void gridViewAsistencia_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            try
-            {
-
-                if (e.Column.Name == "colIdTurnoDia0")
-                {
-                    TimeSpan es_hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    if (Convert.ToString( gridViewAsistencia.GetFocusedRowCellValue(col_esHoras))=="")
-                    {
-                        gridViewAsistencia.SetFocusedRowCellValue(col_esHoras, es_hora);
-
-                    }
-                   
-                }
-
-            }
-            catch (Exception ex)
-            {
-                
-              MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());
-            }
-        }
+      
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -438,6 +388,16 @@ namespace Core.Erp.Winform.Roles_Fj
                     item.Info_marcaciones_x_empleado.es_Hora = new TimeSpan(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                     gridControlAsistencia.RefreshDataSource();
                 }
+
+
+                var line = lista_emplados.GroupBy(info => info.CodCatalogo)
+                        .Select(group => new {
+                            CodCatalogo = group.Key,
+                            cantidad = group.Count() 
+                        });
+                gridControl_resumen.DataSource = line;
+                gridControl_resumen.RefreshDataSource();
+
             }
             catch (Exception ex)
             {
@@ -447,23 +407,7 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void cmbnomina_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-
-                Cargar_empleado();
-
-                if (lista_emplados.Count() == 0)
-                    MessageBox.Show("No existe planificación para la semana actual!!!", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Question);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-                Log_Error_bus.Log_Error(ex.ToString());
-            }
-        }
+       
 
         public void Cargar_Datos()
         {
@@ -487,7 +431,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
                 lista_salas = bus_sala.Get_List_sala(param.IdEmpresa);
-                cmb_sala.DataSource = lista_salas;
+                //cmb_sala.DataSource = lista_salas;
 
 
             }
@@ -556,25 +500,120 @@ namespace Core.Erp.Winform.Roles_Fj
             }
         }
 
-        private void gridViewAsistencia_KeyDown(object sender, KeyEventArgs e)
+       
+
+        private void ucGe_Menu_event_btnImprimir_Click(object sender, EventArgs e)
         {
+            //gridViewAsistencia 
             try
             {
-                if (e.KeyCode == Keys.Delete)
-                {
-
-
-                    if (MessageBox.Show("¿Está seguro que desea eliminar este registro ?", "Elimina", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        gridViewAsistencia.DeleteSelectedRows();
-                    }
-
-                }
+                gridViewAsistencia.ShowPrintPreview();
             }
             catch (Exception ex)
             {
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+        
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtp_es_fecha_registro_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+               
+                int dia = Convert.ToInt32(Convert.ToDateTime(dtp_es_fecha_registro.Value).DayOfWeek);
+                pu_AgregarNombreCabeceraColumnas();
+                InfoCalendario = Bus_Calendario.Get_Info_Calendario(dtp_es_fecha_registro.Value);
+                Cargar_empleado();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+ 
+
+       
+
+
+        private void cmbStatus_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int dia = Convert.ToInt32(Convert.ToDateTime(dtp_es_fecha_registro.Value).DayOfWeek);
+                pu_AgregarNombreCabeceraColumnas();
+                InfoCalendario = Bus_Calendario.Get_Info_Calendario(dtp_es_fecha_registro.Value);
+                Cargar_empleado();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+        private void cmbnomina_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Cargar_empleado();
+
+                
+            }
+            catch (Exception ex)
+            {
+
                 MessageBox.Show(ex.ToString());
                 Log_Error_bus.Log_Error(ex.ToString());
+            }
+        }
+
+        private void cmb_division_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int dia = Convert.ToInt32(Convert.ToDateTime(dtp_es_fecha_registro.Value).DayOfWeek);
+                pu_AgregarNombreCabeceraColumnas();
+                InfoCalendario = Bus_Calendario.Get_Info_Calendario(dtp_es_fecha_registro.Value);
+                Cargar_empleado();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+                Log_Error_bus.Log_Error(ex.Message);
+            }
+        }
+
+        private void cmb_asis_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                                gridView_resumen.Focus();
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

@@ -22,8 +22,8 @@ namespace Core.Erp.Data
         public string Procesado { get; set; }
         public string Contabilizado { get; set; }
     
-        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
         public virtual ro_rol ro_rol { get; set; }
         public virtual ro_periodo ro_periodo { get; set; }
+        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
     }
 }

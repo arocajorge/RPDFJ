@@ -42,9 +42,11 @@ namespace Core.Erp.Winform.Roles
         frmRo_Periodo_Cons frmCons = new frmRo_Periodo_Cons();
         Cl_Enumeradores.eTipo_action iAccion = new Cl_Enumeradores.eTipo_action();
         List<ro_Catalogo_Info> ListCatalogo = new List<ro_Catalogo_Info>();
-
+        List<ro_Nomina_Tipoliqui_Info> ListadoTipoLiquidacion = new System.Collections.Generic.List<ro_Nomina_Tipoliqui_Info>();
+        ro_Nomina_Tipoliqui_Bus bus_nomina_tipo_liq = new ro_Nomina_Tipoliqui_Bus();
         ro_Catalogo_Bus BusCatalogo = new ro_Catalogo_Bus();
-
+        BindingList<ro_Empleado_Novedad_Det_Info> lst_novedades = new BindingList<ro_Empleado_Novedad_Det_Info>();
+        
         public delegate void delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing(object sender, FormClosingEventArgs e);
         public event delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing event_frmRo_Permisos_x_Empleado_Mant_FormClosing;
         
@@ -154,43 +156,19 @@ namespace Core.Erp.Winform.Roles
                 _Info.Fecha = Convert.ToDateTime(dtpFecha.EditValue);
                 _Info.IdEmpleado = Convert.ToDecimal(cmbEmpleado.EditValue);
                 _Info.MotivoAusencia = Convert.ToString(txtMotivoAusencia.EditValue);
-               _Info.FormaRecuperacion = Convert.ToString(txtRecuperacion.EditValue);
-                _Info.IdEmpleado_Soli = Convert.ToInt32(cmbSolicitado_por.EditValue);
-            
-                _Info.IdEmpleado_Apro = Convert.ToInt32(cmbAprobado_por.EditValue);
-                _Info.MotivoAproba = Convert.ToString(txtMotivo.EditValue);
-                _Info.Observacion = Convert.ToString(txtObservación.EditValue);
-
                 _Info.IdTipoLicencia = cmbTipoLicencia.EditValue == null ? "" : cmbTipoLicencia.EditValue.ToString();
                 _Info.EsPermiso = rbPermiso.Checked;
                 _Info.EsLicencia = rbLicencia.Checked;
-
-                //_Info.TomarEnCuentaParaVacaciones = (chkEncuenta.Checked == true) ? "S" : "N";
-
                 _Info.IdUsuario = param.IdUsuario;
                 _Info.Fecha_Transac = param.Fecha_Transac;
-
                 _Info.FechaSalida = Convert.ToDateTime(dtFechaSalida.EditValue);
                 _Info.FechaEntrada = Convert.ToDateTime(dtFechaEntrada.EditValue);
-               
-              
+                _Info.lst_novedad = new List<ro_Empleado_Novedad_Det_Info>(lst_novedades);          
                 if (iAccion == Cl_Enumeradores.eTipo_action.Anular)
                 {
-                    foreach (var item in oListEstadoAprobacion)
-                    {
-                        if (item.ca_descripcion.Trim() == "Negado")
-                        {
-                            cmbEstado_aprovacion.EditValue = item.IdCatalogo;
-                            break;
-                        }
-                    }
-
                     _Info.Estado = "I";
                 }
 
-                _Info.IdEstadoAprob = Convert.ToString(cmbEstado_aprovacion.EditValue);
-                if(rbPermiso.Checked==true)
-                _Info.Id_Forma_descuento_permiso_Cat = cmb_forma_descuento.EditValue.ToString();
                 return true;
             }
             catch (Exception ex)
@@ -210,12 +188,7 @@ namespace Core.Erp.Winform.Roles
                 dtpFecha.EditValue = _Info.Fecha;
                 cmbEmpleado.EditValue = _Info.IdEmpleado;
                 txtMotivoAusencia.EditValue = _Info.MotivoAusencia;
-                txtRecuperacion.EditValue = _Info.FormaRecuperacion;
-                cmbSolicitado_por.EditValue = _Info.IdEmpleado_Soli;
-                cmbEstado_aprovacion.EditValue = _Info.IdEstadoAprob;
-                cmbAprobado_por.EditValue = _Info.IdEmpleado_Apro;               
-                txtMotivo.EditValue = _Info.MotivoAproba;
-                txtObservación.EditValue = _Info.Observacion;
+               
                 rbPermiso.Checked = Convert.ToBoolean(info.EsPermiso);
                 rbLicencia.Checked = Convert.ToBoolean(info.EsLicencia);             
                 cmbTipoLicencia.EditValue = info.IdTipoLicencia;
@@ -243,9 +216,8 @@ namespace Core.Erp.Winform.Roles
                txtCedula.EditValue = info.pe_cedulaRuc;
                txtDepartamento.EditValue = (info.de_descripcion).Trim();
                txtCargo.EditValue = info.ca_descripcion;
-               
-
-               cmb_forma_descuento.EditValue = _Info.Id_Forma_descuento_permiso_Cat;
+               lst_novedades = new BindingList<ro_Empleado_Novedad_Det_Info>(oRo_permiso_x_empleado_Bus.get_novedad(_Info.IdEmpresa, _Info.IdEmpleado, _Info.IdPermiso));
+               gridControl_novedades.DataSource = lst_novedades;
                 return true;
             }
             catch (Exception ex)
@@ -282,100 +254,6 @@ namespace Core.Erp.Winform.Roles
                     cmbEmpleado.Focus();
                     return false;
                 }
-
-                if (cmbSolicitado_por.EditValue == null)
-                {
-                    MessageBox.Show("El Nombre de Solicitado por es obligatorio, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    tabControl1.SelectTab(1);
-                    cmbSolicitado_por.Focus();
-                    return false;
-                }
-                else
-                {
-
-                }
-
-                if (cmbEstado_aprovacion.EditValue == null || cmbEstado_aprovacion.EditValue.ToString().Length == 0)
-                {
-                    MessageBox.Show("El Estado de Aprobación es  obligatorio, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    cmbEstado_aprovacion.Focus();
-                    return false;
-                }
-                else
-                {
-                    if (cmbEstado_aprovacion.Text == "Aprobado"){
-                        if (cmbAprobado_por.EditValue == null){
-
-                            MessageBox.Show("Debe seleccionar el nombre de quien aprueba el permiso, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                            cmbAprobado_por.Focus();
-                            return false;
-                        }
-                    }
-
-                }
-
-                
-               
-                
-
-                if (rbPermiso.Checked == true)
-                {
-
-                    if (txtMotivoAusencia.EditValue == null || txtMotivoAusencia.EditValue.ToString().Length == 0)
-                    {
-                        MessageBox.Show("El Motivo de la Ausencia es obligatorio, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        //                    MessageBox.Show("Escriba un motivo de ausencia.", "Operación Fallida");
-                        tabControl1.SelectTab(0);
-                        txtMotivoAusencia.Focus();
-                        return false;
-                    }
-
-                    if (txtRecuperacion.EditValue == null || txtRecuperacion.EditValue.ToString().Length == 0)
-                    {
-                        MessageBox.Show("La Forma de Recuperación es obligatorio, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        //                    MessageBox.Show("Escriba un motivo de ausencia.", "Operación Fallida");
-                        txtRecuperacion.Focus();
-                        return false;
-                    }
-
-
-
-                   
-
-
-                    
-
-
-
-
-
-                    if (cmbSolicitado_por.Text == "" || cmbSolicitado_por.EditValue==null)
-                    {
-                        MessageBox.Show("Seleccione quien solicita, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        
-                        return false;
-                    }
-
-
-                    if (cmbEstado_aprovacion.Text == "" || cmbEstado_aprovacion.EditValue == null)
-                    {
-                        MessageBox.Show("Seleccione un Estado para la solicitud, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                        return false;
-                    }
-
-                    if (cmbAprobado_por.Text == "" || cmbAprobado_por.EditValue == null)
-                    {
-                        MessageBox.Show("Seleccione quien aprueba, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-
-                        return false;
-                    }
-
-
-
-
-                }
-
                 return true;
             }
             catch (Exception ex)
@@ -394,10 +272,7 @@ namespace Core.Erp.Winform.Roles
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             FrmGe_MotivoAnulacion oFrm = new FrmGe_MotivoAnulacion();
-            Boolean valorRetornar = false;
-            decimal idPermiso=0;
-          //  if (MessageBox.Show("Está seguro que desea ANULAR el registro, recuerde que se procederá a eliminar?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes){
-            DialogResult result = MessageBox.Show("Está seguro que desea ANULAR el registro, recuerde que se procederá a eliminar?", "ATENCION", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                     DialogResult result = MessageBox.Show("Está seguro que desea ANULAR el registro, recuerde que se procederá a eliminar?", "ATENCION", buttons, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.Yes)
             {
                 string msg = "";
@@ -418,7 +293,6 @@ namespace Core.Erp.Winform.Roles
 
                     lblEstado.Visible = true;
                     ucGe_Menu.Enabled_bntAnular = false;
-                    valorRetornar = true;
                     MessageBox.Show(Resources.msgConfirmaAnulacionOk, Resources.msgTituloAnular, MessageBoxButtons.OK, MessageBoxIcon.Information);
      
                 }
@@ -426,7 +300,6 @@ namespace Core.Erp.Winform.Roles
                {
                     MessageBox.Show("Imposible anular el Registro No. " + txtIdPermiso.Text + " , débido a: "
                     + mensaje, "ANULACION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    valorRetornar = false;
                 }
             }
             
@@ -501,11 +374,6 @@ namespace Core.Erp.Winform.Roles
 
 
         }
-
-
-
-      
-
         public void PU_CARGAR_COMBOS()
         {
             try
@@ -524,14 +392,7 @@ namespace Core.Erp.Winform.Roles
 
 
                 cmbEmpleado.Properties.DataSource = EmpInfo1;
-                cmbSolicitado_por.Properties.DataSource = EmpInfo1;
-                cmbAprobado_por.Properties.DataSource = EmpInfo1;
-
-                //LLENA EL COMBO ESTAADO DE APROBACION
-                oListEstadoAprobacion = new BindingList<ro_Catalogo_Info>(catBus.Get_List_Catalogo_x_Tipo(19));
-                cmbEstado_aprovacion.Properties.ValueMember = "IdCatalogo";
-                cmbEstado_aprovacion.Properties.DisplayMember = "ca_descripcion";
-                cmbEstado_aprovacion.Properties.DataSource = oListEstadoAprobacion;
+              
 
                 //LLENA EL COMBO TIPO DE LICENCIA
                 oRo_TipoLicencia_Info.AddRange(catBus.Get_List_Catalogo_x_Tipo(23));
@@ -540,20 +401,7 @@ namespace Core.Erp.Winform.Roles
                 cmbTipoLicencia.Properties.DataSource = oRo_TipoLicencia_Info;
               // tipos de descuentos
                 ListCatalogo = BusCatalogo.Get_List_Catalogo_x_DiasFalta(1);
-                cmb_forma_descuento.Properties.DataSource = ListCatalogo;
               
-                if (iAccion == Cl_Enumeradores.eTipo_action.grabar)
-                {
-                    foreach (var item in oListEstadoAprobacion)
-                    {
-                        if (item.ca_descripcion == "Pendiente")
-                        {
-                            cmbEstado_aprovacion.EditValue = item.IdCatalogo;
-                            break;
-                        }           
-                    }
-                }
-
                 pu_ValidarCheck();
 
 
@@ -569,12 +417,7 @@ namespace Core.Erp.Winform.Roles
         private void PU_BLOQUEAR_CONTROLES(Boolean estado){
             dtpFecha.Properties.ReadOnly = estado;
             txtMotivoAusencia.Properties.ReadOnly = estado;
-            txtRecuperacion.Properties.ReadOnly = estado;
-            txtObservación.Properties.ReadOnly = estado;
-            txtMotivo.Properties.ReadOnly = estado;
-            cmbAprobado_por.Properties.ReadOnly = estado;
-            cmbEstado_aprovacion.Properties.ReadOnly = estado;
-            cmbSolicitado_por.Properties.ReadOnly = estado;
+           
             cmbEmpleado.Properties.ReadOnly = estado;
             dtFechaEntrada.Enabled = false;
             dtFechaSalida.Enabled = false;
@@ -660,6 +503,7 @@ namespace Core.Erp.Winform.Roles
 
                 }
 
+                gridControl_novedades.DataSource = lst_novedades;
                
               
                 txtIdPermiso.Enabled = false;
@@ -697,14 +541,7 @@ namespace Core.Erp.Winform.Roles
                 {
                     MessageBox.Show("Seleccione un Empleado", "Mensaje");
                 }
-                else
-                {
-                    if (cmbEmpleado.EditValue.ToString() == cmbAprobado_por.EditValue.ToString())
-                    {
-                        MessageBox.Show("No puede seleccionar el mismo empleado", "Mensaje");
-                        cmbAprobado_por.EditValue = "";
-                    }
-                }
+               
             }
             catch (Exception ex)
             {
@@ -726,12 +563,9 @@ namespace Core.Erp.Winform.Roles
                 if(rbLicencia.Checked)
                 {
                     cmbTipoLicencia.Enabled = true;
-                    txtRecuperacion.Enabled = false;
 
                     
                   
-                    lb_forma_descuenta.Visible = false;
-                    cmb_forma_descuento.Visible = false;
 
                    
                 }
@@ -739,18 +573,6 @@ namespace Core.Erp.Winform.Roles
                 {
                     if(rbPermiso.Checked){
                         cmbTipoLicencia.Enabled = false;
-                        txtRecuperacion.Enabled = true;
-
-                       
-
-
-                        lb_forma_descuenta.Visible = true;
-                        cmb_forma_descuento.Visible = true;
-                        if (Cl_Enumeradores.eTipo_action.grabar == iAccion)
-                        {
-                            
-                        }
-
                     }
                 
                 }
@@ -779,6 +601,10 @@ namespace Core.Erp.Winform.Roles
         {
             try
             {
+                cmb_nomina_tipo_liq.DisplayMember = "DescripcionProcesoNomina";
+                cmb_nomina_tipo_liq.ValueMember = "IdNomina_TipoLiqui";
+
+
                 if (iAccion == Cl_Enumeradores.eTipo_action.grabar)
                 {
                     empinfo = (ro_Empleado_Info)cmbEmpleado.Properties.View.GetFocusedRow();
@@ -787,8 +613,19 @@ namespace Core.Erp.Winform.Roles
                         txtCedula.EditValue = empinfo.InfoPersona.pe_cedulaRuc;
                         txtDepartamento.EditValue = (empinfo.de_descripcion).Trim();
                         txtCargo.EditValue = empinfo.cargo;
-                        cmbSolicitado_por.EditValue = Convert.ToInt32(cmbEmpleado.EditValue);
+
+                        ListadoTipoLiquidacion = bus_nomina_tipo_liq.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(param.IdEmpresa, Convert.ToInt32(empinfo.IdNomina_Tipo));
+                        cmb_nomina_tipo_liq.DataSource = ListadoTipoLiquidacion;
                     }
+                }
+                else
+                {
+
+
+                    ro_Empleado_TipoNomina_Bus bus_emp_nom = new ro_Empleado_TipoNomina_Bus();
+                    var info_emp_no = bus_emp_nom.Get_Info_Empleado_TipoNomina(_Info.IdEmpresa, _Info.IdEmpleado);
+                    ListadoTipoLiquidacion = bus_nomina_tipo_liq.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(param.IdEmpresa, Convert.ToInt32(info_emp_no.IdNomina_Tipo));
+                    cmb_nomina_tipo_liq.DataSource = ListadoTipoLiquidacion;
                 }
 
             }
@@ -819,27 +656,23 @@ namespace Core.Erp.Winform.Roles
         {
             try
             {
-                cmbAprobado_por.EditValue = null;
-                cmbSolicitado_por.EditValue = null;
+                
                 cmbEmpleado.EditValue = null;
-                cmbEstado_aprovacion.EditValue = null;
 
 
                 txtCargo.Text = "";
                 txtCedula.Text = "";
                 txtDepartamento.Text = "";
                 txtMotivoAusencia.Text = "";
-                txtRecuperacion.Text = "";
               
                 cmbEmpleado.Enabled = true;
                
-                txtObservación.Text = "";
-                txtRecuperacion.Text="";
                 rbPermiso.Enabled = true;
                 rbLicencia.Enabled = true;
                 dtFechaEntrada.Enabled = true;
                 dtFechaSalida.Enabled = true;
-
+                lst_novedades = new BindingList<ro_Empleado_Novedad_Det_Info>();
+                gridControl_novedades.DataSource = lst_novedades;
                 txtIdPermiso.Text = "";
                 PU_CARGAR_COMBOS();
             }

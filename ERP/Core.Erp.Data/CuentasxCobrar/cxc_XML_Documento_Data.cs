@@ -164,7 +164,6 @@ namespace Core.Erp.Data.CuentasxCobrar
                             TotalRetencionIVA = info.TotalRetencionIVA,
                             TotalRetencionFTE = info.TotalRetencionFTE
                         };
-
                         int Secuencia = 1;
                         foreach (var item in info.ListaDet)
                         {
@@ -189,9 +188,8 @@ namespace Core.Erp.Data.CuentasxCobrar
                                 IdCobro_tipo = item.IdCobro_tipo
                             });
                         }
-
-                        db.cxc_XML_Documento.Add(Entity);
-                        db.SaveChanges();
+                    db.cxc_XML_Documento.Add(Entity);
+                    db.SaveChanges();
                     }
 
                     return true;

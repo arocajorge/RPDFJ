@@ -11,7 +11,10 @@
     [FechaTransac]             DATETIME      NOT NULL,
     [FechaUltModi]             DATETIME      NULL,
     [Estado]                   CHAR (1)      NOT NULL,
+    [nom_store_procedure]      VARCHAR (500) NULL,
     CONSTRAINT [PK_ro_Nomina_Tipoliqui] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdNomina_Tipo] ASC, [IdNomina_TipoLiqui] ASC),
     CONSTRAINT [FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo] FOREIGN KEY ([IdEmpresa], [IdNomina_Tipo]) REFERENCES [dbo].[ro_Nomina_Tipo] ([IdEmpresa], [IdNomina_Tipo])
 );
+
+
 

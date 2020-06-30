@@ -13,7 +13,7 @@ using Core.Erp.Info.General;
 using Core.Erp.Business.General;
 using Core.Erp.Business.CuentasxPagar;
 using Core.Erp.Info.CuentasxPagar;
-using GenericParsing;
+//using GenericParsing;
 
 namespace Core.Erp.Winform.CuentasxPagar
 {
@@ -92,6 +92,7 @@ namespace Core.Erp.Winform.CuentasxPagar
         {
             try
             {
+                /*
                 ListaXml = new List<cp_XML_Documento_Info>();
                 using (GenericParser parser = new GenericParser())
                 {
@@ -138,12 +139,14 @@ namespace Core.Erp.Winform.CuentasxPagar
                     }
                 }
                 gcDetalle.DataSource = ListaXml;
+                 */
             }
             catch (Exception ex)
             {
                 Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
                 MessageBox.Show("Ha ocurrido un error", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);   
             }
+                 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

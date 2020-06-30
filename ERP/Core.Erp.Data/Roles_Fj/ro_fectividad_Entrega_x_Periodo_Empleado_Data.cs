@@ -19,21 +19,44 @@ namespace Core.Erp.Data.Roles_Fj
           {
               using (EntityRoles_FJ db = new EntityRoles_FJ())
               {
-                  ro_fectividad_Entrega_x_Periodo_Empleado add = new ro_fectividad_Entrega_x_Periodo_Empleado();
-                  add.IdEmpresa = info.IdEmpresa;
-                  add.IdNomina_Tipo = info.IdNomina_Tipo;
-                  add.IdNomina_tipo_Liq = info.IdNomina_tipo_Liq;
-                  add.IdEfectividad = getId(info.IdEmpresa);
-                  add.IdPeriodo = info.IdPeriodo;
-                  add.Observacion = info.Observacion;
-                  add.IdServicioTipo = info.IdServicioTipo;
-                  add.FechaTransac =DateTime.Now;
-                  add.IdUsuario = info.IdUsuario;
-                  add.Estado = info.Estado;
-                
-                  db.ro_fectividad_Entrega_x_Periodo_Empleado.Add(add);
+                  db.ro_fectividad_Entrega_x_Periodo_Empleado.Add(new ro_fectividad_Entrega_x_Periodo_Empleado
+                  {
+                      IdEmpresa = info.IdEmpresa,
+                      IdNomina_Tipo = info.IdNomina_Tipo,
+                      IdNomina_tipo_Liq = info.IdNomina_tipo_Liq,
+                      IdEfectividad =info.IdEfectividad= getId(info.IdEmpresa),
+                      IdPeriodo = info.IdPeriodo,
+                      Observacion = info.Observacion,
+                      IdServicioTipo = info.IdServicioTipo,
+                      FechaTransac =DateTime.Now,
+                      IdUsuario = info.IdUsuario,
+                      Estado = info.Estado,
+                  });
+
+                  foreach (var item in info.lista)
+                  {
+                      db.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Add(new ro_fectividad_Entrega_x_Periodo_Empleado_Det
+                      {
+                          IdEmpresa = info.IdEmpresa,
+                          IdNomina_Tipo = info.IdNomina_Tipo,
+                          IdNomina_tipo_Liq = info.IdNomina_tipo_Liq,
+                          IdEfectividad = info.IdEfectividad,
+                          IdPeriodo = info.IdPeriodo,
+                          IdEmpleado = item.IdEmpleado,
+                          IdRuta = item.IdRuta,
+                          Recuperacion_cartera = Convert.ToDouble(item.Recuperacion_cartera),
+                          Recuperacion_cartera_aplica = item.Recuperacion_cartera_aplica,
+                          Efectividad_Entrega = Convert.ToDouble(item.Efectividad_Entrega),
+                          Efectividad_Entrega_aplica = item.Efectividad_Entrega_aplica,
+                          Efectividad_Volumen = Convert.ToDouble(item.Efectividad_Volumen),
+                          Efectividad_Volumen_aplica = item.Efectividad_Volumen_aplica,
+                          Observacion = info.Observacion,
+                      });       
+                  }
+                  
+                 
                   db.SaveChanges();
-                  IdEfectividad = add.IdEfectividad;
+                  IdEfectividad = info.IdEfectividad;
                   return true;
               }
           }
@@ -60,6 +83,28 @@ namespace Core.Erp.Data.Roles_Fj
                   add.Observacion = info.Observacion;
                   add.Fecha_UltMod = DateTime.Now;
                   add.IdUsuarioUltModi = info.IdUsuarioUltModi;
+                  db.Database.ExecuteSqlCommand(" delete Fj_servindustrias.ro_fectividad_Entrega_x_Periodo_Empleado_Det where IdEmpresa='" + info.IdEmpresa + "' and IdNomina_Tipo='" + info.IdNomina_Tipo + "' and IdPeriodo='" + info.IdPeriodo + "' and IdEfectividad='" + info.IdEfectividad + "'  ");
+                  foreach (var item in info.lista)
+                  {
+                      db.ro_fectividad_Entrega_x_Periodo_Empleado_Det.Add(new ro_fectividad_Entrega_x_Periodo_Empleado_Det
+                      {
+                          IdEmpresa = info.IdEmpresa,
+                          IdNomina_Tipo = info.IdNomina_Tipo,
+                          IdNomina_tipo_Liq = info.IdNomina_tipo_Liq,
+                          IdEfectividad = info.IdEfectividad,
+                          IdPeriodo = info.IdPeriodo,
+                          IdEmpleado = item.IdEmpleado,
+                          IdRuta = item.IdRuta,
+                          Recuperacion_cartera = Convert.ToDouble(item.Recuperacion_cartera),
+                          Recuperacion_cartera_aplica = item.Recuperacion_cartera_aplica,
+                          Efectividad_Entrega = Convert.ToDouble(item.Efectividad_Entrega),
+                          Efectividad_Entrega_aplica = item.Efectividad_Entrega_aplica,
+                          Efectividad_Volumen = Convert.ToDouble(item.Efectividad_Volumen),
+                          Efectividad_Volumen_aplica = item.Efectividad_Volumen_aplica,
+                          Observacion = info.Observacion,
+                      });
+                  }
+
                   db.SaveChanges();
                   return true;
               }
@@ -106,7 +151,7 @@ namespace Core.Erp.Data.Roles_Fj
           }
       }
 
-      public List<ro_fectividad_Entrega_x_Periodo_Empleado_Info> listado_Grupos(int IdEmpresa, DateTime Fecha_Inicio, DateTime Fecha_fin)
+      public List<ro_fectividad_Entrega_x_Periodo_Empleado_Info> get_list(int IdEmpresa, DateTime Fecha_Inicio, DateTime Fecha_fin)
       {
           try
           {

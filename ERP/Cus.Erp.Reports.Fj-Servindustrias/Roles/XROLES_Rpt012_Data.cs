@@ -58,7 +58,7 @@ namespace Cus.Erp.Reports.FJ.Roles
                           info.Dias_vacaciones = 0;
                       else
                       info.Dias_vacaciones = item.Dias_vacaciones;
-
+                      info.Dias_permiso=item.Dias_permiso;
                       lista.Add(info);
                   }
               }

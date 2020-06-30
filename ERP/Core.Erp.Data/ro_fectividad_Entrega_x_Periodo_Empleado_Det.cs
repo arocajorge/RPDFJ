@@ -28,5 +28,7 @@ namespace Core.Erp.Data
         public double Recuperacion_cartera { get; set; }
         public double Recuperacion_cartera_aplica { get; set; }
         public string Observacion { get; set; }
+    
+        public virtual ro_fectividad_Entrega_x_Periodo_Empleado ro_fectividad_Entrega_x_Periodo_Empleado { get; set; }
     }
 }

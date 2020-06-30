@@ -33,11 +33,11 @@ namespace Core.Erp.Business.Roles_Fj
 
 
 
-       public List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info> lista_atrasos_faltas_x_empleado(int IdEmpresa,int IdNominaTipo, DateTime Fecha_Inicio, DateTime FechaFin)
+       public List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info> lista_atrasos_faltas_x_empleado(int IdEmpresa,int IdNominaTipo, int IdDivision, DateTime Fecha_Inicio, DateTime FechaFin)
        {
            try
            {
-               return data.lista_atrasos_faltas_x_empleado(IdEmpresa, IdNominaTipo,Fecha_Inicio, FechaFin);
+               return data.lista_atrasos_faltas_x_empleado(IdEmpresa, IdNominaTipo,IdDivision,Fecha_Inicio, FechaFin);
 
            }
            catch (Exception ex)

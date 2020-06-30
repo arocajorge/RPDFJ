@@ -19,6 +19,10 @@ namespace Core.Erp.Data
         public string ts_Descripcion { get; set; }
         public string ts_codigo { get; set; }
         public double Porcentaje { get; set; }
+        public Nullable<bool> Efectividad_entrega { get; set; }
+        public Nullable<bool> Efectividad_volumen { get; set; }
+        public Nullable<bool> Recuperacion_cartera { get; set; }
+        public Nullable<bool> Genera_novedad { get; set; }
         public bool Estado { get; set; }
         public string IdUsuario { get; set; }
         public Nullable<System.DateTime> Fecha_Transaccion { get; set; }

@@ -132,29 +132,13 @@ namespace Core.Erp.Winform.Roles
                 }
                 else
                 {
-                    if (info.IdEstadoAprobacion == "Aprobado")
+                    if (MessageBox.Show("¿Está seguro que desea anular la Solicitud No. " + info.IdSolicitudVaca + " ? ", "Anulación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        MessageBox.Show("La Solicitud No. " + info.IdSolicitudVaca + " se encuentra en estado APROBADO,\n por lo tanto no se puede anular", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    else
-                    {
+                        if (pu_AnularSolicitud())
+                            MessageBox.Show("El registro fue anulado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("El registro no ha sido anulado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-                        if (MessageBox.Show("¿Está seguro que desea anular la Solicitud No. " + info.IdSolicitudVaca + " ? ", "Anulación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            pu_AnularSolicitud();
-                            int id = 0;
-
-                            if (solicitudBus.GrabarBD(info,ref id, ref mensaje))
-                            {
-                                MessageBox.Show(Resources.msgConfirmaAnulacionOk, Resources.msgTituloAnular, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                pu_Cargar();
-                            }
-                            else
-                                MessageBox.Show("El registro no ha sido anulado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                       
                     }
                 }
 
@@ -257,22 +241,13 @@ namespace Core.Erp.Winform.Roles
                     info.IdEstadoAprobacion = "Negado";
                     info.Estado = "I";
 
-                    //REVERTIR EL SALDO DE DIAS TOMADOS
-                    RoHistoricoVacaInfoLst = new BindingList<ro_historico_vacaciones_x_empleado_Info>(oRo_historico_vacaciones_x_empleado_Bus.pu_RevertirVacaciones(info.IdEmpresa,info.IdEmpleado, Convert.ToInt32(info.Dias_a_disfrutar)));
+                    return solicitudBus.AnularBD(info, ref id, ref mensaje);
 
-                    //GRABA LA SOLICITUD 
-                    if(solicitudBus.GrabarBD(info,ref id, ref mensaje)){
-                        foreach (ro_historico_vacaciones_x_empleado_Info item in RoHistoricoVacaInfoLst)
-                        {
-                            if(!oRo_historico_vacaciones_x_empleado_Bus.GrabarBD(item, ref id, ref mensaje)){
-                            valorRetornar=false; break;
-                            }
-                        }
 
-                    }
                 }
+                else
+                    return false;
 
-                return valorRetornar;
             }
             catch (Exception ex)
             {

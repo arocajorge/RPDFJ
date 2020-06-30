@@ -32,5 +32,6 @@ namespace Core.Erp.Data
         public int Calculo_Horas_extras_Sobre { get; set; }
         public int Max_num_horas_sab_dom { get; set; }
         public int IdTipoNomina { get; set; }
+        public Nullable<int> IdDivision { get; set; }
     }
 }

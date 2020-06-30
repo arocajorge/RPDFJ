@@ -21,6 +21,7 @@ namespace Core.Erp.Winform.Roles
         cl_parametrosGenerales_Bus param = cl_parametrosGenerales_Bus.Instance;
         ro_SolicitudVacaciones_Info info = new ro_SolicitudVacaciones_Info();
         List<ro_SolicitudVacaciones_Info> Lista_solicitud_Vavaciones = new List<ro_SolicitudVacaciones_Info>();
+        ro_historico_liquidacion_vacaciones_Bus Bus_liquidacion_vacaciones = new ro_historico_liquidacion_vacaciones_Bus();
 
         frmRo_Solicitud_Vacaciones_Mant vacacionesMant = new frmRo_Solicitud_Vacaciones_Mant();
 
@@ -150,12 +151,46 @@ namespace Core.Erp.Winform.Roles
                 if (data == null)
                     return;
                 if (data.IdOrdenPago !=null)
-e.Appearance.ForeColor = Color.Blue;
+                e.Appearance.ForeColor = Color.Blue;
+
+                if (data == null)
+                    return;
+                if (data.Estado == "I")
+                    e.Appearance.ForeColor = Color.Red;
             }
             catch (Exception ex)
             {
                 
               
+            }
+        }
+
+        private void ucGe_Menu_event_btnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("¿Está seguro que desea anular la Solicitud No. " + info.IdSolicitudVaca + " ? ", "Anulación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    info = new ro_SolicitudVacaciones_Info();
+                    info = (ro_SolicitudVacaciones_Info)gridViewVacaciones.GetFocusedRow();
+                    ro_historico_liquidacion_vacaciones_Info info_liquidacion = new ro_historico_liquidacion_vacaciones_Info();
+                    info_liquidacion.IdEmpresa = param.IdEmpresa;
+                    info_liquidacion.IdEmpleado = info.IdEmpleado;
+                    info_liquidacion.IdLiquidacion = info.IdSolicitudVaca;
+                    info_liquidacion.IdSolicitud_Vacaciones = info.IdSolicitudVaca;
+                    if (Bus_liquidacion_vacaciones.EliminarDB(info_liquidacion))
+                        MessageBox.Show("El registro fue anulado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("El registro no ha sido anulado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+               
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

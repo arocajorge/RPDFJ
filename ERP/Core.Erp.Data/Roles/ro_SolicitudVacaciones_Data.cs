@@ -36,7 +36,7 @@ namespace Core.Erp.Data.Roles
                         Info.IdEmpresa = item.IdEmpresa;
                         Info.IdNomina_Tipo = item.IdNomina_Tipo;
                        
-                            Info.IdSolicitudVaca = Convert.ToInt32(item.IdSolicitudVaca);
+                        Info.IdSolicitudVaca = Convert.ToInt32(item.IdSolicitudVaca);
                         Info.Fecha = Convert.ToDateTime(item.Fecha);
                         Info.IdEmpleado = Convert.ToInt32(item.IdEmpleado);
                         Info.AnioServicio = item.AnioServicio;
@@ -246,7 +246,45 @@ namespace Core.Erp.Data.Roles
                 throw new Exception(ex.InnerException.ToString());
             }
         }
+        public Boolean AnularDB(ro_SolicitudVacaciones_Info info, ref string msg)
+        {
+            try
+            {
 
+                int dias_tomados = 0;
+                using (EntitiesRoles db = new EntitiesRoles())
+                {
+                    var Entity = db.ro_Solicitud_Vacaciones_x_empleado.First(v => v.IdEmpresa == info.IdEmpresa 
+                        && v.IdSolicitudVaca == info.IdSolicitudVaca);
+                    if (Entity == null)
+                        return false;
+                    Entity.Estado = "I";
+                    Entity.MotivoAnulacion = info.MotivoAnulacion;
+                    var ro_historico_vacaciones_x_empleado = db.ro_historico_vacaciones_x_empleado.Where(
+                        v => v.IdEmpresa == info.IdEmpresa
+                        && v.IdEmpleado == info.IdEmpleado
+                        &&v.FechaIni==info.Anio_Desde
+                        &&v.FechaFin==info.Anio_Hasta).FirstOrDefault();
+                    if (ro_historico_vacaciones_x_empleado != null)
+                    {
+                        dias_tomados = ro_historico_vacaciones_x_empleado.DiasTomados == null ? 0 : Convert.ToInt32(ro_historico_vacaciones_x_empleado.DiasTomados);
+                        dias_tomados = dias_tomados - info.Dias_a_disfrutar;
+                        ro_historico_vacaciones_x_empleado.DiasTomados = dias_tomados;
+                    }
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string array = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", array, "", "", "", "", "", DateTime.Now);
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                mensaje = ex.InnerException + " " + ex.Message;
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
         public Boolean EliminarPermisoVacaciones(ro_SolicitudVacaciones_Info info)
         {
             try

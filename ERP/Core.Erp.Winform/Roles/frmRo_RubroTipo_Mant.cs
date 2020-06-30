@@ -208,6 +208,7 @@ namespace Core.Erp.Winform.Roles
                 textDescripcion.Text = _SetInfo.ru_descripcion;
                 textNombreC.Text = _SetInfo.NombreCorto;
                 txtOrden.Value = _SetInfo.ru_orden;
+                txtOrden_general.Value = _SetInfo.ru_orden_rol_general == null ? 0: Convert.ToInt32(_SetInfo.ru_orden_rol_general);
                 CmbTipoCampo.SelectedValue = _SetInfo.rub_tipcal;
                 checkEditabelUsuario.Checked = (_SetInfo.ru_EditablexUser == "S") ? true : false;
                 CheckEstado.Checked=(_SetInfo.ru_estado == "A") ? true : false;
@@ -227,9 +228,9 @@ namespace Core.Erp.Winform.Roles
                 checkGuardaRol.Checked = Convert.ToBoolean(_SetInfo.rub_guarda_rol);
                 txtFormula.Text = _SetInfo.rub_formul.Trim();
                 txtIdRolProceso.Text = _SetInfo.ru_codRolGen.Trim();
-
+                check_muestra_rol_general.Checked = _SetInfo.ru_muestra_rol_general == null ? false : Convert.ToBoolean(_SetInfo.ru_muestra_rol_general);
                 checkContabiliza.Checked = Convert.ToBoolean(_SetInfo.rub_nocontab);
-
+                check_calcula_base_dias_efec.Checked = _SetInfo.ru_calcula_basado_dias_efectivos == null ? false : Convert.ToBoolean(_SetInfo.ru_calcula_basado_dias_efectivos);
                 cmbCuentaContable_.set_IdCtaCble(_SetInfo.rub_ctacon == null ? "" : _SetInfo.rub_ctacon);
 
                 checkAfectaEmpleadoVac.Checked =Convert.ToBoolean( _SetInfo.rub_AplicaEmpleado_Vac);
@@ -258,10 +259,11 @@ namespace Core.Erp.Winform.Roles
                 _Info.NombreCorto = textNombreC.Text;
                 _Info.ru_descripcion = textDescripcion.Text;
                 _Info.ru_orden = Convert.ToInt32(txtOrden.Value);
+                _Info.ru_orden_rol_general = Convert.ToInt32(txtOrden_general.Value);
                 _Info.ru_estado = (CheckEstado.Checked == true) ? "A" : "I";
                 _Info.ru_tipo = (cmbTipo.SelectedValue.ToString() == "") ? "I" : cmbTipo.SelectedValue.ToString();
                 _Info.ru_EditablexUser = (checkBox1.Checked == true) ? "S" : "N";
-
+                _Info.ru_muestra_rol_general = check_muestra_rol_general.Checked;
               //  _Info.rub_tipcal = Convert.ToInt32(comb_TC.SelectedValue == null ? 0 : comb_TC.SelectedValue);
                 _Info.rub_grupo = Convert.ToInt32(CmbGrupos.SelectedValue == null ? 0 : CmbGrupos.SelectedValue);
                 _Info.rub_tipcal =(int) CmbTipoCampo.SelectedValue;
@@ -285,7 +287,7 @@ namespace Core.Erp.Winform.Roles
 
                 }
 
-
+                _Info.ru_calcula_basado_dias_efectivos = check_calcula_base_dias_efec.Checked;
                 _Info.rub_AplicaEmpleado_Vac = checkAfectaEmpleadoVac.Checked;
                 _Info.ru_aplica_empleado_Subsidio = checkSubcidio.Checked;
                 _Info.rub_Contabiliza_x_empleado = check_rub_Contabiliza_x_empleado.Checked;

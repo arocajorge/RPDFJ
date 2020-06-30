@@ -27,6 +27,9 @@
     [Fecha_UltAnu]                 DATETIME      NULL,
     [nom_pc]                       VARCHAR (50)  NULL,
     [Motivo_Anu]                   VARCHAR (200) NULL,
-    CONSTRAINT [PK_ro_marcaciones_x_empleado] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdRegistro] ASC, [IdEmpleado] ASC, [IdTipoMarcaciones] ASC, [secuencia] ASC)
+    CONSTRAINT [PK_ro_marcaciones_x_empleado] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdRegistro] ASC, [IdEmpleado] ASC, [IdTipoMarcaciones] ASC, [secuencia] ASC),
+    CONSTRAINT [FK_ro_marcaciones_x_empleado_ro_empleado] FOREIGN KEY ([IdEmpresa], [IdEmpleado]) REFERENCES [dbo].[ro_empleado] ([IdEmpresa], [IdEmpleado])
 );
+
+
 

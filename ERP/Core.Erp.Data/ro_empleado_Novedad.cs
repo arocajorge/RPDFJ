@@ -18,6 +18,7 @@ namespace Core.Erp.Data
         {
             this.ro_novedad_x_empleado = new HashSet<ro_novedad_x_empleado>();
             this.ro_empleado_novedad_det = new HashSet<ro_empleado_novedad_det>();
+            this.ro_permiso_x_empleado_x_novedad = new HashSet<ro_permiso_x_empleado_x_novedad>();
         }
     
         public int IdEmpresa { get; set; }
@@ -44,9 +45,10 @@ namespace Core.Erp.Data
         public string IdCalendario { get; set; }
         public Nullable<int> IdPeriodo { get; set; }
     
-        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
         public virtual ICollection<ro_novedad_x_empleado> ro_novedad_x_empleado { get; set; }
         public virtual ICollection<ro_empleado_novedad_det> ro_empleado_novedad_det { get; set; }
         public virtual ro_empleado ro_empleado { get; set; }
+        public virtual ro_Nomina_Tipoliqui ro_Nomina_Tipoliqui { get; set; }
+        public virtual ICollection<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
     }
 }

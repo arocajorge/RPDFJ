@@ -19,10 +19,10 @@ declare
     @idperiodo int
 	set @IdEmpresa=2
 	set @IdNomina_tipo=1
-	set @Anio ='2019'
-	set @Mes ='10'
+	set @Anio ='2020'
+	set @Mes ='03'
 	set @idempleado=37
-	set @idperiodo=201910
+	set @idperiodo=202003
 	
 	*/
 
@@ -32,18 +32,41 @@ declare
 
 	select @FechaI=pe_FechaIni, @FechaF=pe_FechaFin from ro_periodo where IdEmpresa=@IdEmpresa and IdPeriodo=@IdPeriodo
 
-	select * from(
+	select * from
+	(
 SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 
                          Fj_servindustrias.ro_zona.zo_descripcion, Fj_servindustrias.ro_fuerza.fu_descripcion, Fj_servindustrias.ro_disco.Disco, Fj_servindustrias.ro_placa.Placa, Fj_servindustrias.ro_ruta.ru_descripcion, emp.em_fechaIngaRol, 
                          perio.pe_FechaIni, ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida) AS em_fechaSalida, person.pe_cedulaRuc AS Cedula, person.pe_apellido + ' ' + person.pe_nombre AS Nombres, cargo.ca_descripcion, 
                          ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion AS Catalogo, param_repo.Descripcion, dbo.ro_rol_detalle.Valor, param_repo.Orden,
-						 (select  sum(Dias_a_disfrutar) from vwRo_Solicitud_Vacaciones vac where 
+						 (select  sum(Dias_a_disfrutar) 
+						 from vwRo_Solicitud_Vacaciones vac 
+						 where 
 						 vac.IdEmpresa=@IdEmpresa
 						 and vac.IdNomina_Tipo=1
 						 and vac.IdEmpleado=emp.IdEmpleado
 						 and vac.Fecha_Desde between @FechaI and @FechaF
 						 and vac.Fecha_Hasta  between @FechaI and @FechaF
-						 and IdOrdenPago>0) Dias_vacaciones
+						 and IdOrdenPago>0) Dias_vacaciones,
+						 
+						
+						(
+						select   
+						sum(iif( month (ro_permiso_x_empleado.FechaSalida)!=month(ro_permiso_x_empleado.FechaEntrada), 
+						iif(ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF, 
+						DATEDIFF(day ,ro_permiso_x_empleado.FechaSalida, @FechaF)+1 , 
+						dATEDIFF(day ,@FechaI, ro_permiso_x_empleado.FechaEntrada)+1   )  ,  
+						DATEDIFF(day ,ro_permiso_x_empleado.FechaSalida, ro_permiso_x_empleado.FechaEntrada)+1  ) ) 
+	
+						from ro_permiso_x_empleado where 
+						ro_permiso_x_empleado.IdEmpresa=ro_rol_detalle.IdEmpresa
+						and ro_permiso_x_empleado.idempleado=ro_rol_detalle.IdEmpleado
+						and (( ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF) or  ( ro_permiso_x_empleado.FechaEntrada between @FechaI and @FechaF) )
+						and ro_permiso_x_empleado.Estado='A'	 
+
+						)Dias_permiso
+		
+	
+
 FROM            dbo.ro_periodo AS perio INNER JOIN
                          Fj_servindustrias.ro_zona INNER JOIN
                          Fj_servindustrias.ro_planificacion_x_ruta_x_empleado_det ON Fj_servindustrias.ro_zona.IdEmpresa = Fj_servindustrias.ro_planificacion_x_ruta_x_empleado_det.IdEmpresa AND 
@@ -135,7 +158,7 @@ and ISNULL( Fj_servindustrias.ro_planificacion_x_ruta_x_empleado_det.IdPeriodo,@
 SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 'Eventual' AS zo_descripcion, 
                           Fj_servindustrias.ro_fuerza.fu_descripcion, '' AS Disco, '' AS Placa, '' AS ru_descripcion, emp.em_fechaIngaRol, perio.pe_FechaIni, ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida) AS em_fechaSalida, person.pe_cedulaRuc AS Cedula, 
                          person.pe_apellido + ' ' + person.pe_nombre AS Nombres, cargo.ca_descripcion, ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion AS Catalogo, param_repo.Descripcion, 
-                         dbo.ro_rol_detalle.Valor, param_repo.Orden, 0 Dias_vacaciones
+                         dbo.ro_rol_detalle.Valor, param_repo.Orden, 0 Dias_vacaciones,0 Dias_permiso
 FROM            dbo.ro_catalogo AS ro_catalogo_1 INNER JOIN
                          Fj_servindustrias.ro_parametros_reporte AS param_repo ON ro_catalogo_1.CodCatalogo = param_repo.Id_Catalogo INNER JOIN
                          dbo.ro_periodo_x_ro_Nomina_TipoLiqui INNER JOIN
@@ -201,7 +224,23 @@ union
 						 and vac.Fecha_Desde between @FechaI and @FechaF
 						 and vac.Fecha_Hasta  between @FechaI and @FechaF
 						 and IdOrdenPago>0
-						 AND vac.Estado='A') Dias_vacaciones
+						 AND vac.Estado='A') Dias_vacaciones,
+
+						 (
+						select   
+						sum(iif( month (ro_permiso_x_empleado.FechaSalida)!=month(ro_permiso_x_empleado.FechaEntrada), 
+						iif(ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF, 
+						DATEDIFF(day ,ro_permiso_x_empleado.FechaSalida, @FechaF)+1 , 
+						dATEDIFF(day ,@FechaI, ro_permiso_x_empleado.FechaEntrada)+1   )  ,  
+						DATEDIFF(day ,ro_permiso_x_empleado.FechaSalida, ro_permiso_x_empleado.FechaEntrada)+1  )  )
+	
+						from ro_permiso_x_empleado where 
+						ro_permiso_x_empleado.IdEmpresa=ro_rol_detalle.IdEmpresa
+						and ro_permiso_x_empleado.idempleado=ro_rol_detalle.IdEmpleado
+						and (( ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF) or  ( ro_permiso_x_empleado.FechaEntrada between @FechaI and @FechaF) )
+						and ro_permiso_x_empleado.Estado='A'	 
+
+						)Dias_permiso
 
 FROM            dbo.ro_catalogo AS ro_catalogo_1 INNER JOIN
                          Fj_servindustrias.ro_parametros_reporte AS param_repo ON ro_catalogo_1.CodCatalogo = param_repo.Id_Catalogo INNER JOIN

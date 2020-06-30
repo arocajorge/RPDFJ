@@ -3229,6 +3229,7 @@
     <Compile Include="Roles\ro_turno_x_tb_dia_Data.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Data.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Data.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Data.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Data.cs" />
@@ -3243,6 +3244,8 @@
     <Compile Include="Roles_Fj\ro_empleado_x_turno_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Data.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Det_Data.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_Data.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_det_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_tipoServicio_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Data.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Det_Data.cs" />
@@ -3265,6 +3268,7 @@
     <Compile Include="Roles_Fj\ro_planificacion_x_ruta_x_empleado_det_Data.cs" />
     <Compile Include="Roles_Fj\ro_presupuesto_x_fuerza_x_cargo_Data.cs" />
     <Compile Include="Roles_Fj\ro_Remplazo_x_emplado_Data.cs" />
+    <Compile Include="Roles_Fj\ro_rubros_calculados_Data.cs" />
     <Compile Include="Roles_Fj\ro_ruta_Data.cs" />
     <Compile Include="Roles_Fj\ro_sala_Data.cs" />
     <Compile Include="Roles_Fj\ro_zona_Data.cs" />
@@ -3299,6 +3303,9 @@
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_Calculo_Pago_Variable_Porcentaje.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_Calculo_Pago_Variable_Porcentaje_servicio.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_Capacitaciones_x_Empleado.cs">
@@ -3451,6 +3458,12 @@
     <Compile Include="ro_empresa_x_TipoLiqui_Rol.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
+    <Compile Include="ro_fectividad_Entrega_servicio.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_fectividad_Entrega_servicio_det.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
     <Compile Include="ro_fectividad_Entrega_tipoServicio.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
@@ -3504,6 +3517,9 @@
     </Compile>
     <Compile Include="ro_marcaciones_Equipo_x_TipoMarcacion.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_marcaciones_no_aplica_sobretiempo.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_marcaciones_tipo.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
@@ -3577,6 +3593,9 @@
     <Compile Include="ro_permiso_x_empleado.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
+    <Compile Include="ro_permiso_x_empleado_x_novedad.cs">
+      <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
     <Compile Include="ro_placa.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
@@ -3621,6 +3640,9 @@
     </Compile>
     <Compile Include="ro_Rol_x_Empleado.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ro_rubros_calculados.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
     <Compile Include="ro_rubro_tipo.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
@@ -5565,6 +5587,12 @@
     <Compile Include="vwro_empleado_x_rutas_asignadas_Det.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
+    <Compile Include="vwro_fectividad_Entrega_servicio.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwro_fectividad_Entrega_servicio_det.cs">
+      <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
+    </Compile>
     <Compile Include="vwro_fectividad_Entrega_x_Periodo_Empleado.cs">
       <DependentUpon>ModelRoles_Fj.tt</DependentUpon>
     </Compile>
@@ -5656,6 +5684,9 @@
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
     <Compile Include="vwRo_Permiso_x_Empleado.cs">
+      <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vwro_permiso_x_empleado_x_novedad.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
     <Compile Include="vwRo_Planificacion_Horarios_x_Empleado.cs">

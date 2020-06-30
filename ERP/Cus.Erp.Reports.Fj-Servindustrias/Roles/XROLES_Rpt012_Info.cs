@@ -33,6 +33,7 @@ namespace Cus.Erp.Reports.FJ.Roles
         public double Valor { get; set; }
         public int Orden { get; set; }
         public Nullable<int> Dias_vacaciones { get; set; }
+        public Nullable<int> Dias_permiso { get; set; }
 
     }
 }

@@ -10,6 +10,7 @@ namespace Core.Erp.Info.Roles
    {
        public int IdEmpresa { get; set; }
        public int IdNomina_Tipo { get; set; }
+       public int IdLiquidacion { get; set; }
        public int IdSolicitud_Vacaciones { get; set; }
        public decimal IdEmpleado { get; set; }
        public decimal IdOrdenPago { get; set; }

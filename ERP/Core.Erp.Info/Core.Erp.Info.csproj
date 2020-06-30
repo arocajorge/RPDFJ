@@ -1205,6 +1205,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Academico\vwAca_Institucion_x_Sede_x_Jorn_x_Sec_Curso_x_Para_Info.cs" />
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Info.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Info.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Info.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Info.cs" />
@@ -1219,6 +1220,8 @@
     <Compile Include="Roles_Fj\ro_empleado_x_turno_Info.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Det_Info.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Info.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_det_Info.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_Info.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_tipoServicio_Info.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Det_Info.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Info.cs" />
@@ -1243,6 +1246,7 @@
     <Compile Include="Roles_Fj\ro_planificacion_x_ruta_x_empleado_Info.cs" />
     <Compile Include="Roles_Fj\ro_presupuesto_x_fuerza_x_cargo_Info.cs" />
     <Compile Include="Roles_Fj\ro_Remplazo_x_emplado_Info.cs" />
+    <Compile Include="Roles_Fj\ro_rubros_calculados_Info.cs" />
     <Compile Include="Roles_Fj\ro_ruta_Info.cs" />
     <Compile Include="Roles_Fj\ro_sala_Info.cs" />
     <Compile Include="Roles_Fj\ro_zona_Info.cs" />

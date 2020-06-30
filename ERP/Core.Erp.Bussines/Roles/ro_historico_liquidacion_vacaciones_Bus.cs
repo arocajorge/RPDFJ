@@ -11,22 +11,7 @@ namespace Core.Erp.Business.Roles
    public class ro_historico_liquidacion_vacaciones_Bus
    {
        tb_sis_Log_Error_Vzen_Bus oLog = new tb_sis_Log_Error_Vzen_Bus();
-       ro_historico_liquidacion_vacaciones_Data data = new Data.Roles.ro_historico_liquidacion_vacaciones_Data(); 
-        public Boolean GrabarBD(ro_historico_liquidacion_vacaciones_Info Info, ref int IdSolicitud)
-        {
-            try
-            {
-
-                return data.GrabarBD(Info, ref IdSolicitud);
-            }
-            catch (Exception ex)
-            {
-                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
-                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "ConsultarHistoricoVaca", ex.Message), ex) { EntityType = typeof(ro_historico_vacaciones_x_empleado_Bus) };
-     
-            }
-
-        }
+       ro_historico_liquidacion_vacaciones_Data data = new Data.Roles.ro_historico_liquidacion_vacaciones_Data();       
         public Boolean EliminarDB(ro_historico_liquidacion_vacaciones_Info info)
         {
             try

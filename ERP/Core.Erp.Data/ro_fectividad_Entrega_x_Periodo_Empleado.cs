@@ -14,6 +14,11 @@ namespace Core.Erp.Data
     
     public partial class ro_fectividad_Entrega_x_Periodo_Empleado
     {
+        public ro_fectividad_Entrega_x_Periodo_Empleado()
+        {
+            this.ro_fectividad_Entrega_x_Periodo_Empleado_Det = new HashSet<ro_fectividad_Entrega_x_Periodo_Empleado_Det>();
+        }
+    
         public int IdEmpresa { get; set; }
         public int IdNomina_Tipo { get; set; }
         public int IdNomina_tipo_Liq { get; set; }
@@ -29,5 +34,7 @@ namespace Core.Erp.Data
         public System.DateTime FechaTransac { get; set; }
         public Nullable<System.DateTime> FechaUltModi { get; set; }
         public Nullable<int> IdServicioTipo { get; set; }
+    
+        public virtual ICollection<ro_fectividad_Entrega_x_Periodo_Empleado_Det> ro_fectividad_Entrega_x_Periodo_Empleado_Det { get; set; }
     }
 }

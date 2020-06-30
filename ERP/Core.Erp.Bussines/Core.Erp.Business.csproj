@@ -903,6 +903,7 @@
     <Compile Include="Roles\ro_turno_x_tb_dia_Bus.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_servicio_Bus.cs" />
     <Compile Include="Roles_Fj\ro_Calculo_Pago_Variable_Porcentaje_Bus.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Bus.cs" />
     <Compile Include="Roles_Fj\ro_descuento_no_planificados_Det_Bus.cs" />
@@ -917,6 +918,8 @@
     <Compile Include="Roles_Fj\ro_empleado_x_turno_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Bus.cs" />
     <Compile Include="Roles_Fj\ro_empleado_x_rutas_asignadas_Det_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_fectividad_Entrega_servicio_det_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_tipoServicio_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Bus.cs" />
     <Compile Include="Roles_Fj\ro_fectividad_Entrega_x_Periodo_Empleado_Det_Bus.cs" />
@@ -940,6 +943,7 @@
     <Compile Include="Roles_Fj\ro_planificacion_x_ruta_x_empleado_det_Bus.cs" />
     <Compile Include="Roles_Fj\ro_presupuesto_x_fuerza_x_cargo_Bus.cs" />
     <Compile Include="Roles_Fj\ro_Remplazo_x_emplado_Bus.cs" />
+    <Compile Include="Roles_Fj\ro_rubros_calculados_Bus.cs" />
     <Compile Include="Roles_Fj\ro_ruta_Bus.cs" />
     <Compile Include="Roles_Fj\ro_sala_Bus.cs" />
     <Compile Include="Roles_Fj\ro_zona_Bus.cs" />

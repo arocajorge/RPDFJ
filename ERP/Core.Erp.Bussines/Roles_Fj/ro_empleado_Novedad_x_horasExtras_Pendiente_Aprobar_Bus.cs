@@ -39,11 +39,11 @@ namespace Core.Erp.Business.Roles_Fj
             }
         }
 
-        public List<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Info> Get_lista_horas_extras_x_aproba(int IdEmpresa, DateTime Fechainicio, DateTime FechaFin)
+        public List<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar_Info> Get_lista_horas_extras_x_aproba(int IdEmpresa,int IdTipoNomina,int IdDivision, DateTime Fechainicio, DateTime FechaFin)
         {
             try
             {
-                return data.Get_lista_horas_extras_x_aproba(IdEmpresa, Fechainicio, FechaFin);
+                return data.Get_lista_horas_extras_x_aproba(IdEmpresa,IdTipoNomina,IdDivision, Fechainicio, FechaFin);
             }
             catch (Exception ex)
             {

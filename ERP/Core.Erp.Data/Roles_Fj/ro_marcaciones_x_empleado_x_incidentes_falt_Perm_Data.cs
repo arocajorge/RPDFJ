@@ -28,7 +28,6 @@ namespace Core.Erp.Data.Roles_Fj
                     add.IdTurno =1;
                     else
                         add.IdTurno = info.IdTurno;
-
                     add.es_fecha_registro = info.es_fecha_registro;
                     add.Id_catalogo_Cat = info.Id_catalogo_Cat;
                     add.es_jornada_desfasada = info.es_jornada_desfasada;
@@ -45,8 +44,22 @@ namespace Core.Erp.Data.Roles_Fj
                     else
                         add.IdDisco = info.IdDisco;
                     add.Observacion = "";
-
                     db.ro_marcaciones_x_empleado_x_incidentes_falt_Perm.Add(add);
+
+                    if (info.Id_catalogo_Cat == "SINLABORAR" && Convert.ToInt32(Convert.ToDateTime(info.es_fecha_registro).DayOfWeek)==1)
+                    {
+
+                        DateTime fdesfazada = info.es_fecha_registro.AddDays(5);
+                        db.ro_marcaciones_no_aplica_sobretiempo.Add(new ro_marcaciones_no_aplica_sobretiempo
+                        {
+
+                            IdEmpresa=info.IdEmpresa,
+                            IdEmpleado=info.IdEmpleado,
+                            IdRegistro=info.IdRegistro,
+                            es_fecha_registro = fdesfazada,
+                            Observacion="DESFAZADA POR EL DIA "+info.es_fecha_registro.ToString().Substring(0,10)
+                        });
+                    }
                     db.SaveChanges();
                 }
 
@@ -66,7 +79,7 @@ namespace Core.Erp.Data.Roles_Fj
 
 
 
-        public List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info> lista_atrasos_faltas_x_empleado(int IdEmpresa,int IdNominaTipo, DateTime Fecha_Inicio, DateTime FechaFin)
+        public List<ro_marcaciones_x_empleado_x_incidentes_falt_Perm_Info> lista_atrasos_faltas_x_empleado(int IdEmpresa,int IdNominaTipo,int IdDivision, DateTime Fecha_Inicio, DateTime FechaFin)
         {
             try
             {
@@ -82,6 +95,7 @@ namespace Core.Erp.Data.Roles_Fj
                                 && q.es_fecha_registro >= Fecha_Inicio
                                 && q.es_fecha_registro <= FechaFin
                                 && q.IdNomina_Tipo==IdNominaTipo
+                                && q.IdDivision==IdDivision
                                 select q;
                     foreach (var item in query)
                     {
@@ -331,14 +345,15 @@ namespace Core.Erp.Data.Roles_Fj
             {
                 using (EntityRoles_FJ context = new EntityRoles_FJ())
                 {
-                    string sql1 = "delete Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar where IdEmpresa='" + item.IdEmpresa + "' and IdEmpleado='" + item.IdEmpleado + "' and IdRegistro='" + item.IdRegistro + "'";
-                    context.Database.ExecuteSqlCommand(sql1);
-
-
-                    string sql = "delete Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm where IdEmpresa='" + item.IdEmpresa + "' and IdEmpleado='" + item.IdEmpleado + "' and IdRegistro='" + item.IdRegistro + "'";
+                    string sql = "delete Fj_servindustrias.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar where IdEmpresa='" + item.IdEmpresa + "' and IdEmpleado='" + item.IdEmpleado + "' and IdRegistro='" + item.IdRegistro + "'";
                     context.Database.ExecuteSqlCommand(sql);
-                   
 
+
+                    sql = "delete Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm where IdEmpresa='" + item.IdEmpresa + "' and IdEmpleado='" + item.IdEmpleado + "' and IdRegistro='" + item.IdRegistro + "'";
+                    context.Database.ExecuteSqlCommand(sql);
+
+                    sql = "delete Fj_servindustrias.ro_marcaciones_no_aplica_sobretiempo where IdEmpresa='" + item.IdEmpresa + "' and IdEmpleado='" + item.IdEmpleado + "' and IdRegistro='" + item.IdRegistro + "'";
+                    context.Database.ExecuteSqlCommand(sql);
 
                 }
 

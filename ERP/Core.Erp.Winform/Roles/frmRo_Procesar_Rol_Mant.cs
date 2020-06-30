@@ -245,7 +245,11 @@ namespace Core.Erp.Winform.Roles
 
             try
             {
+                 ro_Nomina_Tipoliqui_Info nomina_info = new ro_Nomina_Tipoliqui_Info();
+              nomina_info = (ro_Nomina_Tipoliqui_Info)cmbnominaTipo.Properties.View.GetFocusedRow();
 
+            
+              
                 int i = 0;
                 int numFila = 0;
                 double percent = 0;
@@ -283,7 +287,14 @@ namespace Core.Erp.Winform.Roles
                                     //EJECUTA EL PROCESO DE GENERACION DE ROL
                                     if (item.check == true)
                                     {
-                                        oRo_Rol_Bus.pu_ProcesarRol(item);
+                                        
+                                        if (nomina_info.nom_store_procedure == "" || nomina_info.nom_store_procedure == null)
+                                            oRo_Rol_Bus.pu_ProcesarRol(item);
+                                        else
+                                          oRo_Rol_Bus.procesar(param.IdEmpresa, _idNomina, _idNominaLiqui, _idPeriodo,item.IdEmpleado, nomina_info.nom_store_procedure, txtObservacion.Text, param.IdUsuario);
+                     
+                                      
+
                                     }
 
                                     i++;
@@ -308,7 +319,11 @@ namespace Core.Erp.Winform.Roles
                                     if (item.check == true)
                                     {
                                         //EJECUTA EL PROCESO DE GENERACION DE ROL
-                                        oRo_Rol_Bus.pu_ProcesarRol(item);
+                                        if (nomina_info.nom_store_procedure == "" || nomina_info.nom_store_procedure == null)
+                                            oRo_Rol_Bus.pu_ProcesarRol(item);
+                                        else
+                                          oRo_Rol_Bus.procesar(param.IdEmpresa, _idNomina, _idNominaLiqui, _idPeriodo,item.IdEmpleado, nomina_info.nom_store_procedure, txtObservacion.Text, param.IdUsuario);
+ 
                                     }
 
                                     i++;
@@ -329,8 +344,8 @@ namespace Core.Erp.Winform.Roles
 
                 }
 
-
-            }
+                }
+            
             catch (Exception ex)
             {
                 Log_Error_bus.Log_Error(ex.ToString());
@@ -879,81 +894,88 @@ namespace Core.Erp.Winform.Roles
        {
           try
           {
-              if (checkTodos.Checked)
-              {
-                  oRo_Rol_Detalle_Bus.Eliminar_proceso(_idEmpresa, _idNomina, _idNominaLiqui, _idPeriodo);
-              }
-
-              bool B_validaEstado = false;
-              if (pu_ValidarPeriodo())
-              {
-                  foreach (var item in oLstRo_Empleado_Info)
+             
+                  if (checkTodos.Checked)
                   {
-                      if (item.em_status == "EST_VAC" || item.em_status == "EST_SUB")
-                      {
-
-                          B_validaEstado = true;
-                      }
-                      
+                      oRo_Rol_Detalle_Bus.Eliminar_proceso(_idEmpresa, _idNomina, _idNominaLiqui, _idPeriodo);
                   }
 
-                  if (B_validaEstado)
+                  bool B_validaEstado = false;
+                  if (pu_ValidarPeriodo())
                   {
-                      if (MessageBox.Show("Existen empleados en estado de vacaciones o en subsidio ¿Desea Revisar?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                      foreach (var item in oLstRo_Empleado_Info)
                       {
+                          if (item.em_status == "EST_VAC" || item.em_status == "EST_SUB")
+                          {
+
+                              B_validaEstado = true;
+                          }
+
+                      }
+
+                      if (B_validaEstado)
+                      {
+                          if (MessageBox.Show("Existen empleados en estado de vacaciones o en subsidio ¿Desea Revisar?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                          {
+                          }
+                          else
+                          {
+                              pu_ProcesarSeleccionados();
+                          }
                       }
                       else
                       {
                           pu_ProcesarSeleccionados();
+
                       }
+
+
+
                   }
                   else
                   {
-                      pu_ProcesarSeleccionados();
-
+                      MessageBox.Show("El Período está Cerrado no puede continuar con el proceso, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                   }
 
 
-                
-              }
-              else
-              {
-                  MessageBox.Show("El Período está Cerrado no puede continuar con el proceso, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-              }
 
+                  // arregalndo el estado del empleado
 
-
-              // arregalndo el estado del empleado
-
-              foreach (var item in oLstRo_Empleado_Info.Where(v => v.em_status == "EST_VAC" || v.em_status == "EST_SUB"))
-              {
-                  int dias = 0;
-                  if (item.em_status == "EST_VAC")
+                  foreach (var item in oLstRo_Empleado_Info.Where(v => v.em_status == "EST_VAC" || v.em_status == "EST_SUB"))
                   {
-
-                      ro_SolicitudVacaciones_Bus bus_vacaciones = new ro_SolicitudVacaciones_Bus();
-                      dias = bus_vacaciones.Get_si_estaVacaciones(item.IdEmpresa, item.IdNomina_Tipo, Convert.ToInt32(item.IdEmpleado), oRo_PeriodoInfo.pe_FechaIni, oRo_PeriodoInfo.pe_FechaFin);
-                    if (dias == 0)
-                    {
-                        BusEmpleado.Modificar_Estado(item.IdEmpresa, Convert.ToInt32(item.IdEmpleado), "EST_ACT");
-                    }
-                  }
-
-                  if (item.em_status == "EST_SUB")
-                  {
-
-                      ro_permiso_x_empleado_Bus bus_permiso = new ro_permiso_x_empleado_Bus();
-                      dias = bus_permiso.Get_Dias_Permiso(item.IdEmpresa, item.IdNomina_Tipo, Convert.ToInt32(item.IdEmpleado), oRo_PeriodoInfo.pe_FechaIni, oRo_PeriodoInfo.pe_FechaFin);
-
-                      if (dias == 0)
+                      int dias = 0;
+                      if (item.em_status == "EST_VAC")
                       {
-                          BusEmpleado.Modificar_Estado(item.IdEmpresa, Convert.ToInt32(item.IdEmpleado), "EST_ACT");
+
+                          ro_SolicitudVacaciones_Bus bus_vacaciones = new ro_SolicitudVacaciones_Bus();
+                          dias = bus_vacaciones.Get_si_estaVacaciones(item.IdEmpresa, item.IdNomina_Tipo, Convert.ToInt32(item.IdEmpleado), oRo_PeriodoInfo.pe_FechaIni, oRo_PeriodoInfo.pe_FechaFin);
+                          if (dias == 0)
+                          {
+                              BusEmpleado.Modificar_Estado(item.IdEmpresa, Convert.ToInt32(item.IdEmpleado), "EST_ACT");
+                          }
                       }
+
+                      if (item.em_status == "EST_SUB")
+                      {
+
+                          ro_permiso_x_empleado_Bus bus_permiso = new ro_permiso_x_empleado_Bus();
+                          dias = bus_permiso.Get_Dias_Permiso(item.IdEmpresa, item.IdNomina_Tipo, Convert.ToInt32(item.IdEmpleado), oRo_PeriodoInfo.pe_FechaIni, oRo_PeriodoInfo.pe_FechaFin);
+
+                          if (dias == 0)
+                          {
+                              BusEmpleado.Modificar_Estado(item.IdEmpresa, Convert.ToInt32(item.IdEmpleado), "EST_ACT");
+                          }
+                      }
+
                   }
 
-              }
+                  B_validaEstado = false;
+              
+              
+              
 
-              B_validaEstado = false;
+              
+
           }
           catch (Exception ex)
           {
@@ -1044,7 +1066,7 @@ namespace Core.Erp.Winform.Roles
                decimal idnnoveda = 0;
 
                bool bandera = false;
-                Bus_Novedad.EliminarNovedadSaldoNegativos(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue),"S"+cmbPeriodos.EditValue.ToString());
+                Bus_Novedad.EliminarNovedadSaldoNegativos(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), Convert.ToInt32(cmbnominaTipo.EditValue), "S"+cmbPeriodos.EditValue.ToString());
 
                 cmbnomina.Focus();
                 foreach (var item in listaNovedadSaldoNeg)

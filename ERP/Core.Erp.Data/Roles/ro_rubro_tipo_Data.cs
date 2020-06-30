@@ -67,6 +67,8 @@ namespace Core.Erp.Data.Roles
                     Address.ru_aplica_empleado_Subsidio = Convert.ToBoolean(Info.ru_aplica_empleado_Subsidio);
                     Address.rub_Contabiliza_x_empleado = Info.rub_Contabiliza_x_empleado;
                     Address.rub_Acuerdo_Descuento = Info.rub_Acuerdo_Descuento;
+                    Address.ru_orden_rol_general = Info.ru_orden_rol_general;
+                    Address.ru_calcula_basado_dias_efectivos = Info.ru_calcula_basado_dias_efectivos;
                     Context.ro_rubro_tipo.Add(Address);
                     
                     Context.SaveChanges();
@@ -111,7 +113,7 @@ namespace Core.Erp.Data.Roles
                     Obj.Fecha_Transac = item.Fecha_Transac;
                     Obj.IdUsuarioUltMod = item.IdUsuarioUltMod;
                     Obj.rub_codigo = item.rub_codigo;
-
+                    Obj.ru_muestra_rol_general = item.ru_muestra_rol_general;
                     Obj.rub_concep = Convert.ToBoolean(item.rub_concep);
                     Obj.rub_tipcal = Convert.ToInt32(item.rub_tipcal);
                     Obj.rub_formul = item.rub_formul;
@@ -141,6 +143,8 @@ namespace Core.Erp.Data.Roles
                     else
                         Obj.rub_mustra_liquidacion_cliente = false;
                     Obj.rub_Acuerdo_Descuento = item.rub_Acuerdo_Descuento;
+                    Obj.ru_orden_rol_general = item.ru_orden_rol_general;
+                    Obj.ru_calcula_basado_dias_efectivos = item.ru_calcula_basado_dias_efectivos;
                     Lst.Add(Obj);
 
                 }
@@ -187,7 +191,7 @@ namespace Core.Erp.Data.Roles
                     Obj.Fecha_Transac = item.Fecha_Transac;
                     Obj.IdUsuarioUltMod = item.IdUsuarioUltMod;
                     Obj.rub_codigo = item.rub_codigo;
-
+                    Obj.ru_calcula_basado_dias_efectivos = item.ru_calcula_basado_dias_efectivos;
                     Obj.rub_concep = Convert.ToBoolean(item.rub_concep);
                     Obj.rub_tipcal = Convert.ToInt32(item.rub_tipcal);
                     Obj.rub_formul = item.rub_formul;
@@ -208,7 +212,7 @@ namespace Core.Erp.Data.Roles
                     Obj.rub_utilid = Convert.ToBoolean(item.rub_utilid);
                     Obj.rub_guarda_rol = Convert.ToBoolean(item.rub_guarda_rol);
                     Obj.rub_aplica_IESS = Convert.ToBoolean(item.rub_aplica_IESS);
-
+                    Obj.ru_muestra_rol_general = item.ru_muestra_rol_general;
                     Obj.rub_AplicaEmpleado_Vac = Convert.ToBoolean(item.rub_AplicaEmpleado_Vac);
                     Obj.ru_aplica_empleado_Subsidio = Convert.ToBoolean(item.ru_aplica_empleado_Subsidio);
                     Obj.rub_Contabiliza_x_empleado = item.rub_Contabiliza_x_empleado;
@@ -263,7 +267,7 @@ namespace Core.Erp.Data.Roles
                     Obj.Fecha_Transac = item.Fecha_Transac;
                     Obj.IdUsuarioUltMod = item.IdUsuarioUltMod;
                     Obj.rub_codigo = item.rub_codigo;
-
+                    Obj.ru_calcula_basado_dias_efectivos = item.ru_calcula_basado_dias_efectivos;
                     Obj.rub_concep = Convert.ToBoolean(item.rub_concep);
                     Obj.rub_tipcal = Convert.ToInt32(item.rub_tipcal);
                     Obj.rub_formul = item.rub_formul;
@@ -284,7 +288,7 @@ namespace Core.Erp.Data.Roles
                     Obj.rub_utilid = Convert.ToBoolean(item.rub_utilid);
                     Obj.rub_guarda_rol = Convert.ToBoolean(item.rub_guarda_rol);
                     Obj.rub_aplica_IESS = Convert.ToBoolean(item.rub_aplica_IESS);
-
+                    Obj.ru_muestra_rol_general = item.ru_muestra_rol_general;
                     Obj.rub_AplicaEmpleado_Vac = Convert.ToBoolean(item.rub_AplicaEmpleado_Vac);
                     Obj.ru_aplica_empleado_Subsidio = Convert.ToBoolean(item.ru_aplica_empleado_Subsidio);
                     Obj.rub_Contabiliza_x_empleado = item.rub_Contabiliza_x_empleado;
@@ -364,7 +368,7 @@ namespace Core.Erp.Data.Roles
                     Obj.rub_utilid = Convert.ToBoolean(item.rub_utilid);
                     Obj.rub_guarda_rol = Convert.ToBoolean(item.rub_guarda_rol);
                     Obj.rub_aplica_IESS = Convert.ToBoolean(item.rub_aplica_IESS);
-
+                    Obj.ru_muestra_rol_general = item.ru_muestra_rol_general;
                     Obj.rub_AplicaEmpleado_Vac = Convert.ToBoolean(item.rub_AplicaEmpleado_Vac);
                     Obj.ru_aplica_empleado_Subsidio = Convert.ToBoolean(item.ru_aplica_empleado_Subsidio);
                     Obj.rub_Contabiliza_x_empleado = item.rub_Contabiliza_x_empleado;
@@ -471,7 +475,7 @@ namespace Core.Erp.Data.Roles
                     Obj.rub_guarda_rol = Convert.ToBoolean(item.rub_guarda_rol);
                     Obj.rub_aplica_IESS = Convert.ToBoolean(item.rub_aplica_IESS);
                     Obj.rub_Contabiliza_x_empleado = item.rub_Contabiliza_x_empleado;
-
+                    Obj.ru_muestra_rol_general = item.ru_muestra_rol_general;
                     Lst.Add(Obj);
                 }
                 return Lst;
@@ -525,7 +529,8 @@ namespace Core.Erp.Data.Roles
                     Info.rub_guarda_rol = Convert.ToBoolean(item.rub_guarda_rol);
                     Info.rub_aplica_IESS = Convert.ToBoolean(item.rub_aplica_IESS);
                     Info.rub_Contabiliza_x_empleado = item.rub_Contabiliza_x_empleado;
-
+                    Info.ru_orden_rol_general = item.ru_orden_rol_general;
+                    Info.ru_muestra_rol_general = item.ru_muestra_rol_general;
                 return Info;
             }
             catch (Exception ex)
@@ -579,8 +584,8 @@ namespace Core.Erp.Data.Roles
                 Info.rub_guarda_rol = Convert.ToBoolean(Objeto.rub_guarda_rol);
                 Info.rub_aplica_IESS = Convert.ToBoolean(Objeto.rub_aplica_IESS);
                 Info.rub_Contabiliza_x_empleado = Objeto.rub_Contabiliza_x_empleado;
-
-
+                Info.ru_orden_rol_general = Objeto.ru_orden_rol_general;
+                Info.ru_muestra_rol_general = Objeto.ru_muestra_rol_general;
                 return Info;
             }
             catch (Exception ex)
@@ -615,7 +620,7 @@ namespace Core.Erp.Data.Roles
                     contact.Fecha_UltMod = info.Fecha_UltMod;
                     contact.rub_codigo = info.rub_codigo;
                     contact.ru_codRolGen = info.ru_codRolGen;
-
+                    contact.ru_calcula_basado_dias_efectivos = info.ru_calcula_basado_dias_efectivos;
                     contact.rub_concep = info.rub_concep;
                     contact.rub_tipcal = info.rub_tipcal;
                     contact.rub_formul = info.rub_formul;
@@ -637,12 +642,13 @@ namespace Core.Erp.Data.Roles
                     contact.rub_utilid = info.rub_utilid;
                     contact.rub_guarda_rol = info.rub_guarda_rol;
                     contact.rub_aplica_IESS = info.rub_aplica_IESS;
-
+                    contact.ru_muestra_rol_general = info.ru_muestra_rol_general;
 
                     contact.rub_AplicaEmpleado_Vac = Convert.ToBoolean(info.rub_AplicaEmpleado_Vac);
                     contact.ru_aplica_empleado_Subsidio = Convert.ToBoolean(info.ru_aplica_empleado_Subsidio);
                     contact.rub_Contabiliza_x_empleado = info.rub_Contabiliza_x_empleado;
                     contact.rub_Acuerdo_Descuento = info.rub_Acuerdo_Descuento;
+                    contact.ru_orden_rol_general = info.ru_orden_rol_general;
                     context.SaveChanges();
 
 

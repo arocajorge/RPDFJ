@@ -26,7 +26,7 @@ FROM            dbo.ro_area INNER JOIN
                          dbo.tb_sucursal ON dbo.ro_empleado.IdEmpresa = dbo.tb_sucursal.IdEmpresa AND dbo.ro_empleado.IdSucursal = dbo.tb_sucursal.IdSucursal AND 
                          dbo.tb_empresa.IdEmpresa = dbo.tb_sucursal.IdEmpresa INNER JOIN
                          dbo.ro_Division ON dbo.ro_empleado.IdEmpresa = dbo.ro_Division.IdEmpresa AND dbo.ro_empleado.IdDivision = dbo.ro_Division.IdDivision ON dbo.ro_area.IdArea = dbo.ro_empleado.IdArea AND 
-                         dbo.ro_area.IdEmpresa = dbo.ro_empleado.IdEmpresa AND dbo.ro_area.IdDivision = dbo.ro_empleado.IdDivision LEFT OUTER JOIN
+                         dbo.ro_area.IdEmpresa = dbo.ro_empleado.IdEmpresa LEFT OUTER JOIN
                          dbo.ct_centro_costo ON dbo.ro_empleado.IdEmpresa = dbo.ct_centro_costo.IdEmpresa AND dbo.ro_empleado.IdCentroCosto = dbo.ct_centro_costo.IdCentroCosto
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwROL_Rpt002';
@@ -48,10 +48,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
          End
          Begin Table = "ro_rubro_tipo"
             Begin Extent = 
-               Top = 412
-               Left = 592
-               Bottom = 541
-               Right = 845
+               Top = 101
+               Left = 531
+               Bottom = 230
+               Right = 784
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -180,6 +180,8 @@ End
 
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
@@ -254,10 +256,10 @@ Begin DesignProperties =
       Begin Tables = 
          Begin Table = "ro_area"
             Begin Extent = 
-               Top = 69
-               Left = 271
-               Bottom = 259
-               Right = 480
+               Top = 387
+               Left = 587
+               Bottom = 577
+               Right = 796
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -300,7 +302,7 @@ Begin DesignProperties =
                Right = 905
             End
             DisplayFlags = 280
-            TopColumn = 36
+            TopColumn = 4
          End
          Begin Table = "tb_persona"
             Begin Extent = 
@@ -320,6 +322,8 @@ Begin DesignProperties =
                Right = 247
             End
        ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwROL_Rpt002';
+
+
 
 
 
