@@ -173,7 +173,7 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 listadoPeriodo = periodo_nomina_bus.ConsultaPerNomTipLiq(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), Convert.ToInt32(cmbnominaTipo.EditValue));
-                cmbPeriodos.Properties.DataSource = listadoPeriodo.Where(v => v.Cerrado == "N" && v.Contabilizado == "N").ToList();
+                cmbPeriodos.Properties.DataSource = listadoPeriodo.Where(v => v.Cerrado == "N").ToList();
 
 
             }
