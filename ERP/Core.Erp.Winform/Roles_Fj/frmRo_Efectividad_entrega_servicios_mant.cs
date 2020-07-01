@@ -173,7 +173,7 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 listadoPeriodo = periodo_nomina_bus.ConsultaPerNomTipLiq(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), Convert.ToInt32(cmbnominaTipo.EditValue));
-                cmbPeriodos.Properties.DataSource = listadoPeriodo.Where(v => v.Cerrado == "N" && v.Contabilizado == "N").ToList();
+                cmbPeriodos.Properties.DataSource = listadoPeriodo.Where(v => v.Cerrado == "N").ToList();
 
 
             }
@@ -303,7 +303,7 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 Get();
-                return bus_efectividad.Guardar_DB(info_efectividad);
+                return bus_efectividad.Modificar_DB(info_efectividad);
             }
             catch (Exception ex)
             {
@@ -358,7 +358,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 switch (Accion)
                 {
                     case Cl_Enumeradores.eTipo_action.grabar:
-                      bandera_si_grabo = Grabar();
+                     bandera_si_grabo  = Modificar();
                         break;
                     case Cl_Enumeradores.eTipo_action.actualizar:
                      bandera_si_grabo  = Modificar();
