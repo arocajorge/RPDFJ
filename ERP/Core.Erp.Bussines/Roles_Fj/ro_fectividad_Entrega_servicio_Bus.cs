@@ -26,21 +26,7 @@ namespace Core.Erp.Business.Roles_Fj
            }
        }
 
-        public bool Guardar_DB( ro_fectividad_Entrega_servicio_Info info)
-        {
-
-            try
-            {
-                return odata.Guardar_DB(info);
-            }
-            catch (Exception ex)
-            {
-
-               
-                throw ;
-            }
-        }
-
+     
         public bool Modificar_DB( ro_fectividad_Entrega_servicio_Info info)
         {
            

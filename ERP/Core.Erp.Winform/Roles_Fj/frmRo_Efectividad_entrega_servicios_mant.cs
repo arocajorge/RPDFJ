@@ -303,7 +303,7 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 Get();
-                return bus_efectividad.Guardar_DB(info_efectividad);
+                return bus_efectividad.Modificar_DB(info_efectividad);
             }
             catch (Exception ex)
             {
@@ -358,7 +358,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 switch (Accion)
                 {
                     case Cl_Enumeradores.eTipo_action.grabar:
-                      bandera_si_grabo = Grabar();
+                     bandera_si_grabo  = Modificar();
                         break;
                     case Cl_Enumeradores.eTipo_action.actualizar:
                      bandera_si_grabo  = Modificar();
