@@ -222,7 +222,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info_efectividad.IdNomina_tipo_Liq = Convert.ToInt32(cmbnominaTipo.EditValue);
                 info_efectividad.IdPeriodo = Convert.ToInt32(cmbPeriodos.EditValue);
                 info_efectividad.IdServicioTipo = Convert.ToInt32(cmb_servicios.EditValue);
-                //info_efectividad.Observacion = txtobservacion.Text;
+                info_efectividad.IdNivelServicio =Convert.ToInt32( txt_id.Text);
                 info_efectividad.IdUsuario = param.IdUsuario;
                 info_efectividad.FechaTransac = DateTime.Now;
                 info_efectividad.IdUsuarioUltModi = param.IdUsuario;
@@ -247,7 +247,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmbnomina.EditValue = info.IdNomina_Tipo;
                 cmbnominaTipo.EditValue = info.IdNomina_tipo_Liq;
                 cmbPeriodos.EditValue = info.IdPeriodo;
-               // txtobservacion.Text = info.Observacion;
+                txt_id.Text = info.IdNivelServicio.ToString();
                 lista_efectividad = new BindingList<ro_fectividad_Entrega_servicio_det_Info>(bus_efectividad_detalle.get_list(info.IdEmpresa,info.IdNivelServicio));
                 gridControl_Efectividad.DataSource = lista_efectividad;
             }

@@ -620,8 +620,8 @@ namespace Core.Erp.Winform.Roles_Fj
                 if (data.Length < 1) return;
                 foreach (string row in data)
                 {
-                    if (!Agregar_fila_copiada(row))
-                        break;
+                    Agregar_fila_copiada(row);
+                       
 
                 }
             }
@@ -653,8 +653,9 @@ namespace Core.Erp.Winform.Roles_Fj
                 ro_fectividad_Entrega_x_Periodo_Empleado_Info newRow = new ro_fectividad_Entrega_x_Periodo_Empleado_Info();
                 if (rowData.Count() >= 3) //return false;          
                 {
-                    
 
+                    if (rowData[0] == "")
+                        return false;
 
                     string Ruta = "";;
                     decimal Entrega = 0;

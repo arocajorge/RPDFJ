@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Efectividad_entrega_servicios_mant));
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -53,15 +52,25 @@
             this.cmb_ruta = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Col_ru_descripcion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmb_imagen = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.Col_Efectividad_Entrega = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Efectividad_Entrega_aplica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Efectividad_Volumen = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Efectividad_Volumen_aplica = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Recuperacion_cartera = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Recuperacion_cartera_aplica = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_car_alim = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_car_alim_ap = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_vol_alim = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_vol_alim_apl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_ent_alim = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_ent_alim_apl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_serv = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Efe_ser_apl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Valor_volumen = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Error = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.cmb_imagen = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.gc_ro_Calculo_Pago_Variable_Porcentaje = new DevExpress.XtraGrid.GridControl();
             this.gvw_ro_Calculo_Pago_Variable_Porcentaje = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -84,16 +93,7 @@
             this.cmdDetener = new DevExpress.XtraEditors.SimpleButton();
             this.cmdProcesar = new DevExpress.XtraEditors.SimpleButton();
             this.cmb_grabar = new DevExpress.XtraEditors.SimpleButton();
-            this.col_Efe_car_alim = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_car_alim_ap = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_vol_alim = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_vol_alim_apl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_ent_alim = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_ent_alim_apl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_serv = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Efe_ser_apl = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_Valor_volumen = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txt_id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbnominaTipo.Properties)).BeginInit();
@@ -367,28 +367,11 @@
             this.Col_ru_descripcion.Visible = true;
             this.Col_ru_descripcion.VisibleIndex = 0;
             // 
-            // cmb_imagen
-            // 
-            this.cmb_imagen.AutoHeight = false;
-            this.cmb_imagen.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmb_imagen.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
-            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", true, 0)});
-            this.cmb_imagen.LargeImages = this.imageList1;
-            this.cmb_imagen.Name = "cmb_imagen";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "anular2_32.x32png.png");
-            // 
             // Col_Efectividad_Entrega
             // 
             this.Col_Efectividad_Entrega.Caption = "Beb. cart.";
             this.Col_Efectividad_Entrega.FieldName = "Efe_car_bebi";
             this.Col_Efectividad_Entrega.Name = "Col_Efectividad_Entrega";
-            this.Col_Efectividad_Entrega.OptionsColumn.AllowEdit = false;
             this.Col_Efectividad_Entrega.Visible = true;
             this.Col_Efectividad_Entrega.VisibleIndex = 2;
             this.Col_Efectividad_Entrega.Width = 60;
@@ -449,6 +432,96 @@
             this.Col_Recuperacion_cartera_aplica.VisibleIndex = 7;
             this.Col_Recuperacion_cartera_aplica.Width = 60;
             // 
+            // col_Efe_car_alim
+            // 
+            this.col_Efe_car_alim.Caption = "Alim. Cart";
+            this.col_Efe_car_alim.FieldName = "Efe_car_alim";
+            this.col_Efe_car_alim.Name = "col_Efe_car_alim";
+            this.col_Efe_car_alim.Visible = true;
+            this.col_Efe_car_alim.VisibleIndex = 8;
+            this.col_Efe_car_alim.Width = 60;
+            // 
+            // col_Efe_car_alim_ap
+            // 
+            this.col_Efe_car_alim_ap.Caption = "Aplica";
+            this.col_Efe_car_alim_ap.FieldName = "Efe_car_alim_ap";
+            this.col_Efe_car_alim_ap.Name = "col_Efe_car_alim_ap";
+            this.col_Efe_car_alim_ap.Visible = true;
+            this.col_Efe_car_alim_ap.VisibleIndex = 9;
+            this.col_Efe_car_alim_ap.Width = 60;
+            // 
+            // col_Efe_vol_alim
+            // 
+            this.col_Efe_vol_alim.Caption = "Alim. Vol.";
+            this.col_Efe_vol_alim.FieldName = "Efe_vol_alim";
+            this.col_Efe_vol_alim.Name = "col_Efe_vol_alim";
+            this.col_Efe_vol_alim.Visible = true;
+            this.col_Efe_vol_alim.VisibleIndex = 10;
+            this.col_Efe_vol_alim.Width = 60;
+            // 
+            // col_Efe_vol_alim_apl
+            // 
+            this.col_Efe_vol_alim_apl.Caption = "Aplica";
+            this.col_Efe_vol_alim_apl.FieldName = "Efe_vol_alim_apl";
+            this.col_Efe_vol_alim_apl.Name = "col_Efe_vol_alim_apl";
+            this.col_Efe_vol_alim_apl.Visible = true;
+            this.col_Efe_vol_alim_apl.VisibleIndex = 11;
+            this.col_Efe_vol_alim_apl.Width = 60;
+            // 
+            // col_Efe_ent_alim
+            // 
+            this.col_Efe_ent_alim.Caption = "Alim. Entr";
+            this.col_Efe_ent_alim.FieldName = "Efe_ent_alim";
+            this.col_Efe_ent_alim.Name = "col_Efe_ent_alim";
+            this.col_Efe_ent_alim.Visible = true;
+            this.col_Efe_ent_alim.VisibleIndex = 12;
+            this.col_Efe_ent_alim.Width = 60;
+            // 
+            // col_Efe_ent_alim_apl
+            // 
+            this.col_Efe_ent_alim_apl.Caption = "Aplica";
+            this.col_Efe_ent_alim_apl.FieldName = "Efe_ent_alim_apl";
+            this.col_Efe_ent_alim_apl.Name = "col_Efe_ent_alim_apl";
+            this.col_Efe_ent_alim_apl.Visible = true;
+            this.col_Efe_ent_alim_apl.VisibleIndex = 13;
+            this.col_Efe_ent_alim_apl.Width = 60;
+            // 
+            // col_Efe_serv
+            // 
+            this.col_Efe_serv.Caption = "Servicio";
+            this.col_Efe_serv.FieldName = "Efe_serv";
+            this.col_Efe_serv.Name = "col_Efe_serv";
+            this.col_Efe_serv.Visible = true;
+            this.col_Efe_serv.VisibleIndex = 14;
+            this.col_Efe_serv.Width = 60;
+            // 
+            // col_Efe_ser_apl
+            // 
+            this.col_Efe_ser_apl.Caption = "Aplica";
+            this.col_Efe_ser_apl.FieldName = "Efe_ser_apl";
+            this.col_Efe_ser_apl.Name = "col_Efe_ser_apl";
+            this.col_Efe_ser_apl.Visible = true;
+            this.col_Efe_ser_apl.VisibleIndex = 15;
+            this.col_Efe_ser_apl.Width = 60;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "$ Servicio";
+            this.gridColumn6.FieldName = "Valor_servicio";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 16;
+            this.gridColumn6.Width = 60;
+            // 
+            // col_Valor_volumen
+            // 
+            this.col_Valor_volumen.Caption = "$ Cartera";
+            this.col_Valor_volumen.FieldName = "Valor_volumen";
+            this.col_Valor_volumen.Name = "col_Valor_volumen";
+            this.col_Valor_volumen.Visible = true;
+            this.col_Valor_volumen.VisibleIndex = 17;
+            this.col_Valor_volumen.Width = 60;
+            // 
             // Col_Error
             // 
             this.Col_Error.Caption = "Error";
@@ -457,6 +530,22 @@
             this.Col_Error.Visible = true;
             this.Col_Error.VisibleIndex = 18;
             this.Col_Error.Width = 30;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "anular2_32.x32png.png");
+            // 
+            // cmb_imagen
+            // 
+            this.cmb_imagen.AutoHeight = false;
+            this.cmb_imagen.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_imagen.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", true, 0)});
+            this.cmb_imagen.LargeImages = this.imageList1;
+            this.cmb_imagen.Name = "cmb_imagen";
             // 
             // xtraTabPage2
             // 
@@ -648,6 +737,7 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.txt_id);
             this.groupControl1.Controls.Add(this.cmdDetener);
             this.groupControl1.Controls.Add(this.cmdProcesar);
             this.groupControl1.Controls.Add(this.cmb_grabar);
@@ -672,7 +762,7 @@
             this.cmdDetener.Image = ((System.Drawing.Image)(resources.GetObject("cmdDetener.Image")));
             this.cmdDetener.Location = new System.Drawing.Point(499, 90);
             this.cmdDetener.Name = "cmdDetener";
-            this.cmdDetener.Size = new System.Drawing.Size(74, 23);
+            this.cmdDetener.Size = new System.Drawing.Size(107, 23);
             this.cmdDetener.TabIndex = 160;
             this.cmdDetener.Text = "Cerrar";
             this.cmdDetener.Click += new System.EventHandler(this.cmdDetener_Click);
@@ -683,7 +773,7 @@
             this.cmdProcesar.Image = ((System.Drawing.Image)(resources.GetObject("cmdProcesar.Image")));
             this.cmdProcesar.Location = new System.Drawing.Point(498, 26);
             this.cmdProcesar.Name = "cmdProcesar";
-            this.cmdProcesar.Size = new System.Drawing.Size(75, 23);
+            this.cmdProcesar.Size = new System.Drawing.Size(108, 23);
             this.cmdProcesar.TabIndex = 159;
             this.cmdProcesar.Text = "Procesar";
             this.cmdProcesar.Click += new System.EventHandler(this.cmdProcesar_Click);
@@ -694,100 +784,18 @@
             this.cmb_grabar.Image = ((System.Drawing.Image)(resources.GetObject("cmb_grabar.Image")));
             this.cmb_grabar.Location = new System.Drawing.Point(498, 59);
             this.cmb_grabar.Name = "cmb_grabar";
-            this.cmb_grabar.Size = new System.Drawing.Size(75, 23);
+            this.cmb_grabar.Size = new System.Drawing.Size(108, 23);
             this.cmb_grabar.TabIndex = 158;
-            this.cmb_grabar.Text = "Guardar";
+            this.cmb_grabar.Text = "Generar novedad";
             this.cmb_grabar.Click += new System.EventHandler(this.cmb_grabar_Click);
             // 
-            // col_Efe_car_alim
+            // txt_id
             // 
-            this.col_Efe_car_alim.Caption = "Alim. Cart";
-            this.col_Efe_car_alim.FieldName = "Efe_car_alim";
-            this.col_Efe_car_alim.Name = "col_Efe_car_alim";
-            this.col_Efe_car_alim.Visible = true;
-            this.col_Efe_car_alim.VisibleIndex = 8;
-            this.col_Efe_car_alim.Width = 60;
-            // 
-            // col_Efe_car_alim_ap
-            // 
-            this.col_Efe_car_alim_ap.Caption = "Aplica";
-            this.col_Efe_car_alim_ap.FieldName = "Efe_car_alim_ap";
-            this.col_Efe_car_alim_ap.Name = "col_Efe_car_alim_ap";
-            this.col_Efe_car_alim_ap.Visible = true;
-            this.col_Efe_car_alim_ap.VisibleIndex = 9;
-            this.col_Efe_car_alim_ap.Width = 60;
-            // 
-            // col_Efe_vol_alim
-            // 
-            this.col_Efe_vol_alim.Caption = "Alim. Vol.";
-            this.col_Efe_vol_alim.FieldName = "Efe_vol_alim";
-            this.col_Efe_vol_alim.Name = "col_Efe_vol_alim";
-            this.col_Efe_vol_alim.Visible = true;
-            this.col_Efe_vol_alim.VisibleIndex = 10;
-            this.col_Efe_vol_alim.Width = 60;
-            // 
-            // col_Efe_vol_alim_apl
-            // 
-            this.col_Efe_vol_alim_apl.Caption = "Aplica";
-            this.col_Efe_vol_alim_apl.FieldName = "Efe_vol_alim_apl";
-            this.col_Efe_vol_alim_apl.Name = "col_Efe_vol_alim_apl";
-            this.col_Efe_vol_alim_apl.Visible = true;
-            this.col_Efe_vol_alim_apl.VisibleIndex = 11;
-            this.col_Efe_vol_alim_apl.Width = 60;
-            // 
-            // col_Efe_ent_alim
-            // 
-            this.col_Efe_ent_alim.Caption = "Alim. Entr";
-            this.col_Efe_ent_alim.FieldName = "Efe_ent_alim";
-            this.col_Efe_ent_alim.Name = "col_Efe_ent_alim";
-            this.col_Efe_ent_alim.Visible = true;
-            this.col_Efe_ent_alim.VisibleIndex = 12;
-            this.col_Efe_ent_alim.Width = 60;
-            // 
-            // col_Efe_ent_alim_apl
-            // 
-            this.col_Efe_ent_alim_apl.Caption = "Aplica";
-            this.col_Efe_ent_alim_apl.FieldName = "Efe_ent_alim_apl";
-            this.col_Efe_ent_alim_apl.Name = "col_Efe_ent_alim_apl";
-            this.col_Efe_ent_alim_apl.Visible = true;
-            this.col_Efe_ent_alim_apl.VisibleIndex = 13;
-            this.col_Efe_ent_alim_apl.Width = 60;
-            // 
-            // col_Efe_serv
-            // 
-            this.col_Efe_serv.Caption = "Servicio";
-            this.col_Efe_serv.FieldName = "Efe_serv";
-            this.col_Efe_serv.Name = "col_Efe_serv";
-            this.col_Efe_serv.Visible = true;
-            this.col_Efe_serv.VisibleIndex = 14;
-            this.col_Efe_serv.Width = 60;
-            // 
-            // col_Efe_ser_apl
-            // 
-            this.col_Efe_ser_apl.Caption = "Aplica";
-            this.col_Efe_ser_apl.FieldName = "Efe_ser_apl";
-            this.col_Efe_ser_apl.Name = "col_Efe_ser_apl";
-            this.col_Efe_ser_apl.Visible = true;
-            this.col_Efe_ser_apl.VisibleIndex = 15;
-            this.col_Efe_ser_apl.Width = 60;
-            // 
-            // col_Valor_volumen
-            // 
-            this.col_Valor_volumen.Caption = "$ Volumen";
-            this.col_Valor_volumen.FieldName = "Valor_volumen";
-            this.col_Valor_volumen.Name = "col_Valor_volumen";
-            this.col_Valor_volumen.Visible = true;
-            this.col_Valor_volumen.VisibleIndex = 17;
-            this.col_Valor_volumen.Width = 60;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "$ Servicio";
-            this.gridColumn6.FieldName = "Valor_servicio";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 16;
-            this.gridColumn6.Width = 60;
+            this.txt_id.Location = new System.Drawing.Point(1127, 22);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.ReadOnly = true;
+            this.txt_id.Size = new System.Drawing.Size(100, 20);
+            this.txt_id.TabIndex = 161;
             // 
             // frmRo_Efectividad_entrega_servicios_mant
             // 
@@ -895,5 +903,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn col_Efe_ser_apl;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn col_Valor_volumen;
+        private System.Windows.Forms.TextBox txt_id;
     }
 }

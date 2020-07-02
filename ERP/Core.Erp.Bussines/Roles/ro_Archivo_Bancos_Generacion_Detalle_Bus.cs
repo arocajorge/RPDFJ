@@ -557,8 +557,10 @@ namespace Core.Erp.Business.Roles
                         item.Rol_Elect_Motivo3 = item.Rol_Elect_Motivo3.PadLeft(3, ' ');
                         item.Rol_Elect_Motivo3 = item.Rol_Elect_Motivo3.PadLeft(3, ' ');
                         item.Rol_Elect_Filler2 = item.Rol_Elect_Filler2.PadLeft(10, ' ');
-
-                        item.Rol_Elect_Email=param.em_Email.PadLeft(30, ' ');
+                        if (param.em_Email != null)
+                            item.Rol_Elect_Email = param.em_Email.PadLeft(30, ' ');
+                        else
+                            item.Rol_Elect_Email = "                              ";
                         item.Rol_Elect_Celular = item.Rol_Elect_Celular.PadLeft(10, '0');
 
                     }
