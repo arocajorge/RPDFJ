@@ -63,7 +63,8 @@ namespace Core.Erp.Data.Roles_Fj
         {
             try
             {
-
+                ro_periodo_Data odata_perido = new ro_periodo_Data();
+                var infoperiodo = odata_perido.ObtenerPeriodo(info.IdEmpresa, info.IdPeriodo).FirstOrDefault();
                 #region variables
                 EntitiesRoles context = new EntitiesRoles();
                 EntityRoles_FJ db = new EntityRoles_FJ();
@@ -71,13 +72,13 @@ namespace Core.Erp.Data.Roles_Fj
                 var info_calculado = odata_calculado.get_info(info.IdEmpresa);
                 #endregion
                     var add = db.ro_fectividad_Entrega_servicio.FirstOrDefault(v => v.IdEmpresa == info.IdEmpresa && v.IdNivelServicio == info.IdNivelServicio);
-                    add.Observacion = info.Observacion;
+                    //add.Observacion = info.Observacion;
                     add.FechaUltModi = DateTime.Now;
                     add.IdUsuarioUltModi = info.IdUsuarioUltModi;
                     string idcalendario = info.IdPeriodo.ToString() + info.IdNivelServicio.ToString();
                     string DeteNov = "delete ro_empleado_novedad_det where idempresa='" + info.IdEmpresa + "' and IdCalendario = '" + idcalendario + "'";
                     string CabeNov = "delete ro_empleado_novedad where idempresa='" + info.IdEmpresa + "' and IdCalendario = '" + idcalendario + "'";
-                    string detalle = "delete Fj_servindustrias.ro_fectividad_Entrega_servicio_det where IdEmpresa='" + info.IdEmpresa + "' and IdNomina_Tipo='" + info.IdNomina_Tipo + "' and IdPeriodo='" + info.IdPeriodo + "' and IdNivelServicio='" + info.IdNivelServicio + "'  ";
+                    string detalle = "delete Fj_servindustrias.ro_fectividad_Entrega_servicio_det where IdEmpresa='" + info.IdEmpresa + "'  and IdNivelServicio='" + info.IdNivelServicio + "'  ";
 
                     db.Database.ExecuteSqlCommand(DeteNov);
                     db.Database.ExecuteSqlCommand(CabeNov);
@@ -125,7 +126,7 @@ namespace Core.Erp.Data.Roles_Fj
                                  IdEmpresa = info.IdEmpresa,
                                  IdEmpleado = item.IdEmpleado,
                                  TotalValor = item.Valor_servicio,
-                                 Fecha = (DateTime)info.pe_FechaFin,
+                                 Fecha = infoperiodo.pe_FechaFin,
                                  IdNomina_Tipo = info.IdNomina_Tipo,
                                  IdNomina_TipoLiqui = info.IdNomina_tipo_Liq,
                                  IdUsuario = info.IdUsuario,
@@ -141,12 +142,12 @@ namespace Core.Erp.Data.Roles_Fj
                                  IdNovedad = IdNovedad,
                                  IdEmpleado = item.IdEmpleado,
                                  Secuencia = item.Secuencia = 1,
-                                 FechaPago = (DateTime)info.pe_FechaFin,
+                                 FechaPago = infoperiodo.pe_FechaFin,
                                  Valor = item.Valor_servicio,
                                  EstadoCobro = "PEN",
                                  Estado = "A",
                                  Observacion = info.Observacion,
-                                 IdRubro = info_calculado.IdRubro_transporte,
+                                 IdRubro = info_calculado.IdRubro_servicio,
                                  IdCalendario = info.IdPeriodo.ToString()+info.IdNivelServicio.ToString(),
                                  Num_Horas = 0,
                                  IdNomina_tipo = info.IdNomina_Tipo,
@@ -165,8 +166,8 @@ namespace Core.Erp.Data.Roles_Fj
                                  IdNovedad = IdNovedad,
                                  IdEmpresa = info.IdEmpresa,
                                  IdEmpleado = item.IdEmpleado,
-                                 TotalValor = item.Valor_servicio,
-                                 Fecha = (DateTime)info.pe_FechaFin,
+                                 TotalValor = item.Valor_volumen,
+                                 Fecha = infoperiodo.pe_FechaFin,
                                  IdNomina_Tipo = info.IdNomina_Tipo,
                                  IdNomina_TipoLiqui = info.IdNomina_tipo_Liq,
                                  IdUsuario = info.IdUsuario,
@@ -182,12 +183,12 @@ namespace Core.Erp.Data.Roles_Fj
                                  IdNovedad = IdNovedad,
                                  IdEmpleado = item.IdEmpleado,
                                  Secuencia = item.Secuencia = 1,
-                                 FechaPago = (DateTime)info.pe_FechaFin,
-                                 Valor = item.Valor_servicio,
+                                 FechaPago = infoperiodo.pe_FechaFin,
+                                 Valor = item.Valor_volumen,
                                  EstadoCobro = "PEN",
                                  Estado = "A",
                                  Observacion = info.Observacion,
-                                 IdRubro = info_calculado.IdRubro_transporte,
+                                 IdRubro = info_calculado.IdRubro_alm_car,
                                  IdCalendario = info.IdPeriodo.ToString() + info.IdNivelServicio.ToString(),
                                  Num_Horas = 0,
                                  IdNomina_tipo = info.IdNomina_Tipo,
@@ -203,7 +204,7 @@ namespace Core.Erp.Data.Roles_Fj
 
 
 
-                    db.SaveChanges();
+                    context.SaveChanges();
                     return true;
                 
             }

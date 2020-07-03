@@ -140,6 +140,41 @@
             this.gridView21 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn39 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cmb_car_alim = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView22 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cmb_vol_alim = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView23 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label25 = new System.Windows.Forms.Label();
+            this.cmb_ent_alim = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cmb_car_beb = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView25 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn48 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label27 = new System.Windows.Forms.Label();
+            this.cmb_vol_beb = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView26 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn49 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn50 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cmb_ent_beb = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView27 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn52 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cmb_nivel_serv = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView28 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn54 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_dias_trabajados.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_ingresos.Properties)).BeginInit();
@@ -184,6 +219,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_subtotal_variable.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_car_alim.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_vol_alim.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_ent_alim.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_car_beb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_vol_beb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_ent_beb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nivel_serv.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView28)).BeginInit();
             this.SuspendLayout();
             // 
             // cmb_dias_trabajados
@@ -1378,11 +1427,382 @@
             this.gridColumn40.VisibleIndex = 1;
             this.gridColumn40.Width = 1103;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(466, 194);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(88, 13);
+            this.label23.TabIndex = 218;
+            this.label23.Text = "Cartera alimentos";
+            // 
+            // cmb_car_alim
+            // 
+            this.cmb_car_alim.EditValue = "";
+            this.cmb_car_alim.Location = new System.Drawing.Point(593, 191);
+            this.cmb_car_alim.Name = "cmb_car_alim";
+            this.cmb_car_alim.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_car_alim.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_car_alim.Properties.ValueMember = "IdRubro";
+            this.cmb_car_alim.Properties.View = this.gridView22;
+            this.cmb_car_alim.Size = new System.Drawing.Size(300, 20);
+            this.cmb_car_alim.TabIndex = 217;
+            // 
+            // gridView22
+            // 
+            this.gridView22.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn41,
+            this.gridColumn42});
+            this.gridView22.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView22.Name = "gridView22";
+            this.gridView22.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView22.OptionsView.ShowAutoFilterRow = true;
+            this.gridView22.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn41
+            // 
+            this.gridColumn41.Caption = "Id";
+            this.gridColumn41.FieldName = "IdRubro";
+            this.gridColumn41.Name = "gridColumn41";
+            this.gridColumn41.Visible = true;
+            this.gridColumn41.VisibleIndex = 0;
+            this.gridColumn41.Width = 61;
+            // 
+            // gridColumn42
+            // 
+            this.gridColumn42.Caption = "Concepto";
+            this.gridColumn42.FieldName = "ru_descripcion";
+            this.gridColumn42.Name = "gridColumn42";
+            this.gridColumn42.Visible = true;
+            this.gridColumn42.VisibleIndex = 1;
+            this.gridColumn42.Width = 1103;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(466, 220);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(98, 13);
+            this.label24.TabIndex = 220;
+            this.label24.Text = "Volumen  alimentos";
+            // 
+            // cmb_vol_alim
+            // 
+            this.cmb_vol_alim.EditValue = "";
+            this.cmb_vol_alim.Location = new System.Drawing.Point(593, 217);
+            this.cmb_vol_alim.Name = "cmb_vol_alim";
+            this.cmb_vol_alim.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_vol_alim.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_vol_alim.Properties.ValueMember = "IdRubro";
+            this.cmb_vol_alim.Properties.View = this.gridView23;
+            this.cmb_vol_alim.Size = new System.Drawing.Size(300, 20);
+            this.cmb_vol_alim.TabIndex = 219;
+            // 
+            // gridView23
+            // 
+            this.gridView23.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn43,
+            this.gridColumn44});
+            this.gridView23.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView23.Name = "gridView23";
+            this.gridView23.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView23.OptionsView.ShowAutoFilterRow = true;
+            this.gridView23.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn43
+            // 
+            this.gridColumn43.Caption = "Id";
+            this.gridColumn43.FieldName = "IdRubro";
+            this.gridColumn43.Name = "gridColumn43";
+            this.gridColumn43.Visible = true;
+            this.gridColumn43.VisibleIndex = 0;
+            this.gridColumn43.Width = 61;
+            // 
+            // gridColumn44
+            // 
+            this.gridColumn44.Caption = "Concepto";
+            this.gridColumn44.FieldName = "ru_descripcion";
+            this.gridColumn44.Name = "gridColumn44";
+            this.gridColumn44.Visible = true;
+            this.gridColumn44.VisibleIndex = 1;
+            this.gridColumn44.Width = 1103;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(466, 246);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(91, 13);
+            this.label25.TabIndex = 222;
+            this.label25.Text = "Entrega alimentos";
+            // 
+            // cmb_ent_alim
+            // 
+            this.cmb_ent_alim.EditValue = "";
+            this.cmb_ent_alim.Location = new System.Drawing.Point(593, 243);
+            this.cmb_ent_alim.Name = "cmb_ent_alim";
+            this.cmb_ent_alim.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_ent_alim.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_ent_alim.Properties.ValueMember = "IdRubro";
+            this.cmb_ent_alim.Properties.View = this.gridView24;
+            this.cmb_ent_alim.Size = new System.Drawing.Size(300, 20);
+            this.cmb_ent_alim.TabIndex = 221;
+            // 
+            // gridView24
+            // 
+            this.gridView24.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn45,
+            this.gridColumn46});
+            this.gridView24.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView24.Name = "gridView24";
+            this.gridView24.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView24.OptionsView.ShowAutoFilterRow = true;
+            this.gridView24.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn45
+            // 
+            this.gridColumn45.Caption = "Id";
+            this.gridColumn45.FieldName = "IdRubro";
+            this.gridColumn45.Name = "gridColumn45";
+            this.gridColumn45.Visible = true;
+            this.gridColumn45.VisibleIndex = 0;
+            this.gridColumn45.Width = 61;
+            // 
+            // gridColumn46
+            // 
+            this.gridColumn46.Caption = "Concepto";
+            this.gridColumn46.FieldName = "ru_descripcion";
+            this.gridColumn46.Name = "gridColumn46";
+            this.gridColumn46.Visible = true;
+            this.gridColumn46.VisibleIndex = 1;
+            this.gridColumn46.Width = 1103;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(466, 272);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(81, 13);
+            this.label26.TabIndex = 224;
+            this.label26.Text = "Cartera bebidas";
+            // 
+            // cmb_car_beb
+            // 
+            this.cmb_car_beb.EditValue = "";
+            this.cmb_car_beb.Location = new System.Drawing.Point(593, 269);
+            this.cmb_car_beb.Name = "cmb_car_beb";
+            this.cmb_car_beb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_car_beb.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_car_beb.Properties.ValueMember = "IdRubro";
+            this.cmb_car_beb.Properties.View = this.gridView25;
+            this.cmb_car_beb.Size = new System.Drawing.Size(300, 20);
+            this.cmb_car_beb.TabIndex = 223;
+            // 
+            // gridView25
+            // 
+            this.gridView25.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn47,
+            this.gridColumn48});
+            this.gridView25.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView25.Name = "gridView25";
+            this.gridView25.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView25.OptionsView.ShowAutoFilterRow = true;
+            this.gridView25.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn47
+            // 
+            this.gridColumn47.Caption = "Id";
+            this.gridColumn47.FieldName = "IdRubro";
+            this.gridColumn47.Name = "gridColumn47";
+            this.gridColumn47.Visible = true;
+            this.gridColumn47.VisibleIndex = 0;
+            this.gridColumn47.Width = 61;
+            // 
+            // gridColumn48
+            // 
+            this.gridColumn48.Caption = "Concepto";
+            this.gridColumn48.FieldName = "ru_descripcion";
+            this.gridColumn48.Name = "gridColumn48";
+            this.gridColumn48.Visible = true;
+            this.gridColumn48.VisibleIndex = 1;
+            this.gridColumn48.Width = 1103;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(466, 298);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(88, 13);
+            this.label27.TabIndex = 226;
+            this.label27.Text = "Volumen bebidas";
+            // 
+            // cmb_vol_beb
+            // 
+            this.cmb_vol_beb.EditValue = "";
+            this.cmb_vol_beb.Location = new System.Drawing.Point(593, 295);
+            this.cmb_vol_beb.Name = "cmb_vol_beb";
+            this.cmb_vol_beb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_vol_beb.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_vol_beb.Properties.ValueMember = "IdRubro";
+            this.cmb_vol_beb.Properties.View = this.gridView26;
+            this.cmb_vol_beb.Size = new System.Drawing.Size(300, 20);
+            this.cmb_vol_beb.TabIndex = 225;
+            // 
+            // gridView26
+            // 
+            this.gridView26.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn49,
+            this.gridColumn50});
+            this.gridView26.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView26.Name = "gridView26";
+            this.gridView26.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView26.OptionsView.ShowAutoFilterRow = true;
+            this.gridView26.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn49
+            // 
+            this.gridColumn49.Caption = "Id";
+            this.gridColumn49.FieldName = "IdRubro";
+            this.gridColumn49.Name = "gridColumn49";
+            this.gridColumn49.Visible = true;
+            this.gridColumn49.VisibleIndex = 0;
+            this.gridColumn49.Width = 61;
+            // 
+            // gridColumn50
+            // 
+            this.gridColumn50.Caption = "Concepto";
+            this.gridColumn50.FieldName = "ru_descripcion";
+            this.gridColumn50.Name = "gridColumn50";
+            this.gridColumn50.Visible = true;
+            this.gridColumn50.VisibleIndex = 1;
+            this.gridColumn50.Width = 1103;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(466, 324);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(84, 13);
+            this.label28.TabIndex = 228;
+            this.label28.Text = "Entrega bebidas";
+            // 
+            // cmb_ent_beb
+            // 
+            this.cmb_ent_beb.EditValue = "";
+            this.cmb_ent_beb.Location = new System.Drawing.Point(593, 321);
+            this.cmb_ent_beb.Name = "cmb_ent_beb";
+            this.cmb_ent_beb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_ent_beb.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_ent_beb.Properties.ValueMember = "IdRubro";
+            this.cmb_ent_beb.Properties.View = this.gridView27;
+            this.cmb_ent_beb.Size = new System.Drawing.Size(300, 20);
+            this.cmb_ent_beb.TabIndex = 227;
+            // 
+            // gridView27
+            // 
+            this.gridView27.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn51,
+            this.gridColumn52});
+            this.gridView27.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView27.Name = "gridView27";
+            this.gridView27.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView27.OptionsView.ShowAutoFilterRow = true;
+            this.gridView27.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn51
+            // 
+            this.gridColumn51.Caption = "Id";
+            this.gridColumn51.FieldName = "IdRubro";
+            this.gridColumn51.Name = "gridColumn51";
+            this.gridColumn51.Visible = true;
+            this.gridColumn51.VisibleIndex = 0;
+            this.gridColumn51.Width = 61;
+            // 
+            // gridColumn52
+            // 
+            this.gridColumn52.Caption = "Concepto";
+            this.gridColumn52.FieldName = "ru_descripcion";
+            this.gridColumn52.Name = "gridColumn52";
+            this.gridColumn52.Visible = true;
+            this.gridColumn52.VisibleIndex = 1;
+            this.gridColumn52.Width = 1103;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(466, 350);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(85, 13);
+            this.label29.TabIndex = 230;
+            this.label29.Text = "Nivel de servicio";
+            // 
+            // cmb_nivel_serv
+            // 
+            this.cmb_nivel_serv.EditValue = "";
+            this.cmb_nivel_serv.Location = new System.Drawing.Point(593, 347);
+            this.cmb_nivel_serv.Name = "cmb_nivel_serv";
+            this.cmb_nivel_serv.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmb_nivel_serv.Properties.DisplayMember = "ru_descripcion";
+            this.cmb_nivel_serv.Properties.ValueMember = "IdRubro";
+            this.cmb_nivel_serv.Properties.View = this.gridView28;
+            this.cmb_nivel_serv.Size = new System.Drawing.Size(300, 20);
+            this.cmb_nivel_serv.TabIndex = 229;
+            // 
+            // gridView28
+            // 
+            this.gridView28.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn53,
+            this.gridColumn54});
+            this.gridView28.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView28.Name = "gridView28";
+            this.gridView28.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView28.OptionsView.ShowAutoFilterRow = true;
+            this.gridView28.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn53
+            // 
+            this.gridColumn53.Caption = "Id";
+            this.gridColumn53.FieldName = "IdRubro";
+            this.gridColumn53.Name = "gridColumn53";
+            this.gridColumn53.Visible = true;
+            this.gridColumn53.VisibleIndex = 0;
+            this.gridColumn53.Width = 61;
+            // 
+            // gridColumn54
+            // 
+            this.gridColumn54.Caption = "Concepto";
+            this.gridColumn54.FieldName = "ru_descripcion";
+            this.gridColumn54.Name = "gridColumn54";
+            this.gridColumn54.Visible = true;
+            this.gridColumn54.VisibleIndex = 1;
+            this.gridColumn54.Width = 1103;
+            // 
             // frmRo_rubros_calculados_mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 491);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.cmb_nivel_serv);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.cmb_ent_beb);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.cmb_vol_beb);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.cmb_car_beb);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.cmb_ent_alim);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.cmb_vol_alim);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.cmb_car_alim);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.cmb_subtotal_variable);
             this.Controls.Add(this.label21);
@@ -1477,6 +1897,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmb_subtotal_variable.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_car_alim.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_vol_alim.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_ent_alim.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_car_beb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_vol_beb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_ent_beb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmb_nivel_serv.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView28)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1596,5 +2030,40 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn39;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
+        private System.Windows.Forms.Label label23;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_car_alim;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView22;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
+        private System.Windows.Forms.Label label24;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_vol_alim;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView23;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+        private System.Windows.Forms.Label label25;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_ent_alim;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+        private System.Windows.Forms.Label label26;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_car_beb;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView25;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn48;
+        private System.Windows.Forms.Label label27;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_vol_beb;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn49;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn50;
+        private System.Windows.Forms.Label label28;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_ent_beb;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView27;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn51;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn52;
+        private System.Windows.Forms.Label label29;
+        private DevExpress.XtraEditors.SearchLookUpEdit cmb_nivel_serv;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView28;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn53;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn54;
     }
 }

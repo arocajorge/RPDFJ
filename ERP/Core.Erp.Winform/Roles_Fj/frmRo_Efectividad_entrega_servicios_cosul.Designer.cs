@@ -74,8 +74,8 @@
             this.ucGe_Menu.Enable_boton_salir = true;
             this.ucGe_Menu.Enable_btnImpExcel = true;
             this.ucGe_Menu.Enable_Descargar_Marca_Base_exter = true;
-            this.ucGe_Menu.fecha_desde = new System.DateTime(2017, 8, 29, 11, 28, 16, 948);
-            this.ucGe_Menu.fecha_hasta = new System.DateTime(2017, 10, 29, 11, 28, 16, 948);
+            this.ucGe_Menu.fecha_desde = new System.DateTime(2020, 6, 2, 16, 46, 53, 541);
+            this.ucGe_Menu.fecha_hasta = new System.DateTime(2020, 8, 2, 16, 46, 53, 542);
             this.ucGe_Menu.FormConsulta = null;
             this.ucGe_Menu.FormMain = null;
             this.ucGe_Menu.GridControlConsulta = null;
@@ -99,7 +99,7 @@
             this.ucGe_Menu.Visible_boton_Importar_XML = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_boton_imprimir = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_boton_LoteCheque = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.ucGe_Menu.Visible_boton_modificar = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.ucGe_Menu.Visible_boton_modificar = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_nuevo = DevExpress.XtraBars.BarItemVisibility.Always;
             this.ucGe_Menu.Visible_boton_NuevoCheque = DevExpress.XtraBars.BarItemVisibility.Never;
             this.ucGe_Menu.Visible_btn_imprimir_lote = DevExpress.XtraBars.BarItemVisibility.Never;

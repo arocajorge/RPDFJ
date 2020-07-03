@@ -27,7 +27,11 @@ namespace Core.Erp.Data
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+        //poner esta funcion dentro de la clase entities no viene por defecto
+        public void SetCommandTimeOut(int TimeOut)
+        {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
+        }
         public DbSet<vwro_ro_empleado_x_Activo_Fijo_Historico> vwro_ro_empleado_x_Activo_Fijo_Historico { get; set; }
         public DbSet<vwro_planificacion_x_ruta_emple> vwro_planificacion_x_ruta_emple { get; set; }
         public DbSet<vwro_fectividad_Entrega_x_Periodo_Empleado> vwro_fectividad_Entrega_x_Periodo_Empleado { get; set; }
@@ -83,7 +87,6 @@ namespace Core.Erp.Data
         public DbSet<vwro_Grupo_empleado_det> vwro_Grupo_empleado_det { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje> ro_Calculo_Pago_Variable_Porcentaje { get; set; }
         public DbSet<ro_empleado_extension_salud> ro_empleado_extension_salud { get; set; }
-        public DbSet<ro_rubros_calculados> ro_rubros_calculados { get; set; }
         public DbSet<ro_marcaciones_no_aplica_sobretiempo> ro_marcaciones_no_aplica_sobretiempo { get; set; }
         public DbSet<ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
         public DbSet<vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar> vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar { get; set; }
@@ -94,6 +97,7 @@ namespace Core.Erp.Data
         public DbSet<ro_fectividad_Entrega_servicio> ro_fectividad_Entrega_servicio { get; set; }
         public DbSet<vwro_fectividad_Entrega_servicio> vwro_fectividad_Entrega_servicio { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje_servicio> ro_Calculo_Pago_Variable_Porcentaje_servicio { get; set; }
+        public DbSet<ro_rubros_calculados> ro_rubros_calculados { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

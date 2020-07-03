@@ -607,6 +607,13 @@
           <Property Name="IdRubro_dias_efectivos" Type="varchar" MaxLength="50" />
           <Property Name="IdRubro_subtotal_variable" Type="varchar" MaxLength="50" />
           <Property Name="IdRubro_descuento_permiso" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_alm_car" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_alm_vol" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_alm_ent" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_beb_car" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_beb_vol" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_beb_ent" Type="varchar" MaxLength="50" />
+          <Property Name="IdRubro_servicio" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ro_Calculo_Pago_Variable_Porcentaje">
           <Key>
@@ -2820,7 +2827,6 @@
             <Parameter Name="IdNomina_Tipo" Mode="In" Type="Int32" />
             <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="ro_rubros_calculados" EntityType="ModelRoles_Fj.ro_rubros_calculados" />
           <EntitySet Name="ro_marcaciones_no_aplica_sobretiempo" EntityType="ModelRoles_Fj.ro_marcaciones_no_aplica_sobretiempo" />
           <EntitySet Name="ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" />
           <EntitySet Name="vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" EntityType="ModelRoles_Fj.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" />
@@ -2848,6 +2854,7 @@
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje_servicio" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio" />
+          <EntitySet Name="ro_rubros_calculados" EntityType="ModelRoles_Fj.ro_rubros_calculados" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -4636,36 +4643,6 @@
           <Property Type="DateTime" Name="em_fechaSalida" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="IdDivision" Nullable="true" />
         </ComplexType>
-        <EntityType Name="ro_rubros_calculados">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="String" Name="IdRubro_dias_trabajados" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_tot_ing" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_tot_egr" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_iess_perso" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_sueldo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_tot_pagar" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_aporte_patronal" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_fondo_reserva" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_prov_vac" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_prov_DIII" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_prov_DIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_prov_FR" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_DIII" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_DIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_IR" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_anticipo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_alimentacion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_transporte" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_otros_ingresos" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_horas_extras" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_otros_descuentos" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_dias_efectivos" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_subtotal_variable" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_descuento_permiso" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="ro_marcaciones_no_aplica_sobretiempo">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -4972,6 +4949,43 @@
           <Property Type="Double" Name="Efec_desde" Nullable="false" />
           <Property Type="Double" Name="Efec_hasta" Nullable="false" />
           <Property Type="Double" Name="Efec_aplica" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ro_rubros_calculados">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="String" Name="IdRubro_dias_trabajados" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_tot_ing" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_tot_egr" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_iess_perso" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_sueldo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_tot_pagar" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_aporte_patronal" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_fondo_reserva" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_prov_vac" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_prov_DIII" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_prov_DIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_prov_FR" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_DIII" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_DIV" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_IR" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_anticipo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_alimentacion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_transporte" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_otros_ingresos" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_horas_extras" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_otros_descuentos" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_dias_efectivos" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_subtotal_variable" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_descuento_permiso" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_alm_car" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_alm_vol" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_alm_ent" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_beb_car" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_beb_vol" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_beb_ent" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_servicio" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6158,37 +6172,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ro_rubros_calculados">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_rubros_calculados">
-              <MappingFragment StoreEntitySet="ro_rubros_calculados">
-                <ScalarProperty Name="IdRubro_descuento_permiso" ColumnName="IdRubro_descuento_permiso" />
-                <ScalarProperty Name="IdRubro_subtotal_variable" ColumnName="IdRubro_subtotal_variable" />
-                <ScalarProperty Name="IdRubro_dias_efectivos" ColumnName="IdRubro_dias_efectivos" />
-                <ScalarProperty Name="IdRubro_otros_descuentos" ColumnName="IdRubro_otros_descuentos" />
-                <ScalarProperty Name="IdRubro_horas_extras" ColumnName="IdRubro_horas_extras" />
-                <ScalarProperty Name="IdRubro_otros_ingresos" ColumnName="IdRubro_otros_ingresos" />
-                <ScalarProperty Name="IdRubro_transporte" ColumnName="IdRubro_transporte" />
-                <ScalarProperty Name="IdRubro_alimentacion" ColumnName="IdRubro_alimentacion" />
-                <ScalarProperty Name="IdRubro_anticipo" ColumnName="IdRubro_anticipo" />
-                <ScalarProperty Name="IdRubro_IR" ColumnName="IdRubro_IR" />
-                <ScalarProperty Name="IdRubro_DIV" ColumnName="IdRubro_DIV" />
-                <ScalarProperty Name="IdRubro_DIII" ColumnName="IdRubro_DIII" />
-                <ScalarProperty Name="IdRubro_prov_FR" ColumnName="IdRubro_prov_FR" />
-                <ScalarProperty Name="IdRubro_prov_DIV" ColumnName="IdRubro_prov_DIV" />
-                <ScalarProperty Name="IdRubro_prov_DIII" ColumnName="IdRubro_prov_DIII" />
-                <ScalarProperty Name="IdRubro_prov_vac" ColumnName="IdRubro_prov_vac" />
-                <ScalarProperty Name="IdRubro_fondo_reserva" ColumnName="IdRubro_fondo_reserva" />
-                <ScalarProperty Name="IdRubro_aporte_patronal" ColumnName="IdRubro_aporte_patronal" />
-                <ScalarProperty Name="IdRubro_tot_pagar" ColumnName="IdRubro_tot_pagar" />
-                <ScalarProperty Name="IdRubro_sueldo" ColumnName="IdRubro_sueldo" />
-                <ScalarProperty Name="IdRubro_iess_perso" ColumnName="IdRubro_iess_perso" />
-                <ScalarProperty Name="IdRubro_tot_egr" ColumnName="IdRubro_tot_egr" />
-                <ScalarProperty Name="IdRubro_tot_ing" ColumnName="IdRubro_tot_ing" />
-                <ScalarProperty Name="IdRubro_dias_trabajados" ColumnName="IdRubro_dias_trabajados" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ro_marcaciones_no_aplica_sobretiempo">
             <EntityTypeMapping TypeName="ModelRoles_Fj.ro_marcaciones_no_aplica_sobretiempo">
               <MappingFragment StoreEntitySet="ro_marcaciones_no_aplica_sobretiempo">
@@ -6396,6 +6379,44 @@
                 <ScalarProperty Name="IdTipoServicio" ColumnName="IdTipoServicio" />
                 <ScalarProperty Name="IdTipo_Nomina" ColumnName="IdTipo_Nomina" />
                 <ScalarProperty Name="IdEfectividad" ColumnName="IdEfectividad" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_rubros_calculados">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_rubros_calculados">
+              <MappingFragment StoreEntitySet="ro_rubros_calculados">
+                <ScalarProperty Name="IdRubro_servicio" ColumnName="IdRubro_servicio" />
+                <ScalarProperty Name="IdRubro_beb_ent" ColumnName="IdRubro_beb_ent" />
+                <ScalarProperty Name="IdRubro_beb_vol" ColumnName="IdRubro_beb_vol" />
+                <ScalarProperty Name="IdRubro_beb_car" ColumnName="IdRubro_beb_car" />
+                <ScalarProperty Name="IdRubro_alm_ent" ColumnName="IdRubro_alm_ent" />
+                <ScalarProperty Name="IdRubro_alm_vol" ColumnName="IdRubro_alm_vol" />
+                <ScalarProperty Name="IdRubro_alm_car" ColumnName="IdRubro_alm_car" />
+                <ScalarProperty Name="IdRubro_descuento_permiso" ColumnName="IdRubro_descuento_permiso" />
+                <ScalarProperty Name="IdRubro_subtotal_variable" ColumnName="IdRubro_subtotal_variable" />
+                <ScalarProperty Name="IdRubro_dias_efectivos" ColumnName="IdRubro_dias_efectivos" />
+                <ScalarProperty Name="IdRubro_otros_descuentos" ColumnName="IdRubro_otros_descuentos" />
+                <ScalarProperty Name="IdRubro_horas_extras" ColumnName="IdRubro_horas_extras" />
+                <ScalarProperty Name="IdRubro_otros_ingresos" ColumnName="IdRubro_otros_ingresos" />
+                <ScalarProperty Name="IdRubro_transporte" ColumnName="IdRubro_transporte" />
+                <ScalarProperty Name="IdRubro_alimentacion" ColumnName="IdRubro_alimentacion" />
+                <ScalarProperty Name="IdRubro_anticipo" ColumnName="IdRubro_anticipo" />
+                <ScalarProperty Name="IdRubro_IR" ColumnName="IdRubro_IR" />
+                <ScalarProperty Name="IdRubro_DIV" ColumnName="IdRubro_DIV" />
+                <ScalarProperty Name="IdRubro_DIII" ColumnName="IdRubro_DIII" />
+                <ScalarProperty Name="IdRubro_prov_FR" ColumnName="IdRubro_prov_FR" />
+                <ScalarProperty Name="IdRubro_prov_DIV" ColumnName="IdRubro_prov_DIV" />
+                <ScalarProperty Name="IdRubro_prov_DIII" ColumnName="IdRubro_prov_DIII" />
+                <ScalarProperty Name="IdRubro_prov_vac" ColumnName="IdRubro_prov_vac" />
+                <ScalarProperty Name="IdRubro_fondo_reserva" ColumnName="IdRubro_fondo_reserva" />
+                <ScalarProperty Name="IdRubro_aporte_patronal" ColumnName="IdRubro_aporte_patronal" />
+                <ScalarProperty Name="IdRubro_tot_pagar" ColumnName="IdRubro_tot_pagar" />
+                <ScalarProperty Name="IdRubro_sueldo" ColumnName="IdRubro_sueldo" />
+                <ScalarProperty Name="IdRubro_iess_perso" ColumnName="IdRubro_iess_perso" />
+                <ScalarProperty Name="IdRubro_tot_egr" ColumnName="IdRubro_tot_egr" />
+                <ScalarProperty Name="IdRubro_tot_ing" ColumnName="IdRubro_tot_ing" />
+                <ScalarProperty Name="IdRubro_dias_trabajados" ColumnName="IdRubro_dias_trabajados" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

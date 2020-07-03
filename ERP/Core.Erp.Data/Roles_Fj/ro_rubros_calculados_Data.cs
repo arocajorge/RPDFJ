@@ -46,7 +46,16 @@ namespace Core.Erp.Data.Roles_Fj
                        IdRubro_otros_descuentos=Entity.IdRubro_otros_descuentos,
                        IdRubro_dias_efectivos=Entity.IdRubro_dias_efectivos,
                        IdRubro_subtotal_variable=Entity.IdRubro_subtotal_variable,
-                       IdRubro_descuento_permiso=Entity.IdRubro_descuento_permiso
+                       IdRubro_descuento_permiso=Entity.IdRubro_descuento_permiso,
+
+                       IdRubro_alm_car=Entity.IdRubro_alm_car,
+                       IdRubro_alm_ent=Entity.IdRubro_alm_ent,
+                       IdRubro_alm_vol=Entity.IdRubro_alm_vol,
+
+                       IdRubro_beb_car=Entity.IdRubro_beb_car,
+                       IdRubro_beb_ent=Entity.IdRubro_beb_ent,
+                       IdRubro_beb_vol=Entity.IdRubro_beb_vol,
+                       IdRubro_servicio=Entity.IdRubro_servicio
                        
                    };
                }
@@ -94,7 +103,17 @@ namespace Core.Erp.Data.Roles_Fj
                            IdRubro_horas_extras=info.IdRubro_horas_extras,
                            IdRubro_subtotal_variable=info.IdRubro_subtotal_variable,
                            IdRubro_otros_descuentos=info.IdRubro_otros_descuentos,
-                           IdRubro_descuento_permiso=info.IdRubro_descuento_permiso
+                           IdRubro_descuento_permiso=info.IdRubro_descuento_permiso,
+
+                           IdRubro_alm_car = info.IdRubro_alm_car,
+                           IdRubro_alm_ent = info.IdRubro_alm_ent,
+                           IdRubro_alm_vol = info.IdRubro_alm_vol,
+
+                           IdRubro_beb_car = info.IdRubro_beb_car,
+                           IdRubro_beb_ent = info.IdRubro_beb_ent,
+                           IdRubro_beb_vol = info.IdRubro_beb_vol,
+                           IdRubro_servicio = info.IdRubro_servicio
+                       
                        };
                        Context.ro_rubros_calculados.Add(Entity_add);
                    }
@@ -123,6 +142,14 @@ namespace Core.Erp.Data.Roles_Fj
                        Entity.IdRubro_dias_efectivos = info.IdRubro_dias_efectivos;
                        Entity.IdRubro_subtotal_variable = info.IdRubro_subtotal_variable;
                        Entity.IdRubro_descuento_permiso = info.IdRubro_descuento_permiso;
+                        Entity.IdRubro_alm_car = info.IdRubro_alm_car;
+                           Entity.IdRubro_alm_ent = info.IdRubro_alm_ent;
+                           Entity.IdRubro_alm_vol = info.IdRubro_alm_vol;
+
+                           Entity.IdRubro_beb_car = info.IdRubro_beb_car;
+                           Entity.IdRubro_beb_ent = info.IdRubro_beb_ent;
+                           Entity.IdRubro_beb_vol = info.IdRubro_beb_vol;
+                           Entity.IdRubro_servicio = info.IdRubro_servicio;
                    }
                    
                   

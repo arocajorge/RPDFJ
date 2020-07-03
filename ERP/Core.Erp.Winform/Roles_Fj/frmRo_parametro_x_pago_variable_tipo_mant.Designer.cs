@@ -94,12 +94,14 @@
             this.ucGe_Menu_Superior_Mant1.Visible_btn_Imprimir_Reten = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnAceptar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnAprobarGuardarSalir = false;
+            this.ucGe_Menu_Superior_Mant1.Visible_btnContabilizar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnEstadosOC = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnGuardar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpFrm = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpLote = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImpRep = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnImprimirSoporte = false;
+            this.ucGe_Menu_Superior_Mant1.Visible_btnModificar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnproductos = false;
             this.ucGe_Menu_Superior_Mant1.event_btnGuardar_y_Salir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_y_Salir_Click(this.ucGe_Menu_Superior_Mant1_event_btnGuardar_y_Salir_Click);
             this.ucGe_Menu_Superior_Mant1.event_btnImprimir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnImprimir_Click(this.ucGe_Menu_Superior_Mant1_event_btnImprimir_Click);
@@ -138,6 +140,8 @@
             this.gvw_pago_variable_tipo.Name = "gvw_pago_variable_tipo";
             this.gvw_pago_variable_tipo.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gvw_pago_variable_tipo.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gvw_pago_variable_tipo.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gvw_pago_variable_tipo.OptionsView.ShowGroupPanel = false;
             // 
             // col_IdEmpresa
             // 

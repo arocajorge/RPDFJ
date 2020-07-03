@@ -46,7 +46,7 @@ namespace Core.Erp.Business.Roles_Fj
                   }
               }
 
-              return ba;
+              return true;
           }
           catch (Exception ex)
           {

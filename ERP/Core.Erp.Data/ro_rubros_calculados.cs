@@ -39,5 +39,12 @@ namespace Core.Erp.Data
         public string IdRubro_dias_efectivos { get; set; }
         public string IdRubro_subtotal_variable { get; set; }
         public string IdRubro_descuento_permiso { get; set; }
+        public string IdRubro_alm_car { get; set; }
+        public string IdRubro_alm_vol { get; set; }
+        public string IdRubro_alm_ent { get; set; }
+        public string IdRubro_beb_car { get; set; }
+        public string IdRubro_beb_vol { get; set; }
+        public string IdRubro_beb_ent { get; set; }
+        public string IdRubro_servicio { get; set; }
     }
 }

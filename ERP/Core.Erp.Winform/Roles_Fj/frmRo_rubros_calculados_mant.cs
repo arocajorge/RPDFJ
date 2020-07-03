@@ -88,6 +88,15 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmb_horas_extras.Properties.DataSource = ro_rubro_tipo_Info;
                 cmb_subtotal_variable.Properties.DataSource = ro_rubro_tipo_Info;
 
+                cmb_car_alim.Properties.DataSource = ro_rubro_tipo_Info;
+                cmb_ent_alim.Properties.DataSource = ro_rubro_tipo_Info;
+                cmb_vol_alim.Properties.DataSource = ro_rubro_tipo_Info;
+
+                cmb_car_beb.Properties.DataSource = ro_rubro_tipo_Info;
+                cmb_ent_beb.Properties.DataSource = ro_rubro_tipo_Info;
+                cmb_vol_beb.Properties.DataSource = ro_rubro_tipo_Info;
+
+                cmb_nivel_serv.Properties.DataSource = ro_rubro_tipo_Info;
 
 
                 cmb_dias_trabajados.EditValue = ro_rubros_calculados_Info.IdRubro_dias_trabajados;
@@ -112,6 +121,18 @@ namespace Core.Erp.Winform.Roles_Fj
                 cmb_otros_descuentos.EditValue = ro_rubros_calculados_Info.IdRubro_otros_descuentos;
                 cmb_horas_extras.EditValue = ro_rubros_calculados_Info.IdRubro_horas_extras;
                 cmb_subtotal_variable.EditValue = ro_rubros_calculados_Info.IdRubro_subtotal_variable;
+
+                cmb_car_alim.EditValue = ro_rubros_calculados_Info.IdRubro_alm_car;
+                cmb_ent_alim.EditValue = ro_rubros_calculados_Info.IdRubro_alm_ent;
+                cmb_vol_alim.EditValue = ro_rubros_calculados_Info.IdRubro_alm_vol;
+
+                cmb_car_beb.EditValue = ro_rubros_calculados_Info.IdRubro_beb_car;
+                cmb_ent_beb.EditValue = ro_rubros_calculados_Info.IdRubro_beb_ent;
+                cmb_vol_beb.EditValue = ro_rubros_calculados_Info.IdRubro_beb_vol;
+
+                cmb_nivel_serv.EditValue = ro_rubros_calculados_Info.IdRubro_servicio;
+
+
             }
             catch (Exception ex)
             {
@@ -149,6 +170,19 @@ namespace Core.Erp.Winform.Roles_Fj
                 ro_rubros_calculados_Info.IdRubro_otros_descuentos = cmb_otros_descuentos.EditValue.ToString();
                 ro_rubros_calculados_Info.IdRubro_horas_extras = cmb_horas_extras.EditValue.ToString();
                 ro_rubros_calculados_Info.IdRubro_subtotal_variable = cmb_subtotal_variable.EditValue.ToString();
+
+
+                ro_rubros_calculados_Info.IdRubro_alm_car= cmb_car_alim.EditValue.ToString();
+                ro_rubros_calculados_Info.IdRubro_alm_ent=cmb_ent_alim.EditValue.ToString();
+                ro_rubros_calculados_Info.IdRubro_alm_vol = cmb_vol_alim.EditValue.ToString();
+
+                ro_rubros_calculados_Info.IdRubro_beb_car=cmb_car_beb.EditValue .ToString() ;
+                ro_rubros_calculados_Info.IdRubro_beb_ent=cmb_ent_beb.EditValue .ToString() ;
+                ro_rubros_calculados_Info.IdRubro_beb_vol=cmb_vol_beb.EditValue .ToString() ;
+
+                ro_rubros_calculados_Info.IdRubro_servicio = cmb_nivel_serv.EditValue.ToString();
+
+
             }
             catch (Exception)
             {

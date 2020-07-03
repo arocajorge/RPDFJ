@@ -85,7 +85,6 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_Grupo_empleado_det" Width="1.5" PointX="11.880334904361671" PointY="21.410176093415441" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje" Width="1.5" PointX="2.5254061606365283" PointY="24.156077217383345" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_extension_salud" Width="1.5" PointX="5.1286337325017124" PointY="3.9211499858280412" />
-        <EntityTypeShape EntityType="ModelRoles_Fj.ro_rubros_calculados" Width="1.5" PointX="4.4660757242078315" PointY="5.8072403398376142" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_marcaciones_no_aplica_sobretiempo" Width="1.5" PointX="11.388047570077724" PointY="0.63078935473728426" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="8.6970736871925531" PointY="17.262965955428296" />
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar" Width="1.5" PointX="5.9920330261774515" PointY="31.467183664192998" />
@@ -98,6 +97,7 @@
         <EntityTypeShape EntityType="ModelRoles_Fj.vwro_fectividad_Entrega_servicio" Width="1.5" PointX="0.60271965181581666" PointY="26.199076873343007" />
         <AssociationConnector Association="ModelRoles_Fj.FK_ro_fectividad_Entrega_servicio_det_ro_fectividad_Entrega_servicio" />
         <EntityTypeShape EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio" Width="1.5" PointX="2.9028272176640235" PointY="17.837581404409175" />
+        <EntityTypeShape EntityType="ModelRoles_Fj.ro_rubros_calculados" Width="1.5" PointX="9.69374664951756" PointY="19.563877695968319" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
