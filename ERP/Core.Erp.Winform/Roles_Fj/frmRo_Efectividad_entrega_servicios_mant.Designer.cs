@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Efectividad_entrega_servicios_mant));
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -69,7 +70,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Valor_volumen = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_Error = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.cmb_imagen = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.gc_ro_Calculo_Pago_Variable_Porcentaje = new DevExpress.XtraGrid.GridControl();
@@ -90,10 +91,10 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txt_id = new System.Windows.Forms.TextBox();
             this.cmdDetener = new DevExpress.XtraEditors.SimpleButton();
             this.cmdProcesar = new DevExpress.XtraEditors.SimpleButton();
             this.cmb_grabar = new DevExpress.XtraEditors.SimpleButton();
-            this.txt_id = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbnominaTipo.Properties)).BeginInit();
@@ -373,7 +374,7 @@
             this.Col_Efectividad_Entrega.FieldName = "Efe_car_bebi";
             this.Col_Efectividad_Entrega.Name = "Col_Efectividad_Entrega";
             this.Col_Efectividad_Entrega.Visible = true;
-            this.Col_Efectividad_Entrega.VisibleIndex = 2;
+            this.Col_Efectividad_Entrega.VisibleIndex = 4;
             this.Col_Efectividad_Entrega.Width = 60;
             // 
             // Col_Efectividad_Entrega_aplica
@@ -384,8 +385,6 @@
             this.Col_Efectividad_Entrega_aplica.FieldName = "Efe_car_bebi_apl";
             this.Col_Efectividad_Entrega_aplica.Name = "Col_Efectividad_Entrega_aplica";
             this.Col_Efectividad_Entrega_aplica.OptionsColumn.AllowEdit = false;
-            this.Col_Efectividad_Entrega_aplica.Visible = true;
-            this.Col_Efectividad_Entrega_aplica.VisibleIndex = 3;
             this.Col_Efectividad_Entrega_aplica.Width = 60;
             // 
             // col_Efectividad_Volumen
@@ -395,7 +394,7 @@
             this.col_Efectividad_Volumen.Name = "col_Efectividad_Volumen";
             this.col_Efectividad_Volumen.OptionsColumn.AllowEdit = false;
             this.col_Efectividad_Volumen.Visible = true;
-            this.col_Efectividad_Volumen.VisibleIndex = 4;
+            this.col_Efectividad_Volumen.VisibleIndex = 3;
             this.col_Efectividad_Volumen.Width = 60;
             // 
             // Col_Efectividad_Volumen_aplica
@@ -406,8 +405,6 @@
             this.Col_Efectividad_Volumen_aplica.FieldName = "Efe_vol_bebi_apl";
             this.Col_Efectividad_Volumen_aplica.Name = "Col_Efectividad_Volumen_aplica";
             this.Col_Efectividad_Volumen_aplica.OptionsColumn.AllowEdit = false;
-            this.Col_Efectividad_Volumen_aplica.Visible = true;
-            this.Col_Efectividad_Volumen_aplica.VisibleIndex = 5;
             this.Col_Efectividad_Volumen_aplica.Width = 60;
             // 
             // Col_Recuperacion_cartera
@@ -417,7 +414,7 @@
             this.Col_Recuperacion_cartera.Name = "Col_Recuperacion_cartera";
             this.Col_Recuperacion_cartera.OptionsColumn.AllowEdit = false;
             this.Col_Recuperacion_cartera.Visible = true;
-            this.Col_Recuperacion_cartera.VisibleIndex = 6;
+            this.Col_Recuperacion_cartera.VisibleIndex = 2;
             this.Col_Recuperacion_cartera.Width = 60;
             // 
             // Col_Recuperacion_cartera_aplica
@@ -428,8 +425,6 @@
             this.Col_Recuperacion_cartera_aplica.FieldName = "Efe_ent_bebi_apl";
             this.Col_Recuperacion_cartera_aplica.Name = "Col_Recuperacion_cartera_aplica";
             this.Col_Recuperacion_cartera_aplica.OptionsColumn.AllowEdit = false;
-            this.Col_Recuperacion_cartera_aplica.Visible = true;
-            this.Col_Recuperacion_cartera_aplica.VisibleIndex = 7;
             this.Col_Recuperacion_cartera_aplica.Width = 60;
             // 
             // col_Efe_car_alim
@@ -437,8 +432,6 @@
             this.col_Efe_car_alim.Caption = "Alim. Cart";
             this.col_Efe_car_alim.FieldName = "Efe_car_alim";
             this.col_Efe_car_alim.Name = "col_Efe_car_alim";
-            this.col_Efe_car_alim.Visible = true;
-            this.col_Efe_car_alim.VisibleIndex = 8;
             this.col_Efe_car_alim.Width = 60;
             // 
             // col_Efe_car_alim_ap
@@ -446,8 +439,6 @@
             this.col_Efe_car_alim_ap.Caption = "Aplica";
             this.col_Efe_car_alim_ap.FieldName = "Efe_car_alim_ap";
             this.col_Efe_car_alim_ap.Name = "col_Efe_car_alim_ap";
-            this.col_Efe_car_alim_ap.Visible = true;
-            this.col_Efe_car_alim_ap.VisibleIndex = 9;
             this.col_Efe_car_alim_ap.Width = 60;
             // 
             // col_Efe_vol_alim
@@ -456,7 +447,7 @@
             this.col_Efe_vol_alim.FieldName = "Efe_vol_alim";
             this.col_Efe_vol_alim.Name = "col_Efe_vol_alim";
             this.col_Efe_vol_alim.Visible = true;
-            this.col_Efe_vol_alim.VisibleIndex = 10;
+            this.col_Efe_vol_alim.VisibleIndex = 6;
             this.col_Efe_vol_alim.Width = 60;
             // 
             // col_Efe_vol_alim_apl
@@ -464,8 +455,6 @@
             this.col_Efe_vol_alim_apl.Caption = "Aplica";
             this.col_Efe_vol_alim_apl.FieldName = "Efe_vol_alim_apl";
             this.col_Efe_vol_alim_apl.Name = "col_Efe_vol_alim_apl";
-            this.col_Efe_vol_alim_apl.Visible = true;
-            this.col_Efe_vol_alim_apl.VisibleIndex = 11;
             this.col_Efe_vol_alim_apl.Width = 60;
             // 
             // col_Efe_ent_alim
@@ -474,7 +463,7 @@
             this.col_Efe_ent_alim.FieldName = "Efe_ent_alim";
             this.col_Efe_ent_alim.Name = "col_Efe_ent_alim";
             this.col_Efe_ent_alim.Visible = true;
-            this.col_Efe_ent_alim.VisibleIndex = 12;
+            this.col_Efe_ent_alim.VisibleIndex = 5;
             this.col_Efe_ent_alim.Width = 60;
             // 
             // col_Efe_ent_alim_apl
@@ -482,8 +471,6 @@
             this.col_Efe_ent_alim_apl.Caption = "Aplica";
             this.col_Efe_ent_alim_apl.FieldName = "Efe_ent_alim_apl";
             this.col_Efe_ent_alim_apl.Name = "col_Efe_ent_alim_apl";
-            this.col_Efe_ent_alim_apl.Visible = true;
-            this.col_Efe_ent_alim_apl.VisibleIndex = 13;
             this.col_Efe_ent_alim_apl.Width = 60;
             // 
             // col_Efe_serv
@@ -492,7 +479,7 @@
             this.col_Efe_serv.FieldName = "Efe_serv";
             this.col_Efe_serv.Name = "col_Efe_serv";
             this.col_Efe_serv.Visible = true;
-            this.col_Efe_serv.VisibleIndex = 14;
+            this.col_Efe_serv.VisibleIndex = 7;
             this.col_Efe_serv.Width = 60;
             // 
             // col_Efe_ser_apl
@@ -501,7 +488,7 @@
             this.col_Efe_ser_apl.FieldName = "Efe_ser_apl";
             this.col_Efe_ser_apl.Name = "col_Efe_ser_apl";
             this.col_Efe_ser_apl.Visible = true;
-            this.col_Efe_ser_apl.VisibleIndex = 15;
+            this.col_Efe_ser_apl.VisibleIndex = 8;
             this.col_Efe_ser_apl.Width = 60;
             // 
             // gridColumn6
@@ -510,7 +497,7 @@
             this.gridColumn6.FieldName = "Valor_servicio";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 16;
+            this.gridColumn6.VisibleIndex = 9;
             this.gridColumn6.Width = 60;
             // 
             // col_Valor_volumen
@@ -519,7 +506,7 @@
             this.col_Valor_volumen.FieldName = "Valor_volumen";
             this.col_Valor_volumen.Name = "col_Valor_volumen";
             this.col_Valor_volumen.Visible = true;
-            this.col_Valor_volumen.VisibleIndex = 17;
+            this.col_Valor_volumen.VisibleIndex = 10;
             this.col_Valor_volumen.Width = 60;
             // 
             // Col_Error
@@ -528,7 +515,7 @@
             this.Col_Error.FieldName = "Error";
             this.Col_Error.Name = "Col_Error";
             this.Col_Error.Visible = true;
-            this.Col_Error.VisibleIndex = 18;
+            this.Col_Error.VisibleIndex = 11;
             this.Col_Error.Width = 30;
             // 
             // imageList1
@@ -756,6 +743,14 @@
             this.groupControl1.TabIndex = 11;
             this.groupControl1.Text = "Calculo de nivel de servicio";
             // 
+            // txt_id
+            // 
+            this.txt_id.Location = new System.Drawing.Point(1127, 22);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.ReadOnly = true;
+            this.txt_id.Size = new System.Drawing.Size(100, 20);
+            this.txt_id.TabIndex = 161;
+            // 
             // cmdDetener
             // 
             this.cmdDetener.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
@@ -788,14 +783,6 @@
             this.cmb_grabar.TabIndex = 158;
             this.cmb_grabar.Text = "Generar novedad";
             this.cmb_grabar.Click += new System.EventHandler(this.cmb_grabar_Click);
-            // 
-            // txt_id
-            // 
-            this.txt_id.Location = new System.Drawing.Point(1127, 22);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.ReadOnly = true;
-            this.txt_id.Size = new System.Drawing.Size(100, 20);
-            this.txt_id.TabIndex = 161;
             // 
             // frmRo_Efectividad_entrega_servicios_mant
             // 
