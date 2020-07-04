@@ -34,15 +34,16 @@ namespace Cus.Erp.Reports.FJ
         public double Valor { get; set; }
         public string Rubro { get; set; }
         public string fu_descripcion { get; set; }
-        public Nullable<double> variable { get; set; }
-        public Nullable<double> Iess { get; set; }
-        public Nullable<double> dias_trabajados { get; set; }
-        public Nullable<double> dias_Efectivos { get; set; }
         public Nullable<double> Efectividad_Entrega_ali { get; set; }
         public Nullable<double> Efectividad_Entrega_aplica_ali { get; set; }
         public Nullable<double> Efectividad_Volumen_ali { get; set; }
         public Nullable<double> Efectividad_Volumen_aplica_ali { get; set; }
         public Nullable<double> Recuperacion_cartera_ali { get; set; }
         public Nullable<double> Recuperacion_cartera_aplica_ali { get; set; }
+        public Nullable<double> NivelServicio { get; set; }
+        public Nullable<double> variable { get; set; }
+        public Nullable<double> Iess { get; set; }
+        public Nullable<double> dias_trabajados { get; set; }
+        public Nullable<double> dias_Efectivos { get; set; }
     }
 }

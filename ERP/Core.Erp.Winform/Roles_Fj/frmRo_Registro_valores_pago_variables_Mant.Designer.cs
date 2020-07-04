@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRo_Registro_valores_pago_variables_Mant));
             this.ucGe_BarraEstadoInferior_Forms1 = new Core.Erp.Winform.Controles.UCGe_BarraEstadoInferior_Forms();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -63,7 +64,7 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.txt_observacion = new System.Windows.Forms.TextBox();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.btn_recalcular = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdProcesar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -477,7 +478,7 @@
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(425, 71);
+            this.groupControl2.Size = new System.Drawing.Size(416, 71);
             this.groupControl2.TabIndex = 2;
             this.groupControl2.Text = "Observacion";
             // 
@@ -487,30 +488,29 @@
             this.txt_observacion.Location = new System.Drawing.Point(2, 21);
             this.txt_observacion.Multiline = true;
             this.txt_observacion.Name = "txt_observacion";
-            this.txt_observacion.Size = new System.Drawing.Size(421, 48);
+            this.txt_observacion.Size = new System.Drawing.Size(412, 48);
             this.txt_observacion.TabIndex = 0;
             // 
             // groupControl3
             // 
-            this.groupControl3.Controls.Add(this.btn_recalcular);
+            this.groupControl3.Controls.Add(this.cmdProcesar);
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl3.Location = new System.Drawing.Point(425, 0);
+            this.groupControl3.Location = new System.Drawing.Point(416, 0);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(74, 71);
+            this.groupControl3.Size = new System.Drawing.Size(83, 71);
             this.groupControl3.TabIndex = 1;
-            this.groupControl3.Text = "Recalcular Valores";
+            this.groupControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl3_Paint);
             // 
-            // btn_recalcular
+            // cmdProcesar
             // 
-            this.btn_recalcular.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_recalcular.Image = global::Core.Erp.Winform.Properties.Resources.refresh_64x64;
-            this.btn_recalcular.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btn_recalcular.Location = new System.Drawing.Point(2, 21);
-            this.btn_recalcular.Name = "btn_recalcular";
-            this.btn_recalcular.Size = new System.Drawing.Size(70, 48);
-            this.btn_recalcular.TabIndex = 0;
-            this.btn_recalcular.Click += new System.EventHandler(this.btn_recalcular_Click);
-            this.btn_recalcular.MouseHover += new System.EventHandler(this.btn_recalcular_MouseHover);
+            this.cmdProcesar.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.cmdProcesar.Image = ((System.Drawing.Image)(resources.GetObject("cmdProcesar.Image")));
+            this.cmdProcesar.Location = new System.Drawing.Point(3, 29);
+            this.cmdProcesar.Name = "cmdProcesar";
+            this.cmdProcesar.Size = new System.Drawing.Size(75, 23);
+            this.cmdProcesar.TabIndex = 4;
+            this.cmdProcesar.Text = "Procesar";
+            this.cmdProcesar.Click += new System.EventHandler(this.cmdProcesar_Click);
             // 
             // frmRo_Registro_valores_pago_variables_Mant
             // 
@@ -586,6 +586,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private System.Windows.Forms.TextBox txt_observacion;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.SimpleButton btn_recalcular;
+        private DevExpress.XtraEditors.SimpleButton cmdProcesar;
     }
 }

@@ -13,7 +13,8 @@
     SER_CLI,
     EFEC_ENTRE_ALIM,
     EFEC_VOL_ALIM,
-    REC_CAR_ALIM
+    REC_CAR_ALIM,
+    SERVICIO
 }
 
 public enum etipoServicio

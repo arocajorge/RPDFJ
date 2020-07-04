@@ -66,6 +66,7 @@ namespace Cus.Erp.Reports.FJ.Roles
                       info.Efectividad_Volumen_aplica_ali = item.Efectividad_Volumen_aplica_ali;
                       info.Recuperacion_cartera_ali = item.Recuperacion_cartera_ali;
                       info.Recuperacion_cartera_aplica_ali = item.Recuperacion_cartera_aplica_ali;
+                      info.NivelServicio=item.NivelServicio;
                       lista.Add(info);
 
 

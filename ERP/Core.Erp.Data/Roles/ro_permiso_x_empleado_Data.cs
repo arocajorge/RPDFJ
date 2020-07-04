@@ -240,7 +240,8 @@ namespace Core.Erp.Data.Roles
                                   IdEmpleado_nov=info.IdEmpleado,
                                   IdNomina_Tipo=info.IdNomina_Tipo,
                                   IdNovedad = info_nov.IdNovedad,
-                                   Observacion=info.Observacion
+                                  Observacion=info.Observacion,
+                                  
                                 });
                             }
                         }

@@ -195,21 +195,21 @@ namespace Core.Erp.Business.Roles_Fj
 
 
 
+                   #region calculo para el pago de variable NIVEL SERVICIO
+                   if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.SERVICIO)
+                   {
 
+                       item.Cumplimiento = item.Real / item.Meta;
+
+                       item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
+
+                   }
+                   #endregion
 
                    #region calculo para el pago de variable EFEC_ENTRE
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.EFEC_ENTRE)
                    {
-                       /*
-                       foreach (var item_emp_x_zona in lista_empleados_x_zonas.Where(v=>v.IdNomina_Tipo==item.IdNomina_Tipo&& v.IdEmpleado==item.IdEmpleado))
-                       {
-                           if (item.IdEmpleado == item_emp_x_zona.IdEmpleado && item_emp_x_zona.IdNomina_Tipo == item.IdNomina_Tipo)
-                           {
-                               //item.Real = 0;
-                               item.Real =Convert.ToDouble( item.Real +Convert.ToDouble( lista_efectividad_entrega.Where(v => v.IdZona==item_emp_x_zona.id_ruta).Sum(v => v.Efectividad_Entrega)));
-                           }
-                       }
-                       */
+                      
                        item.Cumplimiento = item.Real / item.Meta;
                        
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
@@ -221,16 +221,7 @@ namespace Core.Erp.Business.Roles_Fj
                    #region calculo para el pago de variable EFEC_VOL
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.EFEC_VOL)
                    {
-                       /*
-                       foreach (var item_emp_x_zona in lista_empleados_x_zonas.Where(v => v.IdNomina_Tipo == item.IdNomina_Tipo && v.IdEmpleado == item.IdEmpleado))
-                       {
-                           if (item.IdEmpleado == item_emp_x_zona.IdEmpleado && item_emp_x_zona.IdNomina_Tipo == item.IdNomina_Tipo)
-                           {
-                              // item.Real = 0;
-                              // item.Real = item.Real + lista_efectividad_entrega.Where(v => v.IdZona == item_emp_x_zona.id_ruta).Sum(v => v.Efectividad_Volumen);
-                           }
-                       }
-                        * */
+                       
                        item.Cumplimiento = item.Real / item.Meta;
                        
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
@@ -243,16 +234,7 @@ namespace Core.Erp.Business.Roles_Fj
                    #region calculo para el pago de variable REC_CAR
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.REC_CAR)
                    {
-                       /*
-                       foreach (var item_emp_x_zona in lista_empleados_x_zonas.Where(v => v.IdNomina_Tipo == item.IdNomina_Tipo && v.IdEmpleado == item.IdEmpleado))
-                       {
-                           if (item.IdEmpleado == item_emp_x_zona.IdEmpleado && item_emp_x_zona.IdNomina_Tipo == item.IdNomina_Tipo)
-                           {
-                              // item.Real = 0;
-                              // item.Real = item.Real + lista_efectividad_entrega.Where(v => v.IdZona == item_emp_x_zona.id_ruta).Sum(v => v.Recuperacion_cartera);
-                           }
-                       }
-                        * */
+                      
                        item.Cumplimiento = item.Real / item.Meta;
                        
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
@@ -280,15 +262,7 @@ namespace Core.Erp.Business.Roles_Fj
                    #region calculo para el pago de variable RENDI_COMB
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.RENDI_COMB)
                    {
-                       /*
-
-                       if (item.Meta > item.Real)
-                       {
-                           item.Cumplimiento = 1 - ((item.Real / item.Meta) -1);
-                       }
-                       else
-                           item.Cumplimiento = 1;
-                        */
+                      
                        item.Cumplimiento = item.Real / item.Meta;
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
 
@@ -303,14 +277,7 @@ namespace Core.Erp.Business.Roles_Fj
                    #region calculo para el pago de variable COST_MANT
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.COST_MANT)
                    {
-                       /*
-                       if (item.Meta > item.Real)
-                       {
-                           item.Cumplimiento = 1 - ((item.Real / item.Meta) - 1);
-                       }
-                       else
-                        item.Cumplimiento = 1;
-                        */
+                      
                        item.Cumplimiento = item.Real / item.Meta;
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
 

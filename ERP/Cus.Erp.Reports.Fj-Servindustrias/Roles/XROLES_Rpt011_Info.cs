@@ -40,5 +40,7 @@ namespace Cus.Erp.Reports.FJ.Roles
         public Nullable<double> Efectividad_Volumen_aplica_ali { get; set; }
         public Nullable<double> Recuperacion_cartera_ali { get; set; }
         public Nullable<double> Recuperacion_cartera_aplica_ali { get; set; }
+        public Nullable<double> NivelServicio { get; set; }
+
     }
 }

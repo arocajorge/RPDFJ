@@ -430,5 +430,25 @@ namespace Core.Erp.Winform.Roles_Fj
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void groupControl3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmdProcesar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                gridControl_empleados.DataSource = bus_detalle.Calcular(lista_detalle.ToList(), ro_periodo_info);
+            }
+            catch (Exception ex)
+            {
+
+                Log_Error_bus.Log_Error(ex.ToString());
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
