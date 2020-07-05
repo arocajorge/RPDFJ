@@ -27,6 +27,8 @@ namespace Core.Erp.Data
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
+    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -219,8 +221,8 @@ namespace Core.Erp.Data
         public DbSet<vwRo_Permiso_x_Empleado> vwRo_Permiso_x_Empleado { get; set; }
         public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
         public DbSet<ro_rubro_tipo> ro_rubro_tipo { get; set; }
-        public DbSet<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
         public DbSet<vwro_permiso_x_empleado_x_novedad> vwro_permiso_x_empleado_x_novedad { get; set; }
+        public DbSet<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {

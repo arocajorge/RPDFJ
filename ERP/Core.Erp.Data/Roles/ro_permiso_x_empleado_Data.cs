@@ -189,35 +189,39 @@ namespace Core.Erp.Data.Roles
                         data.FormaRecuperacion = info.FormaRecuperacion = "";
                         db.ro_permiso_x_empleado.Add(data);
                         id = info.IdPermiso;
+
+                        #region novedad
                         if (info.lst_novedad != null)
                         {
                             if (info.lst_novedad.Count > 0)
                             {
-                                var info_nov = info.lst_novedad.FirstOrDefault();
-                                db.ro_empleado_Novedad.Add(new ro_empleado_Novedad
-                                {
-                                    IdNovedad = info_nov.IdNovedad = odata_novedad.GetIdNovedad(info.IdEmpresa,info.IdEmpleado),
-                                    IdEmpresa = info.IdEmpresa,
-                                    IdEmpleado = info.IdEmpleado,
-                                    TotalValor = info.lst_novedad.Sum(v=>v.Valor),
-                                    Fecha =Convert.ToDateTime( info.FechaSalida),
-                                    IdNomina_Tipo = info.IdNomina_Tipo,
-                                    IdNomina_TipoLiqui = info_nov.IdNominaLiqui,
-                                    IdUsuario = info.IdUsuario,
-                                    Fecha_Transac = DateTime.Now,
-                                    nom_pc = info.nom_pc,
-                                    ip = info.ip,
-                                    Estado = info.Estado,
-                                });
-                                int secuencia = 1;
+                                decimal IdNovedad = odata_novedad.GetIdNovedad(info.IdEmpresa, info.IdEmpleado);
+
                                 foreach (var item in info.lst_novedad)
                                 {
+
+                                    db.ro_empleado_Novedad.Add(new ro_empleado_Novedad
+                                    {
+                                        IdEmpresa = info.IdEmpresa,
+                                        IdEmpleado = info.IdEmpleado,
+                                        TotalValor = info.lst_novedad.Sum(v => v.Valor),
+                                        Fecha = Convert.ToDateTime(info.FechaSalida),
+                                        IdNomina_Tipo = info.IdNomina_Tipo,
+                                        IdNomina_TipoLiqui = item.IdNominaLiqui,
+                                        IdUsuario = info.IdUsuario,
+                                        Fecha_Transac = DateTime.Now,
+                                        nom_pc = info.nom_pc,
+                                        ip = info.ip,
+                                        Estado = info.Estado,
+                                    });
+
+
                                     db.ro_empleado_novedad_det.Add(new ro_empleado_novedad_det
                                     {
                                         IdEmpresa = info.IdEmpresa,
-                                        IdNovedad = info_nov.IdNovedad,
+                                        IdNovedad = IdNovedad,
                                         IdEmpleado = info.IdEmpleado,
-                                        Secuencia = item.Secuencia=secuencia,
+                                        Secuencia = item.Secuencia=1,
                                         FechaPago = item.FechaPago,
                                         Valor = item.Valor,
                                         EstadoCobro = "PEN",
@@ -229,22 +233,24 @@ namespace Core.Erp.Data.Roles
                                         IdNomina_tipo = info.IdNomina_Tipo,
                                         IdNomina_Tipo_Liq = item.IdNominaLiqui,
                                         });
-                                    secuencia++;
+                                    db.ro_permiso_x_empleado_x_novedad.Add(new ro_permiso_x_empleado_x_novedad
+                                    {
+                                        IdEmpresa = info.IdEmpresa,
+                                        IdEmpleado = info.IdEmpleado,
+                                        IdPermiso = info.IdPermiso,
+                                        IdEmpresa_nov = info.IdEmpresa,
+                                        IdEmpleado_nov = info.IdEmpleado,
+                                        IdNomina_Tipo = info.IdNomina_Tipo,
+                                        IdNovedad = IdNovedad,
+                                        Observacion = info.Observacion,
+
+                                    });
+                                    IdNovedad++;
                                 }
-                                db.ro_permiso_x_empleado_x_novedad.Add(new ro_permiso_x_empleado_x_novedad
-                                {
-                                  IdEmpresa=info.IdEmpresa,
-                                  IdEmpleado=info.IdEmpleado,
-                                  IdPermiso=info.IdPermiso,
-                                  IdEmpresa_nov=info.IdEmpresa,
-                                  IdEmpleado_nov=info.IdEmpleado,
-                                  IdNomina_Tipo=info.IdNomina_Tipo,
-                                  IdNovedad = info_nov.IdNovedad,
-                                  Observacion=info.Observacion,
-                                  
-                                });
+                                
                             }
                         }
+                        #endregion
                         db.SaveChanges();
 
                         string sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set id_catalogo_Cat='PER' where IdEmpresa='" + info.IdEmpresa + "' and IdEmpleado='" + info.IdEmpleado + "' and es_fecha_registro between '" + Convert.ToDateTime(info.FechaSalida).ToString("yyyy-MM-dd") + "' and '" + Convert.ToDateTime(info.FechaEntrada).ToString("yyyy-MM-dd") + "'";
@@ -277,7 +283,6 @@ namespace Core.Erp.Data.Roles
                 var calculado = odata_calculados.get_info(info.IdEmpresa);
                 if (calculado == null)
                     return false;
-                  int secuencia = 1;
                 ro_Empleado_TipoNomina_Data odata_emp_nomi=new ro_Empleado_TipoNomina_Data();
 
                 var info_emp_nom = odata_emp_nomi.Get_Info_Empleado_TipoNomina(info.IdEmpresa, info.IdEmpleado);
@@ -294,7 +299,7 @@ namespace Core.Erp.Data.Roles
                     if (data == null)
                         return false;
 
-                     ro_permiso_x_empleado_x_novedad data_nov = db.ro_permiso_x_empleado_x_novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPermiso == info.IdPermiso).FirstOrDefault();
+                    var ro_permiso_x_empleado_x_novedad_ = db.ro_permiso_x_empleado_x_novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPermiso == info.IdPermiso);
 
 
 
@@ -322,103 +327,89 @@ namespace Core.Erp.Data.Roles
                     data.HoraRegreso = info.HoraRegreso;
                     data.Id_Forma_descuento_permiso_Cat = info.Id_Forma_descuento_permiso_Cat;
                     #endregion
+
+
                     #region novedad
+
+                    if (ro_permiso_x_empleado_x_novedad_ != null)
+                    {
+                        foreach (var item in ro_permiso_x_empleado_x_novedad_)
+                        {
+                         var detalle_nov=   db.ro_empleado_novedad_det.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdEmpleado == info.IdEmpleado && q.IdNovedad==item.IdNovedad).FirstOrDefault();
+                         if (detalle_nov!=null)
+                         db.ro_empleado_novedad_det.Remove(detalle_nov);
+
+                         var cab_nov = db.ro_empleado_Novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdEmpleado == info.IdEmpleado && q.IdNovedad == item.IdNovedad).FirstOrDefault();
+                         if (cab_nov != null)
+                             db.ro_empleado_Novedad.Remove(cab_nov);
+
+                         var ro_permiso_x_empleado_x_nove_ = db.ro_permiso_x_empleado_x_novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPermiso == info.IdPermiso && q.IdEmpleado == info.IdEmpleado && q.IdNovedad == item.IdNovedad).FirstOrDefault();
+                         if (ro_permiso_x_empleado_x_nove_ != null)
+                             db.ro_permiso_x_empleado_x_novedad.Remove(ro_permiso_x_empleado_x_nove_);
+
+                        }
+                    }
+
                     if (info.lst_novedad != null)
                     {
                         if (info.lst_novedad.Count > 0)
                         {
-                            var info_novedad = info.lst_novedad.FirstOrDefault();
-                            if (data_nov == null)
+                            decimal IdNovedad = odata_novedad.GetIdNovedad(info.IdEmpresa, info.IdEmpleado);
+                            foreach (var item in info.lst_novedad)
                             {
+
                                 db.ro_empleado_Novedad.Add(new ro_empleado_Novedad
                                 {
-                                    IdNovedad =info_novedad.IdNovedad=  odata_novedad.GetIdNovedad(info.IdEmpresa, info.IdEmpleado),
                                     IdEmpresa = info.IdEmpresa,
                                     IdEmpleado = info.IdEmpleado,
                                     TotalValor = info.lst_novedad.Sum(v => v.Valor),
                                     Fecha = Convert.ToDateTime(info.FechaSalida),
                                     IdNomina_Tipo = info.IdNomina_Tipo,
-                                    IdNomina_TipoLiqui = info_novedad.IdNominaLiqui,
+                                    IdNomina_TipoLiqui = item.IdNominaLiqui,
                                     IdUsuario = info.IdUsuario,
                                     Fecha_Transac = DateTime.Now,
                                     nom_pc = info.nom_pc,
                                     ip = info.ip,
                                     Estado = info.Estado,
                                 });
-                                foreach (var item in info.lst_novedad)
-                                {
-                                    db.ro_empleado_novedad_det.Add(new ro_empleado_novedad_det
-                                    {
-                                        IdEmpresa = info.IdEmpresa,
-                                        IdNovedad = info_novedad.IdNovedad,
-                                        IdEmpleado = info.IdEmpleado,
-                                        Secuencia = item.Secuencia=secuencia,
-                                        FechaPago = item.FechaPago,
-                                        Valor = item.Valor,
-                                        EstadoCobro = "PEN",
-                                        Estado = "A",
-                                        Observacion = item.Observacion,
-                                        IdRubro = calculado.IdRubro_descuento_permiso,
-                                        IdCalendario = item.IdCalendario,
-                                        Num_Horas = item.NumHoras,
-                                        IdNomina_tipo = info.IdNomina_Tipo,
-                                        IdNomina_Tipo_Liq = item.IdNominaLiqui,
-                                    });
-                                    secuencia++;
-                                }
 
+
+                                db.ro_empleado_novedad_det.Add(new ro_empleado_novedad_det
+                                {
+                                    IdEmpresa = info.IdEmpresa,
+                                    IdNovedad = IdNovedad,
+                                    IdEmpleado = info.IdEmpleado,
+                                    Secuencia = item.Secuencia = 1,
+                                    FechaPago = item.FechaPago,
+                                    Valor = item.Valor,
+                                    EstadoCobro = "PEN",
+                                    Estado = "A",
+                                    Observacion = item.Observacion,
+                                    IdRubro = calculado.IdRubro_descuento_permiso,
+                                    IdCalendario = item.IdCalendario,
+                                    Num_Horas = item.NumHoras,
+                                    IdNomina_tipo = info.IdNomina_Tipo,
+                                    IdNomina_Tipo_Liq = item.IdNominaLiqui,
+                                });
                                 db.ro_permiso_x_empleado_x_novedad.Add(new ro_permiso_x_empleado_x_novedad
                                 {
                                     IdEmpresa = info.IdEmpresa,
-                                    IdNomina_Tipo = info.IdNomina_Tipo,
                                     IdEmpleado = info.IdEmpleado,
                                     IdPermiso = info.IdPermiso,
-
                                     IdEmpresa_nov = info.IdEmpresa,
-                                    IdEmpleado_nov = info.IdEmpleado,                                   
-                                    IdNovedad = info_novedad.IdNovedad,
-                                    Observacion = info.Observacion
-                                    
-                                });
-                            }
-                            else
-                            {
-                                var nov_det=db.ro_empleado_novedad_det.Where(v=>v.IdEmpresa==info.IdEmpresa 
-                                    && v.IdEmpleado==info.IdEmpleado
-                                    && v.IdNovedad==data_nov.IdNovedad);
-                                if(nov_det!=null)
-                                foreach (var item in nov_det)
-	                             {
-		                                 db.ro_empleado_novedad_det.Remove(item);
+                                    IdEmpleado_nov = info.IdEmpleado,
+                                    IdNomina_Tipo = info.IdNomina_Tipo,
+                                    IdNovedad = IdNovedad,
+                                    Observacion = info.Observacion,
 
-	                             }
-                                foreach (var item in info.lst_novedad)
-                                {
-                                    db.ro_empleado_novedad_det.Add(new ro_empleado_novedad_det
-                                    {
-                                        IdEmpresa = info.IdEmpresa,
-                                        IdNovedad = data_nov.IdNovedad,
-                                        IdEmpleado = data_nov.IdEmpleado,
-                                        Secuencia = item.Secuencia = secuencia,
-                                        FechaPago = item.FechaPago,
-                                        Valor = item.Valor,
-                                        EstadoCobro = "PEN",
-                                        Estado = "A",
-                                        Observacion = item.Observacion,
-                                        IdRubro = calculado.IdRubro_descuento_permiso,
-                                        IdCalendario = item.IdCalendario,
-                                        Num_Horas = item.NumHoras,
-                                        IdNomina_tipo = info.IdNomina_Tipo,
-                                        IdNomina_Tipo_Liq = item.IdNominaLiqui,
-                                      
-                                    });
-                                    secuencia++;
-                                }
+                                });
+                                IdNovedad++;
                             }
-                            
+
                         }
                     }
                     #endregion
+
                     db.SaveChanges();
                     string sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set id_catalogo_Cat='ASIST' where IdEmpresa='" + info.IdEmpresa + "' and IdEmpleado='" + info.IdEmpleado + "' and es_fecha_registro between '" + Convert.ToDateTime(FechaSalida).ToString("yyyy-MM-dd") + "' and '" + Convert.ToDateTime(FechaEntrada).ToString("yyyy-MM-dd") + "'";
                     db.Database.ExecuteSqlCommand(sql);
@@ -457,29 +448,29 @@ namespace Core.Erp.Data.Roles
                     data.MotivoAnulacion = info.MotivoAnulacion;
                     data.Estado = "I";
 
-                    ro_permiso_x_empleado_x_novedad data_nov = db.ro_permiso_x_empleado_x_novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPermiso == info.IdPermiso).FirstOrDefault();
+                    var data_nov = db.ro_permiso_x_empleado_x_novedad.Where(q => q.IdEmpresa == info.IdEmpresa && q.IdPermiso == info.IdPermiso);
 
                     if (data_nov != null)
                     {
-                        var contact = db.ro_empleado_Novedad.First(minfo => minfo.IdEmpresa == info.IdEmpresa && minfo.IdNovedad == data_nov.IdNovedad && minfo.IdEmpleado == info.IdEmpleado);
+                        foreach (var item in data_nov)
+                        {
+                            var contact = db.ro_empleado_Novedad.First(minfo => minfo.IdEmpresa == info.IdEmpresa && minfo.IdNovedad == item.IdNovedad && minfo.IdEmpleado == info.IdEmpleado);
+                            if (contact != null)
+                            {
+                                contact.Estado = "I";
+                                contact.MotiAnula = info.MotivoAnulacion;
+                                contact.IdUsuarioUltAnu = info.IdUsuario_Anu;
+                                contact.Fecha_UltAnu = info.FechaAnulacion;
+                                sql = "update ro_empleado_novedad_det set estado='I' Where IdEmpresa='" + info.IdEmpresa + "'  and IdEmpleado='" + info.IdEmpleado + "'  and IdNovedad='" + contact.IdNovedad + "'";
+                                db.Database.ExecuteSqlCommand(sql);
 
-                        if (contact != null)
-                        {                           
-                            contact.Estado = "I";
-                            contact.MotiAnula = info.MotivoAnulacion;
-                            contact.IdUsuarioUltAnu = info.IdUsuario_Anu;
-                            contact.Fecha_UltAnu = info.FechaAnulacion;
-                            sql = "update ro_empleado_novedad_det set estado='I' Where IdEmpresa='" + info.IdEmpresa + "'  and IdEmpleado='" + info.IdEmpleado + "'  and IdNovedad='" + contact.IdNovedad + "'";
-                            db.Database.ExecuteSqlCommand(sql);
-
-                        }
-                        
+                            }
+                        } 
                     }
                     
 
 
                     db.SaveChanges();
-
                     sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set id_catalogo_Cat='ASIST' where IdEmpresa='" + info.IdEmpresa + "' and IdEmpleado='" + info.IdEmpleado + "' and es_fecha_registro between '" + Convert.ToDateTime(info.FechaSalida).ToString("yyyy-MM-dd") + "' and '" + Convert.ToDateTime(info.FechaEntrada).ToString("yyyy-MM-dd") + "'";
                     db.Database.ExecuteSqlCommand(sql);
 
