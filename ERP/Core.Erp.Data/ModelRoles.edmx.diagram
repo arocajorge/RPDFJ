@@ -275,7 +275,7 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_rubro_tipo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_detalle_ro_rubro_tipo" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" Width="1.5" PointX="11.673105195012457" PointY="30.640442281328347" />
-        <EntityTypeShape EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" Width="1.5" PointX="5.0080210403576588" PointY="23.745666231841625" />
+        <EntityTypeShape EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" Width="1.5" PointX="7.9051833655243664" PointY="8.617879960973692" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" />
         </Diagram>

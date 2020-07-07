@@ -28,7 +28,6 @@ namespace Core.Erp.Data
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
     
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

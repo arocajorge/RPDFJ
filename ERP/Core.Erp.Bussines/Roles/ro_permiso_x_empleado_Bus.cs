@@ -57,7 +57,7 @@ namespace Core.Erp.Business.Roles
                     info.Fecha_UltMod = param.Fecha_Transac;
                     info.IdUsuarioUltMod = param.IdUsuario;
                     return oData.ModificarDB(info, ref msg);        
-                        }
+               }
                         else
                         {
                             //GRABA

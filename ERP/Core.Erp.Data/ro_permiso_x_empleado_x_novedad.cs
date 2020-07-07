@@ -18,8 +18,8 @@ namespace Core.Erp.Data
         public int IdNomina_Tipo { get; set; }
         public decimal IdEmpleado { get; set; }
         public decimal IdPermiso { get; set; }
-        public int IdEmpresa_nov { get; set; }
         public decimal IdNovedad { get; set; }
+        public int IdEmpresa_nov { get; set; }
         public decimal IdEmpleado_nov { get; set; }
         public string Observacion { get; set; }
     

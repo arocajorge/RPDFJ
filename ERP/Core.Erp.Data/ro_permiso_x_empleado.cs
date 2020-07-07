@@ -14,6 +14,11 @@ namespace Core.Erp.Data
     
     public partial class ro_permiso_x_empleado
     {
+        public ro_permiso_x_empleado()
+        {
+            this.ro_permiso_x_empleado_x_novedad = new HashSet<ro_permiso_x_empleado_x_novedad>();
+        }
+    
         public int IdEmpresa { get; set; }
         public int IdNomina_Tipo { get; set; }
         public decimal IdEmpleado { get; set; }
@@ -48,6 +53,6 @@ namespace Core.Erp.Data
         public string MotivoAnulacion { get; set; }
         public Nullable<decimal> IdNovedad { get; set; }
     
-        public virtual ro_permiso_x_empleado_x_novedad ro_permiso_x_empleado_x_novedad { get; set; }
+        public virtual ICollection<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
     }
 }

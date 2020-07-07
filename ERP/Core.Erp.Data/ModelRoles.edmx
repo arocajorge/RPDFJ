@@ -4188,13 +4188,14 @@
             <PropertyRef Name="IdNomina_Tipo" />
             <PropertyRef Name="IdEmpleado" />
             <PropertyRef Name="IdPermiso" />
+            <PropertyRef Name="IdNovedad" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdNomina_Tipo" Type="int" Nullable="false" />
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
           <Property Name="IdPermiso" Type="numeric" Nullable="false" />
-          <Property Name="IdEmpresa_nov" Type="int" Nullable="false" />
           <Property Name="IdNovedad" Type="numeric" Nullable="false" />
+          <Property Name="IdEmpresa_nov" Type="int" Nullable="false" />
           <Property Name="IdEmpleado_nov" Type="numeric" Nullable="false" />
           <Property Name="Observacion" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -9275,7 +9276,7 @@
         </Association>
         <Association Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
           <End Role="ro_permiso_x_empleado" Type="DBERPModelRoles.Store.ro_permiso_x_empleado" Multiplicity="1" />
-          <End Role="ro_permiso_x_empleado_x_novedad" Type="DBERPModelRoles.Store.ro_permiso_x_empleado_x_novedad" Multiplicity="0..1" />
+          <End Role="ro_permiso_x_empleado_x_novedad" Type="DBERPModelRoles.Store.ro_permiso_x_empleado_x_novedad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ro_permiso_x_empleado">
               <PropertyRef Name="IdEmpresa" />
@@ -17351,13 +17352,14 @@
             <PropertyRef Name="IdNomina_Tipo" />
             <PropertyRef Name="IdEmpleado" />
             <PropertyRef Name="IdPermiso" />
+            <PropertyRef Name="IdNovedad" />
           </Key>
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
           <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="IdPermiso" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IdEmpresa_nov" Nullable="false" />
           <Property Type="Decimal" Name="IdNovedad" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdEmpresa_nov" Nullable="false" />
           <Property Type="Decimal" Name="IdEmpleado_nov" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="Observacion" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ro_empleado_Novedad" Relationship="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" FromRole="ro_permiso_x_empleado_x_novedad" ToRole="ro_empleado_Novedad" />
@@ -17381,7 +17383,7 @@
         </Association>
         <Association Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
           <End Type="DBERPModelRoles.ro_permiso_x_empleado" Role="ro_permiso_x_empleado" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" Role="ro_permiso_x_empleado_x_novedad" Multiplicity="0..1" />
+          <End Type="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" Role="ro_permiso_x_empleado_x_novedad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ro_permiso_x_empleado">
               <PropertyRef Name="IdEmpresa" />
@@ -22125,8 +22127,8 @@
               <MappingFragment StoreEntitySet="ro_permiso_x_empleado_x_novedad">
                 <ScalarProperty Name="Observacion" ColumnName="Observacion" />
                 <ScalarProperty Name="IdEmpleado_nov" ColumnName="IdEmpleado_nov" />
-                <ScalarProperty Name="IdNovedad" ColumnName="IdNovedad" />
                 <ScalarProperty Name="IdEmpresa_nov" ColumnName="IdEmpresa_nov" />
+                <ScalarProperty Name="IdNovedad" ColumnName="IdNovedad" />
                 <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />

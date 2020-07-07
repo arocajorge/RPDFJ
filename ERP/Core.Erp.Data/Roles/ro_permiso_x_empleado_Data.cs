@@ -204,6 +204,7 @@ namespace Core.Erp.Data.Roles
                                     {
                                         IdEmpresa = info.IdEmpresa,
                                         IdEmpleado = info.IdEmpleado,
+                                        IdNovedad=IdNovedad,
                                         TotalValor = info.lst_novedad.Sum(v => v.Valor),
                                         Fecha = Convert.ToDateTime(info.FechaSalida),
                                         IdNomina_Tipo = info.IdNomina_Tipo,
@@ -241,6 +242,7 @@ namespace Core.Erp.Data.Roles
                                         IdEmpresa_nov = info.IdEmpresa,
                                         IdEmpleado_nov = info.IdEmpleado,
                                         IdNomina_Tipo = info.IdNomina_Tipo,
+                                        
                                         IdNovedad = IdNovedad,
                                         Observacion = info.Observacion,
 
@@ -362,6 +364,7 @@ namespace Core.Erp.Data.Roles
                                 {
                                     IdEmpresa = info.IdEmpresa,
                                     IdEmpleado = info.IdEmpleado,
+                                    IdNovedad = IdNovedad,
                                     TotalValor = info.lst_novedad.Sum(v => v.Valor),
                                     Fecha = Convert.ToDateTime(info.FechaSalida),
                                     IdNomina_Tipo = info.IdNomina_Tipo,

@@ -42,6 +42,7 @@
             this.cmbnominaTipo = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColDescripcionProcesoNomina = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbnomina = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ColDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -92,7 +93,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPeriodos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
@@ -256,6 +256,12 @@
             this.ColDescripcionProcesoNomina.Name = "ColDescripcionProcesoNomina";
             this.ColDescripcionProcesoNomina.Visible = true;
             this.ColDescripcionProcesoNomina.VisibleIndex = 0;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "gridColumn1";
+            this.gridColumn1.FieldName = "nom_store_procedure";
+            this.gridColumn1.Name = "gridColumn1";
             // 
             // cmbnomina
             // 
@@ -771,12 +777,6 @@
             this.lblStatus.Size = new System.Drawing.Size(200, 17);
             this.lblStatus.Text = "0%                                                           ";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "gridColumn1";
-            this.gridColumn1.FieldName = "nom_store_procedure";
-            this.gridColumn1.Name = "gridColumn1";
             // 
             // frmRo_Procesar_Rol_Mant
             // 
