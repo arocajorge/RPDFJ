@@ -164,6 +164,37 @@ namespace Core.Erp.Data.Roles_Fj
             }
         }
 
+        public List<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info> get_lis(double cumplimiento)
+        {
+            try
+            {
+                List<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info> Lista_Calculo = new List<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info>();
+
+                using (EntityRoles_FJ Context = new EntityRoles_FJ())
+                {
+                    string sql = "select * from Fj_servindustrias.ro_Calculo_Pago_Variable_Porcentaje_servicio where idempresa=2 and '" + cumplimiento + "' between  Efec_desde and Efec_hasta ";
+
+                    var resultado=Context.Database.SqlQuery<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info>(sql).ToList();
+
+                    if (resultado != null)
+                    {
+                        Lista_Calculo = resultado;
+                    }
+                }
+                
+                return Lista_Calculo;
+            }
+            catch (Exception ex)
+            {
+                string array = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", array, "", "", "", "", "", DateTime.Now);
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                mensaje = ex.ToString() + " " + ex.Message;
+                throw new Exception(ex.ToString());
+            }
+        }
+
      
 
     }

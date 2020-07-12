@@ -65,6 +65,7 @@
             this.txt_observacion = new System.Windows.Forms.TextBox();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.cmdProcesar = new DevExpress.XtraEditors.SimpleButton();
+            this.col_cod_Pago_Variable_enum = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -208,7 +209,8 @@
             this.Col_Cumplimiento,
             this.Col_Variable_porcentaje_prorrateado,
             this.Col_Valor_bono,
-            this.col_valor_ganado});
+            this.col_valor_ganado,
+            this.col_cod_Pago_Variable_enum});
             this.gridView_empleados.GridControl = this.gridControl_empleados;
             this.gridView_empleados.GroupCount = 1;
             this.gridView_empleados.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -218,6 +220,7 @@
             this.gridView_empleados.OptionsView.ShowGroupPanel = false;
             this.gridView_empleados.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.col_pe_NombreCompleto, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView_empleados.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView_empleados_CellValueChanged);
             // 
             // col_pe_NombreCompleto
             // 
@@ -249,7 +252,7 @@
             this.Col_ru_descripcion.Name = "Col_ru_descripcion";
             this.Col_ru_descripcion.OptionsColumn.AllowEdit = false;
             this.Col_ru_descripcion.Visible = true;
-            this.Col_ru_descripcion.VisibleIndex = 0;
+            this.Col_ru_descripcion.VisibleIndex = 1;
             this.Col_ru_descripcion.Width = 432;
             // 
             // cOL_Meta
@@ -259,7 +262,7 @@
             this.cOL_Meta.Name = "cOL_Meta";
             this.cOL_Meta.OptionsColumn.AllowEdit = false;
             this.cOL_Meta.Visible = true;
-            this.cOL_Meta.VisibleIndex = 2;
+            this.cOL_Meta.VisibleIndex = 3;
             this.cOL_Meta.Width = 80;
             // 
             // cOL_Real
@@ -268,7 +271,7 @@
             this.cOL_Real.FieldName = "Real";
             this.cOL_Real.Name = "cOL_Real";
             this.cOL_Real.Visible = true;
-            this.cOL_Real.VisibleIndex = 3;
+            this.cOL_Real.VisibleIndex = 4;
             this.cOL_Real.Width = 62;
             // 
             // Col_Cumplimiento
@@ -277,7 +280,7 @@
             this.Col_Cumplimiento.FieldName = "Cumplimiento";
             this.Col_Cumplimiento.Name = "Col_Cumplimiento";
             this.Col_Cumplimiento.Visible = true;
-            this.Col_Cumplimiento.VisibleIndex = 4;
+            this.Col_Cumplimiento.VisibleIndex = 5;
             this.Col_Cumplimiento.Width = 81;
             // 
             // Col_Variable_porcentaje_prorrateado
@@ -287,7 +290,7 @@
             this.Col_Variable_porcentaje_prorrateado.Name = "Col_Variable_porcentaje_prorrateado";
             this.Col_Variable_porcentaje_prorrateado.OptionsColumn.AllowEdit = false;
             this.Col_Variable_porcentaje_prorrateado.Visible = true;
-            this.Col_Variable_porcentaje_prorrateado.VisibleIndex = 5;
+            this.Col_Variable_porcentaje_prorrateado.VisibleIndex = 6;
             this.Col_Variable_porcentaje_prorrateado.Width = 76;
             // 
             // Col_Valor_bono
@@ -299,7 +302,7 @@
             this.Col_Valor_bono.Name = "Col_Valor_bono";
             this.Col_Valor_bono.OptionsColumn.AllowEdit = false;
             this.Col_Valor_bono.Visible = true;
-            this.Col_Valor_bono.VisibleIndex = 1;
+            this.Col_Valor_bono.VisibleIndex = 2;
             this.Col_Valor_bono.Width = 71;
             // 
             // col_valor_ganado
@@ -312,7 +315,7 @@
             this.col_valor_ganado.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
             this.col_valor_ganado.Visible = true;
-            this.col_valor_ganado.VisibleIndex = 6;
+            this.col_valor_ganado.VisibleIndex = 7;
             this.col_valor_ganado.Width = 111;
             // 
             // groupControl1
@@ -512,6 +515,14 @@
             this.cmdProcesar.Text = "Procesar";
             this.cmdProcesar.Click += new System.EventHandler(this.cmdProcesar_Click);
             // 
+            // col_cod_Pago_Variable_enum
+            // 
+            this.col_cod_Pago_Variable_enum.Caption = "Codigo";
+            this.col_cod_Pago_Variable_enum.FieldName = "cod_Pago_Variable_enum";
+            this.col_cod_Pago_Variable_enum.Name = "col_cod_Pago_Variable_enum";
+            this.col_cod_Pago_Variable_enum.Visible = true;
+            this.col_cod_Pago_Variable_enum.VisibleIndex = 0;
+            // 
             // frmRo_Registro_valores_pago_variables_Mant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,5 +598,6 @@
         private System.Windows.Forms.TextBox txt_observacion;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraEditors.SimpleButton cmdProcesar;
+        private DevExpress.XtraGrid.Columns.GridColumn col_cod_Pago_Variable_enum;
     }
 }

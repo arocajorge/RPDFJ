@@ -188,7 +188,7 @@ namespace Core.Erp.Data.Roles_Fj
                                  EstadoCobro = "PEN",
                                  Estado = "A",
                                  Observacion = info.Observacion,
-                                 IdRubro = info_calculado.IdRubro_alm_car,
+                                 IdRubro = info_calculado.IdRubro_beb_car,
                                  IdCalendario = info.IdPeriodo.ToString() + info.IdNivelServicio.ToString(),
                                  Num_Horas = 0,
                                  IdNomina_tipo = info.IdNomina_Tipo,

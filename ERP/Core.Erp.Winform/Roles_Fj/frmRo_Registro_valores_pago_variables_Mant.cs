@@ -42,6 +42,9 @@ namespace Core.Erp.Winform.Roles_Fj
         ro_fectividad_x_empleado_Adm_x_periodo_Bus bus = new ro_fectividad_x_empleado_Adm_x_periodo_Bus();
         ro_fectividad_x_empleado_Adm_x_periodo_Det_Bus bus_detalle = new ro_fectividad_x_empleado_Adm_x_periodo_Det_Bus();
 
+        ro_Calculo_Pago_Variable_Porcentaje_servicio_Bus bus_servicio = new ro_Calculo_Pago_Variable_Porcentaje_servicio_Bus();
+        ro_Calculo_Pago_Variable_Porcentaje_servicio_Info ro_Calculo_Pago_Variable_Porcentaje_servicio_Info_ = new ro_Calculo_Pago_Variable_Porcentaje_servicio_Info();
+        List<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info> lst_nivel_servicio = new System.Collections.Generic.List<ro_Calculo_Pago_Variable_Porcentaje_servicio_Info>();
 
 
 
@@ -72,7 +75,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 listadoPeriodo = periodo_nomina_bus.ConsultaPerNomTipLiq(param.IdEmpresa, Convert.ToInt32(cmbnomina.EditValue), Convert.ToInt32(cmbnominaTipo.EditValue));
                 cmbPeriodos.Properties.DataSource = listadoPeriodo.Where(v => v.Cerrado == "N" && v.Contabilizado == "N").ToList();
 
-
+                lst_nivel_servicio = bus_servicio.get_lis(param.IdEmpresa, 1, 3);
                
             }
             catch (Exception ex)
@@ -448,6 +451,43 @@ namespace Core.Erp.Winform.Roles_Fj
 
                 Log_Error_bus.Log_Error(ex.ToString());
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void gridView_empleados_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+
+                if (e.Column.Name == "cOL_Real")
+                {
+
+                    if (lista_detalle.Count() > 0)
+                    {
+                        double real = Convert.ToDouble(gridView_empleados.GetFocusedRowCellValue(cOL_Real));
+                        string cod_Pago_Variable_enum = Convert.ToString(gridView_empleados.GetFocusedRowCellValue(col_cod_Pago_Variable_enum));
+                        if (cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.SERVICIO.ToString())
+                        {
+                            double cumplimiento = 0;
+                          var lst_rango=  bus_servicio.get_lis(real);
+                          if (lst_rango.Count > 0)
+                            {
+
+                                cumplimiento = lst_rango.FirstOrDefault().Efec_aplica;                               
+                            }
+                            gridView_empleados.SetFocusedRowCellValue(Col_Cumplimiento, cumplimiento);
+                        }
+                       
+
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.ToString());
+                Log_Error_bus.Log_Error(ex.ToString()); return;
             }
         }
     }

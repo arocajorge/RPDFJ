@@ -199,8 +199,7 @@ namespace Core.Erp.Business.Roles_Fj
                    if (item.cod_Pago_Variable_enum == ero_parametro_x_pago_variable_tipo.SERVICIO)
                    {
 
-                       item.Cumplimiento = item.Real / item.Meta;
-
+                      // item.Cumplimiento = item.Real / item.Meta;
                        item.valor_ganado = Convert.ToDecimal(item.Valor_bono * item.Variable_porcentaje_prorrateado * item.Cumplimiento);
 
                    }
