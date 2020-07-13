@@ -400,6 +400,12 @@
     <Compile Include="CuentasxCobrar\frmCxc_XML_Digitalizacion.Designer.cs">
       <DependentUpon>frmCxc_XML_Digitalizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="CuentasxCobrar\frmCXC_XML_Mantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CuentasxCobrar\frmCXC_XML_Mantenimiento.Designer.cs">
+      <DependentUpon>frmCXC_XML_Mantenimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="CuentasxPagar\frmCP_DigitalizacionXML.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6642,6 +6648,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CuentasxCobrar\frmCxc_XML_Digitalizacion.resx">
       <DependentUpon>frmCxc_XML_Digitalizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CuentasxCobrar\frmCXC_XML_Mantenimiento.resx">
+      <DependentUpon>frmCXC_XML_Mantenimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CuentasxPagar\frmCP_DigitalizacionXML.resx">
       <DependentUpon>frmCP_DigitalizacionXML.cs</DependentUpon>
