@@ -5,12 +5,16 @@ using System.Text;
 using Core.Erp.Info.CuentasxCobrar;
 using Core.Erp.Info.Bancos;
 using Core.Erp.Data.General;
+using Core.Erp.Data;
 using Core.Erp.Info.General;
+using Core.Erp.Info.Contabilidad;
+using Core.Erp.Data.Contabilidad;
 
 namespace Core.Erp.Data.CuentasxCobrar
 {
     public class cxc_cobro_Data
     {
+        ct_Cbtecble_Data odataCt = new ct_Cbtecble_Data();
         string mensaje = "";
 
         public List<cxc_cobro_Info> Get_List_cobro_x_Client(int IdEmpresa, int IdCliente, DateTime Fecha)
@@ -110,6 +114,8 @@ namespace Core.Erp.Data.CuentasxCobrar
         {
             try
             {
+
+                /*
                 decimal Recibo;
                 EntitiesCuentas_x_Cobrar ocxc = new EntitiesCuentas_x_Cobrar();
 
@@ -130,6 +136,8 @@ namespace Core.Erp.Data.CuentasxCobrar
                     Recibo = Convert.ToInt32(select_Recibo.ToString()) + 1;
                 }
                 return Recibo;
+                 * */
+                return 0;
             }
             catch (Exception ex)
             {
@@ -174,8 +182,7 @@ namespace Core.Erp.Data.CuentasxCobrar
                 mensaje = ex.ToString() + " " + ex.Message;
                 throw new Exception(ex.ToString());
             }
-        }
-        
+        }        
 
         public Boolean GuardarDB(cxc_cobro_Info Info,ref decimal IdCobro,ref string mensajeError )
         {
@@ -184,8 +191,6 @@ namespace Core.Erp.Data.CuentasxCobrar
             {
                 using (EntitiesCuentas_x_Cobrar Context = new EntitiesCuentas_x_Cobrar())
                 {
-
-                    
                     var Address = new cxc_cobro();
                     Address.IdEmpresa = Info.IdEmpresa;
                     Address.IdSucursal = Info.IdSucursal;
@@ -196,12 +201,9 @@ namespace Core.Erp.Data.CuentasxCobrar
                     Address.IdCliente = Info.IdCliente;
                     Address.cr_TotalCobro = Info.cr_TotalCobro;
                     Address.cr_es_anticipo = Info.cr_es_anticipo;
-                    
-
                     Address.cr_fecha = Convert.ToDateTime(Info.cr_fecha);
                     Address.cr_fechaCobro = Convert.ToDateTime(Info.cr_fechaCobro);
-                    Address.cr_fechaDocu = Convert.ToDateTime(Info.cr_fechaDocu);
-                    
+                    Address.cr_fechaDocu = Convert.ToDateTime(Info.cr_fechaDocu);                    
                     Address.cr_observacion = (string.IsNullOrEmpty(Info.cr_observacion) ? "" : Info.cr_observacion);
                     Address.cr_Banco = Info.cr_Banco;
                     Address.cr_cuenta = Info.cr_cuenta;
@@ -1383,6 +1385,126 @@ namespace Core.Erp.Data.CuentasxCobrar
                 oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
                 mensaje = ex.InnerException + " " + ex.Message;
                 throw new Exception(ex.InnerException.ToString());
+            }
+        }
+
+        public bool ContabilizarRetencion(int IdEmpresa, int IdSucursal, decimal IdCobro)
+        {
+            try
+            {
+                EntitiesCuentas_x_Cobrar dbCxc = new EntitiesCuentas_x_Cobrar();
+                EntitiesFacturacion dbFac = new EntitiesFacturacion();
+                
+
+                var Cobro = dbCxc.cxc_cobro.Where(q => q.IdEmpresa == IdEmpresa && q.IdSucursal == IdSucursal && q.IdCobro == IdCobro).FirstOrDefault();
+                if (Cobro == null)
+                    return false;
+
+                var ListaDet = dbCxc.cxc_cobro_det.Where(q => q.IdEmpresa == IdEmpresa && q.IdSucursal == IdSucursal && q.IdCobro == IdCobro).ToList();
+                if (ListaDet.Count == 0)
+                    return false;
+
+                var Cliente = dbFac.fa_cliente.Where(q => q.IdEmpresa == IdEmpresa && q.IdCliente == Cobro.IdCliente).FirstOrDefault();
+                if (Cliente == null)
+                    return false;
+
+                var CuentaSucursal = dbCxc.cxc_cobro_tipo_Param_conta_x_sucursal.Where(q => q.IdEmpresa == IdEmpresa && q.IdSucursal == IdSucursal && q.IdCobro_tipo == Cobro.IdCobro_tipo).FirstOrDefault();
+                if (CuentaSucursal == null)
+                    return false;
+
+                var param = dbCxc.cxc_Parametro.Where(q => q.IdEmpresa == IdEmpresa).FirstOrDefault();
+                if (param == null)
+                    return false;
+
+                #region Cabecera
+                ct_Cbtecble_Info infoCt = new ct_Cbtecble_Info
+                {
+                    IdEmpresa = IdEmpresa,
+                    IdTipoCbte = param.pa_IdTipoCbteCble_CxC ?? 0,
+                    IdPeriodo = Convert.ToInt32(Cobro.cr_fecha.ToString("yyyyMM")),
+                    cb_Fecha = Cobro.cr_fecha.Date,
+                    cb_Observacion = "Cobro #+" + Cobro.IdCobro.ToString() + " " + Cobro.cr_observacion,
+                    Anio = Cobro.cr_fecha.Year,
+                    Mes = Cobro.cr_fecha.Month,
+                    Mayorizado = "N",
+                    IdSucursal = 1,
+                    IdUsuario = Cobro.IdUsuario,
+                    cb_Valor = Math.Round(ListaDet.Sum(q => q.dc_ValorPago), 2, MidpointRounding.AwayFromZero)
+                };
+                infoCt._cbteCble_det_lista_info = new List<ct_Cbtecble_det_Info>();
+                #endregion
+                #region Detalle
+                #region Debe
+                infoCt._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info
+                {
+                    IdCtaCble = CuentaSucursal.IdCtaCble,
+                    dc_Valor = Math.Round(ListaDet.Sum(q=> q.dc_ValorPago),2,MidpointRounding.AwayFromZero),
+                    dc_Observacion = Cobro.IdCobro_tipo,
+                    dc_para_conciliar = false
+                });
+                #endregion
+                #region Haber
+                infoCt._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info
+                {
+                    IdCtaCble = Cliente.IdCtaCble_cxc,
+                    dc_Valor = Math.Round(ListaDet.Sum(q => q.dc_ValorPago), 2, MidpointRounding.AwayFromZero) *-1,
+                    dc_Observacion = Cobro.IdCobro_tipo,
+                    dc_para_conciliar = false
+                });
+                #endregion
+                #endregion
+
+                var Relacion = dbCxc.cxc_cobro_x_ct_cbtecble.Where(q => q.cbr_IdEmpresa == IdEmpresa && q.cbr_IdSucursal == IdSucursal && q.cbr_IdCobro == IdCobro).FirstOrDefault();
+                if (Relacion == null)
+                {
+                    decimal IdCbteCble = 0;
+                    string CodCbte = string.Empty;
+                    if (odataCt.GrabarDB(infoCt, ref IdCbteCble, ref CodCbte, ref CodCbte))
+                    {
+                        dbCxc.cxc_cobro_x_ct_cbtecble.Add(new cxc_cobro_x_ct_cbtecble
+                        {
+                            cbr_IdEmpresa = Cobro.IdEmpresa,
+                            cbr_IdSucursal = Cobro.IdSucursal,
+                            cbr_IdCobro = Cobro.IdCobro,
+
+                            ct_IdEmpresa = infoCt.IdEmpresa,
+                            ct_IdTipoCbte = infoCt.IdTipoCbte,
+                            ct_IdCbteCble = infoCt.IdCbteCble,
+                            observacion = ""
+                        });
+                        foreach (var item in ListaDet)
+                        {
+                            dbCxc.cxc_cobro_det_x_ct_cbtecble_det.Add(new cxc_cobro_det_x_ct_cbtecble_det
+                            {
+                                IdEmpresa_cb = Cobro.IdEmpresa,
+                                IdSucursal_cb = Cobro.IdSucursal,
+                                IdCobro_cb = Cobro.IdCobro,
+                                secuencial_cb = item.secuencial,
+
+                                IdEmpresa_ct = infoCt.IdEmpresa,
+                                IdTipoCbte_ct = infoCt.IdTipoCbte,
+                                IdCbteCble_ct = infoCt.IdCbteCble,
+                                secuencia_ct = 1,
+                                secuencia_reg = 1
+                            });    
+                        }
+                        dbCxc.SaveChanges();
+                    }
+                }
+                else
+                {
+                    decimal IdCbteCble = 0;
+                    infoCt.IdCbteCble = Relacion.ct_IdCbteCble;
+                    string CodCbte = string.Empty;
+                    odataCt.ModificarDB(infoCt, ref CodCbte);
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

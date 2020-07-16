@@ -1555,6 +1555,10 @@ namespace Core.Erp.Business.CuentasxCobrar
                 ct_Cbtecble_Bus bus = new ct_Cbtecble_Bus();
                 InfoCOxCT = DataCOxCT.Get_Info_cobro_x_ct_cbtecble(param.IdEmpresa, Info.IdSucursal, Info.IdCobro);
                 string msg = "";
+
+                if (InfoCOxCT.cbr_IdCobro == 0)
+                    return;
+                
                 bus.ReversoCbteCble(param.IdEmpresa, InfoCOxCT.ct_IdCbteCble, InfoCOxCT.ct_IdTipoCbte,
                     Convert.ToInt32(paramInfo.pa_IdTipoCbteCble_CxC_ANU), ref idctctb, ref msg, param.IdUsuario);
                 

@@ -12,6 +12,9 @@ namespace Core.Erp.Data.CuentasxCobrar
 {
     public class cxc_XML_Documento_Data
     {
+        #region Variables
+        cxc_cobro_Data odata = new cxc_cobro_Data();
+        #endregion
         public List<cxc_XML_Documento_Info> GetList(int IdEmpresa, DateTime FechaIni, DateTime FechaFin)
         {
             try
@@ -136,6 +139,10 @@ namespace Core.Erp.Data.CuentasxCobrar
                 {
                     using (EntitiesCuentas_x_Cobrar db = new EntitiesCuentas_x_Cobrar())
                     {
+                        if (!string.IsNullOrEmpty(info.Motivo))
+                        {
+                            return false;
+                        }
                         var Entity = new cxc_XML_Documento
                         {
                             IdEmpresa = info.IdEmpresa,
@@ -167,7 +174,12 @@ namespace Core.Erp.Data.CuentasxCobrar
                         int Secuencia = 1;
                         foreach (var item in info.ListaDet)
                         {
-                            db.cxc_XML_DocumentoDet.Add(new cxc_XML_DocumentoDet
+                            item.IdEmpresa = info.IdEmpresa;
+                            item.IdSucursal = info.IdSucursal;
+                            item.IdBodega_Cbte = info.IdBodega_Cbte;
+                            item.IdCbte_vta_nota = info.IdCbte_vta_nota;
+                            
+                            cxc_XML_DocumentoDet d = new cxc_XML_DocumentoDet
                             {
                                 IdEmpresa = info.IdEmpresa,
                                 IdDocumento = info.IdDocumento,
@@ -180,13 +192,15 @@ namespace Core.Erp.Data.CuentasxCobrar
                                 CodDocSustento = item.CodDocSustento,
                                 NumDocSustento = item.NumDocSustento,
                                 FechaEmisionDocSustento = item.FechaEmisionDocSustento,
-                                IdSucursal = item.IdSucursal,
-                                IdCobro = item.IdCobro,
+                                IdSucursal = info.IdSucursal,
+                                IdCobro = item.IdCobro = ArmarCobro(info.IdEmpresa, info.IdSucursal, info.IdCliente, info.FechaEmision, info.Comprobante, info.IdUsuarioCreacion, item),
                                 dc_TipoDocumento = item.dc_TipoDocumento,
-                                IdBodega_Cbte = item.IdBodega_Cbte,
-                                IdCbte_vta_nota = item.IdCbte_vta_nota,
+                                IdBodega_Cbte = info.IdBodega_Cbte,
+                                IdCbte_vta_nota = info.IdCbte_vta_nota,
                                 IdCobro_tipo = item.IdCobro_tipo
-                            });
+                            };
+                            odata.ContabilizarRetencion(d.IdEmpresa, d.IdSucursal ?? 0, d.IdCobro ?? 0);
+                            db.cxc_XML_DocumentoDet.Add(d);
                         }
                     db.cxc_XML_Documento.Add(Entity);
                     db.SaveChanges();
@@ -215,6 +229,75 @@ namespace Core.Erp.Data.CuentasxCobrar
                 strMensaje = ex.ToString() + " " + ex.Message;
                 oDataLog.Guardar_Log_Error(Log_Error_sis, ref strMensaje);
                 throw new Exception(ex.ToString());
+            }
+        }
+
+        private decimal ArmarCobro(int IdEmpresa, 
+            int IdSucursal, 
+            decimal IdCliente,
+            DateTime Fecha,
+            string NumRetencion,
+            string IdUsuario,
+            cxc_XML_DocumentoDet_Info InfoDet)
+        {
+            try
+            {
+                EntitiesFacturacion dbFac = new EntitiesFacturacion();
+                EntitiesCuentas_x_Cobrar dbCxc = new EntitiesCuentas_x_Cobrar();
+
+                #region Cabecera
+                cxc_cobro cobro = new cxc_cobro
+                {
+                    IdEmpresa = IdEmpresa,
+                    IdSucursal = IdSucursal,
+                    IdCobro = odata.GetId(IdEmpresa, IdSucursal),
+                    IdCobro_tipo = InfoDet.IdCobro_tipo,
+                    IdCliente = IdCliente,
+                    cr_TotalCobro = Convert.ToDouble(InfoDet.ValorRetenido),
+                    cr_fecha = Fecha.Date,
+                    cr_fechaCobro = Fecha.Date,
+                    cr_fechaDocu = Fecha.Date,
+                    cr_observacion = "Canc/:FACT" + InfoDet.NumDocSustento,
+                    cr_cuenta = "",
+                    cr_NumDocumento = NumRetencion,
+                    cr_Tarjeta = "",
+                    cr_propietarioCta = "",
+                    cr_estado = "A",
+                    cr_es_anticipo = "N",
+                    IdUsuario = IdUsuario,
+                    Fecha_Transac = DateTime.Now,
+                    nom_pc = "",
+                    ip = "",
+                    IdCaja = 1
+                };
+                dbCxc.cxc_cobro.Add(cobro);
+                #endregion
+
+                #region Detalle
+                dbCxc.cxc_cobro_det.Add(new cxc_cobro_det
+                {
+                    IdEmpresa = cobro.IdEmpresa,
+                    IdSucursal = cobro.IdSucursal,
+                    IdCobro = cobro.IdCobro,
+                    secuencial = 1,
+                    IdBodega_Cbte = InfoDet.IdBodega_Cbte,
+                    IdCbte_vta_nota = InfoDet.IdCbte_vta_nota ?? 0,
+                    dc_TipoDocumento = InfoDet.dc_TipoDocumento,
+                    dc_ValorPago = Convert.ToDouble(InfoDet.ValorRetenido),
+                    IdUsuario = IdUsuario,
+                    Fecha_Transac = DateTime.Now,
+                    estado = "A"
+                });
+                #endregion
+
+                dbCxc.SaveChanges();
+
+                return cobro.IdCobro;
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
 
