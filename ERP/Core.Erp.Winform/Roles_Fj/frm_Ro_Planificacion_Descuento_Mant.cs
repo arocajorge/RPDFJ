@@ -201,8 +201,8 @@ namespace Core.Erp.Winform.Roles_Fj
             try
             {
                 bool ban = true;
-
-                if (cmb_descuento.EditValue == null || cmb_descuento.EditValue == "")
+                cmb_descuento.Focus();
+                if (cmb_descuento.EditValue == null)
                 {
                     ban = false;
                     MessageBox.Show( param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_el) + " Rubro",param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -211,7 +211,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
 
-                if (cmbEmpleado.EditValue == null || cmbEmpleado.EditValue == "")
+                if (cmbEmpleado.EditValue == null )
                 {
                     ban = false;
                     MessageBox.Show( param.Get_Mensaje_sys(enum_Mensajes_sys.Seleccione_el) + " Empleado",param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -219,7 +219,7 @@ namespace Core.Erp.Winform.Roles_Fj
 
                 }
 
-                if (cmb_descuento.EditValue == null || cmb_descuento.EditValue == "")
+                if (txt_valor.EditValue == null )
                 {
                     ban = false;
                     MessageBox.Show( param.Get_Mensaje_sys(enum_Mensajes_sys.Ingrese_el) + " valor a descontar",param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -227,14 +227,14 @@ namespace Core.Erp.Winform.Roles_Fj
 
                 }
 
-                if (Convert.ToDouble( txt_valor.EditValue)>lista_descuento_Det.Sum(v=>v.Valor) )
+                if (Math.Round(Convert.ToDouble(txt_valor.EditValue), 2) >Math.Round(lista_descuento_Det.Sum(v => v.Valor), 2))
                 {
                     ban = false;
                     MessageBox.Show( "El Valor del detalle es menor que el total",param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return ban;
 
                 }
-                if (Convert.ToDouble(txt_valor.EditValue) < lista_descuento_Det.Sum(v => v.Valor))
+                if ( Math.Round( Convert.ToDouble(txt_valor.EditValue),2) < Math.Round( lista_descuento_Det.Sum(v => v.Valor),2))
                 {
                     ban = false;
                     MessageBox.Show("El Valor del detalle es mayor que el total", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Warning);
