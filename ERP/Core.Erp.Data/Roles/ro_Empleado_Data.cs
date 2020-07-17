@@ -2467,109 +2467,96 @@ namespace Core.Erp.Data.Roles
                 EntitiesRoles OERol_Empleado = new EntitiesRoles();
 
 
-                var select = from A in OERol_Empleado.VWRO_empleado
+                lM = (from A in OERol_Empleado.VWRO_empleado
                              where A.IdEmpresa == IdEmpresa
                              &&A.em_estado=="A"
-                             select A;
+                             select new ro_Empleado_Info{
+                    IdEmpresa = A.IdEmpresa,
+                    IdNomina_Tipo = A.IdTipoNomina,
+                    IdEmpleado = A.IdEmpleado,
+                    IdEmpleado_Supervisor = A.IdEmpleado_Supervisor,
+                    IdPersona = A.IdPersona,
+                    IdSucursal = A.IdSucursal,
+                    IdTipoEmpleado = A.IdTipoEmpleado,
+                    em_codigo = A.em_codigo,
+                    em_lugarNacimiento = A.em_lugarNacimiento,
+                    em_CarnetIees = A.em_CarnetIees,
+                    em_cedulaMil = A.em_cedulaMil,
+                    em_fecha_ingreso = A.em_fecha_ingreso,
+                    em_fechaSalida = A.em_fechaSalida,
+                    em_fechaTerminoContra = A.em_fechaTerminoContra,
+                    em_fechaIngaRol = A.em_fechaIngaRol,
+                    em_SeAcreditaBanco = A.em_SeAcreditaBanco,
+                    em_tipoCta = A.em_tipoCta,
+                    em_NumCta = A.em_NumCta,
+                    Codigo_Biometrico = A.Codigo_Biometrico,
+                    em_SepagaBeneficios = A.em_SepagaBeneficios,
+                    em_SePagaConTablaSec = A.em_SePagaConTablaSec,
+                    em_estado = A.em_estado,
+                    em_status = A.em_status,
+                    em_foto = A.em_foto,
+                    em_empEspecial = A.em_empEspecial,
+                    em_pagoFdoRsv = A.em_pagoFdoRsv,
+                    em_huella = A.em_huella,
+                    IdCodSectorial = A.IdCodSectorial,
+                    IdDepartamento = A.IdDepartamento,
+                    IdTipoSangre = A.IdTipoSangre,
+                    IdCargo = A.IdCargo,
+                    IdCtaCble_Emplea = A.IdCtaCble_Emplea,
+                    CodigoSectorialIESS = A.CodigoSectorial,
+                    IdUbicacion = A.IdCiudad,
+                    IdPais = A.IdPais,
+                    IdProvincia = A.IdProvincia,
 
-                foreach (var item in select)
-                {
-                    ro_Empleado_Info info = new ro_Empleado_Info();
-                    
-                    //Datos del Empleado
-                    info.IdEmpresa = item.IdEmpresa;
-                    info.IdNomina_Tipo = item.IdTipoNomina;
-                    info.IdEmpleado = item.IdEmpleado;
-                    info.IdEmpleado_Supervisor = item.IdEmpleado_Supervisor;
-                    info.IdPersona = item.IdPersona;
-                    info.IdSucursal = item.IdSucursal;
-                    info.IdTipoEmpleado = item.IdTipoEmpleado;
-                    info.em_codigo = item.em_codigo;
-                    info.em_lugarNacimiento = item.em_lugarNacimiento;
-                    info.em_CarnetIees = item.em_CarnetIees;
-                    info.em_cedulaMil = item.em_cedulaMil;
-                    info.em_fecha_ingreso = item.em_fecha_ingreso;
-                    info.em_fechaSalida = item.em_fechaSalida;
-                    info.em_fechaTerminoContra = item.em_fechaTerminoContra;
-                    info.em_fechaIngaRol = item.em_fechaIngaRol;
-                    info.em_SeAcreditaBanco = item.em_SeAcreditaBanco;
-                    info.em_tipoCta = item.em_tipoCta;
-                    info.em_NumCta = item.em_NumCta;
-
-                    info.Codigo_Biometrico = item.Codigo_Biometrico;
-                   
-                    info.em_SepagaBeneficios = item.em_SepagaBeneficios;
-                    info.em_SePagaConTablaSec = item.em_SePagaConTablaSec;
-                    info.em_estado = item.em_estado;
-                    info.em_status = item.em_status;
-
-                    
-                    info.em_foto = item.em_foto;
-                    info.em_empEspecial = item.em_empEspecial;
-                    info.em_pagoFdoRsv = item.em_pagoFdoRsv;
-                    info.em_huella = item.em_huella;
-                    info.IdCodSectorial = item.IdCodSectorial;
-                    info.IdDepartamento = item.IdDepartamento;
-                    info.IdTipoSangre = item.IdTipoSangre;
-                    info.IdCargo = item.IdCargo;
-                    info.IdCtaCble_Emplea = item.IdCtaCble_Emplea;
-                    info.CodigoSectorialIESS = item.CodigoSectorial;
-                    info.IdUbicacion = item.IdCiudad;
-                    info.IdPais = item.IdPais;
-                    info.IdProvincia = item.IdProvincia;
-
-                    info.em_mail = item.em_mail;
-                    info.IdTipoLicencia = item.IdTipoLicencia;
-                    info.IdCentroCosto = item.IdCentroCosto;
-                    info.IdBanco = item.IdBanco;
-                    info.pe_NomCompleto = item.pe_apellido + " " + item.pe_nombre;
-                    info.Archivo = item.Archivo;//18112013 D
-                    info.NombreArchivo = item.NombreArchivo;//18112013 D
-                    info.IdDivision = item.IdDivision;
-                    info.IdArea = item.IdArea;
-                    info.IdCentroCosto_sub_centro_costo = item.IdCentroCosto_sub_centro_costo;
-                    info.em_estado = item.em_estado;
-                    info.cargo = item.ca_descripcion;
-                    info.de_descripcion = item.Departamento;
-                    info.IdNomina_Tipo = Convert.ToInt32(item.IdTipoNomina);
-                    info.IdGrupo = item.IdGrupo;
-                    info.IdTipoAnticipo = item.IdTipoAnticipo;
-                    info.em_AnticipoSueldo = item.em_AnticipoSueldo;
-                    //Datos de la Persona
-                    info.InfoPersona.IdPersona = item.IdPersona;
-                    info.InfoPersona.pe_nombreCompleto = item.pe_apellido+" "+item.pe_nombre;
-                    info.InfoPersona.pe_apellido = item.pe_apellido;
-                    info.InfoPersona.pe_nombre = item.pe_nombre;
-                    info.InfoPersona.IdTipoPersona = item.IdTipoPersona;
-                    info.InfoPersona.IdTipoDocumento = item.IdTipoDocumento;
-                    info.InfoPersona.pe_cedulaRuc = item.pe_cedulaRuc;
-                    info.InfoPersona.pe_direccion = item.pe_direccion;
-                    info.InfoPersona.pe_telefonoCasa = item.pe_telefonoCasa;
-                    info.InfoPersona.pe_telefonoOfic = item.pe_telefonoOfic;
-                    info.InfoPersona.pe_telefonoInter = item.pe_telefonoInter;
-                    info.InfoPersona.pe_telfono_Contacto = item.pe_telfono_Contacto;
-                    info.InfoPersona.pe_celular = item.pe_celular;
-                    info.InfoPersona.pe_correo = item.pe_correo;
-                    info.InfoPersona.pe_fax = item.pe_fax;
-                    info.InfoPersona.pe_casilla = item.pe_casilla;
-                    info.InfoPersona.pe_sexo = item.pe_sexo;
-                    info.InfoPersona.IdEstadoCivil = item.Codigo;
-                    info.InfoPersona.pe_fechaNacimiento = item.pe_fechaNacimiento;
-                  
-
-                    info.por_discapacidad = item.por_discapacidad;
-                    info.carnet_conadis = item.carnet_conadis;
-                    info.recibi_uniforme = item.recibi_uniforme;
-                    info.talla_camisa = Convert.ToString(item.talla_camisa);
-                    info.talla_pant = item.talla_pant;
-                    info.talla_zapato = item.talla_zapato;
-                    info.es_AcreditaHorasExtras = item.es_AcreditaHorasExtras;
-                    info.Marca_Biometrico = item.Marca_Biometrico;
-                    info.em_motivo_salisa = item.em_motivo_salisa;
-                    info.EstadoEmpleado = item.EstadoEmpleado;
-                    info.Nomina = item.Nomina;
-                    lM.Add(info);
-                }
+                    em_mail = A.em_mail,
+                    IdTipoLicencia = A.IdTipoLicencia,
+                    IdCentroCosto = A.IdCentroCosto,
+                    IdBanco = A.IdBanco,
+                    pe_NomCompleto = A.pe_apellido + " " + A.pe_nombre,
+                    Archivo = A.Archivo,//18112013 D
+                    NombreArchivo = A.NombreArchivo,//18112013 D
+                    IdDivision = A.IdDivision,
+                    IdArea = A.IdArea,
+                    IdCentroCosto_sub_centro_costo = A.IdCentroCosto_sub_centro_costo,
+                    cargo = A.ca_descripcion,
+                    de_descripcion = A.Departamento,
+                    IdGrupo = A.IdGrupo,
+                    IdTipoAnticipo = A.IdTipoAnticipo,
+                    em_AnticipoSueldo = A.em_AnticipoSueldo,
+                    InfoPersona= new tb_persona_Info{
+                    IdPersona = A.IdPersona,
+                    pe_nombreCompleto = A.pe_apellido+" "+A.pe_nombre,
+                    pe_apellido = A.pe_apellido,
+                    pe_nombre = A.pe_nombre,
+                    IdTipoPersona = A.IdTipoPersona,
+                    IdTipoDocumento = A.IdTipoDocumento,
+                    pe_cedulaRuc = A.pe_cedulaRuc,
+                    pe_direccion = A.pe_direccion,
+                    pe_telefonoCasa = A.pe_telefonoCasa,
+                    pe_telefonoOfic = A.pe_telefonoOfic,
+                    pe_telefonoInter = A.pe_telefonoInter,
+                    pe_telfono_Contacto = A.pe_telfono_Contacto,
+                    pe_celular = A.pe_celular,
+                    pe_correo = A.pe_correo,
+                    pe_fax = A.pe_fax,
+                    pe_casilla = A.pe_casilla,
+                    pe_sexo = A.pe_sexo,
+                    IdEstadoCivil = A.Codigo,
+                    pe_fechaNacimiento = A.pe_fechaNacimiento,
+                    },
+                    por_discapacidad = A.por_discapacidad,
+                    carnet_conadis = A.carnet_conadis,
+                    recibi_uniforme = A.recibi_uniforme,
+                    talla_camisa = A.talla_camisa,
+                    talla_pant = A.talla_pant,
+                    talla_zapato = A.talla_zapato,
+                    es_AcreditaHorasExtras = A.es_AcreditaHorasExtras,
+                    Marca_Biometrico = A.Marca_Biometrico,
+                    em_motivo_salisa = A.em_motivo_salisa,
+                    EstadoEmpleado = A.EstadoEmpleado,
+                    Nomina = A.Nomina,
+                    }).ToList();
+                                   
                 return (lM);
             }
             catch (Exception ex)
