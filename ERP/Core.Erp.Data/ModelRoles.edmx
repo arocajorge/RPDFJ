@@ -1933,7 +1933,8 @@
       [vwro_permiso_x_empleado_x_novedad].[FechaPago] AS [FechaPago], 
       [vwro_permiso_x_empleado_x_novedad].[Valor] AS [Valor], 
       [vwro_permiso_x_empleado_x_novedad].[Secuencia] AS [Secuencia], 
-      [vwro_permiso_x_empleado_x_novedad].[EstadoCobro] AS [EstadoCobro]
+      [vwro_permiso_x_empleado_x_novedad].[EstadoCobro] AS [EstadoCobro], 
+      [vwro_permiso_x_empleado_x_novedad].[Num_Horas] AS [Num_Horas]
       FROM [dbo].[vwro_permiso_x_empleado_x_novedad] AS [vwro_permiso_x_empleado_x_novedad]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_Planificacion_Horarios_x_Empleado" EntityType="DBERPModelRoles.Store.vwRo_Planificacion_Horarios_x_Empleado" store:Type="Views" store:Schema="dbo" store:Name="vwRo_Planificacion_Horarios_x_Empleado">
@@ -7566,6 +7567,7 @@
           <Property Name="Valor" Type="float" Nullable="false" />
           <Property Name="Secuencia" Type="int" Nullable="false" />
           <Property Name="EstadoCobro" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Num_Horas" Type="float" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwRo_Planificacion_Horarios_x_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -10286,7 +10288,6 @@
             <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
             <End Role="ro_rol_detalle" EntitySet="ro_rol_detalle" />
           </AssociationSet>
-          <EntitySet Name="vwro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" />
           <EntitySet Name="ro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" />
           <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad">
             <End Role="ro_empleado_Novedad" EntitySet="ro_empleado_Novedad" />
@@ -10296,6 +10297,7 @@
             <End Role="ro_permiso_x_empleado" EntitySet="ro_permiso_x_empleado" />
             <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
           </AssociationSet>
+          <EntitySet Name="vwro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -17323,29 +17325,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vwro_permiso_x_empleado_x_novedad">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdNomina_Tipo" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="IdPermiso" />
-            <PropertyRef Name="FechaPago" />
-            <PropertyRef Name="Valor" />
-            <PropertyRef Name="Secuencia" />
-            <PropertyRef Name="EstadoCobro" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="IdPermiso" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IdNomina_Tipo_Liq" />
-          <Property Type="String" Name="IdRol" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="FechaPago" Nullable="false" Precision="3" />
-          <Property Type="Double" Name="Valor" Nullable="false" />
-          <Property Type="Int32" Name="Secuencia" Nullable="false" />
-          <Property Type="String" Name="EstadoCobro" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="ro_permiso_x_empleado_x_novedad">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -17399,6 +17378,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vwro_permiso_x_empleado_x_novedad">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdPermiso" />
+            <PropertyRef Name="FechaPago" />
+            <PropertyRef Name="Valor" />
+            <PropertyRef Name="Secuencia" />
+            <PropertyRef Name="EstadoCobro" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="IdPermiso" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdNomina_Tipo_Liq" />
+          <Property Type="String" Name="IdRol" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FechaPago" Nullable="false" Precision="3" />
+          <Property Type="Double" Name="Valor" Nullable="false" />
+          <Property Type="Int32" Name="Secuencia" Nullable="false" />
+          <Property Type="String" Name="EstadoCobro" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="Num_Horas" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -22105,23 +22108,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwro_permiso_x_empleado_x_novedad">
-            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad">
-              <MappingFragment StoreEntitySet="vwro_permiso_x_empleado_x_novedad">
-                <ScalarProperty Name="EstadoCobro" ColumnName="EstadoCobro" />
-                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
-                <ScalarProperty Name="Valor" ColumnName="Valor" />
-                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
-                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="IdNomina_Tipo_Liq" ColumnName="IdNomina_Tipo_Liq" />
-                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ro_permiso_x_empleado_x_novedad">
             <EntityTypeMapping TypeName="DBERPModelRoles.ro_permiso_x_empleado_x_novedad">
               <MappingFragment StoreEntitySet="ro_permiso_x_empleado_x_novedad">
@@ -22129,6 +22115,24 @@
                 <ScalarProperty Name="IdEmpleado_nov" ColumnName="IdEmpleado_nov" />
                 <ScalarProperty Name="IdEmpresa_nov" ColumnName="IdEmpresa_nov" />
                 <ScalarProperty Name="IdNovedad" ColumnName="IdNovedad" />
+                <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_permiso_x_empleado_x_novedad">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad">
+              <MappingFragment StoreEntitySet="vwro_permiso_x_empleado_x_novedad">
+                <ScalarProperty Name="Num_Horas" ColumnName="Num_Horas" />
+                <ScalarProperty Name="EstadoCobro" ColumnName="EstadoCobro" />
+                <ScalarProperty Name="Secuencia" ColumnName="Secuencia" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="IdRubro" ColumnName="IdRubro" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdNomina_Tipo_Liq" ColumnName="IdNomina_Tipo_Liq" />
                 <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />

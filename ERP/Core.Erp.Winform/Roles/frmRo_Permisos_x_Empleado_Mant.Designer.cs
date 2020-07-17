@@ -40,6 +40,7 @@
             this.Col_valor_descuento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Col_eliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.col_Num_Horas = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.dtFechaEntrada = new DevExpress.XtraEditors.DateEdit();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -141,12 +142,15 @@
             this.col_idnomina_tipo_Liq,
             this.Col_fecha_descuento,
             this.Col_valor_descuento,
-            this.Col_eliminar});
+            this.Col_eliminar,
+            this.col_Num_Horas});
             this.gridView_novedades.GridControl = this.gridControl_novedades;
             this.gridView_novedades.Name = "gridView_novedades";
             this.gridView_novedades.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.gridView_novedades.OptionsView.ShowFooter = true;
             this.gridView_novedades.OptionsView.ShowGroupPanel = false;
+            this.gridView_novedades.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView_novedades_CellValueChanged);
+            this.gridView_novedades.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_novedades_KeyDown);
             // 
             // col_idnomina_tipo_Liq
             // 
@@ -156,7 +160,7 @@
             this.col_idnomina_tipo_Liq.Name = "col_idnomina_tipo_Liq";
             this.col_idnomina_tipo_Liq.Visible = true;
             this.col_idnomina_tipo_Liq.VisibleIndex = 0;
-            this.col_idnomina_tipo_Liq.Width = 371;
+            this.col_idnomina_tipo_Liq.Width = 278;
             // 
             // cmb_nomina_tipo_liq
             // 
@@ -190,7 +194,7 @@
             this.Col_fecha_descuento.Name = "Col_fecha_descuento";
             this.Col_fecha_descuento.Visible = true;
             this.Col_fecha_descuento.VisibleIndex = 1;
-            this.Col_fecha_descuento.Width = 118;
+            this.Col_fecha_descuento.Width = 95;
             // 
             // Col_valor_descuento
             // 
@@ -200,8 +204,8 @@
             this.Col_valor_descuento.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)});
             this.Col_valor_descuento.Visible = true;
-            this.Col_valor_descuento.VisibleIndex = 2;
-            this.Col_valor_descuento.Width = 167;
+            this.Col_valor_descuento.VisibleIndex = 3;
+            this.Col_valor_descuento.Width = 143;
             // 
             // Col_eliminar
             // 
@@ -211,8 +215,8 @@
             this.Col_eliminar.Name = "Col_eliminar";
             this.Col_eliminar.OptionsColumn.AllowEdit = false;
             this.Col_eliminar.Visible = true;
-            this.Col_eliminar.VisibleIndex = 3;
-            this.Col_eliminar.Width = 54;
+            this.Col_eliminar.VisibleIndex = 4;
+            this.Col_eliminar.Width = 37;
             // 
             // repositoryItemImageComboBox1
             // 
@@ -222,6 +226,15 @@
             this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
             new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", true, 0)});
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            // 
+            // col_Num_Horas
+            // 
+            this.col_Num_Horas.Caption = "Dias descanso";
+            this.col_Num_Horas.FieldName = "NumHoras";
+            this.col_Num_Horas.Name = "col_Num_Horas";
+            this.col_Num_Horas.Visible = true;
+            this.col_Num_Horas.VisibleIndex = 2;
+            this.col_Num_Horas.Width = 92;
             // 
             // labelControl14
             // 
@@ -727,5 +740,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Col_valor_descuento;
         private DevExpress.XtraGrid.Columns.GridColumn Col_eliminar;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Num_Horas;
     }
 }

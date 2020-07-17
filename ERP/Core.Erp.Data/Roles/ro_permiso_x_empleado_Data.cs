@@ -632,7 +632,8 @@ namespace Core.Erp.Data.Roles
                                     Valor = item.Valor,
                                     Secuencia = item.Secuencia,
                                     IdNominaLiqui= (int)item.IdNomina_Tipo_Liq,
-                                    IdNomina=item.IdNomina_Tipo
+                                    IdNomina=item.IdNomina_Tipo,
+                                    NumHoras=item.nu
                               }).ToList();
 
                

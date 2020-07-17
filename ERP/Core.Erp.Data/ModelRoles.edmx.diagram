@@ -274,10 +274,10 @@
         <EntityTypeShape EntityType="DBERPModelRoles.ro_rubro_tipo" Width="1.5" PointX="0.38131992722922936" PointY="27.6273938844108" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_rubro_tipo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_detalle_ro_rubro_tipo" />
-        <EntityTypeShape EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" Width="1.5" PointX="11.673105195012457" PointY="30.640442281328347" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" Width="1.5" PointX="7.9051833655243664" PointY="8.617879960973692" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" />
+        <EntityTypeShape EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" Width="1.5" PointX="3.00804342097046" PointY="19.633763098918724" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

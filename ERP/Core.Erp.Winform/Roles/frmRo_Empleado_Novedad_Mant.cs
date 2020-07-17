@@ -1368,8 +1368,6 @@ namespace Core.Erp.Winform.Roles
                 if (InfoEmpleado != null)
                 {
                     Sueldo = BusSueldo.GetSueldoActual(param.IdEmpresa, InfoEmpleado.IdEmpleado);
-
-
                     valoHora = Convert.ToDouble(Sueldo / 160);
                 }
                 

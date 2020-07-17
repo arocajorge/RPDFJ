@@ -46,7 +46,8 @@ namespace Core.Erp.Winform.Roles
         ro_Nomina_Tipoliqui_Bus bus_nomina_tipo_liq = new ro_Nomina_Tipoliqui_Bus();
         ro_Catalogo_Bus BusCatalogo = new ro_Catalogo_Bus();
         BindingList<ro_Empleado_Novedad_Det_Info> lst_novedades = new BindingList<ro_Empleado_Novedad_Det_Info>();
-        
+        ro_HistoricoSueldo_Bus BusSueldo = new ro_HistoricoSueldo_Bus();
+
         public delegate void delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing(object sender, FormClosingEventArgs e);
         public event delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing event_frmRo_Permisos_x_Empleado_Mant_FormClosing;
         
@@ -341,19 +342,6 @@ namespace Core.Erp.Winform.Roles
                             iAccion = Cl_Enumeradores.eTipo_action.grabar;
 
 
-
-                            // si teien descuento rol
-                            if (rbLicencia.Checked == true)
-                            {
-                                if (MessageBox.Show("El empleado esta con licencia medica,¿ desea ingresar la novedad por descuento?", "PERMISO" + param.Nombre_sistema, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                {                                    
-                                    frmRo_Empleado_Novedad_Mant Frm = new frmRo_Empleado_Novedad_Mant();
-                                    Frm.set_Accion(Cl_Enumeradores.eTipo_action.grabar);                                   
-                                    Frm.Set_IdEmpleado(Convert.ToInt32(_Info.IdEmpleado), Convert.ToInt32(_Info.IdNomina_Tipo), 2);
-                                    Frm.ShowDialog();
-                                   int novedad=  Frm.IdNonvedad_empleado;
-                                }
-                            }
 
                             PU_BLOQUEAR_CONTROLES(false);
                             Limpiar();
@@ -729,9 +717,47 @@ namespace Core.Erp.Winform.Roles
 
         }
 
-    
-      
+        private void gridView_novedades_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "col_Num_Horas")
+                {
+                double  Sueldo = BusSueldo.GetSueldoActual(param.IdEmpresa,Convert.ToDecimal( cmbEmpleado.EditValue));
+                double valor_dia = Convert.ToDouble(Sueldo / 30);
+                 double num_dia = Convert.ToDouble(gridView_novedades.GetFocusedRowCellValue(col_Num_Horas));
+                 double valor_descuento = Math.Round(Convert.ToDouble(num_dia * valor_dia));
+                 gridView_novedades.SetFocusedRowCellValue(Col_valor_descuento, valor_descuento);
+                }
 
-   
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        private void gridView_novedades_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+
+
+                    if (MessageBox.Show("¿Está seguro que desea eliminar este registro ?", "Elimina", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        gridView_novedades.DeleteSelectedRows();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                Log_Error_bus.Log_Error(ex.ToString());
+            }
+        }
     }
 }

@@ -145,41 +145,22 @@ namespace Core.Erp.Winform.Roles
                     //VALIDA QUE EL PERIODO YA ESTA PROCESADO
                     if (infoPeriodoActual.Procesado == "S")
                     {
+                        MessageBox.Show("El período seleccionado ya se encuentra cerrado, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                        //OBTENER PERIODO ANTERIOR
-                        infoPeriodoAnterior = oRo_periodo_x_ro_Nomina_TipoLiqui_Bus.GetInfoPeriodoAnterior(param.IdEmpresa, idNominaTipo, idNominaTipoLiqui, idPeriodo);
-
-                        //VALIDAR SI EL PERIODO ANTERIOR ESTA CERRADO
-                        if (infoPeriodoAnterior.Cerrado == "S" || infoPeriodoAnterior.Cerrado==null)
-                        {
-                            if (infoPeriodoActual.Cerrado == "N")
-                            {
-                                if (MessageBox.Show("Está seguro que desea cerrar el período seleccionado?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                {
-                                    infoPeriodoActual.Cerrado = "S";
-                                    if (oRo_periodo_x_ro_Nomina_TipoLiqui_Bus.ModificarDB(infoPeriodoActual))
-                                    {
-                                        bus_rol_detalle.Actualizar_centro_subc_ptoCargo_x_periodo_x_proceso(infoPeriodoActual.IdEmpresa, infoPeriodoActual.IdNomina_Tipo, infoPeriodoActual.IdNomina_TipoLiqui, infoPeriodoActual.IdPeriodo);
-                                    }
-
-                                    cmdCierreRol.Enabled = false;
-                                    cmdReversoRol.Enabled = true;
-                                    MessageBox.Show("El período seleccionado ha sido CERRADO con éxito, continue por favor", "INFORMACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                }
-
-                            }
-                            else {
-                                MessageBox.Show("El período seleccionado ya esta CERRADO, continue por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("El período anterior: " + infoPeriodoAnterior.IdPeriodo.ToString() + " debe estar CERRADO, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
-                    else {
-                        MessageBox.Show("El período seleccionado aún no ha sido PROCESADO, revise por favor", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (MessageBox.Show("Está seguro que desea cerrar el período seleccionado?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        infoPeriodoActual.Cerrado = "S";
+                        if (oRo_periodo_x_ro_Nomina_TipoLiqui_Bus.ModificarDB(infoPeriodoActual))
+                        {
+                            bus_rol_detalle.Actualizar_centro_subc_ptoCargo_x_periodo_x_proceso(infoPeriodoActual.IdEmpresa, infoPeriodoActual.IdNomina_Tipo, infoPeriodoActual.IdNomina_TipoLiqui, infoPeriodoActual.IdPeriodo);
+                        }
+
+                        cmdCierreRol.Enabled = false;
+                        cmdReversoRol.Enabled = true;
+                        MessageBox.Show("El período seleccionado ha sido CERRADO con éxito, continue por favor", "INFORMACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    
                 }
 
                 cmbPeriodo.setIdEmpresa(param.IdEmpresa);

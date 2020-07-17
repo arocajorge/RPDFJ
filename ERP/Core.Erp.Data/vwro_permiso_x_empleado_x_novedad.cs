@@ -25,5 +25,6 @@ namespace Core.Erp.Data
         public double Valor { get; set; }
         public int Secuencia { get; set; }
         public string EstadoCobro { get; set; }
+        public Nullable<double> Num_Horas { get; set; }
     }
 }
