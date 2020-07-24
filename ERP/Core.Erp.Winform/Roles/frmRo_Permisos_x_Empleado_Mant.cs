@@ -726,7 +726,7 @@ namespace Core.Erp.Winform.Roles
                 double  Sueldo = BusSueldo.GetSueldoActual(param.IdEmpresa,Convert.ToDecimal( cmbEmpleado.EditValue));
                 double valor_dia = Convert.ToDouble(Sueldo / 30);
                  double num_dia = Convert.ToDouble(gridView_novedades.GetFocusedRowCellValue(col_Num_Horas));
-                 double valor_descuento = Math.Round(Convert.ToDouble(num_dia * valor_dia));
+                 double valor_descuento = Math.Round(Convert.ToDouble(num_dia * valor_dia),2);
                  gridView_novedades.SetFocusedRowCellValue(Col_valor_descuento, valor_descuento);
                 }
 

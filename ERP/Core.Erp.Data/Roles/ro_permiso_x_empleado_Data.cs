@@ -619,22 +619,25 @@ namespace Core.Erp.Data.Roles
 
                 EntitiesRoles ORol = new EntitiesRoles();
 
-                lista = (from item in ORol.vwro_permiso_x_empleado_x_novedad
-                         where item.IdEmpresa == IdEmpresa
-                              && item.IdEmpleado == IdEmpleado
-                              && item.IdPermiso == IdPermiso
-                              select new 
-                              ro_Empleado_Novedad_Det_Info
-                              {
+                var lista_ = (from item in ORol.vwro_permiso_x_empleado_x_novedad
+                              where item.IdEmpresa == IdEmpresa
+                                   && item.IdEmpleado == IdEmpleado
+                                   && item.IdPermiso == IdPermiso
+                              select item);
 
-                                   
-                                    FechaPago = item.FechaPago,
-                                    Valor = item.Valor,
-                                    Secuencia = item.Secuencia,
-                                    IdNominaLiqui= (int)item.IdNomina_Tipo_Liq,
-                                    IdNomina=item.IdNomina_Tipo,
-                                    NumHoras=(item.Num_Horas==null)?0:Convert.ToDouble(item.Num_Horas)
-                              }).ToList();
+                foreach (var item in lista_)
+                {
+                    lista.Add(new ro_Empleado_Novedad_Det_Info
+                    {
+                         FechaPago = item.FechaPago,
+                         Valor = item.Valor,
+                         Secuencia = item.Secuencia,
+                         IdNominaLiqui= (int)item.IdNomina_Tipo_Liq,
+                         IdNomina=item.IdNomina_Tipo,
+                         NumHoras=(item.Num_Horas==null)?0:Convert.ToDouble(item.Num_Horas)
+                    });
+                }
+                             
 
                
                 return lista;
