@@ -200,20 +200,7 @@ namespace Core.Erp.Winform.Roles
                 }else {
                     lblEstado.Visible = false;               
                 }
-                if (iAccion == Cl_Enumeradores.eTipo_action.actualizar)
-                {
-                    if (_Info.EsLicencia == true)
-                    {
-                        dtFechaEntrada.Enabled = true;
-                        dtFechaSalida.Enabled = true;
-                    }
-                    else
-                    {
-                        dtFechaEntrada.Enabled = false;
-                        dtFechaSalida.Enabled = false;
-
-                    }
-                }
+                
                txtCedula.EditValue = info.pe_cedulaRuc;
                txtDepartamento.EditValue = (info.de_descripcion).Trim();
                txtCargo.EditValue = info.ca_descripcion;
@@ -407,8 +394,6 @@ namespace Core.Erp.Winform.Roles
             txtMotivoAusencia.Properties.ReadOnly = estado;
            
             cmbEmpleado.Properties.ReadOnly = estado;
-            dtFechaEntrada.Enabled = false;
-            dtFechaSalida.Enabled = false;
            
         }
 
