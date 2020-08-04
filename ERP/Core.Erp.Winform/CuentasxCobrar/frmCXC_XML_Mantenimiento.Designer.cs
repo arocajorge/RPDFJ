@@ -30,9 +30,9 @@
         {
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.txtContribuyente = new DevExpress.XtraEditors.TextEdit();
-            this.txtSubtotalIVA = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalRetencionIVA = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.txtSubtotal0 = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalRetencionFuente = new DevExpress.XtraEditors.TextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -62,16 +62,16 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmbCobroTipo = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtContribuyente.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSubtotalIVA.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSubtotal0.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalRetencionIVA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalRetencionFuente.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deFecha.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deFecha.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodDocumento.Properties)).BeginInit();
@@ -94,7 +94,7 @@
             // 
             // labelControl19
             // 
-            this.labelControl19.Location = new System.Drawing.Point(250, 16);
+            this.labelControl19.Location = new System.Drawing.Point(302, 16);
             this.labelControl19.Name = "labelControl19";
             this.labelControl19.Size = new System.Drawing.Size(92, 16);
             this.labelControl19.TabIndex = 32;
@@ -102,7 +102,7 @@
             // 
             // txtContribuyente
             // 
-            this.txtContribuyente.Location = new System.Drawing.Point(370, 13);
+            this.txtContribuyente.Location = new System.Drawing.Point(422, 13);
             this.txtContribuyente.Name = "txtContribuyente";
             this.txtContribuyente.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtContribuyente.Properties.Appearance.Options.UseBackColor = true;
@@ -110,17 +110,17 @@
             this.txtContribuyente.Size = new System.Drawing.Size(245, 22);
             this.txtContribuyente.TabIndex = 31;
             // 
-            // txtSubtotalIVA
+            // txtTotalRetencionIVA
             // 
-            this.txtSubtotalIVA.Location = new System.Drawing.Point(581, 282);
-            this.txtSubtotalIVA.Name = "txtSubtotalIVA";
-            this.txtSubtotalIVA.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtSubtotalIVA.Properties.Appearance.Options.UseBackColor = true;
-            this.txtSubtotalIVA.Properties.Mask.EditMask = "n2";
-            this.txtSubtotalIVA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtSubtotalIVA.Properties.ReadOnly = true;
-            this.txtSubtotalIVA.Size = new System.Drawing.Size(83, 22);
-            this.txtSubtotalIVA.TabIndex = 24;
+            this.txtTotalRetencionIVA.Location = new System.Drawing.Point(581, 282);
+            this.txtTotalRetencionIVA.Name = "txtTotalRetencionIVA";
+            this.txtTotalRetencionIVA.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtTotalRetencionIVA.Properties.Appearance.Options.UseBackColor = true;
+            this.txtTotalRetencionIVA.Properties.Mask.EditMask = "n2";
+            this.txtTotalRetencionIVA.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalRetencionIVA.Properties.ReadOnly = true;
+            this.txtTotalRetencionIVA.Size = new System.Drawing.Size(83, 22);
+            this.txtTotalRetencionIVA.TabIndex = 24;
             // 
             // labelControl11
             // 
@@ -130,17 +130,17 @@
             this.labelControl11.TabIndex = 23;
             this.labelControl11.Text = "Total retención IVA";
             // 
-            // txtSubtotal0
+            // txtTotalRetencionFuente
             // 
-            this.txtSubtotal0.Location = new System.Drawing.Point(203, 282);
-            this.txtSubtotal0.Name = "txtSubtotal0";
-            this.txtSubtotal0.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtSubtotal0.Properties.Appearance.Options.UseBackColor = true;
-            this.txtSubtotal0.Properties.Mask.EditMask = "n2";
-            this.txtSubtotal0.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtSubtotal0.Properties.ReadOnly = true;
-            this.txtSubtotal0.Size = new System.Drawing.Size(83, 22);
-            this.txtSubtotal0.TabIndex = 22;
+            this.txtTotalRetencionFuente.Location = new System.Drawing.Point(203, 282);
+            this.txtTotalRetencionFuente.Name = "txtTotalRetencionFuente";
+            this.txtTotalRetencionFuente.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtTotalRetencionFuente.Properties.Appearance.Options.UseBackColor = true;
+            this.txtTotalRetencionFuente.Properties.Mask.EditMask = "n2";
+            this.txtTotalRetencionFuente.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalRetencionFuente.Properties.ReadOnly = true;
+            this.txtTotalRetencionFuente.Size = new System.Drawing.Size(83, 22);
+            this.txtTotalRetencionFuente.TabIndex = 22;
             // 
             // labelControl10
             // 
@@ -160,7 +160,7 @@
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(646, 16);
+            this.labelControl8.Location = new System.Drawing.Point(698, 16);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(34, 16);
             this.labelControl8.TabIndex = 18;
@@ -169,7 +169,7 @@
             // deFecha
             // 
             this.deFecha.EditValue = null;
-            this.deFecha.Location = new System.Drawing.Point(713, 13);
+            this.deFecha.Location = new System.Drawing.Point(765, 13);
             this.deFecha.Name = "deFecha";
             this.deFecha.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.deFecha.Properties.Appearance.Options.UseBackColor = true;
@@ -183,7 +183,7 @@
             // 
             // txtCodDocumento
             // 
-            this.txtCodDocumento.Location = new System.Drawing.Point(151, 41);
+            this.txtCodDocumento.Location = new System.Drawing.Point(203, 41);
             this.txtCodDocumento.Name = "txtCodDocumento";
             this.txtCodDocumento.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtCodDocumento.Properties.Appearance.Options.UseBackColor = true;
@@ -193,7 +193,7 @@
             // 
             // txtNumDocumento
             // 
-            this.txtNumDocumento.Location = new System.Drawing.Point(329, 69);
+            this.txtNumDocumento.Location = new System.Drawing.Point(381, 69);
             this.txtNumDocumento.Name = "txtNumDocumento";
             this.txtNumDocumento.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtNumDocumento.Properties.Appearance.Options.UseBackColor = true;
@@ -203,7 +203,7 @@
             // 
             // txtPuntoEmision
             // 
-            this.txtPuntoEmision.Location = new System.Drawing.Point(240, 69);
+            this.txtPuntoEmision.Location = new System.Drawing.Point(292, 69);
             this.txtPuntoEmision.Name = "txtPuntoEmision";
             this.txtPuntoEmision.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtPuntoEmision.Properties.Appearance.Options.UseBackColor = true;
@@ -245,7 +245,7 @@
             // 
             // txtNombreComercial
             // 
-            this.txtNombreComercial.Location = new System.Drawing.Point(151, 181);
+            this.txtNombreComercial.Location = new System.Drawing.Point(203, 181);
             this.txtNombreComercial.Name = "txtNombreComercial";
             this.txtNombreComercial.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtNombreComercial.Properties.Appearance.Options.UseBackColor = true;
@@ -255,7 +255,7 @@
             // 
             // txtRazonSocial
             // 
-            this.txtRazonSocial.Location = new System.Drawing.Point(151, 153);
+            this.txtRazonSocial.Location = new System.Drawing.Point(203, 153);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtRazonSocial.Properties.Appearance.Options.UseBackColor = true;
@@ -265,7 +265,7 @@
             // 
             // txtIdentificacion
             // 
-            this.txtIdentificacion.Location = new System.Drawing.Point(151, 125);
+            this.txtIdentificacion.Location = new System.Drawing.Point(203, 125);
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtIdentificacion.Properties.Appearance.Options.UseBackColor = true;
@@ -275,7 +275,7 @@
             // 
             // txtClaveAcceso
             // 
-            this.txtClaveAcceso.Location = new System.Drawing.Point(151, 97);
+            this.txtClaveAcceso.Location = new System.Drawing.Point(203, 97);
             this.txtClaveAcceso.Name = "txtClaveAcceso";
             this.txtClaveAcceso.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtClaveAcceso.Properties.Appearance.Options.UseBackColor = true;
@@ -285,7 +285,7 @@
             // 
             // txtEstablecimiento
             // 
-            this.txtEstablecimiento.Location = new System.Drawing.Point(151, 69);
+            this.txtEstablecimiento.Location = new System.Drawing.Point(203, 69);
             this.txtEstablecimiento.Name = "txtEstablecimiento";
             this.txtEstablecimiento.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtEstablecimiento.Properties.Appearance.Options.UseBackColor = true;
@@ -319,7 +319,7 @@
             // 
             // txtTipo
             // 
-            this.txtTipo.Location = new System.Drawing.Point(240, 41);
+            this.txtTipo.Location = new System.Drawing.Point(292, 41);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtTipo.Properties.Appearance.Options.UseBackColor = true;
@@ -329,7 +329,7 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(151, 13);
+            this.txtID.Location = new System.Drawing.Point(203, 13);
             this.txtID.Name = "txtID";
             this.txtID.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtID.Properties.Appearance.Options.UseBackColor = true;
@@ -339,7 +339,7 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(151, 209);
+            this.txtDireccion.Location = new System.Drawing.Point(203, 209);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtDireccion.Properties.Appearance.Options.UseBackColor = true;
@@ -376,7 +376,7 @@
             this.ucGe_Menu_Superior_Mant1.Location = new System.Drawing.Point(0, 0);
             this.ucGe_Menu_Superior_Mant1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ucGe_Menu_Superior_Mant1.Name = "ucGe_Menu_Superior_Mant1";
-            this.ucGe_Menu_Superior_Mant1.Size = new System.Drawing.Size(916, 28);
+            this.ucGe_Menu_Superior_Mant1.Size = new System.Drawing.Size(1144, 28);
             this.ucGe_Menu_Superior_Mant1.TabIndex = 33;
             this.ucGe_Menu_Superior_Mant1.Visible_bntAnular = true;
             this.ucGe_Menu_Superior_Mant1.Visible_bntAprobar = false;
@@ -404,6 +404,8 @@
             this.ucGe_Menu_Superior_Mant1.Visible_btnImprimirSoporte = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnModificar = false;
             this.ucGe_Menu_Superior_Mant1.Visible_btnproductos = false;
+            this.ucGe_Menu_Superior_Mant1.event_btnAnular_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnAnular_Click(this.ucGe_Menu_Superior_Mant1_event_btnAnular_Click);
+            this.ucGe_Menu_Superior_Mant1.event_btnSalir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnSalir_Click(this.ucGe_Menu_Superior_Mant1_event_btnSalir_Click);
             // 
             // panel2
             // 
@@ -411,11 +413,11 @@
             this.panel2.Controls.Add(this.labelControl1);
             this.panel2.Controls.Add(this.txtContribuyente);
             this.panel2.Controls.Add(this.txtDireccion);
-            this.panel2.Controls.Add(this.txtSubtotalIVA);
+            this.panel2.Controls.Add(this.txtTotalRetencionIVA);
             this.panel2.Controls.Add(this.txtID);
             this.panel2.Controls.Add(this.labelControl11);
             this.panel2.Controls.Add(this.txtTipo);
-            this.panel2.Controls.Add(this.txtSubtotal0);
+            this.panel2.Controls.Add(this.txtTotalRetencionFuente);
             this.panel2.Controls.Add(this.labelControl2);
             this.panel2.Controls.Add(this.labelControl10);
             this.panel2.Controls.Add(this.labelControl3);
@@ -437,7 +439,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(916, 323);
+            this.panel2.Size = new System.Drawing.Size(1144, 323);
             this.panel2.TabIndex = 34;
             // 
             // gcDetalleXML
@@ -448,7 +450,7 @@
             this.gcDetalleXML.Name = "gcDetalleXML";
             this.gcDetalleXML.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmbCobroTipo});
-            this.gcDetalleXML.Size = new System.Drawing.Size(916, 380);
+            this.gcDetalleXML.Size = new System.Drawing.Size(1144, 380);
             this.gcDetalleXML.TabIndex = 35;
             this.gcDetalleXML.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvDetalleXML});
@@ -501,33 +503,6 @@
             this.gridColumn13.VisibleIndex = 0;
             this.gridColumn13.Width = 750;
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Código";
-            this.gridColumn1.FieldName = "CodigoRetencion";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 209;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Porcentaje";
-            this.gridColumn2.FieldName = "PorcentajeRetencion";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 3;
-            this.gridColumn2.Width = 139;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Documento aplicado";
-            this.gridColumn3.FieldName = "NumDocSustento";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 235;
-            // 
             // cmbCobroTipo
             // 
             this.cmbCobroTipo.AutoHeight = false;
@@ -567,20 +542,48 @@
             this.gridColumn5.VisibleIndex = 1;
             this.gridColumn5.Width = 242;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Código";
+            this.gridColumn1.FieldName = "CodigoRetencion";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.Width = 209;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Porcentaje";
+            this.gridColumn2.FieldName = "PorcentajeRetencion";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 3;
+            this.gridColumn2.Width = 139;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Documento aplicado";
+            this.gridColumn3.FieldName = "NumDocSustento";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 235;
+            // 
             // frmCXC_XML_Mantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 731);
+            this.ClientSize = new System.Drawing.Size(1144, 731);
             this.Controls.Add(this.gcDetalleXML);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.ucGe_Menu_Superior_Mant1);
             this.Name = "frmCXC_XML_Mantenimiento";
             this.Text = "Digitalización de retenciones";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCXC_XML_Mantenimiento_FormClosed);
             this.Load += new System.EventHandler(this.frmCXC_XML_Mantenimiento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtContribuyente.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSubtotalIVA.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSubtotal0.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalRetencionIVA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalRetencionFuente.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deFecha.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deFecha.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodDocumento.Properties)).EndInit();
@@ -608,9 +611,9 @@
 
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.TextEdit txtContribuyente;
-        private DevExpress.XtraEditors.TextEdit txtSubtotalIVA;
+        private DevExpress.XtraEditors.TextEdit txtTotalRetencionIVA;
         private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.TextEdit txtSubtotal0;
+        private DevExpress.XtraEditors.TextEdit txtTotalRetencionFuente;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl labelControl8;
