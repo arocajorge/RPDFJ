@@ -34,7 +34,7 @@ namespace Core.Erp.Winform.CuentasxCobrar
 
         private void ucGe_Menu_Mantenimiento_x_usuario1_event_btnModificar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            LlamarFormulario(Cl_Enumeradores.eTipo_action.actualizar);
         }
 
         private void ucGe_Menu_Mantenimiento_x_usuario1_event_btnBuscar_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace Core.Erp.Winform.CuentasxCobrar
 
         private void ucGe_Menu_Mantenimiento_x_usuario1_event_btnconsultar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            LlamarFormulario(Cl_Enumeradores.eTipo_action.consultar);
         }
 
         private void ucGe_Menu_Mantenimiento_x_usuario1_event_btnSalir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -85,7 +85,22 @@ namespace Core.Erp.Winform.CuentasxCobrar
                 }
                 else
                 {
-
+                    var row = (cxc_XML_Documento_Info)gvDetalle.GetFocusedRow();
+                    if (row == null)
+                    {
+                        MessageBox.Show("Seleccione un registro",param.Nombre_sistema,MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    if (row.Estado == false && Accion != Cl_Enumeradores.eTipo_action.consultar)
+                    {
+                        MessageBox.Show("El registro se encuentra anulado",param.Nombre_sistema,MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    frmCXC_XML_Mantenimiento frmMant = new frmCXC_XML_Mantenimiento();
+                    frmMant.SetInfo(Accion, row);
+                    frmMant.MdiParent = this.MdiParent;
+                    frmMant.event_delegate_frmCXC_XML_Mantenimiento_FormClosed += frmMant_event_delegate_frmCXC_XML_Mantenimiento_FormClosed;
+                    frmMant.Show();
                 }
             }
             catch (Exception)
@@ -93,6 +108,11 @@ namespace Core.Erp.Winform.CuentasxCobrar
                 
                 throw;
             }
+        }
+
+        void frmMant_event_delegate_frmCXC_XML_Mantenimiento_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Buscar();
         }
 
         void frm_event_delegate_frmCxc_XML_Digitalizacion_FormClosed(object sender, FormClosedEventArgs e)
@@ -146,6 +166,11 @@ namespace Core.Erp.Winform.CuentasxCobrar
             }
         }
         #endregion
+
+        private void ucGe_Menu_Mantenimiento_x_usuario1_event_btnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LlamarFormulario(Cl_Enumeradores.eTipo_action.Anular);
+        }
         
     }
 }

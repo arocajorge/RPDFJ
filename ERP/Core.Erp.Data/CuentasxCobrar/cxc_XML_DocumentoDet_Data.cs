@@ -38,7 +38,8 @@ namespace Core.Erp.Data.CuentasxCobrar
                             IdCobro = item.IdCobro,
                             dc_TipoDocumento = item.dc_TipoDocumento,
                             IdBodega_Cbte = item.IdBodega_Cbte,
-                            IdCbte_vta_nota = item.IdCbte_vta_nota
+                            IdCbte_vta_nota = item.IdCbte_vta_nota,
+                            IdCobro_tipo = item.IdCobro_tipo
                         });
                     }
                 }

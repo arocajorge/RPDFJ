@@ -11,7 +11,8 @@ namespace Core.Erp.Business.CuentasxCobrar
     public class cxc_XML_Documento_Bus
     {
         cxc_XML_Documento_Data odata = new cxc_XML_Documento_Data();
-
+        cxc_XML_DocumentoDet_Bus busDet = new cxc_XML_DocumentoDet_Bus();
+        cxc_cobro_Bus busCobro = new cxc_cobro_Bus();
         public List<cxc_XML_Documento_Info> GetList(int IdEmpresa, DateTime FechaIni, DateTime FechaFin)
         {
             try
@@ -53,6 +54,14 @@ namespace Core.Erp.Business.CuentasxCobrar
         {
             try
             {
+                var lst = busDet.GetList(IdEmpresa, IdDocumento);
+                foreach (var item in lst)
+                {
+                    if (item.IdCobro != null && busCobro.AnularDB(new cxc_cobro_Info{ IdEmpresa = IdEmpresa, IdSucursal = item.IdSucursal ?? 0, IdCobro = item.IdCobro ?? 0, IdUsuarioUltAnu = IdUsuario }))
+                    {
+                        
+                    }    
+                }
                 return odata.AnularDB(IdEmpresa, IdDocumento, IdUsuario);
             }
             catch (Exception)
