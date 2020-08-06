@@ -38,6 +38,7 @@ namespace Core.Erp.Data.Roles_Fj
                       add.MinutosLunch = info.MinutosLunch;
                       add.considera_fecha_corte_dias_efectivo = info.considera_fecha_corte_dias_efectivo;
                       add.solo_graba_dias_efectivos = info.solo_graba_dias_efectivos;
+                      add.dias_integrales=info.dias_integrales;
                       db.ro_Parametro_calculo_Horas_Extras.Add(add);
                       db.SaveChanges();
                   }
@@ -77,7 +78,7 @@ namespace Core.Erp.Data.Roles_Fj
                   modific.IdRubro_Rebaja_Desahucio = info.IdRubro_Rebaja_Desahucio;
                   modific.considera_fecha_corte_dias_efectivo = info.considera_fecha_corte_dias_efectivo;
                   modific.solo_graba_dias_efectivos = info.solo_graba_dias_efectivos;
-
+                  modific.dias_integrales = info.dias_integrales;
                   modific.MinutosLunch = info.MinutosLunch;
                   db.SaveChanges();
                   return true;
@@ -122,7 +123,7 @@ namespace Core.Erp.Data.Roles_Fj
                       info.MinutosLunch = item.MinutosLunch;
                       info.considera_fecha_corte_dias_efectivo = item.considera_fecha_corte_dias_efectivo;
                       info.solo_graba_dias_efectivos = item.solo_graba_dias_efectivos;
-
+                      info.dias_integrales = item.dias_integrales;
                   }
 
                   return info;

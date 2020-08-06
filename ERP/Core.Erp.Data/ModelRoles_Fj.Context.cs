@@ -22,16 +22,17 @@ namespace Core.Erp.Data
             : base("name=EntityRoles_FJ")
         {
         }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
         //poner esta funcion dentro de la clase entities no viene por defecto
         public void SetCommandTimeOut(int TimeOut)
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
         public DbSet<vwro_ro_empleado_x_Activo_Fijo_Historico> vwro_ro_empleado_x_Activo_Fijo_Historico { get; set; }
         public DbSet<vwro_planificacion_x_ruta_emple> vwro_planificacion_x_ruta_emple { get; set; }
         public DbSet<vwro_fectividad_Entrega_x_Periodo_Empleado> vwro_fectividad_Entrega_x_Periodo_Empleado { get; set; }
@@ -63,7 +64,6 @@ namespace Core.Erp.Data
         public DbSet<ro_descuento_no_planificados> ro_descuento_no_planificados { get; set; }
         public DbSet<ro_descuento_no_planificados_Det> ro_descuento_no_planificados_Det { get; set; }
         public DbSet<vwro_empleado_x_rutas_asignadas_Det> vwro_empleado_x_rutas_asignadas_Det { get; set; }
-        public DbSet<ro_Parametro_calculo_Horas_Extras> ro_Parametro_calculo_Horas_Extras { get; set; }
         public DbSet<ro_Grupo_empleado> ro_Grupo_empleado { get; set; }
         public DbSet<ro_empleado_x_cargo_fuerza_grupo> ro_empleado_x_cargo_fuerza_grupo { get; set; }
         public DbSet<ro_marcaciones_x_empleado_x_incidentes_falt_Perm> ro_marcaciones_x_empleado_x_incidentes_falt_Perm { get; set; }
@@ -98,6 +98,7 @@ namespace Core.Erp.Data
         public DbSet<vwro_fectividad_Entrega_servicio> vwro_fectividad_Entrega_servicio { get; set; }
         public DbSet<ro_Calculo_Pago_Variable_Porcentaje_servicio> ro_Calculo_Pago_Variable_Porcentaje_servicio { get; set; }
         public DbSet<ro_rubros_calculados> ro_rubros_calculados { get; set; }
+        public DbSet<ro_Parametro_calculo_Horas_Extras> ro_Parametro_calculo_Horas_Extras { get; set; }
     
         public virtual ObjectResult<spro_calculo_pocentajes_pago_variable_Adm_Result> spro_calculo_pocentajes_pago_variable_Adm(Nullable<int> idempres, Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_fin, Nullable<int> idNomina_Tipo, Nullable<int> idPeriodo)
         {

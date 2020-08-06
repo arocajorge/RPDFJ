@@ -1169,6 +1169,7 @@
           <Property Name="MinutosLunch" Type="int" />
           <Property Name="considera_fecha_corte_dias_efectivo" Type="bit" />
           <Property Name="solo_graba_dias_efectivos" Type="bit" />
+          <Property Name="dias_integrales" Type="int" />
         </EntityType>
         <EntityType Name="ro_parametro_x_pago_variable">
           <Key>
@@ -2727,7 +2728,6 @@
           <EntitySet Name="ro_descuento_no_planificados" EntityType="ModelRoles_Fj.ro_descuento_no_planificados" />
           <EntitySet Name="ro_descuento_no_planificados_Det" EntityType="ModelRoles_Fj.ro_descuento_no_planificados_Det" />
           <EntitySet Name="vwro_empleado_x_rutas_asignadas_Det" EntityType="ModelRoles_Fj.vwro_empleado_x_rutas_asignadas_Det" />
-          <EntitySet Name="ro_Parametro_calculo_Horas_Extras" EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" />
           <EntitySet Name="ro_Grupo_empleado" EntityType="ModelRoles_Fj.ro_Grupo_empleado" />
           <EntitySet Name="ro_empleado_x_cargo_fuerza_grupo" EntityType="ModelRoles_Fj.ro_empleado_x_cargo_fuerza_grupo" />
           <AssociationSet Name="FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado" Association="ModelRoles_Fj.FK_ro_empleado_x_cargo_fuerza_grupo_ro_Grupo_empleado">
@@ -2855,6 +2855,7 @@
           </FunctionImport>
           <EntitySet Name="ro_Calculo_Pago_Variable_Porcentaje_servicio" EntityType="ModelRoles_Fj.ro_Calculo_Pago_Variable_Porcentaje_servicio" />
           <EntitySet Name="ro_rubros_calculados" EntityType="ModelRoles_Fj.ro_rubros_calculados" />
+          <EntitySet Name="ro_Parametro_calculo_Horas_Extras" EntityType="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras" />
           </EntityContainer>
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -3776,22 +3777,6 @@
           <Property Type="Int32" Name="IdRuta" Nullable="false" />
           <Property Type="Int32" Name="secuencia" Nullable="false" />
           <Property Type="String" Name="zo_descripcion" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ro_Parametro_calculo_Horas_Extras">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al100" Nullable="false" />
-          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al50" Nullable="false" />
-          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al25" Nullable="false" />
-          <Property Type="Int32" Name="Corte_Horas_extras" Nullable="false" />
-          <Property Type="Boolean" Name="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" Nullable="false" />
-          <Property Type="String" Name="IdRubro_rev_Horas" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdRubro_Rebaja_Desahucio" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="MinutosLunch" />
-          <Property Type="Boolean" Name="considera_fecha_corte_dias_efectivo" />
-          <Property Type="Boolean" Name="solo_graba_dias_efectivos" />
         </EntityType>
         <EntityType Name="ro_Grupo_empleado">
           <Key>
@@ -4987,6 +4972,23 @@
           <Property Type="String" Name="IdRubro_beb_ent" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="IdRubro_servicio" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="ro_Parametro_calculo_Horas_Extras">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al100" Nullable="false" />
+          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al50" Nullable="false" />
+          <Property Type="Boolean" Name="Se_calcula_horas_Extras_al25" Nullable="false" />
+          <Property Type="Int32" Name="Corte_Horas_extras" Nullable="false" />
+          <Property Type="Boolean" Name="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" Nullable="false" />
+          <Property Type="String" Name="IdRubro_rev_Horas" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdRubro_Rebaja_Desahucio" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="MinutosLunch" />
+          <Property Type="Boolean" Name="considera_fecha_corte_dias_efectivo" />
+          <Property Type="Boolean" Name="solo_graba_dias_efectivos" />
+          <Property Type="Int32" Name="dias_integrales" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5602,23 +5604,6 @@
                 <ScalarProperty Name="IdRuta" ColumnName="IdRuta" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ro_Parametro_calculo_Horas_Extras">
-            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras">
-              <MappingFragment StoreEntitySet="ro_Parametro_calculo_Horas_Extras">
-                <ScalarProperty Name="solo_graba_dias_efectivos" ColumnName="solo_graba_dias_efectivos" />
-                <ScalarProperty Name="considera_fecha_corte_dias_efectivo" ColumnName="considera_fecha_corte_dias_efectivo" />
-                <ScalarProperty Name="MinutosLunch" ColumnName="MinutosLunch" />
-                <ScalarProperty Name="IdRubro_Rebaja_Desahucio" ColumnName="IdRubro_Rebaja_Desahucio" />
-                <ScalarProperty Name="IdRubro_rev_Horas" ColumnName="IdRubro_rev_Horas" />
-                <ScalarProperty Name="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" ColumnName="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" />
-                <ScalarProperty Name="Corte_Horas_extras" ColumnName="Corte_Horas_extras" />
-                <ScalarProperty Name="Se_calcula_horas_Extras_al25" ColumnName="Se_calcula_horas_Extras_al25" />
-                <ScalarProperty Name="Se_calcula_horas_Extras_al50" ColumnName="Se_calcula_horas_Extras_al50" />
-                <ScalarProperty Name="Se_calcula_horas_Extras_al100" ColumnName="Se_calcula_horas_Extras_al100" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -6417,6 +6402,24 @@
                 <ScalarProperty Name="IdRubro_tot_egr" ColumnName="IdRubro_tot_egr" />
                 <ScalarProperty Name="IdRubro_tot_ing" ColumnName="IdRubro_tot_ing" />
                 <ScalarProperty Name="IdRubro_dias_trabajados" ColumnName="IdRubro_dias_trabajados" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_Parametro_calculo_Horas_Extras">
+            <EntityTypeMapping TypeName="ModelRoles_Fj.ro_Parametro_calculo_Horas_Extras">
+              <MappingFragment StoreEntitySet="ro_Parametro_calculo_Horas_Extras">
+                <ScalarProperty Name="dias_integrales" ColumnName="dias_integrales" />
+                <ScalarProperty Name="solo_graba_dias_efectivos" ColumnName="solo_graba_dias_efectivos" />
+                <ScalarProperty Name="considera_fecha_corte_dias_efectivo" ColumnName="considera_fecha_corte_dias_efectivo" />
+                <ScalarProperty Name="MinutosLunch" ColumnName="MinutosLunch" />
+                <ScalarProperty Name="IdRubro_Rebaja_Desahucio" ColumnName="IdRubro_Rebaja_Desahucio" />
+                <ScalarProperty Name="IdRubro_rev_Horas" ColumnName="IdRubro_rev_Horas" />
+                <ScalarProperty Name="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" ColumnName="Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo" />
+                <ScalarProperty Name="Corte_Horas_extras" ColumnName="Corte_Horas_extras" />
+                <ScalarProperty Name="Se_calcula_horas_Extras_al25" ColumnName="Se_calcula_horas_Extras_al25" />
+                <ScalarProperty Name="Se_calcula_horas_Extras_al50" ColumnName="Se_calcula_horas_Extras_al50" />
+                <ScalarProperty Name="Se_calcula_horas_Extras_al100" ColumnName="Se_calcula_horas_Extras_al100" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

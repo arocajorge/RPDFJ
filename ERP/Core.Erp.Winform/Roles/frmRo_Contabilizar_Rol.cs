@@ -338,7 +338,7 @@ namespace Core.Erp.Winform.Roles
                                     Comprobantes_roles_Bus.GuardarDB(Comprobantes_Info);
                                  }
                                     ro_Empleado_Novedad_Det_Bus novedades_bus = new ro_Empleado_Novedad_Det_Bus();
-                                    novedades_bus.ModificarEstadoCobroDB(periodoActual.IdEmpresa, periodoActual.IdNomina_Tipo, periodoActual.IdNomina_TipoLiqui, periodoActual.pe_FechaIni, periodoActual.pe_FechaFin);
+                                    novedades_bus.ModificarEstadoCobroDB(periodoActual.IdEmpresa, periodoActual.IdNomina_Tipo, periodoActual.IdNomina_TipoLiqui, periodoActual.pe_FechaIni.Date, periodoActual.pe_FechaFin.Date);
                                     periodoActual.Contabilizado = "S";
                                     ro_periodo_x_ro_Nomina_TipoLiqui_Bus oRo_periodo_x_ro_Nomina_TipoLiqui_Bus = new Business.Roles.ro_periodo_x_ro_Nomina_TipoLiqui_Bus();
                                     oRo_periodo_x_ro_Nomina_TipoLiqui_Bus.ModificarDB(periodoActual);

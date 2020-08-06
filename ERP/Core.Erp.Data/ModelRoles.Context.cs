@@ -27,6 +27,7 @@ namespace Core.Erp.Data
         {
             ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
         }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -59,7 +60,6 @@ namespace Core.Erp.Data
         public DbSet<ro_novedad_x_empleado> ro_novedad_x_empleado { get; set; }
         public DbSet<ro_Pago_decimos_x_Empleado> ro_Pago_decimos_x_Empleado { get; set; }
         public DbSet<ro_participacion_utilidad_empleado> ro_participacion_utilidad_empleado { get; set; }
-        public DbSet<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public DbSet<ro_rdep> ro_rdep { get; set; }
         public DbSet<ro_rol> ro_rol { get; set; }
         public DbSet<ro_rol_individual> ro_rol_individual { get; set; }
@@ -217,10 +217,11 @@ namespace Core.Erp.Data
         public DbSet<vwRo_CargaFamiliar_X_Catalogo> vwRo_CargaFamiliar_X_Catalogo { get; set; }
         public DbSet<vwro_empleadoXdepXcargo> vwro_empleadoXdepXcargo { get; set; }
         public DbSet<vwRo_Permiso_x_Empleado> vwRo_Permiso_x_Empleado { get; set; }
-        public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
         public DbSet<ro_rubro_tipo> ro_rubro_tipo { get; set; }
         public DbSet<ro_permiso_x_empleado_x_novedad> ro_permiso_x_empleado_x_novedad { get; set; }
         public DbSet<vwro_permiso_x_empleado_x_novedad> vwro_permiso_x_empleado_x_novedad { get; set; }
+        public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
+        public DbSet<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {
