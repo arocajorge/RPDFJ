@@ -206,7 +206,6 @@ namespace Core.Erp.Data
         public DbSet<ro_rol_detalle> ro_rol_detalle { get; set; }
         public DbSet<vwRo_empleaco_x_activofijo_x_puntocargo> vwRo_empleaco_x_activofijo_x_puntocargo { get; set; }
         public DbSet<vwRo_Rol_Detalle> vwRo_Rol_Detalle { get; set; }
-        public DbSet<vwro_empleado_combo> vwro_empleado_combo { get; set; }
         public DbSet<vwRo_nomina_x_horas_extras> vwRo_nomina_x_horas_extras { get; set; }
         public DbSet<vwRo_ActaFiniquito> vwRo_ActaFiniquito { get; set; }
         public DbSet<ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar> ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar { get; set; }
@@ -222,6 +221,7 @@ namespace Core.Erp.Data
         public DbSet<vwro_permiso_x_empleado_x_novedad> vwro_permiso_x_empleado_x_novedad { get; set; }
         public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
         public DbSet<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
+        public DbSet<vwro_empleado_combo> vwro_empleado_combo { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {

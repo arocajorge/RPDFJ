@@ -5422,8 +5422,79 @@ namespace Core.Erp.Data.Roles
                 throw new Exception(ex.InnerException.ToString());
             }
         }
-     
 
+        public List<ro_Empleado_consulta_Info> get_list(int IdEmpresa)
+        {
+            List<ro_Empleado_consulta_Info> lst = new List<ro_Empleado_consulta_Info>();
+            EntitiesRoles Oemp = new EntitiesRoles();
+            try
+            {
+
+
+                 lst = (from q in Oemp.vwro_empleado_combo
+                            where q.IdEmpresa == IdEmpresa
+                            select new ro_Empleado_consulta_Info
+                            {
+                                IdEmpresa = q.IdEmpresa,
+                                IdEmpleado = q.IdEmpleado,
+                                IdNomina_Tipo = q.IdTipoNomina,
+                                pe_cedulaRuc = q.pe_cedulaRuc,
+                                NomCompleto = q.Empleado,
+                                ca_descripcion=q.ca_descripcion,
+                                de_descripcion=q.de_descripcion,
+                                em_fechaIngaRol=q.em_fechaIngaRol
+                            }).ToList();
+
+               
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                mensaje = ex.InnerException + " " + ex.Message;
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+        public List<ro_Empleado_consulta_Info> get_list(int IdEmpresa, int IdNomina)
+        {
+            List<ro_Empleado_consulta_Info> lst = new List<ro_Empleado_consulta_Info>();
+            EntitiesRoles Oemp = new EntitiesRoles();
+            try
+            {
+
+
+                lst = (from q in Oemp.vwro_empleado_combo
+                             where q.IdEmpresa == IdEmpresa
+                             && q.IdTipoNomina==IdNomina
+                             select new ro_Empleado_consulta_Info
+                             {
+                                 IdEmpresa = q.IdEmpresa,
+                                 IdEmpleado = q.IdEmpleado,
+                                 IdNomina_Tipo = q.IdTipoNomina,
+                                 pe_cedulaRuc = q.pe_cedulaRuc,
+                                 NomCompleto = q.Empleado,
+                                 ca_descripcion = q.ca_descripcion,
+                                 de_descripcion = q.de_descripcion,
+                                 em_fechaIngaRol = q.em_fechaIngaRol
+                             }).ToList();
+
+
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                string arreglo = ToString();
+                tb_sis_Log_Error_Vzen_Data oDataLog = new tb_sis_Log_Error_Vzen_Data();
+                tb_sis_Log_Error_Vzen_Info Log_Error_sis = new tb_sis_Log_Error_Vzen_Info(ex.ToString(), "", arreglo, "", "", "", "", "", DateTime.Now);
+                mensaje = ex.InnerException + " " + ex.Message;
+                oDataLog.Guardar_Log_Error(Log_Error_sis, ref mensaje);
+                throw new Exception(ex.InnerException.ToString());
+            }
+        }
+    
     }
 }
                

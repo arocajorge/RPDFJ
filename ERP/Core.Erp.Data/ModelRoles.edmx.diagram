@@ -239,7 +239,6 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_detalle_x_rubro_acumulado" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_empleaco_x_activofijo_x_puntocargo" Width="1.5" PointX="1.5257273696017113" PointY="9.48692483151654" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Rol_Detalle" Width="1.5" PointX="10.089122983668522" PointY="12.080037450455146" />
-        <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleado_combo" Width="1.5" PointX="10.209010378554934" PointY="6.2782840907006916" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_nomina_x_horas_extras" Width="1.5" PointX="9.5614622857242182" PointY="10.476243649831154" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_ActaFiniquito" Width="1.5" PointX="6.7784257860753812" PointY="0.76230175828668367" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Width="1.5" PointX="4.3905429525256823" PointY="31.767398238073753" />
@@ -278,6 +277,7 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" />
+        <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleado_combo" Width="1.5" PointX="7.220986507470248" PointY="22.725073661061504" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

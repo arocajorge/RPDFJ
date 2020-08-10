@@ -807,7 +807,10 @@
       [vwro_empleado_combo].[IdEmpleado] AS [IdEmpleado], 
       [vwro_empleado_combo].[IdTipoNomina] AS [IdTipoNomina], 
       [vwro_empleado_combo].[Empleado] AS [Empleado], 
-      [vwro_empleado_combo].[pe_cedulaRuc] AS [pe_cedulaRuc]
+      [vwro_empleado_combo].[pe_cedulaRuc] AS [pe_cedulaRuc], 
+      [vwro_empleado_combo].[de_descripcion] AS [de_descripcion], 
+      [vwro_empleado_combo].[ca_descripcion] AS [ca_descripcion], 
+      [vwro_empleado_combo].[em_fechaIngaRol] AS [em_fechaIngaRol]
       FROM [dbo].[vwro_empleado_combo] AS [vwro_empleado_combo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto" EntityType="DBERPModelRoles.Store.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto" store:Type="Views" store:Schema="dbo" store:Name="vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto">
@@ -5758,12 +5761,16 @@
             <PropertyRef Name="IdTipoNomina" />
             <PropertyRef Name="Empleado" />
             <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="de_descripcion" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
           <Property Name="IdTipoNomina" Type="int" Nullable="false" />
           <Property Name="Empleado" Type="varchar" Nullable="false" MaxLength="201" />
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="de_descripcion" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="ca_descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="em_fechaIngaRol" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -10160,7 +10167,6 @@
           </AssociationSet>
           <EntitySet Name="vwRo_empleaco_x_activofijo_x_puntocargo" EntityType="DBERPModelRoles.vwRo_empleaco_x_activofijo_x_puntocargo" />
           <EntitySet Name="vwRo_Rol_Detalle" EntityType="DBERPModelRoles.vwRo_Rol_Detalle" />
-          <EntitySet Name="vwro_empleado_combo" EntityType="DBERPModelRoles.vwro_empleado_combo" />
           <EntitySet Name="vwRo_nomina_x_horas_extras" EntityType="DBERPModelRoles.vwRo_nomina_x_horas_extras" />
           <EntitySet Name="vwRo_ActaFiniquito" EntityType="DBERPModelRoles.vwRo_ActaFiniquito" />
           <FunctionImport Name="spRO_Novedades_no_cobradas" ReturnType="Collection(DBERPModelRoles.spRO_Novedades_no_cobradas_Result)">
@@ -10279,6 +10285,7 @@
             <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
             <End Role="ro_rol" EntitySet="ro_rol" />
           </AssociationSet>
+          <EntitySet Name="vwro_empleado_combo" EntityType="DBERPModelRoles.vwro_empleado_combo" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -16369,20 +16376,6 @@
           <Property Type="Int32" Name="IdPunto_cargo" />
           <Property Type="String" Name="IdCentroCosto" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="vwro_empleado_combo">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="IdTipoNomina" />
-            <PropertyRef Name="Empleado" />
-            <PropertyRef Name="pe_cedulaRuc" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IdTipoNomina" Nullable="false" />
-          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vwRo_nomina_x_horas_extras">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -17384,6 +17377,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vwro_empleado_combo">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdTipoNomina" />
+            <PropertyRef Name="Empleado" />
+            <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="de_descripcion" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdTipoNomina" Nullable="false" />
+          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="de_descripcion" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="ca_descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="em_fechaIngaRol" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -21575,17 +21586,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwro_empleado_combo">
-            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_empleado_combo">
-              <MappingFragment StoreEntitySet="vwro_empleado_combo">
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
-                <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwRo_nomina_x_horas_extras">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_nomina_x_horas_extras">
               <MappingFragment StoreEntitySet="vwRo_nomina_x_horas_extras">
@@ -22119,6 +22119,20 @@
                 <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
                 <ScalarProperty Name="IdNomina_TipoLiqui" ColumnName="IdNomina_TipoLiqui" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_empleado_combo">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_empleado_combo">
+              <MappingFragment StoreEntitySet="vwro_empleado_combo">
+                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="de_descripcion" ColumnName="de_descripcion" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -19,5 +19,8 @@ namespace Core.Erp.Data
         public int IdTipoNomina { get; set; }
         public string Empleado { get; set; }
         public string pe_cedulaRuc { get; set; }
+        public string de_descripcion { get; set; }
+        public string ca_descripcion { get; set; }
+        public Nullable<System.DateTime> em_fechaIngaRol { get; set; }
     }
 }

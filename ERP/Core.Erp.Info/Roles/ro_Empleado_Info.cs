@@ -248,4 +248,18 @@ namespace Core.Erp.Info.Roles
       
 
     }
+
+
+    public class ro_Empleado_consulta_Info
+    {
+        public int	IdEmpresa	 { get; set; }
+        public decimal	IdEmpleado { get; set; }
+        public int	IdNomina_Tipo	 { get; set; }
+        public string pe_cedulaRuc { get; set; }
+        public string NomCompleto { get; set; }
+        public string de_descripcion { get; set; }
+        public string ca_descripcion { get; set; }
+        public Nullable<System.DateTime> em_fechaIngaRol { get; set; }
+                    
+    }
 }
