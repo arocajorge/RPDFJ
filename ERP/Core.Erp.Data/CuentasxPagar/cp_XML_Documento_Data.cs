@@ -173,7 +173,7 @@ namespace Core.Erp.Data.CuentasxPagar
 
 
                     bool PasarRetencion = false;
-                    if (Existe(info.IdEmpresa, info.emi_Ruc, info.CodDocumento, info.Establecimiento, info.PuntoEmision, info.NumeroDocumento) == 2)
+                    if (Existe(info.IdEmpresa, info.emi_Ruc, info.CodDocumento, info.Establecimiento, info.PuntoEmision, info.NumeroDocumento, info.ClaveAcceso) == 2)
                         return true;
 
                     EntitiesGeneral dbG = new EntitiesGeneral();
@@ -486,15 +486,27 @@ namespace Core.Erp.Data.CuentasxPagar
             }
         }
 
-        public int Existe(int IdEmpresa, string Ruc, string CodDocumento, string Establecimiento, string PuntoEmision, string secuencial)
+        public int Existe(int IdEmpresa, string Ruc, string CodDocumento, string Establecimiento, string PuntoEmision, string secuencial, string ClaveAcceso)
         {
             try
             {
                 int Retorno = 1;
                 using (EntitiesCuentasxPagar db = new EntitiesCuentasxPagar())
                 {
-                    if(db.cp_XML_Documento.Where(q=> q.IdEmpresa == IdEmpresa && q.emi_Ruc == Ruc && q.CodDocumento == CodDocumento && q.Establecimiento == Establecimiento && q.PuntoEmision == PuntoEmision && q.NumeroDocumento == secuencial).Count() > 0)
-                        Retorno = 2;   
+                    var Entity = db.cp_XML_Documento.Where(q => q.IdEmpresa == IdEmpresa && q.emi_Ruc == Ruc && q.CodDocumento == CodDocumento && q.Establecimiento == Establecimiento && q.PuntoEmision == PuntoEmision && q.NumeroDocumento == secuencial).FirstOrDefault();
+                    if (Entity != null)
+                    {
+                        Retorno = 2;
+                        if (Entity.IdTipoCbte != null && Entity.IdCbteCble != null)
+                        {
+                            var OG = db.cp_orden_giro.Where(q => q.IdEmpresa == Entity.IdEmpresa && q.IdTipoCbte_Ogiro == Entity.IdTipoCbte && q.IdCbteCble_Ogiro == Entity.IdCbteCble).FirstOrDefault();
+                            if (OG != null && OG.Num_Autorizacion != Entity.ClaveAcceso)
+                            {
+                                OG.Num_Autorizacion = Entity.ClaveAcceso;
+                                db.SaveChanges();
+                            }
+                        }
+                    }
                 }
                 return Retorno;
             }

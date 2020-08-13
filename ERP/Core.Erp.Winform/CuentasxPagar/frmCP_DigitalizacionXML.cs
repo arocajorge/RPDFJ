@@ -272,7 +272,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                         #endregion                       
                         
                         #region Codigos de retención
-                        Documento.Imagen = bus_xml.Existe(param.IdEmpresa, Documento.emi_Ruc, Documento.CodDocumento, Documento.Establecimiento, Documento.PuntoEmision, Documento.NumeroDocumento);
+                        Documento.Imagen = bus_xml.Existe(param.IdEmpresa, Documento.emi_Ruc, Documento.CodDocumento, Documento.Establecimiento, Documento.PuntoEmision, Documento.NumeroDocumento, Documento.ClaveAcceso);
                         Documento.lstRetencion = new List<cp_XML_Documento_Retencion_Info>();
 
                         

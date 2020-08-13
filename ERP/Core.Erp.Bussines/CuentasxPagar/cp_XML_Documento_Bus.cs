@@ -57,11 +57,11 @@ namespace Core.Erp.Business.CuentasxPagar
             }
         }
 
-        public int Existe(int IdEmpresa, string Ruc, string CodDocumento, string Establecimiento, string PuntoEmision, string secuencial)
+        public int Existe(int IdEmpresa, string Ruc, string CodDocumento, string Establecimiento, string PuntoEmision, string secuencial, string ClaveAcceso)
         {
             try
             {
-                return odata.Existe(IdEmpresa, Ruc, CodDocumento, Establecimiento, PuntoEmision, secuencial);
+                return odata.Existe(IdEmpresa, Ruc, CodDocumento, Establecimiento, PuntoEmision, secuencial, ClaveAcceso);
             }
             catch (Exception)
             {

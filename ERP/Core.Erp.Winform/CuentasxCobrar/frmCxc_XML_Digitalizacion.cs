@@ -187,74 +187,81 @@ namespace Core.Erp.Winform.CuentasxCobrar
 
                         #region Detalle
                         var infoImpuestos = rootElement.Element("impuestos");
-                        var list = infoImpuestos.Elements("impuesto")
-                       .Select(element => element)
-                       .ToList();
-                        Documento.ListaDet = new List<cxc_XML_DocumentoDet_Info>();
-                        foreach (var Impuesto in list)
-                        {
-                            var det = new cxc_XML_DocumentoDet_Info
-                            {
-                                TipoRetencion = Impuesto.Element("codigo").Value == "1" ? "FTE" : "IVA",
-                                CodigoRetencion = Impuesto.Element("codigoRetencion").Value.ToString(),
-                                BaseImponible = Convert.ToDecimal(Impuesto.Element("baseImponible").Value.ToString()),
-                                PorcentajeRetencion = Convert.ToDecimal(Impuesto.Element("porcentajeRetener").Value.ToString()),
-                                ValorRetenido = Convert.ToDecimal(Impuesto.Element("valorRetenido").Value.ToString()),
-                                CodDocSustento = Impuesto.Element("codDocSustento").Value.ToString(),
-                                NumDocSustento = Impuesto.Element("numDocSustento").Value.ToString(),
-                                FechaEmisionDocSustento = DateTime.ParseExact(Impuesto.Element("fechaEmisionDocSustento").Value, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture),
-                            };
-                            if (det.TipoRetencion == "FTE")
-                            {
-                                Documento.TotalRetencionFTE += Convert.ToDouble(det.ValorRetenido);
-                                double Porcentaje = Convert.ToDouble(det.PorcentajeRetencion);
-                                var TipoCobro = ListaTipoCobro.Where(q => q.ESRetenFTE == "S" && q.PorcentajeRet == Porcentaje).FirstOrDefault();
-                                if (TipoCobro == null)
-                                {
-                                    MessageBox.Show("El porcentaje de retención de fuente " + Porcentaje.ToString() + " no se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
-                                det.IdCobro_tipo = TipoCobro.IdCobro_tipo;
-                            }
-                            else
-                            {
-                                Documento.TotalRetencionIVA += Convert.ToDouble(det.ValorRetenido);
-                                double Porcentaje = Convert.ToDouble(det.PorcentajeRetencion);
-                                var TipoCobro = ListaTipoCobro.Where(q => q.ESRetenIVA == "S" && q.PorcentajeRet == Porcentaje).FirstOrDefault();
-                                if (TipoCobro == null)
-                                {
-                                    MessageBox.Show("El porcentaje de retención de IVA " + Porcentaje.ToString() + " no se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    return;
-                                }
-                                det.IdCobro_tipo = TipoCobro.IdCobro_tipo;
-                            }
-                            det.dc_TipoDocumento = det.CodDocSustento == "01" ? "FACT" : "NTDB";
-                            Documento.DocumentoSustento = det.NumDocSustento;
-                            Documento.ListaDet.Add(det);
-                        }
 
-                        #region Validar saldo factura
-                        if (Documento.AplicaRetencion == 0 && Documento.ListaDet.Count > 0)
+                        if (infoImpuestos != null)
                         {
-                            var Det1 = Documento.ListaDet.First();
-                            var Cab = busDet.GetInfoParaCruzar(param.IdEmpresa, Det1.dc_TipoDocumento, Det1.NumDocSustento, Convert.ToDouble(Documento.ListaDet.Sum(q => q.ValorRetenido)),Documento.IdCliente);
-                            if (Cab.IdSucursal > 0)
+                            var list = infoImpuestos.Elements("impuesto")
+                           .Select(element => element)
+                           .ToList();
+                            Documento.ListaDet = new List<cxc_XML_DocumentoDet_Info>();
+                            foreach (var Impuesto in list)
                             {
-                                Documento.IdSucursal = Cab.IdSucursal;
-                                Documento.IdBodega_Cbte = Cab.IdBodega_Cbte;
-                                Documento.IdCbte_vta_nota = Cab.IdCbte_vta_nota;
+                                var det = new cxc_XML_DocumentoDet_Info
+                                {
+                                    TipoRetencion = Impuesto.Element("codigo").Value == "1" ? "FTE" : "IVA",
+                                    CodigoRetencion = Impuesto.Element("codigoRetencion").Value.ToString(),
+                                    BaseImponible = Convert.ToDecimal(Impuesto.Element("baseImponible").Value.ToString()),
+                                    PorcentajeRetencion = Convert.ToDecimal(Impuesto.Element("porcentajeRetener").Value.ToString()),
+                                    ValorRetenido = Convert.ToDecimal(Impuesto.Element("valorRetenido").Value.ToString()),
+                                    CodDocSustento = Impuesto.Element("codDocSustento").Value.ToString(),
+                                    NumDocSustento = Impuesto.Element("numDocSustento").Value.ToString(),
+                                    FechaEmisionDocSustento = DateTime.ParseExact(Impuesto.Element("fechaEmisionDocSustento").Value, "dd/MM/yyyy", System.Globalization.CultureInfo.CurrentCulture),
+                                };
+                                if (det.TipoRetencion == "FTE")
+                                {
+                                    Documento.TotalRetencionFTE += Convert.ToDouble(det.ValorRetenido);
+                                    double Porcentaje = Convert.ToDouble(det.PorcentajeRetencion);
+                                    var TipoCobro = ListaTipoCobro.Where(q => q.ESRetenFTE == "S" && q.PorcentajeRet == Porcentaje).FirstOrDefault();
+                                    if (TipoCobro == null)
+                                    {
+                                        MessageBox.Show("El porcentaje de retención de fuente " + Porcentaje.ToString() + " no se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                    det.IdCobro_tipo = TipoCobro.IdCobro_tipo;
+                                }
+                                else
+                                {
+                                    Documento.TotalRetencionIVA += Convert.ToDouble(det.ValorRetenido);
+                                    double Porcentaje = Convert.ToDouble(det.PorcentajeRetencion);
+                                    var TipoCobro = ListaTipoCobro.Where(q => q.ESRetenIVA == "S" && q.PorcentajeRet == Porcentaje).FirstOrDefault();
+                                    if (TipoCobro == null)
+                                    {
+                                        MessageBox.Show("El porcentaje de retención de IVA " + Porcentaje.ToString() + " no se encuentra registrado", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                    det.IdCobro_tipo = TipoCobro.IdCobro_tipo;
+                                }
+                                det.dc_TipoDocumento = det.CodDocSustento == "01" ? "FACT" : "NTDB";
+                                Documento.DocumentoSustento = det.NumDocSustento;
+                                Documento.ListaDet.Add(det);
                             }
-                            Documento.AplicaRetencion = Cab.AplicaRetencion;
-                            Documento.Motivo = Cab.Motivo;
+
+                            #region Validar saldo factura
+                            if (Documento.AplicaRetencion == 0 && Documento.ListaDet.Count > 0)
+                            {
+                                var Det1 = Documento.ListaDet.First();
+                                var Cab = busDet.GetInfoParaCruzar(param.IdEmpresa, Det1.dc_TipoDocumento, Det1.NumDocSustento, Convert.ToDouble(Documento.ListaDet.Sum(q => q.ValorRetenido)), Documento.IdCliente);
+                                if (Cab.IdSucursal > 0)
+                                {
+                                    Documento.IdSucursal = Cab.IdSucursal;
+                                    Documento.IdBodega_Cbte = Cab.IdBodega_Cbte;
+                                    Documento.IdCbte_vta_nota = Cab.IdCbte_vta_nota;
+                                }
+                                Documento.AplicaRetencion = Cab.AplicaRetencion;
+                                Documento.Motivo = Cab.Motivo;
+                            }
+                            #endregion
+
+                        #endregion
                         }
-                        #endregion
-                        
-                        #endregion
+                        else
+                            MessageBox.Show("El archivo: " + item + "\nNo cumple las especificaciones técnicas", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                         blst.Add(Documento);
                         gcDetalle.DataSource = null;
                         gcDetalle.DataSource = blst;
                     }
+                    
                 }
             }
             catch (Exception ex)
