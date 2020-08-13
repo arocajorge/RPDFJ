@@ -62,9 +62,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbEmpleado = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCedula = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCodigoEmpleado = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -392,7 +389,7 @@
             this.cmbEmpleado.Name = "cmbEmpleado";
             this.cmbEmpleado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbEmpleado.Properties.DisplayMember = "InfoPersona.pe_nombreCompleto";
+            this.cmbEmpleado.Properties.DisplayMember = "NomCompleto";
             this.cmbEmpleado.Properties.ValueMember = "IdEmpleado";
             this.cmbEmpleado.Properties.View = this.gridView5;
             this.cmbEmpleado.Size = new System.Drawing.Size(277, 20);
@@ -402,9 +399,6 @@
             // gridView5
             // 
             this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn23,
-            this.gridColumn1,
-            this.gridColumn2,
             this.gridColumn3,
             this.colCedula,
             this.colCodigoEmpleado});
@@ -414,56 +408,35 @@
             this.gridView5.OptionsView.ShowAutoFilterRow = true;
             this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "Id Empleado";
-            this.gridColumn23.FieldName = "IdEmpleado";
-            this.gridColumn23.Name = "gridColumn23";
-            this.gridColumn23.Width = 220;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Nombre";
-            this.gridColumn1.FieldName = "InfoPersona.pe_nombre";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Width = 270;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Apellido";
-            this.gridColumn2.FieldName = "InfoPersona.pe_apellido";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Width = 304;
-            // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Nombre Completo";
-            this.gridColumn3.FieldName = "InfoPersona.pe_nombreCompleto";
+            this.gridColumn3.FieldName = "NomCompleto";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 721;
+            this.gridColumn3.Width = 920;
             // 
             // colCedula
             // 
             this.colCedula.Caption = "Cédula";
-            this.colCedula.FieldName = "InfoPersona.pe_cedulaRuc";
+            this.colCedula.FieldName = "pe_cedulaRuc";
             this.colCedula.Name = "colCedula";
             this.colCedula.OptionsColumn.AllowEdit = false;
             this.colCedula.Visible = true;
             this.colCedula.VisibleIndex = 1;
-            this.colCedula.Width = 143;
+            this.colCedula.Width = 182;
             // 
             // colCodigoEmpleado
             // 
             this.colCodigoEmpleado.Caption = "Id.Empleado";
-            this.colCodigoEmpleado.FieldName = "em_codigo";
+            this.colCodigoEmpleado.FieldName = "IdEmpleado";
             this.colCodigoEmpleado.Name = "colCodigoEmpleado";
             this.colCodigoEmpleado.OptionsColumn.AllowEdit = false;
             this.colCodigoEmpleado.Visible = true;
             this.colCodigoEmpleado.VisibleIndex = 0;
-            this.colCodigoEmpleado.Width = 68;
+            this.colCodigoEmpleado.Width = 78;
             // 
             // txtCedula
             // 
@@ -724,9 +697,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.SearchLookUpEdit cmbEmpleado;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn colCedula;
         private DevExpress.XtraGrid.Columns.GridColumn colCodigoEmpleado;

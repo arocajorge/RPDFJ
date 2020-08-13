@@ -1858,5 +1858,34 @@ namespace Core.Erp.Business.Roles
             }
         }
 
+
+        public List<ro_Empleado_consulta_Info> get_list(int idEmpresa)
+        {
+            try
+            {
+                return oRro_Empleado_Data.get_list(idEmpresa);
+            }
+            catch (Exception ex)
+            {
+
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GetListPorNovedadAvisoNuevoSueldo", ex.Message), ex) { EntityType = typeof(ro_Empleado_Bus) };
+
+            }
+        }
+        public List<ro_Empleado_consulta_Info> get_list(int idEmpresa, int IdNomina)
+        {
+            try
+            {
+                return oRro_Empleado_Data.get_list(idEmpresa, IdNomina);
+            }
+            catch (Exception ex)
+            {
+
+                Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+                throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "GetListPorNovedadAvisoNuevoSueldo", ex.Message), ex) { EntityType = typeof(ro_Empleado_Bus) };
+
+            }
+        }
     }
 }

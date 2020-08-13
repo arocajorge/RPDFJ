@@ -82,7 +82,7 @@ namespace Core.Erp.Winform.Roles_Fj
                     check_se_paga_horasal50.Checked = info.Se_calcula_horas_Extras_al50;
                     txt_diasCorte.EditValue = info.Corte_Horas_extras;
                     check_reverso.Checked = info.Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo;
-
+                    txt_diaa_integrales.EditValue = info.dias_integrales;
                     if (info.Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo)
                     {
                         cmb_rubros.EditValue = info.IdRubro_rev_Horas;
@@ -137,6 +137,7 @@ namespace Core.Erp.Winform.Roles_Fj
                 info.Se_calcula_horas_Extras_al50 = check_se_paga_horasal50.Checked;
                 info.Corte_Horas_extras = Convert.ToInt32(txt_diasCorte.EditValue);
                 info.Se_Crea_reverso_h_extras_si_Emp_tiene_remplazo = check_reverso.Checked;
+                info.dias_integrales = (txt_diaa_integrales.EditValue)==null?0:Convert.ToInt32(txt_diaa_integrales.EditValue);
                 if (check_reverso.Checked == true)
                 {
                     info.IdRubro_rev_Horas = cmb_rubros.EditValue.ToString();

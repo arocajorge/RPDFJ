@@ -214,7 +214,7 @@ namespace Core.Erp.Business.General
             }
             catch (Exception ex)
             {
-                throw;
+                    throw;
             }
         }
 

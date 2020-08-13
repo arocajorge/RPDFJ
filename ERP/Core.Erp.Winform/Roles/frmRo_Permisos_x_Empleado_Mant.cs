@@ -47,7 +47,7 @@ namespace Core.Erp.Winform.Roles
         ro_Catalogo_Bus BusCatalogo = new ro_Catalogo_Bus();
         BindingList<ro_Empleado_Novedad_Det_Info> lst_novedades = new BindingList<ro_Empleado_Novedad_Det_Info>();
         ro_HistoricoSueldo_Bus BusSueldo = new ro_HistoricoSueldo_Bus();
-
+        List<ro_Empleado_consulta_Info> lst_empleado = new List<ro_Empleado_consulta_Info>();
         public delegate void delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing(object sender, FormClosingEventArgs e);
         public event delegate_frmRo_Permisos_x_Empleado_Mant_FormClosing event_frmRo_Permisos_x_Empleado_Mant_FormClosing;
         
@@ -354,19 +354,17 @@ namespace Core.Erp.Winform.Roles
             try
             {
                 ro_Empleado_Info inf = new ro_Empleado_Info();
-    
-                EmpInfo1.Add(new ro_Empleado_Info());
-
+   
                 oListEstadoAprobacion.Add(new ro_Catalogo_Info());
 
 
                 oRo_TipoLicencia_Info.Add(new ro_Catalogo_Info());
 
 
-                EmpInfo1.AddRange(empBus.Get_List_Empleado_(param.IdEmpresa));
+                lst_empleado = empBus.get_list(param.IdEmpresa);
 
 
-                cmbEmpleado.Properties.DataSource = EmpInfo1;
+                cmbEmpleado.Properties.DataSource = lst_empleado;
               
 
                 //LLENA EL COMBO TIPO DE LICENCIA
@@ -580,14 +578,14 @@ namespace Core.Erp.Winform.Roles
 
                 if (iAccion == Cl_Enumeradores.eTipo_action.grabar)
                 {
-                    empinfo = (ro_Empleado_Info)cmbEmpleado.Properties.View.GetFocusedRow();
+                 var   empinfo_ = (ro_Empleado_consulta_Info)cmbEmpleado.Properties.View.GetFocusedRow();
                     if (empinfo != null)
                     {
-                        txtCedula.EditValue = empinfo.InfoPersona.pe_cedulaRuc;
-                        txtDepartamento.EditValue = (empinfo.de_descripcion).Trim();
-                        txtCargo.EditValue = empinfo.cargo;
+                        txtCedula.EditValue = empinfo_.pe_cedulaRuc;
+                        txtDepartamento.EditValue = (empinfo_.de_descripcion).Trim();
+                        txtCargo.EditValue = empinfo_.ca_descripcion;
 
-                        ListadoTipoLiquidacion = bus_nomina_tipo_liq.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(param.IdEmpresa, Convert.ToInt32(empinfo.IdNomina_Tipo));
+                        ListadoTipoLiquidacion = bus_nomina_tipo_liq.Get_List_Nomina_Tipoliqui_x_Nomina_Tipo(param.IdEmpresa, Convert.ToInt32(empinfo_.IdNomina_Tipo));
                         cmb_nomina_tipo_liq.DataSource = ListadoTipoLiquidacion;
                     }
                 }

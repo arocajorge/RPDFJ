@@ -18,9 +18,9 @@ namespace Core.Erp.Data
         {
             this.ro_Ing_Egre_x_Empleado = new HashSet<ro_Ing_Egre_x_Empleado>();
             this.ro_nomina_x_horas_extras = new HashSet<ro_nomina_x_horas_extras>();
-            this.ro_periodo_x_ro_Nomina_TipoLiqui = new HashSet<ro_periodo_x_ro_Nomina_TipoLiqui>();
             this.ro_rol = new HashSet<ro_rol>();
             this.ro_salario_digno = new HashSet<ro_salario_digno>();
+            this.ro_periodo_x_ro_Nomina_TipoLiqui = new HashSet<ro_periodo_x_ro_Nomina_TipoLiqui>();
         }
     
         public int IdEmpresa { get; set; }
@@ -41,8 +41,8 @@ namespace Core.Erp.Data
     
         public virtual ICollection<ro_Ing_Egre_x_Empleado> ro_Ing_Egre_x_Empleado { get; set; }
         public virtual ICollection<ro_nomina_x_horas_extras> ro_nomina_x_horas_extras { get; set; }
-        public virtual ICollection<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public virtual ICollection<ro_rol> ro_rol { get; set; }
         public virtual ICollection<ro_salario_digno> ro_salario_digno { get; set; }
+        public virtual ICollection<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
     }
 }

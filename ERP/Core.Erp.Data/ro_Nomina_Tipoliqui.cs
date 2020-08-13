@@ -21,8 +21,8 @@ namespace Core.Erp.Data
             this.ro_nomina_tipo_liqui_orden = new HashSet<ro_nomina_tipo_liqui_orden>();
             this.ro_nomina_x_horas_extras = new HashSet<ro_nomina_x_horas_extras>();
             this.ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar = new HashSet<ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar>();
-            this.ro_periodo_x_ro_Nomina_TipoLiqui = new HashSet<ro_periodo_x_ro_Nomina_TipoLiqui>();
             this.ro_rol = new HashSet<ro_rol>();
+            this.ro_periodo_x_ro_Nomina_TipoLiqui = new HashSet<ro_periodo_x_ro_Nomina_TipoLiqui>();
         }
     
         public int IdEmpresa { get; set; }
@@ -38,6 +38,7 @@ namespace Core.Erp.Data
         public Nullable<System.DateTime> FechaUltModi { get; set; }
         public string Estado { get; set; }
         public string nom_store_procedure { get; set; }
+        public Nullable<bool> restas_dias_con_falta { get; set; }
     
         public virtual ICollection<ro_empleado_Novedad> ro_empleado_Novedad { get; set; }
         public virtual ICollection<ro_Ing_Egre_x_Empleado> ro_Ing_Egre_x_Empleado { get; set; }
@@ -45,7 +46,7 @@ namespace Core.Erp.Data
         public virtual ICollection<ro_nomina_tipo_liqui_orden> ro_nomina_tipo_liqui_orden { get; set; }
         public virtual ICollection<ro_nomina_x_horas_extras> ro_nomina_x_horas_extras { get; set; }
         public virtual ICollection<ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar> ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar { get; set; }
-        public virtual ICollection<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public virtual ICollection<ro_rol> ro_rol { get; set; }
+        public virtual ICollection<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
     }
 }

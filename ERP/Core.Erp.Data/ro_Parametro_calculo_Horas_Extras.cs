@@ -25,5 +25,6 @@ namespace Core.Erp.Data
         public Nullable<int> MinutosLunch { get; set; }
         public Nullable<bool> considera_fecha_corte_dias_efectivo { get; set; }
         public Nullable<bool> solo_graba_dias_efectivos { get; set; }
+        public Nullable<int> dias_integrales { get; set; }
     }
 }

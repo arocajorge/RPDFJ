@@ -807,7 +807,10 @@
       [vwro_empleado_combo].[IdEmpleado] AS [IdEmpleado], 
       [vwro_empleado_combo].[IdTipoNomina] AS [IdTipoNomina], 
       [vwro_empleado_combo].[Empleado] AS [Empleado], 
-      [vwro_empleado_combo].[pe_cedulaRuc] AS [pe_cedulaRuc]
+      [vwro_empleado_combo].[pe_cedulaRuc] AS [pe_cedulaRuc], 
+      [vwro_empleado_combo].[de_descripcion] AS [de_descripcion], 
+      [vwro_empleado_combo].[ca_descripcion] AS [ca_descripcion], 
+      [vwro_empleado_combo].[em_fechaIngaRol] AS [em_fechaIngaRol]
       FROM [dbo].[vwro_empleado_combo] AS [vwro_empleado_combo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto" EntityType="DBERPModelRoles.Store.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto" store:Type="Views" store:Schema="dbo" store:Name="vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto">
@@ -2650,10 +2653,6 @@
             <End Role="ro_periodo" EntitySet="ro_periodo" />
             <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
           </AssociationSet>
-          <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" Association="DBERPModelRoles.Store.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad">
-            <End Role="ro_empleado_Novedad" EntitySet="ro_empleado_Novedad" />
-            <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
-          </AssociationSet>
           <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" Association="DBERPModelRoles.Store.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
             <End Role="ro_permiso_x_empleado" EntitySet="ro_permiso_x_empleado" />
             <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
@@ -3927,6 +3926,7 @@
           <Property Name="FechaUltModi" Type="datetime" />
           <Property Name="Estado" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="nom_store_procedure" Type="varchar" MaxLength="500" />
+          <Property Name="restas_dias_con_falta" Type="bit" />
         </EntityType>
         <EntityType Name="ro_Nomina_Tipoliqui_x_Sueldo">
           <Key>
@@ -5761,12 +5761,16 @@
             <PropertyRef Name="IdTipoNomina" />
             <PropertyRef Name="Empleado" />
             <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="de_descripcion" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
           <Property Name="IdTipoNomina" Type="int" Nullable="false" />
           <Property Name="Empleado" Type="varchar" Nullable="false" MaxLength="201" />
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="de_descripcion" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="ca_descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="em_fechaIngaRol" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwRo_empleado_gastos_perso_x_Gastos_deduci_x_sri_tipo_Gasto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -9260,22 +9264,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad">
-          <End Role="ro_empleado_Novedad" Type="DBERPModelRoles.Store.ro_empleado_Novedad" Multiplicity="1" />
-          <End Role="ro_permiso_x_empleado_x_novedad" Type="DBERPModelRoles.Store.ro_permiso_x_empleado_x_novedad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_empleado_Novedad">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNovedad" />
-              <PropertyRef Name="IdEmpleado" />
-            </Principal>
-            <Dependent Role="ro_permiso_x_empleado_x_novedad">
-              <PropertyRef Name="IdEmpresa_nov" />
-              <PropertyRef Name="IdNovedad" />
-              <PropertyRef Name="IdEmpleado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
           <End Role="ro_permiso_x_empleado" Type="DBERPModelRoles.Store.ro_permiso_x_empleado" Multiplicity="1" />
           <End Role="ro_permiso_x_empleado_x_novedad" Type="DBERPModelRoles.Store.ro_permiso_x_empleado_x_novedad" Multiplicity="*" />
@@ -9691,7 +9679,6 @@
           <EntitySet Name="ro_novedad_x_empleado" EntityType="DBERPModelRoles.ro_novedad_x_empleado" />
           <EntitySet Name="ro_Pago_decimos_x_Empleado" EntityType="DBERPModelRoles.ro_Pago_decimos_x_Empleado" />
           <EntitySet Name="ro_participacion_utilidad_empleado" EntityType="DBERPModelRoles.ro_participacion_utilidad_empleado" />
-          <EntitySet Name="ro_periodo_x_ro_Nomina_TipoLiqui" EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" />
           <EntitySet Name="ro_rdep" EntityType="DBERPModelRoles.ro_rdep" />
           <EntitySet Name="ro_rol" EntityType="DBERPModelRoles.ro_rol" />
           <EntitySet Name="ro_rol_individual" EntityType="DBERPModelRoles.ro_rol_individual" />
@@ -9860,10 +9847,6 @@
             <End Role="ro_marcaciones_tipo" EntitySet="ro_marcaciones_tipo" />
             <End Role="ro_marcaciones_Equipo_x_TipoMarcacion" EntitySet="ro_marcaciones_Equipo_x_TipoMarcacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui">
-            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
-            <End Role="ro_rol" EntitySet="ro_rol" />
-          </AssociationSet>
           <AssociationSet Name="FK_ro_rol_individual_ro_rol" Association="DBERPModelRoles.FK_ro_rol_individual_ro_rol">
             <End Role="ro_rol" EntitySet="ro_rol" />
             <End Role="ro_rol_individual" EntitySet="ro_rol_individual" />
@@ -9974,10 +9957,6 @@
           <AssociationSet Name="FK_ro_nomina_x_horas_extras_ro_periodo" Association="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_periodo">
             <End Role="ro_periodo" EntitySet="ro_periodo" />
             <End Role="ro_nomina_x_horas_extras" EntitySet="ro_nomina_x_horas_extras" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo">
-            <End Role="ro_periodo" EntitySet="ro_periodo" />
-            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
           </AssociationSet>
           <AssociationSet Name="FK_ro_rol_ro_periodo" Association="DBERPModelRoles.FK_ro_rol_ro_periodo">
             <End Role="ro_periodo" EntitySet="ro_periodo" />
@@ -10188,7 +10167,6 @@
           </AssociationSet>
           <EntitySet Name="vwRo_empleaco_x_activofijo_x_puntocargo" EntityType="DBERPModelRoles.vwRo_empleaco_x_activofijo_x_puntocargo" />
           <EntitySet Name="vwRo_Rol_Detalle" EntityType="DBERPModelRoles.vwRo_Rol_Detalle" />
-          <EntitySet Name="vwro_empleado_combo" EntityType="DBERPModelRoles.vwro_empleado_combo" />
           <EntitySet Name="vwRo_nomina_x_horas_extras" EntityType="DBERPModelRoles.vwRo_nomina_x_horas_extras" />
           <EntitySet Name="vwRo_ActaFiniquito" EntityType="DBERPModelRoles.vwRo_ActaFiniquito" />
           <FunctionImport Name="spRO_Novedades_no_cobradas" ReturnType="Collection(DBERPModelRoles.spRO_Novedades_no_cobradas_Result)">
@@ -10242,6 +10220,29 @@
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="vwRo_Permiso_x_Empleado" EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" />
+          <AssociationSet Name="FK_ro_marcaciones_x_empleado_ro_empleado" Association="DBERPModelRoles.FK_ro_marcaciones_x_empleado_ro_empleado">
+            <End Role="ro_empleado" EntitySet="ro_empleado" />
+            <End Role="ro_marcaciones_x_empleado" EntitySet="ro_marcaciones_x_empleado" />
+          </AssociationSet>
+          <EntitySet Name="ro_rubro_tipo" EntityType="DBERPModelRoles.ro_rubro_tipo" />
+          <AssociationSet Name="FK_ro_empleado_novedad_det_ro_rubro_tipo" Association="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_rubro_tipo">
+            <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
+            <End Role="ro_empleado_novedad_det" EntitySet="ro_empleado_novedad_det" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ro_rol_detalle_ro_rubro_tipo" Association="DBERPModelRoles.FK_ro_rol_detalle_ro_rubro_tipo">
+            <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
+            <End Role="ro_rol_detalle" EntitySet="ro_rol_detalle" />
+          </AssociationSet>
+          <EntitySet Name="ro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" />
+          <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad">
+            <End Role="ro_empleado_Novedad" EntitySet="ro_empleado_Novedad" />
+            <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
+            <End Role="ro_permiso_x_empleado" EntitySet="ro_permiso_x_empleado" />
+            <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
+          </AssociationSet>
+          <EntitySet Name="vwro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" />
           <EntitySet Name="ro_Nomina_Tipoliqui" EntityType="DBERPModelRoles.ro_Nomina_Tipoliqui" />
           <AssociationSet Name="FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" Association="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui">
             <End Role="ro_Nomina_Tipoliqui" EntitySet="ro_Nomina_Tipoliqui" />
@@ -10267,37 +10268,24 @@
             <End Role="ro_Nomina_Tipoliqui" EntitySet="ro_Nomina_Tipoliqui" />
             <End Role="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" EntitySet="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" />
           </AssociationSet>
-          <AssociationSet Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui">
-            <End Role="ro_Nomina_Tipoliqui" EntitySet="ro_Nomina_Tipoliqui" />
-            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
-          </AssociationSet>
           <AssociationSet Name="FK_ro_rol_ro_Nomina_Tipoliqui" Association="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui">
             <End Role="ro_Nomina_Tipoliqui" EntitySet="ro_Nomina_Tipoliqui" />
             <End Role="ro_rol" EntitySet="ro_rol" />
           </AssociationSet>
-          <AssociationSet Name="FK_ro_marcaciones_x_empleado_ro_empleado" Association="DBERPModelRoles.FK_ro_marcaciones_x_empleado_ro_empleado">
-            <End Role="ro_empleado" EntitySet="ro_empleado" />
-            <End Role="ro_marcaciones_x_empleado" EntitySet="ro_marcaciones_x_empleado" />
+          <EntitySet Name="ro_periodo_x_ro_Nomina_TipoLiqui" EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" />
+          <AssociationSet Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui">
+            <End Role="ro_Nomina_Tipoliqui" EntitySet="ro_Nomina_Tipoliqui" />
+            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
           </AssociationSet>
-          <EntitySet Name="ro_rubro_tipo" EntityType="DBERPModelRoles.ro_rubro_tipo" />
-          <AssociationSet Name="FK_ro_empleado_novedad_det_ro_rubro_tipo" Association="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_rubro_tipo">
-            <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
-            <End Role="ro_empleado_novedad_det" EntitySet="ro_empleado_novedad_det" />
+          <AssociationSet Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo">
+            <End Role="ro_periodo" EntitySet="ro_periodo" />
+            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
           </AssociationSet>
-          <AssociationSet Name="FK_ro_rol_detalle_ro_rubro_tipo" Association="DBERPModelRoles.FK_ro_rol_detalle_ro_rubro_tipo">
-            <End Role="ro_rubro_tipo" EntitySet="ro_rubro_tipo" />
-            <End Role="ro_rol_detalle" EntitySet="ro_rol_detalle" />
+          <AssociationSet Name="FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui">
+            <End Role="ro_periodo_x_ro_Nomina_TipoLiqui" EntitySet="ro_periodo_x_ro_Nomina_TipoLiqui" />
+            <End Role="ro_rol" EntitySet="ro_rol" />
           </AssociationSet>
-          <EntitySet Name="ro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.ro_permiso_x_empleado_x_novedad" />
-          <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad">
-            <End Role="ro_empleado_Novedad" EntitySet="ro_empleado_Novedad" />
-            <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado">
-            <End Role="ro_permiso_x_empleado" EntitySet="ro_permiso_x_empleado" />
-            <End Role="ro_permiso_x_empleado_x_novedad" EntitySet="ro_permiso_x_empleado_x_novedad" />
-          </AssociationSet>
-          <EntitySet Name="vwro_permiso_x_empleado_x_novedad" EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" />
+          <EntitySet Name="vwro_empleado_combo" EntityType="DBERPModelRoles.vwro_empleado_combo" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -10725,24 +10713,6 @@
           <NavigationProperty Name="ro_participacion_utilidad" Relationship="DBERPModelRoles.FK_ro_participacion_utilidad_empleado" FromRole="ro_participacion_utilidad_empleado" ToRole="ro_participacion_utilidad" />
           <NavigationProperty Name="ro_empleado" Relationship="DBERPModelRoles.FK_ro_participacion_utilidad_empleado_ro_empleado" FromRole="ro_participacion_utilidad_empleado" ToRole="ro_empleado" />
         </EntityType>
-        <EntityType Name="ro_periodo_x_ro_Nomina_TipoLiqui">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdNomina_Tipo" />
-            <PropertyRef Name="IdNomina_TipoLiqui" />
-            <PropertyRef Name="IdPeriodo" />
-          </Key>
-          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="IdNomina_Tipo" Type="Int32" Nullable="false" />
-          <Property Name="IdNomina_TipoLiqui" Type="Int32" Nullable="false" />
-          <Property Name="IdPeriodo" Type="Int32" Nullable="false" />
-          <Property Name="Cerrado" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
-          <Property Name="Procesado" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
-          <Property Name="Contabilizado" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
-          <NavigationProperty Name="ro_rol" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_rol" />
-          <NavigationProperty Name="ro_periodo" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_periodo" />
-          <NavigationProperty Name="ro_Nomina_Tipoliqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_Nomina_Tipoliqui" />
-        </EntityType>
         <EntityType Name="ro_rdep">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -10813,7 +10783,6 @@
           <Property Name="UsuarioCierre" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
           <Property Name="FechaCierre" Type="DateTime" Precision="3" />
           <Property Name="IdCentroCosto" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" FromRole="ro_rol" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
           <NavigationProperty Name="ro_rol_individual" Relationship="DBERPModelRoles.FK_ro_rol_individual_ro_rol" FromRole="ro_rol" ToRole="ro_rol_individual" />
           <NavigationProperty Name="ro_Nomina_Tipo" Relationship="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipo" FromRole="ro_rol" ToRole="ro_Nomina_Tipo" />
           <NavigationProperty Name="ro_periodo" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo" FromRole="ro_rol" ToRole="ro_periodo" />
@@ -10821,6 +10790,7 @@
           <Property Type="Double" Name="PorAportePersonal" />
           <Property Type="Double" Name="SalarioBasico" />
           <NavigationProperty Name="ro_Nomina_Tipoliqui" Relationship="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui" FromRole="ro_rol" ToRole="ro_Nomina_Tipoliqui" />
+          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" FromRole="ro_rol" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
         </EntityType>
         <EntityType Name="ro_rol_individual">
           <Key>
@@ -13355,24 +13325,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui">
-          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_rol" Role="ro_rol" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="ro_periodo_x_ro_Nomina_TipoLiqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-              <PropertyRef Name="IdPeriodo" />
-            </Principal>
-            <Dependent Role="ro_rol">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNominaTipo" />
-              <PropertyRef Name="IdNominaTipoLiqui" />
-              <PropertyRef Name="IdPeriodo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ro_rol_individual_ro_rol">
           <End Type="DBERPModelRoles.ro_rol" Role="ro_rol" Multiplicity="1" />
           <End Type="DBERPModelRoles.ro_rol_individual" Role="ro_rol_individual" Multiplicity="*" />
@@ -14750,9 +14702,9 @@
           <Property Type="Boolean" Name="Carga_Todos_Empleados" />
           <NavigationProperty Name="ro_Ing_Egre_x_Empleado" Relationship="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_periodo" FromRole="ro_periodo" ToRole="ro_Ing_Egre_x_Empleado" />
           <NavigationProperty Name="ro_nomina_x_horas_extras" Relationship="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_periodo" FromRole="ro_periodo" ToRole="ro_nomina_x_horas_extras" />
-          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" FromRole="ro_periodo" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
           <NavigationProperty Name="ro_rol" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo" FromRole="ro_periodo" ToRole="ro_rol" />
           <NavigationProperty Name="ro_salario_digno" Relationship="DBERPModelRoles.FK_ro_salario_digno_ro_periodo" FromRole="ro_periodo" ToRole="ro_salario_digno" />
+          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" FromRole="ro_periodo" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
         </EntityType>
         <Association Name="FK_ro_Ing_Egre_x_Empleado_ro_periodo">
           <End Type="DBERPModelRoles.ro_periodo" Role="ro_periodo" Multiplicity="1" />
@@ -14777,20 +14729,6 @@
               <PropertyRef Name="IdPeriodo" />
             </Principal>
             <Dependent Role="ro_nomina_x_horas_extras">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdPeriodo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo">
-          <End Type="DBERPModelRoles.ro_periodo" Role="ro_periodo" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_periodo">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdPeriodo" />
-            </Principal>
-            <Dependent Role="ro_periodo_x_ro_Nomina_TipoLiqui">
               <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdPeriodo" />
             </Dependent>
@@ -15030,8 +14968,8 @@
           <NavigationProperty Name="ro_novedad_x_empleado" Relationship="DBERPModelRoles.FK_ro_Novedad_x_Empleado_ro_Empleado_Novedad" FromRole="ro_empleado_Novedad" ToRole="ro_novedad_x_empleado" />
           <NavigationProperty Name="ro_empleado_novedad_det" Relationship="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_empleado_Novedad" FromRole="ro_empleado_Novedad" ToRole="ro_empleado_novedad_det" />
           <NavigationProperty Name="ro_empleado" Relationship="DBERPModelRoles.FK_ro_empleado_Novedad_ro_empleado" FromRole="ro_empleado_Novedad" ToRole="ro_empleado" />
-          <NavigationProperty Name="ro_Nomina_Tipoliqui" Relationship="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" FromRole="ro_empleado_Novedad" ToRole="ro_Nomina_Tipoliqui" />
           <NavigationProperty Name="ro_permiso_x_empleado_x_novedad" Relationship="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" FromRole="ro_empleado_Novedad" ToRole="ro_permiso_x_empleado_x_novedad" />
+          <NavigationProperty Name="ro_Nomina_Tipoliqui" Relationship="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" FromRole="ro_empleado_Novedad" ToRole="ro_Nomina_Tipoliqui" />
         </EntityType>
         <Association Name="FK_ro_Novedad_x_Empleado_ro_Empleado_Novedad">
           <End Type="DBERPModelRoles.ro_empleado_Novedad" Role="ro_empleado_Novedad" Multiplicity="1" />
@@ -16438,20 +16376,6 @@
           <Property Type="Int32" Name="IdPunto_cargo" />
           <Property Type="String" Name="IdCentroCosto" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="vwro_empleado_combo">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdEmpleado" />
-            <PropertyRef Name="IdTipoNomina" />
-            <PropertyRef Name="Empleado" />
-            <PropertyRef Name="pe_cedulaRuc" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="Int32" Name="IdTipoNomina" Nullable="false" />
-          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="vwRo_nomina_x_horas_extras">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -17075,160 +16999,6 @@
           <Property Type="Decimal" Name="IdNovedad" Precision="9" Scale="0" />
           <Property Type="Int32" Name="DiasPermiso" />
         </EntityType>
-        <EntityType Name="ro_Nomina_Tipoliqui">
-          <Key>
-            <PropertyRef Name="IdEmpresa" />
-            <PropertyRef Name="IdNomina_Tipo" />
-            <PropertyRef Name="IdNomina_TipoLiqui" />
-          </Key>
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
-          <Property Type="Int32" Name="IdNomina_TipoLiqui" Nullable="false" />
-          <Property Type="String" Name="DescripcionProcesoNomina" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdUsuario" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdUsuarioAnu" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MotivoAnu" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="FechaAnu" Precision="3" />
-          <Property Type="DateTime" Name="FechaTransac" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="FechaUltModi" Precision="3" />
-          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="nom_store_procedure" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ro_empleado_Novedad" Relationship="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_empleado_Novedad" />
-          <NavigationProperty Name="ro_Ing_Egre_x_Empleado" Relationship="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_Ing_Egre_x_Empleado" />
-          <NavigationProperty Name="ro_Nomina_Tipo" Relationship="DBERPModelRoles.FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_Nomina_Tipo" />
-          <NavigationProperty Name="ro_nomina_tipo_liqui_orden" Relationship="DBERPModelRoles.FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_nomina_tipo_liqui_orden" />
-          <NavigationProperty Name="ro_nomina_x_horas_extras" Relationship="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_nomina_x_horas_extras" />
-          <NavigationProperty Name="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Relationship="DBERPModelRoles.FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" />
-          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
-          <NavigationProperty Name="ro_rol" Relationship="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_rol" />
-        </EntityType>
-        <Association Name="FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_empleado_Novedad" Role="ro_empleado_Novedad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_empleado_Novedad">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_Ing_Egre_x_Empleado" Role="ro_Ing_Egre_x_Empleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_Ing_Egre_x_Empleado">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipo" Role="ro_Nomina_Tipo" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipo">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-            </Principal>
-            <Dependent Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_nomina_tipo_liqui_orden" Role="ro_nomina_tipo_liqui_orden" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_nomina_tipo_liqui_orden">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNominaTipo" />
-              <PropertyRef Name="IdNominaTipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_nomina_x_horas_extras" Role="ro_nomina_x_horas_extras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_nomina_x_horas_extras">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNominaTipo" />
-              <PropertyRef Name="IdNominaTipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Role="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina" />
-              <PropertyRef Name="IdNominaTipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_periodo_x_ro_Nomina_TipoLiqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ro_rol_ro_Nomina_Tipoliqui">
-          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
-          <End Type="DBERPModelRoles.ro_rol" Role="ro_rol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ro_Nomina_Tipoliqui">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNomina_Tipo" />
-              <PropertyRef Name="IdNomina_TipoLiqui" />
-            </Principal>
-            <Dependent Role="ro_rol">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdNominaTipo" />
-              <PropertyRef Name="IdNominaTipoLiqui" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ro_marcaciones_x_empleado_ro_empleado">
           <End Type="DBERPModelRoles.ro_empleado" Role="ro_empleado" Multiplicity="1" />
           <End Type="DBERPModelRoles.ro_marcaciones_x_empleado" Role="ro_marcaciones_x_empleado" Multiplicity="*" />
@@ -17401,6 +17171,229 @@
           <Property Type="Int32" Name="Secuencia" Nullable="false" />
           <Property Type="String" Name="EstadoCobro" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Double" Name="Num_Horas" />
+        </EntityType>
+        <EntityType Name="ro_Nomina_Tipoliqui">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdNomina_TipoLiqui" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_TipoLiqui" Nullable="false" />
+          <Property Type="String" Name="DescripcionProcesoNomina" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdUsuario" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdUsuarioAnu" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MotivoAnu" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdUsuarioUltModi" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FechaAnu" Precision="3" />
+          <Property Type="DateTime" Name="FechaTransac" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaUltModi" Precision="3" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="nom_store_procedure" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="restas_dias_con_falta" />
+          <NavigationProperty Name="ro_empleado_Novedad" Relationship="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_empleado_Novedad" />
+          <NavigationProperty Name="ro_Ing_Egre_x_Empleado" Relationship="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_Ing_Egre_x_Empleado" />
+          <NavigationProperty Name="ro_Nomina_Tipo" Relationship="DBERPModelRoles.FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_Nomina_Tipo" />
+          <NavigationProperty Name="ro_nomina_tipo_liqui_orden" Relationship="DBERPModelRoles.FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_nomina_tipo_liqui_orden" />
+          <NavigationProperty Name="ro_nomina_x_horas_extras" Relationship="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_nomina_x_horas_extras" />
+          <NavigationProperty Name="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Relationship="DBERPModelRoles.FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" />
+          <NavigationProperty Name="ro_rol" Relationship="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_rol" />
+          <NavigationProperty Name="ro_periodo_x_ro_Nomina_TipoLiqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" FromRole="ro_Nomina_Tipoliqui" ToRole="ro_periodo_x_ro_Nomina_TipoLiqui" />
+        </EntityType>
+        <Association Name="FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_empleado_Novedad" Role="ro_empleado_Novedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_empleado_Novedad">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_Ing_Egre_x_Empleado" Role="ro_Ing_Egre_x_Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_Ing_Egre_x_Empleado">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipo" Role="ro_Nomina_Tipo" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipo">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+            </Principal>
+            <Dependent Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_nomina_tipo_liqui_orden" Role="ro_nomina_tipo_liqui_orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_nomina_tipo_liqui_orden">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNominaTipo" />
+              <PropertyRef Name="IdNominaTipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_nomina_x_horas_extras" Role="ro_nomina_x_horas_extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_nomina_x_horas_extras">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNominaTipo" />
+              <PropertyRef Name="IdNominaTipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Role="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina" />
+              <PropertyRef Name="IdNominaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_rol_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_rol" Role="ro_rol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_rol">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNominaTipo" />
+              <PropertyRef Name="IdNominaTipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ro_periodo_x_ro_Nomina_TipoLiqui">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdNomina_Tipo" />
+            <PropertyRef Name="IdNomina_TipoLiqui" />
+            <PropertyRef Name="IdPeriodo" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
+          <Property Type="Int32" Name="IdNomina_TipoLiqui" Nullable="false" />
+          <Property Type="Int32" Name="IdPeriodo" Nullable="false" />
+          <Property Type="String" Name="Cerrado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Procesado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Contabilizado" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="ro_Nomina_Tipoliqui" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_Nomina_Tipoliqui" />
+          <NavigationProperty Name="ro_periodo" Relationship="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_periodo" />
+          <NavigationProperty Name="ro_rol" Relationship="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" FromRole="ro_periodo_x_ro_Nomina_TipoLiqui" ToRole="ro_rol" />
+        </EntityType>
+        <Association Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui">
+          <End Type="DBERPModelRoles.ro_Nomina_Tipoliqui" Role="ro_Nomina_Tipoliqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_Nomina_Tipoliqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Principal>
+            <Dependent Role="ro_periodo_x_ro_Nomina_TipoLiqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo">
+          <End Type="DBERPModelRoles.ro_periodo" Role="ro_periodo" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ro_periodo">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdPeriodo" />
+            </Principal>
+            <Dependent Role="ro_periodo_x_ro_Nomina_TipoLiqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdPeriodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui">
+          <End Type="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Role="ro_periodo_x_ro_Nomina_TipoLiqui" Multiplicity="1" />
+          <End Type="DBERPModelRoles.ro_rol" Role="ro_rol" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ro_periodo_x_ro_Nomina_TipoLiqui">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNomina_Tipo" />
+              <PropertyRef Name="IdNomina_TipoLiqui" />
+              <PropertyRef Name="IdPeriodo" />
+            </Principal>
+            <Dependent Role="ro_rol">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdNominaTipo" />
+              <PropertyRef Name="IdNominaTipoLiqui" />
+              <PropertyRef Name="IdPeriodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwro_empleado_combo">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdTipoNomina" />
+            <PropertyRef Name="Empleado" />
+            <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="de_descripcion" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdTipoNomina" Nullable="false" />
+          <Property Type="String" Name="Empleado" Nullable="false" MaxLength="201" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="de_descripcion" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="ca_descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="em_fechaIngaRol" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -17776,19 +17769,6 @@
                 <ScalarProperty Name="ValorCargaFamiliar" ColumnName="ValorCargaFamiliar" />
                 <ScalarProperty Name="ValorExedenteIESS" ColumnName="ValorExedenteIESS" />
                 <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ro_periodo_x_ro_Nomina_TipoLiqui">
-            <EntityTypeMapping TypeName="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui">
-              <MappingFragment StoreEntitySet="ro_periodo_x_ro_Nomina_TipoLiqui">
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdNomina_TipoLiqui" ColumnName="IdNomina_TipoLiqui" />
-                <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
-                <ScalarProperty Name="Cerrado" ColumnName="Cerrado" />
-                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
-                <ScalarProperty Name="Contabilizado" ColumnName="Contabilizado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -21606,17 +21586,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwro_empleado_combo">
-            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_empleado_combo">
-              <MappingFragment StoreEntitySet="vwro_empleado_combo">
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
-                <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwRo_nomina_x_horas_extras">
             <EntityTypeMapping TypeName="DBERPModelRoles.vwRo_nomina_x_horas_extras">
               <MappingFragment StoreEntitySet="vwRo_nomina_x_horas_extras">
@@ -22037,25 +22006,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ro_Nomina_Tipoliqui">
-            <EntityTypeMapping TypeName="DBERPModelRoles.ro_Nomina_Tipoliqui">
-              <MappingFragment StoreEntitySet="ro_Nomina_Tipoliqui">
-                <ScalarProperty Name="nom_store_procedure" ColumnName="nom_store_procedure" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="FechaUltModi" ColumnName="FechaUltModi" />
-                <ScalarProperty Name="FechaTransac" ColumnName="FechaTransac" />
-                <ScalarProperty Name="FechaAnu" ColumnName="FechaAnu" />
-                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
-                <ScalarProperty Name="MotivoAnu" ColumnName="MotivoAnu" />
-                <ScalarProperty Name="IdUsuarioAnu" ColumnName="IdUsuarioAnu" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-                <ScalarProperty Name="DescripcionProcesoNomina" ColumnName="DescripcionProcesoNomina" />
-                <ScalarProperty Name="IdNomina_TipoLiqui" ColumnName="IdNomina_TipoLiqui" />
-                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ro_rubro_tipo">
             <EntityTypeMapping TypeName="DBERPModelRoles.ro_rubro_tipo">
               <MappingFragment StoreEntitySet="ro_rubro_tipo">
@@ -22136,6 +22086,53 @@
                 <ScalarProperty Name="IdPermiso" ColumnName="IdPermiso" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_Nomina_Tipoliqui">
+            <EntityTypeMapping TypeName="DBERPModelRoles.ro_Nomina_Tipoliqui">
+              <MappingFragment StoreEntitySet="ro_Nomina_Tipoliqui">
+                <ScalarProperty Name="restas_dias_con_falta" ColumnName="restas_dias_con_falta" />
+                <ScalarProperty Name="nom_store_procedure" ColumnName="nom_store_procedure" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaUltModi" ColumnName="FechaUltModi" />
+                <ScalarProperty Name="FechaTransac" ColumnName="FechaTransac" />
+                <ScalarProperty Name="FechaAnu" ColumnName="FechaAnu" />
+                <ScalarProperty Name="IdUsuarioUltModi" ColumnName="IdUsuarioUltModi" />
+                <ScalarProperty Name="MotivoAnu" ColumnName="MotivoAnu" />
+                <ScalarProperty Name="IdUsuarioAnu" ColumnName="IdUsuarioAnu" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DescripcionProcesoNomina" ColumnName="DescripcionProcesoNomina" />
+                <ScalarProperty Name="IdNomina_TipoLiqui" ColumnName="IdNomina_TipoLiqui" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ro_periodo_x_ro_Nomina_TipoLiqui">
+            <EntityTypeMapping TypeName="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui">
+              <MappingFragment StoreEntitySet="ro_periodo_x_ro_Nomina_TipoLiqui">
+                <ScalarProperty Name="Contabilizado" ColumnName="Contabilizado" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="Cerrado" ColumnName="Cerrado" />
+                <ScalarProperty Name="IdPeriodo" ColumnName="IdPeriodo" />
+                <ScalarProperty Name="IdNomina_TipoLiqui" ColumnName="IdNomina_TipoLiqui" />
+                <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_empleado_combo">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_empleado_combo">
+              <MappingFragment StoreEntitySet="vwro_empleado_combo">
+                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="de_descripcion" ColumnName="de_descripcion" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
               </MappingFragment>
             </EntityTypeMapping>

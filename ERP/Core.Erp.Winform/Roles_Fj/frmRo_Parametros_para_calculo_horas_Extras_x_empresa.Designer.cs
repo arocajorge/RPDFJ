@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.che_soloGraba_dias_efectivos = new DevExpress.XtraEditors.CheckEdit();
             this.txtMinutoLoch = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.check_se_paga_horasal25 = new DevExpress.XtraEditors.CheckEdit();
@@ -51,9 +52,11 @@
             this.txt_diasCorte = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
-            this.che_soloGraba_dias_efectivos = new DevExpress.XtraEditors.CheckEdit();
+            this.txt_diaa_integrales = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.che_soloGraba_dias_efectivos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinutoLoch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_se_paga_horasal25.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_se_paga_horasal50.Properties)).BeginInit();
@@ -67,11 +70,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_reverso.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_diasCorte.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.che_soloGraba_dias_efectivos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_diaa_integrales.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.txt_diaa_integrales);
+            this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.che_soloGraba_dias_efectivos);
             this.groupControl1.Controls.Add(this.txtMinutoLoch);
             this.groupControl1.Controls.Add(this.labelControl4);
@@ -84,6 +89,14 @@
             this.groupControl1.Size = new System.Drawing.Size(580, 135);
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "Al Subir marcaciones desde Excel se consideran las:";
+            // 
+            // che_soloGraba_dias_efectivos
+            // 
+            this.che_soloGraba_dias_efectivos.Location = new System.Drawing.Point(6, 84);
+            this.che_soloGraba_dias_efectivos.Name = "che_soloGraba_dias_efectivos";
+            this.che_soloGraba_dias_efectivos.Properties.Caption = "Solo Graba Dias efectivos";
+            this.che_soloGraba_dias_efectivos.Size = new System.Drawing.Size(174, 19);
+            this.che_soloGraba_dias_efectivos.TabIndex = 8;
             // 
             // txtMinutoLoch
             // 
@@ -344,13 +357,22 @@
             this.ucGe_Menu.event_btnGuardar_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnGuardar_Click(this.ucGe_Menu_event_btnGuardar_Click);
             this.ucGe_Menu.event_btnSalir_Click += new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant.delegate_btnSalir_Click(this.ucGe_Menu_event_btnSalir_Click);
             // 
-            // che_soloGraba_dias_efectivos
+            // txt_diaa_integrales
             // 
-            this.che_soloGraba_dias_efectivos.Location = new System.Drawing.Point(6, 84);
-            this.che_soloGraba_dias_efectivos.Name = "che_soloGraba_dias_efectivos";
-            this.che_soloGraba_dias_efectivos.Properties.Caption = "Solo Graba Dias efectivos";
-            this.che_soloGraba_dias_efectivos.Size = new System.Drawing.Size(174, 19);
-            this.che_soloGraba_dias_efectivos.TabIndex = 8;
+            this.txt_diaa_integrales.Location = new System.Drawing.Point(309, 109);
+            this.txt_diaa_integrales.Name = "txt_diaa_integrales";
+            this.txt_diaa_integrales.Properties.Mask.EditMask = "n0";
+            this.txt_diaa_integrales.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txt_diaa_integrales.Size = new System.Drawing.Size(116, 20);
+            this.txt_diaa_integrales.TabIndex = 10;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(224, 112);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(70, 13);
+            this.labelControl5.TabIndex = 9;
+            this.labelControl5.Text = "Dias integrales";
             // 
             // frmRo_Parametros_para_calculo_horas_Extras_x_empresa
             // 
@@ -366,6 +388,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.che_soloGraba_dias_efectivos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinutoLoch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_se_paga_horasal25.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_se_paga_horasal50.Properties)).EndInit();
@@ -380,7 +403,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.check_reverso.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_diasCorte.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.che_soloGraba_dias_efectivos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_diaa_integrales.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,6 +434,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.CheckEdit chek_considera_fecha_corte;
         private DevExpress.XtraEditors.CheckEdit che_soloGraba_dias_efectivos;
+        private DevExpress.XtraEditors.TextEdit txt_diaa_integrales;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
 
     }
 }

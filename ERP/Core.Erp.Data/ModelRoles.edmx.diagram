@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="DBERPModelRoles.ro_novedad_x_empleado" Width="1.5" PointX="12" PointY="35.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_Pago_decimos_x_Empleado" Width="1.5" PointX="13.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_participacion_utilidad_empleado" Width="1.5" PointX="10" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Width="1.5" PointX="19.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_rdep" Width="1.5" PointX="9.75" PointY="70" IsExpanded="true" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_rol" Width="1.5" PointX="12.5" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_rol_individual" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
@@ -136,7 +135,6 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_area_x_departamento_ro_area" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_horario_planificacion_ro_horario" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_marcaciones_Equipo_x_TipoMarcacion_ro_marcaciones_tipo" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_individual_ro_rol" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_nomina_x_horas_extras" Width="1.5" PointX="11.492120951177608" PointY="8.17497481786412" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_horario" />
@@ -179,7 +177,6 @@
         <EntityTypeShape EntityType="DBERPModelRoles.ro_periodo" Width="1.5" PointX="11.474742186942484" PointY="16.237440236023367" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_periodo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_periodo" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_periodo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_salario_digno_ro_periodo" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRO_Empleado_X_Nomina_Liquidar" Width="1.5" PointX="0.68839024598169618" PointY="24.200545664970086" />
@@ -242,7 +239,6 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_detalle_x_rubro_acumulado" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_empleaco_x_activofijo_x_puntocargo" Width="1.5" PointX="1.5257273696017113" PointY="9.48692483151654" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Rol_Detalle" Width="1.5" PointX="10.089122983668522" PointY="12.080037450455146" />
-        <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleado_combo" Width="1.5" PointX="10.209010378554934" PointY="6.2782840907006916" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_nomina_x_horas_extras" Width="1.5" PointX="9.5614622857242182" PointY="10.476243649831154" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_ActaFiniquito" Width="1.5" PointX="6.7784257860753812" PointY="0.76230175828668367" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar" Width="1.5" PointX="4.3905429525256823" PointY="31.767398238073753" />
@@ -261,15 +257,6 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_CargaFamiliar_ro_Catalogo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_CargaFamiliar_ro_empleado" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwRo_Permiso_x_Empleado" Width="1.5" PointX="7.90260558384592" PointY="15.758482091016361" />
-        <EntityTypeShape EntityType="DBERPModelRoles.ro_Nomina_Tipoliqui" Width="1.5" PointX="11.202640732378997" PointY="6.8556838663554212" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" />
-        <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_marcaciones_x_empleado_ro_empleado" />
         <EntityTypeShape EntityType="DBERPModelRoles.ro_rubro_tipo" Width="1.5" PointX="0.38131992722922936" PointY="27.6273938844108" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_novedad_det_ro_rubro_tipo" />
@@ -278,6 +265,19 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_empleado_Novedad" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_permiso_x_empleado_x_novedad_ro_permiso_x_empleado" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwro_permiso_x_empleado_x_novedad" Width="1.5" PointX="3.00804342097046" PointY="19.633763098918724" />
+        <EntityTypeShape EntityType="DBERPModelRoles.ro_Nomina_Tipoliqui" Width="1.5" PointX="8.0510289445757071" PointY="4.1719525326844087" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_empleado_Novedad_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_Ing_Egre_x_Empleado_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_Nomina_Tipoliqui_ro_Nomina_Tipo" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_tipo_liqui_formula_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_nomina_x_horas_extras_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_parametro_contable_x_Nomina_Tipoliqui_Sueldo_x_Pagar_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_Nomina_Tipoliqui" />
+        <EntityTypeShape EntityType="DBERPModelRoles.ro_periodo_x_ro_Nomina_TipoLiqui" Width="1.5" PointX="1.5047985396835948" PointY="2.0567058632414348" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_Nomina_Tipoliqui" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" />
+        <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" />
+        <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleado_combo" Width="1.5" PointX="7.220986507470248" PointY="22.725073661061504" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
