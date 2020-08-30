@@ -475,7 +475,7 @@ namespace Core.Erp.Data.Roles
 
 
                     db.SaveChanges();
-                    sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set id_catalogo_Cat='ASIST' where IdEmpresa='" + info.IdEmpresa + "' and IdEmpleado='" + info.IdEmpleado + "' and es_fecha_registro between '" + Convert.ToDateTime(info.FechaSalida).ToString("yyyy-MM-dd") + "' and '" + Convert.ToDateTime(info.FechaEntrada).ToString("yyyy-MM-dd") + "'";
+                    sql = "update Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm set id_catalogo_Cat='ASIST' where IdEmpresa='" + info.IdEmpresa + "' and IdEmpleado='" + info.IdEmpleado + "' and es_fecha_registro between '" + Convert.ToDateTime(info.FechaSalida).ToString("dd-MM-yyyy") + "' and '" + Convert.ToDateTime(info.FechaEntrada).ToString("dd-MM-yyyy") + "'";
                     db.Database.ExecuteSqlCommand(sql);
 
                 }
