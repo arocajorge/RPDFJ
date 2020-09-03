@@ -22,6 +22,7 @@ namespace Core.Erp.Data
             : base("name=EntitiesRoles")
         {
         }
+
         //poner esta funcion dentro de la clase entities no viene por defecto
         public void SetCommandTimeOut(int TimeOut)
         {
@@ -222,6 +223,7 @@ namespace Core.Erp.Data
         public DbSet<ro_Nomina_Tipoliqui> ro_Nomina_Tipoliqui { get; set; }
         public DbSet<ro_periodo_x_ro_Nomina_TipoLiqui> ro_periodo_x_ro_Nomina_TipoLiqui { get; set; }
         public DbSet<vwro_empleado_combo> vwro_empleado_combo { get; set; }
+        public DbSet<vwro_rol_detalle_calculo_vacaciones> vwro_rol_detalle_calculo_vacaciones { get; set; }
     
         public virtual ObjectResult<spRo_Nomina_Tipoliqui_x_Sueldo_Result> spRo_Nomina_Tipoliqui_x_Sueldo(Nullable<int> a)
         {

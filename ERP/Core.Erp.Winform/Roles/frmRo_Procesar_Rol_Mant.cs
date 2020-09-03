@@ -501,6 +501,7 @@ namespace Core.Erp.Winform.Roles
                         info_novedad.IdEmpleado = info.IdEmpleado;
                         info_novedad.TotalValor = info.Valor;
                         listaNovedadSaldoNeg.Add(info_novedad);
+                        info_novedad.Fecha_PrimerPago = DateTime.Now.Date;
 
 
                     }
@@ -1071,34 +1072,28 @@ namespace Core.Erp.Winform.Roles
                 cmbnomina.Focus();
                 foreach (var item in listaNovedadSaldoNeg)
                 {
-                    ro_periodo_x_ro_Nomina_TipoLiqui_Info info_periodo = new ro_periodo_x_ro_Nomina_TipoLiqui_Info();
-
-
-                    DateTime Fecha_descuento;
-                    string IdCalendario = "";
-                    info_periodo = listadoPeriodo_para_saldo_neg.Where(v => v.IdPeriodo == item.IdPeriodo).FirstOrDefault();
-                    IdCalendario = info_periodo.IdPeriodo.ToString();
-                    Fecha_descuento = info_periodo.pe_FechaIni.AddDays(1);
-                    item.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
-                    item.IdUsuario = param.IdUsuario;
-                    item.Fecha_Transac = DateTime.Now;
-                    item.Fecha = Fecha_descuento;
-                    item.IdCalendario = "S" + cmbPeriodos.EditValue.ToString();
-                    item.Fecha_PrimerPago = Fecha_descuento;
-                    item.IdRubro = "1007";
-                    if (item.IdNomina_TipoLiqui == null || item.IdNomina_TipoLiqui == 0)
+                    if (item.IdNomina_TipoLiqui == 0)
                     {
                         MessageBox.Show("Faltan datos en los registros", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
 
-                    if (item.IdPeriodo == null || item.IdPeriodo == 0)
+                    if (item.Fecha_PrimerPago == null )
                     {
-                         MessageBox.Show("Faltan datos en los registros", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Faltan datos en los registros", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
 
-                  bandera=  Bus_Novedad.GrabarDB_SaldosNegativos(item, ref idnnoveda);
+                    item.IdNomina_Tipo = Convert.ToInt32(cmbnomina.EditValue);
+                    item.IdUsuario = param.IdUsuario;
+                    item.Fecha_Transac = DateTime.Now;
+                    item.Fecha = item.Fecha_PrimerPago;
+                    item.IdRubro = "1007";
+                    item.IdCalendario = "S" + item.Fecha_PrimerPago.Year.ToString() + item.Fecha_PrimerPago.Month.ToString().PadLeft(2,'0');
+
+                   
+
+                    bandera=  Bus_Novedad.GrabarDB_SaldosNegativos(item, ref idnnoveda);
 
 
 

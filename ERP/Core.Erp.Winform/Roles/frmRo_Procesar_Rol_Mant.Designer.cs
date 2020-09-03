@@ -707,9 +707,8 @@
             // 
             // Col_period
             // 
-            this.Col_period.Caption = "Periodo";
-            this.Col_period.ColumnEdit = this.cmb_period;
-            this.Col_period.FieldName = "IdPeriodo";
+            this.Col_period.Caption = "Fecha descuento";
+            this.Col_period.FieldName = "Fecha_PrimerPago";
             this.Col_period.Name = "Col_period";
             this.Col_period.Visible = true;
             this.Col_period.VisibleIndex = 2;

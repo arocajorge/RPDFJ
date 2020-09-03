@@ -2164,6 +2164,16 @@
       [vwRo_Rol_Detalle].[IdCentroCosto] AS [IdCentroCosto]
       FROM [dbo].[vwRo_Rol_Detalle] AS [vwRo_Rol_Detalle]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwro_rol_detalle_calculo_vacaciones" EntityType="DBERPModelRoles.Store.vwro_rol_detalle_calculo_vacaciones" store:Type="Views" store:Schema="dbo" store:Name="vwro_rol_detalle_calculo_vacaciones">
+            <DefiningQuery>SELECT 
+      [vwro_rol_detalle_calculo_vacaciones].[idempresa] AS [idempresa], 
+      [vwro_rol_detalle_calculo_vacaciones].[idempleado] AS [idempleado], 
+      [vwro_rol_detalle_calculo_vacaciones].[pe_anio] AS [pe_anio], 
+      [vwro_rol_detalle_calculo_vacaciones].[pe_mes] AS [pe_mes], 
+      [vwro_rol_detalle_calculo_vacaciones].[Remuneracion] AS [Remuneracion], 
+      [vwro_rol_detalle_calculo_vacaciones].[Vacacion] AS [Vacacion]
+      FROM [dbo].[vwro_rol_detalle_calculo_vacaciones] AS [vwro_rol_detalle_calculo_vacaciones]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vwro_rol_detalle_x_rubro_acumulado" EntityType="DBERPModelRoles.Store.vwro_rol_detalle_x_rubro_acumulado" store:Type="Views" store:Schema="dbo" store:Name="vwro_rol_detalle_x_rubro_acumulado">
             <DefiningQuery>SELECT 
       [vwro_rol_detalle_x_rubro_acumulado].[IdEmpresa] AS [IdEmpresa], 
@@ -7963,6 +7973,21 @@
           <Property Name="IdCentroCosto" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
+      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwro_rol_detalle_calculo_vacaciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vwro_rol_detalle_calculo_vacaciones">
+          <Key>
+            <PropertyRef Name="idempresa" />
+            <PropertyRef Name="idempleado" />
+          </Key>
+          <Property Name="idempresa" Type="int" Nullable="false" />
+          <Property Name="idempleado" Type="numeric" Nullable="false" />
+          <Property Name="pe_anio" Type="int" />
+          <Property Name="pe_mes" Type="int" />
+          <Property Name="Remuneracion" Type="float" />
+          <Property Name="Vacacion" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
       warning 6002: The table/view 'DBERP_FJ_PRODUCCION.dbo.vwro_rol_detalle_x_rubro_acumulado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vwro_rol_detalle_x_rubro_acumulado">
@@ -10286,6 +10311,7 @@
             <End Role="ro_rol" EntitySet="ro_rol" />
           </AssociationSet>
           <EntitySet Name="vwro_empleado_combo" EntityType="DBERPModelRoles.vwro_empleado_combo" />
+          <EntitySet Name="vwro_rol_detalle_calculo_vacaciones" EntityType="DBERPModelRoles.vwro_rol_detalle_calculo_vacaciones" />
           </EntityContainer>
         <EntityType Name="ro_catalogo">
           <Key>
@@ -17395,6 +17421,18 @@
           <Property Type="String" Name="ca_descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="em_fechaIngaRol" Precision="3" />
         </EntityType>
+        <EntityType Name="vwro_rol_detalle_calculo_vacaciones">
+          <Key>
+            <PropertyRef Name="idempresa" />
+            <PropertyRef Name="idempleado" />
+          </Key>
+          <Property Type="Int32" Name="idempresa" Nullable="false" />
+          <Property Type="Decimal" Name="idempleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="pe_anio" />
+          <Property Type="Int32" Name="pe_mes" />
+          <Property Type="Double" Name="Remuneracion" />
+          <Property Type="Double" Name="Vacacion" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -22134,6 +22172,18 @@
                 <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwro_rol_detalle_calculo_vacaciones">
+            <EntityTypeMapping TypeName="DBERPModelRoles.vwro_rol_detalle_calculo_vacaciones">
+              <MappingFragment StoreEntitySet="vwro_rol_detalle_calculo_vacaciones">
+                <ScalarProperty Name="Vacacion" ColumnName="Vacacion" />
+                <ScalarProperty Name="Remuneracion" ColumnName="Remuneracion" />
+                <ScalarProperty Name="pe_mes" ColumnName="pe_mes" />
+                <ScalarProperty Name="pe_anio" ColumnName="pe_anio" />
+                <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+                <ScalarProperty Name="idempresa" ColumnName="idempresa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

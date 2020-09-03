@@ -55,6 +55,8 @@ namespace Core.Erp.Winform.Roles
         double remuneracion = 0;
         double vacaciones = 0;
         double cancelar = 0;
+        double iess = 0;
+
         public Cl_Enumeradores.eTipo_action Accion { get; set; }
 
         cp_orden_pago_tipo_x_empresa_Bus bus_tipoOP = new cp_orden_pago_tipo_x_empresa_Bus();
@@ -437,29 +439,23 @@ namespace Core.Erp.Winform.Roles
         {
             try
             {
-                Total_Ganado = Bus_liquidacion_vacaciones.Get_Valor_vacaciones(Info_General.IdEmpresa, 1,Convert.ToInt32( Info_General.IdEmpleado),  Convert.ToDateTime( dtpanio_desde.Value), Convert.ToDateTime(dtp_anio_hasta.Value),"4");
-                if (Total_Ganado > 0)
+                remuneracion = detalle.Sum(v => v.Total_Remuneracion);
+                vacaciones = detalle.Sum(v => v.Total_Vacaciones);
+                cancelar = detalle.Sum(v => v.Valor_Cancelar);
+
+                txttotal_remuneracion.EditValue = remuneracion;
+                txttotal_vacaciones.EditValue = vacaciones;
+                txttotal_cancelar.EditValue = cancelar;
+
+                if (info_parametro.DescuentaIESS_LiquidacionVacaciones == true)
                 {
-                    txttotal_remuneracion.EditValue = Total_Ganado;
-
-                    Valor_Vacaciones_ganadas_anual = Total_Ganado / 24;
-
+                    if (Info_General.Gozadas_Pgadas == true)
+                    {
+                        iess = ((Sueldo_Actual / 30) * (Convert.ToInt32(txtdias.EditValue)) * 9.45) / 100;
+                        txttotal_cancelar.EditValue = Convert.ToDouble(cancelar) - iess;
+                        txtiess.EditValue = iess;
+                    }
                 }
-                else
-                {
-                    Valor_Vacaciones_ganadas_anual =Convert.ToDouble( txttotal_remuneracion.EditValue) / 24;
-                }
-                Valor_Vacaciones_tomadas=(Valor_Vacaciones_ganadas_anual/15)*Info_General.Dias_a_disfrutar;
-                IESS=(Sueldo_Actual/30)*Info_General.Dias_a_disfrutar*0.0945;
-                Valor_Neto=Valor_Vacaciones_tomadas-IESS;
-
-
-
-                txttotal_vacaciones.EditValue = Valor_Vacaciones_ganadas_anual;
-                txtiess.EditValue = IESS;
-                txttotal_cancelar.EditValue =Valor_Neto;
-
-
 
 
 
@@ -515,6 +511,7 @@ namespace Core.Erp.Winform.Roles
                 {
                     while (fechaDesde <= info.Anio_Hasta)
                     {
+                        var info_valores = bus_detalle.get_info(param.IdEmpresa, info.IdEmpleado, fechaDesde.Year, fechaDesde.Month);
                         ro_Historico_Liquidacion_Vacaciones_Det_Info infod = new ro_Historico_Liquidacion_Vacaciones_Det_Info();
                         infod.IdEmpresa = param.IdEmpresa;
                         infod.IdEmpleado = Convert.ToInt32(info.IdEmpleado);
@@ -524,11 +521,17 @@ namespace Core.Erp.Winform.Roles
                         infod.IdNominatipo = info.IdNomina_Tipo;
                         fechaDesde = fechaDesde.AddMonths(1);
 
+                        if (info_valores != null)
+                        {
+                            infod.Total_Remuneracion = info_valores.Total_Remuneracion;
+                            infod.Total_Vacaciones = info_valores.Total_Vacaciones;
+                            infod.Valor_Cancelar = info_valores.Total_Vacaciones / 15 * info.Dias_a_disfrutar;
+                        }
                         detalle.Add(infod);
                     }
                 }
                 gridControl_Detalle.DataSource = detalle;
-             //   ObtenerValor();
+                ObtenerValor();
             }
             catch (Exception ex)
             {
@@ -657,7 +660,6 @@ namespace Core.Erp.Winform.Roles
         {
             try
             {
-                double iess = 0;
               
                 if (e.Column.Name == "Col_Total_Remuneracion")
                 {

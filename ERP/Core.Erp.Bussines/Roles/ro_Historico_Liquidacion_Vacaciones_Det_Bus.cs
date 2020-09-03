@@ -55,5 +55,19 @@ namespace Core.Erp.Business.Roles
 
           }
       }
-    }
+      public ro_Historico_Liquidacion_Vacaciones_Det_Info get_info(int IdEmpresa, decimal idempleado, int anio, int mes)
+      {
+          try
+          {
+              return data.get_info(IdEmpresa, idempleado, anio,mes);
+          }
+          catch (Exception ex)
+          {
+              Core.Erp.Info.Log_Exception.LoggingManager.Logger.Log(Core.Erp.Info.Log_Exception.LoggingCategory.Error, ex.Message);
+              throw new Core.Erp.Info.Log_Exception.DalException(string.Format("", "ConsultarHistoricoVaca", ex.Message), ex) { EntityType = typeof(ro_historico_vacaciones_x_empleado_Bus) };
+
+          }
+      }
+   
+  }
 }

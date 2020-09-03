@@ -278,6 +278,7 @@
         <AssociationConnector Association="DBERPModelRoles.FK_ro_periodo_x_ro_Nomina_TipoLiqui_ro_periodo" />
         <AssociationConnector Association="DBERPModelRoles.FK_ro_rol_ro_periodo_x_ro_Nomina_TipoLiqui" />
         <EntityTypeShape EntityType="DBERPModelRoles.vwro_empleado_combo" Width="1.5" PointX="7.220986507470248" PointY="22.725073661061504" />
+        <EntityTypeShape EntityType="DBERPModelRoles.vwro_rol_detalle_calculo_vacaciones" Width="1.5" PointX="1.0097877853595594" PointY="22.914266105235679" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5725,6 +5725,9 @@
     <Compile Include="vwRo_Rol_DetalleXEmpleado.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>
+    <Compile Include="vwro_rol_detalle_calculo_vacaciones.cs">
+      <DependentUpon>ModelRoles.tt</DependentUpon>
+    </Compile>
     <Compile Include="vwro_rol_detalle_x_rubro_acumulado.cs">
       <DependentUpon>ModelRoles.tt</DependentUpon>
     </Compile>

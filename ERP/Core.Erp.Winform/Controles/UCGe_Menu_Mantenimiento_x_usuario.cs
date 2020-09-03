@@ -272,7 +272,16 @@ namespace Core.Erp.Winform.Controles
 
         void UCGe_Menu_Mantenimiento_x_usuario_event_btnImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            try
+            {
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
 
+           
         }
 
         void UCGe_Menu_Mantenimiento_x_usuario_event_btnAnular_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -621,7 +621,7 @@ namespace Core.Erp.Winform.Roles
         private void pu_CargaInicial() {
             try
             {
-                Lista_empleado = EmpleadoBus.Get_List_Empleado_(param.IdEmpresa).Where(v => v.em_status == "EST_ACT" && v.IdNomina_Tipo == 1).ToList();
+                Lista_empleado = EmpleadoBus.Get_List_Empleado_(param.IdEmpresa).Where(v => v.em_status != "EST_LIQ" && v.IdNomina_Tipo == 1).ToList();
 
                 cmbIdEmpleado.Properties.DataSource = Lista_empleado;
                 cmb_empleado_autoriza.Properties.DataSource = Lista_empleado;

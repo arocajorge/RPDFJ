@@ -107,5 +107,45 @@ namespace Core.Erp.Data.Roles
 
      }
 
+
+     public ro_Historico_Liquidacion_Vacaciones_Det_Info get_info(int IdEmpresa, decimal idempleado, int anio, int mes)
+     {
+
+
+
+         try
+         {
+             ro_Historico_Liquidacion_Vacaciones_Det_Info info = new ro_Historico_Liquidacion_Vacaciones_Det_Info();
+             using (EntitiesRoles Context = new EntitiesRoles())
+             {
+                 vwro_rol_detalle_calculo_vacaciones Entity = Context.vwro_rol_detalle_calculo_vacaciones.FirstOrDefault(q =>
+                      q.idempresa == IdEmpresa
+                         && q.idempleado == idempleado
+                         && q.pe_anio == anio
+                         && q.pe_mes == mes
+                     );
+                 if (Entity == null) return null;
+                 info = new ro_Historico_Liquidacion_Vacaciones_Det_Info
+                 {
+                     Anio = anio,
+                     Mes = mes,
+                     Total_Remuneracion = (double)Entity.Remuneracion,
+                     Total_Vacaciones = (double)Entity.Vacacion
+
+                 };
+             }
+             return info;
+         }
+         catch (Exception)
+         {
+
+             throw;
+         }
+
+
+
+        
+     }
+
     }
 }
