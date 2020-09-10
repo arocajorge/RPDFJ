@@ -290,6 +290,25 @@ namespace Core.Erp.Data.CuentasxCobrar
                 });
                 #endregion
 
+                #region Cobros por estado
+                dbCxc.cxc_cobro_x_EstadoCobro.Add(new cxc_cobro_x_EstadoCobro
+                {
+                    IdEmpresa = cobro.IdEmpresa,
+                    IdSucursal = cobro.IdSucursal,
+                    IdCobro = cobro.IdCobro,
+                    IdEstadoCobro = "COBR",
+                    Secuencia = 1,
+                    IdCobro_tipo = cobro.IdCobro_tipo,
+                    observacion = cobro.cr_observacion,
+                    Fecha = cobro.cr_fecha,
+                    IdBanco = 0,
+                    IdCbte_vta_nota = 0,
+                    IdUsuario = cobro.IdUsuario,
+                    nom_pc = cobro.nom_pc,
+                    ip = cobro.ip
+                });
+                #endregion
+
                 dbCxc.SaveChanges();
 
                 return cobro.IdCobro;
