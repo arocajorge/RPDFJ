@@ -951,7 +951,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     co_subtotal_iva = Documento.SubtotalIVA,
                     co_subtotal_siniva = Documento.Subtotal0,
                     co_baseImponible = Documento.Subtotal0 + Documento.SubtotalIVA,
-                    co_Por_iva = Math.Round((Documento.ValorIVA / Documento.SubtotalIVA)*100,2,MidpointRounding.AwayFromZero),
+                    co_Por_iva = Documento.SubtotalIVA > 0 ? Math.Round((Documento.ValorIVA / Documento.SubtotalIVA)*100,2,MidpointRounding.AwayFromZero) : 0,
                     co_valoriva = Documento.ValorIVA,
                     co_total = Documento.Total,
                     IdCod_ICE = 866,
@@ -1031,12 +1031,17 @@ namespace Core.Erp.Data.CuentasxPagar
 	            #endregion
 
                 #region IVA
-		        OG.Info_CbteCble_x_OG._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info{
+                if (Math.Round(Documento.ValorIVA,2,MidpointRounding.AwayFromZero) > 0)
+                {
+                    OG.Info_CbteCble_x_OG._cbteCble_det_lista_info.Add(new ct_Cbtecble_det_Info
+                    {
                         IdTipoCbte = OG.Info_CbteCble_x_OG.IdTipoCbte,
                         IdCtaCble = paramCXP.pa_ctacble_iva,
                         dc_Valor = Documento.ValorIVA,
                         dc_Observacion = ""
                     });
+                }
+		        
 	            #endregion
 
                 #region Proveedor

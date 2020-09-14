@@ -1098,7 +1098,7 @@ namespace Core.Erp.Data.CuentasxPagar
                     dat.co_subtotal_iva = item.co_subtotal_iva;
                     dat.co_subtotal_siniva = item.co_subtotal_siniva;
                     dat.co_baseImponible = item.co_baseImponible;
-                    dat.co_Por_iva = item.co_Por_iva;
+                    dat.co_Por_iva = dat.co_Por_iva;
                     dat.co_valoriva = item.co_valoriva;
                     dat.IdCod_ICE = item.IdCod_ICE;
                     dat.co_Ice_base = item.co_Ice_base;
