@@ -942,6 +942,7 @@
     <Compile Include="com_TerminoPago.cs">
       <DependentUpon>ModelCompras.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConexionERP.cs" />
     <Compile Include="Contabilidad\ct_AnioFiscal_Data.cs" />
     <Compile Include="Contabilidad\ct_anio_fiscal_x_cuenta_utilidad_Data.cs" />
     <Compile Include="Contabilidad\ct_Balance_x_Estado_Resultado_x_Usuario_Data.cs" />

@@ -192,7 +192,7 @@ namespace Core.Erp.Winform.CuentasxPagar
                         {
                             var d = new cp_XML_DocumentoDet_Info
                             {
-                                CodigoProducto = Detalle.Element("codigoPrincipal").Value.ToString(),
+                                CodigoProducto = Detalle.Element("codigoPrincipal") == null ? "" : Detalle.Element("codigoPrincipal").Value.ToString(),
                                 NombreProducto = Detalle.Element("descripcion").Value.ToString(),
                                 Cantidad = Convert.ToDouble(Detalle.Element("cantidad").Value),
                                 Precio = Convert.ToDouble(Detalle.Element("precioTotalSinImpuesto").Value)

@@ -5,6 +5,7 @@ using System.Text;
 using Core.Erp.Data.General;
 using Core.Erp.Info.General;
 using Core.Erp.Info.CuentasxPagar;
+using System.Data.SqlClient;
 
 namespace Core.Erp.Data.CuentasxPagar
 {
@@ -377,43 +378,54 @@ namespace Core.Erp.Data.CuentasxPagar
            {
                List<cp_orden_pago_det_Info> Lista = new List<cp_orden_pago_det_Info>();
 
-               using (EntitiesCuentasxPagar Context = new EntitiesCuentasxPagar())
+               string WhereIn = string.Empty;
+               int x = 0;
+               foreach (var item in list_op)
                {
+                   WhereIn += (x > 0 ? "," : "") + item.ToString();
+                   x++;
+               }
 
-                   Context.SetCommandTimeOut(5000);
-                   foreach (var item_op in list_op)
+               string query = "SELECT dbo.cp_orden_pago_det.IdEmpresa, dbo.cp_orden_pago_det.IdOrdenPago, dbo.cp_orden_pago_det.Secuencia, dbo.cp_orden_pago_det.IdEmpresa_cxp, dbo.cp_orden_pago_det.IdCbteCble_cxp, dbo.cp_orden_pago_det.IdTipoCbte_cxp, "
+                            +" dbo.cp_orden_pago_det.Valor_a_pagar, dbo.cp_orden_pago_det.Referencia, dbo.cp_orden_pago_det.IdFormaPago, dbo.cp_orden_pago_det.Fecha_Pago, dbo.vwct_cbtecble_con_ctacble_acreedora.IdCtaCble_Acreedora, "
+                            +" dbo.cp_orden_pago.Observacion, dbo.cp_orden_pago.IdTipo_op, dbo.cp_orden_pago.Fecha, dbo.tb_persona.pe_nombreCompleto AS Nombre, dbo.cp_orden_pago.IdTipo_Persona, dbo.cp_orden_pago.IdPersona, "
+                            +" dbo.cp_orden_pago.IdEntidad"
+                            +" FROM     dbo.cp_orden_pago INNER JOIN"
+                            +" dbo.cp_orden_pago_det ON dbo.cp_orden_pago.IdEmpresa = dbo.cp_orden_pago_det.IdEmpresa AND dbo.cp_orden_pago.IdOrdenPago = dbo.cp_orden_pago_det.IdOrdenPago INNER JOIN"
+                            +" dbo.tb_persona ON dbo.cp_orden_pago.IdPersona = dbo.tb_persona.IdPersona LEFT OUTER JOIN"
+                            +" dbo.vwct_cbtecble_con_ctacble_acreedora ON dbo.cp_orden_pago_det.IdEmpresa_cxp = dbo.vwct_cbtecble_con_ctacble_acreedora.IdEmpresa AND "
+                            +" dbo.cp_orden_pago_det.IdTipoCbte_cxp = dbo.vwct_cbtecble_con_ctacble_acreedora.IdTipoCbte AND dbo.cp_orden_pago_det.IdCbteCble_cxp = dbo.vwct_cbtecble_con_ctacble_acreedora.IdCbteCble"
+                            +" where cp_orden_pago.IdEmpresa= "+IdEmpresa.ToString()+" and cp_orden_pago.IdOrdenPago in ("+WhereIn+")";
+
+               using (SqlConnection connection = new SqlConnection(ConexionERP.GetConnectionString()))
+               {
+                   connection.Open();
+                   SqlCommand command = new SqlCommand(query, connection);
+                   SqlDataReader reader = command.ExecuteReader();
+                   while (reader.Read())
                    {
-                       var lst = from q in Context.vwcp_orden_pago_det_con_cta_acreedora
-                                 where q.IdEmpresa == IdEmpresa
-                                 && q.IdOrdenPago == item_op
-                                 select q;
-
-                       foreach (var item in lst)
+                       Lista.Add(new cp_orden_pago_det_Info
                        {
-                           cp_orden_pago_det_Info info = new cp_orden_pago_det_Info();
-
-                           info.IdEmpresa = item.IdEmpresa;
-                           info.IdOrdenPago = item.IdOrdenPago == null ? 0 : Convert.ToDecimal(item.IdOrdenPago);
-                           info.Secuencia = item.Secuencia == null ? 0 : Convert.ToInt32(item.Secuencia);
-                           info.IdEmpresa_cxp = item.IdEmpresa_cxp;
-                           info.IdCbteCble_cxp = item.IdCbteCble_cxp;
-                           info.IdTipoCbte_cxp = item.IdTipoCbte_cxp;
-                           info.Valor_a_pagar = item.Valor_a_pagar;
-                           info.Referencia = item.Referencia;
-                           info.IdFormaPago = item.IdFormaPago;
-                           info.Fecha_Pago = item.Fecha_Pago == null ? DateTime.Now.Date : Convert.ToDateTime(item.Fecha_Pago);
-                           info.pr_nombre = item.Nombre;
-                           info.IdCtaCble_Acreedora = item.IdCtaCble_Acreedora;
-                           info.Observacion = item.Observacion;
-                           info.IdTipo_op = item.IdTipo_op;
-                           info.IdTipo_Persona = item.IdTipo_Persona;
-                           info.IdPersona = item.IdPersona;
-                           info.IdEntidad = item.IdEntidad == null ? 0 : Convert.ToDecimal(item.IdEntidad);
-
-                           Lista.Add(info);
-                       }
+                           IdEmpresa = Convert.ToInt32(reader["IdEmpresa"]),
+                           IdOrdenPago = Convert.ToDecimal(reader["IdOrdenPago"]),
+                           Secuencia = Convert.ToInt32(reader["Secuencia"]),
+                           IdEmpresa_cxp = Convert.ToInt32(reader["IdEmpresa_cxp"]),
+                           IdCbteCble_cxp = Convert.ToDecimal(reader["IdCbteCble_cxp"]),
+                           IdTipoCbte_cxp = Convert.ToInt32(reader["IdTipoCbte_cxp"]),
+                           Valor_a_pagar = Convert.ToDouble(reader["Valor_a_pagar"]),
+                           Referencia = Convert.ToString(reader["Referencia"]),
+                           IdFormaPago = Convert.ToString(reader["IdFormaPago"]),
+                           Fecha_Pago = Convert.ToDateTime(reader["Fecha_Pago"]),
+                           pr_nombre = Convert.ToString(reader["Nombre"]),
+                           IdCtaCble_Acreedora = Convert.ToString(reader["IdCtaCble_Acreedora"]),
+                           Observacion = Convert.ToString(reader["Observacion"]),
+                           IdTipo_op = Convert.ToString(reader["IdTipo_op"]),
+                           IdTipo_Persona = Convert.ToString(reader["IdTipo_Persona"]),
+                           IdPersona = Convert.ToDecimal(reader["IdPersona"]),
+                           IdEntidad = Convert.ToDecimal(reader["IdEntidad"])
+                       });
                    }
-                   
+                   reader.Close();
                }
 
                return Lista;
