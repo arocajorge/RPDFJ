@@ -101,7 +101,7 @@ namespace Core.Erp.Business.Roles_Fj
                         info_Detalle.IdEmpleado = item.IdEmpleado;
                         info_Detalle.Secuencia = 1;
                         info_Detalle.IdRubro = "9";
-                        if (Convert.ToDateTime(item.es_fecha_registro).Day >= info_parametro.Corte_Horas_extras)
+                        if (Convert.ToDateTime(item.es_fecha_registro).Day > info_parametro.Corte_Horas_extras)
                         {
                             info_Detalle.FechaPago = item.es_fecha_registro.AddMonths(1);
                         }
