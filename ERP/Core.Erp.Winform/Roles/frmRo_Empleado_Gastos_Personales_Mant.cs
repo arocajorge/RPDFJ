@@ -20,7 +20,7 @@ using Core.Erp.Business.SRI;
 
 using System.Xml;
 using System.Xml.Schema;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.Xml.Serialization;
 using System.IO;
