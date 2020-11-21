@@ -6,7 +6,6 @@ using System.Text;
 using Core.Erp.Info.Roles;
 using Core.Erp.Info.General;
 using Core.Erp.Data.General;
-using IExcel = Microsoft.Office.Interop.Excel;
 using System.Data.Entity.Validation;
 using Core.Erp.Data.Roles_Fj;
 namespace Core.Erp.Data.Roles
