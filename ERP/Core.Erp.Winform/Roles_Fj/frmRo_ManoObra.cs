@@ -408,9 +408,12 @@ namespace Core.Erp.Winform.Roles_Fj
 
 
                     // Proesando la nomina
-                    InfoEmpleado=   bus_empleado.Get_List_Empleado_x_Nomina_Liquidar_Eventuales_Ajuste_MO_Cliente(param.IdEmpresa, info_ev.IdNomina, info_ev.IdPeriodo, info_periodo_mensual_eventuales.pe_FechaIni, info_periodo_mensual_eventuales.pe_FechaFin,Convert.ToInt32( info_ev.IdEmpleado));
+                    //InfoEmpleado=   bus_empleado.Get_List_Empleado_x_Nomina_Liquidar_Eventuales_Ajuste_MO_Cliente(param.IdEmpresa, info_ev.IdNomina, info_ev.IdPeriodo, info_periodo_mensual_eventuales.pe_FechaIni, info_periodo_mensual_eventuales.pe_FechaFin,Convert.ToInt32( info_ev.IdEmpleado));
 
-                   bus_rol.pu_ProcesarRol(InfoEmpleado);
+                    bus_rol.procesar(param.IdEmpresa, 2, 5, info_Perioso_x_nominaMensual.IdPeriodo, item.idempleado, "spRo_nomina_liquidacion_cliente", "", param.IdUsuario);
+
+                   //inforolEventuales = bus_rol.GetInfoConsultaPorRol(param.IdEmpresa, 2, 5, info_Perioso_x_nominaMensual.IdPeriodo, ref msg);
+
 
 
                 }

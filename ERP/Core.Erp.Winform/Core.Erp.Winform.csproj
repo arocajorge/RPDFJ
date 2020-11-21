@@ -35,7 +35,7 @@
     <SuiteName>Vzen Erp 2017</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2056</ApplicationRevision>
+    <ApplicationRevision>2057</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -8858,6 +8858,7 @@
     <EmbeddedResource Include="Produc_Cirdesus\Frm_ProductividadSubgrupoTrabajo_Mantenimiento.resx">
       <DependentUpon>Frm_ProductividadSubgrupoTrabajo_Mantenimiento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\frmRo_Nomina_horas_extras_cosul.resx">
       <DependentUpon>frmRo_Nomina_horas_extras_cosul.cs</DependentUpon>
     </EmbeddedResource>
