@@ -29,6 +29,7 @@ namespace Cus.Erp.Reports.FJ.Roles
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -64,6 +65,9 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLine2 = new DevExpress.XtraReports.UI.XRLine();
             this.lbcomprobante = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
+            this.lb_ingreso = new DevExpress.XtraReports.UI.XRLabel();
+            this.lb_egreso = new DevExpress.XtraReports.UI.XRLabel();
+            this.lb_liquido = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
@@ -74,10 +78,9 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.calculatedField1 = new DevExpress.XtraReports.UI.CalculatedField();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lb_liquido = new DevExpress.XtraReports.UI.XRLabel();
-            this.lb_egreso = new DevExpress.XtraReports.UI.XRLabel();
-            this.lb_ingreso = new DevExpress.XtraReports.UI.XRLabel();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -232,7 +235,7 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLine1,
             this.xrLine2,
             this.lbcomprobante});
-            this.ReportHeader.HeightF = 215.7501F;
+            this.ReportHeader.HeightF = 227.2084F;
             this.ReportHeader.Name = "ReportHeader";
             // 
             // lb_nombrecomercial
@@ -272,6 +275,8 @@ namespace Cus.Erp.Reports.FJ.Roles
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel11,
+            this.xrLabel7,
             this.xrLabel16,
             this.xrLabel8,
             this.xrLabel10,
@@ -287,7 +292,7 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 103.4167F);
             this.xrPanel1.Name = "xrPanel1";
             this.xrPanel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrPanel1.SizeF = new System.Drawing.SizeF(454.9583F, 112.3334F);
+            this.xrPanel1.SizeF = new System.Drawing.SizeF(454.9583F, 123.7917F);
             this.xrPanel1.StylePriority.UseBorders = false;
             this.xrPanel1.StylePriority.UsePadding = false;
             // 
@@ -297,10 +302,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DiasTraba")});
             this.xrLabel16.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(117.2918F, 87.12508F);
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(130.8335F, 87.12508F);
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(243.7813F, 15.00003F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(307.1153F, 15.00003F);
             this.xrLabel16.StylePriority.UseBorders = false;
             this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.Text = "xrLabel16";
@@ -312,7 +317,7 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(10.4171F, 87.33343F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(84.66661F, 15F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(109.6666F, 15F);
             this.xrLabel8.StylePriority.UseBorders = false;
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
@@ -325,10 +330,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "fu_descripcion")});
             this.xrLabel10.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(118.1259F, 72.12505F);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(131.6676F, 72.12505F);
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(243.7813F, 15.00003F);
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(307.1154F, 15.00003F);
             this.xrLabel10.StylePriority.UseBorders = false;
             this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.Text = "xrLabel10";
@@ -351,10 +356,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             // 
             this.xrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel21.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(10.4171F, 37.50011F);
+            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(10.4171F, 37.50013F);
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(60.41666F, 15F);
+            this.xrLabel21.SizeF = new System.Drawing.SizeF(84.66661F, 15F);
             this.xrLabel21.StylePriority.UseBorders = false;
             this.xrLabel21.StylePriority.UseFont = false;
             this.xrLabel21.StylePriority.UseTextAlignment = false;
@@ -381,10 +386,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel13.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ca_descripcion")});
             this.xrLabel13.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(118.126F, 42.12504F);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(131.6677F, 42.12504F);
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(243.7812F, 14.99998F);
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(307.1152F, 14.99998F);
             this.xrLabel13.StylePriority.UseBorders = false;
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.Text = "xrLabel13";
@@ -395,10 +400,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "zo_descripcion")});
             this.xrLabel22.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(118.126F, 57.1251F);
+            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(131.6677F, 57.1251F);
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel22.SizeF = new System.Drawing.SizeF(243.7812F, 15.00002F);
+            this.xrLabel22.SizeF = new System.Drawing.SizeF(307.1152F, 15.00002F);
             this.xrLabel22.StylePriority.UseBorders = false;
             this.xrLabel22.StylePriority.UseFont = false;
             this.xrLabel22.Text = "xrLabel22";
@@ -409,10 +414,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "pe_cedulaRuc")});
             this.xrLabel14.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(117.7089F, 22.5001F);
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(131.2506F, 22.50011F);
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel14.SizeF = new System.Drawing.SizeF(244.1983F, 15F);
+            this.xrLabel14.SizeF = new System.Drawing.SizeF(307.5324F, 14.99999F);
             this.xrLabel14.StylePriority.UseBorders = false;
             this.xrLabel14.StylePriority.UseFont = false;
             this.xrLabel14.Text = "xrLabel14";
@@ -437,10 +442,10 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Nombres")});
             this.xrLabel2.Font = new System.Drawing.Font("Verdana", 8F);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(117.7089F, 5.916691F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(131.2506F, 5.916695F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(244.1983F, 14.99998F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(307.5324F, 14.99998F);
             this.xrLabel2.StylePriority.UseBorders = false;
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.Text = "xrLabel2";
@@ -500,6 +505,40 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLine3});
             this.GroupFooter1.HeightF = 70.91667F;
             this.GroupFooter1.Name = "GroupFooter1";
+            // 
+            // lb_ingreso
+            // 
+            this.lb_ingreso.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_ingreso.LocationFloat = new DevExpress.Utils.PointFloat(321.6605F, 3.178914E-05F);
+            this.lb_ingreso.Name = "lb_ingreso";
+            this.lb_ingreso.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lb_ingreso.SizeF = new System.Drawing.SizeF(65.96652F, 14.99998F);
+            this.lb_ingreso.StylePriority.UseFont = false;
+            this.lb_ingreso.StylePriority.UseTextAlignment = false;
+            this.lb_ingreso.Text = "lb_liquido";
+            this.lb_ingreso.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lb_egreso
+            // 
+            this.lb_egreso.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_egreso.LocationFloat = new DevExpress.Utils.PointFloat(387.627F, 3.178914E-05F);
+            this.lb_egreso.Name = "lb_egreso";
+            this.lb_egreso.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lb_egreso.SizeF = new System.Drawing.SizeF(67.33133F, 14.99998F);
+            this.lb_egreso.StylePriority.UseFont = false;
+            this.lb_egreso.StylePriority.UseTextAlignment = false;
+            this.lb_egreso.Text = "lb_liquido";
+            this.lb_egreso.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lb_liquido
+            // 
+            this.lb_liquido.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lb_liquido.LocationFloat = new DevExpress.Utils.PointFloat(321.6605F, 32.58333F);
+            this.lb_liquido.Name = "lb_liquido";
+            this.lb_liquido.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lb_liquido.SizeF = new System.Drawing.SizeF(100F, 14.99998F);
+            this.lb_liquido.StylePriority.UseFont = false;
+            this.lb_liquido.Text = "lb_liquido";
             // 
             // xrLabel20
             // 
@@ -583,39 +622,31 @@ namespace Cus.Erp.Reports.FJ.Roles
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.Text = "Recibi Conforme:";
             // 
-            // lb_liquido
+            // xrLabel7
             // 
-            this.lb_liquido.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lb_liquido.LocationFloat = new DevExpress.Utils.PointFloat(321.6605F, 32.58333F);
-            this.lb_liquido.Name = "lb_liquido";
-            this.lb_liquido.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lb_liquido.SizeF = new System.Drawing.SizeF(100F, 14.99998F);
-            this.lb_liquido.StylePriority.UseFont = false;
-            this.lb_liquido.Text = "lb_liquido";
+            this.xrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel7.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(10.41711F, 102.3334F);
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(109.6666F, 15F);
+            this.xrLabel7.StylePriority.UseBorders = false;
+            this.xrLabel7.StylePriority.UseFont = false;
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            this.xrLabel7.Text = "Dias Efectivos:";
+            this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // lb_egreso
+            // xrLabel11
             // 
-            this.lb_egreso.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lb_egreso.LocationFloat = new DevExpress.Utils.PointFloat(387.627F, 3.178914E-05F);
-            this.lb_egreso.Name = "lb_egreso";
-            this.lb_egreso.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lb_egreso.SizeF = new System.Drawing.SizeF(67.33133F, 14.99998F);
-            this.lb_egreso.StylePriority.UseFont = false;
-            this.lb_egreso.StylePriority.UseTextAlignment = false;
-            this.lb_egreso.Text = "lb_liquido";
-            this.lb_egreso.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // lb_ingreso
-            // 
-            this.lb_ingreso.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lb_ingreso.LocationFloat = new DevExpress.Utils.PointFloat(321.6605F, 3.178914E-05F);
-            this.lb_ingreso.Name = "lb_ingreso";
-            this.lb_ingreso.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lb_ingreso.SizeF = new System.Drawing.SizeF(65.96652F, 14.99998F);
-            this.lb_ingreso.StylePriority.UseFont = false;
-            this.lb_ingreso.StylePriority.UseTextAlignment = false;
-            this.lb_ingreso.Text = "lb_liquido";
-            this.lb_ingreso.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel11.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DiasEfectivos")});
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(131.6677F, 102.1251F);
+            this.xrLabel11.Name = "xrLabel11";
+            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(306.2812F, 15F);
+            this.xrLabel11.StylePriority.UseBorders = false;
+            this.xrLabel11.Text = "xrLabel11";
             // 
             // bindingSource1
             // 
@@ -704,5 +735,7 @@ namespace Cus.Erp.Reports.FJ.Roles
         private DevExpress.XtraReports.UI.XRLabel lb_liquido;
         private DevExpress.XtraReports.UI.XRLabel lb_ingreso;
         private DevExpress.XtraReports.UI.XRLabel lb_egreso;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
     }
 }

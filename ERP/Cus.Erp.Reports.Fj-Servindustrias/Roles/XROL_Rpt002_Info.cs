@@ -27,7 +27,8 @@ namespace Cus.Erp.Reports.FJ.Roles
         public Nullable<double> Expr1 { get; set; }
         public decimal IdEmpleado { get; set; }
         public string ru_tipo { get; set; }
-       
+        public int DiasEfectivos { get; set; }
+
         
         public double Ingresos { get; set; }
         public double Egresos { get; set; }

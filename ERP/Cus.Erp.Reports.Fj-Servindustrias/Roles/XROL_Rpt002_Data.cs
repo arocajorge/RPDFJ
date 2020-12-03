@@ -52,7 +52,7 @@ namespace Cus.Erp.Reports.FJ.Roles
                         item.ca_descripcion = info.ca_descripcion;
                         item.zo_descripcion = info.zo_descripcion;
                         item.fu_descripcion = info.fu_descripcion;
-                        
+                        item.DiasEfectivos = info.DiasEfectivos;
                         if (info.ru_tipo == "I")
                             item.Ingresos =Convert.ToDouble( info.Expr1);
                         else

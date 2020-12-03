@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt020" Width="1.5" PointX="8.121991355028932" PointY="0.765686676262732" />
         <EntityTypeShape EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt013" Width="1.5" PointX="8.434197142922411" PointY="6.4228747218953792" />
         <EntityTypeShape EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt021" Width="1.5" PointX="6.8519281758237289" PointY="24.634255510118908" />
+        <EntityTypeShape EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt022" Width="1.5" PointX="7.8436675667034788" PointY="4.88976298500307" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

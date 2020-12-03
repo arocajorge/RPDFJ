@@ -255,9 +255,27 @@
       [vwROLES_Rpt021].[Descripcion] AS [Descripcion]
       FROM [Fj_servindustrias].[vwROLES_Rpt021] AS [vwROLES_Rpt021]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwROLES_Rpt022" EntityType="Entities_RolesFj_Rpt.Store.vwROLES_Rpt022" store:Type="Views" store:Schema="Fj_servindustrias" store:Name="vwROLES_Rpt022">
+            <DefiningQuery>SELECT 
+      [vwROLES_Rpt022].[IdEmpresa] AS [IdEmpresa], 
+      [vwROLES_Rpt022].[IdEmpleado] AS [IdEmpleado], 
+      [vwROLES_Rpt022].[IdTipoNomina] AS [IdTipoNomina], 
+      [vwROLES_Rpt022].[pe_cedulaRuc] AS [pe_cedulaRuc], 
+      [vwROLES_Rpt022].[pe_apellido] AS [pe_apellido], 
+      [vwROLES_Rpt022].[pe_nombre] AS [pe_nombre], 
+      [vwROLES_Rpt022].[ca_descripcion] AS [ca_descripcion], 
+      [vwROLES_Rpt022].[de_descripcion] AS [de_descripcion], 
+      [vwROLES_Rpt022].[Descripcion] AS [Descripcion], 
+      [vwROLES_Rpt022].[em_codigo] AS [em_codigo], 
+      [vwROLES_Rpt022].[em_fecha_ingreso] AS [em_fecha_ingreso], 
+      [vwROLES_Rpt022].[em_fechaIngaRol] AS [em_fechaIngaRol], 
+      [vwROLES_Rpt022].[em_foto] AS [em_foto], 
+      [vwROLES_Rpt022].[pe_fechaNacimiento] AS [pe_fechaNacimiento]
+      FROM [Fj_servindustrias].[vwROLES_Rpt022] AS [vwROLES_Rpt022]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt001' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt001' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt001">
           <Key>
@@ -305,8 +323,8 @@
           <Property Name="Calculo_Horas_extras_Sobre" Type="int" Nullable="false" />
           <Property Name="Centro_costo" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt003' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt003' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt003">
           <Key>
@@ -338,8 +356,8 @@
           <Property Name="pe_nombreCompleto" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Calculo_Horas_extras_Sobre" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt004' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt004' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt004">
           <Key>
@@ -381,8 +399,8 @@
           <Property Name="Calculo_Horas_extras_Sobre" Type="int" />
           <Property Name="Centro_costo" Type="varchar" Nullable="false" MaxLength="200" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt008' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt008' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt008">
           <Key>
@@ -427,8 +445,8 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="Grupo" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt013' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt013' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt013">
           <Key>
@@ -467,8 +485,8 @@
           <Property Name="EstadoLiquidacion" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="antiguedad_string" Type="varchar" MaxLength="57" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt014' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt014' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt014">
           <Key>
@@ -484,8 +502,8 @@
           <Property Name="ca_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Asistencia" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt015' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt015' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt015">
           <Key>
@@ -526,8 +544,8 @@
           <Property Name="Centro_costo" Type="varchar" MaxLength="200" />
           <Property Name="DescripcionProcesoNomina" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt016' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt016' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt016">
           <Key>
@@ -563,8 +581,8 @@
           <Property Name="ru_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Valor_bono" Type="float" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt019' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt019' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt019">
           <Key>
@@ -600,8 +618,8 @@
           <Property Name="ru_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Valor_bono" Type="float" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt020' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt020' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt020">
           <Key>
@@ -649,8 +667,8 @@
           <Property Name="pe_apellido" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="pe_nombre" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt021' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt021' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwROLES_Rpt021">
           <Key>
@@ -683,6 +701,37 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt022' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="vwROLES_Rpt022">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdTipoNomina" />
+            <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="pe_apellido" />
+            <PropertyRef Name="pe_nombre" />
+            <PropertyRef Name="ca_descripcion" />
+            <PropertyRef Name="de_descripcion" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="em_codigo" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
+          <Property Name="IdTipoNomina" Type="int" Nullable="false" />
+          <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="pe_apellido" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="pe_nombre" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ca_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="de_descripcion" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="em_codigo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="em_fecha_ingreso" Type="datetime" />
+          <Property Name="em_fechaIngaRol" Type="datetime" />
+          <Property Name="em_foto" Type="image" />
+          <Property Name="pe_fechaNacimiento" Type="datetime" />
         </EntityType>
         <Function Name="spROLES_Rpt002" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fj_servindustrias">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
@@ -764,14 +813,6 @@
             <Parameter Name="Anio" Mode="In" Type="Int32" />
             <Parameter Name="Mes" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spROLES_Rpt002" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt002_Result1)">
-            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
-            <Parameter Name="IdNomina" Mode="In" Type="Int32" />
-            <Parameter Name="IdEmpleado" Mode="In" Type="Decimal" />
-            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
-            <Parameter Name="Anio" Mode="In" Type="Int32" />
-            <Parameter Name="Mes" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spROLES_Rpt014" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt014_Result)">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -835,6 +876,15 @@
             <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="vwROLES_Rpt022" EntityType="Entities_RolesFj_Rpt.vwROLES_Rpt022" />
+          <FunctionImport Name="spROLES_Rpt002" ReturnType="Collection(Entities_RolesFj_Rpt.spROLES_Rpt002_Result)">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdNomina" Mode="In" Type="Int32" />
+            <Parameter Name="IdEmpleado" Mode="In" Type="Decimal" />
+            <Parameter Name="IdPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="Anio" Mode="In" Type="Int32" />
+            <Parameter Name="Mes" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="vwROLES_Rpt008">
@@ -902,27 +952,6 @@
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Int32" Name="IdNomina_Tipo" Nullable="false" />
           <Property Type="Int32" Name="IdNomina_tipo_Liq" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="spROLES_Rpt002_Result">
-          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
-          <Property Type="Int32" Name="IdNominaTipo" Nullable="false" />
-          <Property Type="Int32" Name="pe_anio" Nullable="true" />
-          <Property Type="Int32" Name="pe_mes" Nullable="true" />
-          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="201" />
-          <Property Type="String" Name="ru_descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="ru_orden" Nullable="false" />
-          <Property Type="Double" Name="Expr1" Nullable="true" />
-          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
-          <Property Type="String" Name="ru_tipo" Nullable="false" MaxLength="1" />
-          <Property Type="Int32" Name="Column1" Nullable="true" />
-          <Property Type="Double" Name="Column2" Nullable="true" />
-          <Property Type="Double" Name="Column3" Nullable="true" />
-          <Property Type="Double" Name="Column4" Nullable="true" />
-          <Property Type="Double" Name="Column5" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spROLES_Rpt002_Result1">
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
@@ -1464,6 +1493,56 @@
           <Property Type="Double" Name="dias_trabajados" Nullable="true" />
           <Property Type="Double" Name="dias_Efectivos" Nullable="true" />
         </ComplexType>
+        <EntityType Name="vwROLES_Rpt022">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdTipoNomina" />
+            <PropertyRef Name="pe_cedulaRuc" />
+            <PropertyRef Name="pe_apellido" />
+            <PropertyRef Name="pe_nombre" />
+            <PropertyRef Name="ca_descripcion" />
+            <PropertyRef Name="de_descripcion" />
+            <PropertyRef Name="Descripcion" />
+            <PropertyRef Name="em_codigo" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="IdTipoNomina" Nullable="false" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_apellido" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pe_nombre" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="de_descripcion" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="em_codigo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="em_fecha_ingreso" Precision="3" />
+          <Property Type="DateTime" Name="em_fechaIngaRol" Precision="3" />
+          <Property Type="Binary" Name="em_foto" MaxLength="Max" FixedLength="false" />
+          <Property Type="DateTime" Name="pe_fechaNacimiento" Precision="3" />
+        </EntityType>
+        <ComplexType Name="spROLES_Rpt002_Result">
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdNominaTipo" Nullable="false" />
+          <Property Type="Int32" Name="pe_anio" Nullable="true" />
+          <Property Type="Int32" Name="pe_mes" Nullable="true" />
+          <Property Type="String" Name="pe_cedulaRuc" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="ru_descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ca_descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="zo_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="fu_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ru_orden" Nullable="false" />
+          <Property Type="Double" Name="Expr1" Nullable="true" />
+          <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="ru_tipo" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="DiasTraba" Nullable="true" />
+          <Property Type="Double" Name="Quincena" Nullable="true" />
+          <Property Type="Double" Name="FindeMes" Nullable="true" />
+          <Property Type="Double" Name="Variable" Nullable="false" />
+          <Property Type="Double" Name="FondoReserva" Nullable="false" />
+          <Property Type="Int32" Name="DiasEfectivos" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1524,31 +1603,6 @@
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
                 <ScalarProperty Name="IdNomina_Tipo" ColumnName="IdNomina_Tipo" />
                 <ScalarProperty Name="IdNomina_tipo_Liq" ColumnName="IdNomina_tipo_Liq" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spROLES_Rpt002" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt002">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt002_Result1">
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="IdNominaTipo" ColumnName="IdNominaTipo" />
-                <ScalarProperty Name="pe_anio" ColumnName="pe_anio" />
-                <ScalarProperty Name="pe_mes" ColumnName="pe_mes" />
-                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
-                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
-                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
-                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
-                <ScalarProperty Name="ru_orden" ColumnName="ru_orden" />
-                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="ru_tipo" ColumnName="ru_tipo" />
-                <ScalarProperty Name="DiasTraba" ColumnName="DiasTraba" />
-                <ScalarProperty Name="Quincena" ColumnName="Quincena" />
-                <ScalarProperty Name="FindeMes" ColumnName="FindeMes" />
-                <ScalarProperty Name="Variable" ColumnName="Variable" />
-                <ScalarProperty Name="FondoReserva" ColumnName="FondoReserva" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1989,6 +2043,52 @@
                 <ScalarProperty Name="Iess" ColumnName="Iess" />
                 <ScalarProperty Name="dias_trabajados" ColumnName="dias_trabajados" />
                 <ScalarProperty Name="dias_Efectivos" ColumnName="dias_Efectivos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="vwROLES_Rpt022">
+            <EntityTypeMapping TypeName="Entities_RolesFj_Rpt.vwROLES_Rpt022">
+              <MappingFragment StoreEntitySet="vwROLES_Rpt022">
+                <ScalarProperty Name="pe_fechaNacimiento" ColumnName="pe_fechaNacimiento" />
+                <ScalarProperty Name="em_foto" ColumnName="em_foto" />
+                <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />
+                <ScalarProperty Name="em_fecha_ingreso" ColumnName="em_fecha_ingreso" />
+                <ScalarProperty Name="em_codigo" ColumnName="em_codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="de_descripcion" ColumnName="de_descripcion" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="pe_nombre" ColumnName="pe_nombre" />
+                <ScalarProperty Name="pe_apellido" ColumnName="pe_apellido" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="IdTipoNomina" ColumnName="IdTipoNomina" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spROLES_Rpt002" FunctionName="Entities_RolesFj_Rpt.Store.spROLES_Rpt002">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Entities_RolesFj_Rpt.spROLES_Rpt002_Result">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdNominaTipo" ColumnName="IdNominaTipo" />
+                <ScalarProperty Name="pe_anio" ColumnName="pe_anio" />
+                <ScalarProperty Name="pe_mes" ColumnName="pe_mes" />
+                <ScalarProperty Name="pe_cedulaRuc" ColumnName="pe_cedulaRuc" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="ru_descripcion" ColumnName="ru_descripcion" />
+                <ScalarProperty Name="ca_descripcion" ColumnName="ca_descripcion" />
+                <ScalarProperty Name="zo_descripcion" ColumnName="zo_descripcion" />
+                <ScalarProperty Name="fu_descripcion" ColumnName="fu_descripcion" />
+                <ScalarProperty Name="ru_orden" ColumnName="ru_orden" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="ru_tipo" ColumnName="ru_tipo" />
+                <ScalarProperty Name="DiasTraba" ColumnName="DiasTraba" />
+                <ScalarProperty Name="Quincena" ColumnName="Quincena" />
+                <ScalarProperty Name="FindeMes" ColumnName="FindeMes" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="FondoReserva" ColumnName="FondoReserva" />
+                <ScalarProperty Name="DiasEfectivos" ColumnName="DiasEfectivos" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

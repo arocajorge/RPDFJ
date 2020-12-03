@@ -294,6 +294,9 @@ namespace Core.Erp.Reportes.Controles
         {
             try
             {
+                if (barNominaTipo.EditValue == null)
+                    return "0";
+                else
                 return barNominaTipo.EditValue.ToString();
             }
             catch (Exception ex)
@@ -307,7 +310,11 @@ namespace Core.Erp.Reportes.Controles
         {
             try
             {
-                return barNominaTipoLiqui.EditValue.ToString();
+
+                if (barNominaTipoLiqui.EditValue == null)
+                    return "0";
+                else
+                    return barNominaTipoLiqui.EditValue.ToString();
             }
             catch (Exception ex)
             {

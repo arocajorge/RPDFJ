@@ -1454,8 +1454,8 @@
           <Property Name="nom_pc" Type="varchar" MaxLength="50" />
           <Property Name="ip" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_descuento_no_planificados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_descuento_no_planificados' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_descuento_no_planificados">
           <Key>
@@ -1492,8 +1492,8 @@
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Fecha_Transaccion" Type="date" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_descuento_sin_planificacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_descuento_sin_planificacion' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_descuento_sin_planificacion">
           <Key>
@@ -1532,8 +1532,8 @@
           <Property Name="Planificado" Type="int" />
           <Property Name="IdUsuario" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_Novedad_x_horasExtras_Pendiente_Aprobar">
           <Key>
@@ -1574,8 +1574,8 @@
           <Property Name="IdTipoNomina" Type="int" Nullable="false" />
           <Property Name="IdDivision" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_parametro_x_pago_variable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_parametro_x_pago_variable' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_x_parametro_x_pago_variable">
           <Key>
@@ -1599,8 +1599,8 @@
           <Property Name="IdFuerza" Type="int" />
           <Property Name="fu_descripcion" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_parametro_x_pago_variable_Det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_parametro_x_pago_variable_Det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_x_parametro_x_pago_variable_Det">
           <Key>
@@ -1618,8 +1618,8 @@
           <Property Name="Secuencia" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_rutas_asignadas_Det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleado_x_rutas_asignadas_Det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleado_x_rutas_asignadas_Det">
           <Key>
@@ -1636,8 +1636,8 @@
           <Property Name="secuencia" Type="int" Nullable="false" />
           <Property Name="zo_descripcion" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_empleados_con_sueldo_actual_para_calculo_HE' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_empleados_con_sueldo_actual_para_calculo_HE">
           <Key>
@@ -1679,8 +1679,8 @@
           <Property Name="Valor_Transp" Type="float" />
           <Property Name="Valor_bono" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_servicio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_servicio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_fectividad_Entrega_servicio">
           <Key>
@@ -1707,8 +1707,8 @@
           <Property Name="pe_FechaFin" Type="smalldatetime" />
           <Property Name="IdServicioTipo" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_servicio_det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_servicio_det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_fectividad_Entrega_servicio_det">
           <Key>
@@ -1766,8 +1766,8 @@
           <Property Name="IdNomina_tipo_Liq" Type="int" Nullable="false" />
           <Property Name="IdPeriodo" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_fectividad_Entrega_x_Periodo_Empleado">
           <Key>
@@ -1789,8 +1789,8 @@
           <Property Name="pe_FechaIni" Type="smalldatetime" Nullable="false" />
           <Property Name="pe_FechaFin" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_Entrega_x_Periodo_Empleado_Det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_fectividad_Entrega_x_Periodo_Empleado_Det">
           <Key>
@@ -1832,8 +1832,8 @@
           <Property Name="IdPeriodo" Type="int" Nullable="false" />
           <Property Name="ru_descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_x_empleado_Adm_x_periodo_Det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_fectividad_x_empleado_Adm_x_periodo_Det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_fectividad_x_empleado_Adm_x_periodo_Det">
           <Key>
@@ -1867,8 +1867,8 @@
           <Property Name="Valor_bono" Type="float" Nullable="false" />
           <Property Name="ru_descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_Grupo_empleado_det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_Grupo_empleado_det' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Grupo_empleado_det">
           <Key>
@@ -1886,8 +1886,8 @@
           <Property Name="Valor_bono" Type="float" Nullable="false" />
           <Property Name="IdTipoServicio" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_marcaciones_x_empleado_x_incidentes_falt_Perm' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_marcaciones_x_empleado_x_incidentes_falt_Perm">
           <Key>
@@ -1923,8 +1923,8 @@
           <Property Name="IdGrupo" Type="int" />
           <Property Name="IdDivision" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_jornada_desfasada' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_jornada_desfasada' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_planificacion_x_jornada_desfasada">
           <Key>
@@ -1948,8 +1948,8 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="100" />
           <Property Name="IdPlanificacion" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_ruta_emple' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_ruta_emple' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_planificacion_x_ruta_emple">
           <Key>
@@ -1970,8 +1970,8 @@
           <Property Name="pe_FechaFin" Type="smalldatetime" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_ruta_entrega_x_empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_planificacion_x_ruta_entrega_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_planificacion_x_ruta_entrega_x_empleado">
           <Key>
@@ -2000,8 +2000,8 @@
           <Property Name="ru_descripcion" Type="varchar" MaxLength="50" />
           <Property Name="IdGrupo" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_presupuesto_x_fuerza_x_cargo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_presupuesto_x_fuerza_x_cargo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_presupuesto_x_fuerza_x_cargo">
           <Key>
@@ -2031,8 +2031,8 @@
           <Property Name="IdCentroCosto" Type="varchar" MaxLength="20" />
           <Property Name="IdSuccentroCosto" Type="varchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_Remplazo_x_emplado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_Remplazo_x_emplado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_Remplazo_x_emplado">
           <Key>
@@ -2080,8 +2080,8 @@
           <Property Name="IdNovedad" Type="numeric" Precision="9" />
           <Property Name="Estado" Type="char" MaxLength="1" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_empleado_x_Activo_Fijo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_empleado_x_Activo_Fijo' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo">
           <Key>
@@ -2116,8 +2116,8 @@
           <Property Name="IdCentroCosto" Type="varchar" MaxLength="20" />
           <Property Name="IdCentroCosto_sub_centro_costo" Type="varchar" MaxLength="20" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_empleado_x_Activo_Fijo_Historico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_empleado_x_Activo_Fijo_Historico' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_ro_empleado_x_Activo_Fijo_Historico">
           <Key>
@@ -2145,8 +2145,8 @@
           <Property Name="de_descripcion" Type="nchar" Nullable="false" MaxLength="50" />
           <Property Name="Descripcion" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_ro_fectividad_Entrega_x_planificacion_x_ruta_x_empleado">
           <Key>
@@ -2177,8 +2177,8 @@
           <Property Name="IdZona" Type="int" />
           <Property Name="Recuperacion_cartera_aplica" Type="float" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_planificacion_x_jornada_desfasada_empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwro_ro_planificacion_x_jornada_desfasada_empleado' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="vwro_ro_planificacion_x_jornada_desfasada_empleado">
           <Key>
@@ -2211,6 +2211,9 @@
           <Property Name="pe_cedulaRuc" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IdPlanificacion" Type="int" Nullable="false" />
         </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'DBERP_FJ_PRODUCCION.Fj_servindustrias.vwROLES_Rpt022' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
         <Association Name="FK_ro_empleado_x_cargo_fuerza_grupo_ro_fuerza">
           <End Role="ro_fuerza" Type="ModelRoles_Fj.Store.ro_fuerza" Multiplicity="1" />
           <End Role="ro_empleado_x_cargo_fuerza_grupo" Type="ModelRoles_Fj.Store.ro_empleado_x_cargo_fuerza_grupo" Multiplicity="*" />
