@@ -497,24 +497,20 @@ namespace Core.Erp.Data.Contabilidad
             try
             {
                 decimal IdcbteCble = 0;
-                EntitiesDBConta OECbtecble = new EntitiesDBConta();
-
-
-                var selecte = OECbtecble.ct_cbtecble.Count(q =>q.IdEmpresa == idempresa && q.IdTipoCbte == idTipoCbte);
-                             
-
-                if (selecte==0)
+                using (SqlConnection connection = new SqlConnection(ConexionERP.GetConnectionString()))
                 {
-                    IdcbteCble = 1;
-                }
-                else
-                {
-                    OECbtecble = new EntitiesDBConta();
-                    var selectCbtecble = (from CbtCble in OECbtecble.ct_cbtecble
-                                          where CbtCble.IdEmpresa == idempresa
-                                          && CbtCble.IdTipoCbte == idTipoCbte
-                                          select CbtCble.IdCbteCble).Max();
-                    IdcbteCble = Convert.ToDecimal(selectCbtecble.ToString()) + 1;
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = "select max(IdCbteCble) IdCbteCble"
+                                        +" FROM ct_cbtecble"
+                                        +" where idempresa = "+idempresa.ToString()+" and IdTipoCbte = "+idTipoCbte.ToString();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        IdcbteCble = Convert.ToInt32(reader["IdCbteCble"]) + 1;
+                    }
+                    reader.Close();
                 }
                 return IdcbteCble;
             }
@@ -950,15 +946,6 @@ namespace Core.Erp.Data.Contabilidad
                     string codigo_CbteCble = "";
                     using (EntitiesDBConta context = new EntitiesDBConta())
                     {
-
-                        var Q = from tbCbteCble in context.ct_cbtecble
-                                where tbCbteCble.IdCbteCble == _CbteCbleInfo.IdCbteCble
-                                && tbCbteCble.IdTipoCbte == _CbteCbleInfo.IdTipoCbte
-                                && tbCbteCble.IdEmpresa == _CbteCbleInfo.IdEmpresa
-                                select tbCbteCble;
-
-                        if (Q.ToList().Count == 0)
-                        {
                             var address = new ct_cbtecble();
                             address.IdEmpresa = _CbteCbleInfo.IdEmpresa;
                             address.IdCbteCble = IdCbteCble = _CbteCbleInfo.IdCbteCble = Get_IdCbteCble(_CbteCbleInfo.IdEmpresa, _CbteCbleInfo.IdTipoCbte, ref MensajeError);
@@ -1010,9 +997,6 @@ namespace Core.Erp.Data.Contabilidad
                                 sec = sec + 1;
                                 _CbteCble_Det_Data.GrabarDB(item, ref MensajeError);
                             }
-                        }
-                        else
-                            return false;
                     }
                     MensajeError = "Grabado exitosamente el Cbte#" + IdCbteCble;
                     return true;
