@@ -26,8 +26,11 @@ namespace Cus.Erp.Reports.FJ.Roles
 
              int IdEmpresa = Convert.ToInt32(Parameters["p_IdEmpresa"].Value);
              int IdNomina = Convert.ToInt32(Parameters["p_IdNomina"].Value);
+             int idDepartamento = Convert.ToInt32(Parameters["p_idDepartamento"].Value);
+
+                
              empresa.Text = param.NombreEmpresa;
-             oListado = oReporteBus.get_list(IdEmpresa, IdNomina);
+             oListado = oReporteBus.get_list(IdEmpresa, IdNomina, idDepartamento);
              DataSource = oListado;
             }
             catch (Exception)

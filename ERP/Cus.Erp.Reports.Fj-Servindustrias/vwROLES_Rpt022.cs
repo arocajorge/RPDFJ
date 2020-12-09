@@ -28,5 +28,7 @@ namespace Cus.Erp.Reports.FJ
         public Nullable<System.DateTime> em_fechaIngaRol { get; set; }
         public byte[] em_foto { get; set; }
         public Nullable<System.DateTime> pe_fechaNacimiento { get; set; }
+        public int IdCargo { get; set; }
+        public int IdDepartamento { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace Cus.Erp.Reports.FJ.Roles
     {
        XROLES_Rpt022_Data odat = new XROLES_Rpt022_Data();
 
-       public List<XROLES_Rpt022_Info> get_list(int IdEmpresa, int IdNomina_tipo)
+       public List<XROLES_Rpt022_Info> get_list(int IdEmpresa, int IdNomina_tipo, int idDepartamento)
        {
            try
            {
-               return odat.get_list(IdEmpresa, IdNomina_tipo);
+               return odat.get_list(IdEmpresa, IdNomina_tipo, idDepartamento);
 
            }
            catch (Exception)

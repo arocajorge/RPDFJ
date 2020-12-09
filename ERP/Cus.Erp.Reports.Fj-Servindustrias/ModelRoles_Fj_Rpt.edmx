@@ -270,7 +270,9 @@
       [vwROLES_Rpt022].[em_fecha_ingreso] AS [em_fecha_ingreso], 
       [vwROLES_Rpt022].[em_fechaIngaRol] AS [em_fechaIngaRol], 
       [vwROLES_Rpt022].[em_foto] AS [em_foto], 
-      [vwROLES_Rpt022].[pe_fechaNacimiento] AS [pe_fechaNacimiento]
+      [vwROLES_Rpt022].[pe_fechaNacimiento] AS [pe_fechaNacimiento], 
+      [vwROLES_Rpt022].[IdCargo] AS [IdCargo], 
+      [vwROLES_Rpt022].[IdDepartamento] AS [IdDepartamento]
       FROM [Fj_servindustrias].[vwROLES_Rpt022] AS [vwROLES_Rpt022]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -717,6 +719,8 @@
             <PropertyRef Name="de_descripcion" />
             <PropertyRef Name="Descripcion" />
             <PropertyRef Name="em_codigo" />
+            <PropertyRef Name="IdCargo" />
+            <PropertyRef Name="IdDepartamento" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdEmpleado" Type="numeric" Nullable="false" />
@@ -732,6 +736,8 @@
           <Property Name="em_fechaIngaRol" Type="datetime" />
           <Property Name="em_foto" Type="image" />
           <Property Name="pe_fechaNacimiento" Type="datetime" />
+          <Property Name="IdCargo" Type="int" Nullable="false" />
+          <Property Name="IdDepartamento" Type="int" Nullable="false" />
         </EntityType>
         <Function Name="spROLES_Rpt002" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Fj_servindustrias">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
@@ -1505,6 +1511,8 @@
             <PropertyRef Name="de_descripcion" />
             <PropertyRef Name="Descripcion" />
             <PropertyRef Name="em_codigo" />
+            <PropertyRef Name="IdCargo" />
+            <PropertyRef Name="IdDepartamento" />
           </Key>
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Decimal" Name="IdEmpleado" Nullable="false" Precision="18" Scale="0" />
@@ -1520,6 +1528,8 @@
           <Property Type="DateTime" Name="em_fechaIngaRol" Precision="3" />
           <Property Type="Binary" Name="em_foto" MaxLength="Max" FixedLength="false" />
           <Property Type="DateTime" Name="pe_fechaNacimiento" Precision="3" />
+          <Property Type="Int32" Name="IdCargo" Nullable="false" />
+          <Property Type="Int32" Name="IdDepartamento" Nullable="false" />
         </EntityType>
         <ComplexType Name="spROLES_Rpt002_Result">
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
@@ -2049,6 +2059,8 @@
           <EntitySetMapping Name="vwROLES_Rpt022">
             <EntityTypeMapping TypeName="Entities_RolesFj_Rpt.vwROLES_Rpt022">
               <MappingFragment StoreEntitySet="vwROLES_Rpt022">
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
                 <ScalarProperty Name="pe_fechaNacimiento" ColumnName="pe_fechaNacimiento" />
                 <ScalarProperty Name="em_foto" ColumnName="em_foto" />
                 <ScalarProperty Name="em_fechaIngaRol" ColumnName="em_fechaIngaRol" />

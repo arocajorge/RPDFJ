@@ -19,10 +19,12 @@ namespace Cus.Erp.Reports.FJ.Roles
 {
     public partial class XROLES_Rpt022_frm : Form
     {
+        ro_Nomina_Tipo_Bus oRo_Nomina_Tipo_Bus = new ro_Nomina_Tipo_Bus();
+        ro_Cargo_Bus bus_cargo = new ro_Cargo_Bus();
+
         public XROLES_Rpt022_frm()
         {
             InitializeComponent();
-            ucRo_Menu_Reportes.event_cmdImprimir_ItemClick += ucRo_Menu_Reportes_event_cmdImprimir_ItemClick;
             
         }
         int _idEmpresa;
@@ -36,15 +38,9 @@ namespace Cus.Erp.Reports.FJ.Roles
         List<ro_Empleado_Info> ListaE = new List<ro_Empleado_Info>();
         ro_Empleado_Bus BusE = new ro_Empleado_Bus();
 
-        void ucRo_Menu_Reportes_event_cmdImprimir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-        }
 
-        private void XROLES_Rpt022_frm_Load(object sender, EventArgs e)
-        {
-           
-        }
+
+   
 
         private void ucRo_Menu_Reportes_Load(object sender, EventArgs e)
         {
@@ -61,13 +57,13 @@ namespace Cus.Erp.Reports.FJ.Roles
                 Reporte.RequestParameters = false;
                 ReportPrintTool pt = new ReportPrintTool(Reporte);
                 pt.AutoShowParametersPanel = false;
-                if (pu_setInfo())
-                {
 
                     ro_periodo_x_ro_Nomina_TipoLiqui_Info info_perio = new ro_periodo_x_ro_Nomina_TipoLiqui_Info();
-                    Reporte.Parameters["p_IdEmpresa"].Value = _idEmpresa;
-                    Reporte.Parameters["p_IdNomina"].Value = _idNominaTipo;
-                }
+                    Reporte.Parameters["p_IdEmpresa"].Value = param.IdEmpresa;
+                    Reporte.Parameters["p_IdNomina"].Value = cmbnomina.EditValue == null ? 0 : Convert.ToInt32(cmbnomina.EditValue);
+                    Reporte.Parameters["p_idDepartamento"].Value = cmb_cargo.EditValue == null ? 0 : Convert.ToInt32(cmb_cargo.EditValue); 
+
+                
                 Reporte.ShowPreview();
 
 
@@ -78,40 +74,51 @@ namespace Cus.Erp.Reports.FJ.Roles
                 Log_Error_bus.Log_Error(ex.ToString());
             }
         }
-        private Boolean pu_setInfo()
+
+        
+
+        private void btn_buscar_Click(object sender, EventArgs e)
         {
             try
             {
-                _idEmpresa = param.IdEmpresa;
-                _idNominaTipo =ucRo_Menu_Reportes.getIdNominaTipo()==null?0: Convert.ToInt32(ucRo_Menu_Reportes.getIdNominaTipo());
-                _idNominaTipoLiqui = ucRo_Menu_Reportes.getIdNominaTipoLiqui() == null ? 0 : Convert.ToInt32(ucRo_Menu_Reportes.getIdNominaTipoLiqui());
-                _idEmpleado = ucRo_Menu_Reportes.getIdEmpleado() == null ? 0 : Convert.ToInt32(ucRo_Menu_Reportes.getIdEmpleado()); 
-                if (ucRo_Menu_Reportes.getIdDepartamento() != "")
-                {
-                    _IdDepartamento = Convert.ToInt32(ucRo_Menu_Reportes.getIdDepartamento());
-                }
-                else
-                {
-                    _IdDepartamento = 0;
-                }
-                _idEmpleado = Convert.ToInt32(ucRo_Menu_Reportes.getIdEmpleado());
-                return true;
+                pu_GenerarReporte();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Log_Error_bus.Log_Error(ex.ToString());
-                return false;
+                
+                throw;
             }
         }
 
-        private void ucRo_Menu_Reportes_event_cmdCargar_ItemClick(object sender, ItemClickEventArgs e)
+        private void XROLES_Rpt022_frm_Load(object sender, EventArgs e)
         {
-            pu_GenerarReporte();
+            try
+            {
+                var lst_nom = oRo_Nomina_Tipo_Bus.Get_List_Nomina_Tipo(param.IdEmpresa);
+                var ls_cargo = bus_cargo.ObtenerLstCargo(param.IdEmpresa);
+
+                cmb_cargo.Properties.DataSource = ls_cargo;
+                cmbnomina.Properties.DataSource = lst_nom;
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
-        private void ucRo_Menu_Reportes_event_btnsalir_ItemClick(object sender, ItemClickEventArgs e)
+        private void btn_salir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
     }

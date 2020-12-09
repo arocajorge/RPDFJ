@@ -256,7 +256,6 @@ namespace Core.Erp.Business.Roles
                     {
                         ro_historico_vacaciones_x_empleado_Info tmp = new ro_historico_vacaciones_x_empleado_Info();
 
-                        diasGanados = minDiasGanados;
                         tmp.IdEmpresa = oRo_Empleado_Info.IdEmpresa;
                         tmp.IdEmpleado = oRo_Empleado_Info.IdEmpleado;
                         tmp.FechaInicio = fechaNueva.AddYears(i);
@@ -264,13 +263,47 @@ namespace Core.Erp.Business.Roles
                         tmp.DiasGanados = diasGanados;
                         tmp.DiasPendientes = diasGanados;
                         tmp.DiasTomados = 0;
+                        
+
+
+                        if (i < minAnio)//VALIDA LOS 5 AÑOS BASE
+                            {
+                                diasGanados = minDiasGanados;
+                                contDiasGanados = 0;
+                            }
+                            else 
+                            {
+                                if (i >= minAnio && contDiasGanados < maxDiasGanados)//VALIDA QUE SOLO ACUMULE 30 DIAS DE VACACIONES A PARTIR DEL 5 AÑO
+                                {
+                                    contDiasGanados++;
+                                    diasGanados = minDiasGanados + contDiasGanados;
+                                }
+                                else 
+                                {
+                                    diasGanados = 30;//DE AQUI EN ADELANTE TENDREA SOLO 30 DIAS 
+                                }
+                            }
+
+
 
                         //listadoTmp.Add(tmp);
                         int indice = -1;
-                        indice = listadoOriginal.FindIndex(v => v.FechaInicio.ToShortDateString() == tmp.FechaInicio.ToShortDateString());                           
- 
-                        if(indice<0){//OBJETO ENCONTRADO
+                        indice = listadoOriginal.FindIndex(v => v.FechaInicio.ToShortDateString() == tmp.FechaInicio.ToShortDateString());
+
+                        if (indice < 0)
+                        {//OBJETO ENCONTRADO
                             valorRetornar = oRo_historico_vacaciones_x_empleado_Data.GrabarBD(tmp, ref idSecuencia, ref msg);
+                        }
+                        else
+                        {
+                            
+                           var info_tmp = listadoOriginal.Where(v => v.FechaInicio.ToShortDateString() == tmp.FechaInicio.ToShortDateString()).FirstOrDefault();
+                           if (info_tmp != null)
+                           {
+                               info_tmp.DiasGanados = diasGanados;
+                               oRo_historico_vacaciones_x_empleado_Data.ModificarBD(info_tmp, ref msg); 
+
+                           }
                         }
 
                     }
