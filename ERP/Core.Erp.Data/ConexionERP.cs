@@ -15,8 +15,8 @@ namespace Core.Erp.Data
             string password = "admin*2016";
             */
             
-                string ip = "192.168.0.254";
-                string password = "admin*2016";
+            string ip = "192.168.0.254";
+            string password = "admin*2016";
               
             string user = "sa";
             string InitialCatalog = "DBERP_FJ_PRODUCCION";
