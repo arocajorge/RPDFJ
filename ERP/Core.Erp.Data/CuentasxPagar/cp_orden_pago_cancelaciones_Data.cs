@@ -3,6 +3,7 @@ using Core.Erp.Info.CuentasxPagar;
 using Core.Erp.Info.General;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -357,23 +358,23 @@ namespace Core.Erp.Data.CuentasxPagar
         {
             try
             {
-                decimal Id;
-                EntitiesCuentasxPagar ECXP = new EntitiesCuentasxPagar();
-
-                var select = ECXP.cp_orden_pago_cancelaciones.Count(q => q.IdEmpresa == IdEmpresa);
-                if (select == 0)
+                decimal Id = 1;
+                using (SqlConnection connection = new SqlConnection(ConexionERP.GetConnectionString()))
                 {
-                    return Id = 1;
+                    connection.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = connection;
+                    command.CommandText = "select max(Idcancelacion) Idcancelacion"
+                                        +" from cp_orden_pago_cancelaciones"
+                                        +" where IdEmpresa = "+IdEmpresa.ToString();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Id = Convert.ToInt32(reader["Idcancelacion"]) + 1;
+                    }
+                    reader.Close();
                 }
-
-                else
-                {
-                    var select_ = (from t in ECXP.cp_orden_pago_cancelaciones
-                                   where t.IdEmpresa == IdEmpresa
-                                  select t.Idcancelacion).Max();
-                    Id = Convert.ToDecimal(select_.ToString()) + 1;
-                    return Id;
-                }
+                return Id;
             }
             catch (Exception ex)
             {
