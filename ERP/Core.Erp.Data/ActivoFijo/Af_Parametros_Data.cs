@@ -42,6 +42,7 @@ namespace Core.Erp.Data.ActivoFijo
                         addressG.IdTipoCbteVenta_Anulacion = info.IdTipoCbteVenta_Anulacion;
                         addressG.IdTipoCbteRetiro_Anulacion = info.IdTipoCbteRetiro_Anulacion;
                         addressG.IdTipoCbteDep_Acum_Anulacion = info.IdTipoCbteDep_Acum_Anulacion;
+                        addressG.RutaImagenesAF = info.RutaImagenesAF;
                         context.Af_Parametros.Add(addressG);
                         context.SaveChanges();
                     }
@@ -65,6 +66,7 @@ namespace Core.Erp.Data.ActivoFijo
                             contact.IdTipoCbteVenta_Anulacion = info.IdTipoCbteVenta_Anulacion;
                             contact.IdTipoCbteRetiro_Anulacion = info.IdTipoCbteRetiro_Anulacion;
                             contact.IdTipoCbteDep_Acum_Anulacion = info.IdTipoCbteDep_Acum_Anulacion;
+                            contact.RutaImagenesAF = info.RutaImagenesAF;
                             context.SaveChanges();
                         }
                     }
@@ -109,6 +111,7 @@ namespace Core.Erp.Data.ActivoFijo
                     Cbt.IdTipoCbteVenta_Anulacion = item.IdTipoCbteVenta_Anulacion;
                     Cbt.IdTipoCbteRetiro_Anulacion = item.IdTipoCbteRetiro_Anulacion;
                     Cbt.IdTipoCbteDep_Acum_Anulacion = item.IdTipoCbteDep_Acum_Anulacion;
+                    Cbt.RutaImagenesAF = item.RutaImagenesAF;
                 }
                 return (Cbt);
             }

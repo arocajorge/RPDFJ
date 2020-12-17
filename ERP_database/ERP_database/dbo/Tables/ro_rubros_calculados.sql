@@ -24,6 +24,15 @@
     [IdRubro_dias_efectivos]    VARCHAR (50) NULL,
     [IdRubro_subtotal_variable] VARCHAR (50) NULL,
     [IdRubro_descuento_permiso] VARCHAR (50) NULL,
+    [IdRubro_alm_car]           VARCHAR (50) NULL,
+    [IdRubro_alm_vol]           VARCHAR (50) NULL,
+    [IdRubro_alm_ent]           VARCHAR (50) NULL,
+    [IdRubro_beb_car]           VARCHAR (50) NULL,
+    [IdRubro_beb_vol]           VARCHAR (50) NULL,
+    [IdRubro_beb_ent]           VARCHAR (50) NULL,
+    [IdRubro_servicio]          VARCHAR (50) NULL,
     CONSTRAINT [PK_ro_rubros_calculados] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC)
 );
+
+
 

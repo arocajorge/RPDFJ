@@ -13,6 +13,9 @@
     [Recuperacion_cartera]        FLOAT (53)    NOT NULL,
     [Recuperacion_cartera_aplica] FLOAT (53)    NOT NULL,
     [Observacion]                 VARCHAR (200) NULL,
-    CONSTRAINT [PK_ro_fectividad_Entrega_x_Periodo_Empleado_Det] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdNomina_Tipo] ASC, [IdNomina_tipo_Liq] ASC, [IdPeriodo] ASC, [IdEmpleado] ASC, [IdRuta] ASC, [IdEfectividad] ASC)
+    CONSTRAINT [PK_ro_fectividad_Entrega_x_Periodo_Empleado_Det] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdNomina_Tipo] ASC, [IdNomina_tipo_Liq] ASC, [IdPeriodo] ASC, [IdEmpleado] ASC, [IdRuta] ASC, [IdEfectividad] ASC),
+    CONSTRAINT [FK_ro_fectividad_Entrega_x_Periodo_Empleado_Det_ro_fectividad_Entrega_x_Periodo_Empleado] FOREIGN KEY ([IdEmpresa], [IdNomina_Tipo], [IdNomina_tipo_Liq], [IdPeriodo], [IdEfectividad]) REFERENCES [Fj_servindustrias].[ro_fectividad_Entrega_x_Periodo_Empleado] ([IdEmpresa], [IdNomina_Tipo], [IdNomina_tipo_Liq], [IdPeriodo], [IdEfectividad])
 );
+
+
 

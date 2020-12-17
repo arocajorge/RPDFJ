@@ -43,13 +43,21 @@ SELECT        emp.IdEmpresa, emp.IdEmpleado, person.pe_cedulaRuc, person.pe_apel
 						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera_ali,
 						 vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Recuperacion_cartera_aplica_ali,
 
+
+						 
+						 (
+						 ((vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega+vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen)/2*0.95)+
+						 ((vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Entrega_ali+vwro_fectividad_Entrega_x_Periodo_Empleado_Det_x_servicio.Efectividad_Volumen_ali)/2*0.05)
+
+						 )NivelServicio,
+
 						 
 						   (select valor from ro_rol_detalle R where R.IdEmpresa=emp.idempresa 
 						 and R.IdNominaTipo=rol_det.IdNominaTipo
 						 and R.IdNominaTipoLiqui=rol_det.IdNominaTipoLiqui
 						 and R.IdPeriodo=rol_det.IdPeriodo
 						 and R.IdEmpleado=emp.idempleado
-						 and R.idrubro=994
+						 and R.idrubro=4
 						 )variable,
 
 						 

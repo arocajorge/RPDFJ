@@ -32,6 +32,7 @@
             this.ucGe_Menu = new Core.Erp.Winform.Controles.UCGe_Menu_Superior_Mant();
             this.ucGe_BarraEstadoInferior_Forms1 = new Core.Erp.Winform.Controles.UCGe_BarraEstadoInferior_Forms();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblRuta = new System.Windows.Forms.Label();
             this.chkCarroceria = new DevExpress.XtraEditors.CheckEdit();
             this.ucAf_Encargado = new Core.Erp.Winform.Controles.UCAf_Encargado();
             this.cmbCategoriaAF = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -412,6 +413,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblRuta);
             this.groupBox1.Controls.Add(this.chkCarroceria);
             this.groupBox1.Controls.Add(this.ucAf_Encargado);
             this.groupBox1.Controls.Add(this.cmbCategoriaAF);
@@ -449,6 +451,15 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información del Producto";
+            // 
+            // lblRuta
+            // 
+            this.lblRuta.AutoSize = true;
+            this.lblRuta.Location = new System.Drawing.Point(670, 213);
+            this.lblRuta.Name = "lblRuta";
+            this.lblRuta.Size = new System.Drawing.Size(126, 13);
+            this.lblRuta.TabIndex = 81;
+            this.lblRuta.Text = "Doble click en la imagen ";
             // 
             // chkCarroceria
             // 
@@ -523,9 +534,12 @@
             this.picFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFoto.Location = new System.Drawing.Point(669, 52);
             this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(224, 188);
+            this.picFoto.Size = new System.Drawing.Size(200, 150);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picFoto.TabIndex = 74;
             this.picFoto.TabStop = false;
+            this.picFoto.Click += new System.EventHandler(this.picFoto_Click);
+            this.picFoto.DoubleClick += new System.EventHandler(this.picFoto_DoubleClick);
             // 
             // cmbProveedor
             // 
@@ -2912,5 +2926,6 @@
         private DevExpress.XtraEditors.TextEdit txtCapacidad;
         private System.Windows.Forms.Label label7;
         private DevExpress.XtraEditors.CheckEdit chkCarroceria;
+        private System.Windows.Forms.Label lblRuta;
     }
 }

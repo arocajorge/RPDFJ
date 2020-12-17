@@ -33,7 +33,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @leve
 
 
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     DisplayFlags = 280
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'         DisplayFlags = 280
             TopColumn = 0
          End
          Begin Table = "ro_Nomina_Tipo"
@@ -48,10 +48,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
          End
          Begin Table = "ro_rubro_tipo"
             Begin Extent = 
-               Top = 101
-               Left = 531
-               Bottom = 230
-               Right = 784
+               Top = 166
+               Left = 711
+               Bottom = 295
+               Right = 964
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -68,10 +68,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
          End
          Begin Table = "ro_Nomina_Tipoliqui"
             Begin Extent = 
-               Top = 1194
-               Left = 38
-               Bottom = 1323
-               Right = 274
+               Top = 1168
+               Left = 442
+               Bottom = 1297
+               Right = 678
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -88,10 +88,10 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
          End
          Begin Table = "ro_Division"
             Begin Extent = 
-               Top = 1198
-               Left = 882
-               Bottom = 1399
-               Right = 1091
+               Top = 1199
+               Left = 670
+               Bottom = 1400
+               Right = 879
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -113,7 +113,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
    Begin DataPane = 
       Begin ParameterDefaults = ""
       End
-      Begin ColumnWidths = 41
+      Begin ColumnWidths = 42
          Width = 284
          Width = 1500
          Width = 1500
@@ -135,6 +135,7 @@ EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N'     Displ
          Width = 1500
          Width = 1500
          Width = 1500
+         Width = 2745
          Width = 1500
          Width = 1500
          Width = 1500
@@ -182,13 +183,15 @@ End
 
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane1', @value = N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[86] 4[1] 2[5] 3) )"
+         Configuration = "(H (1[30] 4[5] 2[52] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -250,16 +253,16 @@ Begin DesignProperties =
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = -26
+         Top = -192
          Left = 0
       End
       Begin Tables = 
          Begin Table = "ro_area"
             Begin Extent = 
-               Top = 387
-               Left = 587
-               Bottom = 577
-               Right = 796
+               Top = 345
+               Left = 760
+               Bottom = 535
+               Right = 969
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -276,40 +279,40 @@ Begin DesignProperties =
          End
          Begin Table = "ro_rol"
             Begin Extent = 
-               Top = 138
-               Left = 38
-               Bottom = 267
-               Right = 247
+               Top = 44
+               Left = 549
+               Bottom = 173
+               Right = 758
             End
             DisplayFlags = 280
             TopColumn = 0
          End
          Begin Table = "ro_rol_detalle"
             Begin Extent = 
-               Top = 126
-               Left = 257
-               Bottom = 397
-               Right = 466
+               Top = 118
+               Left = 787
+               Bottom = 389
+               Right = 996
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 1
          End
          Begin Table = "ro_empleado"
             Begin Extent = 
-               Top = 14
-               Left = 616
-               Bottom = 335
-               Right = 905
+               Top = 223
+               Left = 292
+               Bottom = 544
+               Right = 581
             End
             DisplayFlags = 280
-            TopColumn = 4
+            TopColumn = 32
          End
          Begin Table = "tb_persona"
             Begin Extent = 
-               Top = 534
-               Left = 38
-               Bottom = 663
-               Right = 270
+               Top = 187
+               Left = 37
+               Bottom = 406
+               Right = 269
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -321,7 +324,9 @@ Begin DesignProperties =
                Bottom = 795
                Right = 247
             End
-       ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwROL_Rpt002';
+   ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwROL_Rpt002';
+
+
 
 
 

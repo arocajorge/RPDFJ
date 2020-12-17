@@ -25,7 +25,6 @@
     [Af_Anio_fabrica]                INT            NULL,
     [Estado]                         CHAR (1)       NOT NULL,
     [MotiAnula]                      VARCHAR (100)  NULL,
-    [Af_foto]                        IMAGE          NULL,
     [Af_DescripcionCorta]            VARCHAR (50)   NULL,
     [IdPeriodoDeprec]                VARCHAR (20)   NULL,
     [Af_Codigo_Parte]                VARCHAR (50)   NULL,
@@ -97,4 +96,6 @@
     CONSTRAINT [FK_Af_Activo_fijo_tb_empresa] FOREIGN KEY ([IdEmpresa]) REFERENCES [dbo].[tb_empresa] ([IdEmpresa]),
     CONSTRAINT [FK_Af_Activo_fijo_tb_sucursal] FOREIGN KEY ([IdEmpresa], [IdSucursal]) REFERENCES [dbo].[tb_sucursal] ([IdEmpresa], [IdSucursal])
 );
+
+
 

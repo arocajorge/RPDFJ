@@ -67,7 +67,7 @@ SELECT        emp.IdEmpresa, emp.IdEmpleado, person.pe_cedulaRuc, person.pe_apel
 						 and R.IdNominaTipoLiqui=dbo.vwro_empleado_x_nomina_x_periodo.IdNominaTipoLiqui
 						 and R.IdPeriodo=dbo.vwro_empleado_x_nomina_x_periodo.IdPeriodo
 						 and R.IdEmpleado=emp.idempleado
-						 and R.idrubro=994
+						 and R.idrubro=1048
 						 )variable,
 
 						 

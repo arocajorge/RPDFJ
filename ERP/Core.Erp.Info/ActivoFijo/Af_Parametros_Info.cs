@@ -24,5 +24,7 @@ namespace Core.Erp.Info.ActivoFijo
         public int IdTipoCbteRetiro_Anulacion { get; set; }
         public int IdTipoCbteDep_Acum_Anulacion { get; set; }
 
+
+        public string RutaImagenesAF { get; set; }
     }
 }

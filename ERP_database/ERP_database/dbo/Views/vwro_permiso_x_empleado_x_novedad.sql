@@ -2,7 +2,7 @@
 AS
 SELECT        dbo.ro_permiso_x_empleado_x_novedad.IdEmpresa, dbo.ro_permiso_x_empleado_x_novedad.IdNomina_Tipo, dbo.ro_permiso_x_empleado_x_novedad.IdEmpleado, dbo.ro_permiso_x_empleado_x_novedad.IdPermiso, 
                          dbo.ro_empleado_novedad_det.IdNomina_Tipo_Liq, dbo.ro_empleado_novedad_det.IdRol, dbo.ro_empleado_novedad_det.IdRubro, dbo.ro_empleado_novedad_det.FechaPago, dbo.ro_empleado_novedad_det.Valor, 
-                         dbo.ro_empleado_novedad_det.Secuencia, dbo.ro_empleado_novedad_det.EstadoCobro
+                         dbo.ro_empleado_novedad_det.Secuencia, dbo.ro_empleado_novedad_det.EstadoCobro, dbo.ro_empleado_novedad_det.Num_Horas
 FROM            dbo.ro_permiso_x_empleado_x_novedad INNER JOIN
                          dbo.ro_empleado_novedad_det INNER JOIN
                          dbo.ro_empleado_Novedad ON dbo.ro_empleado_novedad_det.IdEmpresa = dbo.ro_empleado_Novedad.IdEmpresa AND dbo.ro_empleado_novedad_det.IdNovedad = dbo.ro_empleado_Novedad.IdNovedad AND 
@@ -84,6 +84,16 @@ Begin DesignProperties =
          Left = 0
       End
       Begin Tables = 
+         Begin Table = "ro_permiso_x_empleado_x_novedad"
+            Begin Extent = 
+               Top = 5
+               Left = 0
+               Bottom = 279
+               Right = 239
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
          Begin Table = "ro_empleado_novedad_det"
             Begin Extent = 
                Top = 48
@@ -92,7 +102,7 @@ Begin DesignProperties =
                Right = 943
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 3
          End
          Begin Table = "ro_empleado_Novedad"
             Begin Extent = 
@@ -100,16 +110,6 @@ Begin DesignProperties =
                Left = 331
                Bottom = 279
                Right = 559
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "ro_permiso_x_empleado_x_novedad"
-            Begin Extent = 
-               Top = 5
-               Left = 0
-               Bottom = 279
-               Right = 239
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -155,4 +155,6 @@ Begin DesignProperties =
    End
 End
 ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwro_permiso_x_empleado_x_novedad';
+
+
 

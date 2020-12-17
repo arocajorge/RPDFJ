@@ -1,5 +1,6 @@
 ﻿
 
+
 CREATE procedure [dbo].[sprol_CancelarNovedades_Prestamos] 
 @IdEmpresa int,
 @IdNomina int,
@@ -9,34 +10,34 @@ CREATE procedure [dbo].[sprol_CancelarNovedades_Prestamos]
 as
 begin
 update ro_empleado_novedad_det set EstadoCobro='CAN'
-FROM            dbo.ro_rol_detalle AS rol INNER JOIN
-                         dbo.ro_empleado_novedad_det AS novedad ON rol.IdEmpresa = novedad.IdEmpresa AND rol.IdNominaTipo = novedad.IdNomina_tipo AND rol.IdNominaTipoLiqui = novedad.IdNomina_Tipo_Liq AND 
-                         rol.IdEmpleado = novedad.IdEmpleado AND rol.IdRubro = novedad.IdRubro
-						 WHERE FechaPago between @FechaInicio and @fechaFin
-						 and IdNomina_tipo=@IdNomina
-						 and IdNomina_Tipo_Liq=@IdNominaTipo
-						 and novedad.IdEmpresa=@IdEmpresa
-
-						 and novedad.IdRubro in (select d.IdRubro from vwRo_Rol_Detalle D where D.FechaIni between @FechaInicio and @fechaFin
-						 and d.IdEmpresa=novedad.IdEmpresa
-						 and d.IdEmpleado=novedad.IdEmpleado
-						 and d.IdNominaTipoLiqui=@IdNominaTipo
-						 and D.IdNominaTipo=@IdNomina
-						 and D.Valor>0)
+FROM            dbo.ro_empleado_Novedad INNER JOIN
+                         dbo.ro_empleado_novedad_det ON dbo.ro_empleado_Novedad.IdEmpresa = dbo.ro_empleado_novedad_det.IdEmpresa AND 
+                         dbo.ro_empleado_Novedad.IdNovedad = dbo.ro_empleado_novedad_det.IdNovedad AND dbo.ro_empleado_Novedad.IdEmpleado = dbo.ro_empleado_novedad_det.IdEmpleado INNER JOIN
+                         dbo.ro_rol_x_empleado_novedades ON dbo.ro_empleado_novedad_det.IdEmpresa = dbo.ro_rol_x_empleado_novedades.IdEmpresa_nov AND 
+                         dbo.ro_empleado_novedad_det.IdEmpleado = dbo.ro_rol_x_empleado_novedades.IdEmpleado AND dbo.ro_empleado_novedad_det.IdNovedad = dbo.ro_rol_x_empleado_novedades.IdNovedad AND 
+                         dbo.ro_empleado_novedad_det.Secuencia = dbo.ro_rol_x_empleado_novedades.Secuencia_nov
+						
+						
+						
+						
+						 WHERE 
+						  ro_empleado_Novedad.IdNomina_Tipo=@IdNomina
+						 and ro_empleado_Novedad.IdNomina_TipoLiqui=@IdNominaTipo
+						 and ro_empleado_Novedad.IdEmpresa=@IdEmpresa
+						 and CAST( ro_empleado_novedad_det.FechaPago as date)between @FechaInicio and @fechaFin
+						
 
 						 update ro_prestamo_detalle set EstadoPago='CAN'
-
-						 FROM            dbo.ro_prestamo_detalle INNER JOIN
-                         dbo.ro_prestamo ON dbo.ro_prestamo_detalle.IdEmpresa = dbo.ro_prestamo.IdEmpresa AND dbo.ro_prestamo_detalle.IdPrestamo = dbo.ro_prestamo.IdPrestamo
-						  WHERE FechaPago between @FechaInicio and @fechaFin
+FROM            dbo.ro_prestamo INNER JOIN
+                         dbo.ro_prestamo_detalle ON dbo.ro_prestamo.IdEmpresa = dbo.ro_prestamo_detalle.IdEmpresa AND dbo.ro_prestamo.IdPrestamo = dbo.ro_prestamo_detalle.IdPrestamo INNER JOIN
+                         dbo.ro_rol_x_prestamo_detalle ON dbo.ro_prestamo_detalle.IdEmpresa = dbo.ro_rol_x_prestamo_detalle.IdEmpresa AND dbo.ro_prestamo_detalle.IdPrestamo = dbo.ro_rol_x_prestamo_detalle.IdPrestamo AND 
+                         dbo.ro_prestamo_detalle.NumCuota = dbo.ro_rol_x_prestamo_detalle.NumCuota AND dbo.ro_prestamo.IdEmpleado = dbo.ro_rol_x_prestamo_detalle.IdEmpleado AND 
+                         dbo.ro_prestamo.IdPrestamo = dbo.ro_rol_x_prestamo_detalle.IdPrestamo AND dbo.ro_prestamo.IdEmpresa = dbo.ro_rol_x_prestamo_detalle.IdEmpresa
+						 						  
+						  WHERE CAST( FechaPago as date) between @FechaInicio and @fechaFin
 						 and ro_prestamo.IdNomina_Tipo=@IdNomina
 						 and ro_prestamo_detalle.IdNominaTipoLiqui=@IdNominaTipo
 						 and ro_prestamo_detalle.IdEmpresa=@IdEmpresa
 
-						 and IdRubro in (select d.IdRubro from vwRo_Rol_Detalle D where D.FechaIni between @FechaInicio and @fechaFin
-						 and d.IdEmpresa=ro_prestamo.IdEmpresa
-						 and d.IdEmpleado=ro_prestamo.IdEmpleado
-						 and d.IdNominaTipoLiqui=@IdNominaTipo
-						 and d.IdNominaTipo=@IdNomina
-						 and D.Valor>0)
+						
 end

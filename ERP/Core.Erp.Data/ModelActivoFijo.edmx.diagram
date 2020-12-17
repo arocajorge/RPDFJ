@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Depreciacion_x_cta_cbtecble" Width="1.5" PointX="1.8589418669505706" PointY="6.2893460124215794" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Encargado" Width="1.5" PointX="11.216469497986356" PointY="5.7763521549181789" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Mej_Baj_Activo" Width="1.5" PointX="9.0097622000657775" PointY="4.5133077821290621" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Parametros" Width="1.5" PointX="4.79638391397725" PointY="23.592549498934556" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_PeriodoDepreciacion" Width="1.5" PointX="10.4475399192644" PointY="25.276922014205216" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Retiro_Activo" Width="1.5" PointX="0.32260272853197658" PointY="15.485172532259101" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Tipo_Depreciacion" Width="1.5" PointX="4.3021978271669692" PointY="21.641395310704315" />
@@ -49,8 +48,20 @@
         <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Activo_fijo_Categoria" Width="1.5" PointX="10.321565888040498" PointY="19.431190455067526" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Valores_Depre_Contabilizar" Width="1.5" PointX="4.3590421175393468" PointY="20.232397699836827" />
         <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_ValoresDepre_x_AF" Width="1.5" PointX="2.0703381812527488" PointY="9.1110772085893323" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Activo_fijo" Width="1.5" PointX="8.7601091082953424" PointY="11.05324987091741" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Depreciacion_Detalle" Width="1.5" PointX="8.7199514381214751" PointY="19.487848156824636" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Activo_fijo_tipo" Width="1.5" PointX="3.6867551839383115" PointY="19.873532393888354" />
+        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Categoria_Af_Activo_fijo_tipo" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Depreciacion_Det" Width="1.5" PointX="0.61016080929439553" PointY="25.963031512667904" />
+        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Depreciacion_Det_Af_Depreciacion" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Activo_fijo_CtasCbles" Width="1.5" PointX="8.2420772724980846" PointY="25.720049169715516" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_ruta" Width="1.5" PointX="0.91045172182398471" PointY="6.8315423311812538" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_ActivoFijo" Width="1.5" PointX="9.0503349364969576" PointY="3.6024071739997749" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Activo_fijo" Width="1.5" PointX="7.69999976255931" PointY="19.252196440124976" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_ActivoCtasCbles" Width="1.5" PointX="0.30592666953146769" PointY="25.160353895817117" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Activo_fijo" Width="1.5" PointX="6.9123935992421561" PointY="13.556421658748958" />
+        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Parametros" Width="1.5" PointX="9.90398160084336" PointY="6.2288682638801953" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Activo_fijo_Categoria" />
+        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Activo_fijo_tipo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Catalogo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Catalogo1" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Catalogo2" />
@@ -62,22 +73,11 @@
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Tipo_Depreciacion" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_CtasCbles_Af_Activo_fijo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_CambioUbicacion_Activo_Af_Activo_fijo" />
+        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Depreciacion_Det_Af_Activo_fijo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Depreciacion_Det_His_Anulacion_Af_Activo_fijo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Mej_Baj_Activo_Af_Activo_fijo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Retiro_Activo_Af_Activo_fijo" />
         <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Venta_Activo_Af_Activo_fijo" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Depreciacion_Detalle" Width="1.5" PointX="8.7199514381214751" PointY="19.487848156824636" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Activo_fijo_tipo" Width="1.5" PointX="3.6867551839383115" PointY="19.873532393888354" />
-        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Af_Activo_fijo_tipo" />
-        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Activo_fijo_Categoria_Af_Activo_fijo_tipo" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_Depreciacion_Det" Width="1.5" PointX="0.61016080929439553" PointY="25.963031512667904" />
-        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Depreciacion_Det_Af_Activo_fijo" />
-        <AssociationConnector Association="DBERPModelActivoFijo.FK_Af_Depreciacion_Det_Af_Depreciacion" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Activo_fijo_CtasCbles" Width="1.5" PointX="8.2420772724980846" PointY="25.720049169715516" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.Af_ruta" Width="1.5" PointX="0.91045172182398471" PointY="6.8315423311812538" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_ActivoFijo" Width="1.5" PointX="9.0503349364969576" PointY="3.6024071739997749" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_Activo_fijo" Width="1.5" PointX="7.69999976255931" PointY="19.252196440124976" />
-        <EntityTypeShape EntityType="DBERPModelActivoFijo.vwAf_ActivoCtasCbles" Width="1.5" PointX="0.30592666953146769" PointY="25.160353895817117" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,8 +15,11 @@
     [dc_TipoDocumento]        VARCHAR (20)    NULL,
     [IdBodega_Cbte]           INT             NULL,
     [IdCbte_vta_nota]         NUMERIC (18)    NULL,
+    [IdCobro_tipo]            VARCHAR (50)    NOT NULL,
     CONSTRAINT [PK_cxc_XML_DocumentoDet] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdDocumento] ASC, [Secuencia] ASC),
     CONSTRAINT [FK_cxc_XML_DocumentoDet_cxc_cobro] FOREIGN KEY ([IdEmpresa], [IdSucursal], [IdCobro]) REFERENCES [dbo].[cxc_cobro] ([IdEmpresa], [IdSucursal], [IdCobro]),
     CONSTRAINT [FK_cxc_XML_DocumentoDet_cxc_XML_Documento] FOREIGN KEY ([IdEmpresa], [IdDocumento]) REFERENCES [Digitalizacion].[cxc_XML_Documento] ([IdEmpresa], [IdDocumento])
 );
+
+
 

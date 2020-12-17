@@ -11,7 +11,7 @@ CREATE PROCEDURE [dbo].[spROL_DecimoTercero]
 BEGIN
 
 	
-	SELECT           dbo.ro_rol_detalle.IdEmpresa,dbo.ro_periodo_x_ro_Nomina_TipoLiqui.IdNomina_TipoLiqui, dbo.ro_rol_detalle.IdEmpleado,SUM( dbo.ro_rol_detalle.Valor)Valor
+	SELECT           dbo.ro_rol_detalle.IdEmpresa,dbo.ro_periodo_x_ro_Nomina_TipoLiqui.IdNomina_TipoLiqui, dbo.ro_rol_detalle.IdEmpleado,SUM( dbo.ro_rol_detalle.Valor)/12Valor
                          
 FROM            dbo.ro_rol_detalle INNER JOIN
                          dbo.ro_Nomina_Tipoliqui INNER JOIN
@@ -31,7 +31,7 @@ FROM            dbo.ro_rol_detalle INNER JOIN
 						and dbo.ro_rol_detalle.IdEmpresa=@i_IdEmpresa
 						 and ro_periodo.pe_FechaIni between @FechaInicio and @fecha_Fin
 						-- and dbo.tb_provincia.Cod_Region=@Region
-						 and dbo.ro_rol_detalle.IdRubro=199
+						 and dbo.ro_rol_detalle.IdRubro=4
 						 and dbo.ro_rol_detalle.IdNominaTipo=1
 						 and LEN( ro_rol_detalle.IdPeriodo)=6
 						 group by 

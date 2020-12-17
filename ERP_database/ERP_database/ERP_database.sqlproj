@@ -1904,7 +1904,6 @@
     <Build Include="dbo\Stored Procedures\spROL_DecimoCuarto.sql" />
     <Build Include="dbo\Stored Procedures\spROL_Archivo_MTE.sql" />
     <Build Include="dbo\Stored Procedures\spRo_Reverso_Rol.sql" />
-    <Build Include="dbo\Stored Procedures\spRo_procesa_Rol.sql" />
     <Build Include="dbo\Stored Procedures\spRo_ObtenerPeriodoDespues.sql" />
     <Build Include="dbo\Stored Procedures\spRo_ObtenerPeriodoAnterior.sql" />
     <Build Include="dbo\Stored Procedures\spRo_Nomina_Tipoliqui_x_Sueldo.sql" />
@@ -2161,7 +2160,6 @@
     <Build Include="dbo\Tables\tb_sis_alerta_x_usuario_x_empresa.sql" />
     <Build Include="dbo\Tables\tb_sis_alerta_auditoria.sql" />
     <Build Include="dbo\Tables\tb_sis_alerta.sql" />
-    <Build Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion_1.sql" />
     <Build Include="dbo\Views\vwtb_sis_alerta_x_usuario_x_empresa_x_eventos.sql" />
     <Build Include="dbo\Views\vwINV_Alerta_001.sql" />
     <Build Include="dbo\Tables\in_Producto_alerta_x_sucursal.sql" />
@@ -3809,7 +3807,6 @@
     <Build Include="dbo\Stored Procedures\sprol_CancelarNovedades_Prestamos.sql" />
     <Build Include="dbo\Stored Procedures\spROL_Archivo_MTE.sql" />
     <Build Include="dbo\Stored Procedures\spRo_Reverso_Rol.sql" />
-    <Build Include="dbo\Stored Procedures\spRo_procesa_Rol.sql" />
     <Build Include="dbo\Stored Procedures\spRo_ObtenerPeriodoDespues.sql" />
     <Build Include="dbo\Stored Procedures\spRo_ObtenerPeriodoAnterior.sql" />
     <Build Include="dbo\Stored Procedures\spRO_Novedades_no_cobradas.sql" />
@@ -3914,6 +3911,18 @@
     <Build Include="dbo\Stored Procedures\spRo_nomina_liquidacion_cliente.sql" />
     <Build Include="dbo\Stored Procedures\spRo_nomina_fondo_reserva.sql" />
     <Build Include="dbo\Stored Procedures\spRo_nomina_anticipo_fijo.sql" />
+    <Build Include="Fj_servindustrias\Tables\ro_fectividad_Entrega_servicio_det.sql" />
+    <Build Include="Fj_servindustrias\Tables\ro_fectividad_Entrega_servicio.sql" />
+    <Build Include="Fj_servindustrias\Tables\ro_Calculo_Pago_Variable_Porcentaje_servicio.sql" />
+    <Build Include="Fj_servindustrias\Views\vwROLES_Rpt022.sql" />
+    <Build Include="Fj_servindustrias\Views\vwro_fectividad_Entrega_servicio_det.sql" />
+    <Build Include="Fj_servindustrias\Views\vwro_fectividad_Entrega_servicio.sql" />
+    <Build Include="dbo\Views\vwro_rol_detalle_calculo_vacaciones.sql" />
+    <Build Include="dbo\Views\vwro_marcaciones_dias_efectivos.sql" />
+    <Build Include="dbo\Views\View_1.sql" />
+    <Build Include="dbo\Functions\calcular_dias_efectivos.sql" />
+    <Build Include="Fj_servindustrias\Stored Procedures\spro_calculo_nivel_servicio.sql" />
+    <Build Include="dbo\Stored Procedures\spRo_nomina_interna_eventual.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />

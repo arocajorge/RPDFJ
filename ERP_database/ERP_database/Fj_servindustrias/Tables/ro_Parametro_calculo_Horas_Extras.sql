@@ -10,6 +10,9 @@
     [MinutosLunch]                                   INT          NULL,
     [considera_fecha_corte_dias_efectivo]            BIT          NULL,
     [solo_graba_dias_efectivos]                      BIT          NULL,
+    [dias_integrales]                                INT          NULL,
     CONSTRAINT [PK_ro_Parametro_calculo_Horas_Extras] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC)
 );
+
+
 

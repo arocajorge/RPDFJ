@@ -255,5 +255,6 @@ and CAST( emp.em_fechaIngaRol as date)<=@Ff
 and ISNULL( emp.em_fechaSalida, @Fi) between @Fi and @Ff
 
 
+update ro_rol_detalle set valor=round(valor,2) where  ro_rol_detalle.IdEmpresa=@IdEmpresa  and IdNominaTipo=@IdNomina and IdNominaTipoLiqui=@IdNominaTipo and IdPeriodo=@IdPEriodo and IdEmpleado=@IdEmpleado
 
 END

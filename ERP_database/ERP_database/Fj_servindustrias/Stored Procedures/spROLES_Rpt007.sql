@@ -8,24 +8,24 @@ CREATE PROCEDURE [Fj_servindustrias].[spROLES_Rpt007]
 	@Fecha_Fin date
 	
 AS
-/*
 
-declare
-    @IdEmpresa int,
-	@IdNomina_Tipo int,
-	@IdNomina_Tipo_Liq int,
-	@IdPeriodo int,
-	@Fecha_Inicio date,
-	@Fecha_Fin date
 
-	set @IdEmpresa=2
-	set @IdNomina_Tipo =1
-	set @IdNomina_Tipo_Liq =2
-	set @IdPeriodo=201708
-	set @Fecha_Inicio='2017-08-01'
-	set @Fecha_Fin='2017-08-31'
+--declare
+--    @IdEmpresa int,
+--	@IdNomina_Tipo int,
+--	@IdNomina_Tipo_Liq int,
+--	@IdPeriodo int,
+--	@Fecha_Inicio date,
+--	@Fecha_Fin date
+
+--	set @IdEmpresa=2
+--	set @IdNomina_Tipo =1
+--	set @IdNomina_Tipo_Liq =2
+--	set @IdPeriodo=202010
+--	set @Fecha_Inicio='2020-10-01'
+--	set @Fecha_Fin='2020-10-31'
 	
-	*/
+	
 BEGIN
 
 
@@ -46,29 +46,29 @@ BEGIN
 				  ro_planifi_x_ruta.IdNomina_Tipo,
 				  Fj_servindustrias.ro_fuerza.IdCentroCosto,
 				  Fj_servindustrias.ro_fuerza.IdSuccentroCosto,
-				  (select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2)  as Dias,
+				   isnull((select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2) ,0) as Dias,
 				  
-				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
+				  isnull( (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin),0)  as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
+				   isnull((select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A'),0)  as Vacaciones,
 				  
-				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
+				   isnull((select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER') ,0) as Permiso_IESS,
 				 
-				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
+				   isnull((select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976) ,0) as Dias_Efectivos,
 				  
-				  (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24)  as [SUELDO X DIAS TRABAJADOS],
+				   isnull((select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24),0)  as [SUELDO X DIAS TRABAJADOS],
 
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7)  as [HORAS  25%],
+				   isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7),0)  as [HORAS  25%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8)  as [HORAS 50%],
+				   isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8),0)  as [HORAS 50%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9)  as [HORAS 100%],
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9),0)  as [HORAS 100%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68)  as [TRANSPORTE],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68),0)  as [TRANSPORTE],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74)  as [ALIMENTACION],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74),0)  as [ALIMENTACION],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =994)  as [BONIFICACIÓN]
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =500 and IdNominaTipoLiqui=3) ,0) as [BONIFICACIÓN]
 				  
 FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
                          dbo.tb_persona AS pers INNER JOIN
@@ -128,29 +128,29 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				  ro_planifi_x_ruta.IdNomina_Tipo,
 				  Fj_servindustrias.ro_fuerza.IdCentroCosto,
 				  Fj_servindustrias.ro_fuerza.IdSuccentroCosto,
-				  (select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2)  as Dias,
+				  isnull( (select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2),0)  as Dias,
 				  
-				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
+				  isnull( (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin),0)  as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
+				  isnull( (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A'),0)  as Vacaciones,
 				  
-				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
+				  isnull( (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER'),0)  as Permiso_IESS,
 				 
-				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
+				   isnull((select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and IdRubro=976),0)  as Dias_Efectivos,
 				  
-				  (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24)  as [SUELDO X DIAS TRABAJADOS],
+				   isnull((select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24),0)  as [SUELDO X DIAS TRABAJADOS],
 
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7)  as [HORAS  25%],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7),0)  as [HORAS  25%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8)  as [HORAS 50%],
+				   isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8),0)  as [HORAS 50%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9)  as [HORAS 100%],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9),0)  as [HORAS 100%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68)  as [TRANSPORTE],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68),0)  as [TRANSPORTE],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74)  as [ALIMENTACION],
+				    isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74) ,0) as [ALIMENTACION],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =994)  as [BONIFICACIÓN]
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =500 and IdNominaTipoLiqui=3),0)  as [BONIFICACIÓN]
 				  
 FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
                          dbo.tb_persona AS pers INNER JOIN
@@ -192,6 +192,8 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 						)
 					    and ro_emp.IdDivision=2
 
+						
+
 		union			  
 					 
 	--************************************************************************************************************************************************************************
@@ -214,29 +216,29 @@ FROM            dbo.ro_empleado_x_ro_tipoNomina INNER JOIN
 				   Fj_servindustrias.ro_empleado_x_parametro_x_pago_variable.IdNomina_Tipo,
 				  Fj_servindustrias.ro_fuerza.IdCentroCosto,
 				  Fj_servindustrias.ro_fuerza.IdSuccentroCosto,
-				  (select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2)  as Dias,
+				 isnull( (select isnull (sum(  R.Valor),0) from ro_rol_detalle as R where R.IdEmpresa=@IdEmpresa and R.IdNominaTipoLiqui=@IdNomina_Tipo_Liq and R.IdEmpleado=ro_emp.IdEmpleado and R.IdPeriodo=@IdPeriodo and IdRubro=2),0)   as Dias,
 				  
-				  (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin)  as Falta,
+				 isnull( (select COUNT( M.IdEmpleado) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as M where M.IdEmpresa=@IdEmpresa and M.IdEmpleado=ro_emp.IdEmpleado and M.Id_catalogo_Cat='FAL' AND m.es_fecha_registro BETWEEN @Fecha_Inicio AND @Fecha_Fin),0)   as Falta,
 				  
-				  (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A')  as Vacaciones,
+				 isnull( (select ISNULL( sum(ISNULL( V.Dias_a_disfrutar,0)),0) from ro_Solicitud_Vacaciones_x_empleado as V where V.IdEmpresa=@IdEmpresa and V.IdEmpleado=ro_emp.IdEmpleado  AND V.Fecha_Desde BETWEEN @Fecha_Inicio AND @Fecha_Fin and V.Estado='A'),0)   as Vacaciones,
 				  
-				  (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER')  as Permiso_IESS,
+				 isnull( (select COUNT(IdRegistro) from Fj_servindustrias.ro_marcaciones_x_empleado_x_incidentes_falt_Perm as P where P.IdEmpresa=@IdEmpresa and P.IdEmpleado=ro_emp.IdEmpleado  AND cast( P.es_fecha_registro as date) BETWEEN @Fecha_Inicio AND @Fecha_Fin and P.Id_catalogo_Cat='PER') ,0)  as Permiso_IESS,
 				 
-				  (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976)  as Dias_Efectivos,
+				 isnull( (select SUM(  Valor) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and ro_rol_detalle.IdNominaTipoLiqui= @IdNomina_Tipo_Liq and IdRubro=976),0)   as Dias_Efectivos,
 				  
-				  (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24)  as [SUELDO X DIAS TRABAJADOS],
+				 isnull( (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=24),0)   as [SUELDO X DIAS TRABAJADOS],
 
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7)  as [HORAS  25%],
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=7),0)  as [HORAS  25%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8)  as [HORAS 50%],
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=8),0)   as [HORAS 50%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9)  as [HORAS 100%],
+				   isnull((select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=9),0)   as [HORAS 100%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68)  as [TRANSPORTE],
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68),0)   as [TRANSPORTE],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74)  as [ALIMENTACION],
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74) ,0)  as [ALIMENTACION],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =994)  as [BONIFICACIÓN]
+				  isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =500 and IdNominaTipoLiqui=3),0)   as [BONIFICACIÓN]
 	  
 				   
 						
@@ -323,13 +325,13 @@ union
 				  
 				   0  as [HORAS 50%],
 				  
-				   (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdNominaTipoLiqui=5 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=966)  as [HORAS 100%],
+				 isnull(  (select SUM(distinct(  Valor)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdNominaTipoLiqui=5 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=966),0)  as [HORAS 100%],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68)  as [TRANSPORTE],
+				   isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=68),0)  as [TRANSPORTE],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74)  as [ALIMENTACION],
+				   isnull( (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro=74),0)  as [ALIMENTACION],
 				  
-				   (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =994)  as [BONIFICACIÓN]
+				  isnull(  (select SUM(isnull(  Valor,0)) from ro_rol_detalle where IdEmpresa=@IdEmpresa and IdNominaTipo=2 and IdEmpleado=ro_emp.IdEmpleado and ro_rol_detalle.IdPeriodo=@IdPeriodo and IdRubro =1048),0)  as [BONIFICACIÓN]
 				
            
 

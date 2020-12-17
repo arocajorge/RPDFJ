@@ -23,6 +23,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.IO;
 
 
 
@@ -43,6 +44,7 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
         BindingList<Af_Activo_fijo_CtasCbles_Info> BindingListCtas_x_AF = new BindingList<Af_Activo_fijo_CtasCbles_Info>();
         Af_Parametros_Info info_af_param = new Af_Parametros_Info();
         Af_Parametros_Bus bus_af_param = new Af_Parametros_Bus();
+
         #region Declaracion de variables generales
         tb_sis_Log_Error_Vzen_Bus Log_Error_bus = new tb_sis_Log_Error_Vzen_Bus();
         cl_parametrosGenerales_Bus param = cl_parametrosGenerales_Bus.Instance;
@@ -181,9 +183,6 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
                 Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
             }
         }
-
-       
-       
 
         public void ucGe_Menu_event_btnAnular_Click(object sender, EventArgs e)
         {
@@ -1408,9 +1407,10 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
                 EscojaFoto.RestoreDirectory = true;
                 EscojaFoto.ShowDialog();
 
-                if (EscojaFoto.FileName != "")
+                if (!string.IsNullOrEmpty(EscojaFoto.FileName))
                 {
-                    picFoto.Image = Image.FromFile(EscojaFoto.FileName);
+                    picFoto.ImageLocation = EscojaFoto.FileName;
+                    lblRuta.Text = EscojaFoto.FileName;
                 }
             }
             catch (Exception ex)
@@ -1666,8 +1666,6 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
             }
         }
 
-    
-
         public void frmAF_ActivoFijo_Mant_Load(object sender, EventArgs e)
         {
             try
@@ -1784,5 +1782,35 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
             }
         }
 
+        private void picFoto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GuardarFoto()
+        {
+            try
+            {
+                info_af_param = info_af_param ?? bus_af_param.Get_Info_Parametros(param.IdEmpresa);
+
+                string folderPath = info_af_param.RutaImagenesAF + "/" + ;
+                System.IO.Directory.CreateDirectory(lblRuta.Text);
+                string fileName = "IMageName.jpg";
+                string imagePath = folderPath + fileName;
+
+                string base64StringData = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADmCAYAAAA..........."; // Your base 64 string data
+                string cleandata = base64StringData.Replace("data:image/png;base64,", "");
+                byte[] data = System.Convert.FromBase64String(cleandata);
+                MemoryStream ms = new MemoryStream(data);
+                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                img.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+            catch (Exception ex)
+            {
+                string NameMetodo = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                MessageBox.Show(param.Get_Mensaje_sys(enum_Mensajes_sys.Error_comunicarse_con_sistemas) + ex.Message + " ", param.Nombre_sistema, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log_Error_bus.Log_Error(NameMetodo + " - " + ex.ToString());
+            }
+        }
     }
 }

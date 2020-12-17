@@ -100,8 +100,8 @@ WHERE
 						and dbo.ro_empleado.em_estado='A'              
 						and ro_empleado.em_status<>'ECT_LIQ'
 						and (ro_empleado.em_status<>'EST_LIQ' 
-						and isnull( ro_empleado.em_fechaSalida, @Fecha) between @Fecha_inicio and @Fecha_fin
-						and isnull( ro_empleado.em_fechaSalida, @Fecha) <=@Fecha
+						--and isnull( ro_empleado.em_fechaSalida, @Fecha_inicio) between @Fecha_inicio and @Fecha_fin
+						and isnull( ro_empleado.em_fechaSalida, @Fecha) >=@Fecha
 						)
 						and dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina_Tipo
 						and dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa=@Idempres

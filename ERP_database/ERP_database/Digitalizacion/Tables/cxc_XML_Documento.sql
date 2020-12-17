@@ -18,6 +18,9 @@
     [rec_RazonSocial]           VARCHAR (2000) NOT NULL,
     [rec_Identificacion]        VARCHAR (20)   NOT NULL,
     [Estado]                    BIT            NOT NULL,
+    [DocumentoSustento]         VARCHAR (500)  NOT NULL,
+    [TotalRetencionFTE]         FLOAT (53)     NOT NULL,
+    [TotalRetencionIVA]         FLOAT (53)     NOT NULL,
     [IdUsuarioCreacion]         VARCHAR (50)   NULL,
     [FechaCreacion]             DATETIME       NULL,
     [IdUsuarioModificacion]     VARCHAR (50)   NULL,
@@ -27,4 +30,6 @@
     [Observacion]               VARCHAR (MAX)  NULL,
     CONSTRAINT [PK_cxc_XML_Documento] PRIMARY KEY CLUSTERED ([IdEmpresa] ASC, [IdDocumento] ASC)
 );
+
+
 

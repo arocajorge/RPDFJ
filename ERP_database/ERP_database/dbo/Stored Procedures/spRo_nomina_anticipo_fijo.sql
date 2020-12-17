@@ -58,6 +58,7 @@ declare
 @IdRubro_dias_efectivos varchar(50),
 @IdRubro_otros_descuentos varchar(50),
 @IdRubro_horas_extras varchar(50),
+@IdRubro_subsidio varchar(50),
 @Orden int
 
 end
@@ -105,7 +106,7 @@ insert into ro_rol_detalle
 
 select 
 
-@IdEmpresa	,@IdNomina,@IdNominaTipo,@IdPEriodo			,cont.IdEmpleado		,@IdRubro_calculado	,ISNULL( @Orden,0) , ISNULL( dbo.calcular_dias_trabajados(emp.IdEmpresa,emp.IdEmpleado, @Fi,@Ff,emp.em_fechaIngaRol, emp.em_status, emp.em_fechaSalida),0)
+@IdEmpresa	,@IdNomina,@IdNominaTipo,@IdPEriodo			,cont.IdEmpleado		,@IdRubro_calculado	,ISNULL( @Orden,0) , ISNULL( dbo.calcular_dias_trabajados(emp.IdEmpresa,emp.IdEmpleado, @Fi,@Ff,emp.em_fechaIngaRol, emp.em_status, emp.em_fechaSalida,@IdNominaTipo,@IdNomina),0)
 ,1						,'Días trabajados'		        
 FROM            dbo.vwro_contrato_activo AS cont INNER JOIN
                          dbo.ro_empleado AS emp ON cont.IdEmpresa = emp.IdEmpresa AND cont.IdEmpleado = emp.IdEmpleado INNER JOIN
@@ -114,22 +115,47 @@ FROM            dbo.vwro_contrato_activo AS cont INNER JOIN
 where cont.IdEmpresa=@IdEmpresa 
 and ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina
 and cont.EstadoContrato<>'ECT_LIQ'
-and (emp.em_status<>'EST_LIQ' and isnull( emp.em_fechaSalida, @Ff) between @Fi and @Ff )
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 and CAST( cont.FechaInicio as date)<=@Ff
 and emp.IdEmpleado=@IdEmpleado
-
 ----------------------------------------------------------------------------------------------------------------------------------------------
--------------calculando sueldo por días trabajados-------------------------------------------------------------------------------------------<
+-------------CALCULANDO SUELDO NETO------------------------------------------------------------------------------------------------------------<
 ----------------------------------------------------------------------------------------------------------------------------------------------
 select @IdRubro_calculado= IdRubro_sueldo from ro_rubros_calculados where IdEmpresa=@IdEmpresa-- obteniendo el idrubro desde parametros
-select @Orden=ru_orden_rol_general from ro_rubro_tipo where IdEmpresa=@IdEmpresa and IdRubro=@IdRubro_calculado
+select @Orden=ru_orden_rol_general from ro_rubro_tipo where IdEmpresa=@IdEmpresa and IdRubro=103
 insert into ro_rol_detalle
 (IdEmpresa,		IdNominaTipo,IdNominaTipoLiqui,IdPeriodo,								IdEmpleado,			IdRubro,			Orden,			Valor
 ,rub_visible_reporte,	Observacion)
 
 select 
-@IdEmpresa	,@IdNomina,@IdNominaTipo,@IdPEriodo,						cont.IdEmpleado		,@IdRubro_calculado	,ISNULL( @Orden,0) ,
- (sueldo.SueldoActual/30)*isnull( (dbo.calcular_dias_trabajados(emp.IdEmpresa,emp.IdEmpleado,@Fi,@Ff,emp.em_fechaIngaRol, emp.em_status, emp.em_fechaSalida)),0) 
+@IdEmpresa	,@IdNomina,@IdNominaTipo,@IdPEriodo,						cont.IdEmpleado		,103	,ISNULL( @Orden,0) ,
+ (sueldo.SueldoActual)
+ 
+,1						,'Sueldo NETO'	
+	FROM            dbo.vwro_contrato_activo AS cont INNER JOIN
+                         dbo.ro_empleado AS emp ON cont.IdEmpresa = emp.IdEmpresa AND cont.IdEmpleado = emp.IdEmpleado INNER JOIN
+                         dbo.ro_empleado_x_ro_tipoNomina AS nomina ON emp.IdEmpresa = nomina.IdEmpresa AND emp.IdEmpleado = nomina.IdEmpleado LEFT OUTER JOIN
+                         dbo.vwro_empleado_historial_Sueldo_actual AS sueldo ON emp.IdEmpresa = sueldo.IdEmpresa AND emp.IdEmpleado = sueldo.IdEmpleado
+where cont.IdEmpresa=@IdEmpresa 
+and nomina.IdTipoNomina=@IdNomina
+and cont.EstadoContrato<>'ECT_LIQ'
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
+and CAST( cont.FechaInicio as date)<=@Ff
+and emp.IdEmpleado=@IdEmpleado
+----------------------------------------------------------------------------------------------------------------------------------------------
+-------------CALCULANDO SUELDO BASE------------------------------------------------------------------------------------------------------------<
+----------------------------------------------------------------------------------------------------------------------------------------------
+select @IdRubro_calculado= IdRubro_sueldo,@IdRubro_subsidio=IdRubro_descuento_permiso from ro_rubros_calculados where IdEmpresa=@IdEmpresa-- obteniendo el idrubro desde parametros
+select @Orden=ru_orden_rol_general from ro_rubro_tipo where IdEmpresa=@IdEmpresa and IdRubro=294
+insert into ro_rol_detalle
+(IdEmpresa,		IdNominaTipo,IdNominaTipoLiqui,IdPeriodo,								IdEmpleado,			IdRubro,			Orden,			Valor
+,rub_visible_reporte,	Observacion)
+
+select 
+@IdEmpresa	,@IdNomina,@IdNominaTipo,@IdPEriodo,						cont.IdEmpleado		,294	,ISNULL( @Orden,0) ,
+ (sueldo.SueldoActual/30)*isnull( (dbo.calcular_dias_trabajados(emp.IdEmpresa,emp.IdEmpleado,@Fi,@Ff,emp.em_fechaIngaRol, emp.em_status, emp.em_fechaSalida,@IdNominaTipo,@IdNomina)),0) 
  
 ,1						,'Sueldo base'	
 	FROM            dbo.vwro_contrato_activo AS cont INNER JOIN
@@ -139,7 +165,8 @@ select
 where cont.IdEmpresa=@IdEmpresa 
 and nomina.IdTipoNomina=@IdNomina
 and cont.EstadoContrato<>'ECT_LIQ'
-and (emp.em_status<>'EST_LIQ' and isnull( emp.em_fechaSalida, @Ff) between @Fi and @Ff )
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 and CAST( cont.FechaInicio as date)<=@Ff
 and emp.IdEmpleado=@IdEmpleado
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -150,7 +177,7 @@ insert into ro_rol_detalle
 ,rub_visible_reporte,	Observacion)
 
 select 
-@IdEmpresa		,@IdNomina,@IdNominaTipo,@IdPEriodo							,novc.IdEmpleado		,nov.IdRubro		,ISNULL( rub.ru_orden_rol_general,0)	,sum(nov.Valor)
+@IdEmpresa		,@IdNomina,@IdNominaTipo,@IdPEriodo							,novc.IdEmpleado		,nov.IdRubro		,ISNULL( rub.ru_orden_rol_general,0)	,sum(abs(nov.Valor))
 ,ISNULL( rub.ru_muestra_rol_general,0)						,rub.ru_descripcion		
 FROM            dbo.ro_empleado_x_ro_tipoNomina RIGHT OUTER JOIN
                          dbo.ro_empleado AS emp INNER JOIN
@@ -169,7 +196,8 @@ and novc.Estado='A'
 and nov.EstadoCobro='PEN'
 and (emp.em_status<>'EST_LIQ')
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
-and ISNULL( emp.em_fechaSalida, @Fi) between @Fi and @Ff
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 and emp.IdEmpleado=@IdEmpleado
 group by novc.IdEmpresa,novc.IdEmpleado,nov.IdRubro,rub.ru_orden,rub.ru_descripcion, emp.IdSucursal,rub.ru_muestra_rol_general, rub.ru_orden_rol_general
 
@@ -206,7 +234,8 @@ and rub.ru_muestra_rol_general=0
 and rub.rub_concep=1
 and rub.ru_tipo='E'
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
-and ISNULL( emp.em_fechaSalida, @Fi) between @Fi and @Ff
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 group by novc.IdEmpresa,novc.IdEmpleado
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -238,7 +267,8 @@ and nov.EstadoCobro='PEN'
 and (emp.em_status<>'EST_LIQ')
 and rub.IdRubro in(7,8,9)
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
-and ISNULL( emp.em_fechaSalida, @Fi) between @Fi and @Ff
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 group by novc.IdEmpresa,novc.IdEmpleado
 ----------------------------------------------------------------------------------------------------------------------------------------------
 -------------buscando cuota de prestamos e insertando al rol detalle-------------------------------------------------------------------------<
@@ -265,7 +295,7 @@ and CAST(pred.FechaPago AS DATE) between @Fi and @Ff
 and emp.IdEmpleado=@IdEmpleado
 and pred.Estado='A'
 and pred.EstadoPago='PEN'
-and (emp.em_status <>'EST_LIQ' and isnull( emp.em_fechaSalida, @Ff) between @Fi and @Ff )
+and (emp.em_status <>'EST_LIQ' and  (case when  ISNULL( emp.em_fechaSalida, @Fi)>=@Fi then @Fi end) between  @Fi and @Ff )
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
 --and emp.IdSucursal = @IdSucursalFin
 and pred.FechaPago between  @Fi and @Ff 
@@ -293,7 +323,8 @@ and emp.IdEmpresa=@IdEmpresa
 and rub_fij.IdNomina_tipo=@IdNomina
 and rub_fij.IdNomina_TipoLiqui=@IdNominaTipo
 and ro_empleado_x_ro_tipoNomina.IdTipoNomina=@IdNomina
-and (emp.em_status<>'EST_LIQ' and isnull( emp.em_fechaSalida, @Ff) between @Fi and @Ff )
+and (emp.em_status<>'EST_LIQ')
+and (case when  cast( ISNULL( emp.em_fechaSalida, @Fi) as date)>=@Fi then @Fi end) between  @Fi and @Ff
 and emp.IdEmpleado=@IdEmpleado
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
 and cont.EstadoContrato<>'ECT_LIQ'
@@ -352,9 +383,9 @@ and ro_rol.IdNominaTipo=@IdNomina
 and ro_rol.IdNominaTipoLiqui=@IdNominaTipo
 and ro_rol.IdPeriodo=@IdPEriodo
 and ( rub.ru_tipo='E' or rol_det.IdRubro=@IdRubro_anticipo)
-and rol_det.IdRubro!=@IdRubro_otros_descuentos
+--and rol_det.IdRubro!=@IdRubro_otros_descuentos
 and emp.IdEmpleado=@IdEmpleado
---and cont.IdNomina=@IdNomina
+--and rol_det.IdRubro!=@IdRubro_subsidio
 and cont.EstadoContrato<>'ECT_LIQ'
 group by rol_det.IdEmpresa,rol_det.IdEmpleado,ro_rol.IdNominaTipo,ro_rol.IdNominaTipoLiqui,ro_rol.IdPeriodo, emp.IdSucursal
 
@@ -462,6 +493,19 @@ and (emp.em_status<>'EST_LIQ')
 and CAST( emp.em_fechaIngaRol as date)<=@Ff
 and ISNULL( emp.em_fechaSalida, @Fi) between @Fi and @Ff
 
+update ro_rol_detalle set valor=round(valor,2) where  ro_rol_detalle.IdEmpresa=@IdEmpresa  and IdNominaTipo=@IdNomina and IdNominaTipoLiqui=@IdNominaTipo and IdPeriodo=@IdPEriodo and IdEmpleado=@IdEmpleado
 
+if(@IdEmpresa in (2,4))
+update ro_rol_detalle set valor=0 
+
+FROM            dbo.ro_rol_detalle INNER JOIN
+                         dbo.ro_empleado ON dbo.ro_rol_detalle.IdEmpresa = dbo.ro_empleado.IdEmpresa AND dbo.ro_rol_detalle.IdEmpleado = dbo.ro_empleado.IdEmpleado
+
+where  ro_rol_detalle.IdEmpresa=@IdEmpresa  
+and IdNominaTipo=@IdNomina 
+and IdNominaTipoLiqui=@IdNominaTipo 
+and IdPeriodo=@IdPEriodo and 
+ro_rol_detalle.IdEmpleado=@IdEmpleado
+and em_status='EST_PLQ'
 
 END

@@ -41,7 +41,7 @@ where IdEmpresa=@IdEmpresa and IdNomina_tipo_Liq=@IdNomina_tipo and IdPeriodo=@I
 BEGIN
 
 
-if(@Idperiodo_f is not null and @Idperiodo_i is not null )
+if(@Idperiodo_inicio is not null and @Idperiodo_fin is not null )
 	SELECT        Ma.IdEmpresa, Ma.IdNomina_Tipo, Ma.IdEmpleado, Ma.IdRegistro, P.pe_cedulaRuc, P.pe_nombre, P.pe_apellido, Ma.es_fecha_registro, 
                          Cat.ca_descripcion, C.ca_descripcion AS Cargo, Ma.IdTurno, Ma.es_jornada_desfasada,Dep.de_descripcion,
 						 case when Ma.Id_catalogo_Cat='ASIST' THEN 'X'
@@ -50,8 +50,12 @@ if(@Idperiodo_f is not null and @Idperiodo_i is not null )
 						 WHEN Ma.Id_catalogo_Cat ='PER' THEN 'P'
 						 WHEN Ma.Id_catalogo_Cat ='FAL' THEN 'F'
 						 WHEN Ma.Id_catalogo_Cat ='SUSP' THEN 'S'
-						 WHEN Ma.Id_catalogo_Cat ='SINLABORAR' THEN 'SL'
+						 WHEN Ma.Id_catalogo_Cat ='SINLABORAR' THEN 'NL'
 						 WHEN  Ma.Id_catalogo_Cat='JD'  THEN 'JD'
+						 WHEN  Ma.Id_catalogo_Cat='S/S'  THEN 'SS'
+						 WHEN  Ma.Id_catalogo_Cat='1/2 JRD'  THEN '1/2 JRD'
+						 WHEN  Ma.Id_catalogo_Cat='NL-1/2 JRD'  THEN 'NL-1/2 JRD'
+						 --S/S
 						 ELSE '' END aS Id_catalogo_Cat,
 						 planifica.zo_descripcion,
 						 planifica.Disco,
@@ -130,13 +134,13 @@ FROM            dbo.ro_Division INNER JOIN
 						 AND Ma.IdNomina_Tipo=@IdNomina_tipo
 						 AND Ma.es_fecha_registro between @Fecha_Inicio and @Fecha_Fin
 						 and  Em.IdEmpresa=@IdEmpresa
-						 and pe_FechaIni between @Fecha_Inicio and @Fecha_Fin
-						 and pe_FechaFin between @Fecha_Inicio and @Fecha_Fin
+						 --and pe_FechaIni between @Fecha_Inicio and @Fecha_Fin
+						 --and pe_FechaFin between @Fecha_Inicio and @Fecha_Fin
 						 and IdPeriodo  in(@Idperiodo_fin, @Idperiodo_fin)
 
 						order by Ma.es_fecha_registro asc
 
-						if(@Idperiodo_f is  null and @Idperiodo_i is  null )
+if(@Idperiodo_inicio is  null and @Idperiodo_fin is  null )
 	SELECT        Ma.IdEmpresa, Ma.IdNomina_Tipo, Ma.IdEmpleado, Ma.IdRegistro, P.pe_cedulaRuc, P.pe_nombre, P.pe_apellido, Ma.es_fecha_registro, 
                          Cat.ca_descripcion, C.ca_descripcion AS Cargo, Ma.IdTurno, Ma.es_jornada_desfasada,Dep.de_descripcion,
 						 case when Ma.Id_catalogo_Cat='ASIST' THEN 'X'
@@ -145,8 +149,9 @@ FROM            dbo.ro_Division INNER JOIN
 						 WHEN Ma.Id_catalogo_Cat ='PER' THEN 'P'
 						 WHEN Ma.Id_catalogo_Cat ='FAL' THEN 'F'
 						 WHEN Ma.Id_catalogo_Cat ='SUSP' THEN 'S'
-						 WHEN Ma.Id_catalogo_Cat ='SINLABORAR' THEN 'SL'
+						 WHEN Ma.Id_catalogo_Cat ='SINLABORAR' THEN 'NL'
 						 WHEN  Ma.Id_catalogo_Cat='JD'  THEN 'JD'
+						  WHEN  Ma.Id_catalogo_Cat='S/S'  THEN 'SS'
 						 ELSE '' END aS Id_catalogo_Cat,
 						 '' zo_descripcion,
 						 '' Disco,

@@ -61,7 +61,6 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica =  item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
                     info.Af_Depreciacion_acum = item.Af_Depreciacion_acum;
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
@@ -174,7 +173,7 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica = item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
+                    
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
                     info.Af_Codigo_Parte = item.Af_Codigo_Parte;
@@ -285,7 +284,6 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica = item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
                     info.Af_Codigo_Parte = item.Af_Codigo_Parte;
@@ -398,7 +396,6 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica = item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
                     info.Af_Codigo_Parte = item.Af_Codigo_Parte;
@@ -511,7 +508,6 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica = item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
                     info.Af_Codigo_Parte = item.Af_Codigo_Parte;
@@ -613,7 +609,6 @@ namespace Core.Erp.Data.ActivoFijo
                         contact.IdUsuarioUltMod = info.IdUsuarioUltMod;
                         contact.Fecha_UltMod = info.Fecha_UltMod;
                         contact.Af_Capacidad = info.Af_Capacidad;
-                        contact.Af_foto = info.Af_foto;
                         contact.Af_DescripcionCorta = info.Af_DescripcionCorta;
                         contact.IdPeriodoDeprec = info.IdPeriodoDeprec;
                         contact.Af_Codigo_Parte = info.Af_Codigo_Parte;
@@ -755,7 +750,6 @@ namespace Core.Erp.Data.ActivoFijo
                         address.Fecha_Transac = DateTime.Now;
                         address.Estado = "A";
                         address.IdTipoDepreciacion = info.IdTipoDepreciacion;
-                        address.Af_foto = info.Af_foto;
                         address.Af_DescripcionCorta = info.Af_DescripcionCorta;
                         address.IdPeriodoDeprec = info.IdPeriodoDeprec;
                         address.Af_Codigo_Parte = info.Af_Codigo_Parte;
@@ -1248,7 +1242,6 @@ namespace Core.Erp.Data.ActivoFijo
                     info.Af_Anio_fabrica = item.Af_Anio_fabrica;
                     info.Estado = item.Estado;
                     info.IdTipoDepreciacion = item.IdTipoDepreciacion;
-                    info.Af_foto = item.Af_foto;
                     info.Af_DescripcionCorta = item.Af_DescripcionCorta;
                     info.IdPeriodoDeprec = item.IdPeriodoDeprec;
                     info.Af_Codigo_Parte = item.Af_Codigo_Parte;

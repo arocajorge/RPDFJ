@@ -8,8 +8,8 @@ CREATE PROCEDURE [Fj_servindustrias].[spROLES_Rpt012]
 	
 
 AS
-
 /*
+
 declare
     @IdEmpresa int,
 	@IdNomina_tipo int,
@@ -20,24 +20,26 @@ declare
 	set @IdEmpresa=2
 	set @IdNomina_tipo=1
 	set @Anio ='2020'
-	set @Mes ='03'
+	set @Mes ='07'
 	set @idempleado=37
-	set @idperiodo=202003
-	
+	set @idperiodo=202007
 	*/
+	
 
 	declare 
 	@FechaI date,
 	@FechaF date
 
 	select @FechaI=pe_FechaIni, @FechaF=pe_FechaFin from ro_periodo where IdEmpresa=@IdEmpresa and IdPeriodo=@IdPeriodo
-
+	
 	select * from
 	(
+	
 SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 
                          Fj_servindustrias.ro_zona.zo_descripcion, Fj_servindustrias.ro_fuerza.fu_descripcion, Fj_servindustrias.ro_disco.Disco, Fj_servindustrias.ro_placa.Placa, Fj_servindustrias.ro_ruta.ru_descripcion, emp.em_fechaIngaRol, 
                          perio.pe_FechaIni, ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida) AS em_fechaSalida, person.pe_cedulaRuc AS Cedula, person.pe_apellido + ' ' + person.pe_nombre AS Nombres, cargo.ca_descripcion, 
                          ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion AS Catalogo, param_repo.Descripcion, dbo.ro_rol_detalle.Valor, param_repo.Orden,
+						 
 						 (select  sum(Dias_a_disfrutar) 
 						 from vwRo_Solicitud_Vacaciones vac 
 						 where 
@@ -211,12 +213,15 @@ and ro_empleado_x_cargo_fuerza_grupo.IdPeriodo=@IdPeriodo
 union
 
 
--- personal operativo
+-- personal ADMINISTRATIVO
 
-					SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 
+					SELECT
+				        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 
                         '' zo_descripcion, ''fu_descripcion, ''Disco, ''Placa,''ru_descripcion, emp.em_fechaIngaRol, 
-                         perio.pe_FechaIni, ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida) AS em_fechaSalida, person.pe_cedulaRuc AS Cedula, person.pe_apellido + ' ' + person.pe_nombre AS Nombres, cargo.ca_descripcion, 
+                         @FechaI pe_FechaIni, ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida) AS em_fechaSalida, person.pe_cedulaRuc AS Cedula, person.pe_apellido + ' ' + person.pe_nombre AS Nombres, cargo.ca_descripcion, 
                          ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion AS Catalogo, param_repo.Descripcion, dbo.ro_rol_detalle.Valor, param_repo.Orden,
+						  
+						  
 						  (select Dias_a_disfrutar from vwRo_Solicitud_Vacaciones vac where 
 						 vac.IdEmpresa=@IdEmpresa
 						 and vac.IdNomina_Tipo=1
@@ -275,10 +280,15 @@ and dbo.ro_rol_detalle.IdNominaTipo=1
 and IdDivision=1
 and dbo.ro_periodo_x_ro_Nomina_TipoLiqui.idempresa=@IdEmpresa
 and dbo.ro_rol_detalle.IdPeriodo = @IdPeriodo
-
+and day(perio.pe_FechaFin)>16
+and pe_FechaIni between @FechaI and @FechaF
 
 --and  ro_rol_detalle.IdPeriodo=@idperiodo and ro_rol_detalle.IdEmpleado=@idempleado
 
+group by ro_rol_detalle.IdEmpleado, emp. IdEmpleado, dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo.ro_rol_detalle.IdNominaTipoLiqui, dbo.ro_rol_detalle.IdPeriodo, perio.pe_anio, perio.pe_mes, person.pe_cedulaRuc, 
+                        emp.em_fechaIngaRol, 
+                         ISNULL(dbo.ro_catalogo.ca_descripcion, emp.em_fechaSalida), person.pe_cedulaRuc, person.pe_apellido + ' ' + person.pe_nombre, cargo.ca_descripcion, 
+                         ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion, param_repo.Descripcion, dbo.ro_rol_detalle.Valor, param_repo.Orden
 
 
 

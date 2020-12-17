@@ -38,7 +38,7 @@ SELECT        dbo.vwRo_Empleado_X_Nomina.cargo, dbo.vwRo_Empleado_X_Nomina.depar
                          dbo.vwRo_Empleado_X_Nomina.pe_estado, dbo.vwRo_Empleado_X_Nomina.pe_fechaCreacion, dbo.vwRo_Empleado_X_Nomina.pe_fechaModificacion, dbo.vwRo_Empleado_X_Nomina.Sucursal, 
                          dbo.vwRo_Empleado_X_Nomina.IdSucursal, dbo.vwRo_Empleado_X_Nomina.IdArea, dbo.vwRo_Empleado_X_Nomina.IdDivision, dbo.vwRo_Empleado_X_Nomina.em_status, 
                          dbo.vwRo_Empleado_X_Nomina.es_TruncarDecimalAnticipo, dbo.vwRo_Empleado_X_Nomina.IdTipoNomina, dbo.vwRo_Empleado_X_Nomina.Marca_Biometrico, dbo.vwRo_Empleado_X_Nomina.IdTipoAnticipo, 
-                         dbo.vwRo_Empleado_X_Nomina.em_AnticipoSueldo, dbo.vwRo_Empleado_X_Nomina.Nomina, dbo.ro_contrato.FechaInicio, dbo.ro_contrato.FechaFin, dbo.ro_contrato.EstadoContrato, 
+                         dbo.vwRo_Empleado_X_Nomina.em_AnticipoSueldo, dbo.vwRo_Empleado_X_Nomina.Nomina, dbo.vwro_contrato_activo.FechaInicio, dbo.vwro_contrato_activo.FechaFin, dbo.vwro_contrato_activo.EstadoContrato, 
                         ISNULL( Fj_servindustrias.ro_Grupo_empleado.Valor_Alimen,0)Valor_Alimen,
 						isnull( Fj_servindustrias.ro_Grupo_empleado.Valor_Transp,0)Valor_Transp,
 						isnull(dbo.vwro_sueldoActual.SueldoActual,0)SueldoActual, 
@@ -62,13 +62,15 @@ SELECT        dbo.vwRo_Empleado_X_Nomina.cargo, dbo.vwRo_Empleado_X_Nomina.depar
                               AS si_tiene_rubros_fijo
 						 
 FROM            dbo.vwRo_Empleado_X_Nomina INNER JOIN
-                         dbo.ro_contrato ON dbo.vwRo_Empleado_X_Nomina.IdEmpresa = dbo.ro_contrato.IdEmpresa AND dbo.vwRo_Empleado_X_Nomina.IdEmpleado = dbo.ro_contrato.IdEmpleado INNER JOIN
+                         dbo.vwro_contrato_activo ON dbo.vwRo_Empleado_X_Nomina.IdEmpresa = dbo.vwro_contrato_activo.IdEmpresa AND dbo.vwRo_Empleado_X_Nomina.IdEmpleado = dbo.vwro_contrato_activo.IdEmpleado INNER JOIN
                          dbo.vwro_sueldoActual ON dbo.vwRo_Empleado_X_Nomina.IdEmpresa = dbo.vwro_sueldoActual.IdEmpresa AND 
                          dbo.vwRo_Empleado_X_Nomina.IdEmpleado = dbo.vwro_sueldoActual.IdEmpleado LEFT OUTER JOIN
                          Fj_servindustrias.ro_Grupo_empleado ON dbo.vwRo_Empleado_X_Nomina.IdEmpresa = Fj_servindustrias.ro_Grupo_empleado.IdEmpresa AND 
                          dbo.vwRo_Empleado_X_Nomina.IdGrupo = Fj_servindustrias.ro_Grupo_empleado.IdGrupo
+						 
 						 WHERE   dbo.vwRo_Empleado_X_Nomina.IdEmpresa=@IdEmpresa
 						 and dbo.vwRo_Empleado_X_Nomina.IdTipoNomina=@IdNomina_Tipo
+						 and vwro_contrato_activo.EstadoContrato='ECT_ACT'
                        
 						  
 END

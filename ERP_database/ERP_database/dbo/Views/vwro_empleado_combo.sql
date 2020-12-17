@@ -1,12 +1,16 @@
 ﻿CREATE VIEW dbo.vwro_empleado_combo
 AS
 SELECT        dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa, dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado, dbo.ro_empleado_x_ro_tipoNomina.IdTipoNomina, dbo.tb_persona.pe_apellido + ' ' + dbo.tb_persona.pe_nombre AS Empleado, 
-                         dbo.tb_persona.pe_cedulaRuc
+                         dbo.tb_persona.pe_cedulaRuc, dbo.ro_Departamento.de_descripcion, dbo.ro_cargo.ca_descripcion, dbo.ro_empleado.em_fechaIngaRol
 FROM            dbo.ro_empleado INNER JOIN
                          dbo.tb_persona ON dbo.ro_empleado.IdPersona = dbo.tb_persona.IdPersona INNER JOIN
-                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado
+                         dbo.ro_empleado_x_ro_tipoNomina ON dbo.ro_empleado.IdEmpresa = dbo.ro_empleado_x_ro_tipoNomina.IdEmpresa AND dbo.ro_empleado.IdEmpleado = dbo.ro_empleado_x_ro_tipoNomina.IdEmpleado INNER JOIN
+                         dbo.ro_Departamento ON dbo.ro_empleado.IdEmpresa = dbo.ro_Departamento.IdEmpresa AND dbo.ro_empleado.IdDepartamento = dbo.ro_Departamento.IdDepartamento LEFT OUTER JOIN
+                         dbo.ro_cargo ON dbo.ro_empleado.IdEmpresa = dbo.ro_cargo.IdEmpresa AND dbo.ro_empleado.IdCargo = dbo.ro_cargo.IdCargo
 GO
-EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 1, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwro_empleado_combo';
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPaneCount', @value = 2, @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwro_empleado_combo';
+
+
 
 
 GO
@@ -15,7 +19,7 @@ Begin DesignProperties =
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[35] 4[5] 2[5] 3) )"
+         Configuration = "(H (1[59] 4[5] 2[5] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -85,11 +89,11 @@ Begin DesignProperties =
             Begin Extent = 
                Top = 32
                Left = 418
-               Bottom = 285
+               Bottom = 403
                Right = 707
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 3
          End
          Begin Table = "tb_persona"
             Begin Extent = 
@@ -107,6 +111,26 @@ Begin DesignProperties =
                Left = 116
                Bottom = 222
                Right = 286
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "ro_cargo"
+            Begin Extent = 
+               Top = 222
+               Left = 38
+               Bottom = 352
+               Right = 255
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "ro_Departamento"
+            Begin Extent = 
+               Top = 205
+               Left = 813
+               Bottom = 437
+               Right = 1018
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -132,7 +156,13 @@ Begin DesignProperties =
    End
    Begin CriteriaPane = 
       Begin ColumnWidths = 11
-         Column = 1440
+         Column =', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vwro_empleado_combo';
+
+
+
+
+GO
+EXECUTE sp_addextendedproperty @name = N'MS_DiagramPane2', @value = N' 1440
          Alias = 900
          Table = 1170
          Output = 720
