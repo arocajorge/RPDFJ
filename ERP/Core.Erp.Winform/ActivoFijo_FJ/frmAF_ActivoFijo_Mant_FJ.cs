@@ -369,7 +369,10 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
                         respuesta = Actualizar();
                         break;
                 }
-
+                if (respuesta && picFoto.Image != null)
+                {
+                    GuardarFoto();
+                }
                 return respuesta;
             }
             catch (Exception ex)
@@ -399,8 +402,8 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
                 cmbModelo.Inicializar_Catalogos();
                 txt_num_serie.EditValue = "";
                 cmbColor.Inicializar_Catalogos();
-
-
+                picFoto.Image = null;
+                lblRuta.Text = "Doble click en la imagen";
 
                 this.txt_costo_historico.Text = "0";
                 this.txt_costo_compra.Text = "0";
@@ -908,7 +911,12 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
                 this.chk_estado.Checked = (Info_AF.Estado == "A") ? true : false;
                 lblEstado.Visible = (Info_AF.Estado == "I") ? true : false;
                 this.cmb_TipoDepreciacion.EditValue = Info_AF.IdTipoDepreciacion;
-                if (Info_AF.Af_foto != null) { picFoto.Image = Funciones.ArrayAImage(Info_AF.Af_foto); }
+                
+                info_af_param = info_af_param == null || info_af_param.IdEmpresa == 0 ? bus_af_param.Get_Info_Parametros(param.IdEmpresa) : info_af_param;
+                string RutaImagen = info_af_param.RutaImagenesAF + "/" + Info_AF.IdActivoFijo + ".png";
+                if (File.Exists(RutaImagen))
+                    picFoto.Load(RutaImagen);    
+                                
                 this.txt_DescCorta.Text = Info_AF.Af_DescripcionCorta;
                 this.cmbPeriodo.EditValue = Info_AF.IdPeriodoDeprec;
                 this.txtParte.Text = Convert.ToString(Info_AF.Af_Codigo_Parte);
@@ -1403,7 +1411,7 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
             {
                 OpenFileDialog EscojaFoto = new OpenFileDialog();
                 EscojaFoto.InitialDirectory = "c:\\";
-                EscojaFoto.Filter = "JPG FILES (*.JPG)|*.jpg|GIF FILES (*.GIF)|*.gif|JPEG FILES (*.JPEG)|*.jpeg";
+                EscojaFoto.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
                 EscojaFoto.RestoreDirectory = true;
                 EscojaFoto.ShowDialog();
 
@@ -1793,12 +1801,14 @@ namespace Core.Erp.Winform.ActivoFijo_FJ
             {
                 info_af_param = info_af_param ?? bus_af_param.Get_Info_Parametros(param.IdEmpresa);
 
-                string folderPath = info_af_param.RutaImagenesAF + "/" + ;
-                System.IO.Directory.CreateDirectory(lblRuta.Text);
-                string fileName = "IMageName.jpg";
-                string imagePath = folderPath + fileName;
+                System.IO.Directory.CreateDirectory(info_af_param.RutaImagenesAF);
+                string imagePath = info_af_param.RutaImagenesAF + "/" + lbl_id_activo.Text + ".png";
 
-                string base64StringData = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADmCAYAAAA..........."; // Your base 64 string data
+                string base64StringData = string.Empty;
+                byte[] imageArray = System.IO.File.ReadAllBytes(@lblRuta.Text);
+                base64StringData = Convert.ToBase64String(imageArray);
+
+                 
                 string cleandata = base64StringData.Replace("data:image/png;base64,", "");
                 byte[] data = System.Convert.FromBase64String(cleandata);
                 MemoryStream ms = new MemoryStream(data);

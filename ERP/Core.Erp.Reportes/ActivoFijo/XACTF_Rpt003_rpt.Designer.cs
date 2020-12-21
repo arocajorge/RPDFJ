@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
@@ -66,6 +65,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.lblEmpresa = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
@@ -119,14 +119,15 @@
             this.IdTipoDepreciacion = new DevExpress.XtraReports.Parameters.Parameter();
             this.IdTipoActivo = new DevExpress.XtraReports.Parameters.Parameter();
             this.IdEstadoProceso = new DevExpress.XtraReports.Parameters.Parameter();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.lblEmpresa = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPictureBox2,
             this.xrLabel14,
             this.xrLabel16,
             this.xrLabel19,
@@ -594,6 +595,18 @@
             this.xrPanel1});
             this.ReportHeader.HeightF = 181.8333F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // lblEmpresa
+            // 
+            this.lblEmpresa.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.lblEmpresa.LocationFloat = new DevExpress.Utils.PointFloat(383.9165F, 27.08332F);
+            this.lblEmpresa.Name = "lblEmpresa";
+            this.lblEmpresa.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lblEmpresa.SizeF = new System.Drawing.SizeF(571.6215F, 23F);
+            this.lblEmpresa.StylePriority.UseFont = false;
+            this.lblEmpresa.StylePriority.UseTextAlignment = false;
+            this.lblEmpresa.Text = "lblEmpresa";
+            this.lblEmpresa.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrPictureBox1
             // 
@@ -1165,21 +1178,18 @@
             this.IdEstadoProceso.Name = "IdEstadoProceso";
             this.IdEstadoProceso.Value = "";
             // 
+            // xrPictureBox2
+            // 
+            this.xrPictureBox2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Image", null, "AF_ruta")});
+            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(1.125002F, 0F);
+            this.xrPictureBox2.Name = "xrPictureBox2";
+            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(163.4583F, 83.83329F);
+            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(Core.Erp.Reportes.ActivoFijo.XACTF_Rpt003_Info);
-            // 
-            // lblEmpresa
-            // 
-            this.lblEmpresa.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.lblEmpresa.LocationFloat = new DevExpress.Utils.PointFloat(383.9165F, 27.08332F);
-            this.lblEmpresa.Name = "lblEmpresa";
-            this.lblEmpresa.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblEmpresa.SizeF = new System.Drawing.SizeF(571.6215F, 23F);
-            this.lblEmpresa.StylePriority.UseFont = false;
-            this.lblEmpresa.StylePriority.UseTextAlignment = false;
-            this.lblEmpresa.Text = "lblEmpresa";
-            this.lblEmpresa.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // XACTF_Rpt003_rpt
             // 
@@ -1308,5 +1318,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel29;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel lblEmpresa;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox2;
     }
 }

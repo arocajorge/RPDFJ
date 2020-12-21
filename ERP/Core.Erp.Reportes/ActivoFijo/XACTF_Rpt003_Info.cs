@@ -51,5 +51,7 @@ namespace Core.Erp.Reportes.ActivoFijo
         {
 
         }
+
+        public Bitmap AF_ruta { get; set; }
     }
 }

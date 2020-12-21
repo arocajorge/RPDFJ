@@ -457,9 +457,9 @@
             this.lblRuta.AutoSize = true;
             this.lblRuta.Location = new System.Drawing.Point(670, 213);
             this.lblRuta.Name = "lblRuta";
-            this.lblRuta.Size = new System.Drawing.Size(126, 13);
+            this.lblRuta.Size = new System.Drawing.Size(123, 13);
             this.lblRuta.TabIndex = 81;
-            this.lblRuta.Text = "Doble click en la imagen ";
+            this.lblRuta.Text = "Doble click en la imagen";
             // 
             // chkCarroceria
             // 

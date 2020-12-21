@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Core.Erp.Business.General;
 using Core.Erp.Info.General;
 using Core.Erp.Data.General;
+using Core.Erp.Business.ActivoFijo;
+using System.Drawing;
+using System.IO;
 
 namespace Core.Erp.Reportes.ActivoFijo
 {
@@ -19,6 +22,8 @@ namespace Core.Erp.Reportes.ActivoFijo
         {
             try
             {
+                Af_Parametros_Bus busParam = new Af_Parametros_Bus();
+                var paramAF = busParam.Get_Info_Parametros(IdEmpresa);
                 List<XACTF_Rpt003_Info> lstRpt = new List<XACTF_Rpt003_Info>();
 
                 using (Entities_ActivoFijo_Reportes listado = new Entities_ActivoFijo_Reportes())
@@ -80,7 +85,10 @@ namespace Core.Erp.Reportes.ActivoFijo
                         infoRpt.Valor_Depreciacion = Convert.ToDouble(item.Valor_Depreciacion);
                         infoRpt.Valor_Depre_Acum = Convert.ToDouble(item.Valor_Depre_Acum);
                         infoRpt.Valor_Importe = Convert.ToDouble(item.Valor_Importe);
-
+                        string Ruta = paramAF.RutaImagenesAF + "/" + item.IdActivoFijo + ".png";
+                        if (File.Exists(Ruta))
+                            infoRpt.AF_ruta = new Bitmap(Ruta);    
+                        
                         lstRpt.Add(infoRpt);
                     }
 
