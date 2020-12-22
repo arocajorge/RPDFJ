@@ -38,6 +38,7 @@ namespace Cus.Erp.Reports.FJ.Roles
 
                               && q.IdCargo >= idDepartamento_inicio
                              && q.IdCargo <= idDepartamento_fin
+                             orderby q.pe_apellido ascending
                              //&& q.IdDescuento == IdDescuento
                              select new XROLES_Rpt022_Info
                              {
