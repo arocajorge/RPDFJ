@@ -19,7 +19,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <PublishUrl>\\192.168.0.254\instalador vZen\</PublishUrl>
+    <PublishUrl>C:\Users\AROCA\Desktop\Publicacion\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -35,7 +35,7 @@
     <SuiteName>Vzen Erp 2017</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>3004</ApplicationRevision>
+    <ApplicationRevision>3006</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -8858,7 +8858,6 @@
     <EmbeddedResource Include="Produc_Cirdesus\Frm_ProductividadSubgrupoTrabajo_Mantenimiento.resx">
       <DependentUpon>Frm_ProductividadSubgrupoTrabajo_Mantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Roles\frmRo_Nomina_horas_extras_cosul.resx">
       <DependentUpon>frmRo_Nomina_horas_extras_cosul.cs</DependentUpon>
     </EmbeddedResource>
