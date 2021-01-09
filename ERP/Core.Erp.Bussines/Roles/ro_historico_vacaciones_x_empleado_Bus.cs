@@ -300,6 +300,7 @@ namespace Core.Erp.Business.Roles
                            var info_tmp = listadoOriginal.Where(v => v.FechaInicio.ToShortDateString() == tmp.FechaInicio.ToShortDateString()).FirstOrDefault();
                            if (info_tmp != null)
                            {
+                               info_tmp.FechaFin = tmp.FechaFin;
                                info_tmp.DiasGanados = diasGanados;
                                oRo_historico_vacaciones_x_empleado_Data.ModificarBD(info_tmp, ref msg); 
 
