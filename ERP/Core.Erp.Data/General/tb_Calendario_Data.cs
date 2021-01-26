@@ -5,6 +5,7 @@ using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using Core.Erp.Data.General;
+using System.Globalization;
 
 
 
@@ -13,6 +14,16 @@ namespace Core.Erp.Data.General
     public class tb_Calendario_Data
     {
         string mensaje="";
+        tb_Dia_Data tb_Dia_Bus = new tb_Dia_Data();
+        tb_Mes_Data tb_Mes_Bus = new tb_Mes_Data();
+        string dia = "";
+        string mes = "";
+        string anio = "";
+        int unido = 0;
+        int contador = 0;
+        List<tb_Dia_Info> D = new List<tb_Dia_Info>();
+        List<tb_Mes_info> M = new List<tb_Mes_info>();
+
         public List<tb_Calendario_Info> Get_List_Calendario()
         {
         
@@ -114,14 +125,15 @@ namespace Core.Erp.Data.General
             }
         }
 
-        public tb_Calendario_Info Get_Info_Calendario(DateTime fecha)
+        public tb_Calendario_Info Get_Info_Calendario_(DateTime fecha)
         {
             fecha = Convert.ToDateTime(fecha.ToShortDateString());
             tb_Calendario_Info info = new tb_Calendario_Info();
             try
             {
-                EntitiesGeneral oEnti = new EntitiesGeneral();
                 tb_Calendario_Info Obj = new tb_Calendario_Info();
+
+                EntitiesGeneral oEnti = new EntitiesGeneral();
                 var item = oEnti.tb_Calendario.FirstOrDefault(A => A.fecha == fecha);
                 if (item != null)
                 {
@@ -147,6 +159,9 @@ namespace Core.Erp.Data.General
                     Obj.IdPeriodo = item.IdPeriodo;
                     Obj.EsFeriado = item.EsFeriado;
                 }
+               
+               
+
                 return Obj;
             }
             catch (Exception ex ) 
@@ -655,5 +670,139 @@ namespace Core.Erp.Data.General
                 throw new Exception(ex.ToString());
             }
         }
+
+        public tb_Calendario_Info Get_Info_Calendario(DateTime fecha)
+        {
+            try
+            {
+                tb_Calendario_Info Info = new tb_Calendario_Info();
+
+                D = tb_Dia_Bus.Get_List_Dia();
+                M = tb_Mes_Bus.Get_List_Mes();
+                anio = fecha.Year.ToString();
+                mes = fecha.Month.ToString();
+                dia = fecha.Day.ToString();
+                Info.IdCalendario =Convert.ToInt32( fecha.Year.ToString() + fecha.Month.ToString().PadLeft(2, '0') + fecha.Day.ToString().PadLeft(2, '0'));
+                Info.fecha = Convert.ToDateTime(anio + "-" + mes + "-" + dia);
+
+                foreach (var item in M)
+                {
+                    string letra = "";
+                    if (Convert.ToInt32(mes) == item.idMes)
+                    {
+                        if (Convert.ToInt32(anio) > 2000)
+                        {
+                            letra = "del";
+                            Info.NombreFecha = Convert.ToString(Convert.ToInt32(dia) + " " + "de" + " " + item.smes + " " + letra + " " + Convert.ToInt32(anio));
+                        }
+                        else
+                        {
+                            letra = "de";
+                            Info.NombreFecha = Convert.ToString(Convert.ToInt32(dia) + " " + "de" + " " + item.smes + " " + letra + " " + Convert.ToInt32(anio));
+                        }
+                    }
+                }
+
+                foreach (var item in M)
+                {
+                    if (Convert.ToInt32(mes) == item.idMes)
+                    {
+                        string A = anio.Remove(0, 2);
+                        Info.NombreCortoFecha = Convert.ToString(Convert.ToInt32(dia) + " " + item.nemonico + " " + A);
+                    }
+                }
+
+                //DIA POR SEMANA     
+                foreach (var item in D)
+                {
+                    DateTime Com = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia));
+                    if ((Com.DayOfWeek).ToString() == item.sdiaIngles)
+                    {
+                        Info.dia_x_semana = item.idDia;
+                    }
+                }
+                //22112013
+                Info.dia_x_mes = Convert.ToInt32(dia);
+                //INICIAL DEL DIA
+                DateTime Inicio = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia));
+                string f = Inicio.ToString("ddd", new CultureInfo("es-ES"));
+                f = (f.Remove(1, 2)).ToUpper() + f.Remove(0, 1);
+                f = f.Remove(2, 1);
+                Info.Inicial_del_Dia = f;
+
+                //NOMBRE DEL DIA
+                string g = Inicio.ToString("dddd", new CultureInfo("es-ES"));
+                g = (g.Remove(1, g.Length - 1)).ToUpper() + g.Remove(0, 1);
+                Info.NombreDia = g;
+
+                //MES POR AÑO
+                Info.Mes_x_anio = Convert.ToInt32(mes);
+
+                //NOMBRE DEL MES
+                foreach (var item in M)
+                {
+                    if (Convert.ToInt32(mes) == item.idMes)
+                        Info.NombreMes = item.smes;
+                }
+                //ID DEL MES
+                Info.IdMes = Convert.ToInt32(anio + mes);
+
+                //NOMBRE CORTO DEL MES
+                foreach (var item in M)
+                {
+                    if (Convert.ToInt32(mes) == item.idMes)
+                        Info.NombreCortoMes = item.nemonico + " " + anio;
+                }
+
+                //AÑO FISCAL
+                Info.AnioFiscal = Convert.ToInt32(anio);
+
+                //SEMANA POR AÑO
+                Info.Semana_x_anio = CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(Inicio,
+                    CalendarWeekRule.FirstDay, Inicio.DayOfWeek);
+                //NOMBRE SEMANA
+                Info.NombreSemana = Convert.ToString("Sem#:" + " " + Info.Semana_x_anio + " " + anio);
+
+                //ID SEMANA
+                string IDSEMANA = Convert.ToString(Info.Semana_x_anio);
+                if (IDSEMANA.Length == 1)
+                {
+                    IDSEMANA = "0" + IDSEMANA;
+                    Info.IdSemana = Convert.ToInt32(anio + IDSEMANA);
+                }
+                else
+                {
+                    Info.IdSemana = Convert.ToInt32(anio + Convert.ToString(Info.Semana_x_anio));
+                }
+
+                //TRIMESTRE POR AÑO
+                int trimester = (Inicio.Month - 1) / 3 + 1;
+                Info.Trimestre_x_Anio = trimester;
+
+                //NOMBRE DEL TRIMESTRE            
+                Info.NombreTrimestre = Convert.ToString("Tri#:" + " " + Info.Trimestre_x_Anio + " " + anio);
+
+                //IDTRIMESTRE
+                string trim = Convert.ToString(trimester);
+                trim = (trim.Length == 1) ? ("0" + trim) : trim;
+                Info.IdTrimestre = Convert.ToInt32(anio + trim);
+
+                //IDPERIODO
+                Info.IdPeriodo = Convert.ToString(Info.IdMes);
+
+                //ES FERIADO
+                Info.EsFeriado =  "N";
+
+                return Info;
+
+            }
+            catch (Exception ex)
+            {
+
+                return new tb_Calendario_Info();
+            }
+
+        }
+
     }
 }
