@@ -593,7 +593,7 @@ namespace Core.Erp.Data.Bancos
                             IdCbteCble = info.IdCbteCble,
                             IdTipocbte = info.IdTipocbte,
                             Cod_Cbtecble = string.IsNullOrEmpty(info.Cod_Cbtecble) ? "" : info.Cod_Cbtecble,
-                            IdPeriodo = info.IdPeriodo,
+                            IdPeriodo = Convert.ToInt32(info.cb_Fecha.ToString("yyyyMM")),
                             IdBanco = info.IdBanco,
                             cb_Fecha = info.cb_Fecha,
                             cb_Observacion = info.cb_Observacion,
