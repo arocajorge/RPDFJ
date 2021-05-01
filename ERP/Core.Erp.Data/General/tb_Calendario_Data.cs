@@ -675,54 +675,34 @@ namespace Core.Erp.Data.General
         {
             try
             {
-                tb_Calendario_Info Info = new tb_Calendario_Info();
+                tb_Calendario_Info Info=new tb_Calendario_Info();
+                Info.IdCalendario = Convert.ToInt32(fecha.Year.ToString() + fecha.Month.ToString().PadLeft(2, '0') + fecha.Day.ToString().PadLeft(2, '0'));
+                using (EntitiesGeneral Gene = new EntitiesGeneral())
+                {
+                    var info_calendario = Gene.tb_Calendario.FirstOrDefault(s => s.IdCalendario == Info.IdCalendario);
+                    if (info_calendario != null)
+                        Info.EsFeriado = info_calendario.EsFeriado;
+                }
 
                 D = tb_Dia_Bus.Get_List_Dia();
-                M = tb_Mes_Bus.Get_List_Mes();
+                M = tb_Mes_Bus.Get_List_Mes().ToList();
                 anio = fecha.Year.ToString();
                 mes = fecha.Month.ToString();
                 dia = fecha.Day.ToString();
-                Info.IdCalendario =Convert.ToInt32( fecha.Year.ToString() + fecha.Month.ToString().PadLeft(2, '0') + fecha.Day.ToString().PadLeft(2, '0'));
                 Info.fecha = Convert.ToDateTime(anio + "-" + mes + "-" + dia);
 
-                foreach (var item in M)
-                {
-                    string letra = "";
-                    if (Convert.ToInt32(mes) == item.idMes)
-                    {
-                        if (Convert.ToInt32(anio) > 2000)
-                        {
-                            letra = "del";
-                            Info.NombreFecha = Convert.ToString(Convert.ToInt32(dia) + " " + "de" + " " + item.smes + " " + letra + " " + Convert.ToInt32(anio));
-                        }
-                        else
-                        {
-                            letra = "de";
-                            Info.NombreFecha = Convert.ToString(Convert.ToInt32(dia) + " " + "de" + " " + item.smes + " " + letra + " " + Convert.ToInt32(anio));
-                        }
-                    }
-                }
-
-                foreach (var item in M)
-                {
-                    if (Convert.ToInt32(mes) == item.idMes)
-                    {
-                        string A = anio.Remove(0, 2);
-                        Info.NombreCortoFecha = Convert.ToString(Convert.ToInt32(dia) + " " + item.nemonico + " " + A);
-                    }
-                }
-
-                //DIA POR SEMANA     
-                foreach (var item in D)
-                {
-                    DateTime Com = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia));
-                    if ((Com.DayOfWeek).ToString() == item.sdiaIngles)
-                    {
-                        Info.dia_x_semana = item.idDia;
-                    }
-                }
-                //22112013
+                string letra = "";
+                var info_mes = M.Where(s => s.idMes == Convert.ToInt32(mes)).FirstOrDefault();
+                DateTime Com = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia));
+                var info_dia = D.Where(s => s.sdiaIngles == Com.DayOfWeek.ToString()).FirstOrDefault();
+                letra = "del";
+                Info.NombreFecha = Convert.ToString(Convert.ToInt32(dia) + " " + "de" + " " + info_mes.smes + " " + letra + " " + Convert.ToInt32(anio));
+                Info.NombreCortoFecha = Convert.ToString(Convert.ToInt32(dia) + " " + info_mes.nemonico + " " + anio);
+                Info.dia_x_semana = info_dia.idDia;
                 Info.dia_x_mes = Convert.ToInt32(dia);
+                Info.NombreMes = info_mes.smes;
+                Info.NombreCortoMes = info_mes.nemonico + " " + anio;
+
                 //INICIAL DEL DIA
                 DateTime Inicio = new DateTime(Convert.ToInt32(anio), Convert.ToInt32(mes), Convert.ToInt32(dia));
                 string f = Inicio.ToString("ddd", new CultureInfo("es-ES"));
@@ -738,21 +718,9 @@ namespace Core.Erp.Data.General
                 //MES POR AÑO
                 Info.Mes_x_anio = Convert.ToInt32(mes);
 
-                //NOMBRE DEL MES
-                foreach (var item in M)
-                {
-                    if (Convert.ToInt32(mes) == item.idMes)
-                        Info.NombreMes = item.smes;
-                }
-                //ID DEL MES
+               
                 Info.IdMes = Convert.ToInt32(anio + mes);
 
-                //NOMBRE CORTO DEL MES
-                foreach (var item in M)
-                {
-                    if (Convert.ToInt32(mes) == item.idMes)
-                        Info.NombreCortoMes = item.nemonico + " " + anio;
-                }
 
                 //AÑO FISCAL
                 Info.AnioFiscal = Convert.ToInt32(anio);
