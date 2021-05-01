@@ -682,6 +682,9 @@ namespace Core.Erp.Data.General
                     var info_calendario = Gene.tb_Calendario.FirstOrDefault(s => s.IdCalendario == Info.IdCalendario);
                     if (info_calendario != null)
                         Info.EsFeriado = info_calendario.EsFeriado;
+                    else
+                   Info.EsFeriado =  "N";
+
                 }
 
                 D = tb_Dia_Bus.Get_List_Dia();
@@ -759,7 +762,7 @@ namespace Core.Erp.Data.General
                 Info.IdPeriodo = Convert.ToString(Info.IdMes);
 
                 //ES FERIADO
-                Info.EsFeriado =  "N";
+                //Info.EsFeriado =  "N";
 
                 return Info;
 
