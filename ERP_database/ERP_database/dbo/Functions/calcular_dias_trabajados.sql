@@ -97,7 +97,7 @@ case when  Fecha_Desde>=@Fecha_inicio and Fecha_Hasta<=@Fecha_fin then Dias_a_di
 	)a
 
 
-  --SELECT @dias-(isnull( @dias_vacasiones,0)+isnull(@dias_falta,0))
-
-  return @dias-(isnull( @dias_vacasiones,0)+isnull(@dias_susp,0)+isnull(@dias_fal,0)*2)
+	if(@idempresa in(2))
+    set @dias=@dias-(isnull( @dias_vacasiones,0)+isnull(@dias_susp,0)+isnull(@dias_fal,0)*2)
+   return @dias
    end;

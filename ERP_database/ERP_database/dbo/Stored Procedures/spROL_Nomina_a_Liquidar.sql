@@ -17,11 +17,11 @@ AS
 --@FechaDesde date,
 --@FechaHasta date
 
---set @IdEmpresa=5
+--set @IdEmpresa=2
 --set @IdNomina_Tipo=1
---set @IdPeriodo=20190101
---set @FechaDesde ='2019-01-01'
---set @FechaHasta ='2019-01-15'
+--set @IdPeriodo=20211204
+--set @FechaDesde ='2020-01-01'
+--set @FechaHasta ='2020-12-31'
 
 
 
@@ -31,7 +31,9 @@ AS
 
 BEGIN
 SELECT        dbo.vwRo_Empleado_X_Nomina.cargo, dbo.vwRo_Empleado_X_Nomina.departamento, dbo.vwRo_Empleado_X_Nomina.IdEmpresa, dbo.vwRo_Empleado_X_Nomina.IdEmpleado, 
-                         dbo.vwRo_Empleado_X_Nomina.IdPersona, dbo.vwRo_Empleado_X_Nomina.em_fecha_ingreso, dbo.vwRo_Empleado_X_Nomina.em_fechaSalida, dbo.vwRo_Empleado_X_Nomina.em_fechaTerminoContra, 
+                         dbo.vwRo_Empleado_X_Nomina.IdPersona, dbo.vwRo_Empleado_X_Nomina.em_fecha_ingreso, 
+						cast( dbo.vwRo_Empleado_X_Nomina.em_fechaSalida as date)em_fechaSalida,
+						  dbo.vwRo_Empleado_X_Nomina.em_fechaTerminoContra, 
                          dbo.vwRo_Empleado_X_Nomina.em_fechaIngaRol, dbo.vwRo_Empleado_X_Nomina.em_SeAcreditaBanco, dbo.vwRo_Empleado_X_Nomina.em_tipoCta, dbo.vwRo_Empleado_X_Nomina.em_NumCta, 
                          dbo.vwRo_Empleado_X_Nomina.em_estado, dbo.vwRo_Empleado_X_Nomina.IdDepartamento, dbo.vwRo_Empleado_X_Nomina.IdCargo, dbo.vwRo_Empleado_X_Nomina.NomCompleto, 
                          dbo.vwRo_Empleado_X_Nomina.Apellido, dbo.vwRo_Empleado_X_Nomina.pe_razonSocial, dbo.vwRo_Empleado_X_Nomina.Nombre, dbo.vwRo_Empleado_X_Nomina.pe_cedulaRuc, 
@@ -70,7 +72,10 @@ FROM            dbo.vwRo_Empleado_X_Nomina INNER JOIN
 						 
 						 WHERE   dbo.vwRo_Empleado_X_Nomina.IdEmpresa=@IdEmpresa
 						 and dbo.vwRo_Empleado_X_Nomina.IdTipoNomina=@IdNomina_Tipo
-						 and vwro_contrato_activo.EstadoContrato='ECT_ACT'
+						 and vwro_contrato_activo.FechaInicio<=@FechaHasta
+						 --and ( vwRo_Empleado_X_Nomina.em_fechaSalida between @FechaDesde and @FechaHasta or  vwro_contrato_activo.EstadoContrato='ECT_ACT')
+
+					
                        
 						  
 END

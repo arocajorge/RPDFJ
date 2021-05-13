@@ -518,7 +518,7 @@ insert into ro_rol_detalle
 
 
 select
-@IdEmpresa IdEmpresa	,@IdNomina IdNomina,@IdNominaTipo IdNominaTipo,@IdPEriodo	IdPeriodo									,rol_det.IdEmpleado		,@IdRubro_calculado IdRubro	,ISNULL( @Orden,0)	Orden		,sum(isnull( (rol_det.Valor /cast( @dias_integrales as int))*cast(@Dias_efectivos as int),0)) Valor
+@IdEmpresa IdEmpresa	,@IdNomina IdNomina,@IdNominaTipo IdNominaTipo,@IdPEriodo	IdPeriodo									,rol_det.IdEmpleado		,@IdRubro_calculado IdRubro	,ISNULL( @Orden,0)	Orden		,sum(isnull( case when rub.ru_calcula_basado_dias_efectivos=1 then (rol_det.Valor /cast( @dias_integrales as int))*cast(@Dias_efectivos as int)else rol_det.valor end     ,0)) Valor
 ,1 Visible						,'Total ingresos'	Observacion
 FROM            dbo.ro_rol_detalle AS rol_det INNER JOIN
                          dbo.ro_rubro_tipo AS rub ON rol_det.IdEmpresa = rub.IdEmpresa AND rol_det.IdRubro = rub.IdRubro INNER JOIN
@@ -534,7 +534,8 @@ and emp.IdEmpleado=@IdEmpleado
 and ro_rol.IdPeriodo=@IdPEriodo
 and rub.ru_tipo='I'
 and cont.EstadoContrato<>'ECT_LIQ'
-and  rub.ru_calcula_basado_dias_efectivos=1
+and rol_det.IdRubro not in(1048,296)
+--and  rub.ru_calcula_basado_dias_efectivos=1
 group by rol_det.IdEmpresa,rol_det.IdEmpleado,ro_rol.IdNominaTipo,ro_rol.IdNominaTipoLiqui,ro_rol.IdPeriodo
 
 
@@ -581,7 +582,8 @@ insert into ro_rol_detalle
 ,rub_visible_reporte,	Observacion)
 
 select
-@IdEmpresa		,@IdNomina,@IdNominaTipo,@IdPEriodo					,IdEmpleado		,@IdRubro_calculado	,ISNULL( @Orden,0)		, cast(   case when isnull( [500],0) <=0 then isnull( [500],0)- (ISNULL( [900],0)-isnull(( select sum(Valor) from ro_rol_detalle where ro_rol_detalle.IdEmpresa=@IdEmpresa and ro_rol_detalle.IdNominaTipo=@IdNomina and ro_rol_detalle.IdNominaTipoLiqui=@IdNominaTipo and ro_rol_detalle.IdEmpleado=@IdEmpleado and ro_rol_detalle.IdRubro=1023 and ro_rol_detalle.idperiodo=@IdPeriodo) ,0)) else isnull( [500],0)- ISNULL( [900],0) end  as numeric(12,2))
+@IdEmpresa		,@IdNomina,@IdNominaTipo,@IdPEriodo					,IdEmpleado		,@IdRubro_calculado	,ISNULL( @Orden,0)		, cast(   case when isnull( [500],0) <=0 then isnull( [500],0)- (ISNULL( [900],0)
+-isnull(( select sum(Valor) from ro_rol_detalle where ro_rol_detalle.IdEmpresa=@IdEmpresa and ro_rol_detalle.IdNominaTipo=@IdNomina and ro_rol_detalle.IdNominaTipoLiqui=@IdNominaTipo and ro_rol_detalle.IdEmpleado=@IdEmpleado and ro_rol_detalle.IdRubro=99999 and ro_rol_detalle.idperiodo=@IdPeriodo) ,0)) else isnull( [500],0)- ISNULL( [900],0) end  as numeric(12,2))
 ,1						,'Liquido a recibir'	
 FROM (
     SELECT 

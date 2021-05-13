@@ -95,6 +95,8 @@
     <Folder Include="Digitalizacion\" />
     <Folder Include="Digitalizacion\Tables\" />
     <Folder Include="Digitalizacion\Views\" />
+    <Folder Include="Logistica\" />
+    <Folder Include="Logistica\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\tbSys_Ge_Comparativo_Modulo_vs_Contas.sql" />
@@ -3923,6 +3925,28 @@
     <Build Include="dbo\Functions\calcular_dias_efectivos.sql" />
     <Build Include="Fj_servindustrias\Stored Procedures\spro_calculo_nivel_servicio.sql" />
     <Build Include="dbo\Stored Procedures\spRo_nomina_interna_eventual.sql" />
+    <Build Include="Logistica\Tables\lo_recursoPorEmpresa.sql" />
+    <Build Include="Logistica\Tables\lo_recurso.sql" />
+    <Build Include="Logistica\Tables\lo_vehiculo.sql" />
+    <Build Include="Logistica\Tables\lo_catalogo.sql" />
+    <Build Include="Logistica\Tables\lo_catalogoTipo.sql" />
+    <Build Include="Logistica\Tables\log_menuPorUsuario.sql" />
+    <Build Include="Logistica\Tables\lo_liquidacionComisionistaDet.sql" />
+    <Build Include="Logistica\Tables\lo_liquidacionComisionista.sql" />
+    <Build Include="Logistica\Tables\log_menuPorEmpresa.sql" />
+    <Build Include="Logistica\Tables\lo_chofer.sql" />
+    <Build Include="Logistica\Tables\lo_liquidacionChofer.sql" />
+    <Build Include="Logistica\Tables\lo_novedad.sql" />
+    <Build Include="Logistica\Tables\lo_liquidacionChoferDet.sql" />
+    <Build Include="Logistica\Tables\lo_ArchivoPagoDet.sql" />
+    <Build Include="Logistica\Tables\lo_ArchivoPago.sql" />
+    <Build Include="Logistica\Tables\lo_rubro.sql" />
+    <Build Include="Logistica\Tables\lo_parametro.sql" />
+    <Build Include="Logistica\Tables\lo_novedadDetalle.sql" />
+    <Build Include="Logistica\Tables\log_menu.sql" />
+    <Build Include="Logistica\Tables\lo_talonarioPorCliente.sql" />
+    <Build Include="Logistica\Tables\lo_talonarioPorClienteCapacidad.sql" />
+    <Build Include="Security\Logistica.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />

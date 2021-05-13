@@ -19,12 +19,12 @@ declare
     @idperiodo int
 	set @IdEmpresa=2
 	set @IdNomina_tipo=1
-	set @Anio ='2020'
-	set @Mes ='07'
+	set @Anio ='2021'
+	set @Mes ='03'
 	set @idempleado=37
-	set @idperiodo=202007
-	*/
+	set @idperiodo=202103
 	
+	*/
 
 	declare 
 	@FechaI date,
@@ -48,7 +48,10 @@ SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo
 						 and vac.IdEmpleado=emp.IdEmpleado
 						 and vac.Fecha_Desde between @FechaI and @FechaF
 						 and vac.Fecha_Hasta  between @FechaI and @FechaF
-						 and IdOrdenPago>0) Dias_vacaciones,
+						 and IdOrdenPago>0
+						 
+						 group by vac.IdEmpresa, vac.IdEmpleado) Dias_vacaciones
+						 ,
 						 
 						
 						(
@@ -62,9 +65,11 @@ SELECT        dbo.ro_rol_detalle.IdEmpresa, dbo.ro_rol_detalle.IdNominaTipo, dbo
 						from ro_permiso_x_empleado where 
 						ro_permiso_x_empleado.IdEmpresa=ro_rol_detalle.IdEmpresa
 						and ro_permiso_x_empleado.idempleado=ro_rol_detalle.IdEmpleado
-						and (( ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF) or  ( ro_permiso_x_empleado.FechaEntrada between @FechaI and @FechaF) )
+						and (( ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF) 
+						or  ( ro_permiso_x_empleado.FechaEntrada between @FechaI and @FechaF) )
 						and ro_permiso_x_empleado.Estado='A'	 
-
+						and ro_permiso_x_empleado.IdEmpresa=@IdEmpresa
+						group by ro_permiso_x_empleado.IdEmpresa, ro_permiso_x_empleado.IdEmpleado
 						)Dias_permiso
 		
 	
@@ -222,15 +227,17 @@ union
                          ro_catalogo_1.ca_orden, ro_catalogo_1.ca_estado, ro_catalogo_1.ca_descripcion AS Catalogo, param_repo.Descripcion, dbo.ro_rol_detalle.Valor, param_repo.Orden,
 						  
 						  
-						  (select Dias_a_disfrutar from vwRo_Solicitud_Vacaciones vac where 
+						  (select sum( Dias_a_disfrutar) from vwRo_Solicitud_Vacaciones vac where 
 						 vac.IdEmpresa=@IdEmpresa
 						 and vac.IdNomina_Tipo=1
 						 and vac.IdEmpleado=emp.IdEmpleado
 						 and vac.Fecha_Desde between @FechaI and @FechaF
 						 and vac.Fecha_Hasta  between @FechaI and @FechaF
 						 and IdOrdenPago>0
-						 AND vac.Estado='A') Dias_vacaciones,
-
+						 AND vac.Estado='A'
+						 group by vac.IdEmpresa,vac.IdEmpleado
+						 ) Dias_vacaciones,
+						
 						 (
 						select   
 						sum(iif( month (ro_permiso_x_empleado.FechaSalida)!=month(ro_permiso_x_empleado.FechaEntrada), 
@@ -244,7 +251,7 @@ union
 						and ro_permiso_x_empleado.idempleado=ro_rol_detalle.IdEmpleado
 						and (( ro_permiso_x_empleado.FechaSalida between @FechaI and @FechaF) or  ( ro_permiso_x_empleado.FechaEntrada between @FechaI and @FechaF) )
 						and ro_permiso_x_empleado.Estado='A'	 
-
+						group by ro_permiso_x_empleado.IdEmpresa, ro_permiso_x_empleado.IdEmpleado
 						)Dias_permiso
 
 FROM            dbo.ro_catalogo AS ro_catalogo_1 INNER JOIN
