@@ -2,7 +2,6 @@
     [IdChofer]                   INT           IDENTITY (1, 1) NOT NULL,
     [IdCatalogoClase]            INT           NOT NULL,
     [PorcentajeComision]         MONEY         NULL,
-    [IdPersonaPago]              NUMERIC (18)  NOT NULL,
     [pe_cedulaRuc]               VARCHAR (50)  NOT NULL,
     [pe_nombre]                  VARCHAR (100) NOT NULL,
     [pe_apellido]                VARCHAR (100) NOT NULL,
@@ -24,7 +23,8 @@
     [num_cta_acreditacion]       VARCHAR (50)  NULL,
     [IdBanco_acreditacion]       INT           NULL,
     CONSTRAINT [PK_lo_chofer] PRIMARY KEY CLUSTERED ([IdChofer] ASC),
-    CONSTRAINT [FK_lo_chofer_lo_catalogo] FOREIGN KEY ([IdCatalogoClase]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
-    CONSTRAINT [FK_lo_chofer_tb_persona] FOREIGN KEY ([IdPersonaPago]) REFERENCES [dbo].[tb_persona] ([IdPersona])
+    CONSTRAINT [FK_lo_chofer_lo_catalogo] FOREIGN KEY ([IdCatalogoClase]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo])
 );
+
+
 
