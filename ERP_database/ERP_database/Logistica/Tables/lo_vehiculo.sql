@@ -3,7 +3,7 @@
     [IdChofer]              INT           NULL,
     [Descripcion]           VARCHAR (500) NOT NULL,
     [Placa]                 VARCHAR (50)  NOT NULL,
-    [Disco]                 VARCHAR (50)  NOT NULL,
+    [Disco]                 VARCHAR (50)  NULL,
     [Estado]                BIT           NOT NULL,
     [EsVehiculoPropio]      BIT           NOT NULL,
     [CapacidadBines]        INT           NOT NULL,
@@ -17,4 +17,6 @@
     CONSTRAINT [PK_lo_vehiculo] PRIMARY KEY CLUSTERED ([IdVehiculo] ASC),
     CONSTRAINT [FK_lo_vehiculo_lo_chofer] FOREIGN KEY ([IdChofer]) REFERENCES [Logistica].[lo_chofer] ([IdChofer])
 );
+
+
 
