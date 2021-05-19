@@ -5,7 +5,6 @@
     [Descripcion]           VARCHAR (MAX)   NOT NULL,
     [Fecha]                 DATE            NOT NULL,
     [Valor]                 NUMERIC (18, 2) NOT NULL,
-    [IdArchivo]             INT             NULL,
     [Estado]                BIT             NOT NULL,
     [IdUsuario]             VARCHAR (50)    NOT NULL,
     [FechaTransaccion]      DATETIME        NOT NULL,
@@ -18,6 +17,8 @@
     CONSTRAINT [FK_lo_novedad_lo_chofer] FOREIGN KEY ([IdChofer]) REFERENCES [Logistica].[lo_chofer] ([IdChofer]),
     CONSTRAINT [FK_lo_novedad_lo_rubro] FOREIGN KEY ([IdRubro]) REFERENCES [Logistica].[lo_rubro] ([IdRubro])
 );
+
+
 
 
 
