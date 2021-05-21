@@ -22,9 +22,12 @@
     [IdTipoCta_acreditacion_cat] VARCHAR (25)    NULL,
     [num_cta_acreditacion]       VARCHAR (50)    NULL,
     [IdBanco_acreditacion]       INT             NULL,
+    [FechaIngreso]               DATE            NULL,
     CONSTRAINT [PK_lo_chofer] PRIMARY KEY CLUSTERED ([IdChofer] ASC),
     CONSTRAINT [FK_lo_chofer_lo_catalogo] FOREIGN KEY ([IdCatalogoClase]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo])
 );
+
+
 
 
 
