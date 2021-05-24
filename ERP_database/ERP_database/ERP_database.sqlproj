@@ -3947,6 +3947,14 @@
     <Build Include="Logistica\Tables\lo_talonarioPorCliente.sql" />
     <Build Include="Logistica\Tables\lo_talonarioPorClienteCapacidad.sql" />
     <Build Include="Security\Logistica.sql" />
+    <Build Include="Logistica\Tables\lo_rubroFijo.sql" />
+    <Build Include="Logistica\Tables\lo_PlanificacionPescaRecurso.sql" />
+    <Build Include="Logistica\Tables\lo_PlanificacionPesca.sql" />
+    <Build Include="Logistica\Tables\lo_novedadMasivaDet.sql" />
+    <Build Include="Logistica\Tables\lo_novedadMasiva.sql" />
+    <Build Include="Logistica\Tables\lo_GuiaDet.sql" />
+    <Build Include="Logistica\Tables\lo_Guia.sql" />
+    <Build Include="Logistica\Tables\lo_Camaronera.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
