@@ -4,7 +4,7 @@
     [IdCliente]             NUMERIC (18)    NOT NULL,
     [IdVehiculo]            INT             NOT NULL,
     [IdChofer]              INT             NOT NULL,
-    [IdPlanificacion]       INT             NOT NULL,
+    [IdPlanificacion]       INT             NULL,
     [Fecha]                 DATE            NOT NULL,
     [Hora]                  DATETIME        NOT NULL,
     [IdCatalogoOrigen]      INT             NOT NULL,
@@ -34,6 +34,8 @@
     CONSTRAINT [FK_lo_Guia_lo_PlanificacionPesca] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_Guia_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 

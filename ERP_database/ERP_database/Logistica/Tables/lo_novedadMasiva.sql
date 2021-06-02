@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Logistica].[lo_novedadMasiva] (
-    [IdNovedadMasiva]       INT           NOT NULL,
+    [IdNovedadMasiva]       INT           IDENTITY (1, 1) NOT NULL,
     [Descripcion]           VARCHAR (MAX) NULL,
     [Fecha]                 DATE          NOT NULL,
     [Estado]                BIT           NOT NULL,
@@ -12,4 +12,6 @@
     [MotivoAnulacion]       VARCHAR (MAX) NULL,
     CONSTRAINT [PK_lo_novedadMasiva] PRIMARY KEY CLUSTERED ([IdNovedadMasiva] ASC)
 );
+
+
 
