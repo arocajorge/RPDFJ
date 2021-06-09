@@ -3955,6 +3955,7 @@
     <Build Include="Logistica\Tables\lo_GuiaDet.sql" />
     <Build Include="Logistica\Tables\lo_Guia.sql" />
     <Build Include="Logistica\Tables\lo_Camaronera.sql" />
+    <Build Include="Logistica\Tables\lo_factura_lo_Guia.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
