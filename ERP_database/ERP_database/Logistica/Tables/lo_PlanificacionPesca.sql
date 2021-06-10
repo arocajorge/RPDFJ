@@ -2,10 +2,8 @@
     [IdPlanificacion]          INT             IDENTITY (1, 1) NOT NULL,
     [IdCamaronera]             INT             NOT NULL,
     [LibrasProgramadas]        NUMERIC (18, 2) NOT NULL,
-    [FechaPesca]               DATE            NOT NULL,
-    [HoraPesca]                DATETIME        NOT NULL,
-    [FechaEntrega]             DATE            NOT NULL,
-    [HoraEntrega]              DATETIME        NOT NULL,
+    [FechaDesde]               DATE            NOT NULL,
+    [FechaHasta]               DATE            NOT NULL,
     [IdCatalogoTipoTransporte] INT             NOT NULL,
     [Gramaje]                  INT             NULL,
     [Piscina]                  VARCHAR (50)    NULL,
@@ -21,4 +19,6 @@
     CONSTRAINT [FK_lo_PlanificacionPesca_lo_Camaronera] FOREIGN KEY ([IdCamaronera]) REFERENCES [Logistica].[lo_Camaronera] ([IdCamaronera]),
     CONSTRAINT [FK_lo_PlanificacionPesca_lo_catalogo] FOREIGN KEY ([IdCatalogoTipoTransporte]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo])
 );
+
+
 
