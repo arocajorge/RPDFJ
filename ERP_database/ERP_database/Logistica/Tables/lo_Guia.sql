@@ -19,6 +19,9 @@
     [Observacion]           VARCHAR (MAX)   NULL,
     [CapacidadLibrasTotal]  NUMERIC (18, 2) NOT NULL,
     [CapacidadLibrasProg]   NUMERIC (18, 2) NOT NULL,
+    [IdEmpresa_Ogiro]       INT             NULL,
+    [IdCbteCble_Ogiro]      NUMERIC (18)    NULL,
+    [IdTipoCbte_Ogiro]      INT             NULL,
     [Estado]                BIT             NOT NULL,
     [IdUsuario]             VARCHAR (50)    NOT NULL,
     [FechaTransaccion]      DATETIME        NOT NULL,
@@ -28,12 +31,15 @@
     [FechaAnulacion]        DATETIME        NULL,
     [MotivoAnulacion]       VARCHAR (MAX)   NULL,
     CONSTRAINT [PK_lo_Guia] PRIMARY KEY CLUSTERED ([IdGuia] ASC),
+    CONSTRAINT [FK_lo_Guia_cp_orden_giro] FOREIGN KEY ([IdEmpresa_Ogiro], [IdCbteCble_Ogiro], [IdTipoCbte_Ogiro]) REFERENCES [dbo].[cp_orden_giro] ([IdEmpresa], [IdCbteCble_Ogiro], [IdTipoCbte_Ogiro]),
     CONSTRAINT [FK_lo_Guia_fa_cliente] FOREIGN KEY ([IdEmpresa], [IdCliente]) REFERENCES [dbo].[fa_cliente] ([IdEmpresa], [IdCliente]),
     CONSTRAINT [FK_lo_Guia_lo_catalogo] FOREIGN KEY ([IdCatalogoTipoGuia]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
     CONSTRAINT [FK_lo_Guia_lo_chofer] FOREIGN KEY ([IdChofer]) REFERENCES [Logistica].[lo_chofer] ([IdChofer]),
     CONSTRAINT [FK_lo_Guia_lo_PlanificacionPesca] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_Guia_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 
