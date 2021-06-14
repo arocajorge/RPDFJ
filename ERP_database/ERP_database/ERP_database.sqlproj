@@ -3956,6 +3956,11 @@
     <Build Include="Logistica\Tables\lo_Guia.sql" />
     <Build Include="Logistica\Tables\lo_Camaronera.sql" />
     <Build Include="Logistica\Tables\lo_factura_lo_Guia.sql" />
+    <Build Include="Logistica\Tables\lo_grupoVehiculoTerceroTalonario.sql" />
+    <Build Include="Logistica\Tables\lo_grupoVehiculoTerceroDet.sql" />
+    <Build Include="Logistica\Tables\lo_grupoVechiculoTercero.sql" />
+    <Build Include="Logistica\Tables\lo_grupoDestinosDet.sql" />
+    <Build Include="Logistica\Tables\lo_grupoDestinos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
