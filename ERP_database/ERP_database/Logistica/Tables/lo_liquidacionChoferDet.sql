@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Logistica].[lo_liquidacionChoferDet] (
-    [IdLiquidacionDet]   INT             NOT NULL,
+    [IdLiquidacionDet]   INT             IDENTITY (1, 1) NOT NULL,
     [IdLiquidacion]      INT             NOT NULL,
     [IdChofer]           INT             NOT NULL,
     [IdVehiculo]         INT             NOT NULL,
@@ -16,6 +16,8 @@
     CONSTRAINT [FK_lo_liquidacionChoferDet_lo_liquidacionChofer] FOREIGN KEY ([IdLiquidacion]) REFERENCES [Logistica].[lo_liquidacionChofer] ([IdLiquidacion]),
     CONSTRAINT [FK_lo_liquidacionChoferDet_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 

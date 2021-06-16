@@ -4,6 +4,8 @@
     [ComisionVehiculoTercero] NUMERIC (18, 2) NOT NULL,
     [Establecimiento]         VARCHAR (3)     NOT NULL,
     [PuntoEmision]            VARCHAR (3)     NOT NULL,
+    [IdRubroAnticipo]         INT             NULL,
+    [IdRubroViatico]          INT             NULL,
     [IdUsuario]               VARCHAR (50)    NOT NULL,
     [FechaTransaccion]        DATETIME        NOT NULL,
     [IdUsuarioModificacion]   VARCHAR (50)    NULL,
@@ -13,6 +15,8 @@
     [MotivoAnulacion]         VARCHAR (MAX)   NULL,
     CONSTRAINT [PK_lo_parametro] PRIMARY KEY CLUSTERED ([IdParametro] ASC)
 );
+
+
 
 
 
