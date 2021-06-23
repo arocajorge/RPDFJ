@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Logistica].[lo_vehiculo] (
     [IdVehiculo]            INT             IDENTITY (1, 1) NOT NULL,
-    [IdChofer]              INT             NULL,
+    [IdChofer]              INT             NOT NULL,
     [Descripcion]           VARCHAR (500)   NOT NULL,
     [Placa]                 VARCHAR (50)    NOT NULL,
     [Chasis]                VARCHAR (500)   NULL,
@@ -26,6 +26,8 @@
     CONSTRAINT [FK_lo_vehiculo_lo_catalogo] FOREIGN KEY ([IdCatalogoColor]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
     CONSTRAINT [FK_lo_vehiculo_lo_chofer] FOREIGN KEY ([IdChofer]) REFERENCES [Logistica].[lo_chofer] ([IdChofer])
 );
+
+
 
 
 

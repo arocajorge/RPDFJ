@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [Logistica].[lo_PlanificacionPesca] (
     [IdPlanificacion]          INT             IDENTITY (1, 1) NOT NULL,
     [IdCamaronera]             INT             NOT NULL,
+    [IdEmpacadora]             INT             NOT NULL,
     [LibrasProgramadas]        NUMERIC (18, 2) NOT NULL,
     [FechaDesde]               DATE            NOT NULL,
     [FechaHasta]               DATE            NOT NULL,
@@ -17,8 +18,11 @@
     [MotivoAnulacion]          VARCHAR (MAX)   NULL,
     CONSTRAINT [PK_lo_PlanificacionPesca] PRIMARY KEY CLUSTERED ([IdPlanificacion] ASC),
     CONSTRAINT [FK_lo_PlanificacionPesca_lo_Camaronera] FOREIGN KEY ([IdCamaronera]) REFERENCES [Logistica].[lo_Camaronera] ([IdCamaronera]),
-    CONSTRAINT [FK_lo_PlanificacionPesca_lo_catalogo] FOREIGN KEY ([IdCatalogoTipoTransporte]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo])
+    CONSTRAINT [FK_lo_PlanificacionPesca_lo_catalogo] FOREIGN KEY ([IdCatalogoTipoTransporte]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
+    CONSTRAINT [FK_lo_PlanificacionPesca_lo_Empacadora1] FOREIGN KEY ([IdEmpacadora]) REFERENCES [Logistica].[lo_Empacadora] ([IdEmpacadora])
 );
+
+
 
 
 

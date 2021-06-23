@@ -5,6 +5,8 @@
     [ControlaKardex]        BIT           NOT NULL,
     [IdUnidadMedida]        VARCHAR (25)  NOT NULL,
     [Estado]                BIT           NOT NULL,
+    [EsObligatorio]         BIT           NOT NULL,
+    [CantidadPorDefecto]    INT           NULL,
     [IdUsuario]             VARCHAR (50)  NOT NULL,
     [FechaTransaccion]      DATETIME      NOT NULL,
     [IdUsuarioModificacion] VARCHAR (50)  NULL,
@@ -15,4 +17,6 @@
     CONSTRAINT [PK_lo_recurso] PRIMARY KEY CLUSTERED ([IdRecurso] ASC),
     CONSTRAINT [FK_lo_recurso_in_UnidadMedida] FOREIGN KEY ([IdUnidadMedida]) REFERENCES [dbo].[in_UnidadMedida] ([IdUnidadMedida])
 );
+
+
 
