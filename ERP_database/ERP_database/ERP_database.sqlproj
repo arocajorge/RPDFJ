@@ -3960,6 +3960,7 @@
     <Build Include="Logistica\Tables\lo_talonarioTerceroPorCliente.sql" />
     <Build Include="Logistica\Tables\lo_liquidacionChoferDetGuia.sql" />
     <Build Include="Logistica\Tables\lo_Empacadora.sql" />
+    <Build Include="Logistica\Tables\lo_GuiaEmpacadora.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
