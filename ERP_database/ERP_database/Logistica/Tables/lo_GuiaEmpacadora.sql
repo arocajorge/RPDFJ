@@ -33,6 +33,3 @@
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_PlanificacionPesca] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
-
-
-
