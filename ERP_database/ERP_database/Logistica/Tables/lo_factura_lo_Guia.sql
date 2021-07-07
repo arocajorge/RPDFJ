@@ -9,10 +9,13 @@
     [ValorLibra]       NUMERIC (18, 2) NOT NULL,
     [ValorFlete]       NUMERIC (18, 2) NOT NULL,
     [ValorFacturar]    NUMERIC (18, 2) NOT NULL,
+    [Observacion]      VARCHAR (MAX)   NULL,
     CONSTRAINT [PK_lo_factura_lo_Guia_1] PRIMARY KEY CLUSTERED ([IdRelacion] ASC),
     CONSTRAINT [FK_lo_factura_lo_Guia_fa_factura] FOREIGN KEY ([IdEmpresa], [IdSucursal], [IdBodega], [IdCbteVta]) REFERENCES [dbo].[fa_factura] ([IdEmpresa], [IdSucursal], [IdBodega], [IdCbteVta]),
     CONSTRAINT [FK_lo_factura_lo_Guia_lo_GuiaEmpacadora] FOREIGN KEY ([IdGuiaEmpacadora]) REFERENCES [Logistica].[lo_GuiaEmpacadora] ([IdGuiaEmpacadora])
 );
+
+
 
 
 

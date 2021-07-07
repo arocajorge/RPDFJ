@@ -3945,7 +3945,6 @@
     <Build Include="Logistica\Tables\lo_novedadDetalle.sql" />
     <Build Include="Logistica\Tables\log_menu.sql" />
     <Build Include="Logistica\Tables\lo_talonarioPorCliente.sql" />
-    <Build Include="Logistica\Tables\lo_talonarioPorClienteCapacidad.sql" />
     <Build Include="Security\Logistica.sql" />
     <Build Include="Logistica\Tables\lo_rubroFijo.sql" />
     <Build Include="Logistica\Tables\lo_PlanificacionPescaRecurso.sql" />
@@ -3962,6 +3961,8 @@
     <Build Include="Logistica\Tables\lo_Empacadora.sql" />
     <Build Include="Logistica\Tables\lo_GuiaEmpacadora.sql" />
     <Build Include="Logistica\Tables\lo_planificacionPescaHistorico.sql" />
+    <Build Include="Logistica\Tables\lo_PlanificacionPescaCamion.sql" />
+    <Build Include="Logistica\Tables\lo_EmpacadoraProducto.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
