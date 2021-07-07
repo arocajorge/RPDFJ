@@ -11,8 +11,12 @@
     [FechaAnulacion]        DATETIME      NULL,
     [MotivoAnulacion]       VARCHAR (MAX) NULL,
     CONSTRAINT [PK_lo_talonarioTerceroPorCliente] PRIMARY KEY CLUSTERED ([IdTalonario] ASC),
+    CONSTRAINT [FK_lo_talonarioTerceroPorCliente_lo_catalogo] FOREIGN KEY ([IdCatalogoOrigen]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
+    CONSTRAINT [FK_lo_talonarioTerceroPorCliente_lo_catalogo1] FOREIGN KEY ([IdCatalogoDestino]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
     CONSTRAINT [FK_lo_talonarioTerceroPorCliente_lo_Empacadora] FOREIGN KEY ([IdEmpacadora]) REFERENCES [Logistica].[lo_Empacadora] ([IdEmpacadora])
 );
+
+
 
 
 
