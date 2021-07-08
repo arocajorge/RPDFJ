@@ -11,6 +11,7 @@
     [PuntoEmision]          VARCHAR (3)     NOT NULL,
     [NumDocumento]          VARCHAR (20)    NOT NULL,
     [Fecha]                 DATE            NOT NULL,
+    [Piscina]               VARCHAR (50)    NULL,
     [CapacidadLibrasTotal]  NUMERIC (18, 2) NOT NULL,
     [CapacidadLibrasProg]   NUMERIC (18, 2) NOT NULL,
     [CapacidadBines]        INT             NOT NULL,
@@ -37,6 +38,8 @@
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_PlanificacionPesca] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 
