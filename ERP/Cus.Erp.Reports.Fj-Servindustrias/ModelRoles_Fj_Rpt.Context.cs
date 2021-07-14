@@ -22,7 +22,11 @@ namespace Cus.Erp.Reports.FJ
             : base("name=Entities_Roles_Fj_Rpt")
         {
         }
-    
+        //poner esta funcion dentro de la clase entities no viene por defecto
+        public void SetCommandTimeOut(int TimeOut)
+        {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = TimeOut;
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

@@ -25,7 +25,8 @@ namespace Cus.Erp.Reports.FJ.Roles
              
               using (Entities_Roles_Fj_Rpt db = new Entities_Roles_Fj_Rpt())
               {
-                 // db.SetCommandTimeOut(30000);
+                  db.SetCommandTimeOut(30000);
+                  
                   var query = from q in db.spROLES_Rpt012(info_.IdEmpresa, info_.IdNomina_Tipo, info_.pe_anio, info_.pe_mes, info_.IdPeriodo)
                             
                               select q;
