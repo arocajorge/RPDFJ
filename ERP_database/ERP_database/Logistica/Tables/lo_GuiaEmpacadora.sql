@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Logistica].[lo_GuiaEmpacadora] (
     [IdGuiaEmpacadora]      INT             IDENTITY (1, 1) NOT NULL,
-    [IdPlanificacion]       INT             NOT NULL,
+    [IdPlanificacion]       INT             NULL,
     [IdEmpacadora]          INT             NOT NULL,
     [IdVehiculo]            INT             NOT NULL,
     [IdChofer]              INT             NOT NULL,
@@ -38,6 +38,8 @@
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_PlanificacionPesca] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_GuiaEmpacadora_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 
