@@ -3967,6 +3967,7 @@
     <Build Include="Logistica\Tables\lo_movimientoDet.sql" />
     <Build Include="Logistica\Tables\lo_movimientoCostoHistorico.sql" />
     <Build Include="Logistica\Tables\lo_movimiento.sql" />
+    <Build Include="Logistica\Tables\lo_GuiaDetCodigo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
