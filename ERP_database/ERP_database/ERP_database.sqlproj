@@ -3963,6 +3963,10 @@
     <Build Include="Logistica\Tables\lo_planificacionPescaHistorico.sql" />
     <Build Include="Logistica\Tables\lo_PlanificacionPescaCamion.sql" />
     <Build Include="Logistica\Tables\lo_EmpacadoraProducto.sql" />
+    <Build Include="Logistica\Tables\lo_movimientoTipo.sql" />
+    <Build Include="Logistica\Tables\lo_movimientoDet.sql" />
+    <Build Include="Logistica\Tables\lo_movimientoCostoHistorico.sql" />
+    <Build Include="Logistica\Tables\lo_movimiento.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo\Views\vwin_Producto_x_man_tipo_horas_facturacion.sql" />
