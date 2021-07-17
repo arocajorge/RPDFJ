@@ -1,0 +1,27 @@
+﻿CREATE TABLE [Logistica].[lo_movimiento] (
+    [IdMovimiento]           NUMERIC (18)  IDENTITY (1, 1) NOT NULL,
+    [IdMovimientoTipo]       INT           NOT NULL,
+    [IdCatalogoBodega]       INT           NOT NULL,
+    [Fecha]                  DATE          NOT NULL,
+    [Signo]                  VARCHAR (1)   NOT NULL,
+    [Observacion]            VARCHAR (MAX) NULL,
+    [IdCatalogoEstadoAproba] INT           NOT NULL,
+    [ObservacionAproba]      VARCHAR (MAX) NOT NULL,
+    [Estado]                 BIT           NOT NULL,
+    [IdEmpresa]              INT           NULL,
+    [IdCbteCble_Ogiro]       NUMERIC (18)  NULL,
+    [IdTipoCbte_Ogiro]       INT           NULL,
+    [IdUsuario]              VARCHAR (50)  NOT NULL,
+    [FechaTransaccion]       DATETIME      NOT NULL,
+    [IdUsuarioModificacion]  VARCHAR (50)  NULL,
+    [FechaModificacion]      DATETIME      NULL,
+    [IdUsuarioAnulacion]     VARCHAR (50)  NULL,
+    [FechaAnulacion]         DATETIME      NULL,
+    [MotivoAnulacion]        VARCHAR (MAX) NULL,
+    CONSTRAINT [PK_lo_movimiento] PRIMARY KEY CLUSTERED ([IdMovimiento] ASC),
+    CONSTRAINT [FK_lo_movimiento_cp_orden_giro] FOREIGN KEY ([IdEmpresa], [IdCbteCble_Ogiro], [IdTipoCbte_Ogiro]) REFERENCES [dbo].[cp_orden_giro] ([IdEmpresa], [IdCbteCble_Ogiro], [IdTipoCbte_Ogiro]),
+    CONSTRAINT [FK_lo_movimiento_lo_catalogo] FOREIGN KEY ([IdCatalogoBodega]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
+    CONSTRAINT [FK_lo_movimiento_lo_catalogo1] FOREIGN KEY ([IdCatalogoEstadoAproba]) REFERENCES [Logistica].[lo_catalogo] ([IdCatalogo]),
+    CONSTRAINT [FK_lo_movimiento_lo_movimientoTipo] FOREIGN KEY ([IdMovimientoTipo]) REFERENCES [Logistica].[lo_movimientoTipo] ([IdMovimientoTipo])
+);
+

@@ -28,6 +28,7 @@
     [Piscina]                VARCHAR (50)    NULL,
     [IdCatalogoOrigenFinal]  INT             NOT NULL,
     [IdCatalogoDestinoFinal] INT             NOT NULL,
+    [aprobada_enviar_sri]    BIT             NOT NULL,
     [Estado]                 BIT             NOT NULL,
     [IdUsuario]              VARCHAR (50)    NOT NULL,
     [FechaTransaccion]       DATETIME        NOT NULL,
@@ -44,6 +45,8 @@
     CONSTRAINT [FK_lo_Guia_lo_PlanificacionPesca1] FOREIGN KEY ([IdPlanificacion]) REFERENCES [Logistica].[lo_PlanificacionPesca] ([IdPlanificacion]),
     CONSTRAINT [FK_lo_Guia_lo_vehiculo] FOREIGN KEY ([IdVehiculo]) REFERENCES [Logistica].[lo_vehiculo] ([IdVehiculo])
 );
+
+
 
 
 
