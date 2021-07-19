@@ -831,6 +831,10 @@
     <Compile Include="Inventario_Edehsa\in_Producto_Dimensiones_Info.cs" />
     <Compile Include="Inventario_Edehsa\vwin_movi_inve_detalle_x_Producto_CusCider_UltMov_Info.cs" />
     <Compile Include="Inventario_Fj\in_Ing_Egr_Inven_fj_Info.cs" />
+    <Compile Include="Logistica\lo_catalogo_Info.cs" />
+    <Compile Include="Logistica\lo_movimientoDet_Info.cs" />
+    <Compile Include="Logistica\lo_movimiento_Info.cs" />
+    <Compile Include="Logistica\lo_recurso_Info.cs" />
     <Compile Include="Log_Exception\BusException.cs" />
     <Compile Include="Log_Exception\DalException.cs" />
     <Compile Include="Log_Exception\DataException.cs" />

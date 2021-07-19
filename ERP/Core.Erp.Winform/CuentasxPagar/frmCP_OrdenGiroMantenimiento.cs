@@ -32,6 +32,8 @@ using Cus.Erp.Reports;
 using Core.Erp.Reportes.Contabilidad;
 using DevExpress.XtraReports.UI;
 using Cus.Erp.Reports.CAH.Contabilidad;
+using Core.Erp.Business.Logistica;
+using Core.Erp.Info.Logistica;
 
 namespace Core.Erp.Winform.CuentasxPagar
 {
@@ -152,6 +154,12 @@ namespace Core.Erp.Winform.CuentasxPagar
         }
 
 
+        #endregion
+
+        #region Logistica
+        lo_recurso_Bus busRecurso = new lo_recurso_Bus();
+        lo_catalogo_Bus busCatalogoLog = new lo_catalogo_Bus();
+        BindingList<lo_movimientoDet_Info> blstRecurso = new BindingList<lo_movimientoDet_Info>();
         #endregion
 
         public frmCP_OrdenGiroMantenimiento()
@@ -676,7 +684,11 @@ namespace Core.Erp.Winform.CuentasxPagar
                 cmb_ICE.Properties.DisplayMember = "descriConcate";
                 cmb_ICE.Properties.ValueMember = "IdCodigo_SRI";
                 ucCp_Proveedor1.cargar_proveedores();
-         
+
+                deFechaLog.DateTime = DateTime.Now.Date;
+                cmbRecurso.DataSource = busRecurso.GetList();
+                cmbBodegaLog.Properties.DataSource = busCatalogoLog.GetList(10);
+                gcMateriales.DataSource = blstRecurso;
             }
             catch (Exception ex)
             {
@@ -4528,6 +4540,18 @@ namespace Core.Erp.Winform.CuentasxPagar
 
                 throw;
             }
+        }
+
+        private void gvMateriales_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            lo_movimientoDet_Info row = (lo_movimientoDet_Info)gvMateriales.GetRow(e.RowHandle);
+            if (row == null)
+                return;
+            if (e.Column == colCantidadLo || e.Column == colCostoLo)
+            {
+                row.Total = row.Cantidad * row.Costo;
+            }
+            gcMateriales.RefreshDataSource();
         }
     }
 }

@@ -2330,6 +2330,10 @@
     <Compile Include="in_Zona_vs_CentroDeCosto.cs">
       <DependentUpon>ModelInventario.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logistica\lo_catalogo_Data.cs" />
+    <Compile Include="Logistica\lo_movimientoDet_Data.cs" />
+    <Compile Include="Logistica\lo_movimiento_Data.cs" />
+    <Compile Include="Logistica\lo_recurso_Data.cs" />
     <Compile Include="Mantenimiento\man_actividad_Data.cs" />
     <Compile Include="Mantenimiento\man_actividad_det_Data.cs" />
     <Compile Include="Mantenimiento\man_tecnico_Data.cs" />

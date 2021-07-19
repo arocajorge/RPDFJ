@@ -636,6 +636,10 @@
     <Compile Include="Inventario_Edehsa\in_Producto_Dimensiones_bus .cs" />
     <Compile Include="Inventario_Fj\in_Ing_Egr_Inven_fj_Bus.cs" />
     <Compile Include="Inventario_Talme\inv_ObtenerReporteTalme_Bus.cs" />
+    <Compile Include="Logistica\lo_catalogo_Bus.cs" />
+    <Compile Include="Logistica\lo_movimientoDet_Bus.cs" />
+    <Compile Include="Logistica\lo_movimiento_Bus.cs" />
+    <Compile Include="Logistica\lo_recurso_Bus.cs" />
     <Compile Include="Mantenimiento\man_actividad_Bus.cs" />
     <Compile Include="Mantenimiento\man_actividad_det_Bus.cs" />
     <Compile Include="Mantenimiento\man_tecnico_Bus.cs" />
